@@ -81,12 +81,10 @@ static int cmd_x(char *args){
   int gap;
   uint32_t addr;
   sscanf(arg,"%d %x",&gap,&addr);
-  int n = 0;
-  while(n<4){
+  while(gap--){
     printf("0x%x:",addr);
     printf("0x%08lx\n", paddr_read(addr, 4));
-    addr+=32;
-    n++;
+    addr+=4;
   }
   return 0;
 }
