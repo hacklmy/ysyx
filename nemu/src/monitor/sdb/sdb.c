@@ -81,13 +81,12 @@ static int cmd_x(char *args){
   char *addr = strtok(NULL," ");
   int gap=0;
   paddr_t paddr;
-  printf("%lx",sizeof(paddr_t));
   sscanf(num,"%d",&gap);
   sscanf(addr,"%x",&paddr);
   while(gap>0){
     printf("0x%x:",paddr);
     printf("0x%08lx\n", paddr_read(paddr, 4));
-    addr+=4;
+    paddr+=4;
     gap--;
   }
   return 0;
