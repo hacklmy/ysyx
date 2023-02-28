@@ -18,7 +18,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "sdb.h"
-#include <memory/paddr.h>
+#include <memory/vaddr.h>
 
 static int is_batch_mode = false;
 
@@ -85,8 +85,8 @@ static int cmd_x(char *args){
   sscanf(addr,"%x",&paddr);
   while(gap>0){
     printf("0x%x:",paddr);
-    printf("0x%08lx\n", paddr_read(paddr, 4));
-    paddr+=4;
+    printf("0x%08lx\n", vaddr_read(paddr, 4));
+    paddr+=32;
     gap--;
   }
   return 0;
