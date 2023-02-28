@@ -77,13 +77,15 @@ static int cmd_info(char *args){
 }
 
 static int cmd_x(char *args){
-  char *arg = strtok(NULL," ");
+  char *num = strtok(NULL," ");
+  char *addr = strtok(NULL," ");
   int gap=0;
-  paddr_t addr;
-  sscanf(arg,"%d %x",&gap,&addr);
+  paddr_t paddr;
+  sscanf(num,"%d",&gap);
+  sscanf(addr,"%x",&paddr);
   while(gap>0){
-    printf("0x%x:",addr);
-    printf("0x%08lx\n", paddr_read(addr, 4));
+    printf("0x%x:",paddr);
+    printf("0x%08lx\n", paddr_read(paddr, 4));
     addr+=4;
     gap--;
   }
