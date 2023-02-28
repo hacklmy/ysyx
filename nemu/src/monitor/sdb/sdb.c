@@ -81,6 +81,7 @@ static int cmd_x(char *args){
   char *addr = strtok(NULL," ");
   int gap=0;
   paddr_t paddr;
+  printf("%lx",sizeof(paddr_t));
   sscanf(num,"%d",&gap);
   sscanf(addr,"%x",&paddr);
   while(gap>0){
