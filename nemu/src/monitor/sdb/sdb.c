@@ -18,6 +18,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "sdb.h"
+#include <memory/paddr.h>
 
 static int is_batch_mode = false;
 
@@ -75,6 +76,20 @@ static int cmd_info(char *args){
   return 0;
 }
 
+static int cmd_x(char *args){
+  char *arg = strtok(NULL," ");
+  int gap;
+  uint32_t addr;
+  sscanf(arg,"%d %x",&gap,&addr);
+  int n = 0;
+  while(n<4){
+    printf("0x%x:",addr);
+    printf("0x%08lx\n", paddr_read(addr, 4));
+    addr+=32;
+    n++;
+  }
+  return 0;
+}
 
 static struct {
   const char *name;
@@ -86,9 +101,9 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
 
   /* TODO: Add more commands */
-  { "si", "execute once", cmd_si },
+  { "si", "execute N step", cmd_si },
   { "info", "print infomation of registers", cmd_info },
-  //{ "x", "scan the mem", cmd_x },
+  { "x", "scan the mem", cmd_x },
 };
 
 #define NR_CMD ARRLEN(cmd_table)
