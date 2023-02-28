@@ -85,7 +85,12 @@ static int cmd_x(char *args){
   sscanf(addr,"%x",&paddr);
   while(gap>0){
     printf("0x%x:\t",paddr);
-    printf("0x%08lx\n", vaddr_read(paddr, 4));
+    paddr_t temp = vaddr_read(paddr, 4);
+    for (int i = 0;i < 4;i++){
+      printf("0x%08x ",temp & 0xff);
+      temp = temp >> 8;
+    }
+    printf("\n");
     paddr+=32;
     gap--;
   }
