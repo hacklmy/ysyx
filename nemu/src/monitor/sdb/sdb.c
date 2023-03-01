@@ -98,10 +98,8 @@ static int cmd_x(char *args){
 }
 
 static int cmd_p(char *args){
-  char *arg = strtok(args," ");
-  printf("%s\n",arg);
   bool success = true;
-  printf("result: %ld\n",expr(arg,&success));
+  printf("result: %ld\n",expr(args,&success));
   return 0;
 }
 
