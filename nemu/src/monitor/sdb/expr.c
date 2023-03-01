@@ -35,14 +35,14 @@ static struct rule {
   /* TODO: Add more rules.
    * Pay attention to the precedence level of different rules.
    */
-
+  {"0[xX][[0-9a-fA-F]]+", HEX},
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
   {"\\-", '-'}, 
   {"\\*", '*'},
   {"\\/", '/'}, 
   {"\\$[a-z]+", REG}, 
-  {"0[xX][[0-9a-fA-F]]+", HEX},
+  
   {"\\(", '('},
   {"\\)", ')'},
   {"[0-9]+", integers},
