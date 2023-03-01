@@ -225,6 +225,10 @@ uint32_t eval(int p,int q){
        sscanf(tokens[p].str,"%d",&res);
      if(tokens[p].type==HEX)
        sscanf(tokens[p].str,"%x",&res);
+     if(tokens[p].type==REG){
+       bool success = false;
+       res = isa_reg_str2val(tokens[p].str, &success);
+     }
      return res;
   }
   else if (check_parentheses(p, q) == true) {
@@ -239,10 +243,7 @@ uint32_t eval(int p,int q){
       return -eval(p+1,q);
     }
     if(tokens[op].type==POINT){
-      bool success = false;
-      printf("%s\n",tokens[op].str);
-      uint32_t val = isa_reg_str2val(tokens[op].str, &success);
-      return val;//vaddr_read(val, 4);
+      return vaddr_read(eval(p+1,q), 4);
     }
     int val1 = eval(p, op - 1);
     int val2 = eval(op + 1, q);
