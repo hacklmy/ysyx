@@ -213,7 +213,6 @@ int find_main_op(int p,int q){
 uint32_t eval(int p,int q){
   uint32_t res;
   if (p > q) {
-  printf("%d %d %d\n",q,p,tokens[0].type);
     Log("Bad expression!");
     assert(0);
   }
@@ -277,7 +276,6 @@ word_t expr(char *e, bool *success) {
   for (int i = 0; i < nr_token; i ++) {
     if (tokens[i].type == '-' && (i == 0 || (tokens[i - 1].type != integers && tokens[i - 1].type != ')' && tokens[i - 1].type != HEX && tokens[i - 1].type != REG)) ) {
       tokens[i].type = NEG;
-      printf("%d turn to NEG\n",i);
     } 
   }
   int p = 0;
