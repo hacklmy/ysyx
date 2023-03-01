@@ -21,7 +21,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ,
+  TK_NOTYPE = 256, TK_EQ,integers
 
   /* TODO: Add more token types */
 
@@ -38,6 +38,14 @@ static struct rule {
 
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
+  {"\\-", '-'}, 
+  {"\\*", '*'},
+  {"\\/", '/'},  
+  
+  {"\\(", '('},
+  {"\\)", ')'},
+  {"\\(", '('},
+  {"[0-9]+", integers},
   {"==", TK_EQ},        // equal
 };
 
@@ -93,9 +101,29 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-
+	
         switch (rules[i].token_type) {
-          default: TODO();
+          case TK_NOTYPE: break;
+          case '+':
+          case '-':
+          case '*':
+          case '/':
+          case '(':
+          case ')':
+            tokens[nr_token++].type = rules[i].token_type;
+            break;
+          case integers:
+            tokens[nr_token].type = integers;
+            if(substr_len>32){
+              Log("too long integer!");
+              assert(0);
+	    }
+            strncpy(tokens[nr_token].str,substr_start,substr_len);
+            nr_token++;
+            break;
+          default:
+            Log("unknow regular rules!"); 
+            assert(0);
         }
 
         break;
@@ -111,6 +139,90 @@ static bool make_token(char *e) {
   return true;
 }
 
+bool check_parentheses(int p,int q){
+  int nums = 0;
+  for(int i = p;i<=q;i++){
+    if(tokens[i].type=='(') nums++;
+    else if(tokens[i].type==')') nums--;
+  }
+  if(nums!=0){
+    Log("bad expression!");
+    assert(0);
+  }
+  if(tokens[p].type=='('&&tokens[q].type==')')return true;
+  return false;
+}
+
+int return_pri(char op){
+  switch(op){
+    case '*':
+    case '/':
+      return 1;
+      break;
+    case '+':
+    case '-':
+      return 2;
+      break;
+    default:
+      return 0;
+  }
+    
+}
+
+int find_main_op(int p,int q){
+  int kuohao_num = 0;
+  int position = -1;
+  int pri=0;
+  for(int i =p;i<=q;i++){
+    if(tokens[i].type=='(')kuohao_num++;
+    else if(tokens[i].type==')')kuohao_num--;
+    if(kuohao_num==0&&tokens[i].type!=integers){
+      if(tokens[i].type>=pri){
+        pri = tokens[i].type;
+        position = i;
+      }
+    }
+  }
+  if(position==-1)assert(0);
+  return position;
+}
+
+uint32_t eval(int p,int q){
+  uint32_t res;
+  if (p > q) {
+    Log("Bad expression!");
+    assert(0);
+  }
+  else if (p == q) {
+    /* Single token.
+     * For now this token should be a number.
+     * Return the value of the number.
+     */
+     sscanf(tokens[p].str,"%d",&res);
+     return res;
+  }
+  else if (check_parentheses(p, q) == true) {
+    /* The expression is surrounded by a matched pair of parentheses.
+     * If that is the case, just throw away the parentheses.
+     */
+    return eval(p + 1, q - 1);
+  }
+  else {
+    int op = find_main_op(p,q);
+    int val1 = eval(p, op - 1);
+    int val2 = eval(op + 1, q);
+
+    switch (tokens[op].type) {
+      case '+': return val1 + val2;
+      case '-': return val1 - val2;
+      case '*': return val1 * val2;
+      case '/': 
+        if(val2==0)assert(0);
+        return val1 / val2;
+      default: assert(0);
+    }
+  }
+}
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
@@ -119,7 +231,10 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
+  int p = 0;
+  int q = nr_token-1;
+  uint32_t res = eval(p,q);
+  
 
-  return 0;
+  return res;
 }

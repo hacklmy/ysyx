@@ -97,6 +97,13 @@ static int cmd_x(char *args){
   return 0;
 }
 
+static int cmd_p(char *args){
+  char *arg = strtok(NULL," ");
+  bool success = true;
+  printf("result: %ld\n",expr(arg,&success));
+  return 0;
+}
+
 static struct {
   const char *name;
   const char *description;
@@ -110,6 +117,7 @@ static struct {
   { "si", "execute N step", cmd_si },
   { "info", "print infomation of registers", cmd_info },
   { "x", "scan the mem", cmd_x },
+  { "p", "get the value of expr", cmd_p },
 };
 
 #define NR_CMD ARRLEN(cmd_table)
