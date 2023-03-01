@@ -236,6 +236,7 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   int p = 0;
   int q = nr_token-1;
+  printf("%d %d\n",p,q);
   uint32_t res = eval(p,q);
   
 
