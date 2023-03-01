@@ -201,7 +201,7 @@ int find_main_op(int p,int q){
     if(tokens[i].type=='(')kuohao_num++;
     else if(tokens[i].type==')')kuohao_num--;
     if(kuohao_num==0&&tokens[i].type!=integers&&tokens[i].type!=HEX&&tokens[i].type!=REG){
-      if(return_pri(tokens[i].type)>=pri&&tokens[i].type!=NEG){
+      if(return_pri(tokens[i].type)>pri||(return_pri(tokens[i].type)==pri&&tokens[i].type!=NEG)){
         pri = tokens[i].type;
         position = i;
       }
