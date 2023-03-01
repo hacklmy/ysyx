@@ -106,7 +106,7 @@ static bool make_token(char *e) {
 	  tokens[nr_token].str[j] = '\0';
         }
         switch (rules[i].token_type) {
-          case TK_NOTYPE: break;
+          case 256: break;
           case '+':
           case '-':
           case '*':
