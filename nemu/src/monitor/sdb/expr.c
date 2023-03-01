@@ -212,19 +212,9 @@ int find_main_op(int p,int q){
 
 uint32_t eval(int p,int q){
   uint32_t res;
-  int integer_num=0;
-  for(int i =p;i<=q;i++){
-   if(tokens[p].type==integers)integer_num++;
-  }
   if (p > q) {
     Log("Bad expression!");
     assert(0);
-  }
-  else if (tokens[p].type==NEG){
-    return -eval(p+1,q);
-  }
-  else if (integer_num==1&&tokens[p].type==NEG){
-    return -eval(p+1,q);
   }
   else if (p == q) {
     /* Single token.
