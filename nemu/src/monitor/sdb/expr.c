@@ -36,7 +36,7 @@ static struct rule {
    * Pay attention to the precedence level of different rules.
    */
 
-  {" +", TK_NOTYPE},    // spaces
+  {"\\s+", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
   {"\\-", '-'}, 
   {"\\*", '*'},
@@ -106,7 +106,7 @@ static bool make_token(char *e) {
 	  tokens[nr_token].str[j] = '\0';
         }
         switch (rules[i].token_type) {
-          case 256: break;
+          case TK_NOTYPE: break;
           case '+':
           case '-':
           case '*':
