@@ -40,16 +40,17 @@ static struct rule {
   {"\\+", '+'},         // plus
   {"\\-", '-'}, 
   {"\\*", '*'},
-  {"\\/", '/'},  
-  
+  {"\\/", '/'}, 
+  {"\\$[a-z]+", REG}, 
+  {"0[xX][[0-9a-fA-F]]+", HEX},
   {"\\(", '('},
   {"\\)", ')'},
   {"[0-9]+", integers},
   {"==", TK_EQ},        // equal
   {"!=", TK_UEQ},
-  {"0[xX][[0-9a-fA-F]]+", HEX},
+  
   {"&&", AND},
-  {"\\$[a-z]+", REG},
+  
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -289,7 +290,6 @@ word_t expr(char *e, bool *success) {
   }
   int p = 0;
   int q = nr_token-1;
-  printf("%d %d\n",p,q);
   uint32_t res = eval(p,q);
   
 
