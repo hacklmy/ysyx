@@ -240,6 +240,7 @@ uint32_t eval(int p,int q){
     }
     if(tokens[op].type==POINT){
       bool success = false;
+      printf("%s\n",tokens[op].str);
       uint32_t val = isa_reg_str2val(tokens[op].str, &success);
       return val;//vaddr_read(val, 4);
     }
