@@ -14,14 +14,14 @@
 ***************************************************************************************/
 
 #include <isa.h>
-
+#include <memory/vaddr.h>
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ,integers
+  TK_NOTYPE = 256, TK_EQ,integers,TK_UEQ,HEX,AND,REG,POINT,NEG
 
   /* TODO: Add more token types */
 
@@ -44,9 +44,12 @@ static struct rule {
   
   {"\\(", '('},
   {"\\)", ')'},
-  {"\\(", '('},
   {"[0-9]+", integers},
   {"==", TK_EQ},        // equal
+  {"!=", TK_UEQ},
+  {"0[xX][[0-9a-fA-F]]+", HEX},
+  {"&&", AND},
+  {"\\$[a-z]+", REG},
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -116,8 +119,13 @@ static bool make_token(char *e) {
           case ')':
             tokens[nr_token++].type = rules[i].token_type;
             break;
+          case HEX:
+          case REG:
           case integers:
-            tokens[nr_token].type = integers;
+          case TK_EQ:
+          case TK_UEQ:
+          case AND:
+            tokens[nr_token].type = rules[i].token_type;
             if(substr_len>32){
               Log("too long integer!");
               assert(0);
@@ -157,15 +165,26 @@ bool check_parentheses(int p,int q){
   return false;
 }
 
-int return_pri(char op){
+int return_pri(int op){
   switch(op){
+    case NEG:
+    case POINT:
+      return 1;
+      break;
     case '*':
     case '/':
-      return 1;
+      return 2;
       break;
     case '+':
     case '-':
-      return 2;
+      return 3;
+      break;
+    case TK_EQ:
+    case TK_UEQ:
+      return 4;
+      break;
+    case AND:
+      return 5;
       break;
     default:
       return 0;
@@ -180,29 +199,41 @@ int find_main_op(int p,int q){
   for(int i =p;i<=q;i++){
     if(tokens[i].type=='(')kuohao_num++;
     else if(tokens[i].type==')')kuohao_num--;
-    if(kuohao_num==0&&tokens[i].type!=integers){
-      if(tokens[i].type>=pri){
+    if(kuohao_num==0&&tokens[i].type!=integers&&tokens[i].type!=HEX&&tokens[i].type!=REG){
+      if(return_pri(tokens[i].type)>=pri&&tokens[i].type!=NEG){
         pri = tokens[i].type;
         position = i;
       }
     }
   }
-  if(position==-1)assert(0);
   return position;
 }
 
 uint32_t eval(int p,int q){
   uint32_t res;
+  int integer_num=0;
+  for(int i =p;i<=q;i++){
+   if(tokens[p].type==integers)integer_num++;
+  }
   if (p > q) {
     Log("Bad expression!");
     assert(0);
+  }
+  else if (tokens[p].type==NEG){
+    return -eval(p+1,q);
+  }
+  else if (integer_num==1&&tokens[p].type==NEG){
+    return -eval(p+1,q);
   }
   else if (p == q) {
     /* Single token.
      * For now this token should be a number.
      * Return the value of the number.
      */
-     sscanf(tokens[p].str,"%d",&res);
+     if(tokens[p].type==integers)
+       sscanf(tokens[p].str,"%d",&res);
+     if(tokens[p].type==HEX)
+       sscanf(tokens[p].str,"%x",&res);
      return res;
   }
   else if (check_parentheses(p, q) == true) {
@@ -213,6 +244,14 @@ uint32_t eval(int p,int q){
   }
   else {
     int op = find_main_op(p,q);
+    if(tokens[op].type==NEG){
+      return -eval(p+1,q);
+    }
+    if(tokens[op].type==POINT){
+      bool success = false;
+      uint32_t val = isa_reg_str2val(tokens[op].str, &success);
+      return vaddr_read(val, 4);
+    }
     int val1 = eval(p, op - 1);
     int val2 = eval(op + 1, q);
 
@@ -223,6 +262,9 @@ uint32_t eval(int p,int q){
       case '/': 
         if(val2==0)assert(0);
         return val1 / val2;
+      case AND: return val1 && val2;
+      case TK_EQ: return val1 == val2;
+      case TK_UEQ: return val1 != val2;
       default: assert(0);
     }
   }
@@ -235,6 +277,16 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
+  for (int i = 0; i < nr_token; i ++) {
+    if (tokens[i].type == '*' && (i == 0 || (tokens[i - 1].type != integers && tokens[i - 1].type != ')' && tokens[i - 1].type != HEX && tokens[i - 1].type != REG) ) ) {
+      tokens[i].type = POINT;
+    } 
+  }
+  for (int i = 0; i < nr_token; i ++) {
+    if (tokens[i].type == '*' && (i == 0 || (tokens[i - 1].type != integers && tokens[i - 1].type != ')' && tokens[i - 1].type != HEX && tokens[i - 1].type != REG)) ) {
+      tokens[i].type = NEG;
+    } 
+  }
   int p = 0;
   int q = nr_token-1;
   printf("%d %d\n",p,q);
