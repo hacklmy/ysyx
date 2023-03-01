@@ -241,7 +241,7 @@ uint32_t eval(int p,int q){
     if(tokens[op].type==POINT){
       bool success = false;
       uint32_t val = isa_reg_str2val(tokens[op].str, &success);
-      return vaddr_read(val, 4);
+      return val;//vaddr_read(val, 4);
     }
     int val1 = eval(p, op - 1);
     int val2 = eval(op + 1, q);
