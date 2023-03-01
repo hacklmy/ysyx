@@ -107,7 +107,6 @@ static bool make_token(char *e) {
         }
         switch (rules[i].token_type) {
           case TK_NOTYPE: 
-            printf("match space");
             break;
           case '+':
           case '-':
@@ -125,6 +124,7 @@ static bool make_token(char *e) {
 	    }
             strncpy(tokens[nr_token].str,substr_start,substr_len);
             nr_token++;
+            printf("%s",e+position);
             break;
           default:
             Log("unknow regular rules!"); 
