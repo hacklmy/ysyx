@@ -276,6 +276,7 @@ word_t expr(char *e, bool *success) {
   for (int i = 0; i < nr_token; i ++) {
     if (tokens[i].type == '*' && (i == 0 || (tokens[i - 1].type != integers && tokens[i - 1].type != ')' && tokens[i - 1].type != HEX && tokens[i - 1].type != REG)) ) {
       tokens[i].type = NEG;
+      printf("%d\n turn to NEG",i);
     } 
   }
   int p = 0;
