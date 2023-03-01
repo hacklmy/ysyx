@@ -213,7 +213,7 @@ int find_main_op(int p,int q){
 uint32_t eval(int p,int q){
   uint32_t res;
   if (p > q) {
-  printf("%d\n",tokens[p].type);
+  printf("%d\n",tokens[q].type);
     Log("Bad expression!");
     assert(0);
   }
