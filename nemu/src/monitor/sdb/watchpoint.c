@@ -55,7 +55,7 @@ WP* new_wp(char *s,int value){
     }
     p->next = temp;
     strcpy(temp->str,s);
-    printf("%s\n",temp->str);
+    printf("%s\n",s);
     temp->value = value;
   }
   return temp;
