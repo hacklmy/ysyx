@@ -42,8 +42,6 @@ void init_wp_pool() {
 
 /* TODO: Implement the functionality of watchpoint */
 WP* new_wp(char *s,int value){ 
-  printf("enter new_wp\n");
-  printf("%s\n",s);
   if(free_==NULL)assert(0);
   WP* temp = free_;
   free_ = free_->next;
@@ -56,9 +54,9 @@ WP* new_wp(char *s,int value){
       p = p->next;
     }
     p->next = temp;
-    strcpy(temp->str,s);
-    temp->value = value;
   }
+  strcpy(temp->str,s);
+  temp->value = value;
   return temp;
 }
 
