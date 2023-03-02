@@ -86,7 +86,7 @@ void show_watchpoint(){
   WP* p = head;
   while(p!=NULL){
     printf("watchpoint %d: %s\n",p->NO,p->str);
-    printf("value:\t %d",p->value);
+    printf("value:\t %d\n",p->value);
     p=p->next;
   } 
 }
