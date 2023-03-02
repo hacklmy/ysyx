@@ -96,6 +96,7 @@ bool check_change(){
   bool change = false;
   WP* temp = head;
   while(temp!=NULL){
+    printf("%s\n",temp->str);
     uint32_t new_value = expr(temp->str,&success);
     if(new_value!=temp->value){
       change = true;
