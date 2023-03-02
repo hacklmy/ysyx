@@ -122,6 +122,7 @@ static int cmd_p(char *args){
 
 static int cmd_w(char *args){
   bool success = false; 
+  printf("%s\n",args);
   WP* p = new_wp(args,expr(args,&success));
   printf("watchpoint %d: %s\n",p->NO,args);
   return 0;
