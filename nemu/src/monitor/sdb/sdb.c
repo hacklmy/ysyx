@@ -24,7 +24,18 @@ static int is_batch_mode = false;
 
 void init_regex();
 void init_wp_pool();
+typedef struct watchpoint {
+  int NO;
+  struct watchpoint *next;
+  uint32_t value;
+  char str[1000];
+  /* TODO: Add more members if necessary */
 
+} WP;
+WP* new_wp(char *s,int value);
+void free_wp(int NO);
+void show_watchpoint();
+bool check_change();
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {
   static char *line_read = NULL;
@@ -71,8 +82,14 @@ static int cmd_si(char *args){
   return 0;
 }
 
+void show_watchpoint();
 static int cmd_info(char *args){
-  isa_reg_display();
+  char *arg = strtok(NULL, " ");
+  switch(arg[0]){
+    case 'r':isa_reg_display();break;
+    case 'w':show_watchpoint();break;
+  }
+  
   return 0;
 }
 
@@ -103,6 +120,22 @@ static int cmd_p(char *args){
   return 0;
 }
 
+static int cmd_w(char *args){
+  bool success = false; 
+  WP* p = new_wp(args,expr(args,&success));
+  printf("watchpoint %d: %s\n",p->NO,args);
+  return 0;
+}
+
+static int cmd_d(char *args){
+  char *arg = strtok(NULL, " ");
+  int num;
+  sscanf(arg,"%d",&num);
+  free_wp(num);
+  printf("delete watchpoint %d\n",num);
+  return 0;
+}
+
 static struct {
   const char *name;
   const char *description;
@@ -117,6 +150,8 @@ static struct {
   { "info", "print infomation of registers", cmd_info },
   { "x", "scan the mem", cmd_x },
   { "p", "get the value of expr", cmd_p },
+  { "w", "add a watchpoint", cmd_w },
+  { "d", "delete a watch point", cmd_d },
 };
 
 #define NR_CMD ARRLEN(cmd_table)
