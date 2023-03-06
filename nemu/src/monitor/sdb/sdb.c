@@ -116,7 +116,7 @@ static int cmd_x(char *args){
 
 static int cmd_p(char *args){
   bool success = true;
-  printf("result: %lx\n",expr(args,&success));
+  printf("result: 0x%lx\n",expr(args,&success));
   return 0;
 }
 
