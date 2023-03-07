@@ -42,8 +42,8 @@ void gen_space(){
 }
 void gen_num(){
   int num = rand()%65535;
-  if(buf_start<65530){
-   int size = sprintf(buf,"%d",num);
+  if(buf_start<65500){
+   int size = sprintf(buf+buf_start,"%d",num);
    buf_start+=size;
   }
   gen_space();
@@ -52,15 +52,13 @@ void gen_num(){
 char op_array[] = {'+','-','*','/'};
 void gen_rand_op(){
   int num = rand()%4;
-  if(buf_start<65535){
-    int size = sprintf(buf,"%c",op_array[num]);
-    buf_start+=size;
+  if(buf_start<65500){
+    buf[buf_start++] = op_array[num];
   }
 }
 void gen(char c){
-  if(buf_start<65535){
-    int size = sprintf(buf,"%c",c);
-    buf_start+=size;
+  if(buf_start<65500){
+    buf[buf_start++]=c;
   }
 }
 static void gen_rand_expr() {
@@ -81,8 +79,9 @@ int main(int argc, char *argv[]) {
   }
   int i;
   for (i = 0; i < loop; i ++) {
+    buf_start=0;
     gen_rand_expr();
-
+    buf[buf_start]='\0';
     sprintf(code_buf, code_format, buf);
 
     FILE *fp = fopen("/tmp/.code.c", "w");
