@@ -50,7 +50,7 @@ static void decode_operand(Decode *s, int *dest, word_t *src1, word_t *src2, wor
 static int decode_exec(Decode *s) {
   int dest = 0;
   word_t src1 = 0, src2 = 0, imm = 0;
-  word_t old_pc = s->dnpc;
+  word_t old_pc = s->snpc;
   s->dnpc = s->snpc;
 
 #define INSTPAT_INST(s) ((s)->isa.inst.val)
