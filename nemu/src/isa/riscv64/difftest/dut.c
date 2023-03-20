@@ -25,7 +25,7 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
         return false;
       }
   }
-  if(ref_r->pc == cpu.pc){
+  if(ref_r->pc != cpu.pc){
     printf("wrong pc : nemu = %lx   ref = %lx\n", cpu.pc, ref_r->pc);
     return false;
   }
