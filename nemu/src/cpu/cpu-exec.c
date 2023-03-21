@@ -63,8 +63,10 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
+  printf("%s\n",p);
   int j = 0;
-  char *a = p;while(*p!='\0'){
+  char *a = p;
+  while(*p!='\0'){
     iringbuf[iringbuf_pointer][j++] = *a;
     a++;
   }
