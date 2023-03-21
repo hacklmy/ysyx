@@ -71,7 +71,6 @@ static void exec_once(Decode *s, vaddr_t pc) {
   }
   int j = 0;
   char *a = p;
-  printf("%s\n",a);
   int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
   int space_len = ilen_max - ilen;
   if (space_len < 0) space_len = 0;
