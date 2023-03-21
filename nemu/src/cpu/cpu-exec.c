@@ -30,7 +30,7 @@ uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
 
-char iringbuf[16][200];
+char* iringbuf[16];
 int iringbuf_pointer = 0;
 
 void device_update();
@@ -62,6 +62,8 @@ static void exec_once(Decode *s, vaddr_t pc) {
   cpu.pc = s->dnpc;
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
+  iringbuf[iringbuf_pointer] = p;
+  iringbuf_pointer = (iringbuf_pointer+1)%16;
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
   int ilen = s->snpc - s->pc;
   int i;
@@ -69,11 +71,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   for (i = ilen - 1; i >= 0; i --) {
     p += snprintf(p, 4, " %02x", inst[i]);
   }
-  int j = 0;
-  while(*p!='\0'){
-    iringbuf[iringbuf_pointer][j++] = *p;
-    p++;
-  }
+  
   int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
   int space_len = ilen_max - ilen;
   if (space_len < 0) space_len = 0;
@@ -83,11 +81,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
       MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
-  while(*p!='\0'){
-    iringbuf[iringbuf_pointer][j++] = *p;
-    p++;
-  }
-  iringbuf_pointer = (iringbuf_pointer+1)%16;
+  
 #endif
 }
 
