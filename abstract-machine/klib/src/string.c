@@ -5,101 +5,86 @@
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 size_t strlen(const char *s) {
+  // assert(s != NULL);
   size_t len = 0;
-  while(*s!='\0'){
+  while (*s++ != '\0') {
     len++;
-    s++;
   }
   return len;
 }
 
 char *strcpy(char *dst, const char *src) {
+  // assert((dst != NULL) && (src != NULL));
   char *res = dst;
-  while(*src != '\0'){
-    *res = *src;
-    res++;
-    src++;
-  }
-  *res = '\0';
-  return dst;
+  while ((*dst++ = *src++) != '\0');
+  return res;
 }
 
 char *strncpy(char *dst, const char *src, size_t n) {
-	char* res = dst;
-	size_t i;
-  for(i = 0;i< n && *src != '0';i++){
-	*dst++ = *src++;
-  }
-  for(;i < n;i++){
-	*dst++ = '\0';
+  // assert((dst != NULL) && (src != NULL));
+  char *res = dst;
+  size_t i = 0;
+  while ((*dst++ = *src++) != '\0' && i++ < n);
+  if (*(--dst) != '\0') {
+    *dst = '\0';
   }
   return res;
 }
 
 char *strcat(char *dst, const char *src) {
+  // assert((dst != NULL) && (src != NULL));
   char *res = dst;
-  res += strlen(res);
-  while((*res++ = *src++) != '\0');
-  *res = '\0';
-  return dst;
+  dst = dst + strlen(dst);
+  while ((*dst++ = *src++) != '\0');
+  return res;
 }
 
 int strcmp(const char *s1, const char *s2) {
-  while(*s1 == *s2){
-    if(*s1 == '\0'){
+  // assert((s1 != NULL) && (s2 != NULL));
+  while (*s1 == *s2) {
+    if (*s1 == '\0') {
       return 0;
     }
-    s1++;
-    s2++;
+    else {
+      s1++;
+      s2++;
+    }
   }
   return *s1 - *s2;
 }
 
 int strncmp(const char *s1, const char *s2, size_t n) {
-	size_t i = n;
-  	while(*s1 == *s2 && i>0){
-    	if(*s1 == '\0'){
-      		return 0;
-		}
-    	s1++;
-    	s2++;
-		i--;
-  	}
-	return *s1 - *s2;
+  // assert((s1 != NULL) && (s2 != NULL));
+  size_t i = 0;
+  while (i++ < n) {
+    if (*s1 == *s2) {
+      s1++;
+      s2++;
+    }
+    else {
+      return *s1 - *s2;
+    }
+  }
+
+  return 0;
 }
 
 void *memset(void *s, int c, size_t n) {
-  int *res = (int *)s;
-  for(int i = n;i > 0;i--){
-    *res = c;
-    res++;
+  // assert(s != NULL);
+  size_t i = 0;
+  char *res = (char *)s;
+  while (*res != '\0' && i++ < n) {
+    *res++ = c;
   }
   return s;
 }
 
 void *memmove(void *dst, const void *src, size_t n) {
-	char* res = (char *)dst;
-	char* in = (char *)src;
-	if (dst < src) {
-		while (n--) {
-			*res++ = *in++;
-		}
-	} else {
-		while (n--) {
-			*(res + n) = *(in + n);
-		}
-	}
-	return dst;
+  return strncpy(dst, src, n);
 }
 
 void *memcpy(void *out, const void *in, size_t n) {
-  char *res = (char *)out;
-  for(int i = n;i > 0 && *(char*)in != '\0';i--){
-    *res = *(char*)in;
-    res++;
-    in++;
-  }
-  return out;
+  return strncpy(out, in, n);
 }
 
 int memcmp(const void *s1, const void *s2, size_t n) {
