@@ -78,15 +78,15 @@ void *memset(void *s, int c, size_t n) {
 }
 
 void *memmove(void *dst, const void *src, size_t n) {
-	char* res = (char *)dst;
-	char* in = (char *)src;
+	char *ptrd = dst;
+	const char *ptrs = src;
 	if (dst < src) {
 		while (n--) {
-			*res++ = *in++;
+			*ptrd++ = *ptrs++;
 		}
 	} else {
 		while (n--) {
-			*(res + n) = *(in + n);
+			*(ptrd + n) = *(ptrs + n);
 		}
 	}
 	return dst;
