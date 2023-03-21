@@ -103,13 +103,19 @@ void *memcpy(void *out, const void *in, size_t n) {
 }
 
 int memcmp(const void *s1, const void *s2, size_t n) {
-  const unsigned char *ptra = s1, *ptrb = s2;
-	int ret;
-	while (n--) {
-		ret = *ptra++ - *ptrb++;
-	  if (ret != 0) return ret;
-	}
-	return 0;
+  if (s1 == NULL || n < 0 || s2 == NULL)
+    return -1;
+  const char *str_s1 = s1;
+  const char *str_s2 = s2;
+
+  for (int i = 0; i < n; i++)
+  {
+    if (str_s1[i] > str_s2[i])
+      return 1;
+    else if (str_s1[i] < str_s2[i])
+      return -1;
+  }
+  return 0;
 }
 
 #endif
