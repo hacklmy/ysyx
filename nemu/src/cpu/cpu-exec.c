@@ -71,15 +71,15 @@ static void exec_once(Decode *s, vaddr_t pc) {
   }
   int j = 0;
   char *a = p;
-  while(*p!='\0'){
-    iringbuf[iringbuf_pointer][j++] = *a;
-    a++;
-  }
   printf("%s\n",a);
   int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
   int space_len = ilen_max - ilen;
   if (space_len < 0) space_len = 0;
   space_len = space_len * 3 + 1;
+  while(*p!='\0'){
+    iringbuf[iringbuf_pointer][j++] = *a;
+    a++;
+  }
   memset(p, ' ', space_len);
   p += space_len;
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
