@@ -78,15 +78,15 @@ void *memset(void *s, int c, size_t n) {
 }
 
 void *memmove(void *dst, const void *src, size_t n) {
-  char *ptrd = dst;
-	const char *ptrs = src;
+	char* res = (char *)dst;
+	char* in = (char *)src;
 	if (dst < src) {
 		while (n--) {
-			*ptrd++ = *ptrs++;
+			*res++ = *in++;
 		}
 	} else {
 		while (n--) {
-			*(ptrd + n) = *(ptrs + n);
+			*(res + n) = *(in + n);
 		}
 	}
 	return dst;
@@ -103,13 +103,13 @@ void *memcpy(void *out, const void *in, size_t n) {
 }
 
 int memcmp(const void *s1, const void *s2, size_t n) {
-  const unsigned char *ptra = s1, *ptrb = s2;
-	int ret;
-	while (n--) {
-		ret = *ptra - *ptrb;
-	  if (ret != 0) return ret;
-	}
-	return 0;
+  int cmp_ans;
+  while (n--)
+  {
+	cmp_ans = *(char*)s1++ - *(char*)s2++;
+	if(cmp_ans!=0)return cmp_ans;
+  }
+  return 0;
 }
 
 #endif
