@@ -106,7 +106,7 @@ int memcmp(const void *s1, const void *s2, size_t n) {
   const unsigned char *ptra = s1, *ptrb = s2;
 	int ret;
 	while (n--) {
-		ret = *ptra - *ptrb;
+		ret = *ptra++ - *ptrb++;
 	  if (ret != 0) return ret;
 	}
 	return 0;
