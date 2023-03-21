@@ -79,7 +79,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
       MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
   sprintf(iringbuf[iringbuf_pointer], "%lx", s->pc);
-  sprintf(iringbuf[iringbuf_pointer], "%s", p);
+  sprintf(iringbuf[iringbuf_pointer]+20, "%s", p);
   iringbuf_pointer = (iringbuf_pointer+1)%16;
 #endif
 }
