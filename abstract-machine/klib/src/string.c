@@ -33,7 +33,7 @@ char *strncpy(char *dst, const char *src, size_t n) {
   	for(;i < n;i++){
 		*dst++ = '\0';
   	}
-	*dst = '\0';
+	
   	return res;
 }
 
@@ -70,7 +70,7 @@ int strncmp(const char *s1, const char *s2, size_t n) {
 
 void *memset(void *s, int c, size_t n) {
   char *res = (char *)s;
-  for(int i = n;i > 0;i--){
+  for(int i = n;i > 0 && *res!='\0';i--){
     *res++ = c;
   }
   return s;
