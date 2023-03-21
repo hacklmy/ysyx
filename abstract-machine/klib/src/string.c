@@ -27,13 +27,14 @@ char *strcpy(char *dst, const char *src) {
 char *strncpy(char *dst, const char *src, size_t n) {
 	char* res = dst;
 	size_t i;
-  for(i = 0;i< n && *src != '0';i++){
-	*dst++ = *src++;
-  }
-  for(;i < n;i++){
-	*dst++ = '\0';
-  }
-  return res;
+  	for(i = 0;i< n && *src != '0';i++){
+		*dst++ = *src++;
+  	}
+  	for(;i < n;i++){
+		*dst++ = '\0';
+  	}
+	*dst = '\0';
+  	return res;
 }
 
 char *strcat(char *dst, const char *src) {
