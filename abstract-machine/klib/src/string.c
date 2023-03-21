@@ -39,9 +39,8 @@ char *strncpy(char *dst, const char *src, size_t n) {
 
 char *strcat(char *dst, const char *src) {
   char *res = dst;
-  res += strlen(res);
+  res += strlen(dst);
   while((*res++ = *src++) != '\0');
-  *res = '\0';
   return dst;
 }
 
@@ -70,10 +69,9 @@ int strncmp(const char *s1, const char *s2, size_t n) {
 }
 
 void *memset(void *s, int c, size_t n) {
-  int *res = (int *)s;
-  for(int i = n;i > 0;i--){
-    *res = c;
-    res++;
+  char *res = (char *)s;
+  for(int i = n;i > 0 && *res!='\0';i--){
+    *res++ = c;
   }
   return s;
 }
