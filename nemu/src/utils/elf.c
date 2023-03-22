@@ -37,9 +37,10 @@ void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
 
 
 void init_elf(char *elf_file){
-    printf("%s\n",elf_file);
+    //printf("%s\n",elf_file);
     FILE *fp = fopen(elf_file, "r");
     Assert(fp, "Can not open '%s'", elf_file);
+    fseek(fp, 0L, SEEK_SET);
     Elf64_Ehdr *ehdr = (Elf64_Ehdr*)malloc(sizeof(Elf64_Ehdr));
     if(fread(ehdr, sizeof(Elf64_Ehdr), 1, fp)==0){
         assert(0);
