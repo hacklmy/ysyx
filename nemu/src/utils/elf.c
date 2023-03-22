@@ -81,6 +81,7 @@ void init_elf(char *elf_file){
             func_num++;
         }
     }
+    printf("%d\n",func_num);
 }
 
 void print_func(){
