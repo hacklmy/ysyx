@@ -51,6 +51,7 @@ void init_elf(char *elf_file){
     if(fread(shdr, sizeof(Elf64_Shdr), ehdr->e_shnum, fp)==0){
         assert(0);
     }
+    printf("1\n");
     int symtab_num=-1, strtab_num=-1;
     for(int i = 0; i < ehdr->e_shnum; i++){
         if(shdr[i].sh_type==SHT_SYMTAB)symtab_num = i;
