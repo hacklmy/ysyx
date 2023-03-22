@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-char *strtab;
+char strtab[10000];
 Elf64_Sym *symtab = NULL;
 int symtab_entry_num = 0;
 typedef struct
@@ -65,6 +65,7 @@ void init_elf(char *elf_file){
     if(fread(symtab, 1, shdr[symtab_num].sh_size, fp)==0){
         assert(0);
     }
+    printf("1\n");
     fseek(fp, shdr[strtab_num].sh_offset, SEEK_SET);
     if(fread(strtab, 1, shdr[strtab_num].sh_size, fp)==0){
         assert(0);
