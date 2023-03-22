@@ -88,7 +88,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   if(s->isa.inst.val==0x8076){
     is_func(s->pc,s->dnpc, true);
   }
-  else if(BITS(s->isa.inst.val, 6, 0)==0x6f || BITS(s->isa.inst.val, 6, 0)==0x67 && BITS(s->isa.inst.val, 11, 7)!=0x0){
+  else if(BITS(s->isa.inst.val, 6, 0)==0x6f || (BITS(s->isa.inst.val, 6, 0)==0x67 && BITS(s->isa.inst.val, 11, 7)!=0x0)){
     is_func(s->pc,s->dnpc, false);
   }
 #endif
@@ -143,7 +143,7 @@ void cpu_exec(uint64_t n) {
     case NEMU_END: case NEMU_ABORT:
     #ifdef CONFIG_FTRACE
       void print_func();
-      printf_func();
+      print_func();
     #endif
       Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
