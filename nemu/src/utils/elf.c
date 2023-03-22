@@ -24,10 +24,10 @@ void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
     for(int i =0;i<func_num;i++){
         if(dnpc>=funcs[i].addr && dnpc<funcs[i].addr+funcs[i].size){
             if(is_return){
-                sprintf( ftrace_buf[ftrace_num], "%lx:  ret[%s] ", pc, funcs[i].name);
+                printf( "%lx:  ret[%s] ", pc, funcs[i].name);
             }
             else{
-                sprintf(ftrace_buf[ftrace_num], "0x%lx:   call[%s@0x%lx]", pc, funcs[i].name, funcs[i].addr);
+                printf("0x%lx:   call[%s@0x%lx]", pc, funcs[i].name, funcs[i].addr);
             }
         }
         ftrace_num++;
@@ -85,9 +85,9 @@ void init_elf(char *elf_file){
     //printf("%d\n",func_num);
 }
 
-void print_func(){
-    printf("==================ftrace====================\n");
-    for(int i = 0;i< 200;i++){
-        printf("%s\n", ftrace_buf[i]);
-    }
-}
+// void print_func(){
+//     printf("==================ftrace====================\n");
+//     for(int i = 0;i< 200;i++){
+//         printf("%s\n", ftrace_buf[i]);
+//     }
+// }
