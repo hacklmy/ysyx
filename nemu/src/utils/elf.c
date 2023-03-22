@@ -87,7 +87,7 @@ void init_elf(char *elf_file){
 
 void print_func(){
     printf("==================ftrace====================\n");
-    for(int i = 0;i< ftrace_num;i++){
+    for(int i = 0;i< 64;i++){
         printf("%s\n", ftrace_buf[i]);
     }
 }
