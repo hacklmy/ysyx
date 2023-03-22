@@ -32,11 +32,13 @@ void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
                 empty_num[ftrace_num] = tab_flag ? empty_num[ftrace_num-1]-1 : empty_num[ftrace_num-1];
                 sprintf( ftrace_buf_pc[ftrace_num], "%lx", pc);
                 sprintf( ftrace_buf_dnpc[ftrace_num], "ret[%s]",funcs[i].name);
+                tab_flag = 1;
             }
             else{
                 if(ftrace_num!=0)empty_num[ftrace_num] = tab_flag ? empty_num[ftrace_num-1] : empty_num[ftrace_num-1]+1;
                 sprintf(ftrace_buf_pc[ftrace_num], "%lx", pc);
                 sprintf(ftrace_buf_dnpc[ftrace_num], "call[%s@%lx]",funcs[i].name, funcs[i].addr);
+                tab_flag = 0;
             }
             ftrace_num++;
         }
