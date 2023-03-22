@@ -21,6 +21,7 @@ char ftrace_buf[1024][100];
 int ftrace_num = 0;
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
+    int flag = 1;
     for(int i =0;i<func_num;i++){
         if(dnpc>=funcs[i].addr && dnpc<funcs[i].addr+funcs[i].size){
             if(is_return){
@@ -30,9 +31,10 @@ void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
                 sprintf(ftrace_buf[ftrace_num], "%lx:   call[%s@%lx]", pc, funcs[i].name, funcs[i].addr);
             }
             ftrace_num++;
+            flag = 0;
         }
-        else printf("%lx not find\n", dnpc);
     }
+    if(flag)printf("%lx net find\n", dnpc);
 }
 
 
