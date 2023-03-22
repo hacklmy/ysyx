@@ -45,7 +45,7 @@ void init_elf(char *elf_file){
         assert(0);
     }
     //printf("1\n");
-    Elf64_Shdr shdr[100];
+    Elf64_Shdr shdr[64];
     fseek(fp, ehdr->e_shoff, SEEK_SET);
     if(fread(shdr, sizeof(Elf64_Shdr), ehdr->e_shnum, fp)==0){
         assert(0);
@@ -81,6 +81,7 @@ void init_elf(char *elf_file){
             func_num++;
         }
     }
+    free(ehdr);
     //printf("%d\n",func_num);
 }
 
