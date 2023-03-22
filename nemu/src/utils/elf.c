@@ -17,7 +17,7 @@ typedef struct
 Func funcs[64];
 int func_num = 0;
 
-char ftrace_buf[32][100];
+char ftrace_buf[500][100];
 int ftrace_num = 0;
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
@@ -31,7 +31,7 @@ void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
             }
         }
         ftrace_num++;
-        ftrace_num%=32;
+        ftrace_num%=500;
     }
 }
 
