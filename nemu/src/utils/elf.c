@@ -29,8 +29,8 @@ void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
             else{
                 sprintf(ftrace_buf[ftrace_num], "0x%lx:   call[%s@0x%lx]", pc, funcs[i].name, funcs[i].addr);
             }
+            ftrace_num++;
         }
-        ftrace_num++;
     }
 }
 
