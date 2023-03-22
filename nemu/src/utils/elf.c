@@ -24,10 +24,10 @@ void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
     for(int i =0;i<func_num;i++){
         if(dnpc>=funcs[i].addr && dnpc<funcs[i].addr+funcs[i].size){
             if(is_return){
-                printf( "%lx:  ret[%s] ", pc, funcs[i].name);
+                printf( "%lx:  ret[%s] \n", pc, funcs[i].name);
             }
             else{
-                printf("0x%lx:   call[%s@0x%lx]", pc, funcs[i].name, funcs[i].addr);
+                printf("0x%lx:   call[%s@0x%lx]\n", pc, funcs[i].name, funcs[i].addr);
             }
         }
         ftrace_num++;
