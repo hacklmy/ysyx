@@ -31,7 +31,7 @@ void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
             }
         }
         ftrace_num++;
-        ftrace_num%=100;
+        ftrace_num%=64;
     }
 }
 
