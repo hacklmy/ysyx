@@ -86,7 +86,6 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #ifdef CONFIG_FTRACE
   void is_func(uint64_t pc, uint64_t dnpc,bool is_return);
   if(s->isa.inst.val==0x8067){
-    printf("return\n");
     is_func(s->pc,s->pc, true);
   }
   else if(BITS(s->isa.inst.val, 6, 0)==0x6f || (BITS(s->isa.inst.val, 6, 0)==0x67 && BITS(s->isa.inst.val, 11, 7)!=0x0)){
