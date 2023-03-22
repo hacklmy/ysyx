@@ -72,6 +72,7 @@ void init_elf(char *elf_file){
     }
     printf("1\n");
     symtab_entry_num = shdr[symtab_num].sh_size/shdr[symtab_num].sh_entsize;
+    printf("%d\n", symtab_entry_num);
     for(int i = 0;i< symtab_entry_num;i++){
         if(ELF64_ST_TYPE(symtab[i].st_info)==STT_FUNC){
             funcs[func_num].size = symtab[i].st_size;
