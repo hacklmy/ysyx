@@ -22,7 +22,7 @@ int ftrace_num = 0;
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
     for(int i =0;i<func_num;i++){
-        if(dnpc>=funcs[i].addr && dnpc<funcs[i].addr+funcs[i].size){
+        if(dnpc>=funcs[i].addr && dnpc<=funcs[i].addr+funcs[i].size){
             if(is_return){
                 sprintf( ftrace_buf[ftrace_num], "%lx:  ret[%s] ", pc, funcs[i].name);
             }
