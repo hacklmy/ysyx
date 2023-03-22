@@ -18,12 +18,24 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "sdb.h"
+#include <memory/vaddr.h>
 
 static int is_batch_mode = false;
 
 void init_regex();
 void init_wp_pool();
+typedef struct watchpoint {
+  int NO;
+  struct watchpoint *next;
+  uint32_t value;
+  char str[1000];
+  /* TODO: Add more members if necessary */
 
+} WP;
+WP* new_wp(char *s,int value);
+void free_wp(int NO);
+void show_watchpoint();
+bool check_change();
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {
   static char *line_read = NULL;
@@ -54,6 +66,76 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
+static int cmd_si(char *args){
+  char *arg = strtok(NULL, " ");
+  if (arg == NULL){
+    cpu_exec(1);
+    return 0;
+  }
+  int step;
+  sscanf(arg,"%d",&step);
+  if (step <= 0){
+    Log("illegal execute nums");
+    return 0;
+  }
+  cpu_exec(step); 
+  return 0;
+}
+
+void show_watchpoint();
+static int cmd_info(char *args){
+  char *arg = strtok(NULL, " ");
+  switch(arg[0]){
+    case 'r':isa_reg_display();break;
+    case 'w':show_watchpoint();break;
+  }
+  
+  return 0;
+}
+
+static int cmd_x(char *args){
+  char *num = strtok(NULL," ");
+  char *addr = strtok(NULL," ");
+  int gap=0;
+  paddr_t paddr;
+  sscanf(num,"%d",&gap);
+  sscanf(addr,"%x",&paddr);
+  while(gap>0){
+    printf("0x%x:\t",paddr);
+    paddr_t temp = vaddr_read(paddr, 4);
+    for (int i = 0;i < 4;i++){
+      printf("0x%08x ",temp & 0xff);
+      temp = temp >> 8;
+    }
+    printf("\n");
+    paddr+=32;
+    gap--;
+  }
+  return 0;
+}
+
+static int cmd_p(char *args){
+  bool success = true;
+  printf("result: 0x%lx\n",expr(args,&success));
+  return 0;
+}
+
+static int cmd_w(char *args){
+  bool success = false; 
+  WP* p = new_wp(args,expr(args,&success));
+  printf("watchpoint %d: %s\n",p->NO,args);
+  return 0;
+}
+
+static int cmd_d(char *args){
+  char *arg = strtok(NULL, " ");
+  int num;
+  sscanf(arg,"%d",&num);
+  free_wp(num);
+  printf("delete watchpoint %d\n",num);
+  return 0;
+}
+
 static struct {
   const char *name;
   const char *description;
@@ -64,7 +146,12 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
 
   /* TODO: Add more commands */
-
+  { "si", "execute N step", cmd_si },
+  { "info", "print infomation of registers", cmd_info },
+  { "x", "scan the mem", cmd_x },
+  { "p", "get the value of expr", cmd_p },
+  { "w", "add a watchpoint", cmd_w },
+  { "d", "delete a watch point", cmd_d },
 };
 
 #define NR_CMD ARRLEN(cmd_table)

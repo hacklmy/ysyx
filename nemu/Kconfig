@@ -121,6 +121,9 @@ endmenu
 
 menu "Testing and Debugging"
 
+config WATCH_POINT
+  bool "Enable watch_point"
+  default y
 
 config TRACE
   bool "Enable tracer"
@@ -146,6 +149,15 @@ config ITRACE_COND
   string "Only trace instructions when the condition is true"
   default "true"
 
+config MTRACE
+  depends on TRACE
+  bool "memory access trace"
+  default n
+
+config FTRACE
+  depends on TRACE
+  bool "Enable func trace"
+  default n
 
 config DIFFTEST
   depends on TARGET_NATIVE_ELF

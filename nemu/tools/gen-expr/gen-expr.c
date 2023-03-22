@@ -30,9 +30,44 @@ static char *code_format =
 "  printf(\"%%u\", result); "
 "  return 0; "
 "}";
+int buf_start = 0;
+static int choose(int max ){
+  return rand()%max;
+}
+void gen_space(){
+ int num = rand()%5;
+ for(;num>0&&buf_start<65535;num--){
+   buf[buf_start++] = ' ';
+ }
+}
+void gen_num(){
+  int num = rand()%65535;
+  if(buf_start<65500){
+   int size = sprintf(buf+buf_start,"%d",num);
+   buf_start+=size;
+  }
+  gen_space();
+}
 
+char op_array[] = {'+','-','*','/'};
+void gen_rand_op(){
+  int num = rand()%4;
+  if(buf_start<65500){
+    buf[buf_start++] = op_array[num];
+  }
+}
+void gen(char c){
+  if(buf_start<65500){
+    buf[buf_start++]=c;
+  }
+}
 static void gen_rand_expr() {
-  buf[0] = '\0';
+  switch (choose(3)) {
+    case 0: gen_num(); break;
+    case 1: gen('('); gen_rand_expr(); gen(')'); break;
+    default: gen_rand_expr(); gen_rand_op(); gen_rand_expr(); break;
+  }
+
 }
 
 int main(int argc, char *argv[]) {
@@ -44,8 +79,9 @@ int main(int argc, char *argv[]) {
   }
   int i;
   for (i = 0; i < loop; i ++) {
+    buf_start=0;
     gen_rand_expr();
-
+    buf[buf_start]='\0';
     sprintf(code_buf, code_format, buf);
 
     FILE *fp = fopen("/tmp/.code.c", "w");

@@ -30,14 +30,30 @@ uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
 
-void device_update();
+char iringbuf[16][200];
+int iringbuf_pointer = 0;
 
+void device_update();
+bool check_change();
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #ifdef CONFIG_ITRACE_COND
   if (ITRACE_COND) { log_write("%s\n", _this->logbuf); }
 #endif
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
+#ifdef WATCH_PONIT
+  if(check_change()) {
+    nemu_state.state = NEMU_STOP;
+  }
+#endif
+}
+
+void print_iringbuf(){
+  printf("===============iringbuf===================\n");
+  for(int i = 0;i<16;i++){
+    if(i==iringbuf_pointer-1)printf("-->");
+    printf("\t%s\n",iringbuf[i]);
+  }
 }
 
 static void exec_once(Decode *s, vaddr_t pc) {
@@ -60,10 +76,21 @@ static void exec_once(Decode *s, vaddr_t pc) {
   space_len = space_len * 3 + 1;
   memset(p, ' ', space_len);
   p += space_len;
-
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
       MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
+  sprintf(iringbuf[iringbuf_pointer], "%lx : %s", s->pc, p);
+  iringbuf_pointer = (iringbuf_pointer+1)%16;
+#endif
+
+#ifdef CONFIG_FTRACE
+  void is_func(uint64_t pc, uint64_t dnpc,bool is_return);
+  if(s->isa.inst.val==0x8067){
+    is_func(s->pc,s->pc, true);
+  }
+  else if(BITS(s->isa.inst.val, 6, 0)==0x6f || (BITS(s->isa.inst.val, 6, 0)==0x67 && BITS(s->isa.inst.val, 11, 7)!=0x0)){
+    is_func(s->pc,s->dnpc, false);
+  }
 #endif
 }
 
@@ -85,6 +112,7 @@ static void statistic() {
   Log("total guest instructions = " NUMBERIC_FMT, g_nr_guest_inst);
   if (g_timer > 0) Log("simulation frequency = " NUMBERIC_FMT " inst/s", g_nr_guest_inst * 1000000 / g_timer);
   else Log("Finish running in less than 1 us and can not calculate the simulation frequency");
+  print_iringbuf();
 }
 
 void assert_fail_msg() {
@@ -113,6 +141,10 @@ void cpu_exec(uint64_t n) {
     case NEMU_RUNNING: nemu_state.state = NEMU_STOP; break;
 
     case NEMU_END: case NEMU_ABORT:
+    #ifdef CONFIG_FTRACE
+      void print_func();
+      print_func();
+    #endif
       Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
            (nemu_state.halt_ret == 0 ? ANSI_FMT("HIT GOOD TRAP", ANSI_FG_GREEN) :
