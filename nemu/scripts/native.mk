@@ -27,6 +27,7 @@ $(BINARY): compile_git
 override ARGS ?= --log=$(BUILD_DIR)/nemu-log.txt
 override ARGS += $(ARGS_DIFF)
 override ARGS += -b
+override ARGS += -e ~/ysyx-workbench/am-kernels/tests/cpu-tests/build/add-riscv64-nemu.elf
 
 # Command to execute NEMU
 IMG ?=
