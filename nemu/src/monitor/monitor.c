@@ -16,6 +16,7 @@
 #include <isa.h>
 #include <memory/paddr.h>
 
+void init_elf(char*elf_file);
 void init_rand();
 void init_log(const char *log_file);
 void init_mem();
@@ -44,6 +45,7 @@ void sdb_set_batch_mode();
 static char *log_file = NULL;
 static char *diff_so_file = NULL;
 static char *img_file = NULL;
+static char *elf_file = NULL;
 static int difftest_port = 1234;
 
 static long load_img() {
@@ -80,6 +82,7 @@ static int parse_args(int argc, char *argv[]) {
   int o;
   while ( (o = getopt_long(argc, argv, "-bhl:d:p:", table, NULL)) != -1) {
     switch (o) {
+      case 'e':elf_file = optarg;break;
       case 'b': sdb_set_batch_mode(); break;
       case 'p': sscanf(optarg, "%d", &difftest_port); break;
       case 'l': log_file = optarg; break;
@@ -115,6 +118,10 @@ void init_monitor(int argc, char *argv[]) {
 
   /* Initialize devices. */
   IFDEF(CONFIG_DEVICE, init_device());
+
+  #ifdef CONFIG_FTRACE
+    init_elf(elf_file);
+  #endif
 
   /* Perform ISA dependent initialization. */
   init_isa();
