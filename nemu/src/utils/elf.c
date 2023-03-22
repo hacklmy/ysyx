@@ -69,6 +69,7 @@ void init_elf(char *elf_file){
     if(fread(strtab, 1, shdr[strtab_num].sh_size, fp)==0){
         assert(0);
     }
+    printf("1\n");
     symtab_entry_num = shdr[symtab_num].sh_size/shdr[symtab_num].sh_entsize;
     for(int i = 0;i< symtab_entry_num;i++){
         if(ELF64_ST_TYPE(symtab[i].st_info)==STT_FUNC){
