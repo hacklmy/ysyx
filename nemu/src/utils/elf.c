@@ -22,18 +22,19 @@ char ftrace_buf_dnpc[1024][100];
 int ftrace_num = 0;
 int ftrace_dep = 0;
 int empty_num[1024]={0};
+int tab_flag = 0;//0代表上次是call， 1代表上次是ret
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
     //printf("%lx\n",dnpc);
     for(int i =0;i<func_num;i++){
         if(dnpc>=funcs[i].addr && dnpc<funcs[i].addr+funcs[i].size){
             if(is_return){
-                empty_num[ftrace_num] = empty_num[ftrace_num-1]-1;
+                empty_num[ftrace_num] = tab_flag ? empty_num[ftrace_num-1]-1 : empty_num[ftrace_num-1];
                 sprintf( ftrace_buf_pc[ftrace_num], "%lx", pc);
                 sprintf( ftrace_buf_dnpc[ftrace_num], "ret[%s]",funcs[i].name);
             }
             else{
-                if(ftrace_num!=0)empty_num[ftrace_num] = empty_num[ftrace_num-1]+1;
+                if(ftrace_num!=0)empty_num[ftrace_num] = tab_flag ? empty_num[ftrace_num-1] : empty_num[ftrace_num-1]+1;
                 sprintf(ftrace_buf_pc[ftrace_num], "%lx", pc);
                 sprintf(ftrace_buf_dnpc[ftrace_num], "call[%s@%lx]",funcs[i].name, funcs[i].addr);
             }
