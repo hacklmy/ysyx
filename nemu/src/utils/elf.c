@@ -17,21 +17,20 @@ typedef struct
 Func funcs[64];
 int func_num = 0;
 
-char ftrace_buf[200][100];
+char ftrace_buf[1024][100];
 int ftrace_num = 0;
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
     for(int i =0;i<func_num;i++){
         if(dnpc>=funcs[i].addr && dnpc<funcs[i].addr+funcs[i].size){
             if(is_return){
-                printf( "%lx:  ret[%s] \n", pc, funcs[i].name);
+                sprintf( ftrace_buf[ftrace_num], "%lx:  ret[%s] ", pc, funcs[i].name);
             }
             else{
-                printf("0x%lx:   call[%s@0x%lx]\n", pc, funcs[i].name, funcs[i].addr);
+                sprintf(ftrace_buf[ftrace_num], "0x%lx:   call[%s@0x%lx]", pc, funcs[i].name, funcs[i].addr);
             }
         }
         ftrace_num++;
-        ftrace_num%=200;
     }
 }
 
@@ -85,9 +84,9 @@ void init_elf(char *elf_file){
     //printf("%d\n",func_num);
 }
 
-// void print_func(){
-//     printf("==================ftrace====================\n");
-//     for(int i = 0;i< 200;i++){
-//         printf("%s\n", ftrace_buf[i]);
-//     }
-// }
+void print_func(){
+    printf("==================ftrace====================\n");
+    for(int i = 0;i< ftrace_num;i++){
+        printf("%s\n", ftrace_buf[i]);
+    }
+}
