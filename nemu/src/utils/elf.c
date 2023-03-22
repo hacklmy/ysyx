@@ -78,6 +78,7 @@ void init_elf(char *elf_file){
             funcs[func_num].size = symtab[i].st_size;
             funcs[func_num].addr = symtab[i].st_value;
             funcs[func_num].name = (char*)(strtab + symtab[i].st_name);
+            printf("%s\n",funcs[func_num].name);
             func_num++;
         }
     }
