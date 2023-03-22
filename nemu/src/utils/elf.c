@@ -27,10 +27,11 @@ void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
                 sprintf( ftrace_buf[ftrace_num], "%lx:  ret[%s] ", pc, funcs[i].name);
             }
             else{
-                sprintf(ftrace_buf[ftrace_num], "0x%lx:   call[%s@0x%lx]", pc, funcs[i].name, funcs[i].addr);
+                sprintf(ftrace_buf[ftrace_num], "%lx:   call[%s@%lx]", pc, funcs[i].name, funcs[i].addr);
             }
             ftrace_num++;
         }
+        else printf("%lx not find\n", dnpc);
     }
 }
 
