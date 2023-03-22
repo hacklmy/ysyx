@@ -17,7 +17,7 @@ typedef struct
 Func funcs[64];
 int func_num = 0;
 
-char ftrace_buf[64][100];
+char ftrace_buf[32][100];
 int ftrace_num = 0;
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
@@ -31,7 +31,7 @@ void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
             }
         }
         ftrace_num++;
-        ftrace_num%=64;
+        ftrace_num%=32;
     }
 }
 
@@ -78,11 +78,11 @@ void init_elf(char *elf_file){
             funcs[func_num].size = symtab[i].st_size;
             funcs[func_num].addr = symtab[i].st_value;
             funcs[func_num].name = (char*)(strtab + symtab[i].st_name);
-            printf("%s\n",funcs[func_num].name);
+            //printf("%s\n",funcs[func_num].name);
             func_num++;
         }
     }
-    printf("%d\n",func_num);
+    //printf("%d\n",func_num);
 }
 
 void print_func(){
