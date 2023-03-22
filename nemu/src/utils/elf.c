@@ -5,7 +5,7 @@
 #include <assert.h>
 
 char strtab[10000];
-Elf64_Sym *symtab = NULL;
+Elf64_Sym symtab[1024];
 int symtab_entry_num = 0;
 typedef struct
 {
