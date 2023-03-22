@@ -17,7 +17,7 @@ typedef struct
 Func funcs[64];
 int func_num = 0;
 
-char ftrace_buf[64][100];
+char ftrace_buf[200][100];
 int ftrace_num = 0;
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
@@ -31,7 +31,7 @@ void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
             }
         }
         ftrace_num++;
-        ftrace_num%=64;
+        ftrace_num%=200;
     }
 }
 
@@ -87,7 +87,7 @@ void init_elf(char *elf_file){
 
 void print_func(){
     printf("==================ftrace====================\n");
-    for(int i = 0;i< 64;i++){
+    for(int i = 0;i< 200;i++){
         printf("%s\n", ftrace_buf[i]);
     }
 }
