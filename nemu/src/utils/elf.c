@@ -30,14 +30,14 @@ void is_func(uint64_t pc, uint64_t dnpc,bool is_return){
         if(dnpc>=funcs[i].addr && dnpc<funcs[i].addr+funcs[i].size){
             if(is_return){
                 empty_num[ftrace_num] = tab_flag ? empty_num[ftrace_num-1]-1 : empty_num[ftrace_num-1];
-                sprintf( ftrace_buf_pc[ftrace_num], "%lx", pc);
-                sprintf( ftrace_buf_dnpc[ftrace_num], "ret[%s]",funcs[i].name);
+                sprintf( ftrace_buf_pc[ftrace_num], "%lx:", pc);
+                sprintf( ftrace_buf_dnpc[ftrace_num], " ret[%s]",funcs[i].name);
                 tab_flag = 1;
             }
             else{
                 if(ftrace_num!=0)empty_num[ftrace_num] = tab_flag ? empty_num[ftrace_num-1] : empty_num[ftrace_num-1]+1;
-                sprintf(ftrace_buf_pc[ftrace_num], "%lx", pc);
-                sprintf(ftrace_buf_dnpc[ftrace_num], "call[%s@%lx]",funcs[i].name, funcs[i].addr);
+                sprintf(ftrace_buf_pc[ftrace_num], "%lx:", pc);
+                sprintf(ftrace_buf_dnpc[ftrace_num], " call[%s@%lx]",funcs[i].name, funcs[i].addr);
                 tab_flag = 0;
             }
             ftrace_num++;
@@ -88,7 +88,7 @@ void init_elf(char *elf_file){
             funcs[func_num].size = symtab[i].st_size;
             funcs[func_num].addr = symtab[i].st_value;
             funcs[func_num].name = (char*)(strtab + symtab[i].st_name);
-            printf("%ld %s\n",funcs[func_num].size,funcs[func_num].name);
+            //printf("%ld %s\n",funcs[func_num].size,funcs[func_num].name);
             func_num++;
         }
     }
@@ -101,7 +101,7 @@ void print_func(){
     for(int i = 0;i< ftrace_num;i++){
         printf("%s", ftrace_buf_pc[i]);
         while(empty_num[i]--){
-            putchar(' ');
+            printf(" ");
         }
         printf("%s\n",ftrace_buf_dnpc[i]);
     }
