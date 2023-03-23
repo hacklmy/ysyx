@@ -21,7 +21,7 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
   for (int i = 0; i < 32; i++) {
     if(ref_r->gpr[i] != cpu.gpr[i])
       {
-        printf("Unmatched reg value at pc : %lx  reg%d : nemu = %lx  ref = %lx\n", cpu.pc, i, cpu.gpr[i], ref_r->gpr[i]);
+        printf("Unmatched reg value at pc : %lx  reg%d : nemu = %lx  ref = %lx\n", pc, i, cpu.gpr[i], ref_r->gpr[i]);
         return false;
       }
   }
