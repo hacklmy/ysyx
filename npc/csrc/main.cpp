@@ -30,6 +30,16 @@ void ebreak_handle(int flag){
   cpu_stop = flag;
 }
 
+void load_img(char *img_file){
+  FILE *fp = fopen(img_file, "rb");
+  fseek(fp, 0, SEEK_END);
+  long size = ftell(fp);
+  fseek(fp, 0, SEEK_SET);
+  int ret = fread(guest_to_host(0x80000000), size, 1, fp);
+  assert(ret == 1);
+  fclose(fp);
+}
+
 int main(int argc, char** argv) {
   VerilatedContext* contextp = new VerilatedContext;
   contextp->commandArgs(argc, argv);
@@ -39,18 +49,19 @@ int main(int argc, char** argv) {
   contextp->traceEverOn(true); //打开追踪功能
   top->trace(tfp, 0);
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
-  uint32_t inst[] = {
-    0x00108093,
-    0x00108093,
-    0x00108093,
-    0x00108093,
-    0x00108093,
-    0x00108093,
-    0x00108093,
-    0x00100073
-  };
-  memcpy(guest_to_host(0x80000000), inst, sizeof(inst));
+  // uint32_t inst[] = {
+  //   0x00108093,
+  //   0x00108093,
+  //   0x00108093,
+  //   0x00108093,
+  //   0x00108093,
+  //   0x00108093,
+  //   0x00108093,
+  //   0x00100073
+  // };
+  //memcpy(guest_to_host(0x80000000), inst, sizeof(inst));
   //int finish = 3;
+  load_img("../image.bin");
   top->reset = 1;
     int n = 10;
     while (n-- > 0) {
