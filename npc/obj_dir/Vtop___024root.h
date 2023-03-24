@@ -29,13 +29,14 @@ VL_MODULE(Vtop___024root) {
     VL_OUT64(io_outval,63,0);
 
     // LOCAL SIGNALS
-    CData/*4:0*/ top__DOT__idu_step_io_src1;
-    CData/*4:0*/ top__DOT__idu_step_io_rd;
-    SData/*11:0*/ top__DOT__idu_step__DOT__imm_I;
+    CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_17;
+    CData/*2:0*/ top__DOT__idu_step__DOT___inst_now_T_20;
+    QData/*63:0*/ top__DOT__idu_step_io_imm;
     QData/*63:0*/ top__DOT__exu_step_io_res2rd;
     QData/*63:0*/ top__DOT__pc_now;
-    QData/*63:0*/ top__DOT___pc_now_T_1;
     QData/*63:0*/ top__DOT__exu_step__DOT__Regfile_MPORT_data;
+    QData/*63:0*/ top__DOT__exu_step__DOT__add_res;
+    QData/*63:0*/ top__DOT__exu_step__DOT___io_pc_next_T_5;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__Regfile;
 
     // LOCAL VARIABLES
