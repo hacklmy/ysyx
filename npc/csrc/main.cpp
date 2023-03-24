@@ -50,15 +50,15 @@ int main(int argc, char** argv) {
   top->trace(tfp, 0);
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
    uint32_t inst[] = {
-  //   0x00108093,
-  //   0x00108093,
-  //   0x00108093,
-  //   0x00108093,
-  //   0x00108093,
-  //   0x00108093,
-  //   0x00108093,
-  //   0x00100073
-  // };
+     0x00108093,
+     0x00108093,
+     0x00108093,
+     0x00108093,
+     0x00108093,
+     0x00108093,
+     0x00108093,
+     0x00100073
+   };
   memcpy(guest_to_host(0x80000000), inst, sizeof(inst));
   //int finish = 3;
   //load_img("../image.bin");
