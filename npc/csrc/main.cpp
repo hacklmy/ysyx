@@ -30,7 +30,9 @@ void ebreak_handle(int flag){
   cpu_stop = flag;
 }
 
-void load_img(char *img_file){
+char* img_file = "../image.bin";
+
+void load_img(){
   FILE *fp = fopen(img_file, "rb");
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
@@ -61,7 +63,7 @@ int main(int argc, char** argv) {
   //  };
   // memcpy(guest_to_host(0x80000000), inst, sizeof(inst));
   //int finish = 3;
-  load_img("../image.bin");
+  load_img();
   top->reset = 1;
     int n = 10;
     while (n-- > 0) {
