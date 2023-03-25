@@ -201,11 +201,10 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                  & vlSelf->io_inst)))));
         tracep->fullBit(oldp+88,((0x6fU == (0x7fU & vlSelf->io_inst))));
         tracep->fullQData(oldp+89,(((6U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20))
-                                     ? 0ULL : ((5U 
-                                                == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20))
-                                                ? vlSelf->top__DOT__exu_step__DOT__add_res
-                                                : (4ULL 
-                                                   + vlSelf->top__DOT__pc_now)))),64);
+                                     ? vlSelf->top__DOT__exu_step__DOT__add_res
+                                     : ((5U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20))
+                                         ? vlSelf->top__DOT__exu_step__DOT__add_res
+                                         : (4ULL + vlSelf->top__DOT__pc_now)))),64);
         tracep->fullSData(oldp+91,((vlSelf->io_inst 
                                     >> 0x14U)),12);
         tracep->fullIData(oldp+92,(((0x80000U & (vlSelf->io_inst 
