@@ -141,9 +141,9 @@ static struct {
 #define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
 #define NR_CMD ARRLEN(cmd_table)
 int sdb_mainloop() {
-  char* str ;
-  printf("(npc) ");
-   scanf("%[^\n]" , str );
+    char str[64] ;
+    printf("(npc) ");
+    scanf("%[^\n]" , str );
     
     char *str_end = str + strlen(str);
 
