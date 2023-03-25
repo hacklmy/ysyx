@@ -209,7 +209,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
             [(0x1fU & (vlSelf->io_inst >> 7U))]));
 }
 
-void Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(const VlUnpacked<QData/*63:0*/, 32> &a);
+void Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(const VlUnpacked<QData/*63:0*/, 32> &Regfile);
 
 void Vtop___024root___initial__TOP__4(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
