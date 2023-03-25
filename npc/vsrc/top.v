@@ -20,7 +20,6 @@ module top(
   wire  idu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 20:26]
   wire  idu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 20:26]
   wire  exu_step_clock; // @[top.scala 23:26]
-  wire  exu_step_reset; // @[top.scala 23:26]
   wire [63:0] exu_step_io_pc; // @[top.scala 23:26]
   wire [63:0] exu_step_io_pc_next; // @[top.scala 23:26]
   wire [31:0] exu_step_io_inst_now; // @[top.scala 23:26]
@@ -51,7 +50,6 @@ module top(
   );
   EXU exu_step ( // @[top.scala 23:26]
     .clock(exu_step_clock),
-    .reset(exu_step_reset),
     .io_pc(exu_step_io_pc),
     .io_pc_next(exu_step_io_pc_next),
     .io_inst_now(exu_step_io_inst_now),
@@ -72,7 +70,6 @@ module top(
   assign ifu_step_io_ipc = pc_now; // @[top.scala 16:21]
   assign idu_step_io_inst = io_inst; // @[top.scala 22:22]
   assign exu_step_clock = clock;
-  assign exu_step_reset = reset;
   assign exu_step_io_pc = ifu_step_io_opc; // @[top.scala 24:20]
   assign exu_step_io_inst_now = idu_step_io_inst_now; // @[top.scala 25:26]
   assign exu_step_io_rs1 = idu_step_io_rs1; // @[top.scala 27:21]
