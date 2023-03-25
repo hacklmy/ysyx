@@ -17,7 +17,7 @@ vluint64_t sim_time = 0;
 int cpu_stop = 0;
 Vtop* top;
 VerilatedVcdC* tfp;
-VerilatedContext* contextp
+VerilatedContext* contextp;
 //===========================mem=========================
 typedef uint64_t paddr_t;
 #define PG_ALIGN __attribute((aligned(4096)))
