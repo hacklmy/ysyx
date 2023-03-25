@@ -57,25 +57,7 @@ int main(int argc, char** argv) {
   contextp->traceEverOn(true); //打开追踪功能
   top->trace(tfp, 0);
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
-  //  uint32_t inst[] = {
-  //    0x413,
-  //    0x9117,
-  //    0xffc10113,
-  //    0x00c000ef,
-  //    0x00000513,
-  //    0x8067,
-  //    0xff010113,
-  //    0x00000517,          	
-  //    0x01450513,          	
-  //    0x00113423,      	
-  //    0xfe9ff0ef,          	
-  //    0x0000006f
-  //  };
-  //memcpy(guest_to_host(0x80000000), inst, sizeof(inst));
-  //int finish = 3;
   load_img();
-  //printf("1\n");
-  //printf("%x\n",pmem_read(0x80000000));
   while (!cpu_stop && sim_time<30) {
     if(sim_time<3){
       top->reset = 1;
@@ -88,22 +70,8 @@ int main(int argc, char** argv) {
       top->clock ^= 1;
       top->eval();
     }
-    // top->io_inst = pmem_read(top->io_pc);
-    // //printf("%lx %lx %x\n",top->io_pc ,top->io_outval, top->io_inst);
-    // top->clock = 0;
-    // top->eval();
-    // //printf("%lx %lx\n",top->io_pc ,top->io_outval);
-    // top->clock = 1;
-    // top->eval();
-    //printf("%lx %lx\n",top->io_pc ,top->io_outval);
-    // top->clock = 0;
-    // top->eval();
-    // top->clock = 1;
-    // top->eval();
     tfp->dump(contextp->time()); //dump wave
-    //contextp->timeInc(1); //推动仿真时间
     sim_time++;
-    //assert(top->f == a ^ b);
     
   }
   delete top;
