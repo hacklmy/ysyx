@@ -79,7 +79,7 @@ int main(int argc, char** argv) {
       top->eval();
     }
   top->reset = 0;
-  while (!cpu_stop) {
+  while (!cpu_stop && sim_time<20) {
     top->io_inst = pmem_read(top->io_pc);
     //printf("%lx %lx %x\n",top->io_pc ,top->io_outval, top->io_inst);
     top->clock = 0;
