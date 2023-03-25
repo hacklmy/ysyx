@@ -76,8 +76,8 @@ int main(int argc, char** argv) {
     sim_time++;
     
   }
-  if(stop_status==0)printf("\33[1;32mHIT GOOD TRAP\33[0m");
-  else printf("\33[1;31mHIT BAD TRAP\33[0m");
+  if(stop_status==0)printf("\33[1;32mHIT GOOD TRAP\n\33[0m");
+  else printf("\33[1;31mHIT BAD TRAP\n\33[0m");
   delete top;
   tfp->close();
   delete contextp;
