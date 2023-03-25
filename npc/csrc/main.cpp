@@ -12,6 +12,7 @@
 
 int stop_status = 0;
 Vtop* top;
+VerilatedVcdC* tfp
 #define MAX_SIM_TIME 5
 vluint64_t sim_time = 0;
 int cpu_stop = 0;
@@ -188,7 +189,7 @@ int main(int argc, char** argv) {
   contextp->commandArgs(argc, argv);
   top = new Vtop{contextp};
   
-  VerilatedVcdC* tfp = new VerilatedVcdC; //初始化VCD对象指针
+  tfp = new VerilatedVcdC; //初始化VCD对象指针
   contextp->traceEverOn(true); //打开追踪功能
   top->trace(tfp, 0);
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
