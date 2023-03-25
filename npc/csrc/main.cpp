@@ -70,23 +70,25 @@ int main(int argc, char** argv) {
   //load_img();
   //printf("1\n");
   //printf("%x\n",pmem_read(0x80000000));
-  top->reset = 1;
-    int n = 10;
-    while (n-- > 0) {
-      top->clock = 0;
+  while (!cpu_stop && sim_time<20) {
+    if(sim_time<3){
+      top->reset = 1;
+      top->clock^=1;
       top->eval();
-      top->clock = 1;
+    }else{
+      top->reset = 0;
+      top->io_inst = pmem_read(top->io_pc);
+    //printf("%lx %lx %x\n",top->io_pc ,top->io_outval, top->io_inst);
+      top->clock ^= 1;
       top->eval();
     }
-  top->reset = 0;
-  while (!cpu_stop && sim_time<20) {
-    top->io_inst = pmem_read(top->io_pc);
-    //printf("%lx %lx %x\n",top->io_pc ,top->io_outval, top->io_inst);
-    top->clock = 0;
-    top->eval();
-    //printf("%lx %lx\n",top->io_pc ,top->io_outval);
-    top->clock = 1;
-    top->eval();
+    // top->io_inst = pmem_read(top->io_pc);
+    // //printf("%lx %lx %x\n",top->io_pc ,top->io_outval, top->io_inst);
+    // top->clock = 0;
+    // top->eval();
+    // //printf("%lx %lx\n",top->io_pc ,top->io_outval);
+    // top->clock = 1;
+    // top->eval();
     //printf("%lx %lx\n",top->io_pc ,top->io_outval);
     // top->clock = 0;
     // top->eval();
