@@ -67,7 +67,7 @@ int main(int argc, char** argv) {
   //    0xfe9ff0ef,          	
   //    0x0000006f
   //  };
-  memcpy(guest_to_host(0x80000000), inst, sizeof(inst));
+  //memcpy(guest_to_host(0x80000000), inst, sizeof(inst));
   //int finish = 3;
   load_img();
   //printf("1\n");
