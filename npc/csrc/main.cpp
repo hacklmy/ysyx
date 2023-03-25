@@ -113,7 +113,7 @@ static int cmd_x(char *args){
     uint32_t temp = pmem_read(paddr);
     printf("0x%x ", temp);
     printf("\n");
-    paddr+=32;
+    paddr+=4;
     gap--;
   }
   return 0;
