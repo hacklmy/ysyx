@@ -78,7 +78,7 @@ int main(int argc, char** argv) {
     }else{
       top->reset = 0;
       top->io_inst = pmem_read(top->io_pc);
-      printf("%lx %lx\n",top->io_pc , top->io_inst);
+      printf("%lx %x\n",top->io_pc , top->io_inst);
       top->clock ^= 1;
       top->eval();
     }

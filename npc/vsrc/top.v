@@ -86,17 +86,6 @@ module top(
     end else begin
       pc_now <= exu_step_io_pc_next; // @[top.scala 36:12]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"%x\n",idu_step_io_inst_now); // @[top.scala 35:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
