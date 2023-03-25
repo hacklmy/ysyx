@@ -33,19 +33,18 @@ void ebreak_handle(int flag){
 
 
 void load_img(){
-  printf("loading\n");
+  
   char img_file[] = "/home/lmy/ysyx-workbench/npc/csrc/dummy-riscv64-npc.bin";
   FILE *fp = fopen(img_file, "rb");
-  if(fp!=NULL)printf("error\n");
-  printf("1\n");
+  
   fseek(fp, 0L, SEEK_END);
-  printf("1\n");
+  
   long size = ftell(fp);
-  printf("%ld\n", size);
+  
   fseek(fp, 0L, SEEK_SET);
-  printf("1\n");
+  
   int ret = fread(guest_to_host(CONFIG_MBASE), size, 1, fp);
-  printf("1\n");
+  
   fclose(fp);
 }
 
