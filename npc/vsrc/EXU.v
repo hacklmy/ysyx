@@ -1,6 +1,6 @@
 /* verilator lint_off UNUSED */
 import "DPI-C" function void set_gpr_ptr(input logic [63:0] a []);
-initial set_gpr_ptr(Regfile);
+
 
 module EXU(
   input         clock,
@@ -20,6 +20,7 @@ module EXU(
   reg [63:0] _RAND_0;
 `endif // RANDOMIZE_MEM_INIT
   reg [63:0] Regfile [0:31]; // @[EXU.scala 19:22]
+  initial set_gpr_ptr(Regfile);
   wire  Regfile_src1_value_MPORT_en; // @[EXU.scala 19:22]
   wire [4:0] Regfile_src1_value_MPORT_addr; // @[EXU.scala 19:22]
   wire [63:0] Regfile_src1_value_MPORT_data; // @[EXU.scala 19:22]
