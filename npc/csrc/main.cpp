@@ -67,7 +67,7 @@ int main(int argc, char** argv) {
    };
   // memcpy(guest_to_host(0x80000000), inst, sizeof(inst));
   //int finish = 3;
-  load_img();
+  //load_img();
   //printf("1\n");
   //printf("%x\n",pmem_read(0x80000000));
   top->reset = 1;
@@ -81,10 +81,10 @@ int main(int argc, char** argv) {
   top->reset = 0;
   while (!cpu_stop) {
     top->io_inst = pmem_read(top->io_pc);
-    printf("%lx %lx %x\n",top->io_pc ,top->io_outval, top->io_inst);
+    //printf("%lx %lx %x\n",top->io_pc ,top->io_outval, top->io_inst);
     top->clock = 0;
     top->eval();
-    printf("%lx %lx\n",top->io_pc ,top->io_outval);
+    //printf("%lx %lx\n",top->io_pc ,top->io_outval);
     top->clock = 1;
     top->eval();
     //printf("%lx %lx\n",top->io_pc ,top->io_outval);
