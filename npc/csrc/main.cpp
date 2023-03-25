@@ -40,7 +40,7 @@ static uint32_t pmem_read(paddr_t addr) {
 }
 
 int stop = 0;
-void ebreak(int flag) {
+void ebreak_handle(int flag) {
   if(flag)printf("ebreak\n");
   stop = flag;
 }
