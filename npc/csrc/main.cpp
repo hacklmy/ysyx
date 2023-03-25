@@ -106,12 +106,12 @@ static int cmd_x(char *args){
   int gap=0;
   paddr_t paddr;
   sscanf(num,"%d",&gap);
-  sscanf(addr,"%x",&paddr);
+  sscanf(addr,"%lx",&paddr);
   while(gap>0){
-    printf("0x%x:\t",paddr);
+    printf("0x%lx:\t",paddr);
     paddr_t temp = pmem_read(paddr);
     for (int i = 0;i < 4;i++){
-      printf("0x%08x ",temp & 0xff);
+      printf("0x%08lx ",temp & 0xff);
       temp = temp >> 8;
     }
     printf("\n");
@@ -164,7 +164,7 @@ int sdb_mainloop() {
     }
     if (i == NR_CMD) { printf("Unknown command '%s'\n", cmd); }
   }
-
+  return 1;
 }
 
 
