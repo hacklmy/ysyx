@@ -31,7 +31,7 @@ void ebreak_handle(int flag){
   cpu_stop = flag;
 }
 
-const char* img_file = "~/home/ysyx-workbench/npc/csrc/dummy-riscv64-npc.bin";
+const char* img_file = "../image.bin";
 
 void load_img(){
   printf("loading\n");
