@@ -4,8 +4,10 @@
 #include <readline/readline.h>
 #include <assert.h>
 #include "Vtop.h"
+#include <svdpi.h>
 #include "verilated.h"
 #include "Vtop__Dpi.h"
+#include <verilated_dpi.h>
 #include <verilated_vcd_c.h>
 
 int stop_status = 0;
