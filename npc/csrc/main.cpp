@@ -34,7 +34,7 @@ void ebreak_handle(int flag){
 
 void load_img(){
   printf("loading\n");
-  char img_file[] = "dummy-riscv64-npc.bin";
+  char img_file[] = "/home/ysyx-workbench/npc/csrc/dummy-riscv64-npc.bin";
   FILE *fp = fopen(img_file, "rb");
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
