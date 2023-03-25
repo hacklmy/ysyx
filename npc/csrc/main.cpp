@@ -31,16 +31,16 @@ void ebreak_handle(int flag){
   cpu_stop = flag;
 }
 
-const char* img_file = "dummy-riscv64-npc.bin";
 
 void load_img(){
   printf("loading\n");
-  FILE *fp = fopen(img_file, "r");
+  char img_file[] = "dummy-riscv64-npc.bin";
+  FILE *fp = fopen(img_file, "rb");
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
   printf("%ld\n", size);
   fseek(fp, 0, SEEK_SET);
-  int ret = fread(guest_to_host(0x80000000), size, 1, fp);
+  int ret = fread(guest_to_host(CONFIG_MBASE), size, 1, fp);
   fclose(fp);
 }
 
