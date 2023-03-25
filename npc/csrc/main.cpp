@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <iostream>
 #include <stdlib.h>
 #include <assert.h>
 #include "Vtop.h"
@@ -30,7 +31,7 @@ void ebreak_handle(int flag){
   cpu_stop = flag;
 }
 
-char* img_file = "./dummy-riscv64-npc.bin";
+String img_file = "/home/ysyx-workbench//dummy-riscv64-npc.bin";
 
 void load_img(){
   FILE *fp = fopen(img_file, "rb");
