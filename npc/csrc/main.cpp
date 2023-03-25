@@ -41,6 +41,7 @@ void load_img(){
   long size = ftell(fp);
   printf("%ld\n", size);
   fseek(fp, 0, SEEK_SET);
+  printf("1\n");
   int ret = fread(guest_to_host(CONFIG_MBASE), size, 1, fp);
   printf("1\n");
   fclose(fp);
