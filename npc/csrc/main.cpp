@@ -48,6 +48,7 @@ extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
 
 
 void cpu_exec(int n){
+  if(n<0)n=100000000;
   while (!cpu_stop && n--) {
     if(sim_time<3){
       top->reset = 1;
@@ -140,13 +141,15 @@ static struct {
 #define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
 #define NR_CMD ARRLEN(cmd_table)
 int sdb_mainloop() {
-    char* line_read = gets();
-    char* str = line_read;
+  char* str ;
+  printf("(npc) ")
+   scanf("%[^\n]" , str );;
+    
     char *str_end = str + strlen(str);
 
     /* extract the first token as the command */
     char *cmd = strtok(str, " ");
-    if (cmd == NULL) { continue; }
+    if (cmd == NULL) { return 1; }
 
     /* treat the remaining string as the arguments,
      * which may need further parsing
@@ -195,7 +198,7 @@ int main(int argc, char** argv) {
   top->trace(tfp, 0);
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
   load_img();
-  while(sdb_mainloop());
+  while(sdb_mainloop() && !cpu_stop);
   // while (!cpu_stop) {
   //   if(sim_time<3){
   //     top->reset = 1;
