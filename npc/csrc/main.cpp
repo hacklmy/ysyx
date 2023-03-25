@@ -35,7 +35,7 @@ const char* img_file = "dummy-riscv64-npc.bin";
 
 void load_img(){
   printf("loading\n");
-  FILE *fp = fopen(img_file, "rb");
+  FILE *fp = fopen(img_file, "r");
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
   printf("%ld\n", size);
