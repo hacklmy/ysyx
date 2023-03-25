@@ -37,7 +37,7 @@ void load_img(){
   char img_file[] = "/home/lmy/ysyx-workbench/npc/image.bin";
   FILE *fp = fopen(img_file, "rb");
   
-  fseek(fp, 0L, SEEK_END);
+  fseek(fp, 0, SEEK_END);
   
   long size = ftell(fp);
   
