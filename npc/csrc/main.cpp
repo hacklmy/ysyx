@@ -147,8 +147,7 @@ int sdb_mainloop() {
         perror("fgets error");
         return 0; // 读取失败，返回错误代码
     }
-    
-    char *str_end = str + strlen(str);
+    str[strcspn(str, "\n")] = '\0';
 
     /* extract the first token as the command */
     char *cmd = strtok(str, " ");
