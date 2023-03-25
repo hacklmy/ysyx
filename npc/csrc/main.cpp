@@ -31,7 +31,7 @@ void ebreak_handle(int flag){
   cpu_stop = flag;
 }
 
-const char* img_file = "../image.bin";
+const char* img_file = "dummy-riscv64-npc.bin";
 
 void load_img(){
   printf("loading\n");
@@ -53,23 +53,23 @@ int main(int argc, char** argv) {
   contextp->traceEverOn(true); //打开追踪功能
   top->trace(tfp, 0);
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
-   uint32_t inst[] = {
-     0x413,
-     0x9117,
-     0xffc10113,
-     0x00c000ef,
-     0x00000513,
-     0x8067,
-     0xff010113,
-     0x00000517,          	
-     0x01450513,          	
-     0x00113423,      	
-     0xfe9ff0ef,          	
-     0x0000006f
-   };
+  //  uint32_t inst[] = {
+  //    0x413,
+  //    0x9117,
+  //    0xffc10113,
+  //    0x00c000ef,
+  //    0x00000513,
+  //    0x8067,
+  //    0xff010113,
+  //    0x00000517,          	
+  //    0x01450513,          	
+  //    0x00113423,      	
+  //    0xfe9ff0ef,          	
+  //    0x0000006f
+  //  };
   memcpy(guest_to_host(0x80000000), inst, sizeof(inst));
   //int finish = 3;
-  //load_img();
+  load_img();
   //printf("1\n");
   //printf("%x\n",pmem_read(0x80000000));
   while (!cpu_stop && sim_time<30) {
