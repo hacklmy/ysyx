@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
   //int finish = 3;
   load_img();
   //printf("1\n");
-  //printf("%x\n",pmem_read(0x80000000));
+  printf("%x\n",pmem_read(0x80000000));
   while (!cpu_stop && sim_time<30) {
     if(sim_time<3){
       top->reset = 1;
