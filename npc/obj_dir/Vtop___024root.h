@@ -36,7 +36,7 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__pc_now;
     QData/*63:0*/ top__DOT__exu_step__DOT__Regfile_MPORT_data;
     QData/*63:0*/ top__DOT__exu_step__DOT__add_res;
-    QData/*63:0*/ top__DOT__exu_step__DOT___io_pc_next_T_3;
+    QData/*63:0*/ top__DOT__exu_step__DOT___io_pc_next_T_5;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__Regfile;
 
     // LOCAL VARIABLES

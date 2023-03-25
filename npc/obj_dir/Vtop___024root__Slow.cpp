@@ -173,7 +173,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                     (0x1fU 
                                                      & (vlSelf->io_inst 
                                                         >> 0x14U))])));
-    vlSelf->top__DOT__exu_step__DOT___io_pc_next_T_3 
+    vlSelf->top__DOT__exu_step__DOT___io_pc_next_T_5 
         = ((5U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20))
             ? vlSelf->top__DOT__exu_step__DOT__add_res
             : (4ULL + vlSelf->top__DOT__pc_now));
@@ -254,7 +254,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     }
     vlSelf->top__DOT__exu_step__DOT__Regfile_MPORT_data = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__exu_step__DOT__add_res = VL_RAND_RESET_Q(64);
-    vlSelf->top__DOT__exu_step__DOT___io_pc_next_T_3 = VL_RAND_RESET_Q(64);
+    vlSelf->top__DOT__exu_step__DOT___io_pc_next_T_5 = VL_RAND_RESET_Q(64);
     for (int __Vi0=0; __Vi0<3; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = VL_RAND_RESET_I(1);
     }

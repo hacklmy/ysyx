@@ -1,6 +1,7 @@
 /* verilator lint_off UNUSED */
 module EXU(
   input         clock,
+  input         reset,
   input  [63:0] io_pc,
   output [63:0] io_pc_next,
   input  [31:0] io_inst_now,
@@ -61,6 +62,17 @@ module EXU(
     if (Regfile_MPORT_en & Regfile_MPORT_mask) begin
       Regfile[Regfile_MPORT_addr] <= Regfile_MPORT_data; // @[EXU.scala 19:22]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"%x\n",io_pc_next); // @[EXU.scala 39:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
