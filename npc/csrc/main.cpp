@@ -30,7 +30,7 @@ void ebreak_handle(int flag){
   cpu_stop = flag;
 }
 
-char* img_file = "../image.bin";
+char* img_file = "~/home/ysyx-workbench/am-kernals/tests/cpu-tests/build/dummy-riscv64-npc.bin";
 
 void load_img(){
   FILE *fp = fopen(img_file, "rb");
@@ -64,6 +64,7 @@ int main(int argc, char** argv) {
   // memcpy(guest_to_host(0x80000000), inst, sizeof(inst));
   //int finish = 3;
   load_img();
+  //Wprintf("%x\n",)
   top->reset = 1;
     int n = 10;
     while (n-- > 0) {
