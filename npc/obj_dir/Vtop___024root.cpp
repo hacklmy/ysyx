@@ -17,16 +17,24 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     CData/*4:0*/ __Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0;
     QData/*63:0*/ __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0;
     // Body
-    vlSelf->top__DOT__pc_now = ((IData)(vlSelf->reset)
-                                 ? 0x80000000ULL : 
-                                ((6U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20))
-                                  ? 0ULL : vlSelf->top__DOT__exu_step__DOT___io_pc_next_T_5));
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"%x\n",64,((6U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20))
+                                           ? 0ULL : 
+                                          ((5U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20))
+                                            ? vlSelf->top__DOT__exu_step__DOT__add_res
+                                            : (4ULL 
+                                               + vlSelf->top__DOT__pc_now))));
+    }
     __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0 
         = vlSelf->top__DOT__exu_step__DOT__Regfile_MPORT_data;
     __Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0 
         = (0x1fU & (vlSelf->io_inst >> 7U));
     vlSelf->top__DOT__exu_step__DOT__Regfile[__Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0] 
         = __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0;
+    vlSelf->top__DOT__pc_now = ((IData)(vlSelf->reset)
+                                 ? 0x80000000ULL : 
+                                ((6U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20))
+                                  ? 0ULL : vlSelf->top__DOT__exu_step__DOT___io_pc_next_T_5));
     vlSelf->io_pc = vlSelf->top__DOT__pc_now;
 }
 
