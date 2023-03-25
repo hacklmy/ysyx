@@ -65,6 +65,7 @@ int main(int argc, char** argv) {
   // memcpy(guest_to_host(0x80000000), inst, sizeof(inst));
   //int finish = 3;
   load_img();
+  printf("1\n");
   printf("%x\n",pmem_read(0x80000000));
   top->reset = 1;
     int n = 10;
