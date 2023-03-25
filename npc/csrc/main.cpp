@@ -148,6 +148,7 @@ int sdb_mainloop() {
         return 0; // 读取失败，返回错误代码
     }
     str[strcspn(str, "\n")] = '\0';
+    char *str_end = str + strlen(str);
 
     /* extract the first token as the command */
     char *cmd = strtok(str, " ");
