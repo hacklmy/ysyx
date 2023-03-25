@@ -41,7 +41,7 @@ void load_img(){
   
   long size = ftell(fp);
   
-  fseek(fp, 0L, SEEK_SET);
+  fseek(fp, 0, SEEK_SET);
   
   int ret = fread(guest_to_host(CONFIG_MBASE), size, 1, fp);
   
