@@ -141,9 +141,12 @@ static struct {
 #define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
 #define NR_CMD ARRLEN(cmd_table)
 int sdb_mainloop() {
-    char str[64] ;
+    char str[100] ;
     printf("(npc) ");
-    scanf("%[^\n]" , str );
+    if (fgets(str, sizeof(str), stdin) == NULL) { // 从标准输入中读取命令
+        perror("fgets error");
+        return 0; // 读取失败，返回错误代码
+    }
     
     char *str_end = str + strlen(str);
 
