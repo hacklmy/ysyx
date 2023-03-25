@@ -38,6 +38,7 @@ void load_img(){
   FILE *fp = fopen(img_file, "rb");
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
+  printf("%ld\n", size);
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(0x80000000), size, 1, fp);
   fclose(fp);
