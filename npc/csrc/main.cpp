@@ -52,21 +52,18 @@ int main(int argc, char** argv) {
   contextp->traceEverOn(true); //打开追踪功能
   top->trace(tfp, 0);
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
-  //  uint32_t inst[] = {
-  //    0x00108093,
-  //    0x00108093,
-  //    0x00108093,
-  //    0x00108093,
-  //    0x00108093,
-  //    0x00108093,
-  //    0x00108093,
-  //    0x00100073
-  //  };
+   uint32_t inst[] = {
+     0x413,
+     0x9117,
+     0x00108093,
+     0xffc10113,
+     0x00100073
+   };
   // memcpy(guest_to_host(0x80000000), inst, sizeof(inst));
   //int finish = 3;
-  load_img();
-  printf("1\n");
-  printf("%x\n",pmem_read(0x80000000));
+  //load_img();
+  //printf("1\n");
+  //printf("%x\n",pmem_read(0x80000000));
   top->reset = 1;
     int n = 10;
     while (n-- > 0) {
