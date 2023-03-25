@@ -142,8 +142,8 @@ static struct {
 #define NR_CMD ARRLEN(cmd_table)
 int sdb_mainloop() {
   char* str ;
-  printf("(npc) ")
-   scanf("%[^\n]" , str );;
+  printf("(npc) ");
+   scanf("%[^\n]" , str );
     
     char *str_end = str + strlen(str);
 
