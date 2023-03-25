@@ -36,6 +36,7 @@ void load_img(){
   printf("loading\n");
   char img_file[] = "/home/ysyx-workbench/npc/csrc/dummy-riscv64-npc.bin";
   FILE *fp = fopen(img_file, "rb");
+  printf("1\n");
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
   printf("%ld\n", size);
