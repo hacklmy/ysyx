@@ -110,11 +110,8 @@ static int cmd_x(char *args){
   sscanf(addr,"%lx",&paddr);
   while(gap>0){
     printf("0x%lx:\t",paddr);
-    paddr_t temp = pmem_read(paddr);
-    for (int i = 0;i < 4;i++){
-      printf("0x%08lx ",temp & 0xff);
-      temp = temp >> 8;
-    }
+    uint32_t temp = pmem_read(paddr);
+    printf("0x%x ", temp);
     printf("\n");
     paddr+=32;
     gap--;
