@@ -140,8 +140,8 @@ static struct {
 #define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
 #define NR_CMD ARRLEN(cmd_table)
 int sdb_mainloop() {
-  char* line_read = readline("(npc) ");
-  for (char *str; (str = line_read) != NULL; ) {
+    char* line_read = gets();
+    char* str = line_read;
     char *str_end = str + strlen(str);
 
     /* extract the first token as the command */
@@ -163,7 +163,7 @@ int sdb_mainloop() {
       }
     }
     if (i == NR_CMD) { printf("Unknown command '%s'\n", cmd); }
-  }
+  
   return 1;
 }
 
