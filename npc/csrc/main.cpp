@@ -39,7 +39,6 @@ void load_img(){
   long size = ftell(fp);
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(0x80000000), size, 1, fp);
-  assert(ret == 1);
   fclose(fp);
 }
 
@@ -52,16 +51,12 @@ int main(int argc, char** argv) {
   contextp->traceEverOn(true); //打开追踪功能
   top->trace(tfp, 0);
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
-   uint32_t inst[] = {
-     0x413,
-     0x9117,
-     0x00108093,
-     0xffc10113,
-     0x00100073
-   };
+  //  uint32_t inst[] = {
+  //    0x00100073
+  //  };
   // memcpy(guest_to_host(0x80000000), inst, sizeof(inst));
   //int finish = 3;
-  //load_img();
+  load_img();
   //printf("1\n");
   //printf("%x\n",pmem_read(0x80000000));
   top->reset = 1;
