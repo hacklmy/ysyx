@@ -43,7 +43,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                 ? 0x42U : ((0x37U == (0x7fU & vlSelf->io_inst))
                             ? 0x42U : ((0x6fU == (0x7fU 
                                                   & vlSelf->io_inst))
-                                        ? 0x42U : (
+                                        ? 0x43U : (
                                                    (0x67U 
                                                     == 
                                                     (0x707fU 
@@ -54,7 +54,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                      == 
                                                      (0x707fU 
                                                       & vlSelf->io_inst))
-                                                     ? 0x43U
+                                                     ? 0x44U
                                                      : 0U)))));
         vlSelf->top__DOT__idu_step__DOT___inst_now_T_20 
             = ((0x100073U == vlSelf->io_inst) ? 2U : 
@@ -72,7 +72,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                              ? 7U : 0U))))));
     }
     vlSelf->io_pc = vlSelf->top__DOT__pc_now;
-    vlSelf->top__DOT__idu_step_io_imm = ((0x43U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_17))
+    vlSelf->top__DOT__idu_step_io_imm = ((0x44U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_17))
                                           ? ((((vlSelf->io_inst 
                                                 >> 0x1fU)
                                                 ? 0xfffffffffffffULL
@@ -96,7 +96,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                  | (QData)((IData)(
                                                                    (0xfffff000U 
                                                                     & vlSelf->io_inst))))
-                                              : ((0x42U 
+                                              : ((0x43U 
                                                   == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_17))
                                                   ? 
                                                  ((((vlSelf->io_inst 
@@ -151,9 +151,9 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                    & (vlSelf->io_inst 
                                                       >> 0xfU))])) 
                                                 + (
-                                                   ((0x42U 
+                                                   ((0x43U 
                                                      == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_17)) 
-                                                    | ((0x43U 
+                                                    | ((0x44U 
                                                         == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_17)) 
                                                        | ((0x42U 
                                                            == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_17)) 

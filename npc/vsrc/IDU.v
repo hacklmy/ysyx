@@ -1,3 +1,4 @@
+/* verilator lint_off UNUSED */
 module IDU(
   input  [31:0] io_inst,
   output [31:0] io_inst_now,
@@ -59,3 +60,4 @@ module IDU(
     inst_type)); // @[Mux.scala 81:58]
   assign io_ctrl_sign_src1_is_pc = 32'h6f == _inst_type_T_2; // @[Lookup.scala 31:38]
 endmodule
+/* verilator lint_on UNUSED */
