@@ -11,12 +11,12 @@
 #include <verilated_vcd_c.h>
 
 int stop_status = 0;
-Vtop* top;
-VerilatedVcdC* tfp
+
 #define MAX_SIM_TIME 5
 vluint64_t sim_time = 0;
 int cpu_stop = 0;
-
+Vtop* top;
+VerilatedVcdC* tfp;
 //===========================mem=========================
 typedef uint64_t paddr_t;
 #define PG_ALIGN __attribute((aligned(4096)))
