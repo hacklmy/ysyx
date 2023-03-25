@@ -11,7 +11,7 @@
 #include <verilated_vcd_c.h>
 
 int stop_status = 0;
-
+Vtop* top;
 #define MAX_SIM_TIME 5
 vluint64_t sim_time = 0;
 int cpu_stop = 0;
@@ -186,7 +186,7 @@ void load_img(){
 int main(int argc, char** argv) {
   VerilatedContext* contextp = new VerilatedContext;
   contextp->commandArgs(argc, argv);
-  Vtop* top = new Vtop{contextp};
+  top = new Vtop{contextp};
   
   VerilatedVcdC* tfp = new VerilatedVcdC; //初始化VCD对象指针
   contextp->traceEverOn(true); //打开追踪功能
