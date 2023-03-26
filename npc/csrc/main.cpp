@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <iostream>
 #include <stdlib.h>
-#include <readline/readline.h>
 #include <assert.h>
 #include "Vtop.h"
 #include <svdpi.h>
