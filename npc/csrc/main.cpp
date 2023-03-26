@@ -276,13 +276,13 @@ void cpu_exec(int n){
       printf("%lx %x\n",top->io_pc , top->io_inst);
       
 #ifdef CONFIG_ITRACE
-    FILE* fp = fopen("home/lmy/ysyx-workbench/npc/npc-log.txt","w");
+    FILE* fp = fopen("home/lmy/ysyx-workbench/npc/npc-log.txt","w+");
     fseek(fp, 0, SEEK_SET);
-    char *p = (char*)malloc(sizeof(char)*128);
+    char p[128];
     char *s = p;
-    s += sprintf(s, "%lx:", top->io_pc);
+    fprintf(fp, "0x%016lx:", top->io_pc);
     printf("1\n");
-    s += sprintf(s, " %08x", top->io_inst);
+    s += snprintf(s, 24, " %08x", top->io_inst);
     printf("%s\n", p);
     memset(s, ' ', 1);
     s += 1;
