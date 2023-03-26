@@ -42,7 +42,7 @@ void ebreak_handle(int flag){
 
 //==========================sdb============================
 uint64_t *cpu_gpr = NULL;
-extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
+void set_gpr_ptr(const svOpenArrayHandle r) {
   cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
 }
 

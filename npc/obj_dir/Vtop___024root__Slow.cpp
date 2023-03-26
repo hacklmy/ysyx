@@ -28,6 +28,7 @@ Vtop___024root::~Vtop___024root() {
 }
 
 void Vtop___024unit____Vdpiimwrap_ebreak_handle_TOP____024unit(IData/*31:0*/ flag);
+void Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(const VlUnpacked<QData/*63:0*/, 32> &Regfile);
 
 void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -196,6 +197,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
     Vtop___024unit____Vdpiimwrap_ebreak_handle_TOP____024unit(
                                                               (2U 
                                                                == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20)));
+    Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs);
     vlSelf->top__DOT__exu_step__DOT__add_res = (((0x6fU 
                                                   == 
                                                   (0x7fU 
@@ -273,23 +275,12 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
             [(0x1fU & (vlSelf->io_inst >> 7U))]));
 }
 
-void Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(const VlUnpacked<QData/*63:0*/, 32> &Regfile);
-
-void Vtop___024root___initial__TOP__4(Vtop___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___initial__TOP__4\n"); );
-    // Body
-    Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs);
-}
-
 void Vtop___024root___eval_initial(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_initial\n"); );
     // Body
     vlSelf->__Vclklast__TOP__clock = vlSelf->clock;
-    Vtop___024root___initial__TOP__4(vlSelf);
 }
 
 void Vtop___024root___eval_settle(Vtop___024root* vlSelf) {
