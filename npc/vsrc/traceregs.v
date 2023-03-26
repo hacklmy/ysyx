@@ -67,5 +67,6 @@ module traceregs(
     assign traceregs[29] = input_reg_29;
     assign traceregs[30] = input_reg_30;
     assign traceregs[31] = input_reg_31;
-    initial set_gpr_ptr(traceregs);
+    always@(*)
+        set_gpr_ptr(traceregs);
 endmodule

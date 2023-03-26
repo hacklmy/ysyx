@@ -26,6 +26,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                    & vlSelf->io_inst))),
                    64,vlSelf->top__DOT__exu_step_io_res2rd);
     }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"%20#\n",64,vlSelf->top__DOT__exu_step__DOT__Regfile
+                   [(0x1fU & (vlSelf->io_inst >> 7U))]);
+    }
     vlSelf->top__DOT__pc_now = ((IData)(vlSelf->reset)
                                  ? 0x80000000ULL : 
                                 ((6U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20))
