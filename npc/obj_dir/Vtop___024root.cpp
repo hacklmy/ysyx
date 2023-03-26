@@ -207,10 +207,14 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__2(Vtop___024root* vlSelf) {
     Vtop___024unit____Vdpiimwrap_ebreak_handle_TOP____024unit(
                                                               (2U 
                                                                == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20)));
-    vlSelf->top__DOT__exu_step__DOT__add_res = (((0x6fU 
-                                                  == 
-                                                  (0x7fU 
-                                                   & vlSelf->io_inst))
+    vlSelf->top__DOT__exu_step__DOT__add_res = ((((0x6fU 
+                                                   == 
+                                                   (0x7fU 
+                                                    & vlSelf->io_inst)) 
+                                                  | (0x17U 
+                                                     == 
+                                                     (0x7fU 
+                                                      & vlSelf->io_inst)))
                                                   ? vlSelf->top__DOT__pc_now
                                                   : 
                                                  ((0U 

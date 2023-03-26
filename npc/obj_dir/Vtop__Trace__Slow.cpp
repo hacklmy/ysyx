@@ -459,8 +459,10 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+215,(((0x100073U != vlSelf->io_inst) 
                                    & (0x3023U != (0x707fU 
                                                   & vlSelf->io_inst)))));
-        tracep->fullBit(oldp+216,((0x6fU == (0x7fU 
-                                             & vlSelf->io_inst))));
+        tracep->fullBit(oldp+216,(((0x6fU == (0x7fU 
+                                              & vlSelf->io_inst)) 
+                                   | (0x17U == (0x7fU 
+                                                & vlSelf->io_inst)))));
         tracep->fullQData(oldp+217,(((6U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20))
                                       ? (0xfffffffffffffffeULL 
                                          & vlSelf->top__DOT__exu_step__DOT__add_res)
@@ -507,8 +509,10 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                          [(0x1fU & 
                                            (vlSelf->io_inst 
                                             >> 7U))]))),64);
-        tracep->fullQData(oldp+231,(((0x6fU == (0x7fU 
-                                                & vlSelf->io_inst))
+        tracep->fullQData(oldp+231,((((0x6fU == (0x7fU 
+                                                 & vlSelf->io_inst)) 
+                                      | (0x17U == (0x7fU 
+                                                   & vlSelf->io_inst)))
                                       ? vlSelf->top__DOT__pc_now
                                       : ((0U == (0x1fU 
                                                  & (vlSelf->io_inst 

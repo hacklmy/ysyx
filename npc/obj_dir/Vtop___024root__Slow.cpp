@@ -198,10 +198,14 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                               (2U 
                                                                == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20)));
     Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs);
-    vlSelf->top__DOT__exu_step__DOT__add_res = (((0x6fU 
-                                                  == 
-                                                  (0x7fU 
-                                                   & vlSelf->io_inst))
+    vlSelf->top__DOT__exu_step__DOT__add_res = ((((0x6fU 
+                                                   == 
+                                                   (0x7fU 
+                                                    & vlSelf->io_inst)) 
+                                                  | (0x17U 
+                                                     == 
+                                                     (0x7fU 
+                                                      & vlSelf->io_inst)))
                                                   ? vlSelf->top__DOT__pc_now
                                                   : 
                                                  ((0U 
