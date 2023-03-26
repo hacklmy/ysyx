@@ -285,6 +285,7 @@ void cpu_exec(int n){
     //printf("%s\n", p);
     memset(s, ' ', 1);
     s += 1;
+    printf("%s\n",p);
     disassemble(s, p + sizeof(p) - s, top->io_pc, guest_to_host(top->io_pc), 4);
     printf("1\n");
     *(s+1) = '\n';
