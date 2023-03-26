@@ -41,9 +41,14 @@ void ebreak_handle(int flag){
 }
 
 //==========================sdb============================
-uint64_t *cpu_gpr = NULL;
-void set_gpr_ptr(const svOpenArrayHandle r) {
+
+extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
+  uint64_t *cpu_gpr = NULL;
   cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
+  int i;
+  for (i = 0; i < 32; i++) {
+    printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[0]);
+  }
 }
 
 
