@@ -12,11 +12,11 @@
 #define CONFIG_ITRACE 0
 //#define CONFIG_FTRACE 0
 
-#ifdef CONFIG_FTRACE
+
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return);
 void init_elf(char *elf_file);
 void print_func();
-#endif
+
 
 int stop_status = 0;
 
