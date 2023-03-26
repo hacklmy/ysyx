@@ -276,6 +276,7 @@ void cpu_exec(int n){
       printf("%lx %x\n",top->io_pc , top->io_inst);
       
 #ifdef CONFIG_ITRACE
+    printf("1\n");
     FILE* fp = fopen("home/lmy/ysyx-workbench/npc/npc-log.txt","w");
     fseek(fp, 0, SEEK_SET);
     char p[128];
