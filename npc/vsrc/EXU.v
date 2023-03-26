@@ -27,9 +27,6 @@ module EXU(
   wire  Regfile_reg_value_MPORT_en; // @[EXU.scala 19:22]
   wire [4:0] Regfile_reg_value_MPORT_addr; // @[EXU.scala 19:22]
   wire [63:0] Regfile_reg_value_MPORT_data; // @[EXU.scala 19:22]
-  wire  Regfile_MPORT_1_en; // @[EXU.scala 19:22]
-  wire [4:0] Regfile_MPORT_1_addr; // @[EXU.scala 19:22]
-  wire [63:0] Regfile_MPORT_1_data; // @[EXU.scala 19:22]
   wire  Regfile_reg_trace_io_input_reg_0_MPORT_en; // @[EXU.scala 19:22]
   wire [4:0] Regfile_reg_trace_io_input_reg_0_MPORT_addr; // @[EXU.scala 19:22]
   wire [63:0] Regfile_reg_trace_io_input_reg_0_MPORT_data; // @[EXU.scala 19:22]
@@ -173,7 +170,6 @@ module EXU(
   wire [63:0] _io_res2rd_T_9 = 32'h4 == io_inst_now ? io_imm : _io_res2rd_T_7; // @[Mux.scala 81:58]
   wire [63:0] _io_res2rd_T_11 = 32'h5 == io_inst_now ? _io_res2rd_T_1 : _io_res2rd_T_9; // @[Mux.scala 81:58]
   wire [63:0] reg_value = io_rd == 5'h0 ? 64'h0 : Regfile_reg_value_MPORT_data; // @[EXU.scala 21:12]
-  wire  _T_1 = ~reset; // @[EXU.scala 34:11]
   wire [63:0] _io_pc_next_T_2 = add_res & 64'hfffffffffffffffe; // @[EXU.scala 39:28]
   wire [63:0] _io_pc_next_T_4 = 32'h5 == io_inst_now ? add_res : _io_res2rd_T_1; // @[Mux.scala 81:58]
   traceregs reg_trace ( // @[EXU.scala 41:27]
@@ -219,9 +215,6 @@ module EXU(
   assign Regfile_reg_value_MPORT_en = 1'h1;
   assign Regfile_reg_value_MPORT_addr = io_rd;
   assign Regfile_reg_value_MPORT_data = Regfile[Regfile_reg_value_MPORT_addr]; // @[EXU.scala 19:22]
-  assign Regfile_MPORT_1_en = 1'h1;
-  assign Regfile_MPORT_1_addr = io_rd;
-  assign Regfile_MPORT_1_data = Regfile[Regfile_MPORT_1_addr]; // @[EXU.scala 19:22]
   assign Regfile_reg_trace_io_input_reg_0_MPORT_en = 1'h1;
   assign Regfile_reg_trace_io_input_reg_0_MPORT_addr = 5'h0;
   assign Regfile_reg_trace_io_input_reg_0_MPORT_data = Regfile[Regfile_reg_trace_io_input_reg_0_MPORT_addr]; // @[EXU.scala 19:22]
@@ -365,18 +358,7 @@ module EXU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"%d %d\n",io_ctrl_sign_reg_write,io_res2rd); // @[EXU.scala 34:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (_T_1) begin
-          $fwrite(32'h80000002,"%d\n",Regfile_MPORT_1_data); // @[EXU.scala 36:11]
+          $fwrite(32'h80000002,"%x\n",reg_trace_input_reg_2); // @[EXU.scala 44:11]
         end
     `ifdef PRINTF_COND
       end
