@@ -26,17 +26,18 @@ VL_MODULE(Vtop___024root) {
     VL_IN8(reset,0,0);
     VL_IN(io_inst,31,0);
     VL_OUT64(io_pc,63,0);
+    VL_OUT64(io_pc_next,63,0);
     VL_OUT64(io_outval,63,0);
 
     // LOCAL SIGNALS
     CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_17;
     CData/*2:0*/ top__DOT__idu_step__DOT___inst_now_T_20;
     QData/*63:0*/ top__DOT__idu_step_io_imm;
+    QData/*63:0*/ top__DOT__exu_step_io_pc_next;
     QData/*63:0*/ top__DOT__exu_step_io_res2rd;
     QData/*63:0*/ top__DOT__pc_now;
     QData/*63:0*/ top__DOT__exu_step__DOT__Regfile_MPORT_data;
     QData/*63:0*/ top__DOT__exu_step__DOT__add_res;
-    QData/*63:0*/ top__DOT__exu_step__DOT___io_pc_next_T_4;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__Regfile;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__reg_trace__DOT__traceregs;
 

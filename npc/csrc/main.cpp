@@ -306,14 +306,14 @@ void cpu_exec(int n){
     if(fputs(p, log_file)==EOF)exit(0);
     fputc('\n', log_file);
 #endif
-//#ifdef CONFIG_FTRACE
+#ifdef CONFIG_FTRACE
     if(top->io_inst==0x8067){
     is_func(top->io_pc,top->io_pc, true);
   }
   else if(BITS(top->io_inst, 6, 0)==0x6f || (BITS(top->io_inst, 6, 0)==0x67 && BITS(top->io_inst, 11, 7)!=0x0)){
     is_func(top->io_pc,top->io_pc_next, false);
   }
-//#endif
+#endif
     }
     tfp->dump(contextp->time()); //dump wave
     sim_time++;
@@ -357,8 +357,8 @@ int main(int argc, char** argv) {
   delete top;
   tfp->close();
   delete contextp;
-  //#ifdef CONFIG_FTRACE
+  #ifdef CONFIG_FTRACE
   print_func(); 
-  //#endif
+  #endif
   return 0;
 }
