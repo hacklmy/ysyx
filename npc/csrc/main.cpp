@@ -282,10 +282,11 @@ void cpu_exec(int n){
     char *s = p;
     s += snprintf(s, sizeof(p), "0x%016lx:", top->io_pc);
     s += snprintf(s, 24, " %08x", top->io_inst);
-    printf("%s\n", p);
+    //printf("%s\n", p);
     memset(s, ' ', 1);
     s += 1;
     disassemble(s, p + sizeof(p) - s, top->io_pc, guest_to_host(top->io_pc), 4);
+    printf("1\n");
     *(s+1) = '\n';
     if(fputs(p, fp)==EOF)exit(0);
 #endif
