@@ -10,7 +10,7 @@
 #include <verilated_vcd_c.h>
 
 int stop_status = 0;
-#define CONFIG_ITRACE 1
+#define CONFIG_ITRACE 0
 #define MAX_SIM_TIME 5
 vluint64_t sim_time = 0;
 int cpu_stop = 0;
