@@ -1,6 +1,8 @@
 all:
 	@echo "Write this Makefile by your self."
 
+verilog:
+	cd vsrc && sbt run
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
