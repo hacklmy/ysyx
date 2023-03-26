@@ -289,7 +289,7 @@ void cpu_exec(int n){
     disassemble(s, 256, top->io_pc, (uint8_t*)guest_to_host(top->io_pc), 4);
     printf("%s\n", p);
     if(fputs(p, log_file)==EOF)exit(0);
-    fputc('\n', fp);
+    fputc('\n', log_file);
 #endif
       top->clock ^= 1;
       top->eval();
