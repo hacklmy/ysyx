@@ -288,7 +288,7 @@ void cpu_exec(int n){
     printf("%s\n",p);
     uint8_t* pc = guest_to_host(top->io_pc);
     printf("%x\n", *pc);
-    disassemble(s, 256, top->io_pc, (uint8_t*)guest_to_host(top->io_pc), 2);
+    disassemble(s, 256, top->io_pc, (uint8_t*)guest_to_host(top->io_pc), 4);
     printf("1\n");
     *(s+1) = '\n';
     if(fputs(p, fp)==EOF)exit(0);
@@ -315,6 +315,7 @@ int main(int argc, char** argv) {
   top->trace(tfp, 0);
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
   load_img();
+  init_disasm("riscv64");
   while(sdb_mainloop() && !cpu_stop);
   // while (!cpu_stop) {
   //   if(sim_time<3){
