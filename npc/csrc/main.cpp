@@ -280,9 +280,9 @@ void cpu_exec(int n){
     fseek(fp, 0, SEEK_SET);
     char *p = (char*)malloc(sizeof(char)*128);
     char *s = p;
-    s += snprintf(s, 128, "%lx:", top->io_pc);
+    s += sprintf(s, "%lx:", top->io_pc);
     printf("1\n");
-    s += snprintf(s, 24, " %08x", top->io_inst);
+    s += sprintf(s, " %08x", top->io_inst);
     printf("%s\n", p);
     memset(s, ' ', 1);
     s += 1;
