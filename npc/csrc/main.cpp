@@ -11,7 +11,7 @@
 #include <verilated_vcd_c.h>
 
 int stop_status = 0;
-
+#define CONFIG_ITRACE 1
 #define MAX_SIM_TIME 5
 vluint64_t sim_time = 0;
 int cpu_stop = 0;
@@ -162,7 +162,11 @@ int sdb_mainloop() {
 #include "llvm/MC/MCContext.h"
 #include "llvm/MC/MCDisassembler/MCDisassembler.h"
 #include "llvm/MC/MCInstPrinter.h"
+#if LLVM_VERSION_MAJOR >= 14
+#include "llvm/MC/TargetRegistry.h"
+#else
 #include "llvm/Support/TargetRegistry.h"
+#endif
 #include "llvm/Support/TargetSelect.h"
 
 #if defined(__GNUC__) && !defined(__clang__)
