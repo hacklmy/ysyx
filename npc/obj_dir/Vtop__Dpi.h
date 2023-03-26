@@ -15,7 +15,7 @@ extern "C" {
     // DPI IMPORTS
     // DPI import at vsrc/DPI.v:1:30
     extern void ebreak_handle(int flag);
-    // DPI import at vsrc/EXU.v:2:30
+    // DPI import at vsrc/traceregs.v:1:30
     extern void set_gpr_ptr(const svOpenArrayHandle Regfile);
 
 #ifdef __cplusplus

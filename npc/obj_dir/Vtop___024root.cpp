@@ -17,19 +17,83 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     CData/*4:0*/ __Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0;
     QData/*63:0*/ __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0;
     // Body
-    __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0 
-        = vlSelf->top__DOT__exu_step__DOT__Regfile_MPORT_data;
-    __Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0 
-        = (0x1fU & (vlSelf->io_inst >> 7U));
     vlSelf->top__DOT__pc_now = ((IData)(vlSelf->reset)
                                  ? 0x80000000ULL : 
                                 ((6U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20))
                                   ? (0xfffffffffffffffeULL 
                                      & vlSelf->top__DOT__exu_step__DOT__add_res)
                                   : vlSelf->top__DOT__exu_step__DOT___io_pc_next_T_4));
+    __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile_MPORT_data;
+    __Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0 
+        = (0x1fU & (vlSelf->io_inst >> 7U));
     vlSelf->top__DOT__exu_step__DOT__Regfile[__Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0] 
         = __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0;
     vlSelf->io_pc = vlSelf->top__DOT__pc_now;
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[1U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[1U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[2U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[2U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[3U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[3U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[4U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[4U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[5U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[5U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[6U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[6U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[7U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[7U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[8U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[8U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[9U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[9U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0xaU] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0xaU];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0xbU] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0xbU];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0xcU] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0xcU];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0xdU] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0xdU];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0xeU] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0xeU];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0xfU] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0xfU];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x10U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x10U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x11U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x11U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x12U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x12U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x13U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x13U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x14U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x14U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x15U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x15U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x16U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x16U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x17U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x17U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x18U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x18U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x19U] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x19U];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x1aU] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1aU];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x1bU] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1bU];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x1cU] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1cU];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x1dU] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1dU];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x1eU] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1eU];
+    vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x1fU] 
+        = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1fU];
 }
 
 void Vtop___024unit____Vdpiimwrap_ebreak_handle_TOP____024unit(IData/*31:0*/ flag);

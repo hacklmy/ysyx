@@ -38,6 +38,7 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__exu_step__DOT__add_res;
     QData/*63:0*/ top__DOT__exu_step__DOT___io_pc_next_T_4;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__Regfile;
+    VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__reg_trace__DOT__traceregs;
 
     // LOCAL VARIABLES
     CData/*0:0*/ __Vclklast__TOP__clock;
