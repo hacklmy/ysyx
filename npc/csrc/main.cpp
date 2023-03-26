@@ -275,11 +275,18 @@ void cpu_exec(int n){
       top->reset = 0;
       top->io_inst = pmem_read(top->io_pc);
       printf("%lx %x\n",top->io_pc , top->io_inst);
+      
 #ifdef CONFIG_ITRACE
     FILE* fp = fopen(home/lmy/ysyx-workbench/npc/npc-log.txt);
-    char p[64];
-    p += snprintf(p, sizeof(s->logbuf), "0x%016lx:", top->io_pc);
-    p += snprintf(p, 4, " %08x", top->io_inst);
+    char p[128];
+    char *s = p;
+    s += snprintf(s, sizeof(p), "0x%016lx:", top->io_pc);
+    s += snprintf(s, 24, " %08x", top->io_inst);
+    memset(s, ' ', 1);
+    s += 1;
+    disassemble(s, p + sizeof(p) - s, top->io_pc, guest_to_host(top->io_pc), 4);
+    *(s+1) = '\n';
+    if(fputc(p, fp)==EOF)exit(0);
 #endif
       top->clock ^= 1;
       top->eval();
