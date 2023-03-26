@@ -67,6 +67,7 @@ module IDU(
 endmodule
 module EXU(
   input         clock,
+  input         reset,
   input  [63:0] io_pc,
   output [63:0] io_pc_next,
   input  [31:0] io_inst_now,
@@ -192,38 +193,38 @@ module EXU(
   wire [4:0] Regfile_MPORT_addr; // @[EXU.scala 19:22]
   wire  Regfile_MPORT_mask; // @[EXU.scala 19:22]
   wire  Regfile_MPORT_en; // @[EXU.scala 19:22]
-  wire [63:0] reg_trace_input_reg_0; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_1; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_2; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_3; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_4; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_5; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_6; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_7; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_8; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_9; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_10; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_11; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_12; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_13; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_14; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_15; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_16; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_17; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_18; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_19; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_20; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_21; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_22; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_23; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_24; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_25; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_26; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_27; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_28; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_29; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_30; // @[EXU.scala 39:27]
-  wire [63:0] reg_trace_input_reg_31; // @[EXU.scala 39:27]
+  wire [63:0] reg_trace_input_reg_0; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_1; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_2; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_3; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_4; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_5; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_6; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_7; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_8; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_9; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_10; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_11; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_12; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_13; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_14; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_15; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_16; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_17; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_18; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_19; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_20; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_21; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_22; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_23; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_24; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_25; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_26; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_27; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_28; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_29; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_30; // @[EXU.scala 40:27]
+  wire [63:0] reg_trace_input_reg_31; // @[EXU.scala 40:27]
   wire [63:0] _src1_value_T_1 = io_rs1 == 5'h0 ? 64'h0 : Regfile_src1_value_MPORT_data; // @[EXU.scala 21:12]
   wire [63:0] src1_value = io_ctrl_sign_src1_is_pc ? io_pc : _src1_value_T_1; // @[EXU.scala 23:25]
   wire [63:0] _src2_value_T_1 = io_rs2 == 5'h0 ? 64'h0 : Regfile_src2_value_MPORT_data; // @[EXU.scala 21:12]
@@ -235,9 +236,9 @@ module EXU(
   wire [63:0] _io_res2rd_T_9 = 32'h4 == io_inst_now ? io_imm : _io_res2rd_T_7; // @[Mux.scala 81:58]
   wire [63:0] _io_res2rd_T_11 = 32'h5 == io_inst_now ? _io_res2rd_T_1 : _io_res2rd_T_9; // @[Mux.scala 81:58]
   wire [63:0] reg_value = io_rd == 5'h0 ? 64'h0 : Regfile_reg_value_MPORT_data; // @[EXU.scala 21:12]
-  wire [63:0] _io_pc_next_T_2 = add_res & 64'hfffffffffffffffe; // @[EXU.scala 37:28]
+  wire [63:0] _io_pc_next_T_2 = add_res & 64'hfffffffffffffffe; // @[EXU.scala 38:28]
   wire [63:0] _io_pc_next_T_4 = 32'h5 == io_inst_now ? add_res : _io_res2rd_T_1; // @[Mux.scala 81:58]
-  traceregs reg_trace ( // @[EXU.scala 39:27]
+  traceregs reg_trace ( // @[EXU.scala 40:27]
     .input_reg_0(reg_trace_input_reg_0),
     .input_reg_1(reg_trace_input_reg_1),
     .input_reg_2(reg_trace_input_reg_2),
@@ -382,42 +383,53 @@ module EXU(
   assign Regfile_MPORT_en = 1'h1;
   assign io_pc_next = 32'h6 == io_inst_now ? _io_pc_next_T_2 : _io_pc_next_T_4; // @[Mux.scala 81:58]
   assign io_res2rd = 32'h6 == io_inst_now ? _io_res2rd_T_1 : _io_res2rd_T_11; // @[Mux.scala 81:58]
-  assign reg_trace_input_reg_0 = Regfile_reg_trace_io_input_reg_0_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_1 = Regfile_reg_trace_io_input_reg_1_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_2 = Regfile_reg_trace_io_input_reg_2_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_3 = Regfile_reg_trace_io_input_reg_3_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_4 = Regfile_reg_trace_io_input_reg_4_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_5 = Regfile_reg_trace_io_input_reg_5_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_6 = Regfile_reg_trace_io_input_reg_6_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_7 = Regfile_reg_trace_io_input_reg_7_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_8 = Regfile_reg_trace_io_input_reg_8_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_9 = Regfile_reg_trace_io_input_reg_9_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_10 = Regfile_reg_trace_io_input_reg_10_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_11 = Regfile_reg_trace_io_input_reg_11_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_12 = Regfile_reg_trace_io_input_reg_12_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_13 = Regfile_reg_trace_io_input_reg_13_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_14 = Regfile_reg_trace_io_input_reg_14_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_15 = Regfile_reg_trace_io_input_reg_15_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_16 = Regfile_reg_trace_io_input_reg_16_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_17 = Regfile_reg_trace_io_input_reg_17_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_18 = Regfile_reg_trace_io_input_reg_18_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_19 = Regfile_reg_trace_io_input_reg_19_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_20 = Regfile_reg_trace_io_input_reg_20_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_21 = Regfile_reg_trace_io_input_reg_21_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_22 = Regfile_reg_trace_io_input_reg_22_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_23 = Regfile_reg_trace_io_input_reg_23_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_24 = Regfile_reg_trace_io_input_reg_24_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_25 = Regfile_reg_trace_io_input_reg_25_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_26 = Regfile_reg_trace_io_input_reg_26_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_27 = Regfile_reg_trace_io_input_reg_27_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_28 = Regfile_reg_trace_io_input_reg_28_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_29 = Regfile_reg_trace_io_input_reg_29_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_30 = Regfile_reg_trace_io_input_reg_30_MPORT_data; // @[EXU.scala 41:57]
-  assign reg_trace_input_reg_31 = Regfile_reg_trace_io_input_reg_31_MPORT_data; // @[EXU.scala 41:57]
+  assign reg_trace_input_reg_0 = Regfile_reg_trace_io_input_reg_0_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_1 = Regfile_reg_trace_io_input_reg_1_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_2 = Regfile_reg_trace_io_input_reg_2_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_3 = Regfile_reg_trace_io_input_reg_3_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_4 = Regfile_reg_trace_io_input_reg_4_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_5 = Regfile_reg_trace_io_input_reg_5_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_6 = Regfile_reg_trace_io_input_reg_6_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_7 = Regfile_reg_trace_io_input_reg_7_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_8 = Regfile_reg_trace_io_input_reg_8_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_9 = Regfile_reg_trace_io_input_reg_9_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_10 = Regfile_reg_trace_io_input_reg_10_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_11 = Regfile_reg_trace_io_input_reg_11_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_12 = Regfile_reg_trace_io_input_reg_12_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_13 = Regfile_reg_trace_io_input_reg_13_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_14 = Regfile_reg_trace_io_input_reg_14_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_15 = Regfile_reg_trace_io_input_reg_15_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_16 = Regfile_reg_trace_io_input_reg_16_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_17 = Regfile_reg_trace_io_input_reg_17_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_18 = Regfile_reg_trace_io_input_reg_18_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_19 = Regfile_reg_trace_io_input_reg_19_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_20 = Regfile_reg_trace_io_input_reg_20_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_21 = Regfile_reg_trace_io_input_reg_21_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_22 = Regfile_reg_trace_io_input_reg_22_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_23 = Regfile_reg_trace_io_input_reg_23_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_24 = Regfile_reg_trace_io_input_reg_24_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_25 = Regfile_reg_trace_io_input_reg_25_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_26 = Regfile_reg_trace_io_input_reg_26_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_27 = Regfile_reg_trace_io_input_reg_27_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_28 = Regfile_reg_trace_io_input_reg_28_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_29 = Regfile_reg_trace_io_input_reg_29_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_30 = Regfile_reg_trace_io_input_reg_30_MPORT_data; // @[EXU.scala 42:57]
+  assign reg_trace_input_reg_31 = Regfile_reg_trace_io_input_reg_31_MPORT_data; // @[EXU.scala 42:57]
   always @(posedge clock) begin
     if (Regfile_MPORT_en & Regfile_MPORT_mask) begin
       Regfile[Regfile_MPORT_addr] <= Regfile_MPORT_data; // @[EXU.scala 19:22]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"%d %d\n",io_ctrl_sign_reg_write,io_res2rd); // @[EXU.scala 34:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -488,6 +500,7 @@ module top(
   wire  idu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 20:26]
   wire  idu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 20:26]
   wire  exu_step_clock; // @[top.scala 23:26]
+  wire  exu_step_reset; // @[top.scala 23:26]
   wire [63:0] exu_step_io_pc; // @[top.scala 23:26]
   wire [63:0] exu_step_io_pc_next; // @[top.scala 23:26]
   wire [31:0] exu_step_io_inst_now; // @[top.scala 23:26]
@@ -518,6 +531,7 @@ module top(
   );
   EXU exu_step ( // @[top.scala 23:26]
     .clock(exu_step_clock),
+    .reset(exu_step_reset),
     .io_pc(exu_step_io_pc),
     .io_pc_next(exu_step_io_pc_next),
     .io_inst_now(exu_step_io_inst_now),
@@ -538,6 +552,7 @@ module top(
   assign ifu_step_io_ipc = pc_now; // @[top.scala 16:21]
   assign idu_step_io_inst = io_inst; // @[top.scala 22:22]
   assign exu_step_clock = clock;
+  assign exu_step_reset = reset;
   assign exu_step_io_pc = ifu_step_io_opc; // @[top.scala 24:20]
   assign exu_step_io_inst_now = idu_step_io_inst_now; // @[top.scala 25:26]
   assign exu_step_io_rs1 = idu_step_io_rs1; // @[top.scala 27:21]
