@@ -22,6 +22,7 @@ image: $(IMAGE).elf
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
 	@echo + OBJCOPY "->" ../../../npc/image.bin
 	@cp $(IMAGE).bin ../../../npc/image.bin 
+	@cp $(IMAGE).elf ../../../npc/image.elf
 
 run: image
 	$(MAKE) -C /home/lmy/ysyx-workbench/npc sim

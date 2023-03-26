@@ -9,8 +9,20 @@
 #include <verilated_dpi.h>
 #include <verilated_vcd_c.h>
 
-int stop_status = 0;
 #define CONFIG_ITRACE 0
+//#define CONFIG_FTRACE 0
+
+#ifdef CONFIG_FTRACE
+void is_func(uint64_t pc, uint64_t dnpc,bool is_return);
+void init_elf(char *elf_file);
+void print_func();
+#endif
+
+int stop_status = 0;
+
+#define BITMASK(bits) ((1ull << (bits)) - 1)
+#define BITS(x, hi, lo) (((x) >> (lo)) & BITMASK((hi) - (lo) + 1)) // similar to x[hi:lo] in verilog
+
 #define MAX_SIM_TIME 5
 vluint64_t sim_time = 0;
 int cpu_stop = 0;
@@ -277,8 +289,11 @@ void cpu_exec(int n){
       top->reset = 0;
       top->io_inst = pmem_read(top->io_pc);
       //printf("%lx %x\n",top->io_pc , top->io_inst);
-      
-#ifdef CONFIG_ITRACE
+      top->clock ^= 1;
+      top->eval();
+      top->clock ^= 1;
+      top->eval();
+      #ifdef CONFIG_ITRACE
     char p[1024];
     char *s = p;
     s += snprintf(s, sizeof(p), "0x%016lx:", top->io_pc);
@@ -287,14 +302,18 @@ void cpu_exec(int n){
     memset(s, ' ', 1);
     s += 1;
     disassemble(s, 256, top->io_pc, (uint8_t*)guest_to_host(top->io_pc), 4);
-    printf("%s\n", p);
+    //printf("%s\n", p);
     if(fputs(p, log_file)==EOF)exit(0);
     fputc('\n', log_file);
 #endif
-      top->clock ^= 1;
-      top->eval();
-      top->clock ^= 1;
-      top->eval();
+#ifdef CONFIG_FTRACE
+    if(top->io_inst==0x8067){
+    is_func(top->io_pc,top->io_pc, true);
+  }
+  else if(BITS(top->io_inst, 6, 0)==0x6f || (BITS(top->io_inst, 6, 0)==0x67 && BITS(top->io_inst, 11, 7)!=0x0)){
+    is_func(top->io_pc,top->io_pc_next, false);
+  }
+#endif
     }
     tfp->dump(contextp->time()); //dump wave
     sim_time++;
@@ -314,6 +333,7 @@ int main(int argc, char** argv) {
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
   load_img();
   init_disasm("riscv64");
+  init_elf("/home/lmy/ysyx-workbench/npc/image.bin");
   while(sdb_mainloop() && !cpu_stop);
   // while (!cpu_stop) {
   //   if(sim_time<3){
@@ -336,5 +356,8 @@ int main(int argc, char** argv) {
   delete top;
   tfp->close();
   delete contextp;
+  #ifdef CONFIG_FTRACE
+  print_func(); 
+  #endif
   return 0;
 }
