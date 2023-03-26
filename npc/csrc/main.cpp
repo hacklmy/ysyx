@@ -286,6 +286,8 @@ void cpu_exec(int n){
     memset(s, ' ', 1);
     s += 1;
     printf("%s\n",p);
+    uint8_t* pc = guest_to_host(top->io_pc);
+    printf("%x\n", *pc);
     disassemble(s, 64, top->io_pc, guest_to_host(top->io_pc), 4);
     printf("1\n");
     *(s+1) = '\n';
