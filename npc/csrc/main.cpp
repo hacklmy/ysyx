@@ -333,7 +333,7 @@ int main(int argc, char** argv) {
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
   load_img();
   init_disasm("riscv64");
-  const char elf_file[] = "/home/lmy/ysyx-workbench/npc/image.bin"
+  const char elf_file[] = "/home/lmy/ysyx-workbench/npc/image.bin";
   init_elf(elf_file);
   while(sdb_mainloop() && !cpu_stop);
   // while (!cpu_stop) {
