@@ -287,7 +287,6 @@ void cpu_exec(int n){
     memset(s, ' ', 1);
     s += 1;
     disassemble(s, 256, top->io_pc, (uint8_t*)guest_to_host(top->io_pc), 4);
-    *(++s) = '\n';
     printf("%s\n", p);
     if(fputs(p, log_file)==EOF)exit(0);
 #endif
