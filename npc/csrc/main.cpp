@@ -288,7 +288,7 @@ void cpu_exec(int n){
     printf("%s\n",p);
     uint8_t* pc = guest_to_host(top->io_pc);
     printf("%x\n", *pc);
-    disassemble(s, 256, top->io_pc, (uint8_t*)guest_to_host(top->io_pc), 4);
+    disassemble(s, 256, top->io_pc, (uint8_t*)guest_to_host(top->io_pc), 2);
     printf("1\n");
     *(s+1) = '\n';
     if(fputs(p, fp)==EOF)exit(0);
