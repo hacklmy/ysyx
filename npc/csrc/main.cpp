@@ -281,7 +281,7 @@ void cpu_exec(int n){
     char p[128];
     char *s = p;
     s += snprintf(s, sizeof(p), "0x%016lx:", top->io_pc);
-    s += snprintf(s, 24, " %08x", top->io_inst);
+    s += snprintf(s, 16, " %08x", top->io_inst);
     //printf("%s\n", p);
     memset(s, ' ', 1);
     s += 1;
