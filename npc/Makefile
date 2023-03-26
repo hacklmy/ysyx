@@ -6,7 +6,7 @@ verilog:
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@verilator -Wall --cc --trace --exe --build ./vsrc/top.v ./vsrc/IDU.v ./vsrc/EXU.v ./vsrc/IFU.v ./vsrc/DPI.v ./vsrc/traceregs.v ./csrc/main.cpp -LDFLAGS "-ldl $(shell llvm-config --cxxflags) -fPIE $(shell llvm-config --libs)"
+	@verilator -Wall --cc --trace --exe --build ./vsrc/top.v ./vsrc/IDU.v ./vsrc/EXU.v ./vsrc/IFU.v ./vsrc/DPI.v ./vsrc/traceregs.v ./csrc/main.cpp -ldl $(shell llvm-config --cxxflags) -fPIE $(shell llvm-config --libs)
 	@./obj_dir/Vtop
 
 copy_top:
