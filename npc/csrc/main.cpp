@@ -264,7 +264,7 @@ void load_img(){
 }
 //============================load_img_end===========================
 FILE* log_file = fopen("/home/lmy/ysyx-workbench/npc/npc-log.txt","w+");
-fseek(fp, 0, SEEK_SET);
+fseek(log_file, 0, SEEK_SET);
 
 void cpu_exec(int n){
   if(n<0)n=100000000;
@@ -288,7 +288,7 @@ void cpu_exec(int n){
     s += 1;
     disassemble(s, 256, top->io_pc, (uint8_t*)guest_to_host(top->io_pc), 4);
     *(++s) = '\n';
-    if(fputs(p, fp)==EOF)exit(0);
+    if(fputs(p, log_file)==EOF)exit(0);
 #endif
       top->clock ^= 1;
       top->eval();
