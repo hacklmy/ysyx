@@ -263,6 +263,9 @@ void load_img(){
   fclose(fp);
 }
 //============================load_img_end===========================
+FILE* log_file = fopen("/home/lmy/ysyx-workbench/npc/npc-log.txt","w+");
+fseek(fp, 0, SEEK_SET);
+
 void cpu_exec(int n){
   if(n<0)n=100000000;
   while (!cpu_stop && n--) {
@@ -276,8 +279,6 @@ void cpu_exec(int n){
       printf("%lx %x\n",top->io_pc , top->io_inst);
       
 #ifdef CONFIG_ITRACE
-    FILE* fp = fopen("/home/lmy/ysyx-workbench/npc/npc-log.txt","w+");
-    fseek(fp, 0, SEEK_SET);
     char p[1024];
     char *s = p;
     s += snprintf(s, sizeof(p), "0x%016lx:", top->io_pc);
@@ -285,12 +286,8 @@ void cpu_exec(int n){
     //printf("%s\n", p);
     memset(s, ' ', 1);
     s += 1;
-    printf("%s\n",p);
-    uint8_t* pc = guest_to_host(top->io_pc);
-    printf("%x\n", *pc);
     disassemble(s, 256, top->io_pc, (uint8_t*)guest_to_host(top->io_pc), 4);
-    printf("1\n");
-    *(s+1) = '\n';
+    *(++s) = '\n';
     if(fputs(p, fp)==EOF)exit(0);
 #endif
       top->clock ^= 1;
