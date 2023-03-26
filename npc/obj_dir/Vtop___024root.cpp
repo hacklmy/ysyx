@@ -17,6 +17,15 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     CData/*4:0*/ __Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0;
     QData/*63:0*/ __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0;
     // Body
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"%1# %20#\n",1,((0x100073U 
+                                                != vlSelf->io_inst) 
+                                               & (0x3023U 
+                                                  != 
+                                                  (0x707fU 
+                                                   & vlSelf->io_inst))),
+                   64,vlSelf->top__DOT__exu_step_io_res2rd);
+    }
     vlSelf->top__DOT__pc_now = ((IData)(vlSelf->reset)
                                  ? 0x80000000ULL : 
                                 ((6U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_20))
