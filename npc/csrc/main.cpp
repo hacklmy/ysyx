@@ -230,9 +230,8 @@ extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int
   MCInst inst;
   llvm::ArrayRef<uint8_t> arr(code, nbyte);
   uint64_t dummy_size = 0;
-  printf("1\n");
   gDisassembler->getInstruction(inst, dummy_size, arr, pc, llvm::nulls());
-  printf("1\n");
+
   std::string s;
   raw_string_ostream os(s);
   gIP->printInst(&inst, pc, "", *gSTI, os);
@@ -279,7 +278,7 @@ void cpu_exec(int n){
 #ifdef CONFIG_ITRACE
     FILE* fp = fopen("/home/lmy/ysyx-workbench/npc/npc-log.txt","w+");
     fseek(fp, 0, SEEK_SET);
-    char p[128];
+    char p[1024];
     char *s = p;
     s += snprintf(s, sizeof(p), "0x%016lx:", top->io_pc);
     s += snprintf(s, 16, " %08x", top->io_inst);
@@ -289,7 +288,7 @@ void cpu_exec(int n){
     printf("%s\n",p);
     uint8_t* pc = guest_to_host(top->io_pc);
     printf("%x\n", *pc);
-    disassemble(s, 64, top->io_pc, guest_to_host(top->io_pc), 4);
+    disassemble(s, 256, top->io_pc, guest_to_host(top->io_pc), 4);
     printf("1\n");
     *(s+1) = '\n';
     if(fputs(p, fp)==EOF)exit(0);
