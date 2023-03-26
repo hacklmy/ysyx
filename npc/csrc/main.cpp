@@ -285,7 +285,7 @@ void cpu_exec(int n){
     s += 1;
     disassemble(s, p + sizeof(p) - s, top->io_pc, guest_to_host(top->io_pc), 4);
     *(s+1) = '\n';
-    if(fputc(p, fp)==EOF)exit(0);
+    if(fputs(p, fp)==EOF)exit(0);
 #endif
       top->clock ^= 1;
       top->eval();
