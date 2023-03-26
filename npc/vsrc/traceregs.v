@@ -34,7 +34,7 @@ module traceregs(
     input [63:0] input_reg_30,
     input [63:0] input_reg_31
 );
-    wire [63:0] reg [0:31];
+    wire [63:0] traceregs [0:31];
     assign reg[0] = input_reg_0; 
     assign reg[1] = input_reg_1;
     assign reg[2] = input_reg_2;
