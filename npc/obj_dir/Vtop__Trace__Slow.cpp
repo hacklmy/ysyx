@@ -99,9 +99,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+237,"top exu_step Regfile_reg_value_MPORT_en", false,-1);
         tracep->declBus(c+214,"top exu_step Regfile_reg_value_MPORT_addr", false,-1, 4,0);
         tracep->declQuad(c+227,"top exu_step Regfile_reg_value_MPORT_data", false,-1, 63,0);
-        tracep->declBit(c+237,"top exu_step Regfile_MPORT_1_en", false,-1);
-        tracep->declBus(c+214,"top exu_step Regfile_MPORT_1_addr", false,-1, 4,0);
-        tracep->declQuad(c+227,"top exu_step Regfile_MPORT_1_data", false,-1, 63,0);
         tracep->declBit(c+237,"top exu_step Regfile_reg_trace_io_input_reg_0_MPORT_en", false,-1);
         tracep->declBus(c+238,"top exu_step Regfile_reg_trace_io_input_reg_0_MPORT_addr", false,-1, 4,0);
         tracep->declQuad(c+67,"top exu_step Regfile_reg_trace_io_input_reg_0_MPORT_data", false,-1, 63,0);

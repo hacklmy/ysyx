@@ -58,6 +58,6 @@ module IDU(
   assign io_ctrl_sign_reg_write = _inst_now_T_3 ? 1'h0 : _reg_write_T_4; // @[Lookup.scala 34:39]
   assign io_ctrl_sign_src2_is_imm = 32'h43 == inst_type | (32'h44 == inst_type | (32'h42 == inst_type | 32'h40 ==
     inst_type)); // @[Mux.scala 81:58]
-  assign io_ctrl_sign_src1_is_pc = 32'h6f == _inst_type_T_2; // @[Lookup.scala 31:38]
+  assign io_ctrl_sign_src1_is_pc = _inst_type_T_7 | _inst_type_T_3; // @[Lookup.scala 34:39]
 endmodule
 /* verilator lint_on UNUSED */
