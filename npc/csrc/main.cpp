@@ -280,7 +280,7 @@ void cpu_exec(int n){
     fseek(fp, 0, SEEK_SET);
     char p[128];
     char *s = p;
-    s += snprintf(s, sizeof(p), "0x%016lx:", top->io_pc);
+    s += snprintf(s, 128, "0x%016lx:", top->io_pc);
     printf("1\n");
     s += snprintf(s, 24, " %08x", top->io_inst);
     printf("%s\n", p);
