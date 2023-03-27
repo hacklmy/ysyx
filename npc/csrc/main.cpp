@@ -395,7 +395,7 @@ void cpu_exec(int n){
     }
 #endif
 //#ifdef CONFIG_DIFFTEST
-    difftest_step(top->pc);
+    difftest_step(top->io_pc);
 //#endif
     }
     tfp->dump(contextp->time()); //dump wave
