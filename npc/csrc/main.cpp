@@ -394,9 +394,9 @@ void cpu_exec(int n){
       is_func(top->io_pc,top->io_pc_next, false);
     }
 #endif
-#ifdef CONFIG_DIFFTEST
+//#ifdef CONFIG_DIFFTEST
     difftest_step(top->pc);
-#endif
+//#endif
     }
     tfp->dump(contextp->time()); //dump wave
     sim_time++;
