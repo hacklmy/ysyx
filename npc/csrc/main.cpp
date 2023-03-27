@@ -98,7 +98,7 @@ static int cmd_si(char *args){
 void print_reg(){
   int i;
   for (i = 0; i < 32; i++) {
-    printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
+    printf("gpr[%d] = 0x%lx\n", i, cpu_gpr.gpr[i]);
   }
 }
 
