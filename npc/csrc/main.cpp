@@ -311,7 +311,7 @@ bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
       }
   }
   if(ref_r->pc != pc){
-    printf("wrong pc %lx: nemu = %lx   ref = %lx\n",pc, cpu.pc, ref_r->pc);
+    printf("wrong pc %lx: nemu = %lx   ref = %lx\n",pc, pc, ref_r->pc);
     return false;
   }
   return true;
@@ -423,7 +423,7 @@ int main(int argc, char** argv) {
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
   fclose(fp);
-  init_difftest(difftest_file,size)
+  init_difftest(difftest_file,size);
   while(sdb_mainloop() && !cpu_stop);
   // while (!cpu_stop) {
   //   if(sim_time<3){
