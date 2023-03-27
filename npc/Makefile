@@ -1,4 +1,4 @@
-LDFLAGS += -L/home/lmy/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so
+LDFLAGS += --diff=/home/lmy/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so
 
 all:
 	@echo "Write this Makefile by your self."
