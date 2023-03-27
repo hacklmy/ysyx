@@ -8,6 +8,7 @@
 #include "Vtop__Dpi.h"
 #include <verilated_dpi.h>
 #include <verilated_vcd_c.h>
+#include <dlfcn.h>
 
 #define CONFIG_ITRACE 0
 //#define CONFIG_FTRACE 0
@@ -31,7 +32,11 @@ VerilatedVcdC* tfp;
 VerilatedContext* contextp;
 
 void cpu_exec(int n);
-
+typedef struct
+{
+  uint64_t gpr[32];
+  uint64_t pc;
+} CPU_state;
 //===========================mem=========================
 typedef uint64_t paddr_t;
 #define PG_ALIGN __attribute((aligned(4096)))
@@ -86,11 +91,15 @@ static int cmd_si(char *args){
   return 0;
 }
 
-static int cmd_info(char *args){
+void print_reg(){
   int i;
   for (i = 0; i < 32; i++) {
     printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
   }
+}
+
+static int cmd_info(char *args){
+  print_reg();
   return 0;
 }
 
@@ -258,6 +267,77 @@ extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int
 
 //==========================itrace_end==============================
 
+//==========================difftest================================
+enum { DIFFTEST_TO_DUT, DIFFTEST_TO_REF };
+void (*ref_difftest_memcpy)(paddr_t addr, void *buf, size_t n, bool direction) = NULL;
+void (*ref_difftest_regcpy)(void *dut, bool direction) = NULL;
+void (*ref_difftest_exec)(uint64_t n) = NULL;
+void (*ref_difftest_raise_intr)(uint64_t NO) = NULL;
+
+void init_difftest(char *ref_so_file, long img_size, int port) {
+  assert(ref_so_file != NULL);
+
+  void *handle;
+  handle = dlopen(ref_so_file, RTLD_LAZY);
+  assert(handle);
+
+  ref_difftest_memcpy = dlsym(handle, "difftest_memcpy");
+  assert(ref_difftest_memcpy);
+
+  ref_difftest_regcpy = dlsym(handle, "difftest_regcpy");
+  assert(ref_difftest_regcpy);
+
+  ref_difftest_exec = dlsym(handle, "difftest_exec");
+  assert(ref_difftest_exec);
+
+  ref_difftest_raise_intr = dlsym(handle, "difftest_raise_intr");
+  assert(ref_difftest_raise_intr);
+
+  void (*ref_difftest_init)(int) = dlsym(handle, "difftest_init");
+  assert(ref_difftest_init);
+
+
+  ref_difftest_init(port);
+  ref_difftest_memcpy(CONFIG_MBASE, guest_to_host(CONFIG_MBASE), img_size, DIFFTEST_TO_REF);
+  ref_difftest_regcpy(cpu_gpr, DIFFTEST_TO_REF);
+}
+
+bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
+  for (int i = 0; i < 32; i++) {
+    if(ref_r->gpr[i] != cpu_gpr[i])
+      {
+        printf("Unmatched reg value at pc : %lx  reg%d : nemu = %lx  ref = %lx\n", pc, i, cpu_gpr[i], ref_r->gpr[i]);
+        return false;
+      }
+  }
+  if(ref_r->pc != pc){
+    printf("wrong pc %lx: nemu = %lx   ref = %lx\n",pc, cpu.pc, ref_r->pc);
+    return false;
+  }
+  return true;
+}
+
+static void checkregs(CPU_state *ref, uint64_t pc) {
+  if (!isa_difftest_checkregs(ref, pc)) {
+    print_reg();
+    stop_status = 1;
+    cpu_stop = 1;
+  }
+}
+
+CPU_state ref_r;
+void difftest_step(uint64_t pc) {
+  ref_difftest_exec(1);
+  ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
+
+  checkregs(&ref_r, pc);
+
+}
+
+//==========================difftest_end============================
+
+
+
 //==========================load_img================================
 void load_img(){
   
@@ -308,11 +388,14 @@ void cpu_exec(int n){
 #endif
 #ifdef CONFIG_FTRACE
     if(top->io_inst==0x8067){
-    is_func(top->io_pc,top->io_pc, true);
-  }
-  else if(BITS(top->io_inst, 6, 0)==0x6f || (BITS(top->io_inst, 6, 0)==0x67 && BITS(top->io_inst, 11, 7)!=0x0)){
-    is_func(top->io_pc,top->io_pc_next, false);
-  }
+      is_func(top->io_pc,top->io_pc, true);
+    }
+    else if(BITS(top->io_inst, 6, 0)==0x6f || (BITS(top->io_inst, 6, 0)==0x67 && BITS(top->io_inst, 11, 7)!=0x0)){
+      is_func(top->io_pc,top->io_pc_next, false);
+    }
+#endif
+#ifdef CONFIG_DIFFTEST
+    difftest_step(top->pc);
 #endif
     }
     tfp->dump(contextp->time()); //dump wave
@@ -335,6 +418,12 @@ int main(int argc, char** argv) {
   init_disasm("riscv64");
   char elf_file[] = "/home/lmy/ysyx-workbench/npc/image.elf";
   init_elf(elf_file);
+  char difftest_file[] = "/home/lmy/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
+  FILE *fp = fopen(difftest_file, "rb");
+  fseek(fp, 0, SEEK_END);
+  long size = ftell(fp);
+  fclose(fp);
+  init_difftest(difftest_file,size)
   while(sdb_mainloop() && !cpu_stop);
   // while (!cpu_stop) {
   //   if(sim_time<3){
