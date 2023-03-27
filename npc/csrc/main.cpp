@@ -63,7 +63,7 @@ void ebreak_handle(int flag){
 CPU_state cpu_gpr;
 extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
   uint64_t *gpr = NULL;
-  cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
+  gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
   for (int i = 0; i < 32; i++)
         cpu_gpr.gpr[i] = gpr[i];
   cpu_gpr.pc = top->io_pc;
