@@ -276,7 +276,7 @@ void (*ref_difftest_raise_intr)(uint64_t NO) = NULL;
 
 void init_difftest(char *ref_so_file, long img_size) {
   assert(ref_so_file != NULL);
-
+  printf("1\n");
   void *handle;
   handle = dlopen(ref_so_file, RTLD_LAZY);
   assert(handle);
