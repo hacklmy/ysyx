@@ -280,17 +280,17 @@ void (*ref_difftest_raise_intr)(uint64_t NO) = NULL;
 
 void init_difftest(char *ref_so_file, long img_size) {
   assert(ref_so_file != NULL);
-  printf("1\n");
+  
   void *handle;
   handle = dlopen(ref_so_file, RTLD_LAZY);
   assert(handle);
-  printf("1\n");
+  
   ref_difftest_memcpy = (void (*)(uint32_t addr, void *buf, size_t n, bool direction))dlsym(handle, "difftest_memcpy");
   assert(ref_difftest_memcpy);
-  printf("1\n");
+  
   ref_difftest_regcpy = (void (*)(void *dut, bool direction))dlsym(handle, "difftest_regcpy");
   assert(ref_difftest_regcpy);
-  printf("1\n");
+  
   ref_difftest_exec = (void (*)(uint64_t n))dlsym(handle, "difftest_exec");
   assert(ref_difftest_exec);
 
@@ -399,7 +399,7 @@ void cpu_exec(int n){
     }
 #endif
 //#ifdef CONFIG_DIFFTEST
-    //difftest_step(top->io_pc);
+    difftest_step(top->io_pc);
 //#endif
     }
     tfp->dump(contextp->time()); //dump wave
