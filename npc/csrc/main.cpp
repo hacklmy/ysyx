@@ -60,10 +60,13 @@ void ebreak_handle(int flag){
 }
 
 //==========================sdb============================
-uint64_t *cpu_gpr = NULL;
+CPU_state cpu_gpr;
 extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
+  uint64_t *gpr = NULL;
   cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
-  cpu_gpr[32] = top->io_pc; 
+  for (int i = 0; i < 32; i++)
+        cpu_gpr.gpr[i] = gpr[i];
+  cpu_gpr.pc = top->io_pc;
 }
 
 
@@ -300,14 +303,14 @@ void init_difftest(char *ref_so_file, long img_size) {
 
   ref_difftest_init();
   ref_difftest_memcpy(CONFIG_MBASE, guest_to_host(CONFIG_MBASE), img_size, DIFFTEST_TO_REF);
-  ref_difftest_regcpy((void*)cpu_gpr, DIFFTEST_TO_REF);
+  ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
 }
 
 bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
   for (int i = 0; i < 32; i++) {
-    if(ref_r->gpr[i] != cpu_gpr[i])
+    if(ref_r->gpr[i] != cpu_gpr.gpr[i])
       {
-        printf("Unmatched reg value at pc : %lx  reg%d : nemu = %lx  ref = %lx\n", pc, i, cpu_gpr[i], ref_r->gpr[i]);
+        printf("Unmatched reg value at pc : %lx  reg%d : nemu = %lx  ref = %lx\n", pc, i, cpu_gpr.gpr[i], ref_r->gpr[i]);
         return false;
       }
   }
