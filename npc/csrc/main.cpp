@@ -422,6 +422,7 @@ int main(int argc, char** argv) {
   FILE *fp = fopen(difftest_file, "rb");
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
+  fseek(fp, 0, SEEK_SET);
   fclose(fp);
   init_difftest(difftest_file,size);
   while(sdb_mainloop() && !cpu_stop);
