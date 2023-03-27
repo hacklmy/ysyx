@@ -286,7 +286,7 @@ void init_difftest(char *ref_so_file, long img_size) {
   printf("1\n");
   ref_difftest_regcpy = (void (*)(void *dut, bool direction))dlsym(handle, "difftest_regcpy");
   assert(ref_difftest_regcpy);
-printf("1\n");
+  printf("1\n");
   ref_difftest_exec = (void (*)(uint64_t n))dlsym(handle, "difftest_exec");
   assert(ref_difftest_exec);
 
@@ -299,7 +299,7 @@ printf("1\n");
 
   ref_difftest_init();
   ref_difftest_memcpy(CONFIG_MBASE, guest_to_host(CONFIG_MBASE), img_size, DIFFTEST_TO_REF);
-  ref_difftest_regcpy(cpu_gpr, DIFFTEST_TO_REF);
+  ref_difftest_regcpy((void*)cpu_gpr, DIFFTEST_TO_REF);
 }
 
 bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
