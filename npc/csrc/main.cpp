@@ -331,6 +331,7 @@ static void checkregs(CPU_state *ref, uint64_t pc) {
 
 CPU_state ref_r;
 void difftest_step(uint64_t pc) {
+  printf("1\n");
   ref_difftest_exec(1);
   printf("1\n");
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
