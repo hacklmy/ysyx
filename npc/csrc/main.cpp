@@ -423,7 +423,7 @@ int main(int argc, char** argv) {
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
   fclose(fp);
-  //init_difftest(difftest_file,size);
+  init_difftest(difftest_file,size);
   while(sdb_mainloop() && !cpu_stop);
   // while (!cpu_stop) {
   //   if(sim_time<3){
