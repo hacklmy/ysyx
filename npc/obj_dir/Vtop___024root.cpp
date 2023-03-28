@@ -850,7 +850,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
         = ((QData)((IData)(vlSelf->top__DOT__exu_step__DOT__src1_value)) 
            * (QData)((IData)(vlSelf->top__DOT__exu_step__DOT__src2_value)));
     vlSelf->top__DOT__exu_step__DOT__divw_res = VL_DIV_III(32, (IData)(vlSelf->top__DOT__exu_step__DOT__src1_value), (IData)(vlSelf->top__DOT__exu_step__DOT__src2_value));
-    vlSelf->top__DOT__exu_step__DOT__remw_res = VL_MODDIV_III(32, (IData)(vlSelf->top__DOT__exu_step__DOT__src1_value), (IData)(vlSelf->top__DOT__exu_step__DOT__src2_value));
+    vlSelf->top__DOT__exu_step__DOT__remw_res = VL_MODDIVS_III(32, (IData)(vlSelf->top__DOT__exu_step__DOT__src1_value), (IData)(vlSelf->top__DOT__exu_step__DOT__src2_value));
     top__DOT__exu_step__DOT___io_res2rd_T_58 = (((QData)((IData)(
                                                                  ((VL_SHIFTRS_III(32,32,5, (IData)(vlSelf->top__DOT__exu_step__DOT__src1_value), 
                                                                                 (0x1fU 
