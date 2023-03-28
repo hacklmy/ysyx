@@ -23,7 +23,6 @@ module top(
   wire  idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 22:26]
   wire [7:0] idu_step_io_ctrl_sign_Wmask; // @[top.scala 22:26]
   wire  exu_step_clock; // @[top.scala 25:26]
-  wire  exu_step_reset; // @[top.scala 25:26]
   wire [63:0] exu_step_io_pc; // @[top.scala 25:26]
   wire [63:0] exu_step_io_pc_next; // @[top.scala 25:26]
   wire [31:0] exu_step_io_inst_now; // @[top.scala 25:26]
@@ -58,7 +57,6 @@ module top(
   );
   EXU exu_step ( // @[top.scala 25:26]
     .clock(exu_step_clock),
-    .reset(exu_step_reset),
     .io_pc(exu_step_io_pc),
     .io_pc_next(exu_step_io_pc_next),
     .io_inst_now(exu_step_io_inst_now),
@@ -83,7 +81,6 @@ module top(
   assign ifu_step_io_pc = pc_now; // @[top.scala 18:20]
   assign idu_step_io_inst = ifu_step_io_inst; // @[top.scala 24:22]
   assign exu_step_clock = clock;
-  assign exu_step_reset = reset;
   assign exu_step_io_pc = pc_now; // @[top.scala 26:20]
   assign exu_step_io_inst_now = idu_step_io_inst_now; // @[top.scala 27:26]
   assign exu_step_io_rs1 = idu_step_io_rs1; // @[top.scala 29:21]
