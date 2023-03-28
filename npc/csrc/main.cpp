@@ -341,6 +341,7 @@ void init_difftest(char *ref_so_file, long img_size) {
 }
 
 bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
+  if(cpu_stop)return true;
   for (int i = 0; i < 32; i++) {
     if(ref_r->gpr[i] != cpu_gpr.gpr[i])
       {
@@ -357,10 +358,8 @@ bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
 
 static void checkregs(CPU_state *ref, uint64_t pc) {
   if (!isa_difftest_checkregs(ref, pc)) {
-    if(cpu_stop!=1){
-      print_reg();
-      stop_status = 1;
-    }
+    print_reg();
+    stop_status = 1;
     cpu_stop = 1;
   }
 }
