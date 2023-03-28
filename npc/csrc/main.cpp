@@ -69,7 +69,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE))return;
   *rdata = *((long long *)guest_to_host(raddr));
   //#ifdef CONFIG_MTRACE
-    printf("read memory at %lx, value = %ld\n",raddr,rdata);
+    printf("read memory at %llx, value = %lld\n",raddr,rdata);
   //#endif
 }
 
@@ -87,7 +87,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     p++;
   }
   //#ifdef CONFIG_MTRACE
-    printf("write memory at %lx, mask = %x, value = %ld\n",waddr,wmask,wdata);
+    printf("write memory at %llx, mask = %x, value = %lld\n",waddr,wmask,wdata);
   //#endif
 }
 
