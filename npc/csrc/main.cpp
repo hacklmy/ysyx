@@ -345,12 +345,12 @@ bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
   for (int i = 0; i < 32; i++) {
     if(ref_r->gpr[i] != cpu_gpr.gpr[i])
       {
-        printf("Unmatched reg value at pc : %lx  reg%d : nemu = %lx  ref = %lx\n", pc, i, cpu_gpr.gpr[i], ref_r->gpr[i]);
+        printf("Unmatched reg value at pc : %lx  reg%d : npc = %lx  ref = %lx\n", pc, i, cpu_gpr.gpr[i], ref_r->gpr[i]);
         return false;
       }
   }
   if(ref_r->pc != pc){
-    printf("wrong pc %lx: nemu = %lx   ref = %lx\n",pc, pc, ref_r->pc);
+    printf("wrong pc %lx: npc = %lx   ref = %lx\n",pc, pc, ref_r->pc);
     return false;
   }
   return true;

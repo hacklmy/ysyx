@@ -26,21 +26,23 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     QData/*63:0*/ __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0;
     // Body
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"%1# %20#\n",1,((0x100073U 
-                                                != (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)) 
-                                               & ((0x3023U 
-                                                   != 
-                                                   (0x707fU 
-                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                                  & ((0x1063U 
-                                                      != 
-                                                      (0x707fU 
-                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                                     & (0x63U 
+        VL_FWRITEF(0x80000002U,"%1# %x %2#\n",1,((0x100073U 
+                                                  != (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)) 
+                                                 & ((0x3023U 
+                                                     != 
+                                                     (0x707fU 
+                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
+                                                    & ((0x1063U 
                                                         != 
                                                         (0x707fU 
-                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))))),
-                   64,vlSelf->top__DOT__exu_step_io_res2rd);
+                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
+                                                       & (0x63U 
+                                                          != 
+                                                          (0x707fU 
+                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))))),
+                   64,vlSelf->top__DOT__exu_step_io_res2rd,
+                   5,(0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
+                                       >> 7U))));
     }
     __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0 
         = vlSelf->top__DOT__exu_step__DOT__Regfile_MPORT_data;
