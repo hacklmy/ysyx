@@ -419,25 +419,29 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                         & ((0x23U != 
                                             (0x707fU 
                                              & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                           & ((0x1063U 
+                                           & ((0x2023U 
                                                != (0x707fU 
                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                              & ((0x63U 
+                                              & ((0x1063U 
                                                   != 
                                                   (0x707fU 
                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                                 & ((0x5063U 
+                                                 & ((0x63U 
                                                      != 
                                                      (0x707fU 
                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                                    & ((0x4063U 
+                                                    & ((0x5063U 
                                                         != 
                                                         (0x707fU 
                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                                       & (0x6063U 
-                                                          != 
-                                                          (0x707fU 
-                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))))))))))));
+                                                       & ((0x4063U 
+                                                           != 
+                                                           (0x707fU 
+                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
+                                                          & (0x6063U 
+                                                             != 
+                                                             (0x707fU 
+                                                              & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))))))))))))));
         tracep->fullBit(oldp+11,(vlSelf->top__DOT__idu_step_io_ctrl_sign_src2_is_imm));
         tracep->fullBit(oldp+12,(vlSelf->top__DOT__idu_step_io_ctrl_sign_src1_is_pc));
         tracep->fullBit(oldp+13,((0x44U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_131))));
