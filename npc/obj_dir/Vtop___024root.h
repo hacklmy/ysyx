@@ -30,8 +30,9 @@ VL_MODULE(Vtop___024root) {
     VL_OUT64(io_outval,63,0);
 
     // LOCAL SIGNALS
-    CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_44;
-    CData/*5:0*/ top__DOT__idu_step__DOT___inst_now_T_47;
+    CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_src1_is_pc;
+    CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_50;
+    CData/*5:0*/ top__DOT__idu_step__DOT___inst_now_T_53;
     QData/*63:0*/ top__DOT__idu_step_io_imm;
     QData/*63:0*/ top__DOT__exu_step_io_pc_next;
     QData/*63:0*/ top__DOT__exu_step_io_res2rd;
