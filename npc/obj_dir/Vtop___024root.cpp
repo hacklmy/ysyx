@@ -25,20 +25,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     CData/*4:0*/ __Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0;
     QData/*63:0*/ __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0;
     // Body
-    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"inst:%x add_res:%x sub_res:%x  %1# %x %2#\n",
-                   32,vlSelf->top__DOT__idu_step__DOT___inst_now_T_41,
-                   64,vlSelf->top__DOT__exu_step__DOT__add_res,
-                   64,(vlSelf->top__DOT__exu_step__DOT__src1_value 
-                       - vlSelf->top__DOT__exu_step__DOT__src2_value),
-                   1,((0x100073U != (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)) 
-                      & ((0x3023U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                         & ((0x1063U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                            & (0x63U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))))),
-                   64,vlSelf->top__DOT__exu_step_io_res2rd,
-                   5,(0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
-                                       >> 7U))));
-    }
     __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0 
         = vlSelf->top__DOT__exu_step__DOT__Regfile_MPORT_data;
     __Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0 
@@ -453,6 +439,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                      & (IData)(
                                                                (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
                                                                 >> 0x14U)))]));
+    vlSelf->top__DOT__exu_step__DOT__sub_res = (vlSelf->top__DOT__exu_step__DOT__src1_value 
+                                                - vlSelf->top__DOT__exu_step__DOT__src2_value);
     Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit(
                                                           (vlSelf->top__DOT__exu_step__DOT__src1_value 
                                                            + vlSelf->top__DOT__exu_step__DOT__src2_value), vlSelf->__Vtask_pmem_read__1__Rdata);
@@ -516,8 +504,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                    (4ULL 
                                                     + vlSelf->top__DOT__pc_now)))));
     vlSelf->top__DOT__exu_step_io_res2rd = ((0xeU == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_41))
-                                             ? (vlSelf->top__DOT__exu_step__DOT__src1_value 
-                                                - vlSelf->top__DOT__exu_step__DOT__src2_value)
+                                             ? vlSelf->top__DOT__exu_step__DOT__sub_res
                                              : ((0xcU 
                                                  == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_41))
                                                  ? 
@@ -550,7 +537,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                    : 
                                                   ((0x20U 
                                                     == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_41))
-                                                    ? 0ULL
+                                                    ? (QData)((IData)(
+                                                                      (1U 
+                                                                       & (IData)(
+                                                                                (vlSelf->top__DOT__exu_step__DOT__sub_res 
+                                                                                >> 0x3fU)))))
                                                     : 
                                                    ((6U 
                                                      == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_41))

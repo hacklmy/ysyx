@@ -201,6 +201,7 @@ module EXU(
   wire [63:0] _io_res2rd_T_32 = 32'h22 == io_inst_now ? mem_rdata : _io_res2rd_T_30; // @[Mux.scala 81:58]
   wire [63:0] _io_res2rd_T_34 = 32'hc == io_inst_now ? _io_res2rd_T_16 : _io_res2rd_T_32; // @[Mux.scala 81:58]
   wire [63:0] reg_value = io_rd == 5'h0 ? 64'h0 : Regfile_reg_value_MPORT_data; // @[EXU.scala 25:12]
+  wire  _T_1 = io_ctrl_sign_reg_write & io_rd != 5'h0; // @[EXU.scala 47:50]
   wire [63:0] _io_pc_next_T = add_res & 64'hfffffffffffffffe; // @[EXU.scala 52:28]
   wire [63:0] _io_pc_next_T_2 = cmp != 64'h0 ? add_res : _io_res2rd_T_1; // @[EXU.scala 53:21]
   wire [63:0] _io_pc_next_T_4 = cmp == 64'h0 ? add_res : _io_res2rd_T_1; // @[EXU.scala 54:21]
@@ -364,7 +365,7 @@ module EXU(
   assign Regfile_Mem_modle_io_Wdata_MPORT_en = 1'h1;
   assign Regfile_Mem_modle_io_Wdata_MPORT_addr = io_rs2;
   assign Regfile_Mem_modle_io_Wdata_MPORT_data = Regfile[Regfile_Mem_modle_io_Wdata_MPORT_addr]; // @[EXU.scala 23:22]
-  assign Regfile_MPORT_data = io_ctrl_sign_reg_write ? io_res2rd : reg_value;
+  assign Regfile_MPORT_data = _T_1 ? io_res2rd : reg_value;
   assign Regfile_MPORT_addr = io_rd;
   assign Regfile_MPORT_mask = 1'h1;
   assign Regfile_MPORT_en = 1'h1;
