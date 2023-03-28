@@ -458,7 +458,7 @@ int main(int argc, char** argv) {
   char elf_file[] = "/home/lmy/ysyx-workbench/npc/image.elf";
   init_elf(elf_file);
   char difftest_file[] = "/home/lmy/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
-  init_difftest(difftest_file,50);
+  init_difftest(difftest_file,CONFIG_MSIZE);
   while(sdb_mainloop() && !cpu_stop);
   if(stop_status==0)printf("\33[1;32mHIT GOOD TRAP\n\33[0m");
   else printf("\33[1;31mHIT BAD TRAP\n\33[0m");
