@@ -134,15 +134,6 @@ module EXU(
   wire  Regfile_Mem_modle_io_Wdata_MPORT_en; // @[EXU.scala 22:22]
   wire [4:0] Regfile_Mem_modle_io_Wdata_MPORT_addr; // @[EXU.scala 22:22]
   wire [63:0] Regfile_Mem_modle_io_Wdata_MPORT_data; // @[EXU.scala 22:22]
-  wire  Regfile_MPORT_1_en; // @[EXU.scala 22:22]
-  wire [4:0] Regfile_MPORT_1_addr; // @[EXU.scala 22:22]
-  wire [63:0] Regfile_MPORT_1_data; // @[EXU.scala 22:22]
-  wire  Regfile_MPORT_2_en; // @[EXU.scala 22:22]
-  wire [4:0] Regfile_MPORT_2_addr; // @[EXU.scala 22:22]
-  wire [63:0] Regfile_MPORT_2_data; // @[EXU.scala 22:22]
-  wire  Regfile_MPORT_3_en; // @[EXU.scala 22:22]
-  wire [4:0] Regfile_MPORT_3_addr; // @[EXU.scala 22:22]
-  wire [63:0] Regfile_MPORT_3_data; // @[EXU.scala 22:22]
   wire [63:0] Regfile_MPORT_data; // @[EXU.scala 22:22]
   wire [4:0] Regfile_MPORT_addr; // @[EXU.scala 22:22]
   wire  Regfile_MPORT_mask; // @[EXU.scala 22:22]
@@ -344,15 +335,6 @@ module EXU(
   assign Regfile_Mem_modle_io_Wdata_MPORT_en = 1'h1;
   assign Regfile_Mem_modle_io_Wdata_MPORT_addr = io_rs2;
   assign Regfile_Mem_modle_io_Wdata_MPORT_data = Regfile[Regfile_Mem_modle_io_Wdata_MPORT_addr]; // @[EXU.scala 22:22]
-  assign Regfile_MPORT_1_en = 1'h1;
-  assign Regfile_MPORT_1_addr = io_rd;
-  assign Regfile_MPORT_1_data = Regfile[Regfile_MPORT_1_addr]; // @[EXU.scala 22:22]
-  assign Regfile_MPORT_2_en = 1'h1;
-  assign Regfile_MPORT_2_addr = io_rs1;
-  assign Regfile_MPORT_2_data = Regfile[Regfile_MPORT_2_addr]; // @[EXU.scala 22:22]
-  assign Regfile_MPORT_3_en = 1'h1;
-  assign Regfile_MPORT_3_addr = io_rs2;
-  assign Regfile_MPORT_3_data = Regfile[Regfile_MPORT_3_addr]; // @[EXU.scala 22:22]
   assign Regfile_MPORT_data = io_ctrl_sign_reg_write ? io_res2rd : reg_value;
   assign Regfile_MPORT_addr = io_rd;
   assign Regfile_MPORT_mask = 1'h1;
@@ -406,8 +388,7 @@ module EXU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"rd: %d  rs1: %d  rs2: %d\n",Regfile_MPORT_1_data,Regfile_MPORT_2_data,
-            Regfile_MPORT_3_data); // @[EXU.scala 56:11]
+          $fwrite(32'h80000002," %d   %d  %d\n",Mem_modle_Wdata,Mem_modle_Waddr,Mem_modle_Write_en); // @[EXU.scala 56:11]
         end
     `ifdef PRINTF_COND
       end
