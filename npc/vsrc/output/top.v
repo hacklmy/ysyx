@@ -477,7 +477,7 @@ module EXU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002," %d   %d  %d\n",Mem_modle_Wdata,Mem_modle_Waddr,Mem_modle_Write_en); // @[EXU.scala 56:11]
+          $fwrite(32'h80000002," %x   %x  %d\n",Mem_modle_Wdata,Mem_modle_Waddr,Mem_modle_Write_en); // @[EXU.scala 56:11]
         end
     `ifdef PRINTF_COND
       end

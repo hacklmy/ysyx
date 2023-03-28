@@ -226,15 +226,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+254,"top exu_step Regfile_Mem_modle_io_Wdata_MPORT_en", false,-1);
         tracep->declBus(c+6,"top exu_step Regfile_Mem_modle_io_Wdata_MPORT_addr", false,-1, 4,0);
         tracep->declQuad(c+99,"top exu_step Regfile_Mem_modle_io_Wdata_MPORT_data", false,-1, 63,0);
-        tracep->declBit(c+254,"top exu_step Regfile_MPORT_1_en", false,-1);
-        tracep->declBus(c+7,"top exu_step Regfile_MPORT_1_addr", false,-1, 4,0);
-        tracep->declQuad(c+101,"top exu_step Regfile_MPORT_1_data", false,-1, 63,0);
-        tracep->declBit(c+254,"top exu_step Regfile_MPORT_2_en", false,-1);
-        tracep->declBus(c+5,"top exu_step Regfile_MPORT_2_addr", false,-1, 4,0);
-        tracep->declQuad(c+97,"top exu_step Regfile_MPORT_2_data", false,-1, 63,0);
-        tracep->declBit(c+254,"top exu_step Regfile_MPORT_3_en", false,-1);
-        tracep->declBus(c+6,"top exu_step Regfile_MPORT_3_addr", false,-1, 4,0);
-        tracep->declQuad(c+99,"top exu_step Regfile_MPORT_3_data", false,-1, 63,0);
         tracep->declQuad(c+167,"top exu_step Regfile_MPORT_data", false,-1, 63,0);
         tracep->declBus(c+7,"top exu_step Regfile_MPORT_addr", false,-1, 4,0);
         tracep->declBit(c+254,"top exu_step Regfile_MPORT_mask", false,-1);
