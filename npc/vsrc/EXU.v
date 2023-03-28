@@ -418,7 +418,8 @@ module EXU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"%d %x %d\n",io_ctrl_sign_reg_write,io_res2rd,io_rd); // @[EXU.scala 46:11]
+          $fwrite(32'h80000002,"inst:%x add_res:%x sub_res:%x  %d %x %d\n",io_inst_now,add_res,sub_res,
+            io_ctrl_sign_reg_write,io_res2rd,io_rd); // @[EXU.scala 46:11]
         end
     `ifdef PRINTF_COND
       end
