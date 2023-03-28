@@ -100,7 +100,7 @@ extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
   gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
   for (int i = 0; i < 32; i++)
         cpu_gpr.gpr[i] = gpr[i];
-  cpu_gpr.pc = top->io_pc;
+  cpu_gpr.pc = pc_now;
 }
 
 
@@ -397,13 +397,6 @@ FILE* log_file = fopen("/home/lmy/ysyx-workbench/npc/npc-log.txt","w+");
 void cpu_exec(int n){
   if(n<0)n=100000000;
   while (!cpu_stop && n--) {
-    if(sim_time<3){
-      top->reset = 1;
-      top->clock = 0;
-      top->eval();
-      top->clock = 1;
-      top->eval();
-    }else{
       top->reset = 0;
       //top->io_inst = pmem_read(top->io_pc);
       //printf("%lx %x\n",pc_now , top->io_inst);
@@ -437,7 +430,7 @@ void cpu_exec(int n){
     printf("%lx\n", top->io_pc);
     difftest_step(top->io_pc);
 #endif
-    }
+    
     tfp->dump(contextp->time()); //dump wave
     sim_time++;
   }
@@ -457,6 +450,14 @@ int main(int argc, char** argv) {
   init_disasm("riscv64");
   char elf_file[] = "/home/lmy/ysyx-workbench/npc/image.elf";
   init_elf(elf_file);
+  while (sim_time<3)
+  {
+    top->reset = 1;
+    top->clock = 0;
+    top->eval();
+    top->clock = 1;
+    top->eval();
+  }
   char difftest_file[] = "/home/lmy/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
   init_difftest(difftest_file,CONFIG_MSIZE);
   while(sdb_mainloop() && !cpu_stop);
