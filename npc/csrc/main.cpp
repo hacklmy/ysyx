@@ -336,7 +336,7 @@ void init_difftest(char *ref_so_file, long img_size) {
 
 
   ref_difftest_init();
-  ref_difftest_memcpy(CONFIG_MBASE, guest_to_host(CONFIG_MBASE), img_size, DIFFTEST_TO_REF);
+  ref_difftest_memcpy(CONFIG_MBASE, pmem, img_size, DIFFTEST_TO_REF);
   ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
 }
 
