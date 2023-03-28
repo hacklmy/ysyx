@@ -349,7 +349,7 @@ bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
         return false;
       }
   }
-  if(ref_r->pc = pc){
+  if(ref_r->pc != pc){
     printf("wrong pc %lx: nemu = %lx   ref = %lx\n",pc, pc, ref_r->pc);
     return false;
   }
