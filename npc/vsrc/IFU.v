@@ -8,7 +8,7 @@ module IFU(
   wire [63:0] inst_read_Wdata; // @[IFU.scala 11:27]
   wire [7:0] inst_read_Wmask; // @[IFU.scala 11:27]
   wire  inst_read_Write_en; // @[IFU.scala 11:27]
-  mem inst_read ( // @[IFU.scala 11:27]
+  MEM inst_read ( // @[IFU.scala 11:27]
     .Raddr(inst_read_Raddr),
     .Rdata(inst_read_Rdata),
     .Waddr(inst_read_Waddr),

@@ -8,7 +8,7 @@ module IFU(
   wire [63:0] inst_read_Wdata; // @[IFU.scala 11:27]
   wire [7:0] inst_read_Wmask; // @[IFU.scala 11:27]
   wire  inst_read_Write_en; // @[IFU.scala 11:27]
-  mem inst_read ( // @[IFU.scala 11:27]
+  MEM inst_read ( // @[IFU.scala 11:27]
     .Raddr(inst_read_Raddr),
     .Rdata(inst_read_Rdata),
     .Waddr(inst_read_Waddr),
@@ -255,7 +255,6 @@ module EXU(
   wire [63:0] reg_trace_input_reg_29; // @[EXU.scala 44:27]
   wire [63:0] reg_trace_input_reg_30; // @[EXU.scala 44:27]
   wire [63:0] reg_trace_input_reg_31; // @[EXU.scala 44:27]
-  wire [31:0] reg_trace_inst; // @[EXU.scala 44:27]
   wire [63:0] reg_trace_pc; // @[EXU.scala 44:27]
   wire [63:0] _src1_value_T_1 = io_rs1 == 5'h0 ? 64'h0 : Regfile_src1_value_MPORT_data; // @[EXU.scala 24:12]
   wire [63:0] src1_value = io_ctrl_sign_src1_is_pc ? io_pc : _src1_value_T_1; // @[EXU.scala 26:25]
@@ -270,7 +269,7 @@ module EXU(
   wire [63:0] reg_value = io_rd == 5'h0 ? 64'h0 : Regfile_reg_value_MPORT_data; // @[EXU.scala 24:12]
   wire [63:0] _io_pc_next_T_2 = add_res & 64'hfffffffffffffffe; // @[EXU.scala 42:28]
   wire [63:0] _io_pc_next_T_4 = 32'h5 == io_inst_now ? add_res : _io_res2rd_T_1; // @[Mux.scala 81:58]
-  mem Mem_modle ( // @[EXU.scala 20:27]
+  MEM Mem_modle ( // @[EXU.scala 20:27]
     .Raddr(Mem_modle_Raddr),
     .Rdata(Mem_modle_Rdata),
     .Waddr(Mem_modle_Waddr),
@@ -311,7 +310,6 @@ module EXU(
     .input_reg_29(reg_trace_input_reg_29),
     .input_reg_30(reg_trace_input_reg_30),
     .input_reg_31(reg_trace_input_reg_31),
-    .inst(reg_trace_inst),
     .pc(reg_trace_pc)
   );
   assign Regfile_src1_value_MPORT_en = 1'h1;
@@ -465,7 +463,6 @@ module EXU(
   assign reg_trace_input_reg_29 = Regfile_reg_trace_io_input_reg_29_MPORT_data; // @[EXU.scala 46:57]
   assign reg_trace_input_reg_30 = Regfile_reg_trace_io_input_reg_30_MPORT_data; // @[EXU.scala 46:57]
   assign reg_trace_input_reg_31 = Regfile_reg_trace_io_input_reg_31_MPORT_data; // @[EXU.scala 46:57]
-  assign reg_trace_inst = 32'h0;
   assign reg_trace_pc = io_pc; // @[EXU.scala 47:21]
   always @(posedge clock) begin
     if (Regfile_MPORT_en & Regfile_MPORT_mask) begin
