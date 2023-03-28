@@ -34,6 +34,7 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_src1_is_pc;
     CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_131;
     CData/*5:0*/ top__DOT__idu_step__DOT___inst_now_T_134;
+    IData/*31:0*/ top__DOT__exu_step__DOT__srlw_res;
     IData/*31:0*/ top__DOT__exu_step__DOT__divw_res;
     IData/*31:0*/ top__DOT__exu_step__DOT__remw_res;
     VlWide<4>/*126:0*/ top__DOT__exu_step__DOT___io_res2rd_T_155;
