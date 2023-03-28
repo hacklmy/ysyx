@@ -68,6 +68,9 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
   // 总是读取地址为`raddr & ~0x7ull`的8字节返回给`rdata`
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE))return;
   *rdata = *((long long *)guest_to_host(raddr));
+  #ifdef CONFIG_MTRACE
+    printf("read memory at %lx, value = %ld\n",raddr,rdata);
+  #endif
 }
 
 
@@ -83,6 +86,9 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     wmask >>= 1;
     p++;
   }
+  #ifdef CONFIG_MTRACE
+    printf("write memory at %lx, mask = %x, value = %ld\n",waddr,wmask,wdata);
+  #endif
 }
 
 //==========================sdb============================
@@ -407,7 +413,7 @@ void cpu_exec(int n){
       top->eval();
       top->clock ^= 1;
       top->eval();
-      printf("%lx %x\n",pc_now , top->io_inst);
+      //printf("%lx %x\n",pc_now , top->io_inst);
       #ifdef CONFIG_ITRACE
     char p[1024];
     char *s = p;
@@ -429,10 +435,10 @@ void cpu_exec(int n){
       is_func(top->io_pc,top->io_pc_next, false);
     }
 #endif
-//#ifdef CONFIG_DIFFTEST
-    //printf("%lx\n", top->io_pc);
-    //difftest_step(top->io_pc);
-//#endif
+#ifdef CONFIG_DIFFTEST
+    printf("%lx\n", top->io_pc);
+    difftest_step(top->io_pc);
+#endif
     }
     tfp->dump(contextp->time()); //dump wave
     sim_time++;
@@ -462,22 +468,6 @@ int main(int argc, char** argv) {
   fclose(fp);
   init_difftest(difftest_file,size);
   while(sdb_mainloop() && !cpu_stop);
-  // while (!cpu_stop) {
-  //   if(sim_time<3){
-  //     top->reset = 1;
-  //     top->clock^=1;
-  //     top->eval();
-  //   }else{
-  //     top->reset = 0;
-  //     top->io_inst = pmem_read(top->io_pc);
-  //     printf("%lx %x\n",top->io_pc , top->io_inst);
-  //     top->clock ^= 1;
-  //     top->eval();
-  //   }
-  //   tfp->dump(contextp->time()); //dump wave
-  //   sim_time++;
-    
-  // }
   if(stop_status==0)printf("\33[1;32mHIT GOOD TRAP\n\33[0m");
   else printf("\33[1;31mHIT BAD TRAP\n\33[0m");
   delete top;
