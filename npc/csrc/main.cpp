@@ -357,8 +357,10 @@ bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
 
 static void checkregs(CPU_state *ref, uint64_t pc) {
   if (!isa_difftest_checkregs(ref, pc)) {
-    print_reg();
-    if(cpu_stop!=1)stop_status = 1;
+    if(cpu_stop!=1){
+      print_reg();
+      stop_status = 1;
+    }
     cpu_stop = 1;
   }
 }
