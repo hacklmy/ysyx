@@ -12,7 +12,7 @@
 
 #define CONFIG_ITRACE 0
 //#define CONFIG_FTRACE 0
-
+#define CONFIG_DIFFTEST
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return);
 void init_elf(char *elf_file);
@@ -46,6 +46,8 @@ void ebreak_handle(int flag){
 void get_pc(long long pc){
   pc_now = pc;
 }
+
+CPU_state ref_r;
 //===========================mem=========================
 typedef uint64_t paddr_t;
 #define PG_ALIGN __attribute((aligned(4096)))
@@ -68,9 +70,9 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
   // 总是读取地址为`raddr & ~0x7ull`的8字节返回给`rdata`
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE))return;
   *rdata = *((long long *)guest_to_host(raddr));
-  //#ifdef CONFIG_MTRACE
+  #ifdef CONFIG_MTRACE
     printf("read memory at %llx, value = %llx\n",raddr,*rdata);
-  //#endif
+  #endif
 }
 
 
@@ -79,9 +81,9 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   // `wmask`中每比特表示`wdata`中1个字节的掩码,
   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
   if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE))return;
- // #ifdef CONFIG_MTRACE
+  #ifdef CONFIG_MTRACE
     printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
-  //#endif
+  #endif
   uint8_t* p = guest_to_host(waddr);
   for (int i = 0; i < 8; i++) {
     if (wmask & 0x1) *p = (wdata & 0xff);
@@ -361,13 +363,9 @@ static void checkregs(CPU_state *ref, uint64_t pc) {
   }
 }
 
-CPU_state ref_r;
 void difftest_step(uint64_t pc) {
-  printf("1\n");
   ref_difftest_exec(1);
-  printf("1\n");
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
-  printf("1\n");
   checkregs(&ref_r, pc);
 
 }
