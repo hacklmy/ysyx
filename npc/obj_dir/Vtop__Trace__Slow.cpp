@@ -563,16 +563,21 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                     [0x1eU]),64);
         tracep->fullQData(oldp+166,(vlSelf->top__DOT__exu_step__DOT__Regfile
                                     [0x1fU]),64);
-        tracep->fullQData(oldp+168,((((0x100073U != (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)) 
-                                      & ((0x3023U != 
-                                          (0x707fU 
-                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                         & ((0x1063U 
-                                             != (0x707fU 
-                                                 & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                            & (0x63U 
-                                               != (0x707fU 
-                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))))))
+        tracep->fullQData(oldp+168,(((((0x100073U != (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)) 
+                                       & ((0x3023U 
+                                           != (0x707fU 
+                                               & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
+                                          & ((0x1063U 
+                                              != (0x707fU 
+                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
+                                             & (0x63U 
+                                                != 
+                                                (0x707fU 
+                                                 & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))))) 
+                                      & (0U != (0x1fU 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
+                                                           >> 7U)))))
                                       ? vlSelf->top__DOT__exu_step_io_res2rd
                                       : ((0U == (0x1fU 
                                                  & (IData)(

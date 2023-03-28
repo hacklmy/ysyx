@@ -241,19 +241,23 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                        [0x1eU]),64);
             tracep->chgQData(oldp+165,(vlSelf->top__DOT__exu_step__DOT__Regfile
                                        [0x1fU]),64);
-            tracep->chgQData(oldp+167,((((0x100073U 
-                                          != (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)) 
-                                         & ((0x3023U 
-                                             != (0x707fU 
-                                                 & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                            & ((0x1063U 
-                                                != 
-                                                (0x707fU 
-                                                 & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                               & (0x63U 
-                                                  != 
-                                                  (0x707fU 
-                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))))))
+            tracep->chgQData(oldp+167,(((((0x100073U 
+                                           != (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)) 
+                                          & ((0x3023U 
+                                              != (0x707fU 
+                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
+                                             & ((0x1063U 
+                                                 != 
+                                                 (0x707fU 
+                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
+                                                & (0x63U 
+                                                   != 
+                                                   (0x707fU 
+                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))))) 
+                                         & (0U != (0x1fU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
+                                                              >> 7U)))))
                                          ? vlSelf->top__DOT__exu_step_io_res2rd
                                          : ((0U == 
                                              (0x1fU 

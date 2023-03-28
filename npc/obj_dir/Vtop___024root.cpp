@@ -570,16 +570,17 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     vlSelf->io_pc_next = vlSelf->top__DOT__exu_step_io_pc_next;
     vlSelf->io_outval = vlSelf->top__DOT__exu_step_io_res2rd;
     vlSelf->top__DOT__exu_step__DOT__Regfile_MPORT_data 
-        = (((0x100073U != (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)) 
-            & ((0x3023U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-               & ((0x1063U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                  & (0x63U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))))))
-            ? vlSelf->top__DOT__exu_step_io_res2rd : 
-           ((0U == (0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
-                                     >> 7U)))) ? 0ULL
-             : vlSelf->top__DOT__exu_step__DOT__Regfile
-            [(0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
-                               >> 7U)))]));
+        = ((((0x100073U != (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)) 
+             & ((0x3023U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
+                & ((0x1063U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
+                   & (0x63U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))))) 
+            & (0U != (0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
+                                       >> 7U))))) ? vlSelf->top__DOT__exu_step_io_res2rd
+            : ((0U == (0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
+                                        >> 7U)))) ? 0ULL
+                : vlSelf->top__DOT__exu_step__DOT__Regfile
+               [(0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
+                                  >> 7U)))]));
 }
 
 void Vtop___024root___eval(Vtop___024root* vlSelf) {
