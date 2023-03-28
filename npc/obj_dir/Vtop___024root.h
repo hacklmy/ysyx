@@ -32,9 +32,11 @@ VL_MODULE(Vtop___024root) {
     // LOCAL SIGNALS
     CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_src2_is_imm;
     CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_src1_is_pc;
-    CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_119;
-    CData/*5:0*/ top__DOT__idu_step__DOT___inst_now_T_122;
-    VlWide<4>/*126:0*/ top__DOT__exu_step__DOT___io_res2rd_T_135;
+    CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_131;
+    CData/*5:0*/ top__DOT__idu_step__DOT___inst_now_T_131;
+    IData/*31:0*/ top__DOT__exu_step__DOT__divw_res;
+    IData/*31:0*/ top__DOT__exu_step__DOT__remw_res;
+    VlWide<4>/*126:0*/ top__DOT__exu_step__DOT___io_res2rd_T_155;
     QData/*63:0*/ top__DOT__idu_step_io_imm;
     QData/*63:0*/ top__DOT__exu_step_io_pc_next;
     QData/*63:0*/ top__DOT__pc_now;
@@ -48,6 +50,7 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__exu_step__DOT__sub_res;
     QData/*62:0*/ top__DOT__exu_step__DOT__sllw_res;
     QData/*63:0*/ top__DOT__exu_step__DOT__and_res;
+    QData/*63:0*/ top__DOT__exu_step__DOT___mluw_res_T_2;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__Regfile;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__reg_trace__DOT__traceregs;
 
