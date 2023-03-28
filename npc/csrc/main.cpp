@@ -406,7 +406,11 @@ void cpu_exec(int n){
     }else{
       top->reset = 0;
       //top->io_inst = pmem_read(top->io_pc);
-      printf("%lx %x\n",pc_now , top->io_inst);
+      //printf("%lx %x\n",pc_now , top->io_inst);
+      #ifdef CONFIG_DIFFTEST
+    printf("%lx\n", top->io_pc);
+    difftest_step(top->io_pc);
+#endif
       top->clock ^= 1;
       top->eval();
       top->clock ^= 1;
@@ -432,10 +436,6 @@ void cpu_exec(int n){
     else if(BITS(top->io_inst, 6, 0)==0x6f || (BITS(top->io_inst, 6, 0)==0x67 && BITS(top->io_inst, 11, 7)!=0x0)){
       is_func(top->io_pc,top->io_pc_next, false);
     }
-#endif
-#ifdef CONFIG_DIFFTEST
-    printf("%lx\n", top->io_pc);
-    difftest_step(top->io_pc);
 #endif
     }
     tfp->dump(contextp->time()); //dump wave
