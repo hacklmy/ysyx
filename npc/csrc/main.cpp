@@ -427,8 +427,7 @@ void cpu_exec(int n){
     }
 #endif
 #ifdef CONFIG_DIFFTEST
-    printf("%lx\n", top->io_pc);
-    difftest_step(top->io_pc);
+    difftest_step(pc_now);
 #endif
     
     tfp->dump(contextp->time()); //dump wave
