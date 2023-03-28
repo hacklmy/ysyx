@@ -442,7 +442,6 @@ void cpu_exec(int n){
     }
     tfp->dump(contextp->time()); //dump wave
     sim_time++;
-    
   }
 }
 

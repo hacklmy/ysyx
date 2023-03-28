@@ -293,12 +293,26 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
         Vtop___024unit____Vdpiimwrap_pmem_write_TOP____024unit(
                                                                (vlSelf->top__DOT__exu_step__DOT__src1_value 
                                                                 + vlSelf->top__DOT__exu_step__DOT__src2_value), 
-                                                               vlSelf->top__DOT__exu_step__DOT__Regfile
-                                                               [
-                                                               (0x1fU 
-                                                                & (IData)(
-                                                                          (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
-                                                                           >> 7U)))], 0U);
+                                                               ((0U 
+                                                                 == 
+                                                                 (0x1fU 
+                                                                  & (IData)(
+                                                                            (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
+                                                                             >> 0x14U))))
+                                                                 ? 0ULL
+                                                                 : 
+                                                                vlSelf->top__DOT__exu_step__DOT__Regfile
+                                                                [
+                                                                (0x1fU 
+                                                                 & (IData)(
+                                                                           (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
+                                                                            >> 0x14U)))]), 
+                                                               ((0x3023U 
+                                                                 == 
+                                                                 (0x707fU 
+                                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))
+                                                                 ? 0xffU
+                                                                 : 0U));
     }
     vlSelf->top__DOT__exu_step__DOT__add_res = (vlSelf->top__DOT__exu_step__DOT__src1_value 
                                                 + vlSelf->top__DOT__exu_step__DOT__src2_value);
