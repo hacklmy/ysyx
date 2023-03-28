@@ -30,6 +30,7 @@ int cpu_stop = 0;
 Vtop* top;
 VerilatedVcdC* tfp;
 VerilatedContext* contextp;
+uint64_t pc_now;
 
 void cpu_exec(int n);
 typedef struct
@@ -37,6 +38,14 @@ typedef struct
   uint64_t gpr[32];
   uint64_t pc;
 } CPU_state;
+
+void ebreak_handle(int flag){
+  cpu_stop = flag;
+}
+
+void get_pc(long long pc){
+  pc_now = pc;
+}
 //===========================mem=========================
 typedef uint64_t paddr_t;
 #define PG_ALIGN __attribute((aligned(4096)))
@@ -50,13 +59,28 @@ static inline uint32_t host_read(void *addr) {
   return *(uint64_t *)addr;
 }
 
-static uint32_t pmem_read(paddr_t addr) {
-  uint32_t ret = host_read(guest_to_host(addr));
-  return ret;
+// static uint32_t pmem_read(paddr_t addr) {
+//   uint32_t ret = host_read(guest_to_host(addr));
+//   return ret;
+// }
+
+extern "C" void pmem_read(long long raddr, long long *rdata) {
+  // 总是读取地址为`raddr & ~0x7ull`的8字节返回给`rdata`
+  *rdata = *((long long *)guest_to_host(raddr));
 }
 
-void ebreak_handle(int flag){
-  cpu_stop = flag;
+
+extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
+  // 总是往地址为`waddr & ~0x7ull`的8字节按写掩码`wmask`写入`wdata`
+  // `wmask`中每比特表示`wdata`中1个字节的掩码,
+  // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
+  uint8_t* p = guest_to_host(waddr);
+  for (int i = 0; i < 8; i++) {
+    if (wmask & 0x1) *p = (wdata & 0xff);
+    wdata >>= 8;
+    mask >>= 1;
+    p++;
+  }
 }
 
 //==========================sdb============================
@@ -373,12 +397,13 @@ void cpu_exec(int n){
       top->eval();
     }else{
       top->reset = 0;
-      top->io_inst = pmem_read(top->io_pc);
-      //printf("%lx %x\n",top->io_pc , top->io_inst);
+      //top->io_inst = pmem_read(top->io_pc);
+      
       top->clock ^= 1;
       top->eval();
       top->clock ^= 1;
       top->eval();
+      printf("%lx %x\n",top->io_pc , top->io_inst);
       #ifdef CONFIG_ITRACE
     char p[1024];
     char *s = p;
@@ -401,8 +426,8 @@ void cpu_exec(int n){
     }
 #endif
 //#ifdef CONFIG_DIFFTEST
-    printf("%lx\n", top->io_pc);
-    difftest_step(top->io_pc);
+    //printf("%lx\n", top->io_pc);
+    //difftest_step(top->io_pc);
 //#endif
     }
     tfp->dump(contextp->time()); //dump wave
