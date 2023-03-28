@@ -393,7 +393,9 @@ void cpu_exec(int n){
   while (!cpu_stop && n--) {
     if(sim_time<3){
       top->reset = 1;
-      top->clock^=1;
+      top->clock = 0;
+      top->eval();
+      top->clock = 1;
       top->eval();
     }else{
       top->reset = 0;
