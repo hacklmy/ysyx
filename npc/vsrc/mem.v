@@ -9,7 +9,7 @@ module Mem {
     input [7:0] Wmask,
     input Write_en,
     output [63:0] Rdata
-}
+};
  
  always @(*) begin
     pmem_read(Raddr, Rdata);
