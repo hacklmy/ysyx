@@ -16,8 +16,8 @@ module MEM (
  
  always @(*) begin
     pmem_read(Raddr, Rdata);
- if(Write_en)
-    pmem_write(Waddr, Wdata, Wmask);
+    if(Write_en)
+      pmem_write(Waddr, Wdata, Wmask);
  end
 endmodule
 /* verilator lint_on UNUSED */
