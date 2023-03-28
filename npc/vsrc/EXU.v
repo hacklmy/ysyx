@@ -1,7 +1,6 @@
 /* verilator lint_off UNUSED */
 module EXU(
   input         clock,
-  input         reset,
   input  [63:0] io_pc,
   output [63:0] io_pc_next,
   input  [31:0] io_inst_now,
@@ -188,19 +187,19 @@ module EXU(
   wire [63:0] sub_res = src1_value - src2_value; // @[EXU.scala 31:30]
   wire [63:0] _io_res2rd_T_1 = io_pc + 64'h4; // @[EXU.scala 36:24]
   wire [63:0] mem_rdata = Mem_modle_Rdata; // @[EXU.scala 22:25 66:15]
-  wire [31:0] _io_res2rd_T_8 = mem_rdata[31] ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
-  wire [63:0] _io_res2rd_T_10 = {_io_res2rd_T_8,mem_rdata[31:0]}; // @[Cat.scala 31:58]
-  wire [31:0] _io_res2rd_T_13 = add_res[31] ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
-  wire [63:0] _io_res2rd_T_15 = {_io_res2rd_T_13,add_res[31:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _io_res2rd_T_17 = 32'h1 == io_inst_now ? add_res : 64'h0; // @[Mux.scala 81:58]
-  wire [63:0] _io_res2rd_T_19 = 32'h3 == io_inst_now ? add_res : _io_res2rd_T_17; // @[Mux.scala 81:58]
-  wire [63:0] _io_res2rd_T_21 = 32'h4 == io_inst_now ? io_imm : _io_res2rd_T_19; // @[Mux.scala 81:58]
-  wire [63:0] _io_res2rd_T_23 = 32'h5 == io_inst_now ? _io_res2rd_T_1 : _io_res2rd_T_21; // @[Mux.scala 81:58]
-  wire [63:0] _io_res2rd_T_25 = 32'h6 == io_inst_now ? _io_res2rd_T_1 : _io_res2rd_T_23; // @[Mux.scala 81:58]
-  wire [63:0] _io_res2rd_T_27 = 32'h20 == io_inst_now ? 64'h0 : _io_res2rd_T_25; // @[Mux.scala 81:58]
-  wire [63:0] _io_res2rd_T_29 = 32'h21 == io_inst_now ? _io_res2rd_T_10 : _io_res2rd_T_27; // @[Mux.scala 81:58]
-  wire [63:0] _io_res2rd_T_31 = 32'h22 == io_inst_now ? mem_rdata : _io_res2rd_T_29; // @[Mux.scala 81:58]
-  wire [63:0] _io_res2rd_T_33 = 32'hc == io_inst_now ? _io_res2rd_T_15 : _io_res2rd_T_31; // @[Mux.scala 81:58]
+  wire [31:0] _io_res2rd_T_9 = mem_rdata[31] ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
+  wire [63:0] _io_res2rd_T_11 = {_io_res2rd_T_9,mem_rdata[31:0]}; // @[Cat.scala 31:58]
+  wire [31:0] _io_res2rd_T_14 = add_res[31] ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
+  wire [63:0] _io_res2rd_T_16 = {_io_res2rd_T_14,add_res[31:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _io_res2rd_T_18 = 32'h1 == io_inst_now ? add_res : 64'h0; // @[Mux.scala 81:58]
+  wire [63:0] _io_res2rd_T_20 = 32'h3 == io_inst_now ? add_res : _io_res2rd_T_18; // @[Mux.scala 81:58]
+  wire [63:0] _io_res2rd_T_22 = 32'h4 == io_inst_now ? io_imm : _io_res2rd_T_20; // @[Mux.scala 81:58]
+  wire [63:0] _io_res2rd_T_24 = 32'h5 == io_inst_now ? _io_res2rd_T_1 : _io_res2rd_T_22; // @[Mux.scala 81:58]
+  wire [63:0] _io_res2rd_T_26 = 32'h6 == io_inst_now ? _io_res2rd_T_1 : _io_res2rd_T_24; // @[Mux.scala 81:58]
+  wire [63:0] _io_res2rd_T_28 = 32'h20 == io_inst_now ? {{63'd0}, sub_res[63]} : _io_res2rd_T_26; // @[Mux.scala 81:58]
+  wire [63:0] _io_res2rd_T_30 = 32'h21 == io_inst_now ? _io_res2rd_T_11 : _io_res2rd_T_28; // @[Mux.scala 81:58]
+  wire [63:0] _io_res2rd_T_32 = 32'h22 == io_inst_now ? mem_rdata : _io_res2rd_T_30; // @[Mux.scala 81:58]
+  wire [63:0] _io_res2rd_T_34 = 32'hc == io_inst_now ? _io_res2rd_T_16 : _io_res2rd_T_32; // @[Mux.scala 81:58]
   wire [63:0] reg_value = io_rd == 5'h0 ? 64'h0 : Regfile_reg_value_MPORT_data; // @[EXU.scala 25:12]
   wire [63:0] _io_pc_next_T = add_res & 64'hfffffffffffffffe; // @[EXU.scala 52:28]
   wire [63:0] _io_pc_next_T_2 = cmp != 64'h0 ? add_res : _io_res2rd_T_1; // @[EXU.scala 53:21]
@@ -370,7 +369,7 @@ module EXU(
   assign Regfile_MPORT_mask = 1'h1;
   assign Regfile_MPORT_en = 1'h1;
   assign io_pc_next = 32'h29 == io_inst_now ? _io_pc_next_T_4 : _io_pc_next_T_10; // @[Mux.scala 81:58]
-  assign io_res2rd = 32'he == io_inst_now ? sub_res : _io_res2rd_T_33; // @[Mux.scala 81:58]
+  assign io_res2rd = 32'he == io_inst_now ? sub_res : _io_res2rd_T_34; // @[Mux.scala 81:58]
   assign Mem_modle_Raddr = src1_value + src2_value; // @[EXU.scala 30:30]
   assign Mem_modle_Waddr = src1_value + src2_value; // @[EXU.scala 30:30]
   assign Mem_modle_Wdata = io_rs2 == 5'h0 ? 64'h0 : Regfile_Mem_modle_io_Wdata_MPORT_data; // @[EXU.scala 25:12]
@@ -413,18 +412,6 @@ module EXU(
     if (Regfile_MPORT_en & Regfile_MPORT_mask) begin
       Regfile[Regfile_MPORT_addr] <= Regfile_MPORT_data; // @[EXU.scala 23:22]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"inst:%x add_res:%x sub_res:%x  %d %x %d\n",io_inst_now,add_res,sub_res,
-            io_ctrl_sign_reg_write,io_res2rd,io_rd); // @[EXU.scala 46:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
