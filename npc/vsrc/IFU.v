@@ -1,3 +1,5 @@
+
+/* verilator lint_off UNUSED */
 module IFU(
   input  [63:0] io_pc,
   output [31:0] io_inst
@@ -23,3 +25,4 @@ module IFU(
   assign inst_read_Wmask = 8'h0;
   assign inst_read_Write_en = 1'h0;
 endmodule
+/* verilator lint_on UNUSED */
