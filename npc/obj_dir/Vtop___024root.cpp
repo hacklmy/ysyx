@@ -849,12 +849,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__exu_step__DOT___mluw_res_T_2 
         = ((QData)((IData)(vlSelf->top__DOT__exu_step__DOT__src1_value)) 
            * (QData)((IData)(vlSelf->top__DOT__exu_step__DOT__src2_value)));
-    vlSelf->top__DOT__exu_step__DOT___divw_res_T_4 
-        = (0x1ffffffffULL & VL_DIVS_QQQ(33, (0x1ffffffffULL 
-                                             & VL_EXTENDS_QI(33,32, (IData)(vlSelf->top__DOT__exu_step__DOT__src1_value))), 
-                                        (0x1ffffffffULL 
-                                         & VL_EXTENDS_QI(33,32, (IData)(vlSelf->top__DOT__exu_step__DOT__src2_value)))));
-    vlSelf->top__DOT__exu_step__DOT__remw_res = VL_MODDIVS_III(32, (IData)(vlSelf->top__DOT__exu_step__DOT__src1_value), (IData)(vlSelf->top__DOT__exu_step__DOT__src2_value));
+    vlSelf->top__DOT__exu_step__DOT__divw_res = VL_DIV_III(32, (IData)(vlSelf->top__DOT__exu_step__DOT__src1_value), (IData)(vlSelf->top__DOT__exu_step__DOT__src2_value));
+    vlSelf->top__DOT__exu_step__DOT__remw_res = VL_MODDIV_III(32, (IData)(vlSelf->top__DOT__exu_step__DOT__src1_value), (IData)(vlSelf->top__DOT__exu_step__DOT__src2_value));
     top__DOT__exu_step__DOT___io_res2rd_T_58 = (((QData)((IData)(
                                                                  ((VL_SHIFTRS_III(32,32,5, (IData)(vlSelf->top__DOT__exu_step__DOT__src1_value), 
                                                                                 (0x1fU 
@@ -1345,13 +1341,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                         : 0U))) 
                                       << 0x20U) | (QData)((IData)(vlSelf->top__DOT__exu_step__DOT__remw_res))));
     VL_EXTEND_WQ(127,64, __Vtemp15, (((QData)((IData)(
-                                                      ((1U 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__exu_step__DOT___divw_res_T_4 
-                                                                   >> 0x1fU)))
+                                                      ((vlSelf->top__DOT__exu_step__DOT__divw_res 
+                                                        >> 0x1fU)
                                                         ? 0xffffffffU
                                                         : 0U))) 
-                                      << 0x20U) | (QData)((IData)(vlSelf->top__DOT__exu_step__DOT___divw_res_T_4))));
+                                      << 0x20U) | (QData)((IData)(vlSelf->top__DOT__exu_step__DOT__divw_res))));
     VL_EXTEND_WQ(127,64, __Vtemp16, (((QData)((IData)(
                                                       ((1U 
                                                         & (IData)(

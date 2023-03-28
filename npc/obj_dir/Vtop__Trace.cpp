@@ -372,7 +372,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                         | (QData)((IData)(
                                                           __Vtemp94[0U])))),64);
             tracep->chgIData(oldp+197,((IData)(vlSelf->top__DOT__exu_step__DOT___mluw_res_T_2)),32);
-            tracep->chgIData(oldp+198,((IData)(vlSelf->top__DOT__exu_step__DOT___divw_res_T_4)),32);
+            tracep->chgIData(oldp+198,(vlSelf->top__DOT__exu_step__DOT__divw_res),32);
             tracep->chgIData(oldp+199,(vlSelf->top__DOT__exu_step__DOT__remw_res),32);
             tracep->chgQData(oldp+200,(((0U == (0x1fU 
                                                 & (IData)(
