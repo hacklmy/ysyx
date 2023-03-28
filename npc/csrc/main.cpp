@@ -68,9 +68,9 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
   // 总是读取地址为`raddr & ~0x7ull`的8字节返回给`rdata`
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE))return;
   *rdata = *((long long *)guest_to_host(raddr));
-  #ifdef CONFIG_MTRACE
+  //#ifdef CONFIG_MTRACE
     printf("read memory at %lx, value = %ld\n",raddr,rdata);
-  #endif
+  //#endif
 }
 
 
@@ -86,9 +86,9 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     wmask >>= 1;
     p++;
   }
-  #ifdef CONFIG_MTRACE
+  //#ifdef CONFIG_MTRACE
     printf("write memory at %lx, mask = %x, value = %ld\n",waddr,wmask,wdata);
-  #endif
+  //#endif
 }
 
 //==========================sdb============================
