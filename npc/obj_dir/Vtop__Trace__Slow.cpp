@@ -132,6 +132,24 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+275,"top exu_step Regfile_reg_value_MPORT_en", false,-1);
         tracep->declBus(c+7,"top exu_step Regfile_reg_value_MPORT_addr", false,-1, 4,0);
         tracep->declQuad(c+102,"top exu_step Regfile_reg_value_MPORT_data", false,-1, 63,0);
+        tracep->declBit(c+275,"top exu_step Regfile_io_pc_next_MPORT_en", false,-1);
+        tracep->declBus(c+5,"top exu_step Regfile_io_pc_next_MPORT_addr", false,-1, 4,0);
+        tracep->declQuad(c+98,"top exu_step Regfile_io_pc_next_MPORT_data", false,-1, 63,0);
+        tracep->declBit(c+275,"top exu_step Regfile_io_pc_next_MPORT_1_en", false,-1);
+        tracep->declBus(c+6,"top exu_step Regfile_io_pc_next_MPORT_1_addr", false,-1, 4,0);
+        tracep->declQuad(c+100,"top exu_step Regfile_io_pc_next_MPORT_1_data", false,-1, 63,0);
+        tracep->declBit(c+275,"top exu_step Regfile_io_pc_next_MPORT_2_en", false,-1);
+        tracep->declBus(c+5,"top exu_step Regfile_io_pc_next_MPORT_2_addr", false,-1, 4,0);
+        tracep->declQuad(c+98,"top exu_step Regfile_io_pc_next_MPORT_2_data", false,-1, 63,0);
+        tracep->declBit(c+275,"top exu_step Regfile_io_pc_next_MPORT_3_en", false,-1);
+        tracep->declBus(c+6,"top exu_step Regfile_io_pc_next_MPORT_3_addr", false,-1, 4,0);
+        tracep->declQuad(c+100,"top exu_step Regfile_io_pc_next_MPORT_3_data", false,-1, 63,0);
+        tracep->declBit(c+275,"top exu_step Regfile_io_pc_next_MPORT_4_en", false,-1);
+        tracep->declBus(c+5,"top exu_step Regfile_io_pc_next_MPORT_4_addr", false,-1, 4,0);
+        tracep->declQuad(c+98,"top exu_step Regfile_io_pc_next_MPORT_4_data", false,-1, 63,0);
+        tracep->declBit(c+275,"top exu_step Regfile_io_pc_next_MPORT_5_en", false,-1);
+        tracep->declBus(c+6,"top exu_step Regfile_io_pc_next_MPORT_5_addr", false,-1, 4,0);
+        tracep->declQuad(c+100,"top exu_step Regfile_io_pc_next_MPORT_5_data", false,-1, 63,0);
         tracep->declBit(c+275,"top exu_step Regfile_reg_trace_io_input_reg_0_MPORT_en", false,-1);
         tracep->declBus(c+276,"top exu_step Regfile_reg_trace_io_input_reg_0_MPORT_addr", false,-1, 4,0);
         tracep->declQuad(c+104,"top exu_step Regfile_reg_trace_io_input_reg_0_MPORT_data", false,-1, 63,0);
@@ -237,6 +255,9 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+275,"top exu_step Regfile_Mem_modle_io_Wdata_MPORT_2_en", false,-1);
         tracep->declBus(c+6,"top exu_step Regfile_Mem_modle_io_Wdata_MPORT_2_addr", false,-1, 4,0);
         tracep->declQuad(c+100,"top exu_step Regfile_Mem_modle_io_Wdata_MPORT_2_data", false,-1, 63,0);
+        tracep->declBit(c+275,"top exu_step Regfile_Mem_modle_io_Wdata_MPORT_3_en", false,-1);
+        tracep->declBus(c+6,"top exu_step Regfile_Mem_modle_io_Wdata_MPORT_3_addr", false,-1, 4,0);
+        tracep->declQuad(c+100,"top exu_step Regfile_Mem_modle_io_Wdata_MPORT_3_data", false,-1, 63,0);
         tracep->declQuad(c+168,"top exu_step Regfile_MPORT_data", false,-1, 63,0);
         tracep->declBus(c+7,"top exu_step Regfile_MPORT_addr", false,-1, 4,0);
         tracep->declBit(c+275,"top exu_step Regfile_MPORT_mask", false,-1);
@@ -372,7 +393,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
     {
         tracep->fullQData(oldp+1,(vlSelf->top__DOT__pc_now),64);
         tracep->fullIData(oldp+3,((IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)),32);
-        tracep->fullIData(oldp+4,(vlSelf->top__DOT__idu_step__DOT___inst_now_T_104),32);
+        tracep->fullIData(oldp+4,(vlSelf->top__DOT__idu_step__DOT___inst_now_T_122),32);
         tracep->fullCData(oldp+5,((0x1fU & (IData)(
                                                    (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
                                                     >> 0xfU)))),5);
@@ -394,13 +415,25 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                            & ((0x1063U 
                                                != (0x707fU 
                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                              & (0x63U 
-                                                 != 
-                                                 (0x707fU 
-                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))))))))));
+                                              & ((0x63U 
+                                                  != 
+                                                  (0x707fU 
+                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
+                                                 & ((0x5063U 
+                                                     != 
+                                                     (0x707fU 
+                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
+                                                    & ((0x4063U 
+                                                        != 
+                                                        (0x707fU 
+                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
+                                                       & (0x6063U 
+                                                          != 
+                                                          (0x707fU 
+                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))))))))))));
         tracep->fullBit(oldp+11,(vlSelf->top__DOT__idu_step_io_ctrl_sign_src2_is_imm));
         tracep->fullBit(oldp+12,(vlSelf->top__DOT__idu_step_io_ctrl_sign_src1_is_pc));
-        tracep->fullBit(oldp+13,((0x44U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_101))));
+        tracep->fullBit(oldp+13,((0x44U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_119))));
         tracep->fullCData(oldp+14,(((0x3023U == (0x707fU 
                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))
                                      ? 0xffU : ((0x1023U 
@@ -409,16 +442,24 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))
                                                  ? 0xfU
                                                  : 
-                                                (0x23U 
-                                                 == 
-                                                 (0x707fU 
-                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))))),8);
+                                                ((0x23U 
+                                                  == 
+                                                  (0x707fU 
+                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))
+                                                  ? 1U
+                                                  : 
+                                                 ((0x2023U 
+                                                   == 
+                                                   (0x707fU 
+                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))
+                                                   ? 3U
+                                                   : 0U))))),8);
         tracep->fullQData(oldp+15,(vlSelf->top__DOT__exu_step_io_pc_next),64);
         tracep->fullQData(oldp+17,((((QData)((IData)(
-                                                     vlSelf->top__DOT__exu_step__DOT___io_res2rd_T_123[1U])) 
+                                                     vlSelf->top__DOT__exu_step__DOT___io_res2rd_T_135[1U])) 
                                      << 0x20U) | (QData)((IData)(
-                                                                 vlSelf->top__DOT__exu_step__DOT___io_res2rd_T_123[0U])))),64);
-        tracep->fullIData(oldp+19,((2U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_104))),32);
+                                                                 vlSelf->top__DOT__exu_step__DOT___io_res2rd_T_135[0U])))),64);
+        tracep->fullIData(oldp+19,((2U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_122))),32);
         tracep->fullQData(oldp+20,(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata),64);
         tracep->fullSData(oldp+22,((0xfffU & (IData)(
                                                      (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
@@ -466,31 +507,29 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                           | (0xfU & (IData)(
                                                             (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
                                                              >> 8U))))))),12);
-        tracep->fullIData(oldp+27,(vlSelf->top__DOT__idu_step__DOT___inst_type_T_101),32);
+        tracep->fullIData(oldp+27,(vlSelf->top__DOT__idu_step__DOT___inst_type_T_119),32);
         tracep->fullQData(oldp+28,((vlSelf->top__DOT__exu_step__DOT__src1_value 
                                     + vlSelf->top__DOT__exu_step__DOT__src2_value)),64);
         tracep->fullQData(oldp+30,(vlSelf->top__DOT__exu_step__DOT__Mem_modle_Rdata),64);
-        tracep->fullQData(oldp+32,(((0x28U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_104))
+        tracep->fullQData(oldp+32,(((0x27U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_122))
                                      ? (QData)((IData)(
-                                                       (0xffU 
-                                                        & (IData)(
-                                                                  ((0U 
-                                                                    == 
-                                                                    (0x1fU 
-                                                                     & (IData)(
-                                                                               (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
-                                                                                >> 0x14U))))
-                                                                    ? 0ULL
-                                                                    : 
-                                                                   vlSelf->top__DOT__exu_step__DOT__Regfile
-                                                                   [
-                                                                   (0x1fU 
-                                                                    & (IData)(
-                                                                              (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
-                                                                               >> 0x14U)))])))))
-                                     : ((0x26U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_104))
+                                                       ((0U 
+                                                         == 
+                                                         (0x1fU 
+                                                          & (IData)(
+                                                                    (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
+                                                                     >> 0x14U))))
+                                                         ? 0ULL
+                                                         : 
+                                                        vlSelf->top__DOT__exu_step__DOT__Regfile
+                                                        [
+                                                        (0x1fU 
+                                                         & (IData)(
+                                                                   (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
+                                                                    >> 0x14U)))])))
+                                     : ((0x28U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_122))
                                          ? (QData)((IData)(
-                                                           (0xffffU 
+                                                           (0xffU 
                                                             & (IData)(
                                                                       ((0U 
                                                                         == 
@@ -506,21 +545,42 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                                         & (IData)(
                                                                                 (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
                                                                                 >> 0x14U)))])))))
-                                         : ((7U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_104))
-                                             ? ((0U 
-                                                 == 
-                                                 (0x1fU 
-                                                  & (IData)(
-                                                            (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
-                                                             >> 0x14U))))
-                                                 ? 0ULL
-                                                 : 
-                                                vlSelf->top__DOT__exu_step__DOT__Regfile
-                                                [(0x1fU 
-                                                  & (IData)(
-                                                            (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
-                                                             >> 0x14U)))])
-                                             : 0ULL)))),64);
+                                         : ((0x26U 
+                                             == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_122))
+                                             ? (QData)((IData)(
+                                                               (0xffffU 
+                                                                & (IData)(
+                                                                          ((0U 
+                                                                            == 
+                                                                            (0x1fU 
+                                                                             & (IData)(
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
+                                                                                >> 0x14U))))
+                                                                            ? 0ULL
+                                                                            : 
+                                                                           vlSelf->top__DOT__exu_step__DOT__Regfile
+                                                                           [
+                                                                           (0x1fU 
+                                                                            & (IData)(
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
+                                                                                >> 0x14U)))])))))
+                                             : ((7U 
+                                                 == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_122))
+                                                 ? 
+                                                ((0U 
+                                                  == 
+                                                  (0x1fU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
+                                                              >> 0x14U))))
+                                                  ? 0ULL
+                                                  : 
+                                                 vlSelf->top__DOT__exu_step__DOT__Regfile
+                                                 [(0x1fU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
+                                                              >> 0x14U)))])
+                                                 : 0ULL))))),64);
         tracep->fullQData(oldp+34,(vlSelf->top__DOT__exu_step__DOT__Regfile[0]),64);
         tracep->fullQData(oldp+36,(vlSelf->top__DOT__exu_step__DOT__Regfile[1]),64);
         tracep->fullQData(oldp+38,(vlSelf->top__DOT__exu_step__DOT__Regfile[2]),64);
@@ -629,43 +689,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                     [0x1eU]),64);
         tracep->fullQData(oldp+166,(vlSelf->top__DOT__exu_step__DOT__Regfile
                                     [0x1fU]),64);
-        tracep->fullQData(oldp+168,(((((0x100073U != (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)) 
-                                       & ((0x3023U 
-                                           != (0x707fU 
-                                               & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                          & ((0x1023U 
-                                              != (0x707fU 
-                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                             & ((0x23U 
-                                                 != 
-                                                 (0x707fU 
-                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                                & ((0x1063U 
-                                                    != 
-                                                    (0x707fU 
-                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))) 
-                                                   & (0x63U 
-                                                      != 
-                                                      (0x707fU 
-                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))))))) 
-                                      & (0U != (0x1fU 
-                                                & (IData)(
-                                                          (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
-                                                           >> 7U)))))
-                                      ? (((QData)((IData)(
-                                                          vlSelf->top__DOT__exu_step__DOT___io_res2rd_T_123[1U])) 
-                                          << 0x20U) 
-                                         | (QData)((IData)(
-                                                           vlSelf->top__DOT__exu_step__DOT___io_res2rd_T_123[0U])))
-                                      : ((0U == (0x1fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
-                                                            >> 7U))))
-                                          ? 0ULL : 
-                                         vlSelf->top__DOT__exu_step__DOT__Regfile
-                                         [(0x1fU & (IData)(
-                                                           (vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
-                                                            >> 7U)))]))),64);
+        tracep->fullQData(oldp+168,(vlSelf->top__DOT__exu_step__DOT__Regfile_MPORT_data),64);
         tracep->fullQData(oldp+170,(vlSelf->top__DOT__exu_step__DOT__cmp),64);
         tracep->fullQData(oldp+172,(vlSelf->top__DOT__exu_step__DOT__src1_value),64);
         tracep->fullQData(oldp+174,(vlSelf->top__DOT__exu_step__DOT__src2_value),64);
