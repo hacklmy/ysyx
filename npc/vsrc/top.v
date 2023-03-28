@@ -21,6 +21,7 @@ module top(
   wire  idu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 22:26]
   wire  idu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 22:26]
   wire  idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 22:26]
+  wire [7:0] idu_step_io_ctrl_sign_Wmask; // @[top.scala 22:26]
   wire  exu_step_clock; // @[top.scala 25:26]
   wire [63:0] exu_step_io_pc; // @[top.scala 25:26]
   wire [63:0] exu_step_io_pc_next; // @[top.scala 25:26]
@@ -33,6 +34,7 @@ module top(
   wire  exu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 25:26]
   wire  exu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 25:26]
   wire  exu_step_io_ctrl_sign_Writemem_en; // @[top.scala 25:26]
+  wire [7:0] exu_step_io_ctrl_sign_Wmask; // @[top.scala 25:26]
   wire [63:0] exu_step_io_res2rd; // @[top.scala 25:26]
   wire [31:0] dpi_flag; // @[top.scala 35:21]
   reg [63:0] pc_now; // @[top.scala 14:25]
@@ -50,7 +52,8 @@ module top(
     .io_ctrl_sign_reg_write(idu_step_io_ctrl_sign_reg_write),
     .io_ctrl_sign_src2_is_imm(idu_step_io_ctrl_sign_src2_is_imm),
     .io_ctrl_sign_src1_is_pc(idu_step_io_ctrl_sign_src1_is_pc),
-    .io_ctrl_sign_Writemem_en(idu_step_io_ctrl_sign_Writemem_en)
+    .io_ctrl_sign_Writemem_en(idu_step_io_ctrl_sign_Writemem_en),
+    .io_ctrl_sign_Wmask(idu_step_io_ctrl_sign_Wmask)
   );
   EXU exu_step ( // @[top.scala 25:26]
     .clock(exu_step_clock),
@@ -65,6 +68,7 @@ module top(
     .io_ctrl_sign_src2_is_imm(exu_step_io_ctrl_sign_src2_is_imm),
     .io_ctrl_sign_src1_is_pc(exu_step_io_ctrl_sign_src1_is_pc),
     .io_ctrl_sign_Writemem_en(exu_step_io_ctrl_sign_Writemem_en),
+    .io_ctrl_sign_Wmask(exu_step_io_ctrl_sign_Wmask),
     .io_res2rd(exu_step_io_res2rd)
   );
   DPI dpi ( // @[top.scala 35:21]
@@ -87,6 +91,7 @@ module top(
   assign exu_step_io_ctrl_sign_src2_is_imm = idu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 33:27]
   assign exu_step_io_ctrl_sign_src1_is_pc = idu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 33:27]
   assign exu_step_io_ctrl_sign_Writemem_en = idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 33:27]
+  assign exu_step_io_ctrl_sign_Wmask = idu_step_io_ctrl_sign_Wmask; // @[top.scala 33:27]
   assign dpi_flag = {{31'd0}, idu_step_io_inst_now == 32'h2}; // @[top.scala 36:17]
   always @(posedge clock) begin
     if (reset) begin // @[top.scala 14:25]

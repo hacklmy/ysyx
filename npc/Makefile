@@ -13,7 +13,9 @@ sim:
 
 copy_top:
 	sed -n '/module top/,/endmodule/p' vsrc/output/top.v > vsrc/top.v
-	sed -n '/module IFU/,/endmodule/p' vsrc/output/top.v > vsrc/IFU.v
+	echo "/* verilator lint_off UNUSED */" > vsrc/IFU.v
+	sed -n '/module IFU/,/endmodule/p' vsrc/output/top.v >> vsrc/IFU.v
+	echo "/* verilator lint_on UNUSED */" >> vsrc/IFU.v
 	echo "/* verilator lint_off UNUSED */" > vsrc/IDU.v
 	sed -n '/module IDU/,/endmodule/p' vsrc/output/top.v >> vsrc/IDU.v
 	echo "/* verilator lint_on UNUSED */" >> vsrc/IDU.v

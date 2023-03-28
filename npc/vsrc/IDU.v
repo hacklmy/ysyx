@@ -9,9 +9,10 @@ module IDU(
   output        io_ctrl_sign_reg_write,
   output        io_ctrl_sign_src2_is_imm,
   output        io_ctrl_sign_src1_is_pc,
-  output        io_ctrl_sign_Writemem_en
+  output        io_ctrl_sign_Writemem_en,
+  output [7:0]  io_ctrl_sign_Wmask
 );
-  wire [4:0] rd = io_inst[11:7]; // @[IDU.scala 77:15]
+  wire [4:0] rd = io_inst[11:7]; // @[IDU.scala 78:15]
   wire [31:0] _inst_type_T = io_inst & 32'h707f; // @[Lookup.scala 31:38]
   wire  _inst_type_T_1 = 32'h13 == _inst_type_T; // @[Lookup.scala 31:38]
   wire [31:0] _inst_type_T_2 = io_inst & 32'h7f; // @[Lookup.scala 31:38]
@@ -38,7 +39,7 @@ module IDU(
   wire [11:0] imm_imm_3 = {io_inst[31:25],rd}; // @[Cat.scala 31:58]
   wire [51:0] _imm_T_15 = imm_imm_3[11] ? 52'hfffffffffffff : 52'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _imm_T_16 = {_imm_T_15,io_inst[31:25],rd}; // @[Cat.scala 31:58]
-  wire [31:0] inst_type = {{25'd0}, _inst_type_T_17}; // @[IDU.scala 63:25 79:15]
+  wire [31:0] inst_type = {{25'd0}, _inst_type_T_17}; // @[IDU.scala 63:25 80:15]
   wire [63:0] _imm_T_18 = 32'h40 == inst_type ? _imm_T_3 : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _imm_T_20 = 32'h43 == inst_type ? _imm_T_7 : _imm_T_18; // @[Mux.scala 81:58]
   wire [63:0] _imm_T_22 = 32'h42 == inst_type ? _imm_T_12 : _imm_T_20; // @[Mux.scala 81:58]
@@ -51,15 +52,16 @@ module IDU(
   wire [2:0] _inst_now_T_19 = _inst_now_T_3 ? 3'h2 : _inst_now_T_18; // @[Lookup.scala 34:39]
   wire [2:0] _inst_now_T_20 = _inst_type_T_1 ? 3'h1 : _inst_now_T_19; // @[Lookup.scala 34:39]
   wire  _reg_write_T_4 = _inst_type_T_11 ? 1'h0 : 1'h1; // @[Lookup.scala 34:39]
-  assign io_inst_now = {{29'd0}, _inst_now_T_20}; // @[IDU.scala 62:24 95:14]
-  assign io_rs1 = io_inst[19:15]; // @[IDU.scala 76:16]
-  assign io_rs2 = io_inst[24:20]; // @[IDU.scala 75:16]
-  assign io_rd = io_inst[11:7]; // @[IDU.scala 77:15]
+  assign io_inst_now = {{29'd0}, _inst_now_T_20}; // @[IDU.scala 62:24 96:14]
+  assign io_rs1 = io_inst[19:15]; // @[IDU.scala 77:16]
+  assign io_rs2 = io_inst[24:20]; // @[IDU.scala 76:16]
+  assign io_rd = io_inst[11:7]; // @[IDU.scala 78:15]
   assign io_imm = 32'h44 == inst_type ? _imm_T_16 : _imm_T_22; // @[Mux.scala 81:58]
   assign io_ctrl_sign_reg_write = _inst_now_T_3 ? 1'h0 : _reg_write_T_4; // @[Lookup.scala 34:39]
   assign io_ctrl_sign_src2_is_imm = 32'h43 == inst_type | (32'h44 == inst_type | (32'h42 == inst_type | 32'h40 ==
     inst_type)); // @[Mux.scala 81:58]
   assign io_ctrl_sign_src1_is_pc = _inst_type_T_7 | _inst_type_T_3; // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Writemem_en = 32'h3023 == _inst_type_T; // @[Lookup.scala 31:38]
+  assign io_ctrl_sign_Wmask = _inst_type_T_11 ? 8'hff : 8'h0; // @[Lookup.scala 34:39]
 endmodule
 /* verilator lint_on UNUSED */

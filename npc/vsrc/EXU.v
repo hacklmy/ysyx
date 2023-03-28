@@ -12,6 +12,7 @@ module EXU(
   input         io_ctrl_sign_src2_is_imm,
   input         io_ctrl_sign_src1_is_pc,
   input         io_ctrl_sign_Writemem_en,
+  input  [7:0]  io_ctrl_sign_Wmask,
   output [63:0] io_res2rd
 );
 `ifdef RANDOMIZE_MEM_INIT
@@ -331,7 +332,7 @@ module EXU(
   assign Regfile_reg_trace_io_input_reg_31_MPORT_addr = 5'h1f;
   assign Regfile_reg_trace_io_input_reg_31_MPORT_data = Regfile[Regfile_reg_trace_io_input_reg_31_MPORT_addr]; // @[EXU.scala 22:22]
   assign Regfile_Mem_modle_io_Wdata_MPORT_en = 1'h1;
-  assign Regfile_Mem_modle_io_Wdata_MPORT_addr = io_rd;
+  assign Regfile_Mem_modle_io_Wdata_MPORT_addr = io_rs2;
   assign Regfile_Mem_modle_io_Wdata_MPORT_data = Regfile[Regfile_Mem_modle_io_Wdata_MPORT_addr]; // @[EXU.scala 22:22]
   assign Regfile_MPORT_data = io_ctrl_sign_reg_write ? io_res2rd : reg_value;
   assign Regfile_MPORT_addr = io_rd;
@@ -341,9 +342,9 @@ module EXU(
   assign io_res2rd = 32'h6 == io_inst_now ? _io_res2rd_T_1 : _io_res2rd_T_11; // @[Mux.scala 81:58]
   assign Mem_modle_Raddr = src1_value + src2_value; // @[EXU.scala 28:30]
   assign Mem_modle_Waddr = src1_value + src2_value; // @[EXU.scala 28:30]
-  assign Mem_modle_Wdata = Regfile_Mem_modle_io_Wdata_MPORT_data; // @[EXU.scala 51:24]
-  assign Mem_modle_Wmask = 8'h0;
-  assign Mem_modle_Write_en = io_ctrl_sign_Writemem_en; // @[EXU.scala 52:27]
+  assign Mem_modle_Wdata = io_rs2 == 5'h0 ? 64'h0 : Regfile_Mem_modle_io_Wdata_MPORT_data; // @[EXU.scala 24:12]
+  assign Mem_modle_Wmask = io_ctrl_sign_Wmask; // @[EXU.scala 52:24]
+  assign Mem_modle_Write_en = io_ctrl_sign_Writemem_en; // @[EXU.scala 53:27]
   assign reg_trace_input_reg_0 = Regfile_reg_trace_io_input_reg_0_MPORT_data; // @[EXU.scala 46:57]
   assign reg_trace_input_reg_1 = Regfile_reg_trace_io_input_reg_1_MPORT_data; // @[EXU.scala 46:57]
   assign reg_trace_input_reg_2 = Regfile_reg_trace_io_input_reg_2_MPORT_data; // @[EXU.scala 46:57]

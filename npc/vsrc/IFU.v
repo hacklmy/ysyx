@@ -1,4 +1,3 @@
-
 /* verilator lint_off UNUSED */
 module IFU(
   input  [63:0] io_pc,
