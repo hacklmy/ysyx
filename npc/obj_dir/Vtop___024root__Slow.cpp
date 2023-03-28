@@ -69,6 +69,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     QData/*63:0*/ top__DOT__exu_step__DOT___io_res2rd_T_32;
     QData/*63:0*/ top__DOT__exu_step__DOT___io_res2rd_T_48;
     QData/*63:0*/ top__DOT__exu_step__DOT___io_res2rd_T_58;
+    QData/*63:0*/ top__DOT__exu_step__DOT___io_res2rd_T_63;
     QData/*63:0*/ top__DOT__exu_step__DOT___io_res2rd_T_111;
     QData/*63:0*/ top__DOT__exu_step__DOT___io_pc_next_T_38;
     // Body
@@ -733,10 +734,6 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__exu_step__DOT__src2_value = ((IData)(vlSelf->top__DOT__idu_step_io_ctrl_sign_src2_is_imm)
                                                     ? vlSelf->top__DOT__idu_step_io_imm
                                                     : top__DOT__exu_step__DOT___src2_value_T_1);
-    vlSelf->top__DOT__exu_step__DOT__srlw_res = ((IData)(vlSelf->top__DOT__exu_step__DOT__src1_value) 
-                                                 >> 
-                                                 (0x1fU 
-                                                  & (IData)(vlSelf->top__DOT__exu_step__DOT__src2_value)));
     vlSelf->top__DOT__exu_step__DOT___mluw_res_T_2 
         = ((QData)((IData)(vlSelf->top__DOT__exu_step__DOT__src1_value)) 
            * (QData)((IData)(vlSelf->top__DOT__exu_step__DOT__src2_value)));
@@ -754,10 +751,19 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                   VL_SHIFTRS_III(32,32,5, (IData)(vlSelf->top__DOT__exu_step__DOT__src1_value), 
                                                                                 (0x1fU 
                                                                                 & (IData)(vlSelf->top__DOT__exu_step__DOT__src2_value))))));
+    vlSelf->top__DOT__exu_step__DOT__srlw_res = ((IData)(vlSelf->top__DOT__exu_step__DOT__src1_value) 
+                                                 >> 
+                                                 (0x1fU 
+                                                  & (IData)(vlSelf->top__DOT__exu_step__DOT__src2_value)));
     vlSelf->top__DOT__exu_step__DOT__sub_res = (vlSelf->top__DOT__exu_step__DOT__src1_value 
                                                 - vlSelf->top__DOT__exu_step__DOT__src2_value);
     vlSelf->top__DOT__exu_step__DOT__and_res = (vlSelf->top__DOT__exu_step__DOT__src1_value 
                                                 & vlSelf->top__DOT__exu_step__DOT__src2_value);
+    vlSelf->top__DOT__exu_step__DOT__sllw_res = (0x7fffffffffffffffULL 
+                                                 & ((QData)((IData)(vlSelf->top__DOT__exu_step__DOT__src1_value)) 
+                                                    << 
+                                                    (0x1fU 
+                                                     & (IData)(vlSelf->top__DOT__exu_step__DOT__src2_value))));
     top__DOT__exu_step__DOT___io_res2rd_T_4 = (vlSelf->top__DOT__exu_step__DOT__src1_value 
                                                < vlSelf->top__DOT__exu_step__DOT__src2_value);
     Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit(
@@ -870,13 +876,15 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                     ? 0xfU
                                                                     : 0U)))));
     }
-    vlSelf->top__DOT__exu_step__DOT__sllw_res = (0x7fffffffffffffffULL 
-                                                 & ((QData)((IData)(vlSelf->top__DOT__exu_step__DOT__src1_value)) 
-                                                    << 
-                                                    (0x1fU 
-                                                     & (IData)(vlSelf->top__DOT__exu_step__DOT__src2_value))));
     vlSelf->top__DOT__exu_step__DOT__add_res = (vlSelf->top__DOT__exu_step__DOT__src1_value 
                                                 + vlSelf->top__DOT__exu_step__DOT__src2_value);
+    top__DOT__exu_step__DOT___io_res2rd_T_63 = (((QData)((IData)(
+                                                                 ((vlSelf->top__DOT__exu_step__DOT__srlw_res 
+                                                                   >> 0x1fU)
+                                                                   ? 0xffffffffU
+                                                                   : 0U))) 
+                                                 << 0x20U) 
+                                                | (QData)((IData)(vlSelf->top__DOT__exu_step__DOT__srlw_res)));
     top__DOT__exu_step__DOT___io_res2rd_T_48 = (((QData)((IData)(
                                                                  ((1U 
                                                                    & (IData)(
@@ -1242,19 +1250,9 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                       __Vtemp59[1U])) 
                                       << 0x20U) | (QData)((IData)(
                                                                   __Vtemp59[0U]))));
-    VL_EXTEND_WQ(127,64, __Vtemp61, (((QData)((IData)(
-                                                      ((vlSelf->top__DOT__exu_step__DOT__srlw_res 
-                                                        >> 0x1fU)
-                                                        ? 0xffffffffU
-                                                        : 0U))) 
-                                      << 0x20U) | (QData)((IData)(vlSelf->top__DOT__exu_step__DOT__sllw_res))));
+    VL_EXTEND_WQ(127,64, __Vtemp61, top__DOT__exu_step__DOT___io_res2rd_T_63);
     VL_EXTEND_WQ(127,64, __Vtemp62, top__DOT__exu_step__DOT___io_res2rd_T_58);
-    VL_EXTEND_WQ(127,64, __Vtemp63, (((QData)((IData)(
-                                                      ((vlSelf->top__DOT__exu_step__DOT__srlw_res 
-                                                        >> 0x1fU)
-                                                        ? 0xffffffffU
-                                                        : 0U))) 
-                                      << 0x20U) | (QData)((IData)(vlSelf->top__DOT__exu_step__DOT__srlw_res))));
+    VL_EXTEND_WQ(127,64, __Vtemp63, top__DOT__exu_step__DOT___io_res2rd_T_63);
     VL_EXTEND_WQ(127,64, __Vtemp64, top__DOT__exu_step__DOT___io_res2rd_T_58);
     if ((0x14U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_134))) {
         vlSelf->top__DOT__exu_step__DOT___io_res2rd_T_155[0U] 
