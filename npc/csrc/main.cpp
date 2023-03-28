@@ -59,10 +59,10 @@ static inline uint32_t host_read(void *addr) {
   return *(uint64_t *)addr;
 }
 
-// static uint32_t pmem_read(paddr_t addr) {
-//   uint32_t ret = host_read(guest_to_host(addr));
-//   return ret;
-// }
+ static uint32_t paddr_read(paddr_t addr) {
+   uint32_t ret = host_read(guest_to_host(addr));
+   return ret;
+ }
 
 extern "C" void pmem_read(long long raddr, long long *rdata) {
   // 总是读取地址为`raddr & ~0x7ull`的8字节返回给`rdata`
@@ -78,7 +78,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   for (int i = 0; i < 8; i++) {
     if (wmask & 0x1) *p = (wdata & 0xff);
     wdata >>= 8;
-    mask >>= 1;
+    wmask >>= 1;
     p++;
   }
 }
@@ -140,7 +140,7 @@ static int cmd_x(char *args){
   sscanf(addr,"%lx",&paddr);
   while(gap>0){
     printf("0x%lx:\t",paddr);
-    uint32_t temp = pmem_read(paddr);
+    uint32_t temp = paddr_read(paddr);
     printf("0x%x ", temp);
     printf("\n");
     paddr+=4;
