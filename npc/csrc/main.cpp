@@ -457,6 +457,7 @@ int main(int argc, char** argv) {
     top->eval();
     top->clock = 1;
     top->eval();
+    sim_time++;
   }
   char difftest_file[] = "/home/lmy/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
   init_difftest(difftest_file,65536);
