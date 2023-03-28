@@ -18,8 +18,8 @@ void putch(char ch) {
 }
 
 void halt(int code) {
-  asm volatile("mv a0, %0;ebreak: :r(code)");
-  while (1);
+  asm volatile("li a0, 0;ebreak");
+  while (1); 
 }
 
 void _trm_init() {
