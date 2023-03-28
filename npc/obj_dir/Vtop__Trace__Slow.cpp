@@ -447,7 +447,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                  == 
                                                  (0x707fU 
                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))
-                                                 ? 0xfU
+                                                 ? 3U
                                                  : 
                                                 ((0x23U 
                                                   == 
@@ -459,7 +459,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                    == 
                                                    (0x707fU 
                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))
-                                                   ? 3U
+                                                   ? 0xfU
                                                    : 0U))))),8);
         tracep->fullQData(oldp+15,(vlSelf->top__DOT__exu_step_io_pc_next),64);
         tracep->fullQData(oldp+17,((((QData)((IData)(

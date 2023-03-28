@@ -964,7 +964,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                                   == 
                                                                   (0x707fU 
                                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))
-                                                                  ? 0xfU
+                                                                  ? 3U
                                                                   : 
                                                                  ((0x23U 
                                                                    == 
@@ -976,7 +976,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                                     == 
                                                                     (0x707fU 
                                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata)))
-                                                                    ? 3U
+                                                                    ? 0xfU
                                                                     : 0U)))));
     }
     vlSelf->top__DOT__exu_step__DOT__sllw_res = (0x7fffffffffffffffULL 
