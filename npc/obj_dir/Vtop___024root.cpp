@@ -23,17 +23,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     CData/*4:0*/ __Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0;
     QData/*63:0*/ __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0;
     // Body
-    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U," %x   %x  %1#\n",64,
-                   ((0U == (0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
-                                             >> 0x14U))))
-                     ? 0ULL : vlSelf->top__DOT__exu_step__DOT__Regfile
-                    [(0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata 
-                                       >> 0x14U)))]),
-                   64,(vlSelf->top__DOT__exu_step__DOT__src1_value 
-                       + vlSelf->top__DOT__exu_step__DOT__src2_value),
-                   1,(0x3023U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_read_Rdata))));
-    }
     vlSelf->top__DOT__pc_now = ((IData)(vlSelf->reset)
                                  ? 0x80000000ULL : vlSelf->top__DOT__exu_step_io_pc_next);
     __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0 

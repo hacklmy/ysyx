@@ -48,7 +48,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+13,"top idu_step_io_ctrl_sign_Writemem_en", false,-1);
         tracep->declBus(c+14,"top idu_step_io_ctrl_sign_Wmask", false,-1, 7,0);
         tracep->declBit(c+241,"top exu_step_clock", false,-1);
-        tracep->declBit(c+242,"top exu_step_reset", false,-1);
         tracep->declQuad(c+1,"top exu_step_io_pc", false,-1, 63,0);
         tracep->declQuad(c+15,"top exu_step_io_pc_next", false,-1, 63,0);
         tracep->declBus(c+4,"top exu_step_io_inst_now", false,-1, 31,0);
@@ -96,7 +95,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+25,"top idu_step imm_imm_3", false,-1, 11,0);
         tracep->declBus(c+26,"top idu_step inst_type", false,-1, 31,0);
         tracep->declBit(c+241,"top exu_step clock", false,-1);
-        tracep->declBit(c+242,"top exu_step reset", false,-1);
         tracep->declQuad(c+1,"top exu_step io_pc", false,-1, 63,0);
         tracep->declQuad(c+15,"top exu_step io_pc_next", false,-1, 63,0);
         tracep->declBus(c+4,"top exu_step io_inst_now", false,-1, 31,0);

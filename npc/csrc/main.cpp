@@ -79,6 +79,9 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   // `wmask`中每比特表示`wdata`中1个字节的掩码,
   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
   if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE))return;
+ // #ifdef CONFIG_MTRACE
+    printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
+  //#endif
   uint8_t* p = guest_to_host(waddr);
   for (int i = 0; i < 8; i++) {
     if (wmask & 0x1) *p = (wdata & 0xff);
@@ -86,9 +89,6 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     wmask >>= 1;
     p++;
   }
-  //#ifdef CONFIG_MTRACE
-    printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
-  //#endif
 }
 
 //==========================sdb============================
