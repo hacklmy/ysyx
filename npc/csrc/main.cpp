@@ -69,7 +69,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE))return;
   *rdata = *((long long *)guest_to_host(raddr));
   //#ifdef CONFIG_MTRACE
-    printf("read memory at %llx, value = %llx\n",raddr,rdata);
+    printf("read memory at %llx, value = %llx\n",raddr,*rdata);
   //#endif
 }
 
