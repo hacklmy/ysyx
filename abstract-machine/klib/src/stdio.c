@@ -6,7 +6,13 @@
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 int printf(const char *fmt, ...) {
-  panic("Not implemented");
+  va_list ap;
+  va_start(ap, fmt);
+  char output[65536];
+  int size = vsprintf(output, fmt, ap);
+  va_end(ap);
+  putstr(output);
+  return size;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
@@ -18,6 +24,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
     }
     int ans_int;
     char* ans_str;
+    char ans_char;
     switch (*(fmt+1))
     {
       case 's':
@@ -37,6 +44,10 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
         while(--array_len>=0){
           out[num++] = num_array[array_len] + '0';
         }
+        break;
+      case 'c':
+        ans_char = va_arg(ap, int);
+        out[num++] = ans_char;
         break;
       default:
         break;
