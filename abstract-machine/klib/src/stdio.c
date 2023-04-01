@@ -4,87 +4,80 @@
 #include <stdarg.h>
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
-int vprintf(const char *fmt, va_list ap)
-{
-  char out[4096];
-  int cnt = vsprintf(out, fmt, ap);
-  putstr(out);
-  return cnt;
-}
-int printf(const char *fmt, ...)
-{
-  va_list args;
-  va_start(args, fmt);
-  int siz = vprintf(fmt, args);
-  va_end(args);
-  return siz;
+
+int printf(const char *fmt, ...) {
+  va_list ap;
+  va_start(ap, fmt);
+  char output[65536];
+  int size = vsprintf(output, fmt, ap);
+  va_end(ap);
+  putstr(output);
+  return size;
 }
 
-int vsprintf(char *out, const char *fmt, va_list ap)
-{
-  int cnt = 0;
-  for (int i = 0; fmt[i]; i++)
-  {
-    if (fmt[i] != '%')
-    {
-      out[cnt++] = fmt[i];
+int vsprintf(char *out, const char *fmt, va_list ap) {
+  int num = 0;
+  while(*fmt!='\0'){
+    if(*fmt!='%'){
+      out[num++] = *fmt++;
       continue;
     }
-    int num = 0, num_b_cnt = 0;
-    int num_b[20] = {0};
-    char *str = NULL;
-    char chr;
-    switch (fmt[i + 1])
+    int ans_int;
+    char* ans_str;
+    char ans_char;
+    switch (*(fmt+1))
     {
-    case 'd':
-      num_b_cnt = 0;
-      num = va_arg(ap, int);
-      if (num == 0)
-        num_b[++num_b_cnt] = 0;
-      else if (num < 0)
-        out[cnt++] = '-', num = -num;
-      while (num != 0)
-      {
-        num_b[++num_b_cnt] = num % 10;
-        num /= 10;
-      }
-      for (int i = num_b_cnt; i >= 1; i--)
-        out[cnt++] = (char)(num_b[i] + '0');
-      break;
-    case 's':
-      str = va_arg(ap, char *);
-      for (int i = 0; str[i]; i++)
-        out[cnt++] = str[i];
-      break;
-    case 'c':
-      chr = va_arg(ap, int);
-      out[cnt++] = chr;
-      break;
-    default:
-      break;
+      case 's':
+        ans_str = va_arg(ap, char*);
+        while(*ans_str!='\0'){
+          out[num++] = *ans_str++;
+        }
+        break;
+      case 'd':
+        ans_int = va_arg(ap, int);
+        int num_array[16];
+        int array_len = 0;
+        if(ans_int<0){
+          out[num++] = '-';
+          num = -num;
+        }
+        else if(ans_int==0){
+          num_array[array_len++] = 0;
+        }
+        while(ans_int){
+          num_array[array_len++] = ans_int%10;
+          ans_int/=10;
+        }
+        while(--array_len>=0){
+          out[num++] = num_array[array_len] + '0';
+        }
+        break;
+      case 'c':
+        ans_char = va_arg(ap, int);
+        out[num++] = ans_char;
+        break;
+      default:
+        break;
     }
-    i++;
+    fmt+=2;
   }
-  out[cnt++] = '\0';
-  return cnt;
+  out[num] = '\0';
+  return num;
 }
 
-int sprintf(char *out, const char *fmt, ...)
-{
-  va_list args;
-  va_start(args, fmt);
-  int siz = vsprintf(out, fmt, args);
-  va_end(args);
-  return siz;
+int sprintf(char *out, const char *fmt, ...) {
+  va_list ap;
+  va_start(ap, fmt);
+  int num = vsprintf(out, fmt, ap);
+  va_end(ap);
+  return num;
 }
 
-int snprintf(char *out, size_t n, const char *fmt, ...)
-{
+int snprintf(char *out, size_t n, const char *fmt, ...) {
   panic("Not implemented");
 }
 
-int vsnprintf(char *out, size_t n, const char *fmt, va_list ap)
-{
+int vsnprintf(char *out, size_t n, const char *fmt, va_list ap) {
   panic("Not implemented");
 }
 
