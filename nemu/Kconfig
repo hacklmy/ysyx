@@ -154,6 +154,11 @@ config MTRACE
   bool "memory access trace"
   default n
 
+  config DTRACE
+  depends on TRACE
+  bool "device trace"
+  default n
+
 config FTRACE
   depends on TRACE
   bool "Enable func trace"
