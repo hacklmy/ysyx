@@ -7,7 +7,7 @@
 
 int vprintf(const char *fmt, va_list ap)
 {
-  char out[65536];
+  char out[1000];
   int size = vsprintf(out, fmt, ap);
   putstr(out);
   return size;
