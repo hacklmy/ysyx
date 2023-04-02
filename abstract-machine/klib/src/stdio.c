@@ -5,19 +5,13 @@
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
-int vprintf(const char *fmt, va_list ap)
-{
-  char out[1000];
-  int size = vsprintf(out, fmt, ap);
-  putstr(out);
-  return size;
-}
-
 int printf(const char *fmt, ...) {
   va_list ap;
   va_start(ap, fmt);
-  int size = vprintf(fmt, ap);
+  char output[1000];
+  int size = vsprintf(output, fmt, ap);
   va_end(ap);
+  putstr(output);
   return size;
 }
 
