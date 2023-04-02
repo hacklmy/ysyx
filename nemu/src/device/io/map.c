@@ -71,6 +71,6 @@ void map_write(paddr_t addr, int len, word_t data, IOMap *map) {
   host_write(map->space + offset, len, data);
   invoke_callback(map->callback, offset, len, true);
   #ifdef CONFIG_DTRACE
- // printf("write device at addr: %x  len: %02d name: %s write_value: %lx\n", addr, len, map->name, data);
+  printf("write device at addr: %x  len: %02d name: %s write_value: %lx\n", addr, len, map->name, data);
   #endif
 }
