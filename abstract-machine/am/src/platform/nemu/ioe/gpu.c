@@ -1,33 +1,35 @@
 #include <am.h>
 #include <nemu.h>
+#include <stdio.h>
 
 #define SYNC_ADDR (VGACTL_ADDR + 4)
-
+int width, height;
 void __am_gpu_init() {
   int i;
-  int w = inw(VGACTL_ADDR + 2);  // TODO: get the correct width
-  int h = inw(VGACTL_ADDR);  // TODO: get the correct height
+  uint32_t vga_ctl = inl(VGACTL_ADDR);
+  width= (vga_ctl>>16);  // TODO: get the correct width
+  height = (vga_ctl)&((1<<16)-1);  // TODO: get the correct height
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
-  for (i = 0; i < w * h; i ++) fb[i] = i;
+  for (i = 0; i < width * height; i ++) fb[i] = i;
   outl(SYNC_ADDR, 1);
 }
 
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
-  int w = inw(VGACTL_ADDR + 2);
-  int h = inw(VGACTL_ADDR);
   *cfg = (AM_GPU_CONFIG_T) {
     .present = true, .has_accel = false,
-    .width = w, .height = h,
-    .vmemsz = w*h*sizeof(uint32_t)
+    .width = width, .height = height,
+    .vmemsz = 0
   };
 }
 
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
-  int w = inw(VGACTL_ADDR + 2);
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
+  int cnt=0;
   for(int j = 0; j < ctl->h ; j ++){
     for (int i = 0; i < ctl->w; i ++){
-      fb[(ctl->y+j)*w + ctl->x+i] = ((uint32_t*)ctl->pixels)[ctl->w*j+i];
+      int p = ctl->y + j;
+      int q = ctl->x + i;
+      fb[p * width + q] = ((uint32_t*)ctl->pixels)[++cnt];
     }
   }
   if (ctl->sync) {
