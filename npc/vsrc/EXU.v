@@ -1,5 +1,4 @@
 /* verilator lint_off UNUSED */
-/* verilator lint_off WIDTH */
 module EXU(
   input         clock,
   input  [63:0] io_pc,
@@ -649,5 +648,4 @@ end // initial
 `endif
 `endif // SYNTHESIS
 endmodule
-/* verilator lint_on WIDTH */
 /* verilator lint_on UNUSED */
