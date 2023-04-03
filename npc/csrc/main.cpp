@@ -440,10 +440,6 @@ FILE* log_file = fopen("/home/lmy/ysyx-workbench/npc/npc-log.txt","w+");
 void cpu_exec(int n){
   if(n<0)n=100000000;
   while (!cpu_stop && n--) {
-      time_t tmpcal_ptr;
-    tmpcal_ptr = time(NULL);
-    //*rdata = tmpcal_ptr;
-    printf("%ld\n",tmpcal_ptr);
       top->reset = 0;
       //top->io_inst = pmem_read(top->io_pc);
       //printf("%lx %x\n",pc_now , top->io_inst);
