@@ -217,7 +217,7 @@ module EXU(
   wire [63:0] src1_value = io_ctrl_sign_src1_is_pc ? io_pc : _src1_value_T_1; // @[EXU.scala 28:25]
   wire [63:0] _src2_value_T_1 = io_rs2 == 5'h0 ? 64'h0 : Regfile_src2_value_MPORT_data; // @[EXU.scala 25:12]
   wire [63:0] src2_value = io_ctrl_sign_src2_is_imm ? io_imm : _src2_value_T_1; // @[EXU.scala 29:25]
-  wire [63:0] add_res = src1_value + src2_value + 1; // @[EXU.scala 30:30]
+  wire [63:0] add_res = src1_value + src2_value; // @[EXU.scala 30:30]
   wire [63:0] sub_res = src1_value - src2_value; // @[EXU.scala 31:30]
   wire [63:0] _sra_res_T = io_ctrl_sign_src1_is_pc ? io_pc : _src1_value_T_1; // @[EXU.scala 32:37]
   wire [63:0] sra_res = $signed(_sra_res_T) >>> src2_value[5:0]; // @[EXU.scala 32:60]
