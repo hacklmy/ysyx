@@ -9,6 +9,19 @@
 #include <verilated_dpi.h>
 #include <verilated_vcd_c.h>
 #include <dlfcn.h>
+#include <time.h>
+
+# define DEVICE_BASE 0xa0000000
+#define MMIO_BASE 0xa0000000
+
+#define SERIAL_PORT     (DEVICE_BASE + 0x00003f8)
+#define KBD_ADDR        (DEVICE_BASE + 0x0000060)
+#define RTC_ADDR        (DEVICE_BASE + 0x0000048)
+#define VGACTL_ADDR     (DEVICE_BASE + 0x0000100)
+#define AUDIO_ADDR      (DEVICE_BASE + 0x0000200)
+#define DISK_ADDR       (DEVICE_BASE + 0x0000300)
+#define FB_ADDR         (MMIO_BASE   + 0x1000000)
+#define AUDIO_SBUF_ADDR (MMIO_BASE   + 0x1200000)
 
 #define CONFIG_ITRACE 0
 //#define CONFIG_FTRACE 0
@@ -68,6 +81,12 @@ static inline uint32_t host_read(void *addr) {
 
 extern "C" void pmem_read(long long raddr, long long *rdata) {
   // 总是读取地址为`raddr & ~0x7ull`的8字节返回给`rdata`
+  if(raddr==RTC_ADDR){
+    time_t tmpcal_ptr;
+    tmpcal_ptr = time(NULL);
+    *rdata = tmpcal_ptr;
+    return;
+  }
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE))return;
   *rdata = *((long long *)guest_to_host(raddr));
   #ifdef CONFIG_MTRACE
@@ -80,6 +99,14 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   // 总是往地址为`waddr & ~0x7ull`的8字节按写掩码`wmask`写入`wdata`
   // `wmask`中每比特表示`wdata`中1个字节的掩码,
   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
+  if(waddr==SERIAL_PORT){
+    for (int i = 0; i < 8; i++) {
+      if (wmask & 0x1) putchar(wdata&0xf);
+      wdata >>= 8;
+      wmask >>= 1;
+    }
+    return;
+  }
   if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE))return;
   #ifdef CONFIG_MTRACE
     printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
