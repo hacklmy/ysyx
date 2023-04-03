@@ -89,8 +89,8 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     return;
   }
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE)){
-    if(raddr!=0){
-      printf("read out of bound at %llx\n", raddr);
+    if(raddr>DEVICE_BASE){
+      printf("read device at %llx\n", raddr);
       //exit(0);
     }
     return;
@@ -116,8 +116,8 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     return;
   }
   if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE)){
-    if(waddr!=0){
-      printf("write out of bound at %llx\n", waddr);
+    if(waddr>DEVICE_BASE){
+      printf("write device at %llx\n", waddr);
       //exit(0);
     }
     return;
