@@ -1090,9 +1090,8 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                     ? 0xfU
                                                                     : 0U)))));
     }
-    vlSelf->top__DOT__exu_step__DOT__add_res = (1ULL 
-                                                + (vlSelf->top__DOT__exu_step__DOT__src1_value 
-                                                   + vlSelf->top__DOT__exu_step__DOT__src2_value));
+    vlSelf->top__DOT__exu_step__DOT__add_res = (vlSelf->top__DOT__exu_step__DOT__src1_value 
+                                                + vlSelf->top__DOT__exu_step__DOT__src2_value);
     top__DOT__exu_step__DOT___io_res2rd_T_74 = (((QData)((IData)(
                                                                  ((vlSelf->top__DOT__exu_step__DOT__srlw_res 
                                                                    >> 0x1fU)
