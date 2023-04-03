@@ -25,7 +25,7 @@
 
 #define CONFIG_ITRACE 0
 //#define CONFIG_FTRACE 0
-//#define CONFIG_DIFFTEST
+#define CONFIG_DIFFTEST
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return);
 void init_elf(char *elf_file);
