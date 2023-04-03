@@ -20,7 +20,9 @@ copy_top:
 	sed -n '/module IDU/,/endmodule/p' vsrc/output/top.v >> vsrc/IDU.v
 	echo "/* verilator lint_on UNUSED */" >> vsrc/IDU.v
 	echo "/* verilator lint_off UNUSED */" > vsrc/EXU.v
+	echo "/* verilator lint_off WIDTH */" >> vsrc/EXU.v
 	sed -n '/module EXU/,/endmodule/p' vsrc/output/top.v >> vsrc/EXU.v
+	echo "/* verilator lint_on WIDTH */" >> vsrc/EXU.v
 	echo "/* verilator lint_on UNUSED */" >> vsrc/EXU.v
 
 include ../Makefile
