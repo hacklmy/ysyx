@@ -427,7 +427,7 @@ void cpu_exec(int n){
   while (!cpu_stop && n--) {
       top->reset = 0;
       //top->io_inst = pmem_read(top->io_pc);
-      printf("%lx %x\n",pc_now , top->io_inst);
+      //printf("%lx %x\n",pc_now , top->io_inst);
       top->clock ^= 1;
       top->eval();
       top->clock ^= 1;
