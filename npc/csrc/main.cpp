@@ -86,7 +86,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     time_t tmpcal_ptr;
     tmpcal_ptr = time(NULL);
     *rdata = tmpcal_ptr;
-    printf("%d\n",tmpcal_ptr);
+    printf("%ld\n",tmpcal_ptr);
     return;
   }
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE)){
