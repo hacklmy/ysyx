@@ -88,7 +88,13 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     *rdata = tmpcal_ptr;
     return;
   }
-  if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE))return;
+  if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE)){
+    if(raddr!=0){
+      printf("out of bound at %lx\n", raddr);
+      exit(0);
+    }
+    return;
+  }
   *rdata = *((long long *)guest_to_host(raddr));
   #ifdef CONFIG_MTRACE
     printf("read memory at %llx, value = %llx\n",raddr,*rdata);
@@ -109,7 +115,13 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     }
     return;
   }
-  if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE))return;
+  if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE)){
+    if(waddr!=0){
+      printf("out of bound at %lx\n", waddr);
+      exit(0);
+    }
+    return;
+  }
   #ifdef CONFIG_MTRACE
     printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
   #endif
