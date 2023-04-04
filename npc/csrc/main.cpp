@@ -493,9 +493,11 @@ int main(int argc, char** argv) {
     top->eval();
     sim_time++;
   }
+  #ifdef CONFIG_DIFFTEST
   char difftest_file[] = "/home/lmy/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
   printf("so succuss\n");
   init_difftest(difftest_file,CONFIG_MSIZE);
+  #endif
   while(sdb_mainloop() && !cpu_stop);
   if(stop_status==0)printf("\33[1;32mHIT GOOD TRAP\n\33[0m");
   else printf("\33[1;31mHIT BAD TRAP\n\33[0m");
