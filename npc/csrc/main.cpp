@@ -90,10 +90,6 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     return;
   }
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE)){
-    if(raddr>DEVICE_BASE){
-      printf("read device at %llx\n", raddr);
-      //exit(0);
-    }
     return;
   }
   *rdata = *((long long *)guest_to_host(raddr));
@@ -108,14 +104,10 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   // `wmask`中每比特表示`wdata`中1个字节的掩码,
   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
   if(waddr==SERIAL_PORT){
-    printf("c", wdata&0xff);
+    printf("%c", wdata&0xff);
     return ;
   }
   if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE)){
-    if(waddr>DEVICE_BASE){
-      printf("write device at %llx\n", waddr);
-      //exit(0);
-    }
     return;
   }
   #ifdef CONFIG_MTRACE
