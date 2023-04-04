@@ -479,8 +479,10 @@ int main(int argc, char** argv) {
   top->trace(tfp, 0);
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
   load_img();
+  printf("image succuss\n");
   init_disasm("riscv64");
   char elf_file[] = "/home/lmy/ysyx-workbench/npc/image.elf";
+  printf("elf succuss\n");
   init_elf(elf_file);
   while (sim_time<3)
   {
@@ -492,6 +494,7 @@ int main(int argc, char** argv) {
     sim_time++;
   }
   char difftest_file[] = "/home/lmy/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
+  printf("so succuss\n");
   init_difftest(difftest_file,CONFIG_MSIZE);
   while(sdb_mainloop() && !cpu_stop);
   if(stop_status==0)printf("\33[1;32mHIT GOOD TRAP\n\33[0m");
