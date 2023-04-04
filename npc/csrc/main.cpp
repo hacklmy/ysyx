@@ -78,15 +78,18 @@ static inline uint32_t host_read(void *addr) {
    uint32_t ret = host_read(guest_to_host(addr));
    return ret;
  }
-
+time_t boot_time = 0;
 extern "C" void pmem_read(long long raddr, long long *rdata) {
   // 总是读取地址为`raddr & ~0x7ull`的8字节返回给`rdata`
   if(raddr==RTC_ADDR){
-    printf("read rtl\n");
+    if(boot_time==0){
+      boot_time = time(NULL);
+      *rdata = 0;
+      return;
+    }
     time_t tmpcal_ptr;
     tmpcal_ptr = time(NULL);
-    *rdata = tmpcal_ptr;
-    printf("%ld\n",tmpcal_ptr);
+    *rdata = tmpcal_ptr - boot_time;
     return;
   }
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE)){
@@ -104,7 +107,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   // `wmask`中每比特表示`wdata`中1个字节的掩码,
   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
   if(waddr==SERIAL_PORT){
-    printf("%c", wdata&0xff);
+    printf("%c", (char)wdata&0xff);
     return ;
   }
   if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE)){
