@@ -482,8 +482,8 @@ int main(int argc, char** argv) {
   printf("image succuss\n");
   init_disasm("riscv64");
   char elf_file[] = "/home/lmy/ysyx-workbench/npc/image.elf";
-  printf("elf succuss\n");
   init_elf(elf_file);
+  printf("elf succuss\n");
   while (sim_time<3)
   {
     top->reset = 1;
