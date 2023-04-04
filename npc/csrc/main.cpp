@@ -481,9 +481,11 @@ int main(int argc, char** argv) {
   load_img();
   printf("image succuss\n");
   init_disasm("riscv64");
+  #ifdef CONFIG_FTRACE
   char elf_file[] = "/home/lmy/ysyx-workbench/npc/image.elf";
   init_elf(elf_file);
   printf("elf succuss\n");
+  #endif
   while (sim_time<3)
   {
     top->reset = 1;
