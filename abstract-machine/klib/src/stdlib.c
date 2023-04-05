@@ -28,27 +28,32 @@ int atoi(const char* nptr) {
   }
   return x;
 }
-
-char* addr_malloc;
-static int first = 0;
-
+//char *hbrk = NULL;
+uint64_t addr = 0;
 void *malloc(size_t size) {
   // On native, malloc() will be called during initializaion of C runtime.
   // Therefore do not call panic() here, else it will yield a dead recursion:
   //   panic() -> putchar() -> (glibc) -> malloc() -> panic()
-  size = (size_t)ROUNDUP(size, 8);
-  char * ret = (first == 0)? 
-  (void*) ROUNDUP(heap.start, 8) : addr_malloc;
-  first = 1;
-  addr_malloc = ret + size;
-  for(uint64_t* p = (uint64_t*) ret; p != (uint64_t*) addr_malloc; p++) {
-    *p = 0; // init
-  }
-  return ret;
 #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
-  panic("Not implemented");
 #endif
-  return NULL;
+  // if(hbrk == NULL){
+  //   hbrk = (void *)ROUNDUP(heap.start, 8);
+  // }
+  // size  = (size_t)ROUNDUP(size, 8);
+  // char *old = hbrk;
+  // hbrk += size;
+  // assert((uintptr_t)heap.start <= (uintptr_t)hbrk && (uintptr_t)hbrk < (uintptr_t)heap.end);
+  // for (uint64_t *p = (uint64_t *)old; p != (uint64_t *)hbrk; p ++) {
+  //   *p = 0;
+  // }
+  // return old;
+  if (size == 0) return NULL;
+  if (addr == 0) {
+    addr = (uint64_t)heap .start;
+  }
+    void * ret = (void *)addr;
+    addr += size;
+    return ret;
 }
 
 void free(void *ptr) {
