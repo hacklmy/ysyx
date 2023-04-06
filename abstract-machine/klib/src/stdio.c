@@ -35,7 +35,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
         break;
       case 'd':
         ans_int = va_arg(ap, int);
-        int num_array[16];
+        int num_array[50];
         int array_len = 0;
         if(ans_int<0){
           out[num++] = '-';
