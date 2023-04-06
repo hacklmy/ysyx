@@ -28,13 +28,13 @@ char *strncpy(char *dst, const char *src, size_t n) {
 	char* res = dst;
 	size_t i;
   	for(i = 0;i< n && *src != '0';i++){
-		*dst++ = *src++;
+		*res++ = *src++;
   	}
   	for(;i < n;i++){
-		*dst++ = '\0';
+		*res++ = '\0';
   	}
-	*dst = '\0';
-  	return res;
+	*res = '\0';
+  	return dst;
 }
 
 char *strcat(char *dst, const char *src) {
@@ -70,7 +70,7 @@ int strncmp(const char *s1, const char *s2, size_t n) {
 
 void *memset(void *s, int c, size_t n) {
   char *res = (char *)s;
-  for(int i = n;i > 0 && *res!='\0';i--){
+  for(int i = n;i > 0;i--){
     *res++ = c;
   }
   return s;
@@ -92,8 +92,9 @@ void *memmove(void *dst, const void *src, size_t n) {
 }
 
 void *memcpy(void *out, const void *in, size_t n) {
+  if(out==NULL || in==NULL)return NULL;
   char *res = (char *)out;
-  for(int i = n;i > 0 && *(char*)in != '\0';i--){
+  for(int i = n;i > 0;i--){
     *res = *(char*)in;
     res++;
     in++;

@@ -24,23 +24,50 @@ VL_MODULE(Vtop___024root) {
     // PORTS
     VL_IN8(clock,0,0);
     VL_IN8(reset,0,0);
-    VL_IN(io_inst,31,0);
+    VL_OUT(io_inst,31,0);
     VL_OUT64(io_pc,63,0);
+    VL_OUT64(io_pc_next,63,0);
     VL_OUT64(io_outval,63,0);
 
     // LOCAL SIGNALS
-    CData/*4:0*/ top__DOT__idu_step_io_src1;
-    CData/*4:0*/ top__DOT__idu_step_io_rd;
-    SData/*11:0*/ top__DOT__idu_step__DOT__imm_I;
-    QData/*63:0*/ top__DOT__exu_step_io_res2rd;
+    CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_src2_is_imm;
+    CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_src1_is_pc;
+    CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_176;
+    CData/*5:0*/ top__DOT__idu_step__DOT___inst_now_T_179;
+    CData/*0:0*/ top__DOT__exu_step__DOT___T_1;
+    VlWide<4>/*126:0*/ top__DOT__exu_step__DOT__sll_res;
+    IData/*31:0*/ top__DOT__exu_step__DOT__srlw_res;
+    IData/*31:0*/ top__DOT__exu_step__DOT__divuw_res;
+    IData/*31:0*/ top__DOT__exu_step__DOT__remw_res;
+    IData/*31:0*/ top__DOT__exu_step__DOT__remuw_res;
+    VlWide<4>/*126:0*/ top__DOT__exu_step__DOT___io_res2rd_T_202;
+    QData/*63:0*/ top__DOT__idu_step_io_imm;
+    QData/*63:0*/ top__DOT__exu_step_io_pc_next;
     QData/*63:0*/ top__DOT__pc_now;
-    QData/*63:0*/ top__DOT___pc_now_T_1;
+    QData/*63:0*/ top__DOT__ifu_step__DOT__inst_read_Rdata;
+    QData/*63:0*/ top__DOT__exu_step__DOT__Mem_modle_Rdata;
     QData/*63:0*/ top__DOT__exu_step__DOT__Regfile_MPORT_data;
+    QData/*63:0*/ top__DOT__exu_step__DOT__cmp;
+    QData/*63:0*/ top__DOT__exu_step__DOT__src1_value;
+    QData/*63:0*/ top__DOT__exu_step__DOT__src2_value;
+    QData/*63:0*/ top__DOT__exu_step__DOT__add_res;
+    QData/*63:0*/ top__DOT__exu_step__DOT__sub_res;
+    QData/*63:0*/ top__DOT__exu_step__DOT__sra_res;
+    QData/*63:0*/ top__DOT__exu_step__DOT__srl_res;
+    QData/*62:0*/ top__DOT__exu_step__DOT__sllw_res;
+    QData/*63:0*/ top__DOT__exu_step__DOT__or_res;
+    QData/*63:0*/ top__DOT__exu_step__DOT__xor_res;
+    QData/*63:0*/ top__DOT__exu_step__DOT__and_res;
+    QData/*63:0*/ top__DOT__exu_step__DOT___mluw_res_T_2;
+    QData/*32:0*/ top__DOT__exu_step__DOT___divw_res_T_4;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__Regfile;
+    VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__reg_trace__DOT__traceregs;
 
     // LOCAL VARIABLES
     CData/*0:0*/ __Vclklast__TOP__clock;
-    VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
+    QData/*63:0*/ __Vtask_pmem_read__0__Rdata;
+    QData/*63:0*/ __Vtask_pmem_read__1__Rdata;
+    VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
 
     // INTERNAL VARIABLES
     Vtop__Syms* vlSymsp;  // Symbol table
