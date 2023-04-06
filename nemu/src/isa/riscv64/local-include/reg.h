@@ -29,5 +29,27 @@ static inline const char* reg_name(int idx, int width) {
   extern const char* regs[];
   return regs[check_reg_idx(idx)];
 }
-#define csr(idx) (cpu.csr[idx])
+
+static inline int check_csr_idx(uint32_t idx) {
+  IFDEF(CONFIG_RT_CHECK, assert(idx >= 0 && idx < 32));
+  switch (idx)
+  {
+  case 0x305:
+    return 0;
+    break;
+  case 0x341:
+    return 1;
+    break;
+  case 0x300:
+    return 2;
+    break;
+  case 0x342:
+    return 3;
+    break;
+  default:
+    assert(0);
+    break;
+  }
+}
+#define csr(idx) (cpu.csr[check_csr_idx(idx)])
 #endif
