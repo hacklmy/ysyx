@@ -26,6 +26,7 @@
 //#define CONFIG_ITRACE 0
 //#define CONFIG_FTRACE 0
 //#define CONFIG_DIFFTEST
+//#define VerilatedVCD
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return);
 void init_elf(char *elf_file);
@@ -41,7 +42,9 @@ int stop_status = 0;
 vluint64_t sim_time = 0;
 int cpu_stop = 0;
 Vtop* top;
+#ifdef VerilatedVCD
 VerilatedVcdC* tfp;
+#endif
 VerilatedContext* contextp;
 uint64_t pc_now;
 
@@ -462,8 +465,9 @@ void cpu_exec(int n){
 #ifdef CONFIG_DIFFTEST
     difftest_step(pc_now);
 #endif
-    
+    #ifdef VerilatedVCD
     tfp->dump(contextp->time()); //dump wave
+    #endif
     sim_time++;
   }
 }
@@ -473,11 +477,12 @@ int main(int argc, char** argv) {
   contextp = new VerilatedContext;
   contextp->commandArgs(argc, argv);
   top = new Vtop{contextp};
-  
+  #ifdef VerilatedVCD
   tfp = new VerilatedVcdC; //初始化VCD对象指针
   contextp->traceEverOn(true); //打开追踪功能
   top->trace(tfp, 0);
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
+  #endif
   load_img();
   printf("image succuss\n");
   #ifdef CONFIG_ITRACE
@@ -506,7 +511,9 @@ int main(int argc, char** argv) {
   if(stop_status==0)printf("\33[1;32mHIT GOOD TRAP\n\33[0m");
   else printf("\33[1;31mHIT BAD TRAP\n\33[0m");
   delete top;
+  #ifdef VerilatedVCD
   tfp->close();
+  #endif
   delete contextp;
   #ifdef CONFIG_FTRACE
   print_func(); 
