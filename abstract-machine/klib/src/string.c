@@ -4,64 +4,68 @@
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
-size_t strlen(const char *s)
-{
+size_t strlen(const char *s) {
   size_t len = 0;
-  while (s[len])
+  while(*s!='\0'){
     len++;
+    s++;
+  }
   return len;
 }
 
-char *strcpy(char *dst, const char *src)
-{
-  for (int i = 0; src[i]; i++)
-    dst[i] = src[i];
-  dst[strlen(src)] = '\0';
-  return dst;
-}
-
-char *strncpy(char *dst, const char *src, size_t n)
-{
-  for (int i = 0; i < n; i++)
-    dst[i] = src[i];
-  return dst;
-}
-
-char *strcat(char *dst, const char *src)
-{
-  size_t dst_len = strlen(dst);
-  for (int i = 0; src[i]; i++)
-    dst[dst_len + i] = src[i];
-  return dst;
-}
-
-int strcmp(const char *s1, const char *s2)
-{
-  int i = 0;
-  for (i = 0; s1[i] && s2[i]; i++)
-  {
-    if (s1[i] < s2[i])
-      return -1;
-    else if (s1[i] > s2[i])
-      return 1;
+char *strcpy(char *dst, const char *src) {
+  char *res = dst;
+  while(*src != '\0'){
+    *res = *src;
+    res++;
+    src++;
   }
-  if (!s1[i] && s2[i])
-    return -1;
-  if (s1[i] && !s2[i])
-    return 1;
-  return 0;
+  *res = '\0';
+  return dst;
 }
 
-int strncmp(const char *s1, const char *s2, size_t n)
-{
-  for (int i = 0; i < n; i++)
-  {
-    if (s1[i] > s2[i])
-      return 1;
-    else if (s1[i] < s2[i])
-      return -1;
+char *strncpy(char *dst, const char *src, size_t n) {
+	char* res = dst;
+	size_t i;
+  	for(i = 0;i< n && *src != '0';i++){
+		*res++ = *src++;
+  	}
+  	for(;i < n;i++){
+		*res++ = '\0';
+  	}
+	*res = '\0';
+  	return dst;
+}
+
+char *strcat(char *dst, const char *src) {
+  char *res = dst;
+  res += strlen(dst);
+  while((*res++ = *src++) != '\0');
+  return dst;
+}
+
+int strcmp(const char *s1, const char *s2) {
+  while(*s1 == *s2){
+    if(*s1 == '\0'){
+      return 0;
+    }
+    s1++;
+    s2++;
   }
-  return 0;
+  return *s1 - *s2;
+}
+
+int strncmp(const char *s1, const char *s2, size_t n) {
+	size_t i = n;
+  	while(*s1 == *s2 && i>0){
+    	if(*s1 == '\0'){
+      		return 0;
+		}
+    	s1++;
+    	s2++;
+		i--;
+  	}
+	return *s1 - *s2;
 }
 
 void *memset(void *s, int c, size_t n)
