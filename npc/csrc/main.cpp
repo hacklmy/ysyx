@@ -23,7 +23,7 @@
 #define FB_ADDR         (MMIO_BASE   + 0x1000000)
 #define AUDIO_SBUF_ADDR (MMIO_BASE   + 0x1200000)
 
-#define CONFIG_ITRACE 0
+//#define CONFIG_ITRACE 0
 //#define CONFIG_FTRACE 0
 //#define CONFIG_DIFFTEST
 
@@ -480,7 +480,9 @@ int main(int argc, char** argv) {
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
   load_img();
   printf("image succuss\n");
+  #ifdef CONFIG_ITRACE
   init_disasm("riscv64");
+  #endif
   #ifdef CONFIG_FTRACE
   char elf_file[] = "/home/lmy/ysyx-workbench/npc/image.elf";
   init_elf(elf_file);
