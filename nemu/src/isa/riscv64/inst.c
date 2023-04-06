@@ -135,7 +135,7 @@ static int decode_exec(Decode *s) {
 
   INSTPAT("??????? ????? ????? 001 ????? 11100 11", csrrw , I, uint64_t tmp = CSR(BITS(s->isa.inst.val,31,20)); CSR(BITS(s->isa.inst.val,31,20)) = src1; R(dest) = dest==0 ? R(dest) : tmp);
   INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrs , I, uint64_t tmp = CSR(BITS(s->isa.inst.val,31,20)); CSR(BITS(s->isa.inst.val,31,20)) = src1 | CSR(BITS(s->isa.inst.val,31,20)); R(dest) = tmp);
-  INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall   , I, s->dnpc = isa_raise_intr(0x1, s->pc));
+  INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall   , I, s->dnpc = isa_raise_intr(0xb, s->pc));
   INSTPAT("0000000 00001 00000 000 00000 11100 11", ebreak , N, NEMUTRAP(s->pc, R(10))); // R(10) is $a0
   INSTPAT("??????? ????? ????? ??? ????? ????? ??", inv    , N, INV(s->pc));
   
