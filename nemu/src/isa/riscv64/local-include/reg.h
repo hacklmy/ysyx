@@ -31,7 +31,6 @@ static inline const char* reg_name(int idx, int width) {
 }
 
 static inline int check_csr_idx(uint32_t idx) {
-  IFDEF(CONFIG_RT_CHECK, assert(idx >= 0 && idx < 32));
   switch (idx)
   {
   case 0x305:
