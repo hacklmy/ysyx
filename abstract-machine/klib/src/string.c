@@ -91,23 +91,31 @@ void *memmove(void *dst, const void *src, size_t n) {
 	return dst;
 }
 
-void *memcpy(void *out, const void *in, size_t n) {
-  if(out==NULL || in==NULL)return NULL;
-  char *res = (char *)out;
-  for(int i = n;i > 0 && *(char*)in != '\0';i--){
-    *res = *(char*)in;
-    res++;
-    in++;
-  }
+void *memcpy(void *out, const void *in, size_t n)
+{
+  if (out == NULL || n < 0 || in == NULL)
+    return NULL;
+
+  char *str_out = out;
+  const char *str_in = in;
+  for (int i = 0; i < n; i++)
+    str_out[i] = str_in[i];
   return out;
 }
 
-int memcmp(const void *s1, const void *s2, size_t n) {
-  int cmp_ans;
-  while (n--)
+int memcmp(const void *s1, const void *s2, size_t n)
+{
+  if (s1 == NULL || n < 0 || s2 == NULL)
+    return -1;
+  const char *str_s1 = s1;
+  const char *str_s2 = s2;
+
+  for (int i = 0; i < n; i++)
   {
-	cmp_ans = *(char*)s1++ - *(char*)s2++;
-	if(cmp_ans!=0)return cmp_ans;
+    if (str_s1[i] > str_s2[i])
+      return 1;
+    else if (str_s1[i] < str_s2[i])
+      return -1;
   }
   return 0;
 }
