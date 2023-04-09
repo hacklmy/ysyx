@@ -68,13 +68,13 @@ int _write(int fd, void *buf, size_t count) {
 extern char _end;
 intptr_t program_brk = (intptr_t)&_end;
 void *_sbrk(intptr_t increment) {
+  char buf[100];
+  sprintf(buf,"malloc\n");
+  _syscall_(SYS_write, 1, (intptr_t)buf, 7);
   intptr_t old = program_brk;
   intptr_t new = program_brk + increment;
   int ret = _syscall_(SYS_brk, increment,0, 0);
   assert(ret==-1);
-  char buf[100];
-  sprintf(buf,"malloc\n");
-  _syscall_(SYS_write, 1, (intptr_t)buf, 7);
   program_brk = new;
   return old;
 }
