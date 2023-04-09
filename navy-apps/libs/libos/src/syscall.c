@@ -68,20 +68,12 @@ int _write(int fd, void *buf, size_t count) {
 extern char end;
 intptr_t program_brk = (intptr_t)&end;
 void *_sbrk(intptr_t increment) {
-  char buf[100]; 
   intptr_t old = program_brk;
   intptr_t new = program_brk + increment;
-  if(!_syscall_(SYS_brk, increment,0, 0)){
-    sprintf(buf,"malloc\n");
-    _write(1, (void*)buf, 7);
-    program_brk = new;
-    return (void*)old;
-  }
-  else{
-    sprintf(buf,"no malloc\n");
-    _write(1, (void*)buf, 10);
-    return (void *)-1;
-  }
+  int ret = _syscall_(SYS_brk, increment,0, 0);
+  assert(ret==-1);
+  program_brk = new;
+  return old;
 }
 
 int _read(int fd, void *buf, size_t count) {
