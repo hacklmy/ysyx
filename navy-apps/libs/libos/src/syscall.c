@@ -70,13 +70,9 @@ intptr_t program_brk = (intptr_t)&end;
 void *_sbrk(intptr_t increment) {
   intptr_t old = program_brk;
   intptr_t new = program_brk + increment;
-  if(!_syscall_(SYS_brk, increment,0, 0)){
-    program_brk = new;
-    return (void*)old;
-  }
-  else{
+  
     return (void *)-1
-  }
+  
 }
 
 int _read(int fd, void *buf, size_t count) {
