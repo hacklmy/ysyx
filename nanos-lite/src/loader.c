@@ -28,7 +28,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   char buf[RAMDISK_SIZE + 3];
   ramdisk_read(buf, 0, RAMDISK_SIZE);
   Elf_Ehdr* ehdr = (Elf_Ehdr*)buf;
-  assert(*(uint32_t *)ehdr->e_ident == 0xBadC0de);
+  assert(*(uint32_t *)ehdr->e_ident == 0x464c457f);
   assert(ehdr->e_machine == EXPECT_TYPE);
   Elf_Phdr* phdr = (Elf_Phdr*)(buf + ehdr->e_phoff);
   for(int i = 0; i < ehdr->e_phnum; i++){
