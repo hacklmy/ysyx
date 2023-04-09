@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/time.h>
+#include <setjmp.h>
 #include <assert.h>
 #include <time.h>
 #include "syscall.h"
@@ -66,12 +67,17 @@ int _write(int fd, void *buf, size_t count) {
 }
 
 extern char end;
+intptr_t program_break = (intptr_t)&end;
 void *_sbrk(intptr_t increment) {
-  char *tmp = &end + increment;
-  int ret = _syscall_(SYS_brk, (intptr_t)tmp, 0, 0);
-  if (ret == -1)
-    return (void *)(-1);
-  return tmp;
+  intptr_t old_probreak = program_break;
+  intptr_t new_probreak = program_break + increment;
+  if(!_syscall_(SYS_brk, new_probreak, 0, 0)){
+    program_break = new_probreak;
+    return (void *)old_probreak;
+  }
+  else{
+    return (void *)-1;
+  }
 }
 
 int _read(int fd, void *buf, size_t count) {
