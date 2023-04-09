@@ -65,18 +65,17 @@ int _write(int fd, void *buf, size_t count) {
   return _syscall_(SYS_write, fd, (intptr_t)buf, count);
 }
 
-extern char end;
-intptr_t program_break = (intptr_t)&end;
+extern char _end;
+intptr_t program_brk = (intptr_t)&_end;
 void *_sbrk(intptr_t increment) {
-  intptr_t old_probreak = program_break;
-  intptr_t new_probreak = program_break + increment;
-  if(!_syscall_(SYS_brk, new_probreak, 0, 0)){
-    program_break = new_probreak;
-    return (void *)old_probreak;
+  intptr_t old = program_brk;
+  intptr_t new = program_brk + increment;
+  int ret = _syscall_(SYS_brk, increment,0, 0);
+  if(ret!=0){
+    return (void*)-1;
   }
-  else{
-    return (void *)-1;
-  }
+  program_brk = new;
+  return (void*)old;
 }
 
 int _read(int fd, void *buf, size_t count) {
