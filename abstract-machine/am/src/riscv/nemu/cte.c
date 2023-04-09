@@ -9,10 +9,6 @@ Context* __am_irq_handle(Context *c) {
     Event ev = {0};
     switch (c->mcause) {
       case 0xb:
-        printf("%x %x %x\n", c->mstatus, c->mepc, c->mcause);
-        for(int i =0;i < 32;i++){
-          printf("gpr[%d]: %d\n",i,c->gpr[i]);
-        }
         ev.event = EVENT_YIELD;
         break;
       default: ev.event = EVENT_ERROR; break;
