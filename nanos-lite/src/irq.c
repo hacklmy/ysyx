@@ -6,7 +6,7 @@ static Context* do_event(Event e, Context* c) {
       printf("yeild call\n");
       break;
     case EVENT_SYSCALL:
-    printf("syscall\n");
+      printf("syscall\n");
       do_syscall(c);
       
       break;
