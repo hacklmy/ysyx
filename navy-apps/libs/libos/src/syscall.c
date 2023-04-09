@@ -62,6 +62,9 @@ int _open(const char *path, int flags, mode_t mode) {
 }
 
 int _write(int fd, void *buf, size_t count) {
+  char buf[100];
+  sprintf(buf,"malloc\n");
+  _syscall_(SYS_write, 1, (intptr_t)buf, 7);
   return _syscall_(SYS_write, fd, (intptr_t)buf, count);
 }
 
