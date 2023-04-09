@@ -159,6 +159,11 @@ config MTRACE
   bool "device trace"
   default n
 
+config ETRACE
+  depends on TRACE
+  bool "Exception trace"
+  default n
+
 config FTRACE
   depends on TRACE
   bool "Enable func trace"

@@ -51,7 +51,7 @@ void difftest_exec(uint64_t n) {
 }
 
 void difftest_raise_intr(word_t NO) {
-  assert(0);
+  isa_raise_intr(NO, cpu.pc);
 }
 
 void difftest_init(int port) {
