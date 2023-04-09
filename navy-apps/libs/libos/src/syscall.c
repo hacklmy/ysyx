@@ -2,6 +2,7 @@
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <setjmp.h>
+#include <stdio.h>
 #include <assert.h>
 #include <time.h>
 #include "syscall.h"
@@ -69,6 +70,9 @@ int _write(int fd, void *buf, size_t count) {
 extern char end;
 intptr_t program_break = (intptr_t)&end;
 void *_sbrk(intptr_t increment) {
+  char buf[100];
+  sprintf(buf,"malloc\n");
+  _write(1, (void*)buf, 7);
   intptr_t old_probreak = program_break;
   intptr_t new_probreak = program_break + increment;
   if(!_syscall_(SYS_brk, 0, 0, 0)){
