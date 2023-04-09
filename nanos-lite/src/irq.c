@@ -7,6 +7,7 @@ static Context* do_event(Event e, Context* c) {
       break;
     case EVENT_SYSCALL:
       do_syscall(c);
+      printf("%d\n",c->gpr[17]);
       printf("syscall\n");
       break;
     default: panic("Unhandled event ID = %d", e.event);
