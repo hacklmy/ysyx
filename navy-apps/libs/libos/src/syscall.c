@@ -66,7 +66,7 @@ int _write(int fd, void *buf, size_t count) {
 }
 
 extern char end;
-intptr_t program_break = (intptr_t)&end;
+intptr_t program_break = (intptr_t)&end + 0x80000000;
 void *_sbrk(intptr_t increment) {
     return (void *)program_break;
 }
