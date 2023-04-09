@@ -8,8 +8,8 @@ void do_syscall(Context *c) {
   a[3] = c->GPR4;
   printf("%d\n", a[0]);
   switch (a[0]) {
-    case SYS_exit: halt(a[1]); printf("exit\n"); break;
-    case SYS_yield: yield(); c->GPRx = 0; printf("yeild\n"); break;
+    case SYS_exit:  printf("exit\n");halt(a[1]); break;
+    case SYS_yield: printf("yeild\n");yield(); c->GPRx = 0;  break;
     case SYS_open:printf("open\n");break;
     case SYS_read:break;
     case SYS_write:break;
