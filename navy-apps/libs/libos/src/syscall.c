@@ -66,11 +66,11 @@ int _write(int fd, void *buf, size_t count) {
 }
 
 
-intptr_t pro_brk = (intptr_t)&end;
+char* pro_brk = &end;
 void *_sbrk(intptr_t increment) {
   int ret = _syscall_(SYS_brk, increment, 0,0);
   if(ret==0){
-    intptr_t res = pro_brk;
+    char* res = pro_brk;
     pro_brk+=increment;
     return (void*)res;
   }
