@@ -1,6 +1,6 @@
 #include <common.h>
 #include "syscall.h"
-#define STRACE
+//#define STRACE
 void do_syscall(Context *c) {
   uintptr_t a[4];
   a[0] = c->GPR1;

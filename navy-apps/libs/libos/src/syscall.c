@@ -1,6 +1,5 @@
 #include <unistd.h>
 #include <sys/stat.h>
-#include <setjmp.h>
 #include <sys/time.h>
 #include <assert.h>
 #include <time.h>
@@ -36,6 +35,8 @@
 # define ARGS_ARRAY ("call *0x100000", "rdi", "rsi", "rdx", "rcx", "rax")
 #elif defined(__ISA_X86_64__)
 # define ARGS_ARRAY ("int $0x80", "rdi", "rsi", "rdx", "rcx", "rax")
+#elif defined(__ISA_LOONGARCH32R__)
+# define ARGS_ARRAY ("syscall 0", "a7", "a0", "a1", "a2", "a0")
 #else
 #error _syscall_ is not implemented
 #endif
@@ -47,7 +48,6 @@ intptr_t _syscall_(intptr_t type, intptr_t a0, intptr_t a1, intptr_t a2) {
   register intptr_t _gpr4 asm (GPR4) = a2;
   register intptr_t ret asm (GPRx);
   asm volatile (SYSCALL : "=r" (ret) : "r"(_gpr1), "r"(_gpr2), "r"(_gpr3), "r"(_gpr4));
-  // for riscv, it is:  asm volatile ("ecall" : "=r" (a0) : "r"(a7), "r"(a0), "r"(a1), "r"(a2));
   return ret;
 }
 
@@ -57,11 +57,12 @@ void _exit(int status) {
 }
 
 int _open(const char *path, int flags, mode_t mode) {
-  return _syscall_(SYS_open,(intptr_t)path,flags, mode);
+  _exit(SYS_open);
+  return 0;
 }
 
 int _write(int fd, void *buf, size_t count) {
-  return _syscall_(SYS_write, fd,(intptr_t)buf, count);
+  return _syscall_(SYS_write, fd, (intptr_t)buf, count);
 }
 
 extern char end;
@@ -79,24 +80,27 @@ void *_sbrk(intptr_t increment) {
 }
 
 int _read(int fd, void *buf, size_t count) {
-  return _syscall_(SYS_read, fd,(intptr_t)buf, count);
+  _exit(SYS_read);
+  return 0;
 }
 
 int _close(int fd) {
-  return _syscall_(SYS_close, fd,0, 0);
+  _exit(SYS_close);
+  return 0;
 }
 
 off_t _lseek(int fd, off_t offset, int whence) {
-  return _syscall_(SYS_lseek, fd,offset, whence);
+  _exit(SYS_lseek);
+  return 0;
 }
 
 int _gettimeofday(struct timeval *tv, struct timezone *tz) {
-  tv->tv_usec = _syscall_(SYS_gettimeofday,0,0,0);
+  _exit(SYS_gettimeofday);
   return 0;
 }
 
 int _execve(const char *fname, char * const argv[], char *const envp[]) {
-  _syscall_(SYS_execve,(intptr_t)fname,(intptr_t)argv,(intptr_t)envp);
+  _exit(SYS_execve);
   return 0;
 }
 
