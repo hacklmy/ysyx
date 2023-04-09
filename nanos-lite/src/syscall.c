@@ -13,7 +13,7 @@ void do_syscall(Context *c) {
     case SYS_yield: printf("sys_yield a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]); break;
     case SYS_open:break;
     case SYS_read:break;
-    case SYS_write:break;
+    case SYS_write:printf("sys_write a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]);break;
     case SYS_kill:break;
     case SYS_getpid:break;
     case SYS_close:break;
