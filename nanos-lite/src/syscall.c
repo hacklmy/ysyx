@@ -7,8 +7,8 @@ void do_syscall(Context *c) {
   a[2] = c->GPR3;
   a[3] = c->GPR4;
   switch (a[0]) {
-    case SYS_exit: halt(a[1]); break;
-    case SYS_yield: yield();  break;
+    case SYS_exit: break;
+    case SYS_yield:  break;
     case SYS_open:break;
     case SYS_read:break;
     case SYS_write:break;
