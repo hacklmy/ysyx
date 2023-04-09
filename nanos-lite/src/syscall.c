@@ -1,6 +1,6 @@
 #include <common.h>
 #include "syscall.h"
-//#define STRACE
+#define STRACE
 void do_syscall(Context *c) {
   uintptr_t a[4];
   a[0] = c->GPR1;
@@ -49,7 +49,7 @@ void do_syscall(Context *c) {
     case SYS_getpid:break;
     case SYS_close:break;
     case SYS_lseek:break;
-    case SYS_brk:break;
+    case SYS_brk:  break;
     case SYS_fstat:break;
     case SYS_time:break;
     case SYS_signal:break;
