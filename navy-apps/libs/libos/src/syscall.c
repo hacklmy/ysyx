@@ -73,11 +73,13 @@ void *_sbrk(intptr_t increment) {
   intptr_t new = program_brk + increment;
   if(!_syscall_(SYS_brk, increment,0, 0)){
     sprintf(buf,"malloc\n");
+    _write(1, (void*)buf, 7);
     program_brk = new;
     return (void*)old;
   }
   else{
     sprintf(buf,"no malloc\n");
+    _write(1, (void*)buf, 10);
     return (void *)-1;
   }
 }
