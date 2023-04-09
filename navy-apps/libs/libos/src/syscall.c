@@ -71,7 +71,7 @@ intptr_t program_break = (intptr_t)&end;
 void *_sbrk(intptr_t increment) {
   intptr_t old_probreak = program_break;
   intptr_t new_probreak = program_break + increment;
-  if(!_syscall_(SYS_brk, new_probreak, 0, 0)){
+  if(!_syscall_(SYS_brk, 0, 0, 0)){
     program_break = new_probreak;
     return (void *)old_probreak;
   }
