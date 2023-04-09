@@ -18,7 +18,7 @@ void do_syscall(Context *c) {
     case SYS_getpid:break;
     case SYS_close:break;
     case SYS_lseek:break;
-    case SYS_brk:c->GPRx=0;break;
+    case SYS_brk:printf("sys_brk a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]);break;
     case SYS_fstat:break;
     case SYS_time:break;
     case SYS_signal:break;
