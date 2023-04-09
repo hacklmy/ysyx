@@ -1,6 +1,6 @@
 #include <common.h>
 #include "syscall.h"
-//#define STRACE
+#define STRACE
 void do_syscall(Context *c) {
   uintptr_t a[4];
   a[0] = c->GPR1;
@@ -9,7 +9,7 @@ void do_syscall(Context *c) {
   a[3] = c->GPR4;
   #ifdef STRACE
     switch (a[0]) {
-    case SYS_exit: printf("sys_exit a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]); break;
+    //case SYS_exit: printf("sys_exit a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]); break;
     case SYS_yield: printf("sys_yield a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]); break;
     case SYS_open:break;
     case SYS_read:break;
