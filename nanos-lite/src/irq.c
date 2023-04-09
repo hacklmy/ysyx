@@ -6,8 +6,9 @@ static Context* do_event(Event e, Context* c) {
       printf("yeild call\n");
       break;
     case EVENT_SYSCALL:
+    printf("%d\n",c->gpr[17]);
       do_syscall(c);
-      printf("%d\n",c->gpr[17]);
+      
       printf("syscall\n");
       break;
     default: panic("Unhandled event ID = %d", e.event);
