@@ -4,8 +4,7 @@
 #include <assert.h>
 #include <time.h>
 #include "syscall.h"
-#include <stdio.h>
-extern char end;
+
 // helper macros
 #define _concat(x, y) x ## y
 #define concat(x, y) _concat(x, y)
@@ -66,10 +65,8 @@ int _write(int fd, void *buf, size_t count) {
   return _syscall_(SYS_write, fd, (intptr_t)buf, count);
 }
 
-
-
 void *_sbrk(intptr_t increment) {
-    return (void *)-1;
+    return (void*) -1;
 }
 
 int _read(int fd, void *buf, size_t count) {
