@@ -47,7 +47,6 @@ intptr_t _syscall_(intptr_t type, intptr_t a0, intptr_t a1, intptr_t a2) {
   register intptr_t _gpr4 asm (GPR4) = a2;
   register intptr_t ret asm (GPRx);
   asm volatile (SYSCALL : "=r" (ret) : "r"(_gpr1), "r"(_gpr2), "r"(_gpr3), "r"(_gpr4));
-  // for riscv, it is:  asm volatile ("ecall" : "=r" (a0) : "r"(a7), "r"(a0), "r"(a1), "r"(a2));
   return ret;
 }
 
@@ -79,24 +78,27 @@ void *_sbrk(intptr_t increment) {
 }
 
 int _read(int fd, void *buf, size_t count) {
-  return _syscall_(SYS_read, fd,(intptr_t)buf, count);
+  _exit(SYS_read);
+  return 0;
 }
 
 int _close(int fd) {
-  return _syscall_(SYS_close, fd,0, 0);
+  _exit(SYS_close);
+  return 0;
 }
 
 off_t _lseek(int fd, off_t offset, int whence) {
-  return _syscall_(SYS_lseek, fd,offset, whence);
+  _exit(SYS_lseek);
+  return 0;
 }
 
 int _gettimeofday(struct timeval *tv, struct timezone *tz) {
-  tv->tv_usec = _syscall_(SYS_gettimeofday,0,0,0);
+  _exit(SYS_gettimeofday);
   return 0;
 }
 
 int _execve(const char *fname, char * const argv[], char *const envp[]) {
-  _syscall_(SYS_execve,(intptr_t)fname,(intptr_t)argv,(intptr_t)envp);
+  _exit(SYS_execve);
   return 0;
 }
 
