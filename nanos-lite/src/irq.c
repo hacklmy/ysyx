@@ -1,6 +1,7 @@
 #include <common.h>
 void do_syscall(Context *c);
 static Context* do_event(Event e, Context* c) {
+  printf("do event\n");
   switch (e.event) {
     case EVENT_YIELD:
       printf("yeild call\n");
