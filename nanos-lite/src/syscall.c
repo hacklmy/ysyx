@@ -1,6 +1,6 @@
 #include <common.h>
 #include "syscall.h"
-#define STRACE
+//#define STRACE
 void do_syscall(Context *c) {
   uintptr_t a[4];
   a[0] = c->GPR1;
@@ -37,6 +37,7 @@ void do_syscall(Context *c) {
     case SYS_open:break;
     case SYS_read:break;
     case SYS_write:
+    printf("sys_write a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]);
       if(a[1]==1||a[1]==2){
         char* buf = (char*)a[2];
         for(int i =0;i<a[3];i++){
