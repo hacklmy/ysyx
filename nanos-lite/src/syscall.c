@@ -37,6 +37,7 @@ void do_syscall(Context *c) {
     case SYS_open:break;
     case SYS_read:break;
     case SYS_write:
+      printf("write\n");
       if(a[1]==1||a[1]==2){
         char* buf = (char*)a[2];
         for(int i =0;i<a[3];i++){
