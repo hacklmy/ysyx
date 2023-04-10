@@ -9,17 +9,18 @@ Context* __am_irq_handle(Context *c) {
     Event ev = {0};
     printf("mcasuse: %d  GPR1:%d\n",c->mcause, c->GPR1);
     switch (c->mcause) {
-      case -1:ev.event = EVENT_YIELD;break;
+      case -1:
+        ev.event = EVENT_YIELD;
+        break;
       case 1:
       case 0:
-      case 2:
-      case 3:
       case 4:
-        ev.event = EVENT_SYSCALL;break;
+      case 9:
+        ev.event = EVENT_SYSCALL;
+        break;
 
       default: ev.event = EVENT_ERROR; break;
     }
-    printf("%d\n",ev.event);
     c = user_handler(ev, c);
     assert(c != NULL);
   }
