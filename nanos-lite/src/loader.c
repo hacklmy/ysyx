@@ -33,7 +33,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Phdr* phdr = (Elf_Phdr*)(buf + ehdr->e_phoff);
   for(int i = 0; i < ehdr->e_phnum; i++){
     if(phdr[i].p_type==PT_LOAD){
-      memcpy((uint8_t*)phdr[i].p_paddr, buf+phdr[i].p_offset, phdr[i].p_filesz);
+      memcpy((uint8_t*)phdr[i].p_vaddr, buf+phdr[i].p_offset, phdr[i].p_memsz);
       memset((uint8_t*)(phdr[i].p_paddr + phdr[i].p_filesz), 0, phdr[i].p_memsz - phdr[i].p_filesz);
     }
   }
