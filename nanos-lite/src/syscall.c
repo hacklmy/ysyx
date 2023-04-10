@@ -44,7 +44,7 @@ void do_syscall(Context *c) {
           putch(*(buf+i));
         }
         c->GPRx = a[3];
-      }
+      }else c->GPRx = -1;
       break;
     case SYS_kill:break;
     case SYS_getpid:break;
