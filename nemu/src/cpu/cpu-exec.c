@@ -83,6 +83,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   FILE* log_file = fopen("/home/lmy/ysyx-workbench/nemu/build/log.txt","a+");
   if(fputs(iringbuf[iringbuf_pointer], log_file)==EOF)exit(0);
   fputc('\n', log_file);
+  fclose(log_file);
   iringbuf_pointer = (iringbuf_pointer+1)%32;
 #endif
 
