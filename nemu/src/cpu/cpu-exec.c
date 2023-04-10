@@ -50,7 +50,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 
 void print_iringbuf(){
   printf("===============iringbuf===================\n");
-  for(int i = 0;i<16;i++){
+  for(int i = 0;i<32;i++){
     if(i==iringbuf_pointer-1)printf("-->");
     printf("\t%s\n",iringbuf[i]);
   }
