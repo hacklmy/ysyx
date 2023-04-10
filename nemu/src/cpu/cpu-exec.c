@@ -81,7 +81,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
       MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
   sprintf(iringbuf[iringbuf_pointer], "%lx : %s", s->pc, p);
   FILE* log_file = fopen("/home/lmy/ysyx-workbench/nemu/build/log.txt","a+");
-  if(fputs(p, log_file)==EOF)exit(0);
+  if(fputs(iringbuf[iringbuf_pointer], log_file)==EOF)exit(0);
   fputc('\n', log_file);
   iringbuf_pointer = (iringbuf_pointer+1)%32;
 #endif
