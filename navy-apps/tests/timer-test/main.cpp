@@ -10,7 +10,10 @@ int main() {
   while(1)
   {
 
-    while(gettimeofday(tv,tz) / 500000 < sec);
+    while(1){
+      gettimeofday(tv,tz);
+      if(tv->tv_usec/500000>=sec)break;
+    }
 
     
     printf("timer-test  time: %d\n",sec);
