@@ -32,6 +32,14 @@ static Finfo file_table[] __attribute__((used)) = {
   [FD_STDERR] = {"stderr", 0, 0, 0,invalid_read, invalid_write},
 #include "files.h"
 };
+
+char* get_filename(int fd){
+  char *p = NULL;
+  if(fd>3)
+    p = file_table[fd].name;
+  return p;
+}
+
 static int filenum = sizeof(file_table)/sizeof(Finfo);
 
 int fs_open(const char *pathname, int flags, int mode){
