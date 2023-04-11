@@ -23,8 +23,8 @@
 #define FB_ADDR         (MMIO_BASE   + 0x1000000)
 #define AUDIO_SBUF_ADDR (MMIO_BASE   + 0x1200000)
 
-//#define CONFIG_ITRACE 0
-//#define CONFIG_FTRACE 0
+//#define CONFIG_ITRACE
+//#define CONFIG_FTRACE
 //#define CONFIG_DIFFTEST
 //#define VerilatedVCD
 
@@ -427,11 +427,13 @@ void load_img(){
   fclose(fp);
 }
 //============================load_img_end===========================
+#ifdef CONFIG_ITRACE
 FILE* log_file = fopen("/home/lmy/ysyx-workbench/npc/npc-log.txt","w+");
+#endif
 
 
 void cpu_exec(int n){
-  if(n<0)n=100000000;
+  if(n<0)n=1000000000000;
   while (!cpu_stop && n--) {
       top->reset = 0;
       //top->io_inst = pmem_read(top->io_pc);
