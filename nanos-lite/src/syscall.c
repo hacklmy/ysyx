@@ -1,5 +1,6 @@
 #include <common.h>
 #include "syscall.h"
+#include <sys/time.h>
 //#define STRACE
 
 int fs_open(const char *pathname, int flags, int mode);
@@ -46,7 +47,13 @@ void do_syscall(Context *c) {
     case SYS_unlink:break;
     case SYS_wait:break;
     case SYS_times:break;
-    case SYS_gettimeofday:break;
+    case SYS_gettimeofday:
+      long int time = io_read(AM_TIMER_UPTIME).us;
+      ((struct timeval*)a[1])->tv_sec = time / 1000000;
+      ((struct timeval*)a[1])->tv_usec = time;
+      ((struct timezone*)a[2])->tz_dsttime = time;
+      c->GPRx = 0;
+      break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
   #ifdef STRACE
