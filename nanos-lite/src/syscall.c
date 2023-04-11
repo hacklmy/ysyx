@@ -26,15 +26,7 @@ void do_syscall(Context *c) {
       c->GPRx = fs_read(a[1], (void*)a[2], a[3]);
       break;
     case SYS_write:
-      if(a[1]==1||a[1]==2){
-        char* buf = (char*)a[2];
-        for(int i =0;i<a[3];i++){
-          putch(*(buf+i));
-        }
-        c->GPRx = a[3];
-      }else if(a[1]!=0){
-        c->GPRx = fs_write(a[1], (void*)a[2], a[3]);
-      }
+      c->GPRx = fs_write(a[1], (void*)a[2], a[3]);
       break;
     case SYS_kill:break;
     case SYS_getpid:break;
