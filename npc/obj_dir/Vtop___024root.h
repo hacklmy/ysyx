@@ -47,7 +47,6 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__ifu_step__DOT__inst_read_Rdata;
     QData/*63:0*/ top__DOT__exu_step__DOT__Mem_modle_Rdata;
     QData/*63:0*/ top__DOT__exu_step__DOT__Regfile_MPORT_data;
-    QData/*63:0*/ top__DOT__exu_step__DOT__cmp;
     QData/*63:0*/ top__DOT__exu_step__DOT__src1_value;
     QData/*63:0*/ top__DOT__exu_step__DOT__src2_value;
     QData/*63:0*/ top__DOT__exu_step__DOT__add_res;
