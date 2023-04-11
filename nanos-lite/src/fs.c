@@ -49,13 +49,13 @@ int fs_open(const char *pathname, int flags, int mode){
       return i;
     }
   }
-  Log("no match file\n");
+  Log("no match file");
   assert(0);
 }
 size_t fs_read(int fd, void *buf, size_t len){
   if(file_table[fd].file_offset + len > file_table[fd].size){
     len = file_table[fd].size - file_table[fd].file_offset;
-    Log("len is out of limit\n");
+    Log("len is out of limit");
   }
   size_t ret = ramdisk_read(buf, file_table[fd].disk_offset + file_table[fd].file_offset, len);
   file_table[fd].file_offset += len;
@@ -65,7 +65,7 @@ size_t fs_read(int fd, void *buf, size_t len){
 size_t fs_write(int fd, const void *buf, size_t len){
   if(file_table[fd].file_offset + len > file_table[fd].size){
     len = file_table[fd].size - file_table[fd].file_offset;
-    Log("len is out of limit\n");
+    Log("len is out of limit");
   }
   size_t ret = ramdisk_write(buf, file_table[fd].disk_offset + file_table[fd].file_offset, len);
   file_table[fd].file_offset += len;
