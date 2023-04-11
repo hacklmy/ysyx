@@ -94,10 +94,11 @@ void *memmove(void *dst, const void *src, size_t n) {
 void *memcpy(void *out, const void *in, size_t n) {
   if(out==NULL || in==NULL)return NULL;
   char *res = (char *)out;
+  char *ref = (char *)in;
   for(int i = n;i > 0;i--){
-    *res = *(char*)in;
+    *res = *ref;
     res++;
-    in++;
+    ref++;
   }
   return out;
 }
