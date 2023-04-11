@@ -9,7 +9,7 @@ int main() {
   struct timezone* tz;
   while(1)
   {
-    gettimeofday(tv,tz);
+    //gettimeofday(tv,tz);
     printf("timer-test  time: %d\n",sec);
     sec += 1;
   }
