@@ -433,7 +433,7 @@ FILE* log_file = fopen("/home/lmy/ysyx-workbench/npc/npc-log.txt","w+");
 
 
 void cpu_exec(int n){
-  if(n<0)n=10000000000;
+  if(n<0)n=1000000000;
   while (!cpu_stop && n--) {
       top->reset = 0;
       //top->io_inst = pmem_read(top->io_pc);
