@@ -12,6 +12,7 @@ int main() {
 
     while(1){
       gettimeofday(tv,tz);
+      printf("gettimeofday\n");
       if(tv->tv_usec/500000>=sec)break;
     }
 
