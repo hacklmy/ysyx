@@ -5,13 +5,13 @@
 int main() {
   printf("timer-test begin\n");
   int sec = 1;
-  struct timeval * tv;
-  struct timezone* tz;
+  struct timeval  tv;
+  struct timezone tz;
   while(1)
   {
 
     while(1){
-      gettimeofday(tv,tz);
+      gettimeofday(&tv,&tz);
       printf("gettimeofday\n");
       if(tv->tv_usec/500000>=sec)break;
     }
