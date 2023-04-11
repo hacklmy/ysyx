@@ -92,7 +92,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     }
     time_t tmpcal_ptr;
     tmpcal_ptr = time(NULL);
-    *rdata = tmpcal_ptr - boot_time;
+    *rdata = (tmpcal_ptr - boot_time)*1000000;
     return;
   }
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE)){
@@ -444,7 +444,7 @@ void cpu_exec(int n){
       top->eval();
       top->clock ^= 1;
       top->eval();
-      printf("%lx %x\n",pc_now , top->io_inst);
+      //printf("%lx %x\n",pc_now , top->io_inst);
       #ifdef CONFIG_ITRACE
     char p[1024];
     char *s = p;
