@@ -19,7 +19,7 @@ void do_syscall(Context *c) {
     switch (a[0]) {
     // case SYS_exit: printf("sys_exit\n"); break;
     // case SYS_yield: printf("sys_yield a1=%d\n", a[1]); break;
-    case SYS_open:printf("sys_open name=%d\n",a[1]);break;
+    case SYS_open:printf("sys_open name=%x\n",a[1]);break;
     // case SYS_read:printf("sys_read name=%s read_len=%d\n",  file_table[a[1]].name, a[3]);break;
     // case SYS_write:
     //   if(a[1]==1||a[1]==2)
