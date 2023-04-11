@@ -49,6 +49,7 @@ void do_syscall(Context *c) {
     case SYS_times:break;
     case SYS_gettimeofday:
       long int time = io_read(AM_TIMER_UPTIME).us;
+      printf("time:%ld\n", time);
       ((struct timeval*)a[1])->tv_sec = time / 1000000;
       ((struct timeval*)a[1])->tv_usec = time;
       ((struct timezone*)a[2])->tz_dsttime = time;
