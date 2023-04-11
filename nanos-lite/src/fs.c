@@ -33,7 +33,7 @@ static Finfo file_table[] __attribute__((used)) = {
 #include "files.h"
 };
 
-char* get_filename(int fd){
+const char* get_filename(int fd){
   char *p = NULL;
   if(fd>3)
     p = file_table[fd].name;

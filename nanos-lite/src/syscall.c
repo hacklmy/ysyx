@@ -7,7 +7,7 @@ size_t fs_read(int fd, void *buf, size_t len);
 size_t fs_write(int fd, const void *buf, size_t len);
 size_t fs_lseek(int fd, size_t offset, int whence);
 int fs_close(int fd);
-char* get_filename(int fd);
+const char* get_filename(int fd);
 
 void do_syscall(Context *c) {
   uintptr_t a[4];
@@ -19,7 +19,7 @@ void do_syscall(Context *c) {
     switch (a[0]) {
     // case SYS_exit: printf("sys_exit\n"); break;
     // case SYS_yield: printf("sys_yield a1=%d\n", a[1]); break;
-    //case SYS_open:printf("sys_open name=%s\n",get_filename(a[1]));break;
+    case SYS_open:printf("sys_open name=%s\n",get_filename(a[1]));break;
     // case SYS_read:printf("sys_read name=%s read_len=%d\n",  file_table[a[1]].name, a[3]);break;
     // case SYS_write:
     //   if(a[1]==1||a[1]==2)
