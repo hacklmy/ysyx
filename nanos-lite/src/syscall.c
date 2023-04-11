@@ -16,15 +16,25 @@ void do_syscall(Context *c) {
   a[3] = c->GPR4;
   #ifdef STRACE
     switch (a[0]) {
-    case SYS_exit: printf("sys_exit a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]); break;
-    case SYS_yield: printf("sys_yield a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]); break;
-    case SYS_open:printf("sys_open a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]);break;
-    case SYS_read:printf("sys_read a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]);break;
-    case SYS_write:printf("sys_write a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]);break;
+    case SYS_exit: printf("sys_exit\n"); break;
+    case SYS_yield: printf("sys_yield a1=%d\n", a[1]); break;
+    case SYS_open:printf("sys_open name=%s\n", file_table[a[1]].name);break;
+    case SYS_read:printf("sys_read name=%s read_len=%d\n",  file_table[a[1]].name, a[3]);break;
+    case SYS_write:
+      if(a[1]==1||a[1]==2)
+        printf("sys_write a1=%d len=%d\n",  a[1], a[5]);
+      else if(a[1]>2){
+        printf("sys_write name=%s len=%d\n", file_table[a[1]].name, a[3]);
+      }
+      break;
     case SYS_kill:printf("sys_kill a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]);break;
     case SYS_getpid:printf("sys_getpid a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]);break;
-    case SYS_close:printf("sys_close a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]);break;
-    case SYS_lseek:printf("sys_lseek a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]);break;
+    case SYS_close:
+      printf("sys_close name=%s\n", file_table[a[1]].name);
+      break;
+    case SYS_lseek:
+      printf("sys_lseek name=%s a1=%d len=%d\n", file_table[a[1]].name, a[2], a[3]);
+      break;
     case SYS_brk:printf("sys_brk a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]);break;
     case SYS_fstat:printf("sys_fstat a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]);break;
     case SYS_time:printf("sys_time a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]);break;
