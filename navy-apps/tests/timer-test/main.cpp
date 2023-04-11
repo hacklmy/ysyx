@@ -1,21 +1,15 @@
 #include <unistd.h>
-#include <sys/time.h>
 #include <stdio.h>
+#include "NDL.h"
 
 int main() {
   printf("timer-test begin\n");
   int sec = 1;
-  struct timeval  tv;
-  struct timezone tz;
+  NDL_Init(0);
   while(1)
   {
-
-    while(1){
-      gettimeofday(&tv,&tz);
-      if(tv.tv_usec/500000>=sec)break;
-    }
-
     
+    while(NDL_GetTicks()/500<sec);
     printf("timer-test  time: %d\n",sec);
     sec += 1;
   }
