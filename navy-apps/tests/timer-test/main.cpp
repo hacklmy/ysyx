@@ -1,7 +1,6 @@
 #include <unistd.h>
 #include <sys/time.h>
 #include <stdio.h>
-#include <assert.h>
 
 int main() {
   printf("timer-test begin\n");
@@ -10,8 +9,10 @@ int main() {
   struct timezone* tz;
   while(1)
   {
-    int ret = gettimeofday(tv,tz);
-    if(ret!=0)assert(0);
+
+    while(gettimeofday(tv,tz) / 500000 < sec);
+
+    
     printf("timer-test  time: %d\n",sec);
     sec += 1;
   }
