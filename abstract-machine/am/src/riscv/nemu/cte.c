@@ -15,6 +15,7 @@ Context* __am_irq_handle(Context *c) {
       case 1:
       case 0:
       case 2:
+      case 8:
       case 4:
       case 9:
         ev.event = EVENT_SYSCALL;
