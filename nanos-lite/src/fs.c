@@ -52,6 +52,7 @@ int fs_open(const char *pathname, int flags, int mode){
   Log("no match file");
   assert(0);
 }
+
 size_t fs_read(int fd, void *buf, size_t len){
   if(file_table[fd].read==NULL){
     if(file_table[fd].file_offset + len > file_table[fd].size){
