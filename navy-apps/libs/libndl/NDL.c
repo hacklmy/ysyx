@@ -12,6 +12,7 @@ static int evtdev = -1;
 static int fbdev = -1;
 static int screen_w = 0, screen_h = 0;
 static int centre_w = 0, centre_h = 0;
+static int canvas_w = 0, canvas_h = 0;
 
 uint32_t NDL_GetTicks() {
   struct timeval  tv;
@@ -46,6 +47,10 @@ void NDL_OpenCanvas(int *w, int *h) {
     }
     close(fbctl);
   }
+  if (*w == 0) *w = screen_w;
+  if (*h == 0) *h = screen_h;
+  canvas_h = *h;
+  canvas_w = *w;
   centre_h = screen_h /2;
   centre_w = screen_w /2;
 }
@@ -56,8 +61,16 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
   size_t center_offset_y = centre_h - h/2;
   size_t offset = (y + center_offset_y)*screen_w + x + center_offset_x;
   size_t len = ((size_t)w) << 32 | (size_t)h;
+  #if defined(__ISA_NATIVE__) 
+
+  for(int j=0; j<h; j++){
+    lseek(fd,((y+j+center_offset_y)*screen_w+x+center_offset_x)*4,SEEK_SET);
+    write(fd, pixels+w*j, 4*w);              
+  }
+  #else
   lseek(fd, offset, SEEK_SET);
   write(fd,pixels,len);
+  #endif
 }
 
 void NDL_OpenAudio(int freq, int channels, int samples) {
@@ -89,7 +102,7 @@ int NDL_Init(uint32_t flags) {
       }else{
         screen_h = screen_h * 10 + buf[i] - '0';
       }
-    }else if(buf[i]==' '){
+    }else if(buf[i]=='E'){
       is_width = 0;
     }
   }
