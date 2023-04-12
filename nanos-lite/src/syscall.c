@@ -22,7 +22,7 @@ void do_syscall(Context *c) {
     case SYS_yield: yield(); c->GPRx = 0; break;
     case SYS_open:
       c->GPRx = fs_open((const char*)a[1], a[2], a[3]);
-      printf("%d\n",c->GPRx);
+      //printf("%d\n",c->GPRx);
       break;
     case SYS_read:
       c->GPRx = fs_read(a[1], (void*)a[2], a[3]);
