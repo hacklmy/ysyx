@@ -21,6 +21,7 @@ void do_syscall(Context *c) {
     case SYS_exit: halt(a[1]); break;
     case SYS_yield: yield(); c->GPRx = 0; break;
     case SYS_open:
+      printf("sys_open name=%s\n",get_filename(c->GPRx));
       c->GPRx = fs_open((const char*)a[1], a[2], a[3]);
       printf("sys_open name=%s\n",get_filename(c->GPRx));
       break;
