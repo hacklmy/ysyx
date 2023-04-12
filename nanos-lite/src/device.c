@@ -18,31 +18,58 @@ size_t serial_write(const void *buf, size_t offset, size_t len) {
   for (int i = 0; i < len; ++i) {
     putch(*(char *)(buf + i));
   }
-  return 0;
+  return len;
+}
+
+inline int min(int a, int b) {
+  return a < b ? a : b;
 }
 
 size_t events_read(void *buf, size_t offset, size_t len) {
-  AM_INPUT_KEYBRD_T kbd = io_read(AM_INPUT_KEYBRD);
-  int length;
-  if(kbd.keycode==AM_KEY_NONE){
-    //printf("no key\n");
-    return 0;
+  AM_INPUT_KEYBRD_T kbd;
+  ioe_read(AM_INPUT_KEYBRD, &kbd);
+  if (kbd.keycode == 0) return 0;
+  if (kbd.keydown == true) {
+    len = snprintf(buf, len, "kd %s\n", keyname[kbd.keycode]);
+  } else {
+    len = snprintf(buf, len, "ku %s\n", keyname[kbd.keycode]);
   }
-  //printf("has a key\n");
-  if(kbd.keydown==0){
-    length = snprintf((char *)buf,len,"ku %s\n",keyname[kbd.keycode]);
-  }else{
-    length = snprintf((char *)buf,len,"kd %s\n",keyname[kbd.keycode]);
-  }
-  return length;
+  return len;
 }
 
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {
-  return 0;
+  AM_GPU_CONFIG_T cfg;
+  ioe_read(AM_GPU_CONFIG, &cfg);
+  return snprintf(buf, len, "WIDTH:%d\nHEIGHT:%d\n", cfg.width, cfg.height);
 }
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
-  return 0;
+  offset /= 4, len /= 4;
+  printf("== offset: %d, len: %d ==\n", offset, len);
+  // size of screen
+  AM_GPU_CONFIG_T cfg;
+  ioe_read(AM_GPU_CONFIG, &cfg);
+  // fill
+  AM_GPU_FBDRAW_T ctl;
+  ctl.h = ctl.w = 0;
+  int used = 0;    // number of pixels
+  // (x, y) -> (width, height)
+  ctl.x = offset % cfg.width, ctl.y = offset / cfg.width;
+  printf("%d %d\n", ctl.x, ctl.y);
+  if (len > cfg.width) {
+    ctl.h = len / cfg.width, ctl.w = cfg.width;
+    ctl.pixels = (void *)buf;
+    ctl.sync = true;
+    ioe_write(AM_GPU_FBDRAW, &ctl);
+    used += ctl.h * ctl.w * 4;
+  }
+  ctl.x += ctl.h;
+  if (len % cfg.width != 0) {
+    ctl.h = 1, ctl.w = len % cfg.width;
+    ctl.pixels = (void *)(buf + used);
+    ioe_write(AM_GPU_FBDRAW, &ctl);
+  }
+  return len;
 }
 
 void init_device() {
