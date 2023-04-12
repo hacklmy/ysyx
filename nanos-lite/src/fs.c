@@ -43,10 +43,10 @@ const char* get_filename(int fd){
     p = file_table[fd].name;
   return p;
 }
-
-static int filenum = sizeof(file_table)/sizeof(Finfo);
+ 
 
 int fs_open(const char *pathname, int flags, int mode){
+  int filenum = sizeof(file_table)/sizeof(Finfo);
   for(int i =0;i< filenum;i++){
     if(strcmp(pathname, file_table[i].name)==0){
       file_table[i].file_offset = 0;
