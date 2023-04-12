@@ -16,12 +16,11 @@ void do_syscall(Context *c) {
   a[1] = c->GPR2;
   a[2] = c->GPR3;
   a[3] = c->GPR4;
-  printf("%d\n",a[0]);
+  printf("%d %s\n",a[0],(const char*)a[1]);
   switch (a[0]) {
     case SYS_exit: halt(a[1]); break;
     case SYS_yield: yield(); c->GPRx = 0; break;
     case SYS_open:
-      printf("sys_open name=%s\n",get_filename(c->GPRx));
       c->GPRx = fs_open((const char*)a[1], a[2], a[3]);
       printf("sys_open name=%s\n",get_filename(c->GPRx));
       break;
