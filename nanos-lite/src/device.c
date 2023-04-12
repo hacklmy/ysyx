@@ -25,10 +25,10 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   AM_INPUT_KEYBRD_T kbd = io_read(AM_INPUT_KEYBRD);
   int length;
   if(kbd.keycode==0){
-    printf("no key\n");
+    //printf("no key\n");
     return 0;
   }
-  printf("has a key\n");
+  //printf("has a key\n");
   if(kbd.keydown==0){
     length = snprintf((char *)buf,len,"ku %s\n",keyname[kbd.keycode]);
   }else{
