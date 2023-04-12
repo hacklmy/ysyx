@@ -28,8 +28,9 @@ size_t fs_read(int fd, void *buf, size_t len);
 size_t fs_lseek(int fd, size_t offset, int whence);
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
-  int fd = fs_open(filename,0,0);
   printf("open file success\n");
+  int fd = fs_open(filename,0,0);
+  
   Elf_Ehdr* ehdr = (Elf_Ehdr*)malloc(sizeof(Elf_Ehdr));
   fs_read(fd,ehdr, sizeof(Elf_Ehdr));
   assert(*(uint32_t *)ehdr->e_ident == 0x464c457f);
