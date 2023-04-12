@@ -105,8 +105,5 @@ void init_fs() {
 }
 
 const char* get_filename(int fd){
-  char *p = NULL;
-  if(fd>3)
-    p = file_table[fd].name;
-  return p;
+  return file_table[fd].name;
 }
