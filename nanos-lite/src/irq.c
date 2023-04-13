@@ -8,7 +8,7 @@ static Context* do_event(Event e, Context* c) {
       //c->mepc +=4;
       break;
     case EVENT_SYSCALL:
-      printf("syscall\n");
+      //printf("syscall\n");
       do_syscall(c);
       //c->mepc +=4;
       break;
