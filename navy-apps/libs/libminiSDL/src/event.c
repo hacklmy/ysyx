@@ -26,7 +26,7 @@ int SDL_PollEvent(SDL_Event *ev) {
       }
        ev->key.keysym.sym = 0;
       for(int i =0;i<(sizeof(keyname)/sizeof(keyname[0]));i++){
-        if(strncmp(buf+3,keyname[i], strlen(buf+3)-1)==0){
+        if(strcmp(buf+3,keyname[i])==0){
           ev->key.keysym.sym = i;
           break;
         }
