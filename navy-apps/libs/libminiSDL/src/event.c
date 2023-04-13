@@ -17,7 +17,7 @@ int SDL_PushEvent(SDL_Event *ev) {
 
 int SDL_PollEvent(SDL_Event *ev) {
   char buf[64];
-  if(NDL_PollEvent(buf,sizeof(buf))!=0){
+  if(NDL_PollEvent(buf,64)!=0){
     if(buf[0]=='k'){
       if(buf[1]=='d'){
         ev->type = SDL_KEYDOWN;
@@ -28,7 +28,7 @@ int SDL_PollEvent(SDL_Event *ev) {
        printf("%s\n",buf+3);
       for(int i =0;i<(sizeof(keyname)/sizeof(keyname[0]));i++){
         if(strncmp(buf+3,keyname[i], strlen(buf+3)-1)==0){
-
+          printf("%s\n",keyname[i]);
           ev->key.keysym.sym = i;
           break;
         }
