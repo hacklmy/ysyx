@@ -39,7 +39,7 @@ void do_syscall(Context *c) {
     case SYS_lseek:
       c->GPRx = fs_lseek(a[1], a[2], a[3]);
       break;
-    case SYS_brk: c->GPRx = 0;  break;
+    case SYS_brk: c->GPRx = 0;printf("sys_brk\n");  break;
     case SYS_fstat:break;
     case SYS_time:break;
     case SYS_signal:break;
