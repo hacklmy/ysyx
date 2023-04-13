@@ -29,6 +29,7 @@ void do_syscall(Context *c) {
       c->GPRx = fs_read(a[1], (void*)a[2], a[3]);
       break;
     case SYS_write:
+    printf("sys_write name=%s len=%d\n", get_filename(a[1]), a[3]);
       c->GPRx = fs_write(a[1], (void*)a[2], a[3]);
       break;
     case SYS_kill:break;
