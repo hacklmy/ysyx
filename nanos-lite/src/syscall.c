@@ -21,6 +21,7 @@ void do_syscall(Context *c) {
     case SYS_exit: halt(a[1]); break;
     case SYS_yield: yield(); c->GPRx = 0; break;
     case SYS_open:
+    printf("sys_open name=%s\n",get_filename(c->GPRx));
       c->GPRx = fs_open((const char*)a[1], a[2], a[3]);
       //printf("%d\n",c->GPRx);
       break;
@@ -33,12 +34,13 @@ void do_syscall(Context *c) {
     case SYS_kill:break;
     case SYS_getpid:break;
     case SYS_close:
+    printf("sys_close name=%s\n", get_filename(a[1]));
       c->GPRx = fs_close(a[1]);
       break;
     case SYS_lseek:
       c->GPRx = fs_lseek(a[1], a[2], a[3]);
       break;
-    case SYS_brk: c->GPRx = 0;  break;
+    case SYS_brk: c->GPRx = 0;  printf("sys_brk a0=%d a1=%d a2=%d\n", a[0], a[1], a[2]);break;
     case SYS_fstat:break;
     case SYS_time:break;
     case SYS_signal:break;
