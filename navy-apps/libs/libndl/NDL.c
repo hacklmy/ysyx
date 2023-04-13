@@ -15,6 +15,7 @@ static int centre_w = 0, centre_h = 0;
 static int canvas_w = 0, canvas_h = 0;
 
 uint32_t NDL_GetTicks() {
+  printf("NDL gettime\n");
   struct timeval  tv;
   struct timezone tz;
   gettimeofday(&tv,&tz);
