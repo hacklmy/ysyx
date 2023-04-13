@@ -18,6 +18,7 @@ uint32_t NDL_GetTicks() {
   struct timeval  tv;
   struct timezone tz;
   gettimeofday(&tv,&tz);
+  printf("get time\n");
   return tv.tv_usec/1000;
 }
 
