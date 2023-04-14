@@ -11,7 +11,7 @@
 static int evtdev = -1;
 static int fbdev = -1;
 static int screen_w = 0, screen_h = 0;
-static int centre_w = 0, centre_h = 0;
+static int centre_offset_w = 0, centre_offset_h = 0;
 static int canvas_w = 0, canvas_h = 0;
 
 uint32_t NDL_GetTicks() {
@@ -50,15 +50,13 @@ void NDL_OpenCanvas(int *w, int *h) {
   if (*h == 0) *h = screen_h;
   canvas_h = *h;
   canvas_w = *w;
-  centre_h = screen_h /2;
-  centre_w = screen_w /2;
+  centre_offset_h = screen_h /2 - canvas_h/2;
+  centre_offset_w = screen_w /2 - canvas_w/2;
 }
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
   int fd = open("/dev/fb", 0, 0);
-  size_t center_offset_x = centre_w - w/2;
-  size_t center_offset_y = centre_h - h/2;
-  size_t offset = (y )*screen_w + x ;
+  size_t offset = (y + centre_offset_h)*screen_w + x + centre_offset_w;
   size_t len = ((size_t)w) << 32 | (size_t)h;
   #if defined(__ISA_NATIVE__) 
 
