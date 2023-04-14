@@ -3,51 +3,49 @@
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
+
+inline int min(int a, int b) {
+  return a < b ? a : b;
+}
 
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
-  assert(dst && src);
+  // printf("Func: SDL_BlitSurface\n");
+  assert(dst && src); // dst and src are not NULL
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
   int sx, sy, w, h, dx, dy;
-  if (srcrect == NULL){
-    sx = 0;
-    sy = 0;
-    w = src->w;
-    h = src->h;
-  }
-  else {
-    sx = srcrect->x; 
-    sy = srcrect->y;
-    w = srcrect->w; 
-    h = srcrect->h;
-  }
-  if (dstrect == NULL) {
-    dx = 0; 
-    dy = 0;
-  }
+  if (srcrect == NULL) sx = 0, sy = 0, w = src->w, h = src->h;
+  else sx = srcrect->x, sy = srcrect->y, w = srcrect->w, h = srcrect->h;
+  if (dstrect == NULL) dx = 0, dy = 0;
   else dx = dstrect->x, dy = dstrect->y;
-  if(src->format->BitsPerPixel==32)
-  {
-    for(int i =0;i<h;i++){
-      for(int j =0;j<w;j++){
-        ((uint32_t*)(dst->pixels))[(dy+i)*dst->w + dx + j] = ((uint32_t*)(src->pixels))[(sy+i)*src->w + sx + j];
-      }
-    }
-  }else if(src->format->BitsPerPixel==8){
-    for(int i =0;i<h;i++){
-      for(int j =0;j<w;j++){
-        dst->pixels[(dy+i)*dst->w + dx + j] = src->pixels[(sy+i)*src->w + sx + j];
+  // printf("sx: %d, sy: %d, w: %d, h: %d, dx: %d, dy: %d\n", sx, sy, w, h, dx, dy);
+  // printf("src-w: %d, src-h: %d, dst-w: %d, dst-h: %d\n", src->w, src->h, dst->w, dst->h);
+  // should be in the rect of dst
+  assert(sx >= 0 && sy >= 0);
+  assert(dx >= 0 && dy >= 0);
+  w = min(w, dst->w - dx);
+  h = min(h, dst->h - dy);
+  // copy
+  for (int i = 0; i < h; ++i) {
+    for (int j = 0; j < w; ++j) {
+      // printf("%d %d\n", i, j);
+      for (int k = 0; k < dst->format->BytesPerPixel; ++k) {
+        *(dst->pixels + ((dy + i) * dst->w + dx + j) * dst->format->BytesPerPixel + k) = 
+        *(src->pixels + ((sy + i) * src->w + sx + j) * dst->format->BytesPerPixel + k);
       }
     }
   }
+  // printf("End of Func: SDL_BlitSurface\n");
 }
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
+  // printf("Func: SDL_FillRect\n");
   int x, y, w, h;
   if (dstrect == NULL) x = 0, y = 0, w = dst->w, h = dst->h;
   else x = dstrect->x, y = dstrect->y, w = dstrect->w, h = dstrect->h;
-  for(int i =0;i<h;i++){
-    for(int j =0;j<w;j++){
-      ((uint32_t*)dst->pixels)[(y+i)*dst->w + x + j] = color;
+  for (int i = 0; i < h; ++i) {
+    for (int j = 0; j < w; ++j) {
+      *(dst->pixels + ((y + i) * dst->w + x + j) * 4) = color;
     }
   }
 }
@@ -73,6 +71,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
   SDL_UnlockSurface(s);
   // printf("End of Func: SDL_UpdateRect\n");
 }
+
 // APIs below are already implemented.
 
 static inline int maskToShift(uint32_t mask) {
@@ -120,6 +119,8 @@ SDL_Surface* SDL_CreateRGBSurface(uint32_t flags, int width, int height, int dep
   if (!(flags & SDL_PREALLOC)) {
     s->pixels = malloc(s->pitch * height);
     assert(s->pixels);
+    // [fixbug]: set background to default (blue)
+    memset(s->pixels, 0, s->pitch * height);
   }
 
   return s;
