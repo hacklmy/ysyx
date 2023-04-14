@@ -16,20 +16,20 @@ void do_syscall(Context *c) {
   a[1] = c->GPR2;
   a[2] = c->GPR3;
   a[3] = c->GPR4;
-  printf("%d\n",a[0]);
+  //printf("%d\n",a[0]);
   switch (a[0]) {
     case SYS_exit: halt(a[1]); break;
     case SYS_yield: yield(); c->GPRx = 0; break;
     case SYS_open:
       c->GPRx = fs_open((const char*)a[1], a[2], a[3]);
-      printf("sys_open name=%s\n",get_filename(c->GPRx));
+      //printf("sys_open name=%s\n",get_filename(c->GPRx));
       //printf("%d\n",c->GPRx);
       break;
     case SYS_read:
       c->GPRx = fs_read(a[1], (void*)a[2], a[3]);
       break;
     case SYS_write:
-    printf("sys_write name=%s len=%d\n", get_filename(a[1]), a[3]);
+    //printf("sys_write name=%s len=%d\n", get_filename(a[1]), a[3]);
       c->GPRx = fs_write(a[1], (void*)a[2], a[3]);
       break;
     case SYS_kill:break;
@@ -52,7 +52,7 @@ void do_syscall(Context *c) {
     case SYS_times:break;
     case SYS_gettimeofday:
       long int time = io_read(AM_TIMER_UPTIME).us;
-      printf("time: %ld\n", time);
+      //printf("time: %ld\n", time);
       c->GPRx = time;
       break;
     default: panic("Unhandled syscall ID = %d", a[0]);

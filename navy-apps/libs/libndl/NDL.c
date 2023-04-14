@@ -15,7 +15,6 @@ static int centre_w = 0, centre_h = 0;
 static int canvas_w = 0, canvas_h = 0;
 
 uint32_t NDL_GetTicks() {
-  printf("NDL gettime\n");
   struct timeval  tv;
   struct timezone tz;
   gettimeofday(&tv,&tz);
@@ -34,7 +33,6 @@ void NDL_OpenCanvas(int *w, int *h) {
     int fbctl = 4;
     fbdev = 5;
     screen_w = *w; screen_h = *h;
-    printf("%d %d\n", screen_w, screen_h);
     char buf[64];
     int len = sprintf(buf, "%d %d", screen_w, screen_h);
     // let NWM resize the window and create the frame buffer
