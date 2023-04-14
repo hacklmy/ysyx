@@ -11,6 +11,8 @@ static const char *keyname[] = {
   _KEYS(keyname)
 };
 
+uint8_t keystatus[84];
+
 int SDL_PushEvent(SDL_Event *ev) {
   printf("program should not reach SDL_Pushevent\n");
   return 0;
@@ -26,12 +28,14 @@ int SDL_PollEvent(SDL_Event *ev) {
         ev->type = SDL_KEYUP;
       }
        ev->key.keysym.sym = 0;
-       printf("%s\n",buf+3);
+       //printf("%s\n",buf+3);
       for(int i =0;i<(sizeof(keyname)/sizeof(keyname[0]));i++){
         int len = strlen(buf+3) - 1;
         if(strlen(keyname[i])>len)len = strlen(keyname[i]);
         if(strncmp(buf+3,keyname[i],len)==0){
-          printf("%s\n",keyname[i]);
+          //printf("%s\n",keyname[i]);
+          if(ev->type==SDL_KEYUP)keystatus[i]=1;
+          else keystatus[i]=0;
           ev->key.keysym.sym = i;
           break;
         }
@@ -53,6 +57,6 @@ int SDL_PeepEvents(SDL_Event *ev, int numevents, int action, uint32_t mask) {
 }
 
 uint8_t* SDL_GetKeyState(int *numkeys) {
-  printf("program should not reach SDL_GetKeyState\n");
-  return NULL;
+  //printf("program should not reach SDL_GetKeyState\n");
+  return keystatus;
 }
