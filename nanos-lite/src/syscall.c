@@ -50,6 +50,7 @@ void do_syscall(Context *c) {
     case SYS_time:break;
     case SYS_signal:break;
     case SYS_execve:
+    printf("execve\n");
       naive_uload(NULL, (const char*)a[1]);
       break;
     case SYS_fork:break;
