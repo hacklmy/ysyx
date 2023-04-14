@@ -12,6 +12,7 @@ static const char *keyname[] = {
 };
 
 int SDL_PushEvent(SDL_Event *ev) {
+  printf("program should not reach SDL_Pushevent\n");
   return 0;
 }
 
@@ -47,6 +48,7 @@ int SDL_WaitEvent(SDL_Event *event) {
 }
 
 int SDL_PeepEvents(SDL_Event *ev, int numevents, int action, uint32_t mask) {
+  printf("program should not reach SDL_peepEvent\n");
   return 0;
 }
 
