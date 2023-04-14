@@ -22,7 +22,7 @@ void do_syscall(Context *c) {
   switch (a[0]) {
     case SYS_exit: 
       //halt(a[1]);
-      naive_uload(NULL,"/bin/menu");
+      naive_uload(NULL,"/bin/nterm");
       break;
     case SYS_yield: yield(); c->GPRx = 0; break;
     case SYS_open:
