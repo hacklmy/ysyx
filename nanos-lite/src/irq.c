@@ -4,7 +4,7 @@ static Context* do_event(Event e, Context* c) {
   //printf("do event\n");
   switch (e.event) {
     case EVENT_YIELD:
-      //printf("yeild call\n");
+      printf("yeild call\n");
       //c->mepc +=4;
       break;
     case EVENT_SYSCALL:
