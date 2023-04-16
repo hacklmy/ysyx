@@ -22,7 +22,7 @@
 #define Mr vaddr_read
 #define Mw vaddr_write
 #define CSR(i) csr(i)
-void difftest_skip_dut();
+void difftest_skip_ref();
 enum {
   TYPE_I, TYPE_U, TYPE_S,
   TYPE_N, TYPE_J, TYPE_B, TYPE_R
@@ -136,7 +136,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("??????? ????? ????? 110 ????? 11100 11", csrrsi , I, uint64_t tmp = CSR(BITS(s->isa.inst.val,31,20)); CSR(BITS(s->isa.inst.val,31,20)) = BITS(s->isa.inst.val, 19, 15) | CSR(BITS(s->isa.inst.val,31,20)); R(dest) = tmp);
   INSTPAT("??????? ????? ????? 111 ????? 11100 11", csrrci , I, uint64_t tmp = CSR(BITS(s->isa.inst.val,31,20)); CSR(BITS(s->isa.inst.val,31,20)) = BITS(s->isa.inst.val, 19, 15) | CSR(BITS(s->isa.inst.val,31,20)); R(dest) = tmp);
 
-  INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall   , I,  s->dnpc = isa_raise_intr(R(17), s->pc));
+  INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall   , I,  s->dnpc = isa_raise_intr(R(17), s->pc);IFDEF(CONFIG_DIFFTEST, difftest_skip_ref()));
   INSTPAT("0000000 00001 00000 000 00000 11100 11", ebreak , N, NEMUTRAP(s->pc, R(10))); // R(10) is $a0
   INSTPAT("0011000 00010 00000 000 00000 11100 11", mret   , N, s->dnpc = cpu.csr[1]+4);
   INSTPAT("??????? ????? ????? ??? ????? ????? ??", inv    , N, INV(s->pc));
