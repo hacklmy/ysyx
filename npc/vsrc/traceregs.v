@@ -34,9 +34,14 @@ module traceregs(
     input [63:0] input_reg_29,
     input [63:0] input_reg_30,
     input [63:0] input_reg_31,
+    input [63:0] csr_reg_0,
+    input [63:0] csr_reg_1,
+    input [63:0] csr_reg_2,
+    input [63:0] csr_reg_3,
     input [63:0] pc
 );
     wire [63:0] traceregs [0:31];
+    wire [63:0] csr_regs [0:3];
     assign traceregs[0] = input_reg_0; 
     assign traceregs[1] = input_reg_1;
     assign traceregs[2] = input_reg_2;
@@ -69,6 +74,10 @@ module traceregs(
     assign traceregs[29] = input_reg_29;
     assign traceregs[30] = input_reg_30;
     assign traceregs[31] = input_reg_31;
+    assign csr_regs[0] = csr_reg_0;
+    assign csr_regs[1] = csr_reg_1;
+    assign csr_regs[2] = csr_reg_2;
+    assign csr_regs[3] = csr_reg_3;
     always@(*)begin
         set_gpr_ptr(traceregs);
         get_pc(pc);

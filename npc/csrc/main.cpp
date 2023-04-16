@@ -23,6 +23,13 @@
 #define FB_ADDR         (MMIO_BASE   + 0x1000000)
 #define AUDIO_SBUF_ADDR (MMIO_BASE   + 0x1200000)
 
+const char *regs[] = {
+  "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
+  "s0", "s1", "a0", "a1", "a2", "a3", "a4", "a5",
+  "a6", "a7", "s2", "s3", "s4", "s5", "s6", "s7",
+  "s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"
+};
+
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
 //#define CONFIG_DIFFTEST
@@ -168,7 +175,7 @@ static int cmd_si(char *args){
 void print_reg(){
   int i;
   for (i = 0; i < 32; i++) {
-    printf("gpr[%d] = 0x%lx\n", i, cpu_gpr.gpr[i]);
+    printf("gpr[%d] %s = 0x%lx\n", i, regs[i], cpu_gpr.gpr[i]);
   }
 }
 
@@ -381,7 +388,7 @@ bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
   for (int i = 0; i < 32; i++) {
     if(ref_r->gpr[i] != cpu_gpr.gpr[i])
       {
-        printf("Unmatched reg value at pc : %lx  reg%d : npc = %lx  ref = %lx\n", pc, i, cpu_gpr.gpr[i], ref_r->gpr[i]);
+        printf("Unmatched reg value at pc : %lx  reg%d %s: npc = %lx  ref = %lx\n", pc, i, regs[i],cpu_gpr.gpr[i], ref_r->gpr[i]);
         return false;
       }
   }

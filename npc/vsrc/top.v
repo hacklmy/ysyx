@@ -18,6 +18,7 @@ module top(
   wire [4:0] idu_step_io_rd; // @[top.scala 22:26]
   wire [63:0] idu_step_io_imm; // @[top.scala 22:26]
   wire  idu_step_io_ctrl_sign_reg_write; // @[top.scala 22:26]
+  wire  idu_step_io_ctrl_sign_csr_write; // @[top.scala 22:26]
   wire  idu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 22:26]
   wire  idu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 22:26]
   wire  idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 22:26]
@@ -31,6 +32,7 @@ module top(
   wire [4:0] exu_step_io_rd; // @[top.scala 25:26]
   wire [63:0] exu_step_io_imm; // @[top.scala 25:26]
   wire  exu_step_io_ctrl_sign_reg_write; // @[top.scala 25:26]
+  wire  exu_step_io_ctrl_sign_csr_write; // @[top.scala 25:26]
   wire  exu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 25:26]
   wire  exu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 25:26]
   wire  exu_step_io_ctrl_sign_Writemem_en; // @[top.scala 25:26]
@@ -50,6 +52,7 @@ module top(
     .io_rd(idu_step_io_rd),
     .io_imm(idu_step_io_imm),
     .io_ctrl_sign_reg_write(idu_step_io_ctrl_sign_reg_write),
+    .io_ctrl_sign_csr_write(idu_step_io_ctrl_sign_csr_write),
     .io_ctrl_sign_src2_is_imm(idu_step_io_ctrl_sign_src2_is_imm),
     .io_ctrl_sign_src1_is_pc(idu_step_io_ctrl_sign_src1_is_pc),
     .io_ctrl_sign_Writemem_en(idu_step_io_ctrl_sign_Writemem_en),
@@ -65,6 +68,7 @@ module top(
     .io_rd(exu_step_io_rd),
     .io_imm(exu_step_io_imm),
     .io_ctrl_sign_reg_write(exu_step_io_ctrl_sign_reg_write),
+    .io_ctrl_sign_csr_write(exu_step_io_ctrl_sign_csr_write),
     .io_ctrl_sign_src2_is_imm(exu_step_io_ctrl_sign_src2_is_imm),
     .io_ctrl_sign_src1_is_pc(exu_step_io_ctrl_sign_src1_is_pc),
     .io_ctrl_sign_Writemem_en(exu_step_io_ctrl_sign_Writemem_en),
@@ -88,6 +92,7 @@ module top(
   assign exu_step_io_rd = idu_step_io_rd; // @[top.scala 31:20]
   assign exu_step_io_imm = idu_step_io_imm; // @[top.scala 32:21]
   assign exu_step_io_ctrl_sign_reg_write = idu_step_io_ctrl_sign_reg_write; // @[top.scala 33:27]
+  assign exu_step_io_ctrl_sign_csr_write = idu_step_io_ctrl_sign_csr_write; // @[top.scala 33:27]
   assign exu_step_io_ctrl_sign_src2_is_imm = idu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 33:27]
   assign exu_step_io_ctrl_sign_src1_is_pc = idu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 33:27]
   assign exu_step_io_ctrl_sign_Writemem_en = idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 33:27]
