@@ -32,7 +32,7 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-#define CONFIG_DIFFTEST
+//#define CONFIG_DIFFTEST
 //#define VerilatedVCD
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return);
