@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<assert.h>
+#include <cstdint>
 
 #define SCREEN_W 400
 #define SCREEN_H 300
