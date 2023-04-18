@@ -138,19 +138,28 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   }
   if(waddr >=VGACTL_ADDR && waddr <VGACTL_ADDR+32){
     if(waddr==VGACTL_ADDR+4){
-      long long data = 0;
-      for (int i = 0; i < 8; i++) {
+      uint32_t data = 0;
+      for (int i = 0; i < 4; i++) {
         if (wmask & 0x1) data = data | (wdata & 0xff);
         wdata >>= 8;
         wmask >>= 1;
         data = data << 8;
       }
       vgactl_port_base[1] = data;
+      vga_update_screen();
       return;
     }
   }
   if(waddr>=FB_ADDR && waddr<=FB_ADDR + 0x200000){
-
+    uint64_t fb_addr = waddr - FB_ADDR;
+    uint8_t* p = (uint8_t*)(vmem+fb_addr);
+    for (int i = 0; i < 8; i++) {
+      if (wmask & 0x1) *p = (wdata & 0xff);
+      wdata >>= 8;
+      wmask >>= 1;
+     p++;
+    }
+    return;
   }
   if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE)){
     printf("write out of bound\n");
