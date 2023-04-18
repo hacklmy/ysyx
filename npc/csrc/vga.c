@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<assert.h>
 #include <cstdint>
+#include <SDL2/SDL.h>
 
 #define SCREEN_W 400
 #define SCREEN_H 300
@@ -23,7 +24,7 @@ static uint32_t vgactl_port_base[8];
 
 
 
-#include <SDL2/SDL.h>
+
 
 static SDL_Renderer *renderer = NULL;
 static SDL_Texture *texture = NULL;
