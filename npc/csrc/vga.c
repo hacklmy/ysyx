@@ -26,9 +26,6 @@ static uint32_t vmem[300*400];
 static uint32_t vgactl_port_base[8];
 
 
-
-
-
 static SDL_Renderer *renderer = NULL;
 static SDL_Texture *texture = NULL;
 

@@ -36,7 +36,8 @@ const char *regs[] = {
 //#define CONFIG_DIFFTEST
 //#define VerilatedVCD
 
-
+uint32_t vmem[300*400];
+uint32_t vgactl_port_base[8];
 void vga_update_screen();
 void init_vga();
 
@@ -135,7 +136,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     putchar((char)wdata&0xff);
     return ;
   }
-  if(raddr >=VGACTL_ADDR && raddr <VGACTL_ADDR+32){
+  if(waddr >=VGACTL_ADDR && waddr <VGACTL_ADDR+32){
     if(waddr==VGACTL_ADDR+4){
       long long data = 0;
       for (int i = 0; i < 8; i++) {
