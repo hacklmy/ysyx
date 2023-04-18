@@ -18,8 +18,8 @@ static uint32_t screen_size() {
   return screen_width() * screen_height() * sizeof(uint32_t);
 }
 
-static void *vmem = NULL;
-static uint32_t *vgactl_port_base = NULL;
+static void vmem[300*400];
+static uint32_t vgactl_port_base[8];
 
 
 
@@ -60,11 +60,11 @@ void vga_update_screen() {
 }
 
 void init_vga() {
-  vgactl_port_base = (uint32_t *)malloc(sizeof(uint32_t)*8);
+  //vgactl_port_base = (uint32_t *)malloc(sizeof(uint32_t)*8);
   vgactl_port_base[0] = (screen_width() << 16) | screen_height();
 
 
-  vmem = malloc(screen_size());
+  //vmem = malloc(screen_size());
   init_screen();
   memset(vmem, 0, screen_size());
 }
