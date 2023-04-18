@@ -1,7 +1,10 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<assert.h>
-#include <cstdint>
+#include <iostream>
+#include <termios.h>
+#include <unistd.h>
+#include <thread>
 #include <SDL2/SDL.h>
 
 #define SCREEN_W 400
