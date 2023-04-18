@@ -8,7 +8,7 @@ verilog:
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@verilator --cc --trace --exe --build ./vsrc/*.v ./csrc/main.cpp ./csrc/*.c --top-module top --LDFLAGS "-fsanitize=address -lSDL -ldl $(shell llvm-config --cxxflags) -fPIE $(shell llvm-config --libs)"
+	@verilator --cc --trace --exe --build ./vsrc/*.v ./csrc/main.cpp ./csrc/*.c --top-module top -lSDL --LDFLAGS "-fsanitize=address -ldl $(shell llvm-config --cxxflags) -fPIE $(shell llvm-config --libs)"
 	@./obj_dir/Vtop
 
 copy_top:
