@@ -162,7 +162,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     return;
   }
   if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE)){
-    printf("write out of bound\n");
+    //printf("write out of bound\n");
     return;
   }
   #ifdef CONFIG_MTRACE
