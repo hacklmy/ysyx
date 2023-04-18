@@ -129,7 +129,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
   uint8_t *Vaddr = nullptr;
   if(waddr == SERIAL_PORT) {
-    printf("%c", wdata&0xff);
+    printf("%c", (uint16_t)wdata&0xff);
     return ;
   }
   if(waddr >= VGACTL_ADDR && waddr <= VGACTL_ADDR + 32) {
@@ -142,8 +142,8 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     int base = (waddr - FB_ADDR) / 4;
     Vaddr = (uint8_t*)&vmem[base];
   }
-  else if (Waddr >= CONFIG_MBASE && Waddr < CONFIG_MSIZE + CONFIG_MBASE) {\
-    Vaddr = guest_to_host(Waddr);
+  else if (waddr >= CONFIG_MBASE && waddr < CONFIG_MSIZE + CONFIG_MBASE) {
+    Vaddr = guest_to_host(waddr);
   }
   else {
     printf("waddr is out of bound %lx\n", Waddr);
