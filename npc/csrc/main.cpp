@@ -501,7 +501,7 @@ int main(int argc, char** argv) {
   #endif
   load_img();
   printf("image succuss\n");
-  init_vga();
+  //init_vga();
   #ifdef CONFIG_ITRACE
   init_disasm("riscv64");
   #endif

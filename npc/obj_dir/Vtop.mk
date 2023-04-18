@@ -44,7 +44,6 @@ VM_USER_LDLIBS = \
 VM_USER_CLASSES = \
 	elf \
 	main \
-	vga \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
@@ -63,8 +62,6 @@ VPATH += $(VM_USER_DIR)
 elf.o: ./csrc/elf.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 main.o: ./csrc/main.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-vga.o: ./csrc/vga.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
