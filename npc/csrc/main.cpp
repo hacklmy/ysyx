@@ -129,11 +129,11 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
   uint8_t *Vaddr = nullptr;
   if(waddr == SERIAL_PORT) {
-    printf("%c", wdata);
+    printf("%c", wdata&0xff);
     return ;
   }
   if(waddr >= VGACTL_ADDR && waddr <= VGACTL_ADDR + 32) {
-    printf("WRITE VGA DATA %lx %lx %d\n", Waddr, Wdata, Wmask);
+    //printf("WRITE VGA DATA %lx %lx %d\n", Waddr, Wdata, Wmask);
     int base = (waddr - VGACTL_ADDR) / 4;
     Vaddr = (uint8_t*)&vgactl_port_base[base];
   }
