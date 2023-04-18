@@ -146,7 +146,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     Vaddr = guest_to_host(waddr);
   }
   else {
-    printf("waddr is out of bound %lx\n", Waddr);
+    //printf("waddr is out of bound %lx\n", Waddr);
     return;
   }
   for (int i = 0; i < 8; i++)
