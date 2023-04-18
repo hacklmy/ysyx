@@ -23,6 +23,7 @@
 #define FB_ADDR         (MMIO_BASE   + 0x1000000)
 #define AUDIO_SBUF_ADDR (MMIO_BASE   + 0x1200000)
 
+
 const char *regs[] = {
   "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
   "s0", "s1", "a0", "a1", "a2", "a3", "a4", "a5",
@@ -32,8 +33,12 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-#define CONFIG_DIFFTEST
+//#define CONFIG_DIFFTEST
 //#define VerilatedVCD
+
+
+void vga_update_screen();
+void init_vga();
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return);
 void init_elf(char *elf_file);
@@ -496,6 +501,7 @@ int main(int argc, char** argv) {
   #endif
   load_img();
   printf("image succuss\n");
+  init_vga();
   #ifdef CONFIG_ITRACE
   init_disasm("riscv64");
   #endif
