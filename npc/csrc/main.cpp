@@ -37,8 +37,8 @@ const char *regs[] = {
 //#define VerilatedVCD
 
 
-//void vga_update_screen();
-//void init_vga();
+void vga_update_screen();
+void init_vga();
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return);
 void init_elf(char *elf_file);
@@ -107,6 +107,16 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     *rdata = (tmpcal_ptr - boot_time)*1000000;
     return;
   }
+  if(raddr >=VGACTL_ADDR && raddr <VGACTL_ADDR+32){
+    if(raddr==VGACTL_ADDR){
+      *rdata = vgactl_port_base[0] & 0xffff;
+    }else if(raddr == VGACTL_ADDR+2){
+      *rdata = (vgactl_port_base[0]>>16) & 0xffff;
+    }else if(raddr == VGACTL_ADDR+4){
+      *rdata = vgactl_port_base[1];
+    }
+    return;
+  }
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE)){
     return;
   }
@@ -124,6 +134,22 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   if(waddr==SERIAL_PORT){
     putchar((char)wdata&0xff);
     return ;
+  }
+  if(raddr >=VGACTL_ADDR && raddr <VGACTL_ADDR+32){
+    if(waddr==VGACTL_ADDR+4){
+      long long data = 0;
+      for (int i = 0; i < 8; i++) {
+        if (wmask & 0x1) data = data | (wdata & 0xff);
+        wdata >>= 8;
+        wmask >>= 1;
+        data = data << 8;
+      }
+      vgactl_port_base[1] = data;
+      return;
+    }
+  }
+  if(waddr>=FB_ADDR && waddr<=FB_ADDR + 0x200000){
+
   }
   if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE)){
     printf("write out of bound\n");
@@ -501,7 +527,7 @@ int main(int argc, char** argv) {
   #endif
   load_img();
   printf("image succuss\n");
-  //init_vga();
+  init_vga();
   #ifdef CONFIG_ITRACE
   init_disasm("riscv64");
   #endif
