@@ -109,13 +109,8 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     return;
   }
   if(raddr >=VGACTL_ADDR && raddr <VGACTL_ADDR+32){
-    if(raddr==VGACTL_ADDR){
-      *rdata = vgactl_port_base[0] & 0xffff;
-    }else if(raddr == VGACTL_ADDR+2){
-      *rdata = (vgactl_port_base[0]>>16) & 0xffff;
-    }else if(raddr == VGACTL_ADDR+4){
-      *rdata = vgactl_port_base[1];
-    }
+    int base = (raddr - VGACTL_ADDR) / 4;
+    (*rdata) = vgactl_port_base[base];
     return;
   }
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE)){
@@ -132,49 +127,40 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   // 总是往地址为`waddr & ~0x7ull`的8字节按写掩码`wmask`写入`wdata`
   // `wmask`中每比特表示`wdata`中1个字节的掩码,
   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
-  if(waddr==SERIAL_PORT){
-    putchar((char)wdata&0xff);
+  uint8_t *Vaddr = nullptr;
+  if(waddr == SERIAL_PORT) {
+    printf("%c", wdata);
     return ;
   }
-  if(waddr >=VGACTL_ADDR && waddr <VGACTL_ADDR+32){
-    if(waddr==VGACTL_ADDR+4){
-      uint32_t data = 0;
-      for (int i = 0; i < 4; i++) {
-        if (wmask & 0x1) data = data | (wdata & 0xff);
-        wdata >>= 8;
-        wmask >>= 1;
-        data = data << 8;
-      }
-      vgactl_port_base[1] = data;
-      vga_update_screen();
-      return;
-    }
+  if(waddr >= VGACTL_ADDR && waddr <= VGACTL_ADDR + 32) {
+    printf("WRITE VGA DATA %lx %lx %d\n", Waddr, Wdata, Wmask);
+    int base = (waddr - VGACTL_ADDR) / 4;
+    Vaddr = (uint8_t*)&vgactl_port_base[base];
   }
-  if(waddr>=FB_ADDR && waddr<=FB_ADDR + 0x200000){
-    uint64_t fb_addr = waddr - FB_ADDR;
-    uint8_t* p = (uint8_t*)(vmem+fb_addr);
-    for (int i = 0; i < 8; i++) {
-      if (wmask & 0x1) *p = (wdata & 0xff);
-      wdata >>= 8;
-      wmask >>= 1;
-     p++;
-    }
+  else if(waddr >= FB_ADDR && waddr <= FB_ADDR + 4 * 800 * 600) {
+    // printf("WRITE FB DATA %lx %lx %d\n", Waddr, Wdata, Wmask);
+    int base = (waddr - FB_ADDR) / 4;
+    Vaddr = (uint8_t*)&vmem[base];
+  }
+  else if (Waddr >= CONFIG_MBASE && Waddr < CONFIG_MSIZE + CONFIG_MBASE) {\
+    Vaddr = guest_to_host(Waddr);
+  }
+  else {
+    printf("waddr is out of bound %lx\n", Waddr);
     return;
   }
-  if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE)){
-    //printf("write out of bound\n");
-    return;
+  for (int i = 0; i < 8; i++)
+  {
+    if ((wmask >> i) & 1)
+      *((uint8_t *)(Vaddr + i)) = (((wdata) >> (i * 8)) & (0xFF));
   }
-  #ifdef CONFIG_MTRACE
-    printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
-  #endif
-  uint8_t* p = guest_to_host(waddr);
-  for (int i = 0; i < 8; i++) {
-    if (wmask & 0x1) *p = (wdata & 0xff);
-    wdata >>= 8;
-    wmask >>= 1;
-    p++;
+  if(waddr >= VGACTL_ADDR && waddr <= VGACTL_ADDR + 32) {
+    vga_update_screen();
   }
+#ifdef CONFIG_MTRACE
+  sprintf(mtrace_buf[mtrace_count], "write: addr:%016x Wmask:%08u content:%016lx", Waddr, Wmask1, wdata);
+  mtrace_count = (mtrace_count + 1) % MTRACE_SIZE;
+#endif
 }
 
 //==========================sdb============================
