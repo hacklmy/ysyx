@@ -106,11 +106,18 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     time_t tmpcal_ptr;
     tmpcal_ptr = time(NULL);
     *rdata = (tmpcal_ptr - boot_time)*1000000;
+    difftest_skip_ref();
     return;
   }
   if(raddr >=VGACTL_ADDR && raddr <VGACTL_ADDR+32){
-    int base = (raddr - VGACTL_ADDR) / 4;
-    (*rdata) = vgactl_port_base[base];
+    if(raddr==VGACTL_ADDR){
+      *rdata = vgactl_port_base[0] & 0xffff;
+    }else if(raddr == VGACTL_ADDR+2){
+      *rdata = (vgactl_port_base[0]>>16);
+    }else if(raddr == VGACTL_ADDR+4){
+      *rdata = vgactl_port_base[1];
+    }
+    difftest_skip_ref();
     return;
   }
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE)){
@@ -127,40 +134,52 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   // 总是往地址为`waddr & ~0x7ull`的8字节按写掩码`wmask`写入`wdata`
   // `wmask`中每比特表示`wdata`中1个字节的掩码,
   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
-  uint8_t *Vaddr = nullptr;
-  if(waddr == SERIAL_PORT) {
-    printf("%c", (uint16_t)wdata&0xff);
+  if(waddr==SERIAL_PORT){
+    putchar((char)wdata&0xff);
     return ;
+    difftest_skip_ref();
   }
-  if(waddr >= VGACTL_ADDR && waddr <= VGACTL_ADDR + 32) {
-    //printf("WRITE VGA DATA %lx %lx %d\n", Waddr, Wdata, Wmask);
-    int base = (waddr - VGACTL_ADDR) / 4;
-    Vaddr = (uint8_t*)&vgactl_port_base[base];
+  if(waddr >=VGACTL_ADDR && waddr <VGACTL_ADDR+32){
+    if(waddr==VGACTL_ADDR+4){
+      uint32_t data = 0;
+      for (int i = 0; i < 4; i++) {
+        if (wmask & 0x1) data = data | (wdata & 0xff);
+        wdata >>= 8;
+        wmask >>= 1;
+        data = data << 8;
+      }
+      vgactl_port_base[1] = data;
+      vga_update_screen();
+      return;
+    }
+    difftest_skip_ref();
   }
-  else if(waddr >= FB_ADDR && waddr <= FB_ADDR + 4 * 800 * 600) {
-    // printf("WRITE FB DATA %lx %lx %d\n", Waddr, Wdata, Wmask);
-    int base = (waddr - FB_ADDR) / 4;
-    Vaddr = (uint8_t*)&vmem[base];
-  }
-  else if (waddr >= CONFIG_MBASE && waddr < CONFIG_MSIZE + CONFIG_MBASE) {
-    Vaddr = guest_to_host(waddr);
-  }
-  else {
-    //printf("waddr is out of bound %lx\n", Waddr);
+  if(waddr>=FB_ADDR && waddr<=FB_ADDR + 0x200000){
+    uint64_t fb_addr = waddr - FB_ADDR;
+    uint8_t* p = (uint8_t*)(vmem+fb_addr);
+    for (int i = 0; i < 8; i++) {
+      if (wmask & 0x1) *p = (wdata & 0xff);
+      wdata >>= 8;
+      wmask >>= 1;
+     p++;
+    }
+    difftest_skip_ref();
     return;
   }
-  for (int i = 0; i < 8; i++)
-  {
-    if ((wmask >> i) & 1)
-      *((uint8_t *)(Vaddr + i)) = (((wdata) >> (i * 8)) & (0xFF));
+  if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE)){
+    //printf("write out of bound\n");
+    return;
   }
-  if(waddr >= VGACTL_ADDR && waddr <= VGACTL_ADDR + 32) {
-    vga_update_screen();
+  #ifdef CONFIG_MTRACE
+    printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
+  #endif
+  uint8_t* p = guest_to_host(waddr);
+  for (int i = 0; i < 8; i++) {
+    if (wmask & 0x1) *p = (wdata & 0xff);
+    wdata >>= 8;
+    wmask >>= 1;
+    p++;
   }
-#ifdef CONFIG_MTRACE
-  sprintf(mtrace_buf[mtrace_count], "write: addr:%016x Wmask:%08u content:%016lx", Waddr, Wmask1, wdata);
-  mtrace_count = (mtrace_count + 1) % MTRACE_SIZE;
-#endif
 }
 
 //==========================sdb============================
@@ -376,6 +395,9 @@ extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int
 //==========================itrace_end==============================
 
 //==========================difftest================================
+static int skip_dut_nr_inst = 0;
+static bool is_skip_ref = false;
+
 enum { DIFFTEST_TO_DUT, DIFFTEST_TO_REF };
 void (*ref_difftest_memcpy)(uint32_t addr, void *buf, size_t n, bool direction) = NULL;
 void (*ref_difftest_regcpy)(void *dut, bool direction) = NULL;
@@ -410,6 +432,26 @@ void init_difftest(char *ref_so_file, long img_size) {
   ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
 }
 
+void difftest_skip_dut(int nr_ref, int nr_dut) {
+  skip_dut_nr_inst += nr_dut;
+
+  while (nr_ref -- > 0) {
+    ref_difftest_exec(1);
+  }
+}
+
+void difftest_skip_ref() {
+  is_skip_ref = true;
+  // If such an instruction is one of the instruction packing in QEMU
+  // (see below), we end the process of catching up with QEMU's pc to
+  // keep the consistent behavior in our best.
+  // Note that this is still not perfect: if the packed instructions
+  // already write some memory, and the incoming instruction in NEMU
+  // will load that memory, we will encounter false negative. But such
+  // situation is infrequent.
+  skip_dut_nr_inst = 0;
+}
+
 bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
   if(cpu_stop)return true;
   for (int i = 0; i < 32; i++) {
@@ -435,6 +477,12 @@ static void checkregs(CPU_state *ref, uint64_t pc) {
 }
 
 void difftest_step(uint64_t pc) {
+  if (is_skip_ref) {
+    // to skip the checking of an instruction, just copy the reg state to reference design
+    ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
+    is_skip_ref = false;
+    return;
+  }
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
   checkregs(&ref_r, pc);
