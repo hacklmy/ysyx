@@ -970,7 +970,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     Vtop___024unit____Vdpiimwrap_ebreak_handle_TOP____024unit(
                                                               (2U 
                                                                == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_194)));
-    Vtop___024unit____Vdpiimwrap_ecall_handle_TOP____024unit(vlSelf->top__DOT__dpi__DOT__ecall_flag);
+    Vtop___024unit____Vdpiimwrap_ecall_handle_TOP____024unit(
+                                                             (0x3dU 
+                                                              == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_194)));
     if ((0x3dU == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_194))) {
         vlSelf->top__DOT__exu_step__DOT__CSR_Reg_MPORT_1_data 
             = vlSelf->top__DOT__pc_now;
