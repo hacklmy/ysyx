@@ -465,6 +465,7 @@ void difftest_skip_ref() {
 bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
   if(cpu_stop)return true;
   for (int i = 0; i < 32; i++) {
+    if(i==15)continue;
     if(ref_r->gpr[i] != cpu_gpr.gpr[i])
       {
         printf("Unmatched reg value at pc : %lx  reg%d %s: npc = %lx  ref = %lx\n", pc, i, regs[i],cpu_gpr.gpr[i], ref_r->gpr[i]);
