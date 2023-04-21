@@ -494,7 +494,7 @@ void difftest_step(uint64_t pc) {
   }
   if(is_ecall){
     printf("ecall\n");
-    ref_difftest_raise_intr(csr_reg[3]);
+    ref_difftest_raise_intr(0xb);
   }
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
