@@ -491,9 +491,9 @@ void difftest_step(uint64_t pc) {
     is_skip_ref = false;
     return;
   }
-  // if(is_ecall){
-  //   ref_difftest_raise_intr(csr_reg[3]);
-  // }
+  if(is_ecall){
+    ref_difftest_raise_intr(csr_reg[3]);
+  }
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
   checkregs(&ref_r, pc);
