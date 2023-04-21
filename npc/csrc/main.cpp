@@ -74,6 +74,7 @@ void ebreak_handle(int flag){
 }
 
 void ecall_handle(int flag){
+  printf("ecall\n");
   is_ecall = flag;
 }
 
