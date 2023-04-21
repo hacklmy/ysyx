@@ -33,7 +33,7 @@ const char *regs[] = {
 
 #define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-//#define CONFIG_DIFFTEST
+#define CONFIG_DIFFTEST
 //#define VerilatedVCD
 void difftest_skip_ref();
 uint32_t vmem[300*400];
