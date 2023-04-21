@@ -35,7 +35,7 @@ const char *regs[] = {
 //#define CONFIG_FTRACE
 //#define CONFIG_DIFFTEST
 //#define VerilatedVCD
-
+void difftest_skip_ref();
 uint32_t vmem[300*400];
 uint32_t vgactl_port_base[8];
 void vga_update_screen();
