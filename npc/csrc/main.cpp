@@ -479,7 +479,7 @@ static void checkregs(CPU_state *ref, uint64_t pc) {
 void difftest_step(uint64_t pc) {
   if (is_skip_ref) {
     // to skip the checking of an instruction, just copy the reg state to reference design
-    ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
+    ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
     is_skip_ref = false;
     return;
   }
