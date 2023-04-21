@@ -74,7 +74,7 @@ void ebreak_handle(int flag){
 }
 
 void ecall_handle(int flag){
-  is_ecall = flag;
+  ref_difftest_raise_intr(csr_reg[3]);
 }
 
 void get_pc(long long pc){
