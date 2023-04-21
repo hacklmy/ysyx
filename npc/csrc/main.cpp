@@ -33,7 +33,7 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-#define CONFIG_DIFFTEST
+//#define CONFIG_DIFFTEST
 //#define VerilatedVCD
 void difftest_skip_ref();
 uint32_t vmem[300*400];
@@ -47,6 +47,7 @@ void print_func();
 
 
 int stop_status = 0;
+int is_ecall = 0;
 
 #define BITMASK(bits) ((1ull << (bits)) - 1)
 #define BITS(x, hi, lo) (((x) >> (lo)) & BITMASK((hi) - (lo) + 1)) // similar to x[hi:lo] in verilog
@@ -72,9 +73,22 @@ void ebreak_handle(int flag){
   cpu_stop = flag;
 }
 
+void ecall_handle(int flag){
+  is_ecall = flag;
+}
+
 void get_pc(long long pc){
   pc_now = pc;
 }
+
+uint64_t csr_reg[4];
+extern "C" void set_csr_ptr(const svOpenArrayHandle r) {
+  uint64_t *csr = NULL;
+  csr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
+  for (int i = 0; i < 4; i++)
+    csr_reg[i] = csr[i];
+}
+
 
 CPU_state ref_r;
 //===========================mem=========================
@@ -97,6 +111,9 @@ static inline uint32_t host_read(void *addr) {
 time_t boot_time = 0;
 extern "C" void pmem_read(long long raddr, long long *rdata) {
   // 总是读取地址为`raddr & ~0x7ull`的8字节返回给`rdata`
+  if(raddr>=DEVICE_BASE){
+    difftest_skip_ref();
+  }
   if(raddr==RTC_ADDR){
     if(boot_time==0){
       boot_time = time(NULL);
@@ -106,7 +123,6 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     time_t tmpcal_ptr;
     tmpcal_ptr = time(NULL);
     *rdata = (tmpcal_ptr - boot_time)*1000000;
-    difftest_skip_ref();
     return;
   }
   if(raddr >=VGACTL_ADDR && raddr <VGACTL_ADDR+32){
@@ -117,7 +133,6 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     }else if(raddr == VGACTL_ADDR+4){
       *rdata = vgactl_port_base[1];
     }
-    difftest_skip_ref();
     return;
   }
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE)){
@@ -134,10 +149,12 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   // 总是往地址为`waddr & ~0x7ull`的8字节按写掩码`wmask`写入`wdata`
   // `wmask`中每比特表示`wdata`中1个字节的掩码,
   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
+  if(waddr>=DEVICE_BASE){
+    difftest_skip_ref();
+  }
   if(waddr==SERIAL_PORT){
     putchar((char)wdata&0xff);
     return ;
-    difftest_skip_ref();
   }
   if(waddr >=VGACTL_ADDR && waddr <VGACTL_ADDR+32){
     if(waddr==VGACTL_ADDR+4){
@@ -152,7 +169,6 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
       vga_update_screen();
       return;
     }
-    difftest_skip_ref();
   }
   if(waddr>=FB_ADDR && waddr<=FB_ADDR + 0x200000){
     uint64_t fb_addr = waddr - FB_ADDR;
@@ -163,7 +179,6 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
       wmask >>= 1;
      p++;
     }
-    difftest_skip_ref();
     return;
   }
   if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE)){
@@ -442,13 +457,6 @@ void difftest_skip_dut(int nr_ref, int nr_dut) {
 
 void difftest_skip_ref() {
   is_skip_ref = true;
-  // If such an instruction is one of the instruction packing in QEMU
-  // (see below), we end the process of catching up with QEMU's pc to
-  // keep the consistent behavior in our best.
-  // Note that this is still not perfect: if the packed instructions
-  // already write some memory, and the incoming instruction in NEMU
-  // will load that memory, we will encounter false negative. But such
-  // situation is infrequent.
   skip_dut_nr_inst = 0;
 }
 
@@ -483,6 +491,9 @@ void difftest_step(uint64_t pc) {
     is_skip_ref = false;
     return;
   }
+  // if(is_ecall){
+  //   ref_difftest_raise_intr(csr_reg[3]);
+  // }
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
   checkregs(&ref_r, pc);
