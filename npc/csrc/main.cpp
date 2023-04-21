@@ -495,6 +495,7 @@ void difftest_step(uint64_t pc) {
   checkregs(&ref_r, pc);
 
 }
+
 void ecall_handle(int flag){
   ref_difftest_raise_intr(csr_reg[3]);
 }
