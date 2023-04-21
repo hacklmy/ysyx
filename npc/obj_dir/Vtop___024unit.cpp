@@ -19,6 +19,16 @@ VL_INLINE_OPT void Vtop___024unit____Vdpiimwrap_ebreak_handle_TOP____024unit(IDa
     ebreak_handle(flag__Vcvt);
 }
 
+extern "C" void ecall_handle(int flag);
+
+VL_INLINE_OPT void Vtop___024unit____Vdpiimwrap_ecall_handle_TOP____024unit(IData/*31:0*/ flag) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vtop___024unit____Vdpiimwrap_ecall_handle_TOP____024unit\n"); );
+    // Body
+    int flag__Vcvt;
+    for (size_t flag__Vidx = 0; flag__Vidx < 1; ++flag__Vidx) flag__Vcvt = flag;
+    ecall_handle(flag__Vcvt);
+}
+
 extern "C" void pmem_read(long long Raddr, long long* Rdata);
 
 VL_INLINE_OPT void Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit(QData/*63:0*/ Raddr, QData/*63:0*/ &Rdata) {
@@ -64,4 +74,15 @@ VL_INLINE_OPT void Vtop___024unit____Vdpiimwrap_get_pc_TOP____024unit(QData/*63:
     long long pc__Vcvt;
     for (size_t pc__Vidx = 0; pc__Vidx < 1; ++pc__Vidx) pc__Vcvt = pc;
     get_pc(pc__Vcvt);
+}
+
+extern "C" void set_csr_ptr(const svOpenArrayHandle Regfile);
+
+VL_INLINE_OPT void Vtop___024unit____Vdpiimwrap_set_csr_ptr__Vdpioc2_TOP____024unit(const VlUnpacked<QData/*63:0*/, 4> &Regfile) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vtop___024unit____Vdpiimwrap_set_csr_ptr__Vdpioc2_TOP____024unit\n"); );
+    // Body
+    static const int Regfile__Vopenprops__ulims[2] = {0, 3};
+    static const VerilatedVarProps Regfile__Vopenprops(VLVT_UINT64, VLVD_IN, VerilatedVarProps::Packed(), 63, 0, VerilatedVarProps::Unpacked(), 1, Regfile__Vopenprops__ulims);
+    VerilatedDpiOpenVar Regfile__Vopenarray (&Regfile__Vopenprops, &Regfile);
+    set_csr_ptr(&Regfile__Vopenarray);
 }

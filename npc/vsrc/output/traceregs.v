@@ -1,5 +1,6 @@
 import "DPI-C" function void set_gpr_ptr(input logic [63:0] Regfile []);
 import "DPI-C" function void get_pc(input longint pc);
+import "DPI-C" function void set_csr_ptr(input logic [63:0] Regfile []);
 
 module traceregs(
     input [63:0] input_reg_0,
@@ -81,5 +82,6 @@ module traceregs(
     always@(*)begin
         set_gpr_ptr(traceregs);
         get_pc(pc);
+        set_csr_ptr(csr_regs);
     end
 endmodule

@@ -42,6 +42,7 @@ VL_MODULE(Vtop___024root) {
     IData/*31:0*/ top__DOT__exu_step__DOT__remw_res;
     IData/*31:0*/ top__DOT__exu_step__DOT__remuw_res;
     VlWide<4>/*126:0*/ top__DOT__exu_step__DOT___io_res2rd_T_208;
+    IData/*31:0*/ top__DOT__dpi__DOT__ecall_flag;
     QData/*63:0*/ top__DOT__idu_step_io_imm;
     QData/*63:0*/ top__DOT__exu_step_io_pc_next;
     QData/*63:0*/ top__DOT__pc_now;

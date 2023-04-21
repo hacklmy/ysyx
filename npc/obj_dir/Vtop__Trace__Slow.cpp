@@ -446,6 +446,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         {int i; for (i=0; i<4; i++) {
                 tracep->declQuad(c+307+i*2,"top exu_step reg_trace csr_regs", true,(i+0), 63,0);}}
         tracep->declBus(c+20,"top dpi flag", false,-1, 31,0);
+        tracep->declBus(c+365,"top dpi ecall_flag", false,-1, 31,0);
     }
 }
 
@@ -1008,5 +1009,6 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullCData(oldp+362,(3U),2);
         tracep->fullCData(oldp+363,(0U),2);
         tracep->fullCData(oldp+364,(2U),2);
+        tracep->fullIData(oldp+365,(vlSelf->top__DOT__dpi__DOT__ecall_flag),32);
     }
 }

@@ -1138,6 +1138,7 @@ module top(
   wire [7:0] exu_step_io_ctrl_sign_Wmask; // @[top.scala 25:26]
   wire [63:0] exu_step_io_res2rd; // @[top.scala 25:26]
   wire [31:0] dpi_flag; // @[top.scala 35:21]
+  wire [31:0] dpi_ecall_flag; // @[top.scala 35:21]
   reg [63:0] pc_now; // @[top.scala 14:25]
   IFU ifu_step ( // @[top.scala 17:26]
     .io_pc(ifu_step_io_pc),
@@ -1175,11 +1176,12 @@ module top(
     .io_res2rd(exu_step_io_res2rd)
   );
   DPI dpi ( // @[top.scala 35:21]
-    .flag(dpi_flag)
+    .flag(dpi_flag),
+    .ecall_flag(dpi_ecall_flag)
   );
   assign io_inst = ifu_step_io_inst; // @[top.scala 19:13]
   assign io_pc = pc_now; // @[top.scala 15:11]
-  assign io_pc_next = exu_step_io_pc_next; // @[top.scala 39:16]
+  assign io_pc_next = exu_step_io_pc_next; // @[top.scala 40:16]
   assign io_outval = exu_step_io_res2rd; // @[top.scala 34:15]
   assign ifu_step_io_pc = pc_now; // @[top.scala 18:20]
   assign idu_step_io_inst = ifu_step_io_inst; // @[top.scala 24:22]
@@ -1197,11 +1199,12 @@ module top(
   assign exu_step_io_ctrl_sign_Writemem_en = idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 33:27]
   assign exu_step_io_ctrl_sign_Wmask = idu_step_io_ctrl_sign_Wmask; // @[top.scala 33:27]
   assign dpi_flag = {{31'd0}, idu_step_io_inst_now == 32'h2}; // @[top.scala 36:17]
+  assign dpi_ecall_flag = {{31'd0}, idu_step_io_inst_now == 32'h3d}; // @[top.scala 37:23]
   always @(posedge clock) begin
     if (reset) begin // @[top.scala 14:25]
       pc_now <= 64'h80000000; // @[top.scala 14:25]
     end else begin
-      pc_now <= exu_step_io_pc_next; // @[top.scala 38:12]
+      pc_now <= exu_step_io_pc_next; // @[top.scala 39:12]
     end
   end
 // Register and memory initialization
