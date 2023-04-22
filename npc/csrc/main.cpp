@@ -251,7 +251,6 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
       if (wmask & 0x1) *p = (wdata & 0xff);
       wdata >>= 8;
       wmask >>= 1;
-      printf("%d\n",*p);
      p++;
     }
     return;
