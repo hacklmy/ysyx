@@ -101,7 +101,7 @@ void vga_update_screen() {
 void init_vga() {
   //vgactl_port_base = (uint32_t *)malloc(sizeof(uint32_t)*8);
   vgactl_port_base[0] = (screen_width() << 16) | screen_height();
-  printf("%d\n", vgactl_port_base[0])
+  printf("%d\n", vgactl_port_base[0]);
 
   //vmem = malloc(screen_size());
   init_screen();
