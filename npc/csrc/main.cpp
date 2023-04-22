@@ -33,8 +33,10 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-#define CONFIG_DIFFTEST
+//#define CONFIG_DIFFTEST
 //#define VerilatedVCD
+//#define HAS_VGA
+
 void difftest_skip_ref();
 uint32_t vmem[300*400];
 uint32_t vgactl_port_base[8];
@@ -168,7 +170,6 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
         data = data << 8;
       }
       vgactl_port_base[1] = data;
-      vga_update_screen();
       return;
     }
   }
@@ -578,6 +579,9 @@ void cpu_exec(int n){
     #ifdef VerilatedVCD
     tfp->dump(contextp->time()); //dump wave
     #endif
+    #ifdef HAS_VGA
+    vga_update_screen();
+    #endif
     sim_time++;
   }
 }
@@ -595,7 +599,9 @@ int main(int argc, char** argv) {
   #endif
   load_img();
   printf("image succuss\n");
+  #ifdef HAS_VGA
   init_vga();
+  #endif
   #ifdef CONFIG_ITRACE
   init_disasm("riscv64");
   #endif
