@@ -1,4 +1,4 @@
-#include "npc.h"
+#include "./include/npc.h"
 
 static uint32_t screen_width() {
   return SCREEN_W;
