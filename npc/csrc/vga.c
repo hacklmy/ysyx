@@ -43,7 +43,7 @@ static void init_screen() {
       SDL_TEXTUREACCESS_STATIC, SCREEN_W, SCREEN_H);
 }
 
-static inline void update_screen() {
+ void update_screen() {
   printf("update window\n");
   SDL_UpdateTexture(texture, NULL, vmem, SCREEN_W * sizeof(uint32_t));
   SDL_RenderClear(renderer);
