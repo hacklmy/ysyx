@@ -32,6 +32,7 @@ static void init_screen() {
 }
 
  void update_screen() {
+  printf("update\n");
   SDL_UpdateTexture(texture, NULL, vmem, SCREEN_W * sizeof(uint32_t));
   SDL_RenderClear(renderer);
   SDL_RenderCopy(renderer, texture, NULL, NULL);
