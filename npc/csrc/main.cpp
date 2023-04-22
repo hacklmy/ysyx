@@ -169,7 +169,7 @@ typedef uint64_t paddr_t;
 #define CONFIG_MSIZE 0x8000000
 #define CONFIG_MBASE 0x80000000
 static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {0};
-uint8_t* guest_to_host(paddr_t paddr) { return  ; }
+uint8_t* guest_to_host(paddr_t paddr) { return paddr - CONFIG_MBASE + pmem; }
 //paddr_t host_to_guest(uint8_t *haddr) { return haddr - pmem + CONFIG_MBASE; }
 
 static inline uint32_t host_read(void *addr) {
@@ -251,7 +251,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
       if (wmask & 0x1) *p = (wdata & 0xff);
       wdata >>= 8;
       wmask >>= 1;
-      printf("%d\n", *p);
+      printf("%d\n",*p);
      p++;
     }
     return;
