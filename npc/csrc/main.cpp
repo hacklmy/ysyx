@@ -246,6 +246,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
         data = data << 8;
       }
       vgactl_port_base[1] = data;
+      printf("syn:%d\n",data);
       return;
     }
   }
