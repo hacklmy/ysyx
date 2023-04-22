@@ -1,5 +1,5 @@
 LDFLAGS += --diff=/home/lmy/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so
-CFLAGS  = -DISA_H=\"csrc/include/npc.h\"
+CFLAGS  = -I"csrc/include/npc.h"
 
 all:
 	@echo "Write this Makefile by your self."
