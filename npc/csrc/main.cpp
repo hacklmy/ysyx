@@ -128,12 +128,15 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     if(raddr==VGACTL_ADDR){
       printf("read gpu size\n");
       *rdata = vgactl_port_base[0] & 0xffff;
+      printf("%lld\n", *rdata);
     }else if(raddr == VGACTL_ADDR+2){
       printf("read gpu size\n");
       *rdata = (vgactl_port_base[0]>>16);
+      printf("%lld\n", *rdata);
     }else if(raddr == VGACTL_ADDR+4){
       printf("read gpu syn\n");
       *rdata = vgactl_port_base[1];
+      printf("%lld\n", *rdata);
     }
     return;
   }
