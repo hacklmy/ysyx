@@ -491,10 +491,7 @@ void difftest_step(uint64_t pc) {
   if (is_skip_ref) {
     printf("skip pc:%lx\n",pc);
     // to skip the checking of an instruction, just copy the reg state to reference design
-    CPU_state cpu_gpr_s = cpu_gpr;
-    cpu_gpr_s.pc +=4;
-    printf("%lx %lx %lx\n", cpu_gpr_s.pc, cpu_gpr.pc, pc_now);
-    ref_difftest_regcpy(&cpu_gpr_s, DIFFTEST_TO_REF);
+    ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
     is_skip_ref = false;
     return;
   }
