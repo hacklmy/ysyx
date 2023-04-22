@@ -36,7 +36,6 @@ const char *regs[] = {
 #define HAS_VGA
 
 void difftest_skip_ref();
-void init_vga();
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return);
 void init_elf(char *elf_file);
