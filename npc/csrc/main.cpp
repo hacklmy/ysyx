@@ -651,7 +651,7 @@ void cpu_exec(int n){
     tfp->dump(contextp->time()); //dump wave
     #endif
     #ifdef HAS_VGA
-    vga_update_screen();
+    update_screen();
     #endif
     sim_time++;
   }
