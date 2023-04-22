@@ -1,6 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<assert.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
 #include <termios.h>
 #include <unistd.h>
