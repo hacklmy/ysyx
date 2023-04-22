@@ -7,7 +7,10 @@
 #include <verilated_vcd_c.h>
 #include <dlfcn.h>
 #include <time.h>
+#ifndef INCLUDE
+#define INCLUDE
 #include "./include/npc.h"
+#endif
 
 # define DEVICE_BASE 0xa0000000
 #define MMIO_BASE 0xa0000000

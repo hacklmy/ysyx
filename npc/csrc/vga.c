@@ -1,4 +1,7 @@
+#ifndef INCLUDE
+#define INCLUDE
 #include "./include/npc.h"
+#endif
 
 static uint32_t screen_width() {
   return SCREEN_W;
