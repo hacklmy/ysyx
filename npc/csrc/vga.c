@@ -1,14 +1,4 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<assert.h>
-#include <iostream>
-#include <termios.h>
-#include <unistd.h>
-#include <thread>
-#include <SDL2/SDL.h>
-
-#define SCREEN_W 400
-#define SCREEN_H 300
+#include "npc.h"
 
 static uint32_t screen_width() {
   return SCREEN_W;
@@ -22,8 +12,6 @@ static uint32_t screen_size() {
   return screen_width() * screen_height() * sizeof(uint32_t);
 }
 
-static uint32_t vmem[300*400];
-static uint32_t vgactl_port_base[8];
 
 
 static SDL_Renderer *renderer = NULL;
