@@ -38,8 +38,7 @@ const char *regs[] = {
 #define HAS_VGA
 
 void difftest_skip_ref();
-uint32_t vmem[300*400];
-uint32_t vgactl_port_base[8];
+
 void vga_update_screen();
 void init_vga();
 
