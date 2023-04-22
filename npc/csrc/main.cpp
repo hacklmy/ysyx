@@ -414,6 +414,7 @@ extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int
 //==========================difftest================================
 static int skip_dut_nr_inst = 0;
 static bool is_skip_ref = false;
+static bool is_skip_ref_s = false;
 
 enum { DIFFTEST_TO_DUT, DIFFTEST_TO_REF };
 void (*ref_difftest_memcpy)(uint32_t addr, void *buf, size_t n, bool direction) = NULL;
@@ -492,9 +493,14 @@ void difftest_step(uint64_t pc) {
     printf("skip pc:%lx\n",pc);
     // to skip the checking of an instruction, just copy the reg state to reference design
     printf("%lx %lx\n", cpu_gpr.pc, pc_now);
-    ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
+    //ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
+    is_skip_ref_s = true;
     is_skip_ref = false;
     return;
+  }
+  if(is_skip_ref_s){
+    ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
+    is_skip_ref_s = is_skip_ref;
   }
   if(is_ecall){
     printf("ecall\n");
