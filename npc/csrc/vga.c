@@ -44,7 +44,6 @@ static void init_screen() {
 }
 
  void update_screen() {
-  printf("update window\n");
   SDL_UpdateTexture(texture, NULL, vmem, SCREEN_W * sizeof(uint32_t));
   SDL_RenderClear(renderer);
   SDL_RenderCopy(renderer, texture, NULL, NULL);
@@ -68,5 +67,5 @@ void init_vga() {
 
   //vmem = malloc(screen_size());
   init_screen();
-  //memset(vmem, 0, screen_size());
+  memset(vmem, 0, screen_size());
 }
