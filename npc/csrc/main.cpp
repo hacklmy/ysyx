@@ -31,7 +31,7 @@ const char *regs[] = {
   "s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"
 };
 
-#define CONFIG_ITRACE
+//#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
 #define CONFIG_DIFFTEST
 //#define VerilatedVCD
