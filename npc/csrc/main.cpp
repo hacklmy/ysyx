@@ -131,10 +131,13 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
   }
   if(raddr >=VGACTL_ADDR && raddr <VGACTL_ADDR+32){
     if(raddr==VGACTL_ADDR){
+      printf("read gpu size\n");
       *rdata = vgactl_port_base[0] & 0xffff;
     }else if(raddr == VGACTL_ADDR+2){
+      printf("read gpu size\n");
       *rdata = (vgactl_port_base[0]>>16);
     }else if(raddr == VGACTL_ADDR+4){
+      printf("read gpu syn\n");
       *rdata = vgactl_port_base[1];
     }
     return;
@@ -162,6 +165,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   }
   if(waddr >=VGACTL_ADDR && waddr <VGACTL_ADDR+32){
     if(waddr==VGACTL_ADDR+4){
+      printf("write syn\n");
       uint32_t data = 0;
       for (int i = 0; i < 4; i++) {
         if (wmask & 0x1) data = data | (wdata & 0xff);
@@ -174,6 +178,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     }
   }
   if(waddr>=FB_ADDR && waddr<=FB_ADDR + 0x200000){
+    printf("write fb\n");
     uint64_t fb_addr = waddr - FB_ADDR;
     uint8_t* p = (uint8_t*)(vmem+fb_addr);
     for (int i = 0; i < 8; i++) {
