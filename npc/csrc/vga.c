@@ -8,8 +8,8 @@
 #include <SDL2/SDL.h>
 
 
-#define SCREEN_W 80
-#define SCREEN_H 60
+#define SCREEN_W 800
+#define SCREEN_H 600
 
 static uint32_t screen_width() {
   return SCREEN_W;
