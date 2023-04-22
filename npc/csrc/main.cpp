@@ -464,6 +464,10 @@ void difftest_skip_ref() {
 
 bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
   if(cpu_stop)return true;
+  if(ref_r->pc != pc){
+    printf("wrong pc %lx: npc = %lx   ref = %lx\n",pc, pc, ref_r->pc);
+    return false;
+  }
   for (int i = 0; i < 32; i++) {
     if(ref_r->gpr[i] != cpu_gpr.gpr[i])
       {
@@ -471,10 +475,7 @@ bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
         return false;
       }
   }
-  if(ref_r->pc != pc){
-    printf("wrong pc %lx: npc = %lx   ref = %lx\n",pc, pc, ref_r->pc);
-    return false;
-  }
+  
   return true;
 }
 
