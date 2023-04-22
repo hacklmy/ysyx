@@ -496,11 +496,12 @@ void difftest_step(uint64_t pc) {
     //ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
     is_skip_ref_s = true;
     is_skip_ref = false;
-    //return;
+    return;
   }
   if(is_skip_ref_s){
     ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
     is_skip_ref_s = is_skip_ref;
+    return;
   }
   if(is_ecall){
     printf("ecall\n");
