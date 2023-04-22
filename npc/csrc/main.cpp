@@ -239,14 +239,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     if(waddr==VGACTL_ADDR+4){
       printf("write syn\n");
       printf("syn:%lld\n",wdata);
-      uint32_t data = 0;
-      for (int i = 0; i < 4; i++) {
-        if (wmask & 0x1) data = data | (wdata & 0xff);
-        wdata >>= 8;
-        wmask >>= 1;
-        data = data << 8;
-      }
-      vgactl_port_base[1] = data;
+      vgactl_port_base[1] = (uint32_t)wdata;
       
       return;
     }
