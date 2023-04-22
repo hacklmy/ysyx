@@ -23,8 +23,8 @@ static uint32_t screen_size() {
   return screen_width() * screen_height() * sizeof(uint32_t);
 }
 
-uint32_t vmem[800 * 600];
-uint32_t vgactl_port_base[8];
+static uint32_t vmem[800 * 600];
+static uint32_t vgactl_port_base[8];
 
 static SDL_Renderer *renderer = NULL;
 static SDL_Texture *texture = NULL;
