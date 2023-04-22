@@ -502,11 +502,11 @@ void difftest_step(uint64_t pc) {
     is_skip_ref_s = is_skip_ref;
     return;
   }
-  if(is_ecall){
-    printf("ecall\n");
-    ref_difftest_raise_intr(csr_reg[3]);
-    return;
-  }
+  // if(is_ecall){
+  //   printf("ecall\n");
+  //   ref_difftest_raise_intr(csr_reg[3]);
+  //   return;
+  // }
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
   checkregs(&ref_r, pc);
