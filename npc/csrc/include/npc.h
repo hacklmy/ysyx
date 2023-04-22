@@ -9,8 +9,8 @@
 #define SCREEN_W 400
 #define SCREEN_H 300
 
-static uint32_t vmem[300*400];
-static uint32_t vgactl_port_base[8];
+uint32_t vmem[300*400];
+uint32_t vgactl_port_base[8];
 
 void vga_update_screen();
 void init_vga();
