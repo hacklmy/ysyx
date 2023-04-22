@@ -41,6 +41,7 @@ void difftest_skip_ref();
 uint32_t vmem[300*400];
 uint32_t vgactl_port_base[8];
 void vga_update_screen();
+void update_screen();
 void init_vga();
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return);
