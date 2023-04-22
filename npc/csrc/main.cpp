@@ -101,7 +101,7 @@ void vga_update_screen() {
 void init_vga() {
   //vgactl_port_base = (uint32_t *)malloc(sizeof(uint32_t)*8);
   vgactl_port_base[0] = (screen_width() << 16) | screen_height();
-  printf("%d\n", vgactl_port_base[0]);
+  //printf("%d\n", vgactl_port_base[0]);
 
   //vmem = malloc(screen_size());
   init_screen();
@@ -198,15 +198,15 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     return;
   }
   if(raddr >=VGACTL_ADDR && raddr <VGACTL_ADDR+32){
-    printf("base: %d\n",vgactl_port_base[0] );
+    //printf("base: %d\n",vgactl_port_base[0] );
     if(raddr==VGACTL_ADDR){
       printf("read gpu size\n");
       *rdata = vgactl_port_base[0] & 0xffff;
-      printf("%lld\n", *rdata);
+      //printf("%lld\n", *rdata);
     }else if(raddr == VGACTL_ADDR+2){
       printf("read gpu size\n");
       *rdata = (vgactl_port_base[0]>>16);
-      printf("%lld\n", *rdata);
+      //printf("%lld\n", *rdata);
     }else if(raddr == VGACTL_ADDR+4){
       printf("read gpu syn\n");
       *rdata = vgactl_port_base[1];
