@@ -245,8 +245,8 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   }
   if(waddr>=FB_ADDR && waddr<=FB_ADDR + 0x200000){
     //printf("write fb\n");
-    uint64_t fb_addr = waddr - FB_ADDR;
-    uint8_t* p = (uint8_t*)(vmem+fb_addr);
+    uint64_t fb_addr = (waddr - FB_ADDR)/4;
+    uint8_t* p = (uint8_t*)&vmem[fb_addr];
     for (int i = 0; i < 8; i++) {
       if (wmask & 0x1) *p = (wdata & 0xff);
       wdata >>= 8;
