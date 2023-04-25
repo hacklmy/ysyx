@@ -151,15 +151,15 @@ void vga_update_screen() {
     update_screen();
     vgactl_port_base[1] = 0;
   }
-  while (SDL_PollEvent(&event)) {
-    switch (event.type) {
-      case SDL_QUIT:
-      printf("SDL quite\n");
-        SDL_quite = 1;
-        break;
-      default: break;
-    }
-  }
+  // while (SDL_PollEvent(&event)) {
+  //   switch (event.type) {
+  //     case SDL_QUIT:
+  //     printf("SDL quite\n");
+  //       SDL_quite = 1;
+  //       break;
+  //     default: break;
+  //   }
+  // }
 }
 
 void init_vga() {
