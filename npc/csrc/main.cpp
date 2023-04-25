@@ -153,6 +153,7 @@ void vga_update_screen() {
   while (SDL_PollEvent(&event)) {
     switch (event.type) {
       case SDL_QUIT:
+      printf("SDL quite\n");
         stop_status = 1;
         break;
       default: break;
