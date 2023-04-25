@@ -37,77 +37,9 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-#define CONFIG_DIFFTEST
+//#define CONFIG_DIFFTEST
 //#define VerilatedVCD
 #define HAS_VGA
-
-
-//==========================================VGA_begin===========================================
-#define SCREEN_W 400
-#define SCREEN_H 300
-
-uint32_t vmem[300*400];
-uint32_t vgactl_port_base[8];
-
-static uint32_t screen_width() {
-  return SCREEN_W;
-}
-
-static uint32_t screen_height() {
-  return SCREEN_H;
-}
-
-static uint32_t screen_size() {
-  return screen_width() * screen_height() * sizeof(uint32_t);
-}
-
-
-
-static SDL_Renderer *renderer = NULL;
-static SDL_Texture *texture = NULL;
-
-static void init_screen() {
-  SDL_Window *window = NULL;
-  char title[128];
-  sprintf(title, "riscv64-NPC");
-  SDL_Init(SDL_INIT_VIDEO);
-  SDL_CreateWindowAndRenderer(
-      SCREEN_W * 2,
-      SCREEN_H * 2,
-      0, &window, &renderer);
-  SDL_SetWindowTitle(window, title);
-  texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888,
-      SDL_TEXTUREACCESS_STATIC, SCREEN_W, SCREEN_H);
-}
-
- void update_screen() {
-  printf("update\n");
-  SDL_UpdateTexture(texture, NULL, vmem, SCREEN_W * sizeof(uint32_t));
-  SDL_RenderClear(renderer);
-  SDL_RenderCopy(renderer, texture, NULL, NULL);
-  SDL_RenderPresent(renderer);
-}
-
-
-void vga_update_screen() {
-  // TODO: call `update_screen()` when the sync register is non-zero,
-  // then zero out the sync register
-  if (vgactl_port_base[1]) {
-    update_screen();
-    vgactl_port_base[1] = 0;
-  }
-}
-
-void init_vga() {
-  //vgactl_port_base = (uint32_t *)malloc(sizeof(uint32_t)*8);
-  vgactl_port_base[0] = (screen_width() << 16) | screen_height();
-  //printf("%d\n", vgactl_port_base[0]);
-
-  //vmem = malloc(screen_size());
-  init_screen();
-  memset(vmem, 0, screen_size());
-}
-//=========================================VGA_end===========================================
 
 void difftest_skip_ref();
 
@@ -163,6 +95,83 @@ extern "C" void set_csr_ptr(const svOpenArrayHandle r) {
 
 
 CPU_state ref_r;
+
+//==========================================VGA_begin===========================================
+#define SCREEN_W 400
+#define SCREEN_H 300
+
+uint32_t vmem[300*400];
+uint32_t vgactl_port_base[8];
+
+static uint32_t screen_width() {
+  return SCREEN_W;
+}
+
+static uint32_t screen_height() {
+  return SCREEN_H;
+}
+
+static uint32_t screen_size() {
+  return screen_width() * screen_height() * sizeof(uint32_t);
+}
+
+
+static SDL_Event event;
+static SDL_Renderer *renderer = NULL;
+static SDL_Texture *texture = NULL;
+
+static void init_screen() {
+  SDL_Window *window = NULL;
+  char title[128];
+  sprintf(title, "riscv64-NPC");
+  SDL_Init(SDL_INIT_VIDEO);
+  SDL_CreateWindowAndRenderer(
+      SCREEN_W * 2,
+      SCREEN_H * 2,
+      0, &window, &renderer);
+  SDL_SetWindowTitle(window, title);
+  texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888,
+      SDL_TEXTUREACCESS_STATIC, SCREEN_W, SCREEN_H);
+}
+
+ void update_screen() {
+  printf("update\n");
+  SDL_UpdateTexture(texture, NULL, vmem, SCREEN_W * sizeof(uint32_t));
+  SDL_RenderClear(renderer);
+  SDL_RenderCopy(renderer, texture, NULL, NULL);
+  SDL_RenderPresent(renderer);
+}
+
+
+void vga_update_screen() {
+  // TODO: call `update_screen()` when the sync register is non-zero,
+  // then zero out the sync register
+  if (vgactl_port_base[1]) {
+    update_screen();
+    vgactl_port_base[1] = 0;
+  }
+  while (SDL_PollEvent(&event)) {
+    switch (event.type) {
+      case SDL_QUIT:
+        stop_status = 1;
+        break;
+      default: break;
+    }
+  }
+}
+
+void init_vga() {
+  //vgactl_port_base = (uint32_t *)malloc(sizeof(uint32_t)*8);
+  vgactl_port_base[0] = (screen_width() << 16) | screen_height();
+  //printf("%d\n", vgactl_port_base[0]);
+
+  //vmem = malloc(screen_size());
+  init_screen();
+  memset(vmem, 0, screen_size());
+}
+//=========================================VGA_end===========================================
+
+
 //===========================mem=========================
 typedef uint64_t paddr_t;
 #define PG_ALIGN __attribute((aligned(4096)))
