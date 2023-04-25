@@ -49,6 +49,7 @@ void print_func();
 
 
 int stop_status = 0;
+int SDL_quite = 0;
 int is_ecall = 0;
 
 #define BITMASK(bits) ((1ull << (bits)) - 1)
@@ -154,7 +155,7 @@ void vga_update_screen() {
     switch (event.type) {
       case SDL_QUIT:
       printf("SDL quite\n");
-        stop_status = 1;
+        SDL_quite = 1;
         break;
       default: break;
     }
@@ -624,7 +625,7 @@ FILE* log_file = fopen("/home/lmy/ysyx-workbench/npc/npc-log.txt","w+");
 void cpu_exec(int n){
   int flag = 0;
   if(n<0)flag=1;
-  while (!cpu_stop && (flag==1||n--)) {
+  while (!cpu_stop && (flag==1||n--) && !SDL_quite) {
       top->reset = 0;
       //top->io_inst = pmem_read(top->io_pc);
       //printf("%lx %x\n",pc_now , top->io_inst);
@@ -705,7 +706,7 @@ int main(int argc, char** argv) {
   printf("so succuss\n");
   init_difftest(difftest_file,CONFIG_MSIZE);
   #endif
-  while(sdb_mainloop() && !cpu_stop);
+  while(sdb_mainloop() && !cpu_stop && !SDL_quite);
   if(stop_status==0)printf("\33[1;32mHIT GOOD TRAP\n\33[0m");
   else printf("\33[1;31mHIT BAD TRAP\n\33[0m");
   delete top;
