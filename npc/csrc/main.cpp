@@ -206,6 +206,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     time_t tmpcal_ptr;
     tmpcal_ptr = time(NULL);
     *rdata = (tmpcal_ptr - boot_time)*1000000;
+    printf("time : %lld\n",*data);
     return;
   }
   if(raddr >=VGACTL_ADDR && raddr <VGACTL_ADDR+32){
