@@ -313,7 +313,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
   if(raddr==KBD_ADDR){
     i8042_data_port_base[0] = key_dequeue();
     *rdata = i8042_data_port_base[0];
-    printf("read key : %lld\n", *rdata);
+    if(*rdata!=0)printf("read key : %lld\n", *rdata);
     return;
   }
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE)){
