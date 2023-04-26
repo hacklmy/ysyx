@@ -198,21 +198,21 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     difftest_skip_ref();
   }
   if(raddr>=RTC_ADDR && raddr <= RTC_ADDR+8){
-    uint64_t time = 0;
+    uint64_t time_now = 0;
     if(boot_time==0){
       boot_time = time(NULL);
-      time = 0;
+      time_now = 0;
     }else{
       time_t tmpcal_ptr;
       tmpcal_ptr = time(NULL);
-      time = (tmpcal_ptr - boot_time)*1000000;
+      time_now = (tmpcal_ptr - boot_time)*1000000;
     }
     printf("time : %lld\n",*rdata);
     if(raddr == RTC_ADDR){
-      *rdata = time & 0xffffffff;
+      *rdata = time_now & 0xffffffff;
     }
     else if(raddr == RTC_ADDR + 4){
-      *rdata = (time >> 32) & 0xffffffff;
+      *rdata = (time_now >> 32) & 0xffffffff;
     }
     return;
   }
