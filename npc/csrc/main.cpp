@@ -228,7 +228,7 @@ void vga_update_screen() {
         break;
       case SDL_KEYDOWN:
       case SDL_KEYUP: {
-        printf("has a key\n");
+        //printf("has a key\n");
         uint8_t k = event.key.keysym.scancode;
         bool is_keydown = (event.key.type == SDL_KEYDOWN);
         send_key(k, is_keydown);
@@ -311,6 +311,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     return;
   }
   if(raddr==KBD_ADDR){
+    printf("read key\n");
     i8042_data_port_base[0] = key_dequeue();
     *rdata = i8042_data_port_base[0];
     return;
