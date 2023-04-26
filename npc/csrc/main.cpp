@@ -235,6 +235,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     return;
   }
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE)){
+    *rdata = 0;
     return;
   }
   *rdata = *((long long *)guest_to_host(raddr));
