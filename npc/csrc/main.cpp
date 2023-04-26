@@ -145,6 +145,7 @@ static uint32_t key_dequeue() {
 
 void send_key(uint8_t scancode, bool is_keydown) {
   if (cpu_stop!=1 && SDL_quite !=1 && keymap[scancode] != _KEY_NONE) {
+    printf("enquene\n");
     uint32_t am_scancode = keymap[scancode] | (is_keydown ? KEYDOWN_MASK : 0);
     key_enqueue(am_scancode);
   }
@@ -232,7 +233,7 @@ void vga_update_screen() {
         uint8_t k = event.key.keysym.scancode;
         bool is_keydown = (event.key.type == SDL_KEYDOWN);
         send_key(k, is_keydown);
-        printf("%d",k);
+        //printf("%d",k);
         break;
       }
       default: break;
