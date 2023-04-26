@@ -131,7 +131,7 @@ static int key_f = 0, key_r = 0;
 static void key_enqueue(uint32_t am_scancode) {
   key_queue[key_r] = am_scancode;
   key_r = (key_r + 1) % KEY_QUEUE_LEN;
-  Assert(key_r != key_f, "key queue overflow!");
+  assert(key_r != key_f);
 }
 
 static uint32_t key_dequeue() {
@@ -150,7 +150,7 @@ void send_key(uint8_t scancode, bool is_keydown) {
   }
 }
 
-static uint32_t *i8042_data_port_base[4];
+static uint32_t i8042_data_port_base[4];
 
 static void i8042_data_io_handler(uint32_t offset, int len, bool is_write) {
   assert(!is_write);
