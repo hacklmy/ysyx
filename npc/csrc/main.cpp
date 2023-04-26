@@ -41,6 +41,74 @@ const char *regs[] = {
 //#define VerilatedVCD
 #define HAS_VGA
 
+
+//==========================================VGA_begin===========================================
+#define SCREEN_W 400
+#define SCREEN_H 300
+
+uint32_t vmem[300*400];
+uint32_t vgactl_port_base[8];
+
+static uint32_t screen_width() {
+  return SCREEN_W;
+}
+
+static uint32_t screen_height() {
+  return SCREEN_H;
+}
+
+static uint32_t screen_size() {
+  return screen_width() * screen_height() * sizeof(uint32_t);
+}
+
+
+
+static SDL_Renderer *renderer = NULL;
+static SDL_Texture *texture = NULL;
+
+static void init_screen() {
+  SDL_Window *window = NULL;
+  char title[128];
+  sprintf(title, "riscv64-NPC");
+  SDL_Init(SDL_INIT_VIDEO);
+  SDL_CreateWindowAndRenderer(
+      SCREEN_W * 2,
+      SCREEN_H * 2,
+      0, &window, &renderer);
+  SDL_SetWindowTitle(window, title);
+  texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888,
+      SDL_TEXTUREACCESS_STATIC, SCREEN_W, SCREEN_H);
+}
+
+ void update_screen() {
+  printf("update\n");
+  SDL_UpdateTexture(texture, NULL, vmem, SCREEN_W * sizeof(uint32_t));
+  SDL_RenderClear(renderer);
+  SDL_RenderCopy(renderer, texture, NULL, NULL);
+  SDL_RenderPresent(renderer);
+}
+
+
+void vga_update_screen() {
+  // TODO: call `update_screen()` when the sync register is non-zero,
+  // then zero out the sync register
+  if (vgactl_port_base[1]) {
+    update_screen();
+    vgactl_port_base[1] = 0;
+  }
+}
+
+void init_vga() {
+  //vgactl_port_base = (uint32_t *)malloc(sizeof(uint32_t)*8);
+  vgactl_port_base[0] = (screen_width() << 16) | screen_height();
+  //printf("%d\n", vgactl_port_base[0]);
+
+  //vmem = malloc(screen_size());
+  init_screen();
+  memset(vmem, 0, screen_size());
+}
+//=========================================VGA_end===========================================
+
 void difftest_skip_ref();
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return);
@@ -49,7 +117,6 @@ void print_func();
 
 
 int stop_status = 0;
-int SDL_quite = 0;
 int is_ecall = 0;
 
 #define BITMASK(bits) ((1ull << (bits)) - 1)
@@ -96,84 +163,6 @@ extern "C" void set_csr_ptr(const svOpenArrayHandle r) {
 
 
 CPU_state ref_r;
-
-//==========================================VGA_begin===========================================
-#define SCREEN_W 400
-#define SCREEN_H 300
-
-uint32_t vmem[300*400];
-uint32_t vgactl_port_base[8];
-
-static uint32_t screen_width() {
-  return SCREEN_W;
-}
-
-static uint32_t screen_height() {
-  return SCREEN_H;
-}
-
-static uint32_t screen_size() {
-  return screen_width() * screen_height() * sizeof(uint32_t);
-}
-
-
-static SDL_Event event;
-static SDL_Renderer *renderer = NULL;
-static SDL_Texture *texture = NULL;
-
-static void init_screen() {
-  SDL_Window *window = NULL;
-  char title[128];
-  sprintf(title, "riscv64-NPC");
-  SDL_Init(SDL_INIT_VIDEO);
-  SDL_CreateWindowAndRenderer(
-      SCREEN_W * 2,
-      SCREEN_H * 2,
-      0, &window, &renderer);
-  SDL_SetWindowTitle(window, title);
-  texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888,
-      SDL_TEXTUREACCESS_STATIC, SCREEN_W, SCREEN_H);
-}
-
- void update_screen() {
-  printf("update\n");
-  SDL_UpdateTexture(texture, NULL, vmem, SCREEN_W * sizeof(uint32_t));
-  SDL_RenderClear(renderer);
-  SDL_RenderCopy(renderer, texture, NULL, NULL);
-  SDL_RenderPresent(renderer);
-}
-
-
-void vga_update_screen() {
-  // TODO: call `update_screen()` when the sync register is non-zero,
-  // then zero out the sync register
-  if (vgactl_port_base[1]) {
-    update_screen();
-    vgactl_port_base[1] = 0;
-  }
-  while (SDL_PollEvent(&event)) {
-    switch (event.type) {
-      case SDL_QUIT:
-      printf("SDL quite\n");
-        SDL_quite = 1;
-        break;
-      default: break;
-    }
-  }
-}
-
-void init_vga() {
-  //vgactl_port_base = (uint32_t *)malloc(sizeof(uint32_t)*8);
-  vgactl_port_base[0] = (screen_width() << 16) | screen_height();
-  //printf("%d\n", vgactl_port_base[0]);
-
-  //vmem = malloc(screen_size());
-  init_screen();
-  memset(vmem, 0, screen_size());
-}
-//=========================================VGA_end===========================================
-
-
 //===========================mem=========================
 typedef uint64_t paddr_t;
 #define PG_ALIGN __attribute((aligned(4096)))
@@ -197,23 +186,15 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
   if(raddr>=DEVICE_BASE && raddr < DEVICE_BASE + 0x1200000 + 32){
     difftest_skip_ref();
   }
-  if(raddr>=RTC_ADDR && raddr <= RTC_ADDR+8){
-    uint64_t time_now = 0;
+  if(raddr==RTC_ADDR){
     if(boot_time==0){
       boot_time = time(NULL);
-      time_now = 0;
-    }else{
-      time_t tmpcal_ptr;
-      tmpcal_ptr = time(NULL);
-      time_now = (tmpcal_ptr - boot_time)*1000000;
+      *rdata = 0;
+      return;
     }
-    //printf("time : %lld\n",*rdata);
-    if(raddr == RTC_ADDR){
-      *rdata = time_now & 0xffffffff;
-    }
-    else if(raddr == RTC_ADDR + 4){
-      *rdata = (time_now >> 32) & 0xffffffff;
-    }
+    time_t tmpcal_ptr;
+    tmpcal_ptr = time(NULL);
+    *rdata = (tmpcal_ptr - boot_time)*1000000;
     return;
   }
   if(raddr >=VGACTL_ADDR && raddr <VGACTL_ADDR+32){
@@ -633,7 +614,7 @@ FILE* log_file = fopen("/home/lmy/ysyx-workbench/npc/npc-log.txt","w+");
 void cpu_exec(int n){
   int flag = 0;
   if(n<0)flag=1;
-  while (!cpu_stop && (flag==1||n--) && !SDL_quite) {
+  while (!cpu_stop && (flag==1||n--)) {
       top->reset = 0;
       //top->io_inst = pmem_read(top->io_pc);
       //printf("%lx %x\n",pc_now , top->io_inst);
@@ -714,7 +695,7 @@ int main(int argc, char** argv) {
   printf("so succuss\n");
   init_difftest(difftest_file,CONFIG_MSIZE);
   #endif
-  while(sdb_mainloop() && !cpu_stop && !SDL_quite);
+  while(sdb_mainloop() && !cpu_stop);
   if(stop_status==0)printf("\33[1;32mHIT GOOD TRAP\n\33[0m");
   else printf("\33[1;31mHIT BAD TRAP\n\33[0m");
   delete top;
