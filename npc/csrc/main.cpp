@@ -778,6 +778,7 @@ int main(int argc, char** argv) {
   printf("image succuss\n");
   #ifdef HAS_VGA
   init_vga();
+  init_i8042();
   #endif
   #ifdef CONFIG_ITRACE
   init_disasm("riscv64");
