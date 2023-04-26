@@ -207,7 +207,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
       tmpcal_ptr = time(NULL);
       time_now = (tmpcal_ptr - boot_time)*1000000;
     }
-    printf("time : %lld\n",*rdata);
+    //printf("time : %lld\n",*rdata);
     if(raddr == RTC_ADDR){
       *rdata = time_now & 0xffffffff;
     }
