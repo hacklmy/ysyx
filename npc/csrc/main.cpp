@@ -224,7 +224,7 @@ void vga_update_screen() {
   while (SDL_PollEvent(&event)) {
     switch (event.type) {
       case SDL_QUIT:
-      printf("SDL quite\n");
+        printf("SDL quite\n");
         SDL_quite = 1;
         break;
       case SDL_KEYDOWN:
@@ -233,6 +233,7 @@ void vga_update_screen() {
         bool is_keydown = (event.key.type == SDL_KEYDOWN);
         send_key(k, is_keydown);
         break;
+      }
       default: break;
     }
   }
