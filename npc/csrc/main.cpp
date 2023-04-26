@@ -141,6 +141,7 @@ static void init_screen() {
   SDL_RenderClear(renderer);
   SDL_RenderCopy(renderer, texture, NULL, NULL);
   SDL_RenderPresent(renderer);
+  printf("update success\n");
 }
 
 
