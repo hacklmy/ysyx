@@ -168,8 +168,8 @@ void init_i8042() {
 //===========================================KEYBOARD_end======================================
 
 //==========================================VGA_begin===========================================
-#define SCREEN_W 400
-#define SCREEN_H 300
+#define SCREEN_W 800
+#define SCREEN_H 600
 
 uint32_t vmem[600*800];
 uint32_t vgactl_port_base[8];
