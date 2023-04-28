@@ -311,6 +311,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
       *rdata = vgactl_port_base[1];
       printf("%lld\n", *rdata);
     }
+    vga_update_screen();
     return;
   }
   if(raddr==KBD_ADDR){
@@ -341,7 +342,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     putchar((char)wdata&0xff);
     return ;
   }
-  if(waddr >=VGACTL_ADDR && waddr <VGACTL_ADDR+32){
+  if(waddr >=VGACTL_ADDR && waddr <=VGACTL_ADDR+32){
     if(waddr==VGACTL_ADDR+4){
       printf("write syn\n");
       printf("syn:%lld\n",wdata);
@@ -757,7 +758,7 @@ void cpu_exec(int n){
     tfp->dump(contextp->time()); //dump wave
     #endif
     #ifdef HAS_VGA
-    vga_update_screen();
+    //vga_update_screen();
     #endif
     sim_time++;
   }
