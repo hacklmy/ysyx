@@ -8,7 +8,7 @@ verilog:
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@verilator --cc --trace --exe --build ./vsrc/output/top.v ./csrc/main.cpp ./csrc/*.c --top-module top --LDFLAGS "-fsanitize=address -lSDL2 -ldl $(shell llvm-config --cxxflags) -fPIE $(shell llvm-config --libs)"
+	@verilator --cc --trace --exe --build ./vsrc/*.v ./csrc/main.cpp ./csrc/*.c --top-module top --LDFLAGS "-fsanitize=address -lSDL2 -ldl $(shell llvm-config --cxxflags) -fPIE $(shell llvm-config --libs)"
 	@./obj_dir/Vtop
 
 copy_top:
@@ -24,5 +24,6 @@ copy_top:
 	sed -n '/module EXU/,/endmodule/p' vsrc/output/top.v >> vsrc/EXU.v
 	echo "/* verilator lint_on WIDTH */" >> vsrc/EXU.v
 	echo "/* verilator lint_on UNUSED */" >> vsrc/EXU.v
+	sed -n '/module AXI/,/endmodule/p' vsrc/output/top.v > vsrc/AXI.v
 
 include ../Makefile
