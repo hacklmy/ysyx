@@ -35,18 +35,5 @@ module IFU_AXI(
   assign axi_io_araddr = io_pc[31:0]; // @[IFU_AXI.scala 17:27]
   assign axi_io_arvalid = io_pc_valid; // @[IFU_AXI.scala 18:20]
   assign axi_io_rready = io_inst_ready; // @[IFU_AXI.scala 19:19]
-  always @(posedge clock) begin
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"%x %x\n",io_pc,io_inst); // @[IFU_AXI.scala 23:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-  end
 endmodule
 /* verilator lint_on UNUSED */

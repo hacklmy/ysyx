@@ -78,6 +78,17 @@ module AXI(
         state <= 1'h0; // @[AXI.scala 38:23]
       end
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"%x %x\n",io_araddr,io_rdata); // @[AXI.scala 47:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
