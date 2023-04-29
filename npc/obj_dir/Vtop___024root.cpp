@@ -93,6 +93,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     __Vdly__top__DOT__idu_step__DOT__axi_inst_ready 
         = vlSelf->top__DOT__idu_step__DOT__axi_inst_ready;
     __Vdly__top__DOT__axi_pc_valid = vlSelf->top__DOT__axi_pc_valid;
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"%x %x\n",64,vlSelf->top__DOT__pc_now,
+                   32,(IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rdata));
+    }
     __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v0 
         = vlSelf->top__DOT__exu_step__DOT__CSR_Reg_MPORT_1_data;
     __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v1 
@@ -108,11 +112,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     __Vdly__top__DOT__axi_pc_valid = (1U & ((~ (IData)(vlSelf->reset)) 
                                             & (~ ((IData)(vlSelf->top__DOT__axi_pc_valid) 
                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready)))));
-    if (vlSelf->reset) {
-        vlSelf->top__DOT__pc_now = 0x80000000ULL;
-    } else if (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready) {
-        vlSelf->top__DOT__pc_now = vlSelf->top__DOT__exu_step_io_pc_next;
-    }
     __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0 
         = vlSelf->top__DOT__exu_step__DOT__Regfile_MPORT_data;
     __Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0 
@@ -124,13 +123,17 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         = __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v2;
     vlSelf->top__DOT__exu_step__DOT__Regfile[__Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0] 
         = __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0;
+    if (vlSelf->reset) {
+        vlSelf->top__DOT__pc_now = 0x80000000ULL;
+    } else if (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready) {
+        vlSelf->top__DOT__pc_now = vlSelf->top__DOT__exu_step_io_pc_next;
+    }
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs[0U] 
         = vlSelf->top__DOT__exu_step__DOT__CSR_Reg[0U];
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs[1U] 
         = vlSelf->top__DOT__exu_step__DOT__CSR_Reg[1U];
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs[2U] 
         = vlSelf->top__DOT__exu_step__DOT__CSR_Reg[2U];
-    vlSelf->io_pc = vlSelf->top__DOT__pc_now;
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0U] 
         = vlSelf->top__DOT__exu_step__DOT__Regfile[0U];
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[1U] 
@@ -195,6 +198,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1eU];
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x1fU] 
         = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1fU];
+    Vtop___024unit____Vdpiimwrap_get_pc_TOP____024unit(vlSelf->top__DOT__pc_now);
+    Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs);
+    Vtop___024unit____Vdpiimwrap_set_csr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs);
+    vlSelf->io_pc = vlSelf->top__DOT__pc_now;
     if (vlSelf->reset) {
         vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rdata = 0ULL;
     } else if ((1U & (~ (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state)))) {
@@ -237,9 +244,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         __Vdly__top__DOT__ifu_step__DOT__axi__DOT__state 
             = vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_0;
     }
-    Vtop___024unit____Vdpiimwrap_get_pc_TOP____024unit(vlSelf->top__DOT__pc_now);
-    Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs);
-    Vtop___024unit____Vdpiimwrap_set_csr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs);
     Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit((QData)((IData)(vlSelf->top__DOT__pc_now)), vlSelf->__Vtask_pmem_read__0__Rdata);
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
         = vlSelf->__Vtask_pmem_read__0__Rdata;
