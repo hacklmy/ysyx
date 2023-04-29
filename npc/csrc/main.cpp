@@ -728,7 +728,7 @@ void cpu_exec(int n){
       top->eval();
       top->clock ^= 1;
       top->eval();
-      printf("%lx %x\n",top->pc , top->io_inst);
+      printf("%lx %x\n",top->io_pc , top->io_inst);
       #ifdef CONFIG_ITRACE
     char p[1024];
     char *s = p;
