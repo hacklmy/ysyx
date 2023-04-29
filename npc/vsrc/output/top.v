@@ -83,7 +83,7 @@ module AXI(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"%x %x\n",io_araddr,io_rdata); // @[AXI.scala 47:11]
+          $fwrite(32'h80000002,"%x %x %x\n",io_araddr,io_rdata,inst_read_Rdata); // @[AXI.scala 47:11]
         end
     `ifdef PRINTF_COND
       end
