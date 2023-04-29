@@ -80,8 +80,8 @@ module traceregs(
     assign csr_regs[2] = csr_reg_2;
     assign csr_regs[3] = csr_reg_3;
     always@(*)begin
-        set_gpr_ptr(traceregs);
         get_pc(pc);
+        set_gpr_ptr(traceregs);
         set_csr_ptr(csr_regs);
     end
 endmodule
