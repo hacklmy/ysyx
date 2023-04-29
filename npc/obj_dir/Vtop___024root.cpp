@@ -102,14 +102,17 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     __Vdlyvdim0__top__DOT__exu_step__DOT__CSR_Reg__v2 
         = ((0x342U == (0xfffU & (IData)(vlSelf->top__DOT__idu_step_io_imm)))
             ? 3U : (IData)(vlSelf->top__DOT__exu_step__DOT___csr_index_T_5));
-    vlSelf->top__DOT__pc_now = ((IData)(vlSelf->reset)
-                                 ? 0x80000000ULL : vlSelf->top__DOT__exu_step_io_pc_next);
     __Vdly__top__DOT__idu_step__DOT__axi_inst_ready 
         = (1U & ((~ (IData)(vlSelf->reset)) & (~ ((IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid) 
                                                   & (IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready)))));
     __Vdly__top__DOT__axi_pc_valid = (1U & ((~ (IData)(vlSelf->reset)) 
                                             & (~ ((IData)(vlSelf->top__DOT__axi_pc_valid) 
                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready)))));
+    if (vlSelf->reset) {
+        vlSelf->top__DOT__pc_now = 0x80000000ULL;
+    } else if (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready) {
+        vlSelf->top__DOT__pc_now = vlSelf->top__DOT__exu_step_io_pc_next;
+    }
     __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0 
         = vlSelf->top__DOT__exu_step__DOT__Regfile_MPORT_data;
     __Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0 
