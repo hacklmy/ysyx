@@ -94,8 +94,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__idu_step__DOT__axi_inst_ready;
     __Vdly__top__DOT__axi_pc_valid = vlSelf->top__DOT__axi_pc_valid;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"%x %x\n",64,vlSelf->top__DOT__pc_now,
-                   32,(IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rdata));
+        VL_FWRITEF(0x80000002U,"%x %x\n",32,(IData)(vlSelf->top__DOT__pc_now),
+                   64,vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rdata);
     }
     __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v0 
         = vlSelf->top__DOT__exu_step__DOT__CSR_Reg_MPORT_1_data;
