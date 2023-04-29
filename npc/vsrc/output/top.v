@@ -1438,8 +1438,8 @@ module top(
   always @(posedge clock) begin
     if (reset) begin // @[top.scala 14:25]
       pc_now <= 64'h80000000; // @[top.scala 14:25]
-    end else begin
-      pc_now <= exu_step_io_pc_next; // @[top.scala 44:12]
+    end else if (ifu_step_io_pc_ready) begin // @[top.scala 44:18]
+      pc_now <= exu_step_io_pc_next;
     end
     if (reset) begin // @[top.scala 20:31]
       axi_pc_valid <= 1'h0; // @[top.scala 20:31]
