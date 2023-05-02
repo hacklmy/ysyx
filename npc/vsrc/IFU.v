@@ -1,27 +1,39 @@
 /* verilator lint_off UNUSED */
-module IFU(
+module IFU_AXI(
+  input         clock,
+  input         reset,
   input  [63:0] io_pc,
+  output        io_pc_ready,
+  input         io_pc_valid,
+  output        io_inst_valid,
+  input         io_inst_ready,
   output [31:0] io_inst
 );
-  wire [63:0] inst_read_Raddr; // @[IFU.scala 11:27]
-  wire [63:0] inst_read_Rdata; // @[IFU.scala 11:27]
-  wire [63:0] inst_read_Waddr; // @[IFU.scala 11:27]
-  wire [63:0] inst_read_Wdata; // @[IFU.scala 11:27]
-  wire [7:0] inst_read_Wmask; // @[IFU.scala 11:27]
-  wire  inst_read_Write_en; // @[IFU.scala 11:27]
-  MEM inst_read ( // @[IFU.scala 11:27]
-    .Raddr(inst_read_Raddr),
-    .Rdata(inst_read_Rdata),
-    .Waddr(inst_read_Waddr),
-    .Wdata(inst_read_Wdata),
-    .Wmask(inst_read_Wmask),
-    .Write_en(inst_read_Write_en)
+  wire  axi_clock; // @[IFU_AXI.scala 16:21]
+  wire  axi_reset; // @[IFU_AXI.scala 16:21]
+  wire [31:0] axi_io_araddr; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_arvalid; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_rready; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_arready; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_rvalid; // @[IFU_AXI.scala 16:21]
+  wire [63:0] axi_io_rdata; // @[IFU_AXI.scala 16:21]
+  AXI axi ( // @[IFU_AXI.scala 16:21]
+    .clock(axi_clock),
+    .reset(axi_reset),
+    .io_araddr(axi_io_araddr),
+    .io_arvalid(axi_io_arvalid),
+    .io_rready(axi_io_rready),
+    .io_arready(axi_io_arready),
+    .io_rvalid(axi_io_rvalid),
+    .io_rdata(axi_io_rdata)
   );
-  assign io_inst = inst_read_Rdata[31:0]; // @[IFU.scala 13:34]
-  assign inst_read_Raddr = io_pc; // @[IFU.scala 12:24]
-  assign inst_read_Waddr = 64'h0;
-  assign inst_read_Wdata = 64'h0;
-  assign inst_read_Wmask = 8'h0;
-  assign inst_read_Write_en = 1'h0;
+  assign io_pc_ready = axi_io_arready; // @[IFU_AXI.scala 20:17]
+  assign io_inst_valid = axi_io_rvalid; // @[IFU_AXI.scala 22:19]
+  assign io_inst = axi_io_rdata[31:0]; // @[IFU_AXI.scala 21:28]
+  assign axi_clock = clock;
+  assign axi_reset = reset;
+  assign axi_io_araddr = io_pc[31:0]; // @[IFU_AXI.scala 17:27]
+  assign axi_io_arvalid = io_pc_valid; // @[IFU_AXI.scala 18:20]
+  assign axi_io_rready = io_inst_ready; // @[IFU_AXI.scala 19:19]
 endmodule
 /* verilator lint_on UNUSED */

@@ -42,6 +42,7 @@ void difftest_regcpy(void *dut, bool direction) {
   }else if(direction == DIFFTEST_TO_REF){
     for (int i = 0; i < 32; i++)
        cpu.gpr[i] = ((CPU_state *)dut)->gpr[i];
+    //printf("%lx %lx\n", ((CPU_state *)dut)->gpr[15], cpu.gpr[15]);
      cpu.pc = ((CPU_state *)dut)->pc;
   }
 }
@@ -51,7 +52,7 @@ void difftest_exec(uint64_t n) {
 }
 
 void difftest_raise_intr(word_t NO) {
-  isa_raise_intr(NO, cpu.pc);
+  cpu.pc = isa_raise_intr(NO, cpu.pc);
 }
 
 void difftest_init(int port) {

@@ -45,9 +45,9 @@ char *strcat(char *dst, const char *src) {
 }
 
 int strcmp(const char *s1, const char *s2) {
-  while(*s1 == *s2){
-    if(*s1 == '\0'){
-      return 0;
+  while(*s1 != '\0' && *s2!='\0'){
+    if(*s1 != *s2){
+      return *s1 - *s2;
     }
     s1++;
     s2++;
@@ -56,15 +56,15 @@ int strcmp(const char *s1, const char *s2) {
 }
 
 int strncmp(const char *s1, const char *s2, size_t n) {
-	size_t i = n;
-  	while(*s1 == *s2 && i>0){
-    	if(*s1 == '\0'){
-      		return 0;
-		}
+  	while(*s1 != '\0' && *s2!='\0' && n>0){
+    	if(*s1 != *s2){
+      		return *s1 - *s2;
+		  }
     	s1++;
     	s2++;
-		i--;
+		  n--;
   	}
+  if(n==0)return 0;
 	return *s1 - *s2;
 }
 
@@ -94,10 +94,11 @@ void *memmove(void *dst, const void *src, size_t n) {
 void *memcpy(void *out, const void *in, size_t n) {
   if(out==NULL || in==NULL)return NULL;
   char *res = (char *)out;
+  char *ref = (char *)in;
   for(int i = n;i > 0;i--){
-    *res = *(char*)in;
+    *res = *ref;
     res++;
-    in++;
+    ref++;
   }
   return out;
 }

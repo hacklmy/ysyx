@@ -30,7 +30,7 @@ uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
 
-char iringbuf[16][200];
+char iringbuf[32][200];
 int iringbuf_pointer = 0;
 
 void device_update();
@@ -50,7 +50,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 
 void print_iringbuf(){
   printf("===============iringbuf===================\n");
-  for(int i = 0;i<16;i++){
+  for(int i = 0;i<32;i++){
     if(i==iringbuf_pointer-1)printf("-->");
     printf("\t%s\n",iringbuf[i]);
   }
@@ -80,7 +80,11 @@ static void exec_once(Decode *s, vaddr_t pc) {
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
       MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
   sprintf(iringbuf[iringbuf_pointer], "%lx : %s", s->pc, p);
-  iringbuf_pointer = (iringbuf_pointer+1)%16;
+  //FILE* log_file = fopen("/home/lmy/ysyx-workbench/nemu/build/log.txt","a+");
+  //if(fputs(iringbuf[iringbuf_pointer], log_file)==EOF)exit(0);
+  //fputc('\n', log_file);
+  //fclose(log_file);
+  iringbuf_pointer = (iringbuf_pointer+1)%32;
 #endif
 
 #ifdef CONFIG_FTRACE

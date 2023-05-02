@@ -32,22 +32,33 @@ VL_MODULE(Vtop___024root) {
     // LOCAL SIGNALS
     CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_src2_is_imm;
     CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_src1_is_pc;
-    CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_176;
-    CData/*5:0*/ top__DOT__idu_step__DOT___inst_now_T_179;
-    CData/*0:0*/ top__DOT__exu_step__DOT___T_1;
+    CData/*0:0*/ top__DOT__axi_pc_valid;
+    CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT__axi_arready;
+    CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid;
+    CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT__state;
+    CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT___GEN_0;
+    CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT___GEN_2;
+    CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT___GEN_4;
+    CData/*0:0*/ top__DOT__idu_step__DOT__axi_inst_ready;
+    CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_188;
+    CData/*6:0*/ top__DOT__idu_step__DOT___inst_now_T_194;
+    CData/*0:0*/ top__DOT__idu_step__DOT___reg_write_T_37;
+    CData/*1:0*/ top__DOT__exu_step__DOT___csr_index_T_5;
     VlWide<4>/*126:0*/ top__DOT__exu_step__DOT__sll_res;
     IData/*31:0*/ top__DOT__exu_step__DOT__srlw_res;
     IData/*31:0*/ top__DOT__exu_step__DOT__divuw_res;
     IData/*31:0*/ top__DOT__exu_step__DOT__remw_res;
     IData/*31:0*/ top__DOT__exu_step__DOT__remuw_res;
-    VlWide<4>/*126:0*/ top__DOT__exu_step__DOT___io_res2rd_T_202;
+    VlWide<4>/*126:0*/ top__DOT__exu_step__DOT___io_res2rd_T_208;
     QData/*63:0*/ top__DOT__idu_step_io_imm;
     QData/*63:0*/ top__DOT__exu_step_io_pc_next;
     QData/*63:0*/ top__DOT__pc_now;
-    QData/*63:0*/ top__DOT__ifu_step__DOT__inst_read_Rdata;
+    QData/*63:0*/ top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata;
     QData/*63:0*/ top__DOT__exu_step__DOT__Mem_modle_Rdata;
     QData/*63:0*/ top__DOT__exu_step__DOT__Regfile_MPORT_data;
-    QData/*63:0*/ top__DOT__exu_step__DOT__cmp;
+    QData/*63:0*/ top__DOT__exu_step__DOT__CSR_Reg_MPORT_1_data;
+    QData/*63:0*/ top__DOT__exu_step__DOT__CSR_Reg_MPORT_3_data;
+    QData/*63:0*/ top__DOT__exu_step__DOT__CSR_Reg_MPORT_6_data;
     QData/*63:0*/ top__DOT__exu_step__DOT__src1_value;
     QData/*63:0*/ top__DOT__exu_step__DOT__src2_value;
     QData/*63:0*/ top__DOT__exu_step__DOT__add_res;
@@ -61,7 +72,9 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__exu_step__DOT___mluw_res_T_2;
     QData/*32:0*/ top__DOT__exu_step__DOT___divw_res_T_4;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__Regfile;
+    VlUnpacked<QData/*63:0*/, 4> top__DOT__exu_step__DOT__CSR_Reg;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__reg_trace__DOT__traceregs;
+    VlUnpacked<QData/*63:0*/, 4> top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs;
 
     // LOCAL VARIABLES
     CData/*0:0*/ __Vclklast__TOP__clock;

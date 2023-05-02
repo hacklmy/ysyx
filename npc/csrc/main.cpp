@@ -1,6 +1,10 @@
 #include <stdio.h>
-#include <iostream>
 #include <stdlib.h>
+#include <iostream>
+#include <termios.h>
+#include <unistd.h>
+#include <thread>
+#include <SDL2/SDL.h>
 #include <assert.h>
 #include "Vtop.h"
 #include <svdpi.h>
@@ -23,10 +27,21 @@
 #define FB_ADDR         (MMIO_BASE   + 0x1000000)
 #define AUDIO_SBUF_ADDR (MMIO_BASE   + 0x1200000)
 
-//#define CONFIG_ITRACE 0
-//#define CONFIG_FTRACE 0
+
+const char *regs[] = {
+  "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
+  "s0", "s1", "a0", "a1", "a2", "a3", "a4", "a5",
+  "a6", "a7", "s2", "s3", "s4", "s5", "s6", "s7",
+  "s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"
+};
+
+//#define CONFIG_ITRACE
+//#define CONFIG_FTRACE
 //#define CONFIG_DIFFTEST
 //#define VerilatedVCD
+//#define HAS_VGA
+
+void difftest_skip_ref();
 
 void is_func(uint64_t pc, uint64_t dnpc,bool is_return);
 void init_elf(char *elf_file);
@@ -34,6 +49,8 @@ void print_func();
 
 
 int stop_status = 0;
+int SDL_quite = 0;
+int is_ecall = 0;
 
 #define BITMASK(bits) ((1ull << (bits)) - 1)
 #define BITS(x, hi, lo) (((x) >> (lo)) & BITMASK((hi) - (lo) + 1)) // similar to x[hi:lo] in verilog
@@ -53,17 +70,190 @@ typedef struct
 {
   uint64_t gpr[32];
   uint64_t pc;
+  uint64_t csr[4];
 } CPU_state;
 
 void ebreak_handle(int flag){
   cpu_stop = flag;
 }
 
+void ecall_handle(int flag){
+  //if(flag)printf("ecall\n");
+  is_ecall = flag;
+}
+
 void get_pc(long long pc){
   pc_now = pc;
 }
 
+uint64_t csr_reg[4];
+extern "C" void set_csr_ptr(const svOpenArrayHandle r) {
+  uint64_t *csr = NULL;
+  csr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
+  for (int i = 0; i < 4; i++)
+    csr_reg[i] = csr[i];
+}
+
+
 CPU_state ref_r;
+
+//==========================================kEYBOARD_begin=====================================
+#define KEYDOWN_MASK 0x8000
+#define concat_temp(x, y) x ## y
+#define MAP(c, f) c(f)
+#define _KEYS(f) \
+  f(ESCAPE) f(F1) f(F2) f(F3) f(F4) f(F5) f(F6) f(F7) f(F8) f(F9) f(F10) f(F11) f(F12) \
+f(GRAVE) f(1) f(2) f(3) f(4) f(5) f(6) f(7) f(8) f(9) f(0) f(MINUS) f(EQUALS) f(BACKSPACE) \
+f(TAB) f(Q) f(W) f(E) f(R) f(T) f(Y) f(U) f(I) f(O) f(P) f(LEFTBRACKET) f(RIGHTBRACKET) f(BACKSLASH) \
+f(CAPSLOCK) f(A) f(S) f(D) f(F) f(G) f(H) f(J) f(K) f(L) f(SEMICOLON) f(APOSTROPHE) f(RETURN) \
+f(LSHIFT) f(Z) f(X) f(C) f(V) f(B) f(N) f(M) f(COMMA) f(PERIOD) f(SLASH) f(RSHIFT) \
+f(LCTRL) f(APPLICATION) f(LALT) f(SPACE) f(RALT) f(RCTRL) \
+f(UP) f(DOWN) f(LEFT) f(RIGHT) f(INSERT) f(DELETE) f(HOME) f(END) f(PAGEUP) f(PAGEDOWN)
+
+#define _KEY_NAME(k) _KEY_##k,
+
+enum {
+  _KEY_NONE = 0,
+  MAP(_KEYS, _KEY_NAME)
+};
+
+#define SDL_KEYMAP(k) keymap[concat_temp(SDL_SCANCODE_, k)] = concat_temp(_KEY_, k);
+static uint32_t keymap[256] = {};
+
+static void init_keymap() {
+  MAP(_KEYS, SDL_KEYMAP)
+}
+
+#define KEY_QUEUE_LEN 1024
+static int key_queue[KEY_QUEUE_LEN] = {};
+static int key_f = 0, key_r = 0;
+
+static void key_enqueue(uint32_t am_scancode) {
+  key_queue[key_r] = am_scancode;
+  key_r = (key_r + 1) % KEY_QUEUE_LEN;
+  assert(key_r != key_f);
+}
+
+static uint32_t key_dequeue() {
+  uint32_t key = _KEY_NONE;
+  if (key_f != key_r) {
+    key = key_queue[key_f];
+    key_f = (key_f + 1) % KEY_QUEUE_LEN;
+  }
+  return key;
+}
+
+void send_key(uint8_t scancode, bool is_keydown) {
+  //printf("enquene %d %d\n",scancode,keymap[scancode] );
+  if (cpu_stop!=1 && SDL_quite !=1 && keymap[scancode] != _KEY_NONE) {
+    //printf("enquene\n");
+    uint32_t am_scancode = keymap[scancode] | (is_keydown ? KEYDOWN_MASK : 0);
+    key_enqueue(am_scancode);
+  }
+}
+
+static uint32_t i8042_data_port_base[4];
+
+static void i8042_data_io_handler(uint32_t offset, int len, bool is_write) {
+  assert(!is_write);
+  assert(offset == 0);
+  i8042_data_port_base[0] = key_dequeue();
+}
+
+void init_i8042() {
+  i8042_data_port_base[0] = _KEY_NONE;
+  init_keymap();
+}
+
+//===========================================KEYBOARD_end======================================
+
+//==========================================VGA_begin===========================================
+#define SCREEN_W 400
+#define SCREEN_H 300
+
+uint32_t vmem[300*400];
+uint32_t vgactl_port_base[8];
+
+static uint32_t screen_width() {
+  return SCREEN_W;
+}
+
+static uint32_t screen_height() {
+  return SCREEN_H;
+}
+
+static uint32_t screen_size() {
+  return screen_width() * screen_height() * sizeof(uint32_t);
+}
+
+
+static SDL_Event event;
+static SDL_Renderer *renderer = NULL;
+static SDL_Texture *texture = NULL;
+
+static void init_screen() {
+  SDL_Window *window = NULL;
+  char title[128];
+  sprintf(title, "riscv64-NPC");
+  SDL_Init(SDL_INIT_VIDEO);
+  SDL_CreateWindowAndRenderer(
+      SCREEN_W * 2,
+      SCREEN_H * 2,
+      0, &window, &renderer);
+  SDL_SetWindowTitle(window, title);
+  texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888,
+      SDL_TEXTUREACCESS_STATIC, SCREEN_W, SCREEN_H);
+}
+
+ void update_screen() {
+  printf("update\n");
+  SDL_UpdateTexture(texture, NULL, vmem, SCREEN_W * sizeof(uint32_t));
+  SDL_RenderClear(renderer);
+  SDL_RenderCopy(renderer, texture, NULL, NULL);
+  SDL_RenderPresent(renderer);
+  printf("update success\n");
+}
+
+
+void vga_update_screen() {
+  // TODO: call `update_screen()` when the sync register is non-zero,
+  // then zero out the sync register
+  if (vgactl_port_base[1]) {
+    update_screen();
+    vgactl_port_base[1] = 0;
+  }
+  while (SDL_PollEvent(&event)) {
+    switch (event.type) {
+      case SDL_QUIT:
+        printf("SDL quite\n");
+        SDL_quite = 1;
+        break;
+      case SDL_KEYDOWN:
+      case SDL_KEYUP: {
+        //printf("has a key\n");
+        uint8_t k = event.key.keysym.scancode;
+        bool is_keydown = (event.key.type == SDL_KEYDOWN);
+        send_key(k, is_keydown);
+        //printf("%d",k);
+        break;
+      }
+      default: break;
+    }
+  }
+}
+
+void init_vga() {
+  //vgactl_port_base = (uint32_t *)malloc(sizeof(uint32_t)*8);
+  vgactl_port_base[0] = (screen_width() << 16) | screen_height();
+  //printf("%d\n", vgactl_port_base[0]);
+
+  //vmem = malloc(screen_size());
+  init_screen();
+  memset(vmem, 0, screen_size());
+}
+//=========================================VGA_end===========================================
+
+
 //===========================mem=========================
 typedef uint64_t paddr_t;
 #define PG_ALIGN __attribute((aligned(4096)))
@@ -84,18 +274,53 @@ static inline uint32_t host_read(void *addr) {
 time_t boot_time = 0;
 extern "C" void pmem_read(long long raddr, long long *rdata) {
   // 总是读取地址为`raddr & ~0x7ull`的8字节返回给`rdata`
-  if(raddr==RTC_ADDR){
+  if(raddr>=DEVICE_BASE && raddr < DEVICE_BASE + 0x1200000 + 32){
+    difftest_skip_ref();
+  }
+  if(raddr>=RTC_ADDR && raddr <= RTC_ADDR+8){
+    uint64_t time_now = 0;
     if(boot_time==0){
       boot_time = time(NULL);
-      *rdata = 0;
-      return;
+      time_now = 0;
+    }else{
+      time_t tmpcal_ptr;
+      tmpcal_ptr = time(NULL);
+      time_now = (tmpcal_ptr - boot_time)*1000000;
     }
-    time_t tmpcal_ptr;
-    tmpcal_ptr = time(NULL);
-    *rdata = tmpcal_ptr - boot_time;
+    //printf("time : %lld\n",*rdata);
+    if(raddr == RTC_ADDR){
+      *rdata = time_now & 0xffffffff;
+    }
+    else if(raddr == RTC_ADDR + 4){
+      *rdata = (time_now >> 32) & 0xffffffff;
+    }
+    return;
+  }
+  if(raddr >=VGACTL_ADDR && raddr <VGACTL_ADDR+32){
+    //printf("base: %d\n",vgactl_port_base[0] );
+    if(raddr==VGACTL_ADDR){
+      printf("read gpu size\n");
+      *rdata = vgactl_port_base[0] & 0xffff;
+      //printf("%lld\n", *rdata);
+    }else if(raddr == VGACTL_ADDR+2){
+      printf("read gpu size\n");
+      *rdata = (vgactl_port_base[0]>>16);
+      //printf("%lld\n", *rdata);
+    }else if(raddr == VGACTL_ADDR+4){
+      printf("read gpu syn\n");
+      *rdata = vgactl_port_base[1];
+      printf("%lld\n", *rdata);
+    }
+    return;
+  }
+  if(raddr==KBD_ADDR){
+    i8042_data_port_base[0] = key_dequeue();
+    *rdata = i8042_data_port_base[0];
+    //if(*rdata!=0)printf("read key : %lld\n", *rdata);
     return;
   }
   if(raddr<CONFIG_MBASE||raddr>(CONFIG_MBASE+CONFIG_MSIZE)){
+    //*rdata = 0;
     return;
   }
   *rdata = *((long long *)guest_to_host(raddr));
@@ -109,11 +334,35 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   // 总是往地址为`waddr & ~0x7ull`的8字节按写掩码`wmask`写入`wdata`
   // `wmask`中每比特表示`wdata`中1个字节的掩码,
   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
+  if(waddr>=DEVICE_BASE && waddr < DEVICE_BASE + 0x1200000 + 32){
+    difftest_skip_ref();
+  }
   if(waddr==SERIAL_PORT){
     putchar((char)wdata&0xff);
     return ;
   }
+  if(waddr >=VGACTL_ADDR && waddr <=VGACTL_ADDR+32){
+    if(waddr==VGACTL_ADDR+4){
+      printf("write syn\n");
+      printf("syn:%lld\n",wdata);
+      vgactl_port_base[1] = (uint32_t)wdata;
+      return;
+    }
+  }
+  if(waddr>=FB_ADDR && waddr<=FB_ADDR + 0x200000){
+    //printf("write fb\n");
+    uint64_t fb_addr = (waddr - FB_ADDR)/4;
+    uint8_t* p = (uint8_t*)&vmem[fb_addr];
+    for (int i = 0; i < 8; i++) {
+      if (wmask & 0x1) *p = (wdata & 0xff);
+      wdata >>= 8;
+      wmask >>= 1;
+     p++;
+    }
+    return;
+  }
   if(waddr<CONFIG_MBASE||waddr>(CONFIG_MBASE+CONFIG_MSIZE)){
+    //printf("write out of bound\n");
     return;
   }
   #ifdef CONFIG_MTRACE
@@ -167,7 +416,7 @@ static int cmd_si(char *args){
 void print_reg(){
   int i;
   for (i = 0; i < 32; i++) {
-    printf("gpr[%d] = 0x%lx\n", i, cpu_gpr.gpr[i]);
+    printf("gpr[%d] %s = 0x%lx\n", i, regs[i], cpu_gpr.gpr[i]);
   }
 }
 
@@ -341,6 +590,10 @@ extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int
 //==========================itrace_end==============================
 
 //==========================difftest================================
+static int skip_dut_nr_inst = 0;
+static bool is_skip_ref = false;
+static bool is_skip_ref_s = false;
+
 enum { DIFFTEST_TO_DUT, DIFFTEST_TO_REF };
 void (*ref_difftest_memcpy)(uint32_t addr, void *buf, size_t n, bool direction) = NULL;
 void (*ref_difftest_regcpy)(void *dut, bool direction) = NULL;
@@ -375,18 +628,31 @@ void init_difftest(char *ref_so_file, long img_size) {
   ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
 }
 
+void difftest_skip_dut(int nr_ref, int nr_dut) {
+  skip_dut_nr_inst += nr_dut;
+
+  while (nr_ref -- > 0) {
+    ref_difftest_exec(1);
+  }
+}
+
+void difftest_skip_ref() {
+  is_skip_ref = true;
+  skip_dut_nr_inst = 0;
+}
+
 bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
   if(cpu_stop)return true;
-  for (int i = 0; i < 32; i++) {
-    if(ref_r->gpr[i] != cpu_gpr.gpr[i])
-      {
-        printf("Unmatched reg value at pc : %lx  reg%d : npc = %lx  ref = %lx\n", pc, i, cpu_gpr.gpr[i], ref_r->gpr[i]);
-        return false;
-      }
-  }
   if(ref_r->pc != pc){
     printf("wrong pc %lx: npc = %lx   ref = %lx\n",pc, pc, ref_r->pc);
     return false;
+  }
+  for (int i = 0; i < 32; i++) {
+    if(ref_r->gpr[i] != cpu_gpr.gpr[i])
+      {
+        printf("Unmatched reg value at pc : %lx  reg%d %s: npc = %lx  ref = %lx\n", pc, i, regs[i],cpu_gpr.gpr[i], ref_r->gpr[i]);
+        return false;
+      }
   }
   return true;
 }
@@ -400,6 +666,25 @@ static void checkregs(CPU_state *ref, uint64_t pc) {
 }
 
 void difftest_step(uint64_t pc) {
+  if (is_skip_ref) {
+    //printf("skip pc:%lx\n",pc);
+    // to skip the checking of an instruction, just copy the reg state to reference design
+    //printf("%lx %lx\n", cpu_gpr.pc, pc_now);
+    //ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
+    is_skip_ref_s = true;
+    is_skip_ref = false;
+    return;
+  }
+  if(is_skip_ref_s){
+    ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
+    is_skip_ref_s = is_skip_ref;
+    return;
+  }
+  // if(is_ecall){
+  //   printf("ecall\n");
+  //   // ref_difftest_raise_intr(csr_reg[3]);
+  //   // return;
+  // }
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
   checkregs(&ref_r, pc);
@@ -427,12 +712,15 @@ void load_img(){
   fclose(fp);
 }
 //============================load_img_end===========================
+#ifdef CONFIG_ITRACE
 FILE* log_file = fopen("/home/lmy/ysyx-workbench/npc/npc-log.txt","w+");
+#endif
 
 
 void cpu_exec(int n){
-  if(n<0)n=100000000;
-  while (!cpu_stop && n--) {
+  int flag = 0;
+  if(n<0)flag=1;
+  while (!cpu_stop && (flag==1||n--) && !SDL_quite) {
       top->reset = 0;
       //top->io_inst = pmem_read(top->io_pc);
       //printf("%lx %x\n",pc_now , top->io_inst);
@@ -440,7 +728,7 @@ void cpu_exec(int n){
       top->eval();
       top->clock ^= 1;
       top->eval();
-      //printf("%lx %x\n",pc_now , top->io_inst);
+      printf("%lx %x\n",top->io_pc , top->io_inst);
       #ifdef CONFIG_ITRACE
     char p[1024];
     char *s = p;
@@ -468,6 +756,9 @@ void cpu_exec(int n){
     #ifdef VerilatedVCD
     tfp->dump(contextp->time()); //dump wave
     #endif
+    #ifdef HAS_VGA
+    vga_update_screen();
+    #endif
     sim_time++;
   }
 }
@@ -485,6 +776,10 @@ int main(int argc, char** argv) {
   #endif
   load_img();
   printf("image succuss\n");
+  #ifdef HAS_VGA
+  init_vga();
+  init_i8042();
+  #endif
   #ifdef CONFIG_ITRACE
   init_disasm("riscv64");
   #endif
@@ -507,7 +802,7 @@ int main(int argc, char** argv) {
   printf("so succuss\n");
   init_difftest(difftest_file,CONFIG_MSIZE);
   #endif
-  while(sdb_mainloop() && !cpu_stop);
+  while(sdb_mainloop() && !cpu_stop && !SDL_quite);
   if(stop_status==0)printf("\33[1;32mHIT GOOD TRAP\n\33[0m");
   else printf("\33[1;31mHIT BAD TRAP\n\33[0m");
   delete top;

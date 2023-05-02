@@ -15,12 +15,16 @@ extern "C" {
     // DPI IMPORTS
     // DPI import at vsrc/DPI.v:1:30
     extern void ebreak_handle(int flag);
+    // DPI import at vsrc/DPI.v:2:30
+    extern void ecall_handle(int flag);
     // DPI import at vsrc/traceregs.v:2:30
     extern void get_pc(long long pc);
     // DPI import at vsrc/MEM.v:1:30
     extern void pmem_read(long long Raddr, long long* Rdata);
     // DPI import at vsrc/MEM.v:3:30
     extern void pmem_write(long long Waddr, long long Wdata, char Wmask);
+    // DPI import at vsrc/traceregs.v:3:30
+    extern void set_csr_ptr(const svOpenArrayHandle Regfile);
     // DPI import at vsrc/traceregs.v:1:30
     extern void set_gpr_ptr(const svOpenArrayHandle Regfile);
 
