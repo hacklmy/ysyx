@@ -15,7 +15,7 @@ module MEM (
     output [63:0] Rdata
 );
  
- always @(*) begin
+ always@(*) begin
     if(Read_en)begin
       pmem_read(Raddr, Rdata);
     end
