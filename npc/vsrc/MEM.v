@@ -16,10 +16,10 @@ module MEM (
 );
  
  always@(*) begin
-    //if(Read_en)begin
+    if(Read_en)begin
       pmem_read(Raddr, Rdata);
-    //end
-     if(Write_en)begin
+    end
+    else if(Write_en)begin
       pmem_write(Waddr, Wdata, Wmask);
     end
 end
