@@ -99,6 +99,8 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     // Body
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs[3U] = 0ULL;
     vlSelf->io_pc = vlSelf->top__DOT__pc_now;
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_27 
+        = vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_wready;
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs[0U] 
         = vlSelf->top__DOT__exu_step__DOT__CSR_Reg[0U];
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs[1U] 
@@ -169,9 +171,14 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1eU];
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x1fU] 
         = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1fU];
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_4 
-        = ((IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready) 
-           | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready));
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_6 
+        = vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_bvalid;
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_13 
+        = ((IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready)
+            ? 0U : (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state));
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_15 
+        = ((~ (IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready)) 
+           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid));
     vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_13 
         = ((IData)(vlSelf->top__DOT__exu_step__DOT__axi_rready)
             ? 0U : (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__state));
@@ -180,9 +187,6 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
            & (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_rvalid));
     vlSelf->top__DOT__exu_step_io_inst_valid = ((IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready) 
                                                 & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid));
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_0 
-        = ((IData)(vlSelf->top__DOT__axi_pc_valid) 
-           | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state));
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_2 
         = ((IData)(vlSelf->top__DOT__axi_pc_valid) 
            | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid));
@@ -192,6 +196,16 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_6 
         = ((IData)(vlSelf->top__DOT__exu_step__DOT__axi_awvalid) 
            | (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_bvalid));
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_29 
+        = ((0U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))
+            ? ((~ (IData)(vlSelf->top__DOT__axi_pc_valid)) 
+               & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready))
+            : ((3U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))
+                ? (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready)
+                : ((4U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))
+                    ? ((IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready) 
+                       | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready))
+                    : (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready))));
     if ((0U == (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__state))) {
         vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_27 
             = ((~ (IData)(vlSelf->top__DOT__exu_step__DOT__axi_awvalid)) 
@@ -218,198 +232,198 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     if (((IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready) 
          & (IData)(vlSelf->top__DOT__axi_pc_valid))) {
         Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit((QData)((IData)(vlSelf->top__DOT__pc_now)), vlSelf->__Vtask_pmem_read__0__Rdata);
-        vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+        vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
             = vlSelf->__Vtask_pmem_read__0__Rdata;
     }
     Vtop___024unit____Vdpiimwrap_get_pc_TOP____024unit(vlSelf->top__DOT__pc_now);
     Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs);
     Vtop___024unit____Vdpiimwrap_set_csr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs);
-    vlSelf->io_inst = (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata);
+    vlSelf->io_inst = (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata);
     vlSelf->top__DOT__idu_step_io_ctrl_sign_Readmem_en 
-        = ((0x3003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-           | ((0x2003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-              | ((0x6003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                 | ((0x1003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                    | ((0x5003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                       | ((3U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                          | (0x4003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))))))));
+        = ((0x3003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+           | ((0x2003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+              | ((0x6003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+                 | ((0x1003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+                    | ((0x5003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+                       | ((3U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+                          | (0x4003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))))))));
     vlSelf->top__DOT__idu_step__DOT___reg_write_T_37 
-        = ((0x3023U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-           & ((0x1023U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-              & ((0x23U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                 & ((0x2023U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                    & ((0x1063U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                       & ((0x63U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                          & ((0x5063U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
+        = ((0x3023U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+           & ((0x1023U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+              & ((0x23U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+                 & ((0x2023U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+                    & ((0x1063U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+                       & ((0x63U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+                          & ((0x5063U != (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
                              & ((0x4063U != (0x707fU 
-                                             & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
+                                             & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
                                 & ((0x6063U != (0x707fU 
-                                                & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
+                                                & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
                                    & ((0x7063U != (0x707fU 
-                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                                      & ((0x73U != (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)) 
+                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+                                      & ((0x73U != (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)) 
                                          & (0x30200073U 
-                                            != (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))))))))))));
+                                            != (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))))))))))));
     top__DOT__exu_step__DOT___src2_value_T_1 = ((0U 
                                                  == 
                                                  (0x1fU 
                                                   & (IData)(
-                                                            (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                            (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                              >> 0x14U))))
                                                  ? 0ULL
                                                  : 
                                                 vlSelf->top__DOT__exu_step__DOT__Regfile
                                                 [(0x1fU 
                                                   & (IData)(
-                                                            (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                            (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                              >> 0x14U)))]);
     vlSelf->top__DOT__idu_step_io_ctrl_sign_src1_is_pc 
-        = ((0x6fU == (0x7fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-           | ((0x17U == (0x7fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-              | ((0x1063U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                 | ((0x63U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                    | ((0x5063U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                       | ((0x4063U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                          | ((0x6063U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
+        = ((0x6fU == (0x7fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+           | ((0x17U == (0x7fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+              | ((0x1063U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+                 | ((0x63U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+                    | ((0x5063U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+                       | ((0x4063U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+                          | ((0x6063U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
                              | (0x7063U == (0x707fU 
-                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))))))))));
+                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))))))))));
     top__DOT__exu_step__DOT___src1_value_T_1 = ((0U 
                                                  == 
                                                  (0x1fU 
                                                   & (IData)(
-                                                            (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                            (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                              >> 0xfU))))
                                                  ? 0ULL
                                                  : 
                                                 vlSelf->top__DOT__exu_step__DOT__Regfile
                                                 [(0x1fU 
                                                   & (IData)(
-                                                            (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                            (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                              >> 0xfU)))]);
     top__DOT__idu_step__DOT___inst_now_T_140 = ((0x5033U 
                                                  == 
                                                  (0xfe00707fU 
-                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                  ? 0x38U
                                                  : 
                                                 ((0x40005033U 
                                                   == 
                                                   (0xfe00707fU 
-                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                   ? 0x39U
                                                   : 
                                                  ((0x2013U 
                                                    == 
                                                    (0x707fU 
-                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                    ? 0x36U
                                                    : 
                                                   ((0x6003U 
                                                     == 
                                                     (0x707fU 
-                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                     ? 0x3aU
                                                     : 
                                                    ((3U 
                                                      == 
                                                      (0x707fU 
-                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                      ? 0x3bU
                                                      : 
                                                     ((0x7063U 
                                                       == 
                                                       (0x707fU 
-                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                       ? 0x3cU
                                                       : 
                                                      ((0x73U 
-                                                       == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))
+                                                       == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))
                                                        ? 0x3dU
                                                        : 
                                                       ((0x30200073U 
-                                                        == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))
+                                                        == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))
                                                         ? 0x3eU
                                                         : 
                                                        ((0x1073U 
                                                          == 
                                                          (0x707fU 
-                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                          ? 0x3fU
                                                          : 
                                                         ((0x2073U 
                                                           == 
                                                           (0x707fU 
-                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                           ? 0x46U
                                                           : 
                                                          ((0x3073U 
                                                            == 
                                                            (0x707fU 
-                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                            ? 0x47U
                                                            : 0U)))))))))));
     top__DOT__idu_step__DOT___inst_type_T_136 = ((0x1033U 
                                                   == 
                                                   (0xfe00707fU 
-                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                   ? 0x41U
                                                   : 
                                                  ((0x5033U 
                                                    == 
                                                    (0xfe00707fU 
-                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                    ? 0x41U
                                                    : 
                                                   ((0x40005033U 
                                                     == 
                                                     (0xfe00707fU 
-                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                     ? 0x41U
                                                     : 
                                                    ((0x2013U 
                                                      == 
                                                      (0x707fU 
-                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                      ? 0x40U
                                                      : 
                                                     ((0x6003U 
                                                       == 
                                                       (0x707fU 
-                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                       ? 0x40U
                                                       : 
                                                      ((3U 
                                                        == 
                                                        (0x707fU 
-                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                        ? 0x40U
                                                        : 
                                                       ((0x7063U 
                                                         == 
                                                         (0x707fU 
-                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                         ? 0x45U
                                                         : 
                                                        ((0x73U 
-                                                         == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))
+                                                         == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))
                                                          ? 0x40U
                                                          : 
                                                         ((0x1073U 
                                                           == 
                                                           (0x707fU 
-                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                           ? 0x40U
                                                           : 
                                                          ((0x2073U 
                                                            == 
                                                            (0x707fU 
-                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                            ? 0x40U
                                                            : 
                                                           ((0x3073U 
                                                             == 
                                                             (0x707fU 
-                                                             & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                             & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                             ? 0x40U
                                                             : 0U)))))))))));
     vlSelf->top__DOT__exu_step__DOT__src1_value = ((IData)(vlSelf->top__DOT__idu_step_io_ctrl_sign_src1_is_pc)
@@ -418,600 +432,600 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     top__DOT__idu_step__DOT___inst_now_T_151 = ((0x200403bU 
                                                  == 
                                                  (0xfe00707fU 
-                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                  ? 0x13U
                                                  : 
                                                 ((0x200603bU 
                                                   == 
                                                   (0xfe00707fU 
-                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                   ? 0x14U
                                                   : 
                                                  ((0x4033U 
                                                    == 
                                                    (0xfe00707fU 
-                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                    ? 0x2eU
                                                    : 
                                                   ((0x6013U 
                                                     == 
                                                     (0x707fU 
-                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                     ? 0x2fU
                                                     : 
                                                    ((0x2005033U 
                                                      == 
                                                      (0xfe00707fU 
-                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                      ? 0x30U
                                                      : 
                                                     ((0x2004033U 
                                                       == 
                                                       (0xfe00707fU 
-                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                       ? 0x31U
                                                       : 
                                                      ((0x200503bU 
                                                        == 
                                                        (0xfe00707fU 
-                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                        ? 0x35U
                                                        : 
                                                       ((0x200703bU 
                                                         == 
                                                         (0xfe00707fU 
-                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                         ? 0x32U
                                                         : 
                                                        ((0x2007033U 
                                                          == 
                                                          (0xfe00707fU 
-                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                          ? 0x33U
                                                          : 
                                                         ((0x2006033U 
                                                           == 
                                                           (0xfe00707fU 
-                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                           ? 0x34U
                                                           : 
                                                          ((0x1033U 
                                                            == 
                                                            (0xfe00707fU 
-                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                            ? 0x37U
                                                            : (IData)(top__DOT__idu_step__DOT___inst_now_T_140))))))))))));
     top__DOT__idu_step__DOT___inst_type_T_147 = ((0x200003bU 
                                                   == 
                                                   (0xfe00707fU 
-                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                   ? 0x41U
                                                   : 
                                                  ((0x200403bU 
                                                    == 
                                                    (0xfe00707fU 
-                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                    ? 0x41U
                                                    : 
                                                   ((0x200603bU 
                                                     == 
                                                     (0xfe00707fU 
-                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                     ? 0x41U
                                                     : 
                                                    ((0x4033U 
                                                      == 
                                                      (0xfe00707fU 
-                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                      ? 0x41U
                                                      : 
                                                     ((0x6013U 
                                                       == 
                                                       (0x707fU 
-                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                       ? 0x40U
                                                       : 
                                                      ((0x2005033U 
                                                        == 
                                                        (0xfe00707fU 
-                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                        ? 0x41U
                                                        : 
                                                       ((0x2004033U 
                                                         == 
                                                         (0xfe00707fU 
-                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                         ? 0x41U
                                                         : 
                                                        ((0x200503bU 
                                                          == 
                                                          (0xfe00707fU 
-                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                          ? 0x41U
                                                          : 
                                                         ((0x200703bU 
                                                           == 
                                                           (0xfe00707fU 
-                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                           ? 0x41U
                                                           : 
                                                          ((0x2007033U 
                                                            == 
                                                            (0xfe00707fU 
-                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                            ? 0x41U
                                                            : 
                                                           ((0x2006033U 
                                                             == 
                                                             (0xfe00707fU 
-                                                             & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                             & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                             ? 0x41U
                                                             : (IData)(top__DOT__idu_step__DOT___inst_type_T_136))))))))))));
     top__DOT__idu_step__DOT___inst_now_T_162 = ((0x503bU 
                                                  == 
                                                  (0xfe00707fU 
-                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                  ? 0x1dU
                                                  : 
                                                 ((0x3033U 
                                                   == 
                                                   (0xfe00707fU 
-                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                   ? 0x1eU
                                                   : 
                                                  ((0x2033U 
                                                    == 
                                                    (0xfe00707fU 
-                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                    ? 0x1fU
                                                    : 
                                                   ((0x5063U 
                                                     == 
                                                     (0x707fU 
-                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                     ? 0x2bU
                                                     : 
                                                    ((0x4063U 
                                                      == 
                                                      (0x707fU 
-                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                      ? 0x2cU
                                                      : 
                                                     ((0x6063U 
                                                       == 
                                                       (0x707fU 
-                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                       ? 0x2dU
                                                       : 
                                                      ((0x2023U 
                                                        == 
                                                        (0x707fU 
-                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                        ? 0x27U
                                                        : 
                                                       ((0x1003U 
                                                         == 
                                                         (0x707fU 
-                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                         ? 0x24U
                                                         : 
                                                        ((0x5003U 
                                                          == 
                                                          (0x707fU 
-                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                          ? 0x25U
                                                          : 
                                                         ((0x2000033U 
                                                           == 
                                                           (0xfe00707fU 
-                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                           ? 0x11U
                                                           : 
                                                          ((0x200003bU 
                                                            == 
                                                            (0xfe00707fU 
-                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                            ? 0x12U
                                                            : (IData)(top__DOT__idu_step__DOT___inst_now_T_151))))))))))));
     top__DOT__idu_step__DOT___inst_type_T_158 = ((0x4000503bU 
                                                   == 
                                                   (0xfe00707fU 
-                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                   ? 0x41U
                                                   : 
                                                  ((0x503bU 
                                                    == 
                                                    (0xfe00707fU 
-                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                    ? 0x41U
                                                    : 
                                                   ((0x3033U 
                                                     == 
                                                     (0xfe00707fU 
-                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                     ? 0x41U
                                                     : 
                                                    ((0x2033U 
                                                      == 
                                                      (0xfe00707fU 
-                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                      ? 0x41U
                                                      : 
                                                     ((0x5063U 
                                                       == 
                                                       (0x707fU 
-                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                       ? 0x45U
                                                       : 
                                                      ((0x4063U 
                                                        == 
                                                        (0x707fU 
-                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                        ? 0x45U
                                                        : 
                                                       ((0x6063U 
                                                         == 
                                                         (0x707fU 
-                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                         ? 0x45U
                                                         : 
                                                        ((0x2023U 
                                                          == 
                                                          (0x707fU 
-                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                          ? 0x44U
                                                          : 
                                                         ((0x1003U 
                                                           == 
                                                           (0x707fU 
-                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                           ? 0x40U
                                                           : 
                                                          ((0x5003U 
                                                            == 
                                                            (0x707fU 
-                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                            ? 0x40U
                                                            : 
                                                           ((0x2000033U 
                                                             == 
                                                             (0xfe00707fU 
-                                                             & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                             & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                             ? 0x41U
                                                             : (IData)(top__DOT__idu_step__DOT___inst_type_T_147))))))))))));
     top__DOT__idu_step__DOT___inst_now_T_173 = ((0x4013U 
                                                  == 
                                                  (0x707fU 
-                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                  ? 0xaU
                                                  : 
                                                 ((0x7033U 
                                                   == 
                                                   (0xfe00707fU 
-                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                   ? 8U
                                                   : 
                                                  ((0x7013U 
                                                    == 
                                                    (0x707fU 
-                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                    ? 9U
                                                    : 
                                                   ((0x4000003bU 
                                                     == 
                                                     (0xfe00707fU 
-                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                     ? 0xdU
                                                     : 
                                                    ((0x103bU 
                                                      == 
                                                      (0xfe00707fU 
-                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                      ? 0x16U
                                                      : 
                                                     ((0x1013U 
                                                       == 
                                                       (0xfc00707fU 
-                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                       ? 0x17U
                                                       : 
                                                      ((0x5013U 
                                                        == 
                                                        (0xfc00707fU 
-                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                        ? 0x18U
                                                        : 
                                                       ((0x101bU 
                                                         == 
                                                         (0xfe00707fU 
-                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                         ? 0x19U
                                                         : 
                                                        ((0x4000501bU 
                                                          == 
                                                          (0xfe00707fU 
-                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                          ? 0x1aU
                                                          : 
                                                         ((0x501bU 
                                                           == 
                                                           (0xfe00707fU 
-                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                           ? 0x1bU
                                                           : 
                                                          ((0x4000503bU 
                                                            == 
                                                            (0xfe00707fU 
-                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                            ? 0x1cU
                                                            : (IData)(top__DOT__idu_step__DOT___inst_now_T_162))))))))))));
     top__DOT__idu_step__DOT___inst_type_T_169 = ((0x6033U 
                                                   == 
                                                   (0xfe00707fU 
-                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                   ? 0x41U
                                                   : 
                                                  ((0x4013U 
                                                    == 
                                                    (0x707fU 
-                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                    ? 0x40U
                                                    : 
                                                   ((0x7033U 
                                                     == 
                                                     (0xfe00707fU 
-                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                     ? 0x41U
                                                     : 
                                                    ((0x7013U 
                                                      == 
                                                      (0x707fU 
-                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                      ? 0x40U
                                                      : 
                                                     ((0x4000003bU 
                                                       == 
                                                       (0xfe00707fU 
-                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                       ? 0x41U
                                                       : 
                                                      ((0x103bU 
                                                        == 
                                                        (0xfe00707fU 
-                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                        ? 0x41U
                                                        : 
                                                       ((0x1013U 
                                                         == 
                                                         (0xfc00707fU 
-                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                         ? 0x40U
                                                         : 
                                                        ((0x5013U 
                                                          == 
                                                          (0xfc00707fU 
-                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                          ? 0x40U
                                                          : 
                                                         ((0x101bU 
                                                           == 
                                                           (0xfe00707fU 
-                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                           ? 0x40U
                                                           : 
                                                          ((0x4000501bU 
                                                            == 
                                                            (0xfe00707fU 
-                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                            ? 0x40U
                                                            : 
                                                           ((0x501bU 
                                                             == 
                                                             (0xfe00707fU 
-                                                             & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                             & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                             ? 0x40U
                                                             : (IData)(top__DOT__idu_step__DOT___inst_type_T_158))))))))))));
     top__DOT__idu_step__DOT___inst_now_T_184 = ((0x40000033U 
                                                  == 
                                                  (0xfe00707fU 
-                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                  ? 0xeU
                                                  : 
                                                 ((0x1063U 
                                                   == 
                                                   (0x707fU 
-                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                   ? 0x2aU
                                                   : 
                                                  ((0x63U 
                                                    == 
                                                    (0x707fU 
-                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                    ? 0x29U
                                                    : 
                                                   ((0x3003U 
                                                     == 
                                                     (0x707fU 
-                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                     ? 0x22U
                                                     : 
                                                    ((0x1bU 
                                                      == 
                                                      (0x707fU 
-                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                      ? 0x10U
                                                      : 
                                                     ((0x33U 
                                                       == 
                                                       (0xfe00707fU 
-                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                       ? 0xfU
                                                       : 
                                                      ((0x40005013U 
                                                        == 
                                                        (0xfc00707fU 
-                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                        ? 0x15U
                                                        : 
                                                       ((0x4003U 
                                                         == 
                                                         (0x707fU 
-                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                         ? 0x23U
                                                         : 
                                                        ((0x1023U 
                                                          == 
                                                          (0x707fU 
-                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                          ? 0x26U
                                                          : 
                                                         ((0x23U 
                                                           == 
                                                           (0x707fU 
-                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                           ? 0x28U
                                                           : 
                                                          ((0x6033U 
                                                            == 
                                                            (0xfe00707fU 
-                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                            ? 0xbU
                                                            : (IData)(top__DOT__idu_step__DOT___inst_now_T_173))))))))))));
     top__DOT__idu_step__DOT___inst_type_T_180 = ((0x3bU 
                                                   == 
                                                   (0xfe00707fU 
-                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                   ? 0x41U
                                                   : 
                                                  ((0x40000033U 
                                                    == 
                                                    (0xfe00707fU 
-                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                    ? 0x41U
                                                    : 
                                                   ((0x1063U 
                                                     == 
                                                     (0x707fU 
-                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                     ? 0x45U
                                                     : 
                                                    ((0x63U 
                                                      == 
                                                      (0x707fU 
-                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                      ? 0x45U
                                                      : 
                                                     ((0x3003U 
                                                       == 
                                                       (0x707fU 
-                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                       ? 0x40U
                                                       : 
                                                      ((0x1bU 
                                                        == 
                                                        (0x707fU 
-                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                        ? 0x40U
                                                        : 
                                                       ((0x33U 
                                                         == 
                                                         (0xfe00707fU 
-                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                         ? 0x41U
                                                         : 
                                                        ((0x40005013U 
                                                          == 
                                                          (0xfc00707fU 
-                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                          & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                          ? 0x40U
                                                          : 
                                                         ((0x4003U 
                                                           == 
                                                           (0x707fU 
-                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                           & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                           ? 0x40U
                                                           : 
                                                          ((0x1023U 
                                                            == 
                                                            (0x707fU 
-                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                            & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                            ? 0x44U
                                                            : 
                                                           ((0x23U 
                                                             == 
                                                             (0x707fU 
-                                                             & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                             & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                             ? 0x44U
                                                             : (IData)(top__DOT__idu_step__DOT___inst_type_T_169))))))))))));
-    if ((0x13U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))) {
+    if ((0x13U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))) {
         vlSelf->top__DOT__idu_step__DOT___inst_now_T_194 = 1U;
         vlSelf->top__DOT__idu_step__DOT___inst_type_T_188 = 0x40U;
     } else {
         vlSelf->top__DOT__idu_step__DOT___inst_now_T_194 
-            = ((0x100073U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))
-                ? 2U : ((0x17U == (0x7fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
-                         ? 3U : ((0x37U == (0x7fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+            = ((0x100073U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))
+                ? 2U : ((0x17U == (0x7fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
+                         ? 3U : ((0x37U == (0x7fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                   ? 4U : ((0x6fU == 
-                                           (0x7fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                            ? 5U : (
                                                    (0x67U 
                                                     == 
                                                     (0x707fU 
-                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                     ? 6U
                                                     : 
                                                    ((0x3023U 
                                                      == 
                                                      (0x707fU 
-                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                      ? 7U
                                                      : 
                                                     ((0x3013U 
                                                       == 
                                                       (0x707fU 
-                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                       ? 0x20U
                                                       : 
                                                      ((0x2003U 
                                                        == 
                                                        (0x707fU 
-                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                        ? 0x21U
                                                        : 
                                                       ((0x3bU 
                                                         == 
                                                         (0xfe00707fU 
-                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                         & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                         ? 0xcU
                                                         : (IData)(top__DOT__idu_step__DOT___inst_now_T_184))))))))));
         vlSelf->top__DOT__idu_step__DOT___inst_type_T_188 
-            = ((0x17U == (0x7fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
-                ? 0x42U : ((0x37U == (0x7fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+            = ((0x17U == (0x7fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
+                ? 0x42U : ((0x37U == (0x7fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                             ? 0x42U : ((0x6fU == (0x7fU 
-                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                         ? 0x43U : (
                                                    (0x67U 
                                                     == 
                                                     (0x707fU 
-                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                     ? 0x40U
                                                     : 
                                                    ((0x3023U 
                                                      == 
                                                      (0x707fU 
-                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                      & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                      ? 0x44U
                                                      : 
                                                     ((0x3013U 
                                                       == 
                                                       (0x707fU 
-                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                       & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                       ? 0x40U
                                                       : 
                                                      ((0x2003U 
                                                        == 
                                                        (0x707fU 
-                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                        & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                        ? 0x40U
                                                        : (IData)(top__DOT__idu_step__DOT___inst_type_T_180))))))));
     }
@@ -1047,7 +1061,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__idu_step_io_imm = ((0x45U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_188))
                                           ? ((((1U 
                                                 & (IData)(
-                                                          (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                          (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                            >> 0x1fU)))
                                                 ? 0x7ffffffffffffULL
                                                 : 0ULL) 
@@ -1055,22 +1069,22 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                              | (QData)((IData)(
                                                                ((0x1000U 
                                                                  & ((IData)(
-                                                                            (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                            (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                              >> 0x1fU)) 
                                                                     << 0xcU)) 
                                                                 | ((0x800U 
                                                                     & ((IData)(
-                                                                               (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                               (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 7U)) 
                                                                        << 0xbU)) 
                                                                    | ((0x7e0U 
                                                                        & ((IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x19U)) 
                                                                           << 5U)) 
                                                                       | (0x1eU 
                                                                          & ((IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 8U)) 
                                                                             << 1U))))))))
                                           : ((0x44U 
@@ -1078,7 +1092,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                               ? (((
                                                    (1U 
                                                     & (IData)(
-                                                              (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                              (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                >> 0x1fU)))
                                                     ? 0xfffffffffffffULL
                                                     : 0ULL) 
@@ -1086,12 +1100,12 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                  | (QData)((IData)(
                                                                    ((0xfe0U 
                                                                      & ((IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x19U)) 
                                                                         << 5U)) 
                                                                     | (0x1fU 
                                                                        & (IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 7U)))))))
                                               : ((0x42U 
                                                   == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_188))
@@ -1099,14 +1113,14 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                  (((QData)((IData)(
                                                                    ((1U 
                                                                      & (IData)(
-                                                                               (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                               (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x1fU)))
                                                                      ? 0xffffffffU
                                                                      : 0U))) 
                                                    << 0x20U) 
                                                   | (QData)((IData)(
                                                                     ((IData)(
-                                                                             (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                             (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                               >> 0xcU)) 
                                                                      << 0xcU))))
                                                   : 
@@ -1115,7 +1129,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                    ? 
                                                   ((((1U 
                                                       & (IData)(
-                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                  >> 0x1fU)))
                                                       ? 0x7ffffffffffULL
                                                       : 0ULL) 
@@ -1123,22 +1137,22 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                    | (QData)((IData)(
                                                                      ((0x100000U 
                                                                        & ((IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x1fU)) 
                                                                           << 0x14U)) 
                                                                       | ((0xff000U 
                                                                           & ((IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0xcU)) 
                                                                              << 0xcU)) 
                                                                          | ((0x800U 
                                                                              & ((IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x14U)) 
                                                                                 << 0xbU)) 
                                                                             | (0x7feU 
                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x15U)) 
                                                                                 << 1U))))))))
                                                    : 
@@ -1147,7 +1161,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                     ? 
                                                    ((((1U 
                                                        & (IData)(
-                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                   >> 0x1fU)))
                                                        ? 0xfffffffffffffULL
                                                        : 0ULL) 
@@ -1155,7 +1169,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                     | (QData)((IData)(
                                                                       (0xfffU 
                                                                        & (IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x14U))))))
                                                     : 0ULL)))));
     vlSelf->top__DOT__exu_step__DOT___csr_index_T_5 
@@ -1165,9 +1179,9 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                     ? vlSelf->top__DOT__idu_step_io_imm
                                                     : top__DOT__exu_step__DOT___src2_value_T_1);
     vlSelf->top__DOT__exu_step__DOT__CSR_Reg_MPORT_6_data 
-        = (((0x1073U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-            | ((0x2073U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-               | (0x3073U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))))
+        = (((0x1073U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+            | ((0x2073U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
+               | (0x3073U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))))
             ? ((0x47U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_194))
                 ? (vlSelf->top__DOT__exu_step__DOT__src1_value 
                    & (~ vlSelf->top__DOT__exu_step__DOT__CSR_Reg
@@ -1270,7 +1284,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                 == 
                                                                 (0x1fU 
                                                                  & (IData)(
-                                                                           (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                           (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                             >> 0xfU))))
                                                                 ? 0ULL
                                                                 : 
@@ -1278,13 +1292,13 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                [
                                                                (0x1fU 
                                                                 & (IData)(
-                                                                          (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                          (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                            >> 0xfU)))]), 
                                                               ((0U 
                                                                 == 
                                                                 (0x1fU 
                                                                  & (IData)(
-                                                                           (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                           (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                             >> 0x14U))))
                                                                 ? 0ULL
                                                                 : 
@@ -1292,7 +1306,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                [
                                                                (0x1fU 
                                                                 & (IData)(
-                                                                          (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                          (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                            >> 0x14U)))]))
                                                    ? vlSelf->top__DOT__exu_step__DOT__add_res
                                                    : 
@@ -1306,7 +1320,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                       == 
                                                       (0x1fU 
                                                        & (IData)(
-                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                   >> 0xfU))))
                                                       ? 0ULL
                                                       : 
@@ -1314,14 +1328,14 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                      [
                                                      (0x1fU 
                                                       & (IData)(
-                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                  >> 0xfU)))]) 
                                                     == 
                                                     ((0U 
                                                       == 
                                                       (0x1fU 
                                                        & (IData)(
-                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                   >> 0x14U))))
                                                       ? 0ULL
                                                       : 
@@ -1329,7 +1343,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                      [
                                                      (0x1fU 
                                                       & (IData)(
-                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                  >> 0x14U)))]))
                                                     ? vlSelf->top__DOT__exu_step__DOT__add_res
                                                     : 
@@ -1343,7 +1357,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                        == 
                                                        (0x1fU 
                                                         & (IData)(
-                                                                  (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                  (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                    >> 0xfU))))
                                                        ? 0ULL
                                                        : 
@@ -1351,14 +1365,14 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                       [
                                                       (0x1fU 
                                                        & (IData)(
-                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                   >> 0xfU)))]) 
                                                      != 
                                                      ((0U 
                                                        == 
                                                        (0x1fU 
                                                         & (IData)(
-                                                                  (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                  (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                    >> 0x14U))))
                                                        ? 0ULL
                                                        : 
@@ -1366,7 +1380,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                       [
                                                       (0x1fU 
                                                        & (IData)(
-                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                   >> 0x14U)))]))
                                                      ? vlSelf->top__DOT__exu_step__DOT__add_res
                                                      : 
@@ -1410,7 +1424,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                                 == 
                                                                                 (0x1fU 
                                                                                 & (IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x14U))))
                                                                                  ? 0ULL
                                                                                  : 
@@ -1418,7 +1432,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                                 [
                                                                                 (0x1fU 
                                                                                 & (IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x14U)))])))
                                                                                  : 
                                                                                 ((0x28U 
@@ -1430,7 +1444,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                                 == 
                                                                                 (0x1fU 
                                                                                 & (IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x14U))))
                                                                                  ? 0ULL
                                                                                  : 
@@ -1438,7 +1452,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                                 [
                                                                                 (0x1fU 
                                                                                 & (IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x14U)))])))))
                                                                                  : 
                                                                                 ((0x26U 
@@ -1450,7 +1464,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                                 == 
                                                                                 (0x1fU 
                                                                                 & (IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x14U))))
                                                                                  ? 0ULL
                                                                                  : 
@@ -1458,7 +1472,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                                 [
                                                                                 (0x1fU 
                                                                                 & (IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x14U)))])))))
                                                                                  : 
                                                                                 ((7U 
@@ -1468,7 +1482,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                                 == 
                                                                                 (0x1fU 
                                                                                 & (IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x14U))))
                                                                                  ? 0ULL
                                                                                  : 
@@ -1476,31 +1490,31 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                                 [
                                                                                 (0x1fU 
                                                                                 & (IData)(
-                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x14U)))])
                                                                                  : 0ULL)))))), 
                                                                ((0x3023U 
                                                                  == 
                                                                  (0x707fU 
-                                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                                  & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                                  ? 0xfU
                                                                  : 
                                                                 ((0x1023U 
                                                                   == 
                                                                   (0x707fU 
-                                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                                   ? 3U
                                                                   : 
                                                                  ((0x23U 
                                                                    == 
                                                                    (0x707fU 
-                                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                                    ? 1U
                                                                    : 
                                                                   ((0x2023U 
                                                                     == 
                                                                     (0x707fU 
-                                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))
+                                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                                     ? 0xfU
                                                                     : 0U)))));
     }
@@ -1511,7 +1525,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                      == 
                                                      (0x1fU 
                                                       & (IData)(
-                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                  >> 0xfU))))
                                                      ? 0ULL
                                                      : 
@@ -1519,14 +1533,14 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                     [
                                                     (0x1fU 
                                                      & (IData)(
-                                                               (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                               (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                 >> 0xfU)))]) 
                                                    >= 
                                                    ((0U 
                                                      == 
                                                      (0x1fU 
                                                       & (IData)(
-                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                  >> 0x14U))))
                                                      ? 0ULL
                                                      : 
@@ -1534,7 +1548,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                     [
                                                     (0x1fU 
                                                      & (IData)(
-                                                               (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                               (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                 >> 0x14U)))]))
                                                    ? vlSelf->top__DOT__exu_step__DOT__add_res
                                                    : 
@@ -1548,7 +1562,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                       == 
                                                       (0x1fU 
                                                        & (IData)(
-                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                   >> 0xfU))))
                                                       ? 0ULL
                                                       : 
@@ -1556,14 +1570,14 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                      [
                                                      (0x1fU 
                                                       & (IData)(
-                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                  >> 0xfU)))]) 
                                                     < 
                                                     ((0U 
                                                       == 
                                                       (0x1fU 
                                                        & (IData)(
-                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                   >> 0x14U))))
                                                       ? 0ULL
                                                       : 
@@ -1571,7 +1585,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                      [
                                                      (0x1fU 
                                                       & (IData)(
-                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                  >> 0x14U)))]))
                                                     ? vlSelf->top__DOT__exu_step__DOT__add_res
                                                     : 
@@ -1586,7 +1600,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                  == 
                                                                  (0x1fU 
                                                                   & (IData)(
-                                                                            (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                            (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                              >> 0xfU))))
                                                                  ? 0ULL
                                                                  : 
@@ -1594,13 +1608,13 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                 [
                                                                 (0x1fU 
                                                                  & (IData)(
-                                                                           (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                           (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                             >> 0xfU)))]), 
                                                                ((0U 
                                                                  == 
                                                                  (0x1fU 
                                                                   & (IData)(
-                                                                            (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                            (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                              >> 0x14U))))
                                                                  ? 0ULL
                                                                  : 
@@ -1608,7 +1622,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                 [
                                                                 (0x1fU 
                                                                  & (IData)(
-                                                                           (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+                                                                           (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                             >> 0x14U)))]))
                                                      ? vlSelf->top__DOT__exu_step__DOT__add_res
                                                      : 
@@ -2215,16 +2229,16 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                           << 0x20U) | (QData)((IData)(
                                                       vlSelf->top__DOT__exu_step__DOT___io_res2rd_T_208[0U])));
     vlSelf->top__DOT__exu_step__DOT__Regfile_MPORT_data 
-        = ((((0x100073U != (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)) 
+        = ((((0x100073U != (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)) 
              & (IData)(vlSelf->top__DOT__idu_step__DOT___reg_write_T_37)) 
-            & (0U != (0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+            & (0U != (0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                        >> 7U))))) ? 
            (((QData)((IData)(vlSelf->top__DOT__exu_step__DOT___io_res2rd_T_208[1U])) 
              << 0x20U) | (QData)((IData)(vlSelf->top__DOT__exu_step__DOT___io_res2rd_T_208[0U])))
-            : ((0U == (0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+            : ((0U == (0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                         >> 7U)))) ? 0ULL
                 : vlSelf->top__DOT__exu_step__DOT__Regfile
-               [(0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+               [(0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                   >> 7U)))]));
 }
 
@@ -2272,13 +2286,18 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__exu_step_io_mem_flag = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__pc_now = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__axi_pc_valid = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata = VL_RAND_RESET_Q(64);
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata = VL_RAND_RESET_Q(64);
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_wready = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_bvalid = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_0 = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state = VL_RAND_RESET_I(3);
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_2 = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_4 = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_6 = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_13 = VL_RAND_RESET_I(3);
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_15 = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_27 = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_29 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__idu_step__DOT__axi_inst_ready = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__idu_step__DOT___inst_type_T_188 = VL_RAND_RESET_I(7);
     vlSelf->top__DOT__idu_step__DOT___inst_now_T_194 = VL_RAND_RESET_I(7);
