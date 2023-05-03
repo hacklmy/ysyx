@@ -112,7 +112,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                               & (IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready)))));
     if (vlSelf->reset) {
         vlSelf->top__DOT__pc_now = 0x80000000ULL;
-    } else if (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready) {
+    } else if (((IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready) 
+                & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid))) {
         vlSelf->top__DOT__pc_now = vlSelf->top__DOT__exu_step_io_pc_next;
     }
     vlSelf->top__DOT__exu_step__DOT__CSR_Reg[1U] = __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v0;
