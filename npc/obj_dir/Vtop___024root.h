@@ -60,6 +60,7 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__exu_step__DOT__CSR_Reg_MPORT_3_data;
     QData/*63:0*/ top__DOT__exu_step__DOT__CSR_Reg_MPORT_6_data;
     QData/*63:0*/ top__DOT__exu_step__DOT__src1_value;
+    QData/*63:0*/ top__DOT__exu_step__DOT___src2_value_T_1;
     QData/*63:0*/ top__DOT__exu_step__DOT__src2_value;
     QData/*63:0*/ top__DOT__exu_step__DOT__add_res;
     QData/*63:0*/ top__DOT__exu_step__DOT__sub_res;
@@ -79,7 +80,6 @@ VL_MODULE(Vtop___024root) {
     // LOCAL VARIABLES
     CData/*0:0*/ __Vclklast__TOP__clock;
     QData/*63:0*/ __Vtask_pmem_read__0__Rdata;
-    QData/*63:0*/ __Vtask_pmem_read__1__Rdata;
     VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
 
     // INTERNAL VARIABLES

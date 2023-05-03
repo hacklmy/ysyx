@@ -43,7 +43,7 @@ module AXI_IFU(
   assign inst_read_Wdata = 64'h0;
   assign inst_read_Wmask = 8'h0;
   assign inst_read_Write_en = 1'h0;
-  assign inst_read_Read_en = 1'h0;
+  assign inst_read_Read_en = axi_arready & io_arvalid; // @[AXI_IFU.scala 25:48]
   always @(posedge clock) begin
     if (reset) begin // @[AXI_IFU.scala 17:30]
       axi_arready <= 1'h0; // @[AXI_IFU.scala 17:30]
