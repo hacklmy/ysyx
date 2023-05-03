@@ -24,6 +24,7 @@ VL_MODULE(Vtop___024root) {
     // PORTS
     VL_IN8(clock,0,0);
     VL_IN8(reset,0,0);
+    VL_OUT8(io_step,0,0);
     VL_OUT(io_inst,31,0);
     VL_OUT64(io_pc,63,0);
     VL_OUT64(io_pc_next,63,0);
@@ -35,9 +36,10 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_src2_is_imm;
         CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_src1_is_pc;
         CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_Readmem_en;
-        CData/*0:0*/ top__DOT__exu_step_io_inst_valid;
+        CData/*0:0*/ top__DOT__exu_step_io_mem_end;
         CData/*0:0*/ top__DOT__exu_step_io_mem_flag;
         CData/*0:0*/ top__DOT__axi_pc_valid;
+        CData/*0:0*/ top__DOT___exu_step_io_inst_valid_T;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT__axi_wready;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT__axi_bvalid;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT__axi_arready;
@@ -95,9 +97,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__exu_step__DOT__and_res;
         QData/*63:0*/ top__DOT__exu_step__DOT___mluw_res_T_2;
         QData/*32:0*/ top__DOT__exu_step__DOT___divw_res_T_4;
-        QData/*63:0*/ top__DOT__exu_step__DOT__axi__DOT__Mem_modle_Rdata;
     };
     struct {
+        QData/*63:0*/ top__DOT__exu_step__DOT__axi__DOT__Mem_modle_Rdata;
         VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__Regfile;
         VlUnpacked<QData/*63:0*/, 4> top__DOT__exu_step__DOT__CSR_Reg;
         VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__reg_trace__DOT__traceregs;

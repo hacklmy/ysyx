@@ -37,9 +37,10 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-//#define CONFIG_DIFFTEST
+#define CONFIG_DIFFTEST
 //#define VerilatedVCD
 //#define HAS_VGA
+#define HAS_AXI
 
 void difftest_skip_ref();
 
@@ -751,7 +752,13 @@ void cpu_exec(int n){
     }
 #endif
 #ifdef CONFIG_DIFFTEST
+#ifdef HAS_AXI
+    if(top->io_step){
+      difftest_step(pc_now);
+    }
+#else
     difftest_step(pc_now);
+#endif
 #endif
     #ifdef VerilatedVCD
     tfp->dump(contextp->time()); //dump wave
