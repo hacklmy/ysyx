@@ -108,8 +108,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         = (0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
                             >> 7U)));
     __Vdly__top__DOT__idu_step__DOT__axi_inst_ready 
-        = (1U & ((IData)(vlSelf->reset) | (~ ((IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid) 
-                                              & (IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready)))));
+        = (1U & ((~ (IData)(vlSelf->reset)) & (~ ((IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid) 
+                                                  & (IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready)))));
     if (vlSelf->reset) {
         vlSelf->top__DOT__pc_now = 0x80000000ULL;
     } else if (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready) {
