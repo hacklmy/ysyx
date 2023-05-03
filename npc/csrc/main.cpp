@@ -644,7 +644,7 @@ void difftest_skip_ref() {
 
 bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
   if(cpu_stop)return true;
-  if(ref_r->pc != pc+4){
+  if(ref_r->pc != top->io_pc_next){
     printf("wrong pc %lx: npc = %lx   ref = %lx\n",pc, pc, ref_r->pc);
     return false;
   }
