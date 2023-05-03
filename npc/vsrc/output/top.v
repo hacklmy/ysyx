@@ -433,7 +433,11 @@ module IDU(
     _inst_type_T_79 | (_inst_type_T_115 | _inst_type_T_33))))); // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Wmask = _inst_type_T_11 ? 8'hff : {{4'd0}, _Wmask_T_10}; // @[Lookup.scala 34:39]
   always @(posedge clock) begin
-    axi_inst_ready <= reset | ~(io_inst_valid & axi_inst_ready); // @[IDU.scala 51:{33,33} 52:20]
+    if (reset) begin // @[IDU.scala 51:33]
+      axi_inst_ready <= 1'h0; // @[IDU.scala 51:33]
+    end else begin
+      axi_inst_ready <= ~(io_inst_valid & axi_inst_ready); // @[IDU.scala 52:20]
+    end
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
