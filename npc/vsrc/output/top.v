@@ -7,7 +7,7 @@ module AXI(
   input  [31:0] io_axi_in_awaddr,
   input         io_axi_in_awvalid,
   input  [31:0] io_axi_in_wdata,
-  input  [3:0]  io_axi_in_wstrb,
+  input  [7:0]  io_axi_in_wstrb,
   input         io_axi_in_wvalid,
   input         io_axi_in_bready,
   output [63:0] io_axi_out_rdata,
@@ -62,7 +62,7 @@ module AXI(
   assign Mem_modle_Raddr = {32'h0,io_axi_in_araddr}; // @[Cat.scala 31:58]
   assign Mem_modle_Waddr = {{32'd0}, io_axi_in_awaddr}; // @[AXI.scala 28:24]
   assign Mem_modle_Wdata = {{32'd0}, io_axi_in_wdata}; // @[AXI.scala 29:24]
-  assign Mem_modle_Wmask = {{4'd0}, io_axi_in_wstrb}; // @[AXI.scala 30:24]
+  assign Mem_modle_Wmask = io_axi_in_wstrb; // @[AXI.scala 30:24]
   assign Mem_modle_Write_en = axi_wready & io_axi_in_wvalid; // @[AXI.scala 31:48]
   assign Mem_modle_Read_en = axi_arready & io_axi_in_arvalid; // @[AXI.scala 32:48]
   always @(posedge clock) begin
@@ -175,7 +175,7 @@ module IFU_AXI(
   wire [31:0] axi_io_axi_in_awaddr; // @[IFU_AXI.scala 16:21]
   wire  axi_io_axi_in_awvalid; // @[IFU_AXI.scala 16:21]
   wire [31:0] axi_io_axi_in_wdata; // @[IFU_AXI.scala 16:21]
-  wire [3:0] axi_io_axi_in_wstrb; // @[IFU_AXI.scala 16:21]
+  wire [7:0] axi_io_axi_in_wstrb; // @[IFU_AXI.scala 16:21]
   wire  axi_io_axi_in_wvalid; // @[IFU_AXI.scala 16:21]
   wire  axi_io_axi_in_bready; // @[IFU_AXI.scala 16:21]
   wire [63:0] axi_io_axi_out_rdata; // @[IFU_AXI.scala 16:21]
@@ -207,7 +207,7 @@ module IFU_AXI(
   assign axi_io_axi_in_awaddr = 32'h0; // @[IFU_AXI.scala 20:26]
   assign axi_io_axi_in_awvalid = 1'h0; // @[IFU_AXI.scala 22:27]
   assign axi_io_axi_in_wdata = 32'h0; // @[IFU_AXI.scala 21:25]
-  assign axi_io_axi_in_wstrb = 4'h0; // @[IFU_AXI.scala 23:25]
+  assign axi_io_axi_in_wstrb = 8'h0; // @[IFU_AXI.scala 23:25]
   assign axi_io_axi_in_wvalid = 1'h0; // @[IFU_AXI.scala 24:26]
   assign axi_io_axi_in_bready = 1'h0; // @[IFU_AXI.scala 25:26]
 endmodule
@@ -823,7 +823,7 @@ module EXU_AXI(
   wire [31:0] axi_io_axi_in_awaddr; // @[EXU_AXI.scala 173:21]
   wire  axi_io_axi_in_awvalid; // @[EXU_AXI.scala 173:21]
   wire [31:0] axi_io_axi_in_wdata; // @[EXU_AXI.scala 173:21]
-  wire [3:0] axi_io_axi_in_wstrb; // @[EXU_AXI.scala 173:21]
+  wire [7:0] axi_io_axi_in_wstrb; // @[EXU_AXI.scala 173:21]
   wire  axi_io_axi_in_wvalid; // @[EXU_AXI.scala 173:21]
   wire  axi_io_axi_in_bready; // @[EXU_AXI.scala 173:21]
   wire [63:0] axi_io_axi_out_rdata; // @[EXU_AXI.scala 173:21]
@@ -1321,7 +1321,7 @@ module EXU_AXI(
   assign axi_io_axi_in_awaddr = add_res[31:0]; // @[EXU_AXI.scala 194:36]
   assign axi_io_axi_in_awvalid = axi_awvalid; // @[EXU_AXI.scala 195:27]
   assign axi_io_axi_in_wdata = mem_wdate[31:0]; // @[EXU_AXI.scala 196:25]
-  assign axi_io_axi_in_wstrb = io_ctrl_sign_Wmask[3:0]; // @[EXU_AXI.scala 197:25]
+  assign axi_io_axi_in_wstrb = io_ctrl_sign_Wmask; // @[EXU_AXI.scala 197:25]
   assign axi_io_axi_in_wvalid = axi_wvalid; // @[EXU_AXI.scala 198:26]
   assign axi_io_axi_in_bready = axi_bready; // @[EXU_AXI.scala 199:26]
   always @(posedge clock) begin

@@ -7,7 +7,7 @@ module AXI(
   input  [31:0] io_axi_in_awaddr,
   input         io_axi_in_awvalid,
   input  [31:0] io_axi_in_wdata,
-  input  [3:0]  io_axi_in_wstrb,
+  input  [7:0]  io_axi_in_wstrb,
   input         io_axi_in_wvalid,
   input         io_axi_in_bready,
   output [63:0] io_axi_out_rdata,
@@ -62,7 +62,7 @@ module AXI(
   assign Mem_modle_Raddr = {32'h0,io_axi_in_araddr}; // @[Cat.scala 31:58]
   assign Mem_modle_Waddr = {{32'd0}, io_axi_in_awaddr}; // @[AXI.scala 28:24]
   assign Mem_modle_Wdata = {{32'd0}, io_axi_in_wdata}; // @[AXI.scala 29:24]
-  assign Mem_modle_Wmask = {{4'd0}, io_axi_in_wstrb}; // @[AXI.scala 30:24]
+  assign Mem_modle_Wmask = io_axi_in_wstrb; // @[AXI.scala 30:24]
   assign Mem_modle_Write_en = axi_wready & io_axi_in_wvalid; // @[AXI.scala 31:48]
   assign Mem_modle_Read_en = axi_arready & io_axi_in_arvalid; // @[AXI.scala 32:48]
   always @(posedge clock) begin
