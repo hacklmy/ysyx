@@ -4,7 +4,6 @@ module AXI_IFU(
   input  [31:0] io_araddr,
   input         io_arvalid,
   input         io_rready,
-  output        io_arready,
   output        io_rvalid,
   output [63:0] io_rdata
 );
@@ -35,7 +34,6 @@ module AXI_IFU(
     .Write_en(inst_read_Write_en),
     .Read_en(inst_read_Read_en)
   );
-  assign io_arready = axi_arready; // @[AXI_IFU.scala 43:16]
   assign io_rvalid = axi_rvalid; // @[AXI_IFU.scala 44:15]
   assign io_rdata = inst_read_Rdata; // @[AXI_IFU.scala 45:14]
   assign inst_read_Raddr = {32'h0,io_araddr}; // @[Cat.scala 31:58]
@@ -127,7 +125,6 @@ module IFU_AXI(
   input         clock,
   input         reset,
   input  [63:0] io_pc,
-  output        io_pc_ready,
   input         io_pc_valid,
   output        io_inst_valid,
   input         io_inst_ready,
@@ -138,7 +135,6 @@ module IFU_AXI(
   wire [31:0] axi_io_araddr; // @[IFU_AXI.scala 16:21]
   wire  axi_io_arvalid; // @[IFU_AXI.scala 16:21]
   wire  axi_io_rready; // @[IFU_AXI.scala 16:21]
-  wire  axi_io_arready; // @[IFU_AXI.scala 16:21]
   wire  axi_io_rvalid; // @[IFU_AXI.scala 16:21]
   wire [63:0] axi_io_rdata; // @[IFU_AXI.scala 16:21]
   AXI_IFU axi ( // @[IFU_AXI.scala 16:21]
@@ -147,11 +143,9 @@ module IFU_AXI(
     .io_araddr(axi_io_araddr),
     .io_arvalid(axi_io_arvalid),
     .io_rready(axi_io_rready),
-    .io_arready(axi_io_arready),
     .io_rvalid(axi_io_rvalid),
     .io_rdata(axi_io_rdata)
   );
-  assign io_pc_ready = axi_io_arready; // @[IFU_AXI.scala 20:17]
   assign io_inst_valid = axi_io_rvalid; // @[IFU_AXI.scala 22:19]
   assign io_inst = axi_io_rdata[31:0]; // @[IFU_AXI.scala 21:28]
   assign axi_clock = clock;
@@ -1313,7 +1307,6 @@ module top(
   wire  ifu_step_clock; // @[top.scala 17:26]
   wire  ifu_step_reset; // @[top.scala 17:26]
   wire [63:0] ifu_step_io_pc; // @[top.scala 17:26]
-  wire  ifu_step_io_pc_ready; // @[top.scala 17:26]
   wire  ifu_step_io_pc_valid; // @[top.scala 17:26]
   wire  ifu_step_io_inst_valid; // @[top.scala 17:26]
   wire  ifu_step_io_inst_ready; // @[top.scala 17:26]
@@ -1359,7 +1352,6 @@ module top(
     .clock(ifu_step_clock),
     .reset(ifu_step_reset),
     .io_pc(ifu_step_io_pc),
-    .io_pc_ready(ifu_step_io_pc_ready),
     .io_pc_valid(ifu_step_io_pc_valid),
     .io_inst_valid(ifu_step_io_inst_valid),
     .io_inst_ready(ifu_step_io_inst_ready),
@@ -1438,7 +1430,7 @@ module top(
   always @(posedge clock) begin
     if (reset) begin // @[top.scala 14:25]
       pc_now <= 64'h80000000; // @[top.scala 14:25]
-    end else if (ifu_step_io_pc_ready) begin // @[top.scala 45:18]
+    end else if (ifu_step_io_inst_ready & ifu_step_io_inst_valid) begin // @[top.scala 45:18]
       pc_now <= exu_step_io_pc_next;
     end
     if (reset) begin // @[top.scala 20:31]

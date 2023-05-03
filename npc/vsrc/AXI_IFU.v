@@ -4,7 +4,6 @@ module AXI_IFU(
   input  [31:0] io_araddr,
   input         io_arvalid,
   input         io_rready,
-  output        io_arready,
   output        io_rvalid,
   output [63:0] io_rdata
 );
@@ -35,7 +34,6 @@ module AXI_IFU(
     .Write_en(inst_read_Write_en),
     .Read_en(inst_read_Read_en)
   );
-  assign io_arready = axi_arready; // @[AXI_IFU.scala 43:16]
   assign io_rvalid = axi_rvalid; // @[AXI_IFU.scala 44:15]
   assign io_rdata = inst_read_Rdata; // @[AXI_IFU.scala 45:14]
   assign inst_read_Raddr = {32'h0,io_araddr}; // @[Cat.scala 31:58]

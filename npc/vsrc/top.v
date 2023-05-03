@@ -13,7 +13,6 @@ module top(
   wire  ifu_step_clock; // @[top.scala 17:26]
   wire  ifu_step_reset; // @[top.scala 17:26]
   wire [63:0] ifu_step_io_pc; // @[top.scala 17:26]
-  wire  ifu_step_io_pc_ready; // @[top.scala 17:26]
   wire  ifu_step_io_pc_valid; // @[top.scala 17:26]
   wire  ifu_step_io_inst_valid; // @[top.scala 17:26]
   wire  ifu_step_io_inst_ready; // @[top.scala 17:26]
@@ -59,7 +58,6 @@ module top(
     .clock(ifu_step_clock),
     .reset(ifu_step_reset),
     .io_pc(ifu_step_io_pc),
-    .io_pc_ready(ifu_step_io_pc_ready),
     .io_pc_valid(ifu_step_io_pc_valid),
     .io_inst_valid(ifu_step_io_inst_valid),
     .io_inst_ready(ifu_step_io_inst_ready),
@@ -138,7 +136,7 @@ module top(
   always @(posedge clock) begin
     if (reset) begin // @[top.scala 14:25]
       pc_now <= 64'h80000000; // @[top.scala 14:25]
-    end else if (ifu_step_io_pc_ready) begin // @[top.scala 45:18]
+    end else if (ifu_step_io_inst_ready & ifu_step_io_inst_valid) begin // @[top.scala 45:18]
       pc_now <= exu_step_io_pc_next;
     end
     if (reset) begin // @[top.scala 20:31]
