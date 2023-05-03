@@ -17,7 +17,7 @@ module IFU_AXI(
   wire  axi_io_arready; // @[IFU_AXI.scala 16:21]
   wire  axi_io_rvalid; // @[IFU_AXI.scala 16:21]
   wire [63:0] axi_io_rdata; // @[IFU_AXI.scala 16:21]
-  AXI axi ( // @[IFU_AXI.scala 16:21]
+  AXI_IFU axi ( // @[IFU_AXI.scala 16:21]
     .clock(axi_clock),
     .reset(axi_reset),
     .io_araddr(axi_io_araddr),
