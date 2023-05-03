@@ -511,7 +511,7 @@ module EXU_AXI(
     .csr_reg_3(reg_trace_csr_reg_3),
     .pc(reg_trace_pc)
   );
-  AXI_EXU axi ( // @[EXU_AXI.scala 173:21]
+  AXI axi ( // @[EXU_AXI.scala 173:21]
     .clock(axi_clock),
     .reset(axi_reset),
     .io_axi_in_araddr(axi_io_axi_in_araddr),

@@ -26,5 +26,6 @@ copy_top:
 	echo "/* verilator lint_on UNUSED */" >> vsrc/EXU.v
 	sed -n '/module AXI_IFU/,/endmodule/p' vsrc/output/top.v > vsrc/AXI_IFU.v
 	sed -n '/module AXI_EXU/,/endmodule/p' vsrc/output/top.v > vsrc/AXI_EXU.v
+	sed -n '/module AXI/,/endmodule/p' vsrc/output/top.v > vsrc/AXI.v
 
 include ../Makefile

@@ -1,74 +1,107 @@
-module AXI_IFU(
+module AXI(
   input         clock,
   input         reset,
-  input  [31:0] io_araddr,
-  input         io_arvalid,
-  input         io_rready,
-  output        io_rvalid,
-  output [63:0] io_rdata
+  input  [31:0] io_axi_in_araddr,
+  input         io_axi_in_arvalid,
+  input         io_axi_in_rready,
+  input  [31:0] io_axi_in_awaddr,
+  input         io_axi_in_awvalid,
+  input  [31:0] io_axi_in_wdata,
+  input  [3:0]  io_axi_in_wstrb,
+  input         io_axi_in_wvalid,
+  input         io_axi_in_bready,
+  output [63:0] io_axi_out_rdata,
+  output        io_axi_out_rvalid,
+  output        io_axi_out_bvalid
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
   reg [31:0] _RAND_1;
   reg [31:0] _RAND_2;
+  reg [31:0] _RAND_3;
+  reg [31:0] _RAND_4;
 `endif // RANDOMIZE_REG_INIT
-  wire [63:0] inst_read_Raddr; // @[AXI_IFU.scala 23:27]
-  wire [63:0] inst_read_Rdata; // @[AXI_IFU.scala 23:27]
-  wire [63:0] inst_read_Waddr; // @[AXI_IFU.scala 23:27]
-  wire [63:0] inst_read_Wdata; // @[AXI_IFU.scala 23:27]
-  wire [7:0] inst_read_Wmask; // @[AXI_IFU.scala 23:27]
-  wire  inst_read_Write_en; // @[AXI_IFU.scala 23:27]
-  wire  inst_read_Read_en; // @[AXI_IFU.scala 23:27]
-  reg  axi_arready; // @[AXI_IFU.scala 17:30]
-  reg  axi_rvalid; // @[AXI_IFU.scala 18:29]
-  reg  state; // @[AXI_IFU.scala 21:24]
-  wire  _GEN_0 = io_arvalid | state; // @[AXI_IFU.scala 29:29 30:23 21:24]
-  wire  _GEN_2 = io_arvalid | axi_rvalid; // @[AXI_IFU.scala 29:29 32:28 18:29]
-  wire  _GEN_4 = io_rready | axi_arready; // @[AXI_IFU.scala 36:28 38:29 17:30]
-  MEM inst_read ( // @[AXI_IFU.scala 23:27]
-    .Raddr(inst_read_Raddr),
-    .Rdata(inst_read_Rdata),
-    .Waddr(inst_read_Waddr),
-    .Wdata(inst_read_Wdata),
-    .Wmask(inst_read_Wmask),
-    .Write_en(inst_read_Write_en),
-    .Read_en(inst_read_Read_en)
+  wire [63:0] Mem_modle_Raddr; // @[AXI.scala 26:27]
+  wire [63:0] Mem_modle_Rdata; // @[AXI.scala 26:27]
+  wire [63:0] Mem_modle_Waddr; // @[AXI.scala 26:27]
+  wire [63:0] Mem_modle_Wdata; // @[AXI.scala 26:27]
+  wire [7:0] Mem_modle_Wmask; // @[AXI.scala 26:27]
+  wire  Mem_modle_Write_en; // @[AXI.scala 26:27]
+  wire  Mem_modle_Read_en; // @[AXI.scala 26:27]
+  reg  axi_wready; // @[AXI.scala 14:29]
+  reg  axi_bvalid; // @[AXI.scala 17:29]
+  reg  axi_arready; // @[AXI.scala 19:30]
+  reg  axi_rvalid; // @[AXI.scala 21:29]
+  reg [2:0] state; // @[AXI.scala 24:24]
+  wire  _GEN_1 = io_axi_in_arvalid ? 1'h0 : axi_arready; // @[AXI.scala 47:42 49:29 19:30]
+  wire  _GEN_2 = io_axi_in_arvalid | axi_rvalid; // @[AXI.scala 47:42 50:28 21:29]
+  wire  _GEN_5 = io_axi_in_awvalid & io_axi_in_wvalid ? 1'h0 : axi_wready; // @[AXI.scala 37:56 40:28 14:29]
+  wire  _GEN_6 = io_axi_in_awvalid & io_axi_in_wvalid | axi_bvalid; // @[AXI.scala 37:56 41:28 17:29]
+  wire  _GEN_7 = io_axi_in_awvalid & io_axi_in_wvalid ? axi_arready : _GEN_1; // @[AXI.scala 19:30 37:56]
+  wire  _GEN_12 = io_axi_in_bready | axi_wready; // @[AXI.scala 54:35 58:28 14:29]
+  wire [2:0] _GEN_13 = io_axi_in_rready ? 3'h0 : state; // @[AXI.scala 62:35 63:23 24:24]
+  wire  _GEN_14 = io_axi_in_rready | axi_arready; // @[AXI.scala 62:35 64:29 19:30]
+  wire  _GEN_15 = io_axi_in_rready ? 1'h0 : axi_rvalid; // @[AXI.scala 62:35 65:28 21:29]
+  wire  _GEN_17 = 3'h4 == state ? _GEN_14 : axi_arready; // @[AXI.scala 35:18 19:30]
+  wire  _GEN_22 = 3'h3 == state ? _GEN_12 : axi_wready; // @[AXI.scala 35:18 14:29]
+  wire  _GEN_23 = 3'h3 == state ? axi_arready : _GEN_17; // @[AXI.scala 35:18 19:30]
+  wire  _GEN_27 = 3'h0 == state ? _GEN_5 : _GEN_22; // @[AXI.scala 35:18]
+  wire  _GEN_29 = 3'h0 == state ? _GEN_7 : _GEN_23; // @[AXI.scala 35:18]
+  MEM Mem_modle ( // @[AXI.scala 26:27]
+    .Raddr(Mem_modle_Raddr),
+    .Rdata(Mem_modle_Rdata),
+    .Waddr(Mem_modle_Waddr),
+    .Wdata(Mem_modle_Wdata),
+    .Wmask(Mem_modle_Wmask),
+    .Write_en(Mem_modle_Write_en),
+    .Read_en(Mem_modle_Read_en)
   );
-  assign io_rvalid = axi_rvalid; // @[AXI_IFU.scala 44:15]
-  assign io_rdata = inst_read_Rdata; // @[AXI_IFU.scala 45:14]
-  assign inst_read_Raddr = {32'h0,io_araddr}; // @[Cat.scala 31:58]
-  assign inst_read_Waddr = 64'h0;
-  assign inst_read_Wdata = 64'h0;
-  assign inst_read_Wmask = 8'h0;
-  assign inst_read_Write_en = 1'h0;
-  assign inst_read_Read_en = axi_arready & io_arvalid; // @[AXI_IFU.scala 25:48]
+  assign io_axi_out_rdata = Mem_modle_Rdata; // @[AXI.scala 70:22]
+  assign io_axi_out_rvalid = axi_rvalid; // @[AXI.scala 71:23]
+  assign io_axi_out_bvalid = axi_bvalid; // @[AXI.scala 74:23]
+  assign Mem_modle_Raddr = {32'h0,io_axi_in_araddr}; // @[Cat.scala 31:58]
+  assign Mem_modle_Waddr = {{32'd0}, io_axi_in_awaddr}; // @[AXI.scala 28:24]
+  assign Mem_modle_Wdata = {{32'd0}, io_axi_in_wdata}; // @[AXI.scala 29:24]
+  assign Mem_modle_Wmask = {{4'd0}, io_axi_in_wstrb}; // @[AXI.scala 30:24]
+  assign Mem_modle_Write_en = axi_wready & io_axi_in_wvalid; // @[AXI.scala 31:48]
+  assign Mem_modle_Read_en = axi_arready & io_axi_in_arvalid; // @[AXI.scala 32:48]
   always @(posedge clock) begin
-    if (reset) begin // @[AXI_IFU.scala 17:30]
-      axi_arready <= 1'h0; // @[AXI_IFU.scala 17:30]
-    end else if (~state) begin // @[AXI_IFU.scala 27:18]
-      if (io_arvalid) begin // @[AXI_IFU.scala 29:29]
-        axi_arready <= 1'h0; // @[AXI_IFU.scala 31:29]
-      end
-    end else if (state) begin // @[AXI_IFU.scala 27:18]
-      axi_arready <= _GEN_4;
-    end
-    if (reset) begin // @[AXI_IFU.scala 18:29]
-      axi_rvalid <= 1'h0; // @[AXI_IFU.scala 18:29]
-    end else if (~state) begin // @[AXI_IFU.scala 27:18]
-      axi_rvalid <= _GEN_2;
-    end else if (state) begin // @[AXI_IFU.scala 27:18]
-      if (io_rready) begin // @[AXI_IFU.scala 36:28]
-        axi_rvalid <= 1'h0; // @[AXI_IFU.scala 39:28]
+    axi_wready <= reset | _GEN_27; // @[AXI.scala 14:{29,29}]
+    if (reset) begin // @[AXI.scala 17:29]
+      axi_bvalid <= 1'h0; // @[AXI.scala 17:29]
+    end else if (3'h0 == state) begin // @[AXI.scala 35:18]
+      axi_bvalid <= _GEN_6;
+    end else if (3'h3 == state) begin // @[AXI.scala 35:18]
+      if (io_axi_in_bready) begin // @[AXI.scala 54:35]
+        axi_bvalid <= 1'h0; // @[AXI.scala 56:28]
       end
     end
-    if (reset) begin // @[AXI_IFU.scala 21:24]
-      state <= 1'h0; // @[AXI_IFU.scala 21:24]
-    end else if (~state) begin // @[AXI_IFU.scala 27:18]
-      state <= _GEN_0;
-    end else if (state) begin // @[AXI_IFU.scala 27:18]
-      if (io_rready) begin // @[AXI_IFU.scala 36:28]
-        state <= 1'h0; // @[AXI_IFU.scala 37:23]
+    axi_arready <= reset | _GEN_29; // @[AXI.scala 19:{30,30}]
+    if (reset) begin // @[AXI.scala 21:29]
+      axi_rvalid <= 1'h0; // @[AXI.scala 21:29]
+    end else if (3'h0 == state) begin // @[AXI.scala 35:18]
+      if (!(io_axi_in_awvalid & io_axi_in_wvalid)) begin // @[AXI.scala 37:56]
+        axi_rvalid <= _GEN_2;
       end
+    end else if (!(3'h3 == state)) begin // @[AXI.scala 35:18]
+      if (3'h4 == state) begin // @[AXI.scala 35:18]
+        axi_rvalid <= _GEN_15;
+      end
+    end
+    if (reset) begin // @[AXI.scala 24:24]
+      state <= 3'h0; // @[AXI.scala 24:24]
+    end else if (3'h0 == state) begin // @[AXI.scala 35:18]
+      if (io_axi_in_awvalid & io_axi_in_wvalid) begin // @[AXI.scala 37:56]
+        state <= 3'h3; // @[AXI.scala 38:23]
+      end else if (io_axi_in_arvalid) begin // @[AXI.scala 47:42]
+        state <= 3'h4; // @[AXI.scala 48:23]
+      end
+    end else if (3'h3 == state) begin // @[AXI.scala 35:18]
+      if (io_axi_in_bready) begin // @[AXI.scala 54:35]
+        state <= 3'h0; // @[AXI.scala 55:23]
+      end
+    end else if (3'h4 == state) begin // @[AXI.scala 35:18]
+      state <= _GEN_13;
     end
   end
 // Register and memory initialization
@@ -108,11 +141,15 @@ initial begin
     `endif
 `ifdef RANDOMIZE_REG_INIT
   _RAND_0 = {1{`RANDOM}};
-  axi_arready = _RAND_0[0:0];
+  axi_wready = _RAND_0[0:0];
   _RAND_1 = {1{`RANDOM}};
-  axi_rvalid = _RAND_1[0:0];
+  axi_bvalid = _RAND_1[0:0];
   _RAND_2 = {1{`RANDOM}};
-  state = _RAND_2[0:0];
+  axi_arready = _RAND_2[0:0];
+  _RAND_3 = {1{`RANDOM}};
+  axi_rvalid = _RAND_3[0:0];
+  _RAND_4 = {1{`RANDOM}};
+  state = _RAND_4[2:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
@@ -132,27 +169,47 @@ module IFU_AXI(
 );
   wire  axi_clock; // @[IFU_AXI.scala 16:21]
   wire  axi_reset; // @[IFU_AXI.scala 16:21]
-  wire [31:0] axi_io_araddr; // @[IFU_AXI.scala 16:21]
-  wire  axi_io_arvalid; // @[IFU_AXI.scala 16:21]
-  wire  axi_io_rready; // @[IFU_AXI.scala 16:21]
-  wire  axi_io_rvalid; // @[IFU_AXI.scala 16:21]
-  wire [63:0] axi_io_rdata; // @[IFU_AXI.scala 16:21]
-  AXI_IFU axi ( // @[IFU_AXI.scala 16:21]
+  wire [31:0] axi_io_axi_in_araddr; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_in_arvalid; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_in_rready; // @[IFU_AXI.scala 16:21]
+  wire [31:0] axi_io_axi_in_awaddr; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_in_awvalid; // @[IFU_AXI.scala 16:21]
+  wire [31:0] axi_io_axi_in_wdata; // @[IFU_AXI.scala 16:21]
+  wire [3:0] axi_io_axi_in_wstrb; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_in_wvalid; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_in_bready; // @[IFU_AXI.scala 16:21]
+  wire [63:0] axi_io_axi_out_rdata; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_out_rvalid; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_out_bvalid; // @[IFU_AXI.scala 16:21]
+  AXI axi ( // @[IFU_AXI.scala 16:21]
     .clock(axi_clock),
     .reset(axi_reset),
-    .io_araddr(axi_io_araddr),
-    .io_arvalid(axi_io_arvalid),
-    .io_rready(axi_io_rready),
-    .io_rvalid(axi_io_rvalid),
-    .io_rdata(axi_io_rdata)
+    .io_axi_in_araddr(axi_io_axi_in_araddr),
+    .io_axi_in_arvalid(axi_io_axi_in_arvalid),
+    .io_axi_in_rready(axi_io_axi_in_rready),
+    .io_axi_in_awaddr(axi_io_axi_in_awaddr),
+    .io_axi_in_awvalid(axi_io_axi_in_awvalid),
+    .io_axi_in_wdata(axi_io_axi_in_wdata),
+    .io_axi_in_wstrb(axi_io_axi_in_wstrb),
+    .io_axi_in_wvalid(axi_io_axi_in_wvalid),
+    .io_axi_in_bready(axi_io_axi_in_bready),
+    .io_axi_out_rdata(axi_io_axi_out_rdata),
+    .io_axi_out_rvalid(axi_io_axi_out_rvalid),
+    .io_axi_out_bvalid(axi_io_axi_out_bvalid)
   );
-  assign io_inst_valid = axi_io_rvalid; // @[IFU_AXI.scala 22:19]
-  assign io_inst = axi_io_rdata[31:0]; // @[IFU_AXI.scala 21:28]
+  assign io_inst_valid = axi_io_axi_out_rvalid; // @[IFU_AXI.scala 28:19]
+  assign io_inst = axi_io_axi_out_rdata[31:0]; // @[IFU_AXI.scala 27:36]
   assign axi_clock = clock;
   assign axi_reset = reset;
-  assign axi_io_araddr = io_pc[31:0]; // @[IFU_AXI.scala 17:27]
-  assign axi_io_arvalid = io_pc_valid; // @[IFU_AXI.scala 18:20]
-  assign axi_io_rready = io_inst_ready; // @[IFU_AXI.scala 19:19]
+  assign axi_io_axi_in_araddr = io_pc[31:0]; // @[IFU_AXI.scala 17:34]
+  assign axi_io_axi_in_arvalid = io_pc_valid; // @[IFU_AXI.scala 18:27]
+  assign axi_io_axi_in_rready = io_inst_ready; // @[IFU_AXI.scala 19:26]
+  assign axi_io_axi_in_awaddr = 32'h0; // @[IFU_AXI.scala 20:26]
+  assign axi_io_axi_in_awvalid = 1'h0; // @[IFU_AXI.scala 22:27]
+  assign axi_io_axi_in_wdata = 32'h0; // @[IFU_AXI.scala 21:25]
+  assign axi_io_axi_in_wstrb = 4'h0; // @[IFU_AXI.scala 23:25]
+  assign axi_io_axi_in_wvalid = 1'h0; // @[IFU_AXI.scala 24:26]
+  assign axi_io_axi_in_bready = 1'h0; // @[IFU_AXI.scala 25:26]
 endmodule
 module IDU(
   input         clock,
@@ -467,166 +524,6 @@ initial begin
 `ifdef RANDOMIZE_REG_INIT
   _RAND_0 = {1{`RANDOM}};
   axi_inst_ready = _RAND_0[0:0];
-`endif // RANDOMIZE_REG_INIT
-  `endif // RANDOMIZE
-end // initial
-`ifdef FIRRTL_AFTER_INITIAL
-`FIRRTL_AFTER_INITIAL
-`endif
-`endif // SYNTHESIS
-endmodule
-module AXI_EXU(
-  input         clock,
-  input         reset,
-  input  [31:0] io_axi_in_araddr,
-  input         io_axi_in_arvalid,
-  input         io_axi_in_rready,
-  input  [31:0] io_axi_in_awaddr,
-  input         io_axi_in_awvalid,
-  input  [31:0] io_axi_in_wdata,
-  input  [3:0]  io_axi_in_wstrb,
-  input         io_axi_in_wvalid,
-  input         io_axi_in_bready,
-  output [63:0] io_axi_out_rdata,
-  output        io_axi_out_rvalid,
-  output        io_axi_out_bvalid
-);
-`ifdef RANDOMIZE_REG_INIT
-  reg [31:0] _RAND_0;
-  reg [31:0] _RAND_1;
-  reg [31:0] _RAND_2;
-  reg [31:0] _RAND_3;
-  reg [31:0] _RAND_4;
-`endif // RANDOMIZE_REG_INIT
-  wire [63:0] Mem_modle_Raddr; // @[AXI_EXU.scala 26:27]
-  wire [63:0] Mem_modle_Rdata; // @[AXI_EXU.scala 26:27]
-  wire [63:0] Mem_modle_Waddr; // @[AXI_EXU.scala 26:27]
-  wire [63:0] Mem_modle_Wdata; // @[AXI_EXU.scala 26:27]
-  wire [7:0] Mem_modle_Wmask; // @[AXI_EXU.scala 26:27]
-  wire  Mem_modle_Write_en; // @[AXI_EXU.scala 26:27]
-  wire  Mem_modle_Read_en; // @[AXI_EXU.scala 26:27]
-  reg  axi_wready; // @[AXI_EXU.scala 14:29]
-  reg  axi_bvalid; // @[AXI_EXU.scala 17:29]
-  reg  axi_arready; // @[AXI_EXU.scala 19:30]
-  reg  axi_rvalid; // @[AXI_EXU.scala 21:29]
-  reg [2:0] state; // @[AXI_EXU.scala 24:24]
-  wire  _GEN_1 = io_axi_in_arvalid ? 1'h0 : axi_arready; // @[AXI_EXU.scala 47:42 49:29 19:30]
-  wire  _GEN_2 = io_axi_in_arvalid | axi_rvalid; // @[AXI_EXU.scala 47:42 50:28 21:29]
-  wire  _GEN_5 = io_axi_in_awvalid & io_axi_in_wvalid ? 1'h0 : axi_wready; // @[AXI_EXU.scala 37:56 40:28 14:29]
-  wire  _GEN_6 = io_axi_in_awvalid & io_axi_in_wvalid | axi_bvalid; // @[AXI_EXU.scala 37:56 41:28 17:29]
-  wire  _GEN_7 = io_axi_in_awvalid & io_axi_in_wvalid ? axi_arready : _GEN_1; // @[AXI_EXU.scala 19:30 37:56]
-  wire  _GEN_12 = io_axi_in_bready | axi_wready; // @[AXI_EXU.scala 54:35 58:28 14:29]
-  wire [2:0] _GEN_13 = io_axi_in_rready ? 3'h0 : state; // @[AXI_EXU.scala 62:35 63:23 24:24]
-  wire  _GEN_14 = io_axi_in_rready | axi_arready; // @[AXI_EXU.scala 62:35 64:29 19:30]
-  wire  _GEN_15 = io_axi_in_rready ? 1'h0 : axi_rvalid; // @[AXI_EXU.scala 62:35 65:28 21:29]
-  wire  _GEN_17 = 3'h4 == state ? _GEN_14 : axi_arready; // @[AXI_EXU.scala 35:18 19:30]
-  wire  _GEN_22 = 3'h3 == state ? _GEN_12 : axi_wready; // @[AXI_EXU.scala 35:18 14:29]
-  wire  _GEN_23 = 3'h3 == state ? axi_arready : _GEN_17; // @[AXI_EXU.scala 35:18 19:30]
-  wire  _GEN_27 = 3'h0 == state ? _GEN_5 : _GEN_22; // @[AXI_EXU.scala 35:18]
-  wire  _GEN_29 = 3'h0 == state ? _GEN_7 : _GEN_23; // @[AXI_EXU.scala 35:18]
-  MEM Mem_modle ( // @[AXI_EXU.scala 26:27]
-    .Raddr(Mem_modle_Raddr),
-    .Rdata(Mem_modle_Rdata),
-    .Waddr(Mem_modle_Waddr),
-    .Wdata(Mem_modle_Wdata),
-    .Wmask(Mem_modle_Wmask),
-    .Write_en(Mem_modle_Write_en),
-    .Read_en(Mem_modle_Read_en)
-  );
-  assign io_axi_out_rdata = Mem_modle_Rdata; // @[AXI_EXU.scala 70:22]
-  assign io_axi_out_rvalid = axi_rvalid; // @[AXI_EXU.scala 71:23]
-  assign io_axi_out_bvalid = axi_bvalid; // @[AXI_EXU.scala 74:23]
-  assign Mem_modle_Raddr = {{32'd0}, io_axi_in_araddr}; // @[AXI_EXU.scala 27:24]
-  assign Mem_modle_Waddr = {{32'd0}, io_axi_in_awaddr}; // @[AXI_EXU.scala 28:24]
-  assign Mem_modle_Wdata = {{32'd0}, io_axi_in_wdata}; // @[AXI_EXU.scala 29:24]
-  assign Mem_modle_Wmask = {{4'd0}, io_axi_in_wstrb}; // @[AXI_EXU.scala 30:24]
-  assign Mem_modle_Write_en = axi_wready & io_axi_in_wvalid; // @[AXI_EXU.scala 31:48]
-  assign Mem_modle_Read_en = axi_arready & io_axi_in_arvalid; // @[AXI_EXU.scala 32:48]
-  always @(posedge clock) begin
-    axi_wready <= reset | _GEN_27; // @[AXI_EXU.scala 14:{29,29}]
-    if (reset) begin // @[AXI_EXU.scala 17:29]
-      axi_bvalid <= 1'h0; // @[AXI_EXU.scala 17:29]
-    end else if (3'h0 == state) begin // @[AXI_EXU.scala 35:18]
-      axi_bvalid <= _GEN_6;
-    end else if (3'h3 == state) begin // @[AXI_EXU.scala 35:18]
-      if (io_axi_in_bready) begin // @[AXI_EXU.scala 54:35]
-        axi_bvalid <= 1'h0; // @[AXI_EXU.scala 56:28]
-      end
-    end
-    axi_arready <= reset | _GEN_29; // @[AXI_EXU.scala 19:{30,30}]
-    if (reset) begin // @[AXI_EXU.scala 21:29]
-      axi_rvalid <= 1'h0; // @[AXI_EXU.scala 21:29]
-    end else if (3'h0 == state) begin // @[AXI_EXU.scala 35:18]
-      if (!(io_axi_in_awvalid & io_axi_in_wvalid)) begin // @[AXI_EXU.scala 37:56]
-        axi_rvalid <= _GEN_2;
-      end
-    end else if (!(3'h3 == state)) begin // @[AXI_EXU.scala 35:18]
-      if (3'h4 == state) begin // @[AXI_EXU.scala 35:18]
-        axi_rvalid <= _GEN_15;
-      end
-    end
-    if (reset) begin // @[AXI_EXU.scala 24:24]
-      state <= 3'h0; // @[AXI_EXU.scala 24:24]
-    end else if (3'h0 == state) begin // @[AXI_EXU.scala 35:18]
-      if (io_axi_in_awvalid & io_axi_in_wvalid) begin // @[AXI_EXU.scala 37:56]
-        state <= 3'h3; // @[AXI_EXU.scala 38:23]
-      end else if (io_axi_in_arvalid) begin // @[AXI_EXU.scala 47:42]
-        state <= 3'h4; // @[AXI_EXU.scala 48:23]
-      end
-    end else if (3'h3 == state) begin // @[AXI_EXU.scala 35:18]
-      if (io_axi_in_bready) begin // @[AXI_EXU.scala 54:35]
-        state <= 3'h0; // @[AXI_EXU.scala 55:23]
-      end
-    end else if (3'h4 == state) begin // @[AXI_EXU.scala 35:18]
-      state <= _GEN_13;
-    end
-  end
-// Register and memory initialization
-`ifdef RANDOMIZE_GARBAGE_ASSIGN
-`define RANDOMIZE
-`endif
-`ifdef RANDOMIZE_INVALID_ASSIGN
-`define RANDOMIZE
-`endif
-`ifdef RANDOMIZE_REG_INIT
-`define RANDOMIZE
-`endif
-`ifdef RANDOMIZE_MEM_INIT
-`define RANDOMIZE
-`endif
-`ifndef RANDOM
-`define RANDOM $random
-`endif
-`ifdef RANDOMIZE_MEM_INIT
-  integer initvar;
-`endif
-`ifndef SYNTHESIS
-`ifdef FIRRTL_BEFORE_INITIAL
-`FIRRTL_BEFORE_INITIAL
-`endif
-initial begin
-  `ifdef RANDOMIZE
-    `ifdef INIT_RANDOM
-      `INIT_RANDOM
-    `endif
-    `ifndef VERILATOR
-      `ifdef RANDOMIZE_DELAY
-        #`RANDOMIZE_DELAY begin end
-      `else
-        #0.002 begin end
-      `endif
-    `endif
-`ifdef RANDOMIZE_REG_INIT
-  _RAND_0 = {1{`RANDOM}};
-  axi_wready = _RAND_0[0:0];
-  _RAND_1 = {1{`RANDOM}};
-  axi_bvalid = _RAND_1[0:0];
-  _RAND_2 = {1{`RANDOM}};
-  axi_arready = _RAND_2[0:0];
-  _RAND_3 = {1{`RANDOM}};
-  axi_rvalid = _RAND_3[0:0];
-  _RAND_4 = {1{`RANDOM}};
-  state = _RAND_4[2:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
@@ -1146,7 +1043,7 @@ module EXU_AXI(
     .csr_reg_3(reg_trace_csr_reg_3),
     .pc(reg_trace_pc)
   );
-  AXI_EXU axi ( // @[EXU_AXI.scala 173:21]
+  AXI axi ( // @[EXU_AXI.scala 173:21]
     .clock(axi_clock),
     .reset(axi_reset),
     .io_axi_in_araddr(axi_io_axi_in_araddr),
