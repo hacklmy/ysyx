@@ -23,11 +23,7 @@ module MEM (
       pmem_write(Waddr, Wdata, Wmask);
     end
 end
-  always@(*)begin
-    if(Write_en)begin
-      pmem_write(Waddr, Wdata, Wmask);
-    end
- end
+  
 endmodule
 /* verilator lint_on UNUSED */
 
