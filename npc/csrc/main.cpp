@@ -730,6 +730,7 @@ void cpu_exec(int n){
       top->clock ^= 1;
       top->eval();
       printf("%lx %x\n",top->io_pc , top->io_inst);
+      printf("%d\n",sim_time);
       #ifdef CONFIG_ITRACE
     char p[1024];
     char *s = p;
