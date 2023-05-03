@@ -19,6 +19,9 @@ module MEM (
     if(Read_en)begin
       pmem_read(Raddr, Rdata);
     end
+    else if(Write_en)begin
+      pmem_write(Waddr, Wdata, Wmask);
+    end
 end
   always@(*)begin
     if(Write_en)begin
