@@ -953,14 +953,15 @@ module EXU_AXI(
   wire [126:0] _io_res2rd_T_206 = 32'h46 == io_inst_now ? {{63'd0}, CSR_Reg_io_res2rd_MPORT_1_data} : _io_res2rd_T_204; // @[Mux.scala 81:58]
   wire [126:0] _io_res2rd_T_208 = 32'h47 == io_inst_now ? {{63'd0}, CSR_Reg_io_res2rd_MPORT_2_data} : _io_res2rd_T_206; // @[Mux.scala 81:58]
   wire [63:0] reg_value = io_rd == 5'h0 ? 64'h0 : Regfile_reg_value_MPORT_data; // @[EXU_AXI.scala 37:12]
-  wire  _T_1 = io_ctrl_sign_reg_write & io_rd != 5'h0; // @[EXU_AXI.scala 119:50]
+  wire  _T_2 = io_ctrl_sign_reg_write & io_rd != 5'h0 & io_inst_valid; // @[EXU_AXI.scala 119:63]
   wire [63:0] _csr_wdata_T = src1_value | CSR_Reg_csr_wdata_MPORT_data; // @[EXU_AXI.scala 124:32]
   wire [63:0] _csr_wdata_T_1 = ~CSR_Reg_csr_wdata_MPORT_1_data; // @[EXU_AXI.scala 125:35]
   wire [63:0] _csr_wdata_T_2 = src1_value & _csr_wdata_T_1; // @[EXU_AXI.scala 125:32]
   wire [63:0] _csr_wdata_T_4 = 32'h3f == io_inst_now ? src1_value : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _csr_wdata_T_6 = 32'h46 == io_inst_now ? _csr_wdata_T : _csr_wdata_T_4; // @[Mux.scala 81:58]
   wire [63:0] csr_wdata = 32'h47 == io_inst_now ? _csr_wdata_T_2 : _csr_wdata_T_6; // @[Mux.scala 81:58]
-  wire  _T_3 = io_inst_now == 32'h3d; // @[EXU_AXI.scala 128:37]
+  wire  _T_5 = io_inst_now == 32'h3d & io_inst_valid; // @[EXU_AXI.scala 128:48]
+  wire  _T_10 = io_ctrl_sign_csr_write & io_inst_valid; // @[EXU_AXI.scala 131:53]
   wire [63:0] _io_pc_next_T = add_res & 64'hfffffffffffffffe; // @[EXU_AXI.scala 138:28]
   wire [63:0] _io_pc_next_T_3 = io_rs1 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_data; // @[EXU_AXI.scala 139:39]
   wire [63:0] _io_pc_next_T_6 = io_rs2 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_1_data; // @[EXU_AXI.scala 139:67]
@@ -1215,7 +1216,7 @@ module EXU_AXI(
   assign Regfile_mem_wdate_MPORT_3_en = 1'h1;
   assign Regfile_mem_wdate_MPORT_3_addr = io_rs2;
   assign Regfile_mem_wdate_MPORT_3_data = Regfile[Regfile_mem_wdate_MPORT_3_addr]; // @[EXU_AXI.scala 27:22]
-  assign Regfile_MPORT_data = _T_1 ? io_res2rd : reg_value;
+  assign Regfile_MPORT_data = _T_2 ? io_res2rd : reg_value;
   assign Regfile_MPORT_addr = io_rd;
   assign Regfile_MPORT_mask = 1'h1;
   assign Regfile_MPORT_en = 1'h1;
@@ -1258,15 +1259,15 @@ module EXU_AXI(
   assign CSR_Reg_reg_trace_io_csr_reg_2_MPORT_en = 1'h1;
   assign CSR_Reg_reg_trace_io_csr_reg_2_MPORT_addr = 2'h2;
   assign CSR_Reg_reg_trace_io_csr_reg_2_MPORT_data = CSR_Reg[CSR_Reg_reg_trace_io_csr_reg_2_MPORT_addr]; // @[EXU_AXI.scala 28:22]
-  assign CSR_Reg_MPORT_1_data = _T_3 ? io_pc : CSR_Reg_MPORT_2_data;
+  assign CSR_Reg_MPORT_1_data = _T_5 ? io_pc : CSR_Reg_MPORT_2_data;
   assign CSR_Reg_MPORT_1_addr = 2'h1;
   assign CSR_Reg_MPORT_1_mask = 1'h1;
   assign CSR_Reg_MPORT_1_en = 1'h1;
-  assign CSR_Reg_MPORT_3_data = _T_3 ? Regfile_MPORT_4_data : CSR_Reg_MPORT_5_data;
+  assign CSR_Reg_MPORT_3_data = _T_5 ? Regfile_MPORT_4_data : CSR_Reg_MPORT_5_data;
   assign CSR_Reg_MPORT_3_addr = 2'h3;
   assign CSR_Reg_MPORT_3_mask = 1'h1;
   assign CSR_Reg_MPORT_3_en = 1'h1;
-  assign CSR_Reg_MPORT_6_data = io_ctrl_sign_csr_write ? csr_wdata : CSR_Reg_MPORT_7_data;
+  assign CSR_Reg_MPORT_6_data = _T_10 ? csr_wdata : CSR_Reg_MPORT_7_data;
   assign CSR_Reg_MPORT_6_addr = _csr_index_T_6 ? 2'h3 : _csr_index_T_5;
   assign CSR_Reg_MPORT_6_mask = 1'h1;
   assign CSR_Reg_MPORT_6_en = 1'h1;
