@@ -15,7 +15,6 @@ module IDU(
   output        io_ctrl_sign_src2_is_imm,
   output        io_ctrl_sign_src1_is_pc,
   output        io_ctrl_sign_Writemem_en,
-  output        io_ctrl_sign_Readmem_en,
   output [7:0]  io_ctrl_sign_Wmask
 );
 `ifdef RANDOMIZE_REG_INIT
@@ -268,15 +267,9 @@ module IDU(
   assign io_ctrl_sign_src1_is_pc = _inst_type_T_7 | (_inst_type_T_3 | (_inst_type_T_21 | (_inst_type_T_23 | (
     _inst_type_T_69 | (_inst_type_T_71 | (_inst_type_T_73 | _inst_type_T_117)))))); // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Writemem_en = 32'h44 == inst_type; // @[Mux.scala 81:61]
-  assign io_ctrl_sign_Readmem_en = _inst_type_T_25 | (_inst_type_T_15 | (_inst_type_T_113 | (_inst_type_T_77 | (
-    _inst_type_T_79 | (_inst_type_T_115 | _inst_type_T_33))))); // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Wmask = _inst_type_T_11 ? 8'hff : {{4'd0}, _Wmask_T_10}; // @[Lookup.scala 34:39]
   always @(posedge clock) begin
-    if (reset) begin // @[IDU.scala 51:33]
-      axi_inst_ready <= 1'h0; // @[IDU.scala 51:33]
-    end else begin
-      axi_inst_ready <= ~(io_inst_valid & axi_inst_ready); // @[IDU.scala 52:20]
-    end
+    axi_inst_ready <= reset | ~(io_inst_valid & axi_inst_ready); // @[IDU.scala 51:{33,33} 52:20]
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
