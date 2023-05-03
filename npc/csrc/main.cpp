@@ -644,7 +644,7 @@ void difftest_skip_ref() {
 
 bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
   if(cpu_stop)return true;
-  if(ref_r->pc != pc){
+  if(ref_r->pc != pc+4){
     printf("wrong pc %lx: npc = %lx   ref = %lx\n",pc, pc, ref_r->pc);
     return false;
   }
@@ -754,7 +754,7 @@ void cpu_exec(int n){
 #endif
 #ifdef CONFIG_DIFFTEST
 #ifdef HAS_AXI
-    if(top->io_step&&sim_time!=4){
+    if(top->io_step){
       difftest_step(pc_now);
     }
 #else
