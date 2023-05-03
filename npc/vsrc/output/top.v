@@ -24,11 +24,8 @@ module AXI_IFU(
   reg  axi_rvalid; // @[AXI_IFU.scala 18:29]
   reg  state; // @[AXI_IFU.scala 21:24]
   wire  _GEN_0 = io_arvalid | state; // @[AXI_IFU.scala 29:29 30:23 21:24]
-  wire  _GEN_1 = io_arvalid ? 1'h0 : axi_arready; // @[AXI_IFU.scala 29:29 31:29 17:30]
   wire  _GEN_2 = io_arvalid | axi_rvalid; // @[AXI_IFU.scala 29:29 32:28 18:29]
   wire  _GEN_4 = io_rready | axi_arready; // @[AXI_IFU.scala 36:28 38:29 17:30]
-  wire  _GEN_7 = state ? _GEN_4 : axi_arready; // @[AXI_IFU.scala 27:18 17:30]
-  wire  _GEN_10 = ~state ? _GEN_1 : _GEN_7; // @[AXI_IFU.scala 27:18]
   MEM inst_read ( // @[AXI_IFU.scala 23:27]
     .Raddr(inst_read_Raddr),
     .Rdata(inst_read_Rdata),
@@ -48,7 +45,15 @@ module AXI_IFU(
   assign inst_read_Write_en = 1'h0;
   assign inst_read_Read_en = axi_arready & io_arvalid; // @[AXI_IFU.scala 25:48]
   always @(posedge clock) begin
-    axi_arready <= reset | _GEN_10; // @[AXI_IFU.scala 17:{30,30}]
+    if (reset) begin // @[AXI_IFU.scala 17:30]
+      axi_arready <= 1'h0; // @[AXI_IFU.scala 17:30]
+    end else if (~state) begin // @[AXI_IFU.scala 27:18]
+      if (io_arvalid) begin // @[AXI_IFU.scala 29:29]
+        axi_arready <= 1'h0; // @[AXI_IFU.scala 31:29]
+      end
+    end else if (state) begin // @[AXI_IFU.scala 27:18]
+      axi_arready <= _GEN_4;
+    end
     if (reset) begin // @[AXI_IFU.scala 18:29]
       axi_rvalid <= 1'h0; // @[AXI_IFU.scala 18:29]
     end else if (~state) begin // @[AXI_IFU.scala 27:18]
