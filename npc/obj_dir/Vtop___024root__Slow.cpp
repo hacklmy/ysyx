@@ -204,20 +204,15 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                        | (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready))
                     : (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready)));
     }
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_4 
+        = ((IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready) 
+           | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready));
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_0 
         = ((IData)(vlSelf->top__DOT__axi_pc_valid) 
            | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state));
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_2 
         = ((IData)(vlSelf->top__DOT__axi_pc_valid) 
            | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid));
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_10 
-        = ((IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state)
-            ? ((IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state)
-                ? ((IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready) 
-                   | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready))
-                : (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready))
-            : ((~ (IData)(vlSelf->top__DOT__axi_pc_valid)) 
-               & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready)));
     if (((IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready) 
          & (IData)(vlSelf->top__DOT__axi_pc_valid))) {
         Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit((QData)((IData)(vlSelf->top__DOT__pc_now)), vlSelf->__Vtask_pmem_read__0__Rdata);
@@ -2266,7 +2261,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_0 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_2 = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_10 = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_4 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__idu_step__DOT__axi_inst_ready = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__idu_step__DOT___inst_type_T_188 = VL_RAND_RESET_I(7);
     vlSelf->top__DOT__idu_step__DOT___inst_now_T_194 = VL_RAND_RESET_I(7);
