@@ -11,11 +11,13 @@ module MEM (
     input [63:0] Wdata,
     input [7:0] Wmask,
     input Write_en,
+    input Read_en,
     output [63:0] Rdata
 );
  
  always @(*) begin
-    pmem_read(Raddr, Rdata);
+    if(Read_en)
+      pmem_read(Raddr, Rdata);
     if(Write_en)
       pmem_write(Waddr, Wdata, Wmask);
  end

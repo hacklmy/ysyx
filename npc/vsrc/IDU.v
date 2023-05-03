@@ -15,13 +15,14 @@ module IDU(
   output        io_ctrl_sign_src2_is_imm,
   output        io_ctrl_sign_src1_is_pc,
   output        io_ctrl_sign_Writemem_en,
+  output        io_ctrl_sign_Readmem_en,
   output [7:0]  io_ctrl_sign_Wmask
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
   reg  axi_inst_ready; // @[IDU.scala 51:33]
-  wire [4:0] rd = io_inst[11:7]; // @[IDU.scala 149:15]
+  wire [4:0] rd = io_inst[11:7]; // @[IDU.scala 150:15]
   wire [31:0] _inst_type_T = io_inst & 32'h707f; // @[Lookup.scala 31:38]
   wire  _inst_type_T_1 = 32'h13 == _inst_type_T; // @[Lookup.scala 31:38]
   wire [31:0] _inst_type_T_2 = io_inst & 32'h7f; // @[Lookup.scala 31:38]
@@ -167,7 +168,7 @@ module IDU(
   wire [11:0] imm_imm_4 = {io_inst[31],io_inst[7],io_inst[30:25],io_inst[11:8]}; // @[Cat.scala 31:58]
   wire [50:0] _imm_T_19 = imm_imm_4[11] ? 51'h7ffffffffffff : 51'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _imm_T_20 = {_imm_T_19,io_inst[31],io_inst[7],io_inst[30:25],io_inst[11:8],1'h0}; // @[Cat.scala 31:58]
-  wire [31:0] inst_type = {{25'd0}, _inst_type_T_188}; // @[IDU.scala 133:25 151:15]
+  wire [31:0] inst_type = {{25'd0}, _inst_type_T_188}; // @[IDU.scala 133:25 152:15]
   wire [63:0] _imm_T_22 = 32'h40 == inst_type ? _imm_T_3 : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _imm_T_24 = 32'h43 == inst_type ? _imm_T_7 : _imm_T_22; // @[Mux.scala 81:58]
   wire [63:0] _imm_T_26 = 32'h42 == inst_type ? _imm_T_12 : _imm_T_24; // @[Mux.scala 81:58]
@@ -255,10 +256,10 @@ module IDU(
   wire [3:0] _Wmask_T_9 = _inst_type_T_37 ? 4'h1 : _Wmask_T_8; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_10 = _inst_type_T_35 ? 4'h3 : _Wmask_T_9; // @[Lookup.scala 34:39]
   assign io_inst_ready = axi_inst_ready; // @[IDU.scala 53:19]
-  assign io_inst_now = {{25'd0}, _inst_now_T_194}; // @[IDU.scala 132:24 225:14]
-  assign io_rs1 = io_inst[19:15]; // @[IDU.scala 148:16]
-  assign io_rs2 = io_inst[24:20]; // @[IDU.scala 147:16]
-  assign io_rd = io_inst[11:7]; // @[IDU.scala 149:15]
+  assign io_inst_now = {{25'd0}, _inst_now_T_194}; // @[IDU.scala 132:24 226:14]
+  assign io_rs1 = io_inst[19:15]; // @[IDU.scala 149:16]
+  assign io_rs2 = io_inst[24:20]; // @[IDU.scala 148:16]
+  assign io_rd = io_inst[11:7]; // @[IDU.scala 150:15]
   assign io_imm = 32'h45 == inst_type ? _imm_T_20 : _imm_T_28; // @[Mux.scala 81:58]
   assign io_ctrl_sign_reg_write = _inst_now_T_3 ? 1'h0 : _reg_write_T_37; // @[Lookup.scala 34:39]
   assign io_ctrl_sign_csr_write = _inst_type_T_121 | (_inst_type_T_123 | _inst_type_T_125); // @[Lookup.scala 34:39]
@@ -267,6 +268,8 @@ module IDU(
   assign io_ctrl_sign_src1_is_pc = _inst_type_T_7 | (_inst_type_T_3 | (_inst_type_T_21 | (_inst_type_T_23 | (
     _inst_type_T_69 | (_inst_type_T_71 | (_inst_type_T_73 | _inst_type_T_117)))))); // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Writemem_en = 32'h44 == inst_type; // @[Mux.scala 81:61]
+  assign io_ctrl_sign_Readmem_en = _inst_type_T_25 | (_inst_type_T_15 | (_inst_type_T_113 | (_inst_type_T_77 | (
+    _inst_type_T_79 | (_inst_type_T_115 | _inst_type_T_33))))); // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Wmask = _inst_type_T_11 ? 8'hff : {{4'd0}, _Wmask_T_10}; // @[Lookup.scala 34:39]
   always @(posedge clock) begin
     axi_inst_ready <= reset | ~(io_inst_valid & axi_inst_ready); // @[IDU.scala 51:{33,33} 52:20]

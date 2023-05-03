@@ -15,6 +15,7 @@ module EXU_AXI(
   input         io_ctrl_sign_src2_is_imm,
   input         io_ctrl_sign_src1_is_pc,
   input         io_ctrl_sign_Writemem_en,
+  input         io_ctrl_sign_Readmem_en,
   input  [7:0]  io_ctrl_sign_Wmask,
   output [63:0] io_res2rd,
   input         io_pc_ready
@@ -801,7 +802,7 @@ module EXU_AXI(
     if (reset) begin // @[EXU_AXI.scala 173:30]
       axi_arvalid <= 1'h0; // @[EXU_AXI.scala 173:30]
     end else begin
-      axi_arvalid <= io_pc_ready; // @[EXU_AXI.scala 179:17]
+      axi_arvalid <= io_pc_ready & io_ctrl_sign_Readmem_en; // @[EXU_AXI.scala 179:17]
     end
     axi_rready <= reset | ~(axi_rready & axi_io_axi_out_rvalid); // @[EXU_AXI.scala 174:{29,29} 180:16]
     if (reset) begin // @[EXU_AXI.scala 175:30]

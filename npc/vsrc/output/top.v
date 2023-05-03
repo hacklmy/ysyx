@@ -19,54 +19,52 @@ module AXI_IFU(
   wire [63:0] inst_read_Wdata; // @[AXI_IFU.scala 23:27]
   wire [7:0] inst_read_Wmask; // @[AXI_IFU.scala 23:27]
   wire  inst_read_Write_en; // @[AXI_IFU.scala 23:27]
+  wire  inst_read_Read_en; // @[AXI_IFU.scala 23:27]
   reg  axi_arready; // @[AXI_IFU.scala 17:30]
   reg  axi_rvalid; // @[AXI_IFU.scala 18:29]
   reg  state; // @[AXI_IFU.scala 21:24]
-  wire  _GEN_0 = io_arvalid | state; // @[AXI_IFU.scala 28:29 29:23 21:24]
-  wire  _GEN_2 = io_arvalid | axi_rvalid; // @[AXI_IFU.scala 28:29 31:28 18:29]
-  wire  _GEN_4 = io_rready | axi_arready; // @[AXI_IFU.scala 35:28 37:29 17:30]
+  wire  _GEN_0 = io_arvalid | state; // @[AXI_IFU.scala 29:29 30:23 21:24]
+  wire  _GEN_1 = io_arvalid ? 1'h0 : axi_arready; // @[AXI_IFU.scala 29:29 31:29 17:30]
+  wire  _GEN_2 = io_arvalid | axi_rvalid; // @[AXI_IFU.scala 29:29 32:28 18:29]
+  wire  _GEN_4 = io_rready | axi_arready; // @[AXI_IFU.scala 36:28 38:29 17:30]
+  wire  _GEN_7 = state ? _GEN_4 : axi_arready; // @[AXI_IFU.scala 27:18 17:30]
+  wire  _GEN_10 = ~state ? _GEN_1 : _GEN_7; // @[AXI_IFU.scala 27:18]
   MEM inst_read ( // @[AXI_IFU.scala 23:27]
     .Raddr(inst_read_Raddr),
     .Rdata(inst_read_Rdata),
     .Waddr(inst_read_Waddr),
     .Wdata(inst_read_Wdata),
     .Wmask(inst_read_Wmask),
-    .Write_en(inst_read_Write_en)
+    .Write_en(inst_read_Write_en),
+    .Read_en(inst_read_Read_en)
   );
-  assign io_arready = axi_arready; // @[AXI_IFU.scala 42:16]
-  assign io_rvalid = axi_rvalid; // @[AXI_IFU.scala 43:15]
-  assign io_rdata = inst_read_Rdata; // @[AXI_IFU.scala 44:14]
+  assign io_arready = axi_arready; // @[AXI_IFU.scala 43:16]
+  assign io_rvalid = axi_rvalid; // @[AXI_IFU.scala 44:15]
+  assign io_rdata = inst_read_Rdata; // @[AXI_IFU.scala 45:14]
   assign inst_read_Raddr = {32'h0,io_araddr}; // @[Cat.scala 31:58]
   assign inst_read_Waddr = 64'h0;
   assign inst_read_Wdata = 64'h0;
   assign inst_read_Wmask = 8'h0;
   assign inst_read_Write_en = 1'h0;
+  assign inst_read_Read_en = axi_arready & io_arvalid; // @[AXI_IFU.scala 25:48]
   always @(posedge clock) begin
-    if (reset) begin // @[AXI_IFU.scala 17:30]
-      axi_arready <= 1'h0; // @[AXI_IFU.scala 17:30]
-    end else if (~state) begin // @[AXI_IFU.scala 26:18]
-      if (io_arvalid) begin // @[AXI_IFU.scala 28:29]
-        axi_arready <= 1'h0; // @[AXI_IFU.scala 30:29]
-      end
-    end else if (state) begin // @[AXI_IFU.scala 26:18]
-      axi_arready <= _GEN_4;
-    end
+    axi_arready <= reset | _GEN_10; // @[AXI_IFU.scala 17:{30,30}]
     if (reset) begin // @[AXI_IFU.scala 18:29]
       axi_rvalid <= 1'h0; // @[AXI_IFU.scala 18:29]
-    end else if (~state) begin // @[AXI_IFU.scala 26:18]
+    end else if (~state) begin // @[AXI_IFU.scala 27:18]
       axi_rvalid <= _GEN_2;
-    end else if (state) begin // @[AXI_IFU.scala 26:18]
-      if (io_rready) begin // @[AXI_IFU.scala 35:28]
-        axi_rvalid <= 1'h0; // @[AXI_IFU.scala 38:28]
+    end else if (state) begin // @[AXI_IFU.scala 27:18]
+      if (io_rready) begin // @[AXI_IFU.scala 36:28]
+        axi_rvalid <= 1'h0; // @[AXI_IFU.scala 39:28]
       end
     end
     if (reset) begin // @[AXI_IFU.scala 21:24]
       state <= 1'h0; // @[AXI_IFU.scala 21:24]
-    end else if (~state) begin // @[AXI_IFU.scala 26:18]
+    end else if (~state) begin // @[AXI_IFU.scala 27:18]
       state <= _GEN_0;
-    end else if (state) begin // @[AXI_IFU.scala 26:18]
-      if (io_rready) begin // @[AXI_IFU.scala 35:28]
-        state <= 1'h0; // @[AXI_IFU.scala 36:23]
+    end else if (state) begin // @[AXI_IFU.scala 27:18]
+      if (io_rready) begin // @[AXI_IFU.scala 36:28]
+        state <= 1'h0; // @[AXI_IFU.scala 37:23]
       end
     end
   end
@@ -173,13 +171,14 @@ module IDU(
   output        io_ctrl_sign_src2_is_imm,
   output        io_ctrl_sign_src1_is_pc,
   output        io_ctrl_sign_Writemem_en,
+  output        io_ctrl_sign_Readmem_en,
   output [7:0]  io_ctrl_sign_Wmask
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
   reg  axi_inst_ready; // @[IDU.scala 51:33]
-  wire [4:0] rd = io_inst[11:7]; // @[IDU.scala 149:15]
+  wire [4:0] rd = io_inst[11:7]; // @[IDU.scala 150:15]
   wire [31:0] _inst_type_T = io_inst & 32'h707f; // @[Lookup.scala 31:38]
   wire  _inst_type_T_1 = 32'h13 == _inst_type_T; // @[Lookup.scala 31:38]
   wire [31:0] _inst_type_T_2 = io_inst & 32'h7f; // @[Lookup.scala 31:38]
@@ -325,7 +324,7 @@ module IDU(
   wire [11:0] imm_imm_4 = {io_inst[31],io_inst[7],io_inst[30:25],io_inst[11:8]}; // @[Cat.scala 31:58]
   wire [50:0] _imm_T_19 = imm_imm_4[11] ? 51'h7ffffffffffff : 51'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _imm_T_20 = {_imm_T_19,io_inst[31],io_inst[7],io_inst[30:25],io_inst[11:8],1'h0}; // @[Cat.scala 31:58]
-  wire [31:0] inst_type = {{25'd0}, _inst_type_T_188}; // @[IDU.scala 133:25 151:15]
+  wire [31:0] inst_type = {{25'd0}, _inst_type_T_188}; // @[IDU.scala 133:25 152:15]
   wire [63:0] _imm_T_22 = 32'h40 == inst_type ? _imm_T_3 : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _imm_T_24 = 32'h43 == inst_type ? _imm_T_7 : _imm_T_22; // @[Mux.scala 81:58]
   wire [63:0] _imm_T_26 = 32'h42 == inst_type ? _imm_T_12 : _imm_T_24; // @[Mux.scala 81:58]
@@ -413,10 +412,10 @@ module IDU(
   wire [3:0] _Wmask_T_9 = _inst_type_T_37 ? 4'h1 : _Wmask_T_8; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_10 = _inst_type_T_35 ? 4'h3 : _Wmask_T_9; // @[Lookup.scala 34:39]
   assign io_inst_ready = axi_inst_ready; // @[IDU.scala 53:19]
-  assign io_inst_now = {{25'd0}, _inst_now_T_194}; // @[IDU.scala 132:24 225:14]
-  assign io_rs1 = io_inst[19:15]; // @[IDU.scala 148:16]
-  assign io_rs2 = io_inst[24:20]; // @[IDU.scala 147:16]
-  assign io_rd = io_inst[11:7]; // @[IDU.scala 149:15]
+  assign io_inst_now = {{25'd0}, _inst_now_T_194}; // @[IDU.scala 132:24 226:14]
+  assign io_rs1 = io_inst[19:15]; // @[IDU.scala 149:16]
+  assign io_rs2 = io_inst[24:20]; // @[IDU.scala 148:16]
+  assign io_rd = io_inst[11:7]; // @[IDU.scala 150:15]
   assign io_imm = 32'h45 == inst_type ? _imm_T_20 : _imm_T_28; // @[Mux.scala 81:58]
   assign io_ctrl_sign_reg_write = _inst_now_T_3 ? 1'h0 : _reg_write_T_37; // @[Lookup.scala 34:39]
   assign io_ctrl_sign_csr_write = _inst_type_T_121 | (_inst_type_T_123 | _inst_type_T_125); // @[Lookup.scala 34:39]
@@ -425,6 +424,8 @@ module IDU(
   assign io_ctrl_sign_src1_is_pc = _inst_type_T_7 | (_inst_type_T_3 | (_inst_type_T_21 | (_inst_type_T_23 | (
     _inst_type_T_69 | (_inst_type_T_71 | (_inst_type_T_73 | _inst_type_T_117)))))); // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Writemem_en = 32'h44 == inst_type; // @[Mux.scala 81:61]
+  assign io_ctrl_sign_Readmem_en = _inst_type_T_25 | (_inst_type_T_15 | (_inst_type_T_113 | (_inst_type_T_77 | (
+    _inst_type_T_79 | (_inst_type_T_115 | _inst_type_T_33))))); // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Wmask = _inst_type_T_11 ? 8'hff : {{4'd0}, _Wmask_T_10}; // @[Lookup.scala 34:39]
   always @(posedge clock) begin
     axi_inst_ready <= reset | ~(io_inst_valid & axi_inst_ready); // @[IDU.scala 51:{33,33} 52:20]
@@ -496,6 +497,7 @@ module AXI_EXU(
   reg [31:0] _RAND_1;
   reg [31:0] _RAND_2;
   reg [31:0] _RAND_3;
+  reg [31:0] _RAND_4;
 `endif // RANDOMIZE_REG_INIT
   wire [63:0] Mem_modle_Raddr; // @[AXI_EXU.scala 26:27]
   wire [63:0] Mem_modle_Rdata; // @[AXI_EXU.scala 26:27]
@@ -503,69 +505,80 @@ module AXI_EXU(
   wire [63:0] Mem_modle_Wdata; // @[AXI_EXU.scala 26:27]
   wire [7:0] Mem_modle_Wmask; // @[AXI_EXU.scala 26:27]
   wire  Mem_modle_Write_en; // @[AXI_EXU.scala 26:27]
+  wire  Mem_modle_Read_en; // @[AXI_EXU.scala 26:27]
   reg  axi_wready; // @[AXI_EXU.scala 14:29]
   reg  axi_bvalid; // @[AXI_EXU.scala 17:29]
+  reg  axi_arready; // @[AXI_EXU.scala 19:30]
   reg  axi_rvalid; // @[AXI_EXU.scala 21:29]
   reg [2:0] state; // @[AXI_EXU.scala 24:24]
-  wire  _GEN_2 = io_axi_in_arvalid | axi_rvalid; // @[AXI_EXU.scala 46:42 49:28 21:29]
-  wire  _GEN_5 = io_axi_in_awvalid & io_axi_in_wvalid ? 1'h0 : axi_wready; // @[AXI_EXU.scala 36:56 39:28 14:29]
-  wire  _GEN_6 = io_axi_in_awvalid & io_axi_in_wvalid | axi_bvalid; // @[AXI_EXU.scala 36:56 40:28 17:29]
-  wire  _GEN_12 = io_axi_in_bready | axi_wready; // @[AXI_EXU.scala 53:35 57:28 14:29]
-  wire [2:0] _GEN_13 = io_axi_in_rready ? 3'h0 : state; // @[AXI_EXU.scala 61:35 62:23 24:24]
-  wire  _GEN_15 = io_axi_in_rready ? 1'h0 : axi_rvalid; // @[AXI_EXU.scala 61:35 64:28 21:29]
-  wire  _GEN_22 = 3'h3 == state ? _GEN_12 : axi_wready; // @[AXI_EXU.scala 34:18 14:29]
-  wire  _GEN_27 = 3'h0 == state ? _GEN_5 : _GEN_22; // @[AXI_EXU.scala 34:18]
+  wire  _GEN_1 = io_axi_in_arvalid ? 1'h0 : axi_arready; // @[AXI_EXU.scala 47:42 49:29 19:30]
+  wire  _GEN_2 = io_axi_in_arvalid | axi_rvalid; // @[AXI_EXU.scala 47:42 50:28 21:29]
+  wire  _GEN_5 = io_axi_in_awvalid & io_axi_in_wvalid ? 1'h0 : axi_wready; // @[AXI_EXU.scala 37:56 40:28 14:29]
+  wire  _GEN_6 = io_axi_in_awvalid & io_axi_in_wvalid | axi_bvalid; // @[AXI_EXU.scala 37:56 41:28 17:29]
+  wire  _GEN_7 = io_axi_in_awvalid & io_axi_in_wvalid ? axi_arready : _GEN_1; // @[AXI_EXU.scala 19:30 37:56]
+  wire  _GEN_12 = io_axi_in_bready | axi_wready; // @[AXI_EXU.scala 54:35 58:28 14:29]
+  wire [2:0] _GEN_13 = io_axi_in_rready ? 3'h0 : state; // @[AXI_EXU.scala 62:35 63:23 24:24]
+  wire  _GEN_14 = io_axi_in_rready | axi_arready; // @[AXI_EXU.scala 62:35 64:29 19:30]
+  wire  _GEN_15 = io_axi_in_rready ? 1'h0 : axi_rvalid; // @[AXI_EXU.scala 62:35 65:28 21:29]
+  wire  _GEN_17 = 3'h4 == state ? _GEN_14 : axi_arready; // @[AXI_EXU.scala 35:18 19:30]
+  wire  _GEN_22 = 3'h3 == state ? _GEN_12 : axi_wready; // @[AXI_EXU.scala 35:18 14:29]
+  wire  _GEN_23 = 3'h3 == state ? axi_arready : _GEN_17; // @[AXI_EXU.scala 35:18 19:30]
+  wire  _GEN_27 = 3'h0 == state ? _GEN_5 : _GEN_22; // @[AXI_EXU.scala 35:18]
+  wire  _GEN_29 = 3'h0 == state ? _GEN_7 : _GEN_23; // @[AXI_EXU.scala 35:18]
   MEM Mem_modle ( // @[AXI_EXU.scala 26:27]
     .Raddr(Mem_modle_Raddr),
     .Rdata(Mem_modle_Rdata),
     .Waddr(Mem_modle_Waddr),
     .Wdata(Mem_modle_Wdata),
     .Wmask(Mem_modle_Wmask),
-    .Write_en(Mem_modle_Write_en)
+    .Write_en(Mem_modle_Write_en),
+    .Read_en(Mem_modle_Read_en)
   );
-  assign io_axi_out_rdata = Mem_modle_Rdata; // @[AXI_EXU.scala 69:22]
-  assign io_axi_out_rvalid = axi_rvalid; // @[AXI_EXU.scala 70:23]
-  assign io_axi_out_bvalid = axi_bvalid; // @[AXI_EXU.scala 73:23]
+  assign io_axi_out_rdata = Mem_modle_Rdata; // @[AXI_EXU.scala 70:22]
+  assign io_axi_out_rvalid = axi_rvalid; // @[AXI_EXU.scala 71:23]
+  assign io_axi_out_bvalid = axi_bvalid; // @[AXI_EXU.scala 74:23]
   assign Mem_modle_Raddr = {{32'd0}, io_axi_in_araddr}; // @[AXI_EXU.scala 27:24]
   assign Mem_modle_Waddr = {{32'd0}, io_axi_in_awaddr}; // @[AXI_EXU.scala 28:24]
   assign Mem_modle_Wdata = {{32'd0}, io_axi_in_wdata}; // @[AXI_EXU.scala 29:24]
   assign Mem_modle_Wmask = {{4'd0}, io_axi_in_wstrb}; // @[AXI_EXU.scala 30:24]
   assign Mem_modle_Write_en = axi_wready & io_axi_in_wvalid; // @[AXI_EXU.scala 31:48]
+  assign Mem_modle_Read_en = axi_arready & io_axi_in_arvalid; // @[AXI_EXU.scala 32:48]
   always @(posedge clock) begin
     axi_wready <= reset | _GEN_27; // @[AXI_EXU.scala 14:{29,29}]
     if (reset) begin // @[AXI_EXU.scala 17:29]
       axi_bvalid <= 1'h0; // @[AXI_EXU.scala 17:29]
-    end else if (3'h0 == state) begin // @[AXI_EXU.scala 34:18]
+    end else if (3'h0 == state) begin // @[AXI_EXU.scala 35:18]
       axi_bvalid <= _GEN_6;
-    end else if (3'h3 == state) begin // @[AXI_EXU.scala 34:18]
-      if (io_axi_in_bready) begin // @[AXI_EXU.scala 53:35]
-        axi_bvalid <= 1'h0; // @[AXI_EXU.scala 55:28]
+    end else if (3'h3 == state) begin // @[AXI_EXU.scala 35:18]
+      if (io_axi_in_bready) begin // @[AXI_EXU.scala 54:35]
+        axi_bvalid <= 1'h0; // @[AXI_EXU.scala 56:28]
       end
     end
+    axi_arready <= reset | _GEN_29; // @[AXI_EXU.scala 19:{30,30}]
     if (reset) begin // @[AXI_EXU.scala 21:29]
       axi_rvalid <= 1'h0; // @[AXI_EXU.scala 21:29]
-    end else if (3'h0 == state) begin // @[AXI_EXU.scala 34:18]
-      if (!(io_axi_in_awvalid & io_axi_in_wvalid)) begin // @[AXI_EXU.scala 36:56]
+    end else if (3'h0 == state) begin // @[AXI_EXU.scala 35:18]
+      if (!(io_axi_in_awvalid & io_axi_in_wvalid)) begin // @[AXI_EXU.scala 37:56]
         axi_rvalid <= _GEN_2;
       end
-    end else if (!(3'h3 == state)) begin // @[AXI_EXU.scala 34:18]
-      if (3'h4 == state) begin // @[AXI_EXU.scala 34:18]
+    end else if (!(3'h3 == state)) begin // @[AXI_EXU.scala 35:18]
+      if (3'h4 == state) begin // @[AXI_EXU.scala 35:18]
         axi_rvalid <= _GEN_15;
       end
     end
     if (reset) begin // @[AXI_EXU.scala 24:24]
       state <= 3'h0; // @[AXI_EXU.scala 24:24]
-    end else if (3'h0 == state) begin // @[AXI_EXU.scala 34:18]
-      if (io_axi_in_awvalid & io_axi_in_wvalid) begin // @[AXI_EXU.scala 36:56]
-        state <= 3'h3; // @[AXI_EXU.scala 37:23]
-      end else if (io_axi_in_arvalid) begin // @[AXI_EXU.scala 46:42]
-        state <= 3'h4; // @[AXI_EXU.scala 47:23]
+    end else if (3'h0 == state) begin // @[AXI_EXU.scala 35:18]
+      if (io_axi_in_awvalid & io_axi_in_wvalid) begin // @[AXI_EXU.scala 37:56]
+        state <= 3'h3; // @[AXI_EXU.scala 38:23]
+      end else if (io_axi_in_arvalid) begin // @[AXI_EXU.scala 47:42]
+        state <= 3'h4; // @[AXI_EXU.scala 48:23]
       end
-    end else if (3'h3 == state) begin // @[AXI_EXU.scala 34:18]
-      if (io_axi_in_bready) begin // @[AXI_EXU.scala 53:35]
-        state <= 3'h0; // @[AXI_EXU.scala 54:23]
+    end else if (3'h3 == state) begin // @[AXI_EXU.scala 35:18]
+      if (io_axi_in_bready) begin // @[AXI_EXU.scala 54:35]
+        state <= 3'h0; // @[AXI_EXU.scala 55:23]
       end
-    end else if (3'h4 == state) begin // @[AXI_EXU.scala 34:18]
+    end else if (3'h4 == state) begin // @[AXI_EXU.scala 35:18]
       state <= _GEN_13;
     end
   end
@@ -610,9 +623,11 @@ initial begin
   _RAND_1 = {1{`RANDOM}};
   axi_bvalid = _RAND_1[0:0];
   _RAND_2 = {1{`RANDOM}};
-  axi_rvalid = _RAND_2[0:0];
+  axi_arready = _RAND_2[0:0];
   _RAND_3 = {1{`RANDOM}};
-  state = _RAND_3[2:0];
+  axi_rvalid = _RAND_3[0:0];
+  _RAND_4 = {1{`RANDOM}};
+  state = _RAND_4[2:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
@@ -636,6 +651,7 @@ module EXU_AXI(
   input         io_ctrl_sign_src2_is_imm,
   input         io_ctrl_sign_src1_is_pc,
   input         io_ctrl_sign_Writemem_en,
+  input         io_ctrl_sign_Readmem_en,
   input  [7:0]  io_ctrl_sign_Wmask,
   output [63:0] io_res2rd,
   input         io_pc_ready
@@ -1422,7 +1438,7 @@ module EXU_AXI(
     if (reset) begin // @[EXU_AXI.scala 173:30]
       axi_arvalid <= 1'h0; // @[EXU_AXI.scala 173:30]
     end else begin
-      axi_arvalid <= io_pc_ready; // @[EXU_AXI.scala 179:17]
+      axi_arvalid <= io_pc_ready & io_ctrl_sign_Readmem_en; // @[EXU_AXI.scala 179:17]
     end
     axi_rready <= reset | ~(axi_rready & axi_io_axi_out_rvalid); // @[EXU_AXI.scala 174:{29,29} 180:16]
     if (reset) begin // @[EXU_AXI.scala 175:30]
@@ -1534,6 +1550,7 @@ module top(
   wire  idu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 25:26]
   wire  idu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 25:26]
   wire  idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 25:26]
+  wire  idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 25:26]
   wire [7:0] idu_step_io_ctrl_sign_Wmask; // @[top.scala 25:26]
   wire  exu_step_clock; // @[top.scala 30:26]
   wire  exu_step_reset; // @[top.scala 30:26]
@@ -1549,6 +1566,7 @@ module top(
   wire  exu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 30:26]
   wire  exu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 30:26]
   wire  exu_step_io_ctrl_sign_Writemem_en; // @[top.scala 30:26]
+  wire  exu_step_io_ctrl_sign_Readmem_en; // @[top.scala 30:26]
   wire [7:0] exu_step_io_ctrl_sign_Wmask; // @[top.scala 30:26]
   wire [63:0] exu_step_io_res2rd; // @[top.scala 30:26]
   wire  exu_step_io_pc_ready; // @[top.scala 30:26]
@@ -1582,6 +1600,7 @@ module top(
     .io_ctrl_sign_src2_is_imm(idu_step_io_ctrl_sign_src2_is_imm),
     .io_ctrl_sign_src1_is_pc(idu_step_io_ctrl_sign_src1_is_pc),
     .io_ctrl_sign_Writemem_en(idu_step_io_ctrl_sign_Writemem_en),
+    .io_ctrl_sign_Readmem_en(idu_step_io_ctrl_sign_Readmem_en),
     .io_ctrl_sign_Wmask(idu_step_io_ctrl_sign_Wmask)
   );
   EXU_AXI exu_step ( // @[top.scala 30:26]
@@ -1599,6 +1618,7 @@ module top(
     .io_ctrl_sign_src2_is_imm(exu_step_io_ctrl_sign_src2_is_imm),
     .io_ctrl_sign_src1_is_pc(exu_step_io_ctrl_sign_src1_is_pc),
     .io_ctrl_sign_Writemem_en(exu_step_io_ctrl_sign_Writemem_en),
+    .io_ctrl_sign_Readmem_en(exu_step_io_ctrl_sign_Readmem_en),
     .io_ctrl_sign_Wmask(exu_step_io_ctrl_sign_Wmask),
     .io_res2rd(exu_step_io_res2rd),
     .io_pc_ready(exu_step_io_pc_ready)
@@ -1633,6 +1653,7 @@ module top(
   assign exu_step_io_ctrl_sign_src2_is_imm = idu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 38:27]
   assign exu_step_io_ctrl_sign_src1_is_pc = idu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 38:27]
   assign exu_step_io_ctrl_sign_Writemem_en = idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 38:27]
+  assign exu_step_io_ctrl_sign_Readmem_en = idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 38:27]
   assign exu_step_io_ctrl_sign_Wmask = idu_step_io_ctrl_sign_Wmask; // @[top.scala 38:27]
   assign exu_step_io_pc_ready = ifu_step_io_pc_ready; // @[top.scala 39:26]
   assign dpi_flag = {{31'd0}, idu_step_io_inst_now == 32'h2}; // @[top.scala 42:17]

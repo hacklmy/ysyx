@@ -19,54 +19,52 @@ module AXI_IFU(
   wire [63:0] inst_read_Wdata; // @[AXI_IFU.scala 23:27]
   wire [7:0] inst_read_Wmask; // @[AXI_IFU.scala 23:27]
   wire  inst_read_Write_en; // @[AXI_IFU.scala 23:27]
+  wire  inst_read_Read_en; // @[AXI_IFU.scala 23:27]
   reg  axi_arready; // @[AXI_IFU.scala 17:30]
   reg  axi_rvalid; // @[AXI_IFU.scala 18:29]
   reg  state; // @[AXI_IFU.scala 21:24]
-  wire  _GEN_0 = io_arvalid | state; // @[AXI_IFU.scala 28:29 29:23 21:24]
-  wire  _GEN_2 = io_arvalid | axi_rvalid; // @[AXI_IFU.scala 28:29 31:28 18:29]
-  wire  _GEN_4 = io_rready | axi_arready; // @[AXI_IFU.scala 35:28 37:29 17:30]
+  wire  _GEN_0 = io_arvalid | state; // @[AXI_IFU.scala 29:29 30:23 21:24]
+  wire  _GEN_1 = io_arvalid ? 1'h0 : axi_arready; // @[AXI_IFU.scala 29:29 31:29 17:30]
+  wire  _GEN_2 = io_arvalid | axi_rvalid; // @[AXI_IFU.scala 29:29 32:28 18:29]
+  wire  _GEN_4 = io_rready | axi_arready; // @[AXI_IFU.scala 36:28 38:29 17:30]
+  wire  _GEN_7 = state ? _GEN_4 : axi_arready; // @[AXI_IFU.scala 27:18 17:30]
+  wire  _GEN_10 = ~state ? _GEN_1 : _GEN_7; // @[AXI_IFU.scala 27:18]
   MEM inst_read ( // @[AXI_IFU.scala 23:27]
     .Raddr(inst_read_Raddr),
     .Rdata(inst_read_Rdata),
     .Waddr(inst_read_Waddr),
     .Wdata(inst_read_Wdata),
     .Wmask(inst_read_Wmask),
-    .Write_en(inst_read_Write_en)
+    .Write_en(inst_read_Write_en),
+    .Read_en(inst_read_Read_en)
   );
-  assign io_arready = axi_arready; // @[AXI_IFU.scala 42:16]
-  assign io_rvalid = axi_rvalid; // @[AXI_IFU.scala 43:15]
-  assign io_rdata = inst_read_Rdata; // @[AXI_IFU.scala 44:14]
+  assign io_arready = axi_arready; // @[AXI_IFU.scala 43:16]
+  assign io_rvalid = axi_rvalid; // @[AXI_IFU.scala 44:15]
+  assign io_rdata = inst_read_Rdata; // @[AXI_IFU.scala 45:14]
   assign inst_read_Raddr = {32'h0,io_araddr}; // @[Cat.scala 31:58]
   assign inst_read_Waddr = 64'h0;
   assign inst_read_Wdata = 64'h0;
   assign inst_read_Wmask = 8'h0;
   assign inst_read_Write_en = 1'h0;
+  assign inst_read_Read_en = axi_arready & io_arvalid; // @[AXI_IFU.scala 25:48]
   always @(posedge clock) begin
-    if (reset) begin // @[AXI_IFU.scala 17:30]
-      axi_arready <= 1'h0; // @[AXI_IFU.scala 17:30]
-    end else if (~state) begin // @[AXI_IFU.scala 26:18]
-      if (io_arvalid) begin // @[AXI_IFU.scala 28:29]
-        axi_arready <= 1'h0; // @[AXI_IFU.scala 30:29]
-      end
-    end else if (state) begin // @[AXI_IFU.scala 26:18]
-      axi_arready <= _GEN_4;
-    end
+    axi_arready <= reset | _GEN_10; // @[AXI_IFU.scala 17:{30,30}]
     if (reset) begin // @[AXI_IFU.scala 18:29]
       axi_rvalid <= 1'h0; // @[AXI_IFU.scala 18:29]
-    end else if (~state) begin // @[AXI_IFU.scala 26:18]
+    end else if (~state) begin // @[AXI_IFU.scala 27:18]
       axi_rvalid <= _GEN_2;
-    end else if (state) begin // @[AXI_IFU.scala 26:18]
-      if (io_rready) begin // @[AXI_IFU.scala 35:28]
-        axi_rvalid <= 1'h0; // @[AXI_IFU.scala 38:28]
+    end else if (state) begin // @[AXI_IFU.scala 27:18]
+      if (io_rready) begin // @[AXI_IFU.scala 36:28]
+        axi_rvalid <= 1'h0; // @[AXI_IFU.scala 39:28]
       end
     end
     if (reset) begin // @[AXI_IFU.scala 21:24]
       state <= 1'h0; // @[AXI_IFU.scala 21:24]
-    end else if (~state) begin // @[AXI_IFU.scala 26:18]
+    end else if (~state) begin // @[AXI_IFU.scala 27:18]
       state <= _GEN_0;
-    end else if (state) begin // @[AXI_IFU.scala 26:18]
-      if (io_rready) begin // @[AXI_IFU.scala 35:28]
-        state <= 1'h0; // @[AXI_IFU.scala 36:23]
+    end else if (state) begin // @[AXI_IFU.scala 27:18]
+      if (io_rready) begin // @[AXI_IFU.scala 36:28]
+        state <= 1'h0; // @[AXI_IFU.scala 37:23]
       end
     end
   end
