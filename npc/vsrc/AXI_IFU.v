@@ -19,6 +19,7 @@ module AXI_IFU(
   wire [63:0] inst_read_Wdata; // @[AXI_IFU.scala 23:27]
   wire [7:0] inst_read_Wmask; // @[AXI_IFU.scala 23:27]
   wire  inst_read_Write_en; // @[AXI_IFU.scala 23:27]
+  wire  inst_read_Read_en; // @[AXI_IFU.scala 23:27]
   reg  axi_arready; // @[AXI_IFU.scala 17:30]
   reg  axi_rvalid; // @[AXI_IFU.scala 18:29]
   reg  state; // @[AXI_IFU.scala 21:24]
@@ -31,7 +32,8 @@ module AXI_IFU(
     .Waddr(inst_read_Waddr),
     .Wdata(inst_read_Wdata),
     .Wmask(inst_read_Wmask),
-    .Write_en(inst_read_Write_en)
+    .Write_en(inst_read_Write_en),
+    .Read_en(inst_read_Read_en)
   );
   assign io_arready = axi_arready; // @[AXI_IFU.scala 43:16]
   assign io_rvalid = axi_rvalid; // @[AXI_IFU.scala 44:15]
@@ -41,6 +43,7 @@ module AXI_IFU(
   assign inst_read_Wdata = 64'h0;
   assign inst_read_Wmask = 8'h0;
   assign inst_read_Write_en = 1'h0;
+  assign inst_read_Read_en = 1'h0;
   always @(posedge clock) begin
     if (reset) begin // @[AXI_IFU.scala 17:30]
       axi_arready <= 1'h0; // @[AXI_IFU.scala 17:30]

@@ -19,6 +19,7 @@ module AXI_IFU(
   wire [63:0] inst_read_Wdata; // @[AXI_IFU.scala 23:27]
   wire [7:0] inst_read_Wmask; // @[AXI_IFU.scala 23:27]
   wire  inst_read_Write_en; // @[AXI_IFU.scala 23:27]
+  wire  inst_read_Read_en; // @[AXI_IFU.scala 23:27]
   reg  axi_arready; // @[AXI_IFU.scala 17:30]
   reg  axi_rvalid; // @[AXI_IFU.scala 18:29]
   reg  state; // @[AXI_IFU.scala 21:24]
@@ -31,7 +32,8 @@ module AXI_IFU(
     .Waddr(inst_read_Waddr),
     .Wdata(inst_read_Wdata),
     .Wmask(inst_read_Wmask),
-    .Write_en(inst_read_Write_en)
+    .Write_en(inst_read_Write_en),
+    .Read_en(inst_read_Read_en)
   );
   assign io_arready = axi_arready; // @[AXI_IFU.scala 43:16]
   assign io_rvalid = axi_rvalid; // @[AXI_IFU.scala 44:15]
@@ -41,6 +43,7 @@ module AXI_IFU(
   assign inst_read_Wdata = 64'h0;
   assign inst_read_Wmask = 8'h0;
   assign inst_read_Write_en = 1'h0;
+  assign inst_read_Read_en = 1'h0;
   always @(posedge clock) begin
     if (reset) begin // @[AXI_IFU.scala 17:30]
       axi_arready <= 1'h0; // @[AXI_IFU.scala 17:30]
@@ -173,6 +176,7 @@ module IDU(
   output        io_ctrl_sign_src2_is_imm,
   output        io_ctrl_sign_src1_is_pc,
   output        io_ctrl_sign_Writemem_en,
+  output        io_ctrl_sign_Readmem_en,
   output [7:0]  io_ctrl_sign_Wmask
 );
 `ifdef RANDOMIZE_REG_INIT
@@ -425,6 +429,8 @@ module IDU(
   assign io_ctrl_sign_src1_is_pc = _inst_type_T_7 | (_inst_type_T_3 | (_inst_type_T_21 | (_inst_type_T_23 | (
     _inst_type_T_69 | (_inst_type_T_71 | (_inst_type_T_73 | _inst_type_T_117)))))); // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Writemem_en = 32'h44 == inst_type; // @[Mux.scala 81:61]
+  assign io_ctrl_sign_Readmem_en = _inst_type_T_25 | (_inst_type_T_15 | (_inst_type_T_113 | (_inst_type_T_77 | (
+    _inst_type_T_79 | (_inst_type_T_115 | _inst_type_T_33))))); // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Wmask = _inst_type_T_11 ? 8'hff : {{4'd0}, _Wmask_T_10}; // @[Lookup.scala 34:39]
   always @(posedge clock) begin
     axi_inst_ready <= reset | ~(io_inst_valid & axi_inst_ready); // @[IDU.scala 51:{33,33} 52:20]
@@ -489,6 +495,7 @@ module EXU(
   input         io_ctrl_sign_src2_is_imm,
   input         io_ctrl_sign_src1_is_pc,
   input         io_ctrl_sign_Writemem_en,
+  input         io_ctrl_sign_Readmem_en,
   input  [7:0]  io_ctrl_sign_Wmask,
   output [63:0] io_res2rd
 );
@@ -502,6 +509,7 @@ module EXU(
   wire [63:0] Mem_modle_Wdata; // @[EXU.scala 21:27]
   wire [7:0] Mem_modle_Wmask; // @[EXU.scala 21:27]
   wire  Mem_modle_Write_en; // @[EXU.scala 21:27]
+  wire  Mem_modle_Read_en; // @[EXU.scala 21:27]
   reg [63:0] Regfile [0:31]; // @[EXU.scala 23:22]
   wire  Regfile_src1_value_MPORT_en; // @[EXU.scala 23:22]
   wire [4:0] Regfile_src1_value_MPORT_addr; // @[EXU.scala 23:22]
@@ -928,7 +936,8 @@ module EXU(
     .Waddr(Mem_modle_Waddr),
     .Wdata(Mem_modle_Wdata),
     .Wmask(Mem_modle_Wmask),
-    .Write_en(Mem_modle_Write_en)
+    .Write_en(Mem_modle_Write_en),
+    .Read_en(Mem_modle_Read_en)
   );
   traceregs reg_trace ( // @[EXU.scala 144:27]
     .input_reg_0(reg_trace_input_reg_0),
@@ -1187,6 +1196,7 @@ module EXU(
   assign Mem_modle_Wdata = 32'h27 == io_inst_now ? {{32'd0}, _Mem_modle_io_Wdata_T_9[31:0]} : _Mem_modle_io_Wdata_T_16; // @[Mux.scala 81:58]
   assign Mem_modle_Wmask = io_ctrl_sign_Wmask; // @[EXU.scala 159:24]
   assign Mem_modle_Write_en = io_ctrl_sign_Writemem_en; // @[EXU.scala 160:27]
+  assign Mem_modle_Read_en = io_ctrl_sign_Readmem_en; // @[EXU.scala 161:26]
   assign reg_trace_input_reg_0 = Regfile_reg_trace_io_input_reg_0_MPORT_data; // @[EXU.scala 146:57]
   assign reg_trace_input_reg_1 = Regfile_reg_trace_io_input_reg_1_MPORT_data; // @[EXU.scala 146:57]
   assign reg_trace_input_reg_2 = Regfile_reg_trace_io_input_reg_2_MPORT_data; // @[EXU.scala 146:57]
@@ -1323,6 +1333,7 @@ module top(
   wire  idu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 25:26]
   wire  idu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 25:26]
   wire  idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 25:26]
+  wire  idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 25:26]
   wire [7:0] idu_step_io_ctrl_sign_Wmask; // @[top.scala 25:26]
   wire  exu_step_clock; // @[top.scala 30:26]
   wire [63:0] exu_step_io_pc; // @[top.scala 30:26]
@@ -1337,6 +1348,7 @@ module top(
   wire  exu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 30:26]
   wire  exu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 30:26]
   wire  exu_step_io_ctrl_sign_Writemem_en; // @[top.scala 30:26]
+  wire  exu_step_io_ctrl_sign_Readmem_en; // @[top.scala 30:26]
   wire [7:0] exu_step_io_ctrl_sign_Wmask; // @[top.scala 30:26]
   wire [63:0] exu_step_io_res2rd; // @[top.scala 30:26]
   wire [31:0] dpi_flag; // @[top.scala 41:21]
@@ -1369,6 +1381,7 @@ module top(
     .io_ctrl_sign_src2_is_imm(idu_step_io_ctrl_sign_src2_is_imm),
     .io_ctrl_sign_src1_is_pc(idu_step_io_ctrl_sign_src1_is_pc),
     .io_ctrl_sign_Writemem_en(idu_step_io_ctrl_sign_Writemem_en),
+    .io_ctrl_sign_Readmem_en(idu_step_io_ctrl_sign_Readmem_en),
     .io_ctrl_sign_Wmask(idu_step_io_ctrl_sign_Wmask)
   );
   EXU exu_step ( // @[top.scala 30:26]
@@ -1385,6 +1398,7 @@ module top(
     .io_ctrl_sign_src2_is_imm(exu_step_io_ctrl_sign_src2_is_imm),
     .io_ctrl_sign_src1_is_pc(exu_step_io_ctrl_sign_src1_is_pc),
     .io_ctrl_sign_Writemem_en(exu_step_io_ctrl_sign_Writemem_en),
+    .io_ctrl_sign_Readmem_en(exu_step_io_ctrl_sign_Readmem_en),
     .io_ctrl_sign_Wmask(exu_step_io_ctrl_sign_Wmask),
     .io_res2rd(exu_step_io_res2rd)
   );
@@ -1417,6 +1431,7 @@ module top(
   assign exu_step_io_ctrl_sign_src2_is_imm = idu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 38:27]
   assign exu_step_io_ctrl_sign_src1_is_pc = idu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 38:27]
   assign exu_step_io_ctrl_sign_Writemem_en = idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 38:27]
+  assign exu_step_io_ctrl_sign_Readmem_en = idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 38:27]
   assign exu_step_io_ctrl_sign_Wmask = idu_step_io_ctrl_sign_Wmask; // @[top.scala 38:27]
   assign dpi_flag = {{31'd0}, idu_step_io_inst_now == 32'h2}; // @[top.scala 42:17]
   assign dpi_ecall_flag = {{31'd0}, idu_step_io_inst_now == 32'h3d}; // @[top.scala 43:23]

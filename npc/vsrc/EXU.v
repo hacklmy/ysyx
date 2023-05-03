@@ -14,6 +14,7 @@ module EXU(
   input         io_ctrl_sign_src2_is_imm,
   input         io_ctrl_sign_src1_is_pc,
   input         io_ctrl_sign_Writemem_en,
+  input         io_ctrl_sign_Readmem_en,
   input  [7:0]  io_ctrl_sign_Wmask,
   output [63:0] io_res2rd
 );
@@ -27,6 +28,7 @@ module EXU(
   wire [63:0] Mem_modle_Wdata; // @[EXU.scala 21:27]
   wire [7:0] Mem_modle_Wmask; // @[EXU.scala 21:27]
   wire  Mem_modle_Write_en; // @[EXU.scala 21:27]
+  wire  Mem_modle_Read_en; // @[EXU.scala 21:27]
   reg [63:0] Regfile [0:31]; // @[EXU.scala 23:22]
   wire  Regfile_src1_value_MPORT_en; // @[EXU.scala 23:22]
   wire [4:0] Regfile_src1_value_MPORT_addr; // @[EXU.scala 23:22]
@@ -453,7 +455,8 @@ module EXU(
     .Waddr(Mem_modle_Waddr),
     .Wdata(Mem_modle_Wdata),
     .Wmask(Mem_modle_Wmask),
-    .Write_en(Mem_modle_Write_en)
+    .Write_en(Mem_modle_Write_en),
+    .Read_en(Mem_modle_Read_en)
   );
   traceregs reg_trace ( // @[EXU.scala 144:27]
     .input_reg_0(reg_trace_input_reg_0),
@@ -712,6 +715,7 @@ module EXU(
   assign Mem_modle_Wdata = 32'h27 == io_inst_now ? {{32'd0}, _Mem_modle_io_Wdata_T_9[31:0]} : _Mem_modle_io_Wdata_T_16; // @[Mux.scala 81:58]
   assign Mem_modle_Wmask = io_ctrl_sign_Wmask; // @[EXU.scala 159:24]
   assign Mem_modle_Write_en = io_ctrl_sign_Writemem_en; // @[EXU.scala 160:27]
+  assign Mem_modle_Read_en = io_ctrl_sign_Readmem_en; // @[EXU.scala 161:26]
   assign reg_trace_input_reg_0 = Regfile_reg_trace_io_input_reg_0_MPORT_data; // @[EXU.scala 146:57]
   assign reg_trace_input_reg_1 = Regfile_reg_trace_io_input_reg_1_MPORT_data; // @[EXU.scala 146:57]
   assign reg_trace_input_reg_2 = Regfile_reg_trace_io_input_reg_2_MPORT_data; // @[EXU.scala 146:57]

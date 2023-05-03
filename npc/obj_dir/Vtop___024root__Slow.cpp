@@ -169,6 +169,9 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1eU];
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x1fU] 
         = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1fU];
+    Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit((QData)((IData)(vlSelf->top__DOT__pc_now)), vlSelf->__Vtask_pmem_read__0__Rdata);
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+        = vlSelf->__Vtask_pmem_read__0__Rdata;
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_4 
         = ((IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready) 
            | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready));
@@ -178,12 +181,6 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_2 
         = ((IData)(vlSelf->top__DOT__axi_pc_valid) 
            | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid));
-    if (((IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready) 
-         & (IData)(vlSelf->top__DOT__axi_pc_valid))) {
-        Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit((QData)((IData)(vlSelf->top__DOT__pc_now)), vlSelf->__Vtask_pmem_read__0__Rdata);
-        vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
-            = vlSelf->__Vtask_pmem_read__0__Rdata;
-    }
     Vtop___024unit____Vdpiimwrap_get_pc_TOP____024unit(vlSelf->top__DOT__pc_now);
     Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs);
     Vtop___024unit____Vdpiimwrap_set_csr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs);
@@ -1196,19 +1193,12 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                     << 
                                                     (0x1fU 
                                                      & (IData)(vlSelf->top__DOT__exu_step__DOT__src2_value))));
-    if (((0x3003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-         | ((0x2003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-            | ((0x6003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-               | ((0x1003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                  | ((0x5003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                     | ((3U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata))) 
-                        | (0x4003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata)))))))))) {
-        Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit(
-                                                              (vlSelf->top__DOT__exu_step__DOT__src1_value 
-                                                               + vlSelf->top__DOT__exu_step__DOT__src2_value), vlSelf->__Vtask_pmem_read__1__Rdata);
-        vlSelf->top__DOT__exu_step__DOT__Mem_modle_Rdata 
-            = vlSelf->__Vtask_pmem_read__1__Rdata;
-    } else if ((0x44U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_188))) {
+    Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit(
+                                                          (vlSelf->top__DOT__exu_step__DOT__src1_value 
+                                                           + vlSelf->top__DOT__exu_step__DOT__src2_value), vlSelf->__Vtask_pmem_read__1__Rdata);
+    vlSelf->top__DOT__exu_step__DOT__Mem_modle_Rdata 
+        = vlSelf->__Vtask_pmem_read__1__Rdata;
+    if ((0x44U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_188))) {
         Vtop___024unit____Vdpiimwrap_pmem_write_TOP____024unit(
                                                                (vlSelf->top__DOT__exu_step__DOT__src1_value 
                                                                 + vlSelf->top__DOT__exu_step__DOT__src2_value), 
