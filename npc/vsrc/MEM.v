@@ -4,7 +4,7 @@ import "DPI-C" function void pmem_write(
   input longint Waddr, input longint Wdata, input byte Wmask);
 
 /* verilator lint_off UNUSED */
-
+/* verilator lint_off LATCH */
 module MEM (
     input [63:0] Raddr,
     input [63:0] Waddr,
@@ -25,5 +25,6 @@ module MEM (
 end
   
 endmodule
+/* verilator lint_on LATCH */
 /* verilator lint_on UNUSED */
 
