@@ -40,6 +40,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__exu_step_io_mem_flag;
         CData/*0:0*/ top__DOT__axi_pc_valid;
         CData/*0:0*/ top__DOT___exu_step_io_inst_valid_T;
+        CData/*0:0*/ top__DOT__npc_step;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT__axi_wready;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT__axi_bvalid;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT__axi_arready;
@@ -96,9 +97,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__exu_step__DOT__xor_res;
         QData/*63:0*/ top__DOT__exu_step__DOT__and_res;
         QData/*63:0*/ top__DOT__exu_step__DOT___mluw_res_T_2;
-        QData/*32:0*/ top__DOT__exu_step__DOT___divw_res_T_4;
     };
     struct {
+        QData/*32:0*/ top__DOT__exu_step__DOT___divw_res_T_4;
         QData/*63:0*/ top__DOT__exu_step__DOT__axi__DOT__Mem_modle_Rdata;
         VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__Regfile;
         VlUnpacked<QData/*63:0*/, 4> top__DOT__exu_step__DOT__CSR_Reg;
