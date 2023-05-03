@@ -1509,7 +1509,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                  == 
                                                                  (0x707fU 
                                                                   & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
-                                                                 ? 0xfU
+                                                                 ? 0xffU
                                                                  : 
                                                                 ((0x1023U 
                                                                   == 
