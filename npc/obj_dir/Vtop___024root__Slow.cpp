@@ -169,9 +169,6 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1eU];
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x1fU] 
         = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1fU];
-    Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit((QData)((IData)(vlSelf->top__DOT__pc_now)), vlSelf->__Vtask_pmem_read__0__Rdata);
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
-        = vlSelf->__Vtask_pmem_read__0__Rdata;
     vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_13 
         = ((IData)(vlSelf->top__DOT__exu_step__DOT__axi_rready)
             ? 0U : (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__state));
@@ -184,23 +181,49 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_6 
         = ((IData)(vlSelf->top__DOT__exu_step__DOT__axi_awvalid) 
            | (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_bvalid));
-    vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_27 
-        = ((0U == (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__state))
-            ? ((~ (IData)(vlSelf->top__DOT__exu_step__DOT__axi_awvalid)) 
-               & (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_wready))
-            : ((3U == (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__state))
+    if ((0U == (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__state))) {
+        vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_27 
+            = ((~ (IData)(vlSelf->top__DOT__exu_step__DOT__axi_awvalid)) 
+               & (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_wready));
+        vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_29 
+            = ((IData)(vlSelf->top__DOT__exu_step__DOT__axi_awvalid)
+                ? (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready)
+                : ((~ (IData)(vlSelf->top__DOT__exu_step__DOT__axi_arvalid)) 
+                   & (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready)));
+    } else {
+        vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_27 
+            = ((3U == (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__state))
                 ? ((IData)(vlSelf->top__DOT__exu_step__DOT__axi_bready) 
                    | (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_wready))
-                : (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_wready)));
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_4 
-        = ((IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready) 
-           | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready));
+                : (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_wready));
+        vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_29 
+            = ((3U == (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__state))
+                ? (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready)
+                : ((4U == (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__state))
+                    ? ((IData)(vlSelf->top__DOT__exu_step__DOT__axi_rready) 
+                       | (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready))
+                    : (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready)));
+    }
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_0 
         = ((IData)(vlSelf->top__DOT__axi_pc_valid) 
            | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state));
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_2 
         = ((IData)(vlSelf->top__DOT__axi_pc_valid) 
            | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid));
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_10 
+        = ((IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state)
+            ? ((IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state)
+                ? ((IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready) 
+                   | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready))
+                : (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready))
+            : ((~ (IData)(vlSelf->top__DOT__axi_pc_valid)) 
+               & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready)));
+    if (((IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready) 
+         & (IData)(vlSelf->top__DOT__axi_pc_valid))) {
+        Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit((QData)((IData)(vlSelf->top__DOT__pc_now)), vlSelf->__Vtask_pmem_read__0__Rdata);
+        vlSelf->top__DOT__ifu_step__DOT__axi__DOT__inst_read_Rdata 
+            = vlSelf->__Vtask_pmem_read__0__Rdata;
+    }
     Vtop___024unit____Vdpiimwrap_get_pc_TOP____024unit(vlSelf->top__DOT__pc_now);
     Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs);
     Vtop___024unit____Vdpiimwrap_set_csr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs);
@@ -1363,9 +1386,12 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                    : 0U))) 
                                                  << 0x20U) 
                                                 | (QData)((IData)(vlSelf->top__DOT__exu_step__DOT__add_res)));
-    Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit((QData)((IData)(vlSelf->top__DOT__exu_step__DOT__add_res)), vlSelf->__Vtask_pmem_read__4__Rdata);
-    vlSelf->top__DOT__exu_step__DOT__axi__DOT__Mem_modle_Rdata 
-        = vlSelf->__Vtask_pmem_read__4__Rdata;
+    if (((IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready) 
+         & (IData)(vlSelf->top__DOT__exu_step__DOT__axi_arvalid))) {
+        Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit((QData)((IData)(vlSelf->top__DOT__exu_step__DOT__add_res)), vlSelf->__Vtask_pmem_read__4__Rdata);
+        vlSelf->top__DOT__exu_step__DOT__axi__DOT__Mem_modle_Rdata 
+            = vlSelf->__Vtask_pmem_read__4__Rdata;
+    }
     if (((IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_wready) 
          & (IData)(vlSelf->top__DOT__exu_step__DOT__axi_awvalid))) {
         Vtop___024unit____Vdpiimwrap_pmem_write_TOP____024unit((QData)((IData)(vlSelf->top__DOT__exu_step__DOT__add_res)), (QData)((IData)(
@@ -2241,7 +2267,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_0 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_2 = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_4 = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_10 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__idu_step__DOT__axi_inst_ready = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__idu_step__DOT___inst_type_T_188 = VL_RAND_RESET_I(7);
     vlSelf->top__DOT__idu_step__DOT___inst_now_T_194 = VL_RAND_RESET_I(7);
@@ -2288,6 +2314,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__exu_step__DOT__axi__DOT__Mem_modle_Rdata = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_wready = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_bvalid = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_rvalid = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__exu_step__DOT__axi__DOT__state = VL_RAND_RESET_I(3);
     vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_2 = VL_RAND_RESET_I(1);
@@ -2295,6 +2322,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_13 = VL_RAND_RESET_I(3);
     vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_15 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_27 = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_29 = VL_RAND_RESET_I(1);
     vlSelf->__Vtask_pmem_read__0__Rdata = 0;
     vlSelf->__Vtask_pmem_read__4__Rdata = 0;
     for (int __Vi0=0; __Vi0<2; ++__Vi0) {
