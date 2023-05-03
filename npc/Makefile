@@ -21,7 +21,7 @@ copy_top:
 	echo "/* verilator lint_on UNUSED */" >> vsrc/IDU.v
 	echo "/* verilator lint_off UNUSED */" > vsrc/EXU.v
 	echo "/* verilator lint_off WIDTH */" >> vsrc/EXU.v
-	sed -n '/module EXU/,/endmodule/p' vsrc/output/top.v >> vsrc/EXU.v
+	sed -n '/module EXU_AXI/,/endmodule/p' vsrc/output/top.v >> vsrc/EXU.v
 	echo "/* verilator lint_on WIDTH */" >> vsrc/EXU.v
 	echo "/* verilator lint_on UNUSED */" >> vsrc/EXU.v
 	sed -n '/module AXI_IFU/,/endmodule/p' vsrc/output/top.v > vsrc/AXI_IFU.v
