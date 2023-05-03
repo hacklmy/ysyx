@@ -753,7 +753,7 @@ void cpu_exec(int n){
 #endif
 #ifdef CONFIG_DIFFTEST
 #ifdef HAS_AXI
-    if(top->io_step&&sim_time!=3){
+    if(top->io_step&&sim_time!=5){
       difftest_step(pc_now);
     }
 #else
