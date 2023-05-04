@@ -1490,7 +1490,6 @@ module top(
 `ifdef RANDOMIZE_REG_INIT
   reg [63:0] _RAND_0;
   reg [31:0] _RAND_1;
-  reg [31:0] _RAND_2;
 `endif // RANDOMIZE_REG_INIT
   wire  ifu_step_clock; // @[top.scala 18:26]
   wire  ifu_step_reset; // @[top.scala 18:26]
@@ -1542,7 +1541,6 @@ module top(
   wire  _exu_step_io_inst_valid_T = ifu_step_io_inst_ready & ifu_step_io_inst_valid; // @[top.scala 37:53]
   wire  _pc_now_T_4 = _exu_step_io_inst_valid_T & ~exu_step_io_mem_flag | exu_step_io_mem_flag & exu_step_io_mem_end; // @[top.scala 46:97]
   reg  npc_step; // @[top.scala 48:27]
-  reg  pc_valid; // @[top.scala 52:27]
   IFU_AXI ifu_step ( // @[top.scala 18:26]
     .clock(ifu_step_clock),
     .reset(ifu_step_reset),
@@ -1605,7 +1603,7 @@ module top(
   assign ifu_step_clock = clock;
   assign ifu_step_reset = reset;
   assign ifu_step_io_pc = pc_now; // @[top.scala 19:20]
-  assign ifu_step_io_pc_valid = pc_valid; // @[top.scala 54:26]
+  assign ifu_step_io_pc_valid = pc_now == 64'h80000000 | ~(exu_step_io_mem_end & ifu_step_io_inst_valid); // @[top.scala 54:32]
   assign ifu_step_io_inst_ready = idu_step_io_inst_ready; // @[top.scala 27:28]
   assign idu_step_clock = clock;
   assign idu_step_reset = reset;
@@ -1640,7 +1638,6 @@ module top(
     end else begin
       npc_step <= _pc_now_T_4; // @[top.scala 49:14]
     end
-    pc_valid <= reset | ~(exu_step_io_mem_end & ifu_step_io_inst_valid); // @[top.scala 52:{27,27} 53:14]
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -1682,8 +1679,6 @@ initial begin
   pc_now = _RAND_0[63:0];
   _RAND_1 = {1{`RANDOM}};
   npc_step = _RAND_1[0:0];
-  _RAND_2 = {1{`RANDOM}};
-  pc_valid = _RAND_2[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
