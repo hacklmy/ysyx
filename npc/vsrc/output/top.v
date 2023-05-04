@@ -496,7 +496,8 @@ module IDU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"Writemem_en:%d  Readmem_en:%d inst_valid:%d\n",_imm_T_27,Readmem_en,io_inst_valid); // @[IDU.scala 366:11]
+          $fwrite(32'h80000002,"Writemem_en:%d  Readmem_en:%d inst_valid:%d io.mem_end:%d\n",_imm_T_27,Readmem_en,
+            io_inst_valid,io_mem_end); // @[IDU.scala 366:11]
         end
     `ifdef PRINTF_COND
       end
