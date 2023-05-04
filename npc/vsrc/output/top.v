@@ -483,6 +483,7 @@ module IDU(
   wire [3:0] _Wmask_T_8 = _inst_type_T_75 ? 4'hf : 4'h0; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_9 = _inst_type_T_37 ? 4'h1 : _Wmask_T_8; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_10 = _inst_type_T_35 ? 4'h3 : _Wmask_T_9; // @[Lookup.scala 34:39]
+  wire  _T_1 = ~reset; // @[IDU.scala 369:11]
   reg  axi_inst_ready; // @[IDU.scala 370:33]
   wire  _GEN_0 = io_inst_valid & (_imm_T_27 | Readmem_en) & ~(io_exu_bvalid | io_exu_rvalid) ? 1'h0 : 1'h1; // @[IDU.scala 373:94 374:24 376:24]
   wire  _GEN_1 = io_inst_valid & axi_inst_ready ? 1'h0 : _GEN_0; // @[IDU.scala 371:42 372:24]
@@ -510,6 +511,17 @@ module IDU(
     `endif
         if (~reset) begin
           $fwrite(32'h80000002,"Writemem_en:%d Readmem_en:%d\n",_imm_T_27,Readmem_en); // @[IDU.scala 369:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (_T_1) begin
+          $fwrite(32'h80000002,"inst_ready:%d\n",axi_inst_ready); // @[IDU.scala 379:11]
         end
     `ifdef PRINTF_COND
       end

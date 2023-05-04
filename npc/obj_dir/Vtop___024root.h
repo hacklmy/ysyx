@@ -33,7 +33,6 @@ VL_MODULE(Vtop___024root) {
     // LOCAL SIGNALS
     // Anonymous structures to workaround compiler member-count bugs
     struct {
-        CData/*0:0*/ top__DOT__ifu_step_io_pc_valid;
         CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_src2_is_imm;
         CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_src1_is_pc;
         CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_Readmem_en;
@@ -46,16 +45,16 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT__axi_arready;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid;
         CData/*2:0*/ top__DOT__ifu_step__DOT__axi__DOT__state;
-        CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT___GEN_2;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT___GEN_6;
         CData/*2:0*/ top__DOT__ifu_step__DOT__axi__DOT___GEN_13;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT___GEN_15;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT___GEN_27;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT___GEN_29;
-        CData/*0:0*/ top__DOT__idu_step__DOT__axi_inst_ready;
         CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_188;
         CData/*6:0*/ top__DOT__idu_step__DOT___inst_now_T_194;
         CData/*0:0*/ top__DOT__idu_step__DOT___reg_write_T_37;
+        CData/*0:0*/ top__DOT__idu_step__DOT__axi_inst_ready;
+        CData/*0:0*/ top__DOT__idu_step__DOT___GEN_1;
         CData/*1:0*/ top__DOT__exu_step__DOT___csr_index_T_5;
         CData/*0:0*/ top__DOT__exu_step__DOT___T_7;
         CData/*0:0*/ top__DOT__exu_step__DOT__axi_arvalid;
@@ -97,9 +96,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__exu_step__DOT__or_res;
         QData/*63:0*/ top__DOT__exu_step__DOT__xor_res;
         QData/*63:0*/ top__DOT__exu_step__DOT__and_res;
+        QData/*63:0*/ top__DOT__exu_step__DOT___mluw_res_T_2;
     };
     struct {
-        QData/*63:0*/ top__DOT__exu_step__DOT___mluw_res_T_2;
         QData/*32:0*/ top__DOT__exu_step__DOT___divw_res_T_4;
         QData/*63:0*/ top__DOT__exu_step__DOT__axi__DOT__Mem_modle_Rdata;
         VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__Regfile;
@@ -110,10 +109,9 @@ VL_MODULE(Vtop___024root) {
 
     // LOCAL VARIABLES
     CData/*0:0*/ __Vclklast__TOP__clock;
-    CData/*0:0*/ __Vchglast__TOP__top__DOT__exu_step_io_mem_end;
     QData/*63:0*/ __Vtask_pmem_read__0__Rdata;
     QData/*63:0*/ __Vtask_pmem_read__4__Rdata;
-    VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
+    VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
 
     // INTERNAL VARIABLES
     Vtop__Syms* vlSymsp;  // Symbol table
