@@ -297,7 +297,6 @@ module EXU_AXI(
   wire [63:0] axi_io_axi_out_rdata; // @[EXU_AXI.scala 173:21]
   wire  axi_io_axi_out_rvalid; // @[EXU_AXI.scala 173:21]
   wire  axi_io_axi_out_bvalid; // @[EXU_AXI.scala 173:21]
-  wire  _T_1 = ~reset; // @[EXU_AXI.scala 24:11]
   wire [11:0] csr_addr = io_imm[11:0]; // @[EXU_AXI.scala 29:26]
   wire [1:0] _csr_index_T_5 = 12'h300 == csr_addr ? 2'h2 : {{1'd0}, 12'h341 == csr_addr}; // @[Mux.scala 81:58]
   wire  _csr_index_T_6 = 12'h342 == csr_addr; // @[Mux.scala 81:61]
@@ -422,15 +421,15 @@ module EXU_AXI(
   wire [126:0] _io_res2rd_T_206 = 32'h46 == io_inst_now ? {{63'd0}, CSR_Reg_io_res2rd_MPORT_1_data} : _io_res2rd_T_204; // @[Mux.scala 81:58]
   wire [126:0] _io_res2rd_T_208 = 32'h47 == io_inst_now ? {{63'd0}, CSR_Reg_io_res2rd_MPORT_2_data} : _io_res2rd_T_206; // @[Mux.scala 81:58]
   wire [63:0] reg_value = io_rd == 5'h0 ? 64'h0 : Regfile_reg_value_MPORT_data; // @[EXU_AXI.scala 37:12]
-  wire  _T_4 = io_ctrl_sign_reg_write & io_rd != 5'h0 & io_inst_valid; // @[EXU_AXI.scala 119:63]
+  wire  _T_2 = io_ctrl_sign_reg_write & io_rd != 5'h0 & io_inst_valid; // @[EXU_AXI.scala 119:63]
   wire [63:0] _csr_wdata_T = src1_value | CSR_Reg_csr_wdata_MPORT_data; // @[EXU_AXI.scala 124:32]
   wire [63:0] _csr_wdata_T_1 = ~CSR_Reg_csr_wdata_MPORT_1_data; // @[EXU_AXI.scala 125:35]
   wire [63:0] _csr_wdata_T_2 = src1_value & _csr_wdata_T_1; // @[EXU_AXI.scala 125:32]
   wire [63:0] _csr_wdata_T_4 = 32'h3f == io_inst_now ? src1_value : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _csr_wdata_T_6 = 32'h46 == io_inst_now ? _csr_wdata_T : _csr_wdata_T_4; // @[Mux.scala 81:58]
   wire [63:0] csr_wdata = 32'h47 == io_inst_now ? _csr_wdata_T_2 : _csr_wdata_T_6; // @[Mux.scala 81:58]
-  wire  _T_7 = io_inst_now == 32'h3d & io_inst_valid; // @[EXU_AXI.scala 128:48]
-  wire  _T_12 = io_ctrl_sign_csr_write & io_inst_valid; // @[EXU_AXI.scala 131:53]
+  wire  _T_5 = io_inst_now == 32'h3d & io_inst_valid; // @[EXU_AXI.scala 128:48]
+  wire  _T_10 = io_ctrl_sign_csr_write & io_inst_valid; // @[EXU_AXI.scala 131:53]
   wire [63:0] _io_pc_next_T = add_res & 64'hfffffffffffffffe; // @[EXU_AXI.scala 138:28]
   wire [63:0] _io_pc_next_T_3 = io_rs1 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_data; // @[EXU_AXI.scala 139:39]
   wire [63:0] _io_pc_next_T_6 = io_rs2 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_1_data; // @[EXU_AXI.scala 139:67]
@@ -685,7 +684,7 @@ module EXU_AXI(
   assign Regfile_mem_wdate_MPORT_3_en = 1'h1;
   assign Regfile_mem_wdate_MPORT_3_addr = io_rs2;
   assign Regfile_mem_wdate_MPORT_3_data = Regfile[Regfile_mem_wdate_MPORT_3_addr]; // @[EXU_AXI.scala 27:22]
-  assign Regfile_MPORT_data = _T_4 ? io_res2rd : reg_value;
+  assign Regfile_MPORT_data = _T_2 ? io_res2rd : reg_value;
   assign Regfile_MPORT_addr = io_rd;
   assign Regfile_MPORT_mask = 1'h1;
   assign Regfile_MPORT_en = 1'h1;
@@ -728,15 +727,15 @@ module EXU_AXI(
   assign CSR_Reg_reg_trace_io_csr_reg_2_MPORT_en = 1'h1;
   assign CSR_Reg_reg_trace_io_csr_reg_2_MPORT_addr = 2'h2;
   assign CSR_Reg_reg_trace_io_csr_reg_2_MPORT_data = CSR_Reg[CSR_Reg_reg_trace_io_csr_reg_2_MPORT_addr]; // @[EXU_AXI.scala 28:22]
-  assign CSR_Reg_MPORT_1_data = _T_7 ? io_pc : CSR_Reg_MPORT_2_data;
+  assign CSR_Reg_MPORT_1_data = _T_5 ? io_pc : CSR_Reg_MPORT_2_data;
   assign CSR_Reg_MPORT_1_addr = 2'h1;
   assign CSR_Reg_MPORT_1_mask = 1'h1;
   assign CSR_Reg_MPORT_1_en = 1'h1;
-  assign CSR_Reg_MPORT_3_data = _T_7 ? Regfile_MPORT_4_data : CSR_Reg_MPORT_5_data;
+  assign CSR_Reg_MPORT_3_data = _T_5 ? Regfile_MPORT_4_data : CSR_Reg_MPORT_5_data;
   assign CSR_Reg_MPORT_3_addr = 2'h3;
   assign CSR_Reg_MPORT_3_mask = 1'h1;
   assign CSR_Reg_MPORT_3_en = 1'h1;
-  assign CSR_Reg_MPORT_6_data = _T_12 ? csr_wdata : CSR_Reg_MPORT_7_data;
+  assign CSR_Reg_MPORT_6_data = _T_10 ? csr_wdata : CSR_Reg_MPORT_7_data;
   assign CSR_Reg_MPORT_6_addr = _csr_index_T_6 ? 2'h3 : _csr_index_T_5;
   assign CSR_Reg_MPORT_6_mask = 1'h1;
   assign CSR_Reg_MPORT_6_en = 1'h1;
@@ -823,28 +822,6 @@ module EXU_AXI(
       axi_wvalid <= _axi_awvalid_T_2; // @[EXU_AXI.scala 184:16]
     end
     axi_bready <= reset | ~(axi_bready & axi_io_axi_out_bvalid); // @[EXU_AXI.scala 179:{29,29} 185:16]
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"pc : %x inst_now : %x  valid: %d\n",io_pc,io_inst_now,io_inst_valid); // @[EXU_AXI.scala 24:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (_T_1) begin
-          $fwrite(32'h80000002,"bvalid: %d\n",axi_io_axi_out_bvalid); // @[EXU_AXI.scala 186:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
