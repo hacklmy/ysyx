@@ -61,8 +61,8 @@ module top(
   wire [31:0] dpi_flag; // @[top.scala 42:21]
   wire [31:0] dpi_ecall_flag; // @[top.scala 42:21]
   reg [63:0] pc_now; // @[top.scala 15:25]
-  wire  _exu_step_io_inst_valid_T = ifu_step_io_inst_ready & ifu_step_io_inst_valid; // @[top.scala 37:53]
-  wire  _pc_now_T_4 = _exu_step_io_inst_valid_T & ~exu_step_io_mem_flag | exu_step_io_mem_flag & exu_step_io_mem_end; // @[top.scala 46:97]
+  wire  _pc_now_T_4 = ifu_step_io_inst_ready & ifu_step_io_inst_valid & ~exu_step_io_mem_flag | exu_step_io_mem_flag &
+    exu_step_io_mem_end; // @[top.scala 46:97]
   reg  npc_step; // @[top.scala 48:27]
   IFU_AXI ifu_step ( // @[top.scala 18:26]
     .clock(ifu_step_clock),
@@ -151,13 +151,14 @@ module top(
   assign exu_step_io_ctrl_sign_Writemem_en = idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 36:27]
   assign exu_step_io_ctrl_sign_Readmem_en = idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 36:27]
   assign exu_step_io_ctrl_sign_Wmask = idu_step_io_ctrl_sign_Wmask; // @[top.scala 36:27]
-  assign exu_step_io_inst_valid = ifu_step_io_inst_ready & ifu_step_io_inst_valid; // @[top.scala 37:53]
+  assign exu_step_io_inst_valid = ifu_step_io_inst_valid; // @[top.scala 37:28]
   assign dpi_flag = {{31'd0}, idu_step_io_inst_now == 32'h2}; // @[top.scala 43:17]
   assign dpi_ecall_flag = {{31'd0}, idu_step_io_inst_now == 32'h3d}; // @[top.scala 44:23]
   always @(posedge clock) begin
     if (reset) begin // @[top.scala 15:25]
       pc_now <= 64'h80000000; // @[top.scala 15:25]
-    end else if (_exu_step_io_inst_valid_T & ~exu_step_io_mem_flag | exu_step_io_mem_flag & exu_step_io_mem_end) begin // @[top.scala 46:18]
+    end else if (ifu_step_io_inst_ready & ifu_step_io_inst_valid & ~exu_step_io_mem_flag | exu_step_io_mem_flag &
+      exu_step_io_mem_end) begin // @[top.scala 46:18]
       pc_now <= exu_step_io_pc_next;
     end
     if (reset) begin // @[top.scala 48:27]

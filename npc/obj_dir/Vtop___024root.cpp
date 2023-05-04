@@ -89,11 +89,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     QData/*63:0*/ __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v1;
     QData/*63:0*/ __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v2;
     // Body
-    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"pc_valid : 1\n");
-    }
     __Vdly__top__DOT__ifu_step__DOT__axi__DOT__state 
         = vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state;
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"inst_valid : %1# pc_ready: 1 \n",
+                   1,vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid);
+    }
     __Vdly__top__DOT__exu_step__DOT__axi__DOT__state 
         = vlSelf->top__DOT__exu_step__DOT__axi__DOT__state;
     __Vdly__top__DOT__exu_step__DOT__axi_bready = vlSelf->top__DOT__exu_step__DOT__axi_bready;
@@ -137,32 +138,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                       & (~ (IData)(vlSelf->top__DOT__exu_step_io_mem_flag))) 
                                      | ((IData)(vlSelf->top__DOT__exu_step_io_mem_flag) 
                                         & (IData)(vlSelf->top__DOT__exu_step_io_mem_end))));
-    if (vlSelf->reset) {
-        vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_bvalid = 0U;
-    } else if ((0U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))) {
-        vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_bvalid 
-            = vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_6;
-    }
-    if (vlSelf->reset) {
-        vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid = 0U;
-    } else if ((0U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))) {
-        vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid = 1U;
-    } else if ((3U != (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))) {
-        if ((4U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))) {
-            vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid 
-                = vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_15;
-        }
-    }
-    if (vlSelf->reset) {
-        __Vdly__top__DOT__ifu_step__DOT__axi__DOT__state = 0U;
-    } else if ((0U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))) {
-        __Vdly__top__DOT__ifu_step__DOT__axi__DOT__state = 4U;
-    } else if ((3U != (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))) {
-        if ((4U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))) {
-            __Vdly__top__DOT__ifu_step__DOT__axi__DOT__state 
-                = vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_13;
-        }
-    }
     vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_wready 
         = ((IData)(vlSelf->reset) | (IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT___GEN_27));
     vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready 
@@ -199,8 +174,32 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                             >> 7U)));
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready 
         = ((IData)(vlSelf->reset) | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_29));
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state 
-        = __Vdly__top__DOT__ifu_step__DOT__axi__DOT__state;
+    if (vlSelf->reset) {
+        vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_bvalid = 0U;
+    } else if ((0U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))) {
+        vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_bvalid 
+            = vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_6;
+    }
+    if (vlSelf->reset) {
+        vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid = 0U;
+    } else if ((0U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))) {
+        vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid = 1U;
+    } else if ((3U != (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))) {
+        if ((4U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))) {
+            vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid 
+                = vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_15;
+        }
+    }
+    if (vlSelf->reset) {
+        __Vdly__top__DOT__ifu_step__DOT__axi__DOT__state = 0U;
+    } else if ((0U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))) {
+        __Vdly__top__DOT__ifu_step__DOT__axi__DOT__state = 4U;
+    } else if ((3U != (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))) {
+        if ((4U == (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state))) {
+            __Vdly__top__DOT__ifu_step__DOT__axi__DOT__state 
+                = vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_13;
+        }
+    }
     vlSelf->top__DOT__exu_step__DOT__CSR_Reg[1U] = __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v0;
     vlSelf->top__DOT__exu_step__DOT__CSR_Reg[3U] = __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v1;
     vlSelf->top__DOT__exu_step__DOT__CSR_Reg[__Vdlyvdim0__top__DOT__exu_step__DOT__CSR_Reg__v2] 
@@ -220,8 +219,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_27 
         = vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_wready;
     vlSelf->io_step = vlSelf->top__DOT__npc_step;
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_6 
-        = vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_bvalid;
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state 
+        = __Vdly__top__DOT__ifu_step__DOT__axi__DOT__state;
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs[0U] 
         = vlSelf->top__DOT__exu_step__DOT__CSR_Reg[0U];
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs[1U] 
@@ -331,6 +330,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1eU];
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x1fU] 
         = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1fU];
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_6 
+        = vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_bvalid;
     vlSelf->top__DOT__exu_step__DOT__axi_bready = __Vdly__top__DOT__exu_step__DOT__axi_bready;
     vlSelf->top__DOT__exu_step__DOT__axi__DOT__state 
         = __Vdly__top__DOT__exu_step__DOT__axi__DOT__state;

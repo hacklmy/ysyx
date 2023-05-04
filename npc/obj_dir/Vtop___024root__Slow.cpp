@@ -99,8 +99,6 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     // Body
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs[3U] = 0ULL;
     vlSelf->io_step = vlSelf->top__DOT__npc_step;
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_6 
-        = vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_bvalid;
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_27 
         = vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_wready;
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs[0U] 
@@ -174,6 +172,8 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x1fU] 
         = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1fU];
     vlSelf->io_pc = vlSelf->top__DOT__pc_now;
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_6 
+        = vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_bvalid;
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_13 
         = ((IData)(vlSelf->top__DOT__idu_step__DOT__axi_inst_ready)
             ? 0U : (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__state));
