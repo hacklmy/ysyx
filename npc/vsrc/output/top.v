@@ -574,6 +574,8 @@ module EXU_AXI(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_2;
   reg [31:0] _RAND_3;
+  reg [31:0] _RAND_4;
+  reg [31:0] _RAND_5;
 `endif // RANDOMIZE_REG_INIT
   reg [63:0] Regfile [0:31]; // @[EXU_AXI.scala 27:22]
   wire  Regfile_src1_value_MPORT_en; // @[EXU_AXI.scala 27:22]
@@ -1010,10 +1012,12 @@ module EXU_AXI(
   wire [63:0] _mem_wdata_T_14 = 32'h26 == io_inst_now ? {{48'd0}, _mem_wdata_T_3[15:0]} : _mem_wdata_T_12; // @[Mux.scala 81:58]
   wire [63:0] _mem_wdata_T_16 = 32'h28 == io_inst_now ? {{56'd0}, _mem_wdata_T_6[7:0]} : _mem_wdata_T_14; // @[Mux.scala 81:58]
   wire [63:0] mem_wdata = 32'h27 == io_inst_now ? {{32'd0}, _mem_wdata_T_9[31:0]} : _mem_wdata_T_16; // @[Mux.scala 81:58]
+  reg  axi_arvalid; // @[EXU_AXI.scala 175:30]
   reg  axi_rready; // @[EXU_AXI.scala 176:29]
+  reg  axi_awvalid; // @[EXU_AXI.scala 177:30]
   reg  axi_bready; // @[EXU_AXI.scala 179:29]
-  wire  _axi_io_axi_in_awvalid_T = io_ctrl_sign_Writemem_en & io_inst_valid; // @[EXU_AXI.scala 198:55]
-  wire  _axi_io_axi_in_awvalid_T_1 = ~axi_io_axi_out_bvalid; // @[EXU_AXI.scala 198:75]
+  wire  _axi_awvalid_T = io_ctrl_sign_Writemem_en & io_inst_valid; // @[EXU_AXI.scala 183:45]
+  wire  _axi_awvalid_T_1 = ~axi_io_axi_out_bvalid; // @[EXU_AXI.scala 183:65]
   traceregs reg_trace ( // @[EXU_AXI.scala 148:27]
     .input_reg_0(reg_trace_input_reg_0),
     .input_reg_1(reg_trace_input_reg_1),
@@ -1328,10 +1332,10 @@ module EXU_AXI(
   assign axi_io_axi_in_arvalid = io_inst_valid & io_ctrl_sign_Readmem_en; // @[EXU_AXI.scala 195:44]
   assign axi_io_axi_in_rready = axi_rready; // @[EXU_AXI.scala 196:26]
   assign axi_io_axi_in_awaddr = add_res[31:0]; // @[EXU_AXI.scala 197:36]
-  assign axi_io_axi_in_awvalid = io_ctrl_sign_Writemem_en & io_inst_valid & ~axi_io_axi_out_bvalid; // @[EXU_AXI.scala 198:72]
+  assign axi_io_axi_in_awvalid = _axi_awvalid_T & _axi_awvalid_T_1; // @[EXU_AXI.scala 198:72]
   assign axi_io_axi_in_wdata = mem_wdata[31:0]; // @[EXU_AXI.scala 199:25]
   assign axi_io_axi_in_wstrb = io_ctrl_sign_Wmask; // @[EXU_AXI.scala 200:25]
-  assign axi_io_axi_in_wvalid = _axi_io_axi_in_awvalid_T & _axi_io_axi_in_awvalid_T_1; // @[EXU_AXI.scala 201:71]
+  assign axi_io_axi_in_wvalid = _axi_awvalid_T & _axi_awvalid_T_1; // @[EXU_AXI.scala 201:71]
   assign axi_io_axi_in_bready = axi_bready; // @[EXU_AXI.scala 202:26]
   always @(posedge clock) begin
     if (Regfile_MPORT_en & Regfile_MPORT_mask) begin
@@ -1346,7 +1350,17 @@ module EXU_AXI(
     if (CSR_Reg_MPORT_6_en & CSR_Reg_MPORT_6_mask) begin
       CSR_Reg[CSR_Reg_MPORT_6_addr] <= CSR_Reg_MPORT_6_data; // @[EXU_AXI.scala 28:22]
     end
+    if (reset) begin // @[EXU_AXI.scala 175:30]
+      axi_arvalid <= 1'h0; // @[EXU_AXI.scala 175:30]
+    end else begin
+      axi_arvalid <= io_inst_valid & io_ctrl_sign_Readmem_en; // @[EXU_AXI.scala 181:17]
+    end
     axi_rready <= reset | ~(axi_rready & axi_io_axi_out_rvalid); // @[EXU_AXI.scala 176:{29,29} 182:16]
+    if (reset) begin // @[EXU_AXI.scala 177:30]
+      axi_awvalid <= 1'h0; // @[EXU_AXI.scala 177:30]
+    end else begin
+      axi_awvalid <= io_ctrl_sign_Writemem_en & io_inst_valid & ~axi_io_axi_out_bvalid; // @[EXU_AXI.scala 183:17]
+    end
     axi_bready <= reset | ~(axi_bready & axi_io_axi_out_bvalid); // @[EXU_AXI.scala 179:{29,29} 185:16]
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND
@@ -1365,6 +1379,28 @@ module EXU_AXI(
     `endif
         if (_T_1) begin
           $fwrite(32'h80000002,"bvalid: %d\n",axi_io_axi_out_bvalid); // @[EXU_AXI.scala 186:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (_T_1) begin
+          $fwrite(32'h80000002,"axi_arvalid : %d axi_awvalid : %d\n",axi_arvalid,axi_awvalid); // @[EXU_AXI.scala 190:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (_T_1) begin
+          $fwrite(32'h80000002,"Readmem_en : %d Writemem_en : %d\n",io_ctrl_sign_Readmem_en,io_ctrl_sign_Writemem_en); // @[EXU_AXI.scala 191:11]
         end
     `ifdef PRINTF_COND
       end
@@ -1416,9 +1452,13 @@ initial begin
 `endif // RANDOMIZE_MEM_INIT
 `ifdef RANDOMIZE_REG_INIT
   _RAND_2 = {1{`RANDOM}};
-  axi_rready = _RAND_2[0:0];
+  axi_arvalid = _RAND_2[0:0];
   _RAND_3 = {1{`RANDOM}};
-  axi_bready = _RAND_3[0:0];
+  axi_rready = _RAND_3[0:0];
+  _RAND_4 = {1{`RANDOM}};
+  axi_awvalid = _RAND_4[0:0];
+  _RAND_5 = {1{`RANDOM}};
+  axi_bready = _RAND_5[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
