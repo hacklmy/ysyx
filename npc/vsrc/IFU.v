@@ -3,7 +3,6 @@ module IFU_AXI(
   input         clock,
   input         reset,
   input  [63:0] io_pc,
-  input         io_pc_valid,
   output        io_inst_valid,
   input         io_inst_ready,
   output [31:0] io_inst
@@ -43,7 +42,7 @@ module IFU_AXI(
   assign axi_clock = clock;
   assign axi_reset = reset;
   assign axi_io_axi_in_araddr = io_pc[31:0]; // @[IFU_AXI.scala 17:34]
-  assign axi_io_axi_in_arvalid = io_pc_valid; // @[IFU_AXI.scala 18:27]
+  assign axi_io_axi_in_arvalid = 1'h1; // @[IFU_AXI.scala 18:27]
   assign axi_io_axi_in_rready = io_inst_ready; // @[IFU_AXI.scala 19:26]
   assign axi_io_axi_in_awaddr = 32'h0; // @[IFU_AXI.scala 20:26]
   assign axi_io_axi_in_awvalid = 1'h0; // @[IFU_AXI.scala 22:27]

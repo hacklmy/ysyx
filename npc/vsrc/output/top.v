@@ -162,7 +162,6 @@ module IFU_AXI(
   input         clock,
   input         reset,
   input  [63:0] io_pc,
-  input         io_pc_valid,
   output        io_inst_valid,
   input         io_inst_ready,
   output [31:0] io_inst
@@ -202,7 +201,7 @@ module IFU_AXI(
   assign axi_clock = clock;
   assign axi_reset = reset;
   assign axi_io_axi_in_araddr = io_pc[31:0]; // @[IFU_AXI.scala 17:34]
-  assign axi_io_axi_in_arvalid = io_pc_valid; // @[IFU_AXI.scala 18:27]
+  assign axi_io_axi_in_arvalid = 1'h1; // @[IFU_AXI.scala 18:27]
   assign axi_io_axi_in_rready = io_inst_ready; // @[IFU_AXI.scala 19:26]
   assign axi_io_axi_in_awaddr = 32'h0; // @[IFU_AXI.scala 20:26]
   assign axi_io_axi_in_awvalid = 1'h0; // @[IFU_AXI.scala 22:27]
@@ -228,13 +227,13 @@ module IDU(
   output        io_ctrl_sign_src1_is_pc,
   output        io_ctrl_sign_Writemem_en,
   output        io_ctrl_sign_Readmem_en,
-  output [7:0]  io_ctrl_sign_Wmask
+  output [7:0]  io_ctrl_sign_Wmask,
+  input         io_mem_end
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg  axi_inst_ready; // @[IDU.scala 51:33]
-  wire [4:0] rd = io_inst[11:7]; // @[IDU.scala 150:15]
+  wire [4:0] rd = io_inst[11:7]; // @[IDU.scala 147:15]
   wire [31:0] _inst_type_T = io_inst & 32'h707f; // @[Lookup.scala 31:38]
   wire  _inst_type_T_1 = 32'h13 == _inst_type_T; // @[Lookup.scala 31:38]
   wire [31:0] _inst_type_T_2 = io_inst & 32'h7f; // @[Lookup.scala 31:38]
@@ -365,13 +364,13 @@ module IDU(
   wire [6:0] _inst_type_T_186 = _inst_type_T_5 ? 7'h42 : _inst_type_T_185; // @[Lookup.scala 34:39]
   wire [6:0] _inst_type_T_187 = _inst_type_T_3 ? 7'h42 : _inst_type_T_186; // @[Lookup.scala 34:39]
   wire [6:0] _inst_type_T_188 = _inst_type_T_1 ? 7'h40 : _inst_type_T_187; // @[Lookup.scala 34:39]
-  wire [11:0] imm_imm = io_inst[31:20]; // @[IDU.scala 22:23]
+  wire [11:0] imm_imm = io_inst[31:20]; // @[IDU.scala 23:23]
   wire [51:0] _imm_T_2 = imm_imm[11] ? 52'hfffffffffffff : 52'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _imm_T_3 = {_imm_T_2,imm_imm}; // @[Cat.scala 31:58]
   wire [19:0] imm_imm_1 = {io_inst[31],io_inst[19:12],io_inst[20],io_inst[30:21]}; // @[Cat.scala 31:58]
   wire [42:0] _imm_T_6 = imm_imm_1[19] ? 43'h7ffffffffff : 43'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _imm_T_7 = {_imm_T_6,io_inst[31],io_inst[19:12],io_inst[20],io_inst[30:21],1'h0}; // @[Cat.scala 31:58]
-  wire [19:0] imm_imm_2 = io_inst[31:12]; // @[IDU.scala 26:23]
+  wire [19:0] imm_imm_2 = io_inst[31:12]; // @[IDU.scala 27:23]
   wire [31:0] _imm_T_10 = imm_imm_2[19] ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _imm_T_12 = {_imm_T_10,imm_imm_2,12'h0}; // @[Cat.scala 31:58]
   wire [11:0] imm_imm_3 = {io_inst[31:25],rd}; // @[Cat.scala 31:58]
@@ -380,10 +379,11 @@ module IDU(
   wire [11:0] imm_imm_4 = {io_inst[31],io_inst[7],io_inst[30:25],io_inst[11:8]}; // @[Cat.scala 31:58]
   wire [50:0] _imm_T_19 = imm_imm_4[11] ? 51'h7ffffffffffff : 51'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _imm_T_20 = {_imm_T_19,io_inst[31],io_inst[7],io_inst[30:25],io_inst[11:8],1'h0}; // @[Cat.scala 31:58]
-  wire [31:0] inst_type = {{25'd0}, _inst_type_T_188}; // @[IDU.scala 133:25 152:15]
+  wire [31:0] inst_type = {{25'd0}, _inst_type_T_188}; // @[IDU.scala 130:25 149:15]
   wire [63:0] _imm_T_22 = 32'h40 == inst_type ? _imm_T_3 : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _imm_T_24 = 32'h43 == inst_type ? _imm_T_7 : _imm_T_22; // @[Mux.scala 81:58]
   wire [63:0] _imm_T_26 = 32'h42 == inst_type ? _imm_T_12 : _imm_T_24; // @[Mux.scala 81:58]
+  wire  _imm_T_27 = 32'h44 == inst_type; // @[Mux.scala 81:61]
   wire [63:0] _imm_T_28 = 32'h44 == inst_type ? _imm_T_16 : _imm_T_26; // @[Mux.scala 81:58]
   wire  _inst_now_T_3 = 32'h100073 == io_inst; // @[Lookup.scala 31:38]
   wire  _inst_now_T_123 = 32'h30200073 == io_inst; // @[Lookup.scala 31:38]
@@ -464,14 +464,19 @@ module IDU(
   wire  _reg_write_T_35 = _inst_type_T_37 ? 1'h0 : _reg_write_T_34; // @[Lookup.scala 34:39]
   wire  _reg_write_T_36 = _inst_type_T_35 ? 1'h0 : _reg_write_T_35; // @[Lookup.scala 34:39]
   wire  _reg_write_T_37 = _inst_type_T_11 ? 1'h0 : _reg_write_T_36; // @[Lookup.scala 34:39]
+  wire  Readmem_en = _inst_type_T_25 | (_inst_type_T_15 | (_inst_type_T_113 | (_inst_type_T_77 | (_inst_type_T_79 | (
+    _inst_type_T_115 | _inst_type_T_33))))); // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_8 = _inst_type_T_75 ? 4'hf : 4'h0; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_9 = _inst_type_T_37 ? 4'h1 : _Wmask_T_8; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_10 = _inst_type_T_35 ? 4'h3 : _Wmask_T_9; // @[Lookup.scala 34:39]
-  assign io_inst_ready = axi_inst_ready; // @[IDU.scala 53:19]
-  assign io_inst_now = {{25'd0}, _inst_now_T_194}; // @[IDU.scala 132:24 226:14]
-  assign io_rs1 = io_inst[19:15]; // @[IDU.scala 149:16]
-  assign io_rs2 = io_inst[24:20]; // @[IDU.scala 148:16]
-  assign io_rd = io_inst[11:7]; // @[IDU.scala 150:15]
+  reg  axi_inst_ready; // @[IDU.scala 367:33]
+  wire  _GEN_1 = _imm_T_27 | Readmem_en ? io_mem_end : 1'h1; // @[IDU.scala 370:42 377:24]
+  wire  _GEN_2 = io_inst_valid & axi_inst_ready ? 1'h0 : _GEN_1; // @[IDU.scala 368:42 369:24]
+  assign io_inst_ready = axi_inst_ready; // @[IDU.scala 379:19]
+  assign io_inst_now = {{25'd0}, _inst_now_T_194}; // @[IDU.scala 129:24 223:14]
+  assign io_rs1 = io_inst[19:15]; // @[IDU.scala 146:16]
+  assign io_rs2 = io_inst[24:20]; // @[IDU.scala 145:16]
+  assign io_rd = io_inst[11:7]; // @[IDU.scala 147:15]
   assign io_imm = 32'h45 == inst_type ? _imm_T_20 : _imm_T_28; // @[Mux.scala 81:58]
   assign io_ctrl_sign_reg_write = _inst_now_T_3 ? 1'h0 : _reg_write_T_37; // @[Lookup.scala 34:39]
   assign io_ctrl_sign_csr_write = _inst_type_T_121 | (_inst_type_T_123 | _inst_type_T_125); // @[Lookup.scala 34:39]
@@ -484,7 +489,7 @@ module IDU(
     _inst_type_T_79 | (_inst_type_T_115 | _inst_type_T_33))))); // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Wmask = _inst_type_T_11 ? 8'hff : {{4'd0}, _Wmask_T_10}; // @[Lookup.scala 34:39]
   always @(posedge clock) begin
-    axi_inst_ready <= reset | ~(io_inst_valid & axi_inst_ready); // @[IDU.scala 51:{33,33} 52:20]
+    axi_inst_ready <= reset | _GEN_2; // @[IDU.scala 367:{33,33}]
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -1452,12 +1457,10 @@ module top(
 `ifdef RANDOMIZE_REG_INIT
   reg [63:0] _RAND_0;
   reg [31:0] _RAND_1;
-  reg [31:0] _RAND_2;
 `endif // RANDOMIZE_REG_INIT
   wire  ifu_step_clock; // @[top.scala 18:26]
   wire  ifu_step_reset; // @[top.scala 18:26]
   wire [63:0] ifu_step_io_pc; // @[top.scala 18:26]
-  wire  ifu_step_io_pc_valid; // @[top.scala 18:26]
   wire  ifu_step_io_inst_valid; // @[top.scala 18:26]
   wire  ifu_step_io_inst_ready; // @[top.scala 18:26]
   wire [31:0] ifu_step_io_inst; // @[top.scala 18:26]
@@ -1478,6 +1481,7 @@ module top(
   wire  idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 26:26]
   wire  idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 26:26]
   wire [7:0] idu_step_io_ctrl_sign_Wmask; // @[top.scala 26:26]
+  wire  idu_step_io_mem_end; // @[top.scala 26:26]
   wire  exu_step_clock; // @[top.scala 31:26]
   wire  exu_step_reset; // @[top.scala 31:26]
   wire [63:0] exu_step_io_pc; // @[top.scala 31:26]
@@ -1498,18 +1502,16 @@ module top(
   wire  exu_step_io_inst_valid; // @[top.scala 31:26]
   wire  exu_step_io_mem_end; // @[top.scala 31:26]
   wire  exu_step_io_mem_flag; // @[top.scala 31:26]
-  wire [31:0] dpi_flag; // @[top.scala 42:21]
-  wire [31:0] dpi_ecall_flag; // @[top.scala 42:21]
+  wire [31:0] dpi_flag; // @[top.scala 45:21]
+  wire [31:0] dpi_ecall_flag; // @[top.scala 45:21]
   reg [63:0] pc_now; // @[top.scala 15:25]
-  reg  axi_pc_valid; // @[top.scala 21:31]
   wire  _exu_step_io_inst_valid_T = ifu_step_io_inst_ready & ifu_step_io_inst_valid; // @[top.scala 40:53]
-  wire  _pc_now_T_4 = _exu_step_io_inst_valid_T & ~exu_step_io_mem_flag | exu_step_io_mem_flag & exu_step_io_mem_end; // @[top.scala 46:97]
-  reg  npc_step; // @[top.scala 48:27]
+  wire  _pc_now_T_4 = _exu_step_io_inst_valid_T & ~exu_step_io_mem_flag | exu_step_io_mem_flag & exu_step_io_mem_end; // @[top.scala 49:97]
+  reg  npc_step; // @[top.scala 51:27]
   IFU_AXI ifu_step ( // @[top.scala 18:26]
     .clock(ifu_step_clock),
     .reset(ifu_step_reset),
     .io_pc(ifu_step_io_pc),
-    .io_pc_valid(ifu_step_io_pc_valid),
     .io_inst_valid(ifu_step_io_inst_valid),
     .io_inst_ready(ifu_step_io_inst_ready),
     .io_inst(ifu_step_io_inst)
@@ -1531,7 +1533,8 @@ module top(
     .io_ctrl_sign_src1_is_pc(idu_step_io_ctrl_sign_src1_is_pc),
     .io_ctrl_sign_Writemem_en(idu_step_io_ctrl_sign_Writemem_en),
     .io_ctrl_sign_Readmem_en(idu_step_io_ctrl_sign_Readmem_en),
-    .io_ctrl_sign_Wmask(idu_step_io_ctrl_sign_Wmask)
+    .io_ctrl_sign_Wmask(idu_step_io_ctrl_sign_Wmask),
+    .io_mem_end(idu_step_io_mem_end)
   );
   EXU_AXI exu_step ( // @[top.scala 31:26]
     .clock(exu_step_clock),
@@ -1555,24 +1558,24 @@ module top(
     .io_mem_end(exu_step_io_mem_end),
     .io_mem_flag(exu_step_io_mem_flag)
   );
-  DPI dpi ( // @[top.scala 42:21]
+  DPI dpi ( // @[top.scala 45:21]
     .flag(dpi_flag),
     .ecall_flag(dpi_ecall_flag)
   );
   assign io_inst = ifu_step_io_inst; // @[top.scala 20:13]
   assign io_pc = pc_now; // @[top.scala 16:11]
-  assign io_pc_next = exu_step_io_pc_next; // @[top.scala 47:16]
+  assign io_pc_next = exu_step_io_pc_next; // @[top.scala 50:16]
   assign io_outval = exu_step_io_res2rd; // @[top.scala 41:15]
-  assign io_step = npc_step; // @[top.scala 50:13]
+  assign io_step = npc_step; // @[top.scala 53:13]
   assign ifu_step_clock = clock;
   assign ifu_step_reset = reset;
   assign ifu_step_io_pc = pc_now; // @[top.scala 19:20]
-  assign ifu_step_io_pc_valid = axi_pc_valid; // @[top.scala 23:26]
   assign ifu_step_io_inst_ready = idu_step_io_inst_ready; // @[top.scala 30:28]
   assign idu_step_clock = clock;
   assign idu_step_reset = reset;
   assign idu_step_io_inst = ifu_step_io_inst; // @[top.scala 28:22]
   assign idu_step_io_inst_valid = ifu_step_io_inst_valid; // @[top.scala 29:28]
+  assign idu_step_io_mem_end = exu_step_io_mem_end; // @[top.scala 43:25]
   assign exu_step_clock = clock;
   assign exu_step_reset = reset;
   assign exu_step_io_pc = pc_now; // @[top.scala 32:20]
@@ -1589,23 +1592,18 @@ module top(
   assign exu_step_io_ctrl_sign_Readmem_en = idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 39:27]
   assign exu_step_io_ctrl_sign_Wmask = idu_step_io_ctrl_sign_Wmask; // @[top.scala 39:27]
   assign exu_step_io_inst_valid = ifu_step_io_inst_ready & ifu_step_io_inst_valid; // @[top.scala 40:53]
-  assign dpi_flag = {{31'd0}, idu_step_io_inst_now == 32'h2}; // @[top.scala 43:17]
-  assign dpi_ecall_flag = {{31'd0}, idu_step_io_inst_now == 32'h3d}; // @[top.scala 44:23]
+  assign dpi_flag = {{31'd0}, idu_step_io_inst_now == 32'h2}; // @[top.scala 46:17]
+  assign dpi_ecall_flag = {{31'd0}, idu_step_io_inst_now == 32'h3d}; // @[top.scala 47:23]
   always @(posedge clock) begin
     if (reset) begin // @[top.scala 15:25]
       pc_now <= 64'h80000000; // @[top.scala 15:25]
-    end else if (_exu_step_io_inst_valid_T & ~exu_step_io_mem_flag | exu_step_io_mem_flag & exu_step_io_mem_end) begin // @[top.scala 46:18]
+    end else if (_exu_step_io_inst_valid_T & ~exu_step_io_mem_flag | exu_step_io_mem_flag & exu_step_io_mem_end) begin // @[top.scala 49:18]
       pc_now <= exu_step_io_pc_next;
     end
-    if (reset) begin // @[top.scala 21:31]
-      axi_pc_valid <= 1'h0; // @[top.scala 21:31]
+    if (reset) begin // @[top.scala 51:27]
+      npc_step <= 1'h0; // @[top.scala 51:27]
     end else begin
-      axi_pc_valid <= 1'h1; // @[top.scala 22:18]
-    end
-    if (reset) begin // @[top.scala 48:27]
-      npc_step <= 1'h0; // @[top.scala 48:27]
-    end else begin
-      npc_step <= _pc_now_T_4; // @[top.scala 49:14]
+      npc_step <= _pc_now_T_4; // @[top.scala 52:14]
     end
   end
 // Register and memory initialization
@@ -1647,9 +1645,7 @@ initial begin
   _RAND_0 = {2{`RANDOM}};
   pc_now = _RAND_0[63:0];
   _RAND_1 = {1{`RANDOM}};
-  axi_pc_valid = _RAND_1[0:0];
-  _RAND_2 = {1{`RANDOM}};
-  npc_step = _RAND_2[0:0];
+  npc_step = _RAND_1[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
