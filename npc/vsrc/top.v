@@ -17,6 +17,7 @@ module top(
   wire  ifu_step_io_inst_valid; // @[top.scala 18:26]
   wire  ifu_step_io_inst_ready; // @[top.scala 18:26]
   wire [31:0] ifu_step_io_inst; // @[top.scala 18:26]
+  wire  ifu_step_io_no_ifu; // @[top.scala 18:26]
   wire  idu_step_clock; // @[top.scala 27:26]
   wire  idu_step_reset; // @[top.scala 27:26]
   wire [31:0] idu_step_io_inst; // @[top.scala 27:26]
@@ -54,19 +55,21 @@ module top(
   wire  exu_step_io_inst_valid; // @[top.scala 32:26]
   wire  exu_step_io_mem_end; // @[top.scala 32:26]
   wire  exu_step_io_mem_flag; // @[top.scala 32:26]
-  wire [31:0] dpi_flag; // @[top.scala 44:21]
-  wire [31:0] dpi_ecall_flag; // @[top.scala 44:21]
+  wire  exu_step_io_no_ifu; // @[top.scala 32:26]
+  wire [31:0] dpi_flag; // @[top.scala 46:21]
+  wire [31:0] dpi_ecall_flag; // @[top.scala 46:21]
   reg [63:0] pc_now; // @[top.scala 15:25]
   wire  _exu_step_io_inst_valid_T = ifu_step_io_inst_ready & ifu_step_io_inst_valid; // @[top.scala 41:53]
-  wire  _pc_now_T_4 = _exu_step_io_inst_valid_T & ~exu_step_io_mem_flag | exu_step_io_mem_flag & exu_step_io_mem_end; // @[top.scala 48:97]
-  reg  npc_step; // @[top.scala 50:27]
+  wire  _pc_now_T_4 = _exu_step_io_inst_valid_T & ~exu_step_io_mem_flag | exu_step_io_mem_flag & exu_step_io_mem_end; // @[top.scala 50:97]
+  reg  npc_step; // @[top.scala 52:27]
   IFU_AXI ifu_step ( // @[top.scala 18:26]
     .clock(ifu_step_clock),
     .reset(ifu_step_reset),
     .io_pc(ifu_step_io_pc),
     .io_inst_valid(ifu_step_io_inst_valid),
     .io_inst_ready(ifu_step_io_inst_ready),
-    .io_inst(ifu_step_io_inst)
+    .io_inst(ifu_step_io_inst),
+    .io_no_ifu(ifu_step_io_no_ifu)
   );
   IDU idu_step ( // @[top.scala 27:26]
     .clock(idu_step_clock),
@@ -107,21 +110,23 @@ module top(
     .io_res2rd(exu_step_io_res2rd),
     .io_inst_valid(exu_step_io_inst_valid),
     .io_mem_end(exu_step_io_mem_end),
-    .io_mem_flag(exu_step_io_mem_flag)
+    .io_mem_flag(exu_step_io_mem_flag),
+    .io_no_ifu(exu_step_io_no_ifu)
   );
-  DPI dpi ( // @[top.scala 44:21]
+  DPI dpi ( // @[top.scala 46:21]
     .flag(dpi_flag),
     .ecall_flag(dpi_ecall_flag)
   );
   assign io_inst = ifu_step_io_inst; // @[top.scala 20:13]
   assign io_pc = pc_now; // @[top.scala 16:11]
-  assign io_pc_next = exu_step_io_pc_next; // @[top.scala 49:16]
+  assign io_pc_next = exu_step_io_pc_next; // @[top.scala 51:16]
   assign io_outval = exu_step_io_res2rd; // @[top.scala 42:15]
-  assign io_step = npc_step; // @[top.scala 52:13]
+  assign io_step = npc_step; // @[top.scala 54:13]
   assign ifu_step_clock = clock;
   assign ifu_step_reset = reset;
   assign ifu_step_io_pc = pc_now; // @[top.scala 19:20]
   assign ifu_step_io_inst_ready = idu_step_io_inst_ready; // @[top.scala 31:28]
+  assign ifu_step_io_no_ifu = exu_step_io_no_ifu; // @[top.scala 44:24]
   assign idu_step_clock = clock;
   assign idu_step_reset = reset;
   assign idu_step_io_inst = ifu_step_io_inst; // @[top.scala 29:22]
@@ -142,18 +147,18 @@ module top(
   assign exu_step_io_ctrl_sign_Readmem_en = idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 40:27]
   assign exu_step_io_ctrl_sign_Wmask = idu_step_io_ctrl_sign_Wmask; // @[top.scala 40:27]
   assign exu_step_io_inst_valid = ifu_step_io_inst_ready & ifu_step_io_inst_valid; // @[top.scala 41:53]
-  assign dpi_flag = {{31'd0}, idu_step_io_inst_now == 32'h2}; // @[top.scala 45:17]
-  assign dpi_ecall_flag = {{31'd0}, idu_step_io_inst_now == 32'h3d}; // @[top.scala 46:23]
+  assign dpi_flag = {{31'd0}, idu_step_io_inst_now == 32'h2}; // @[top.scala 47:17]
+  assign dpi_ecall_flag = {{31'd0}, idu_step_io_inst_now == 32'h3d}; // @[top.scala 48:23]
   always @(posedge clock) begin
     if (reset) begin // @[top.scala 15:25]
       pc_now <= 64'h80000000; // @[top.scala 15:25]
-    end else if (_exu_step_io_inst_valid_T & ~exu_step_io_mem_flag | exu_step_io_mem_flag & exu_step_io_mem_end) begin // @[top.scala 48:18]
+    end else if (_exu_step_io_inst_valid_T & ~exu_step_io_mem_flag | exu_step_io_mem_flag & exu_step_io_mem_end) begin // @[top.scala 50:18]
       pc_now <= exu_step_io_pc_next;
     end
-    if (reset) begin // @[top.scala 50:27]
-      npc_step <= 1'h0; // @[top.scala 50:27]
+    if (reset) begin // @[top.scala 52:27]
+      npc_step <= 1'h0; // @[top.scala 52:27]
     end else begin
-      npc_step <= _pc_now_T_4; // @[top.scala 51:14]
+      npc_step <= _pc_now_T_4; // @[top.scala 53:14]
     end
   end
 // Register and memory initialization
