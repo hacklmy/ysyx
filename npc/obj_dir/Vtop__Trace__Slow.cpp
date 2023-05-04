@@ -83,6 +83,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+26,"top exu_step_io_mem_flag", false,-1);
         tracep->declBit(c+19,"top exu_step_io_exu_arvalid", false,-1);
         tracep->declBit(c+20,"top exu_step_io_exu_awvalid", false,-1);
+        tracep->declBit(c+4,"top exu_step_io_inst_ready", false,-1);
         tracep->declBus(c+27,"top dpi_flag", false,-1, 31,0);
         tracep->declBus(c+28,"top dpi_ecall_flag", false,-1, 31,0);
         tracep->declQuad(c+1,"top pc_now", false,-1, 63,0);
@@ -192,6 +193,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+26,"top exu_step io_mem_flag", false,-1);
         tracep->declBit(c+19,"top exu_step io_exu_arvalid", false,-1);
         tracep->declBit(c+20,"top exu_step io_exu_awvalid", false,-1);
+        tracep->declBit(c+4,"top exu_step io_inst_ready", false,-1);
         {int i; for (i=0; i<32; i++) {
                 tracep->declQuad(c+46+i*2,"top exu_step Regfile", true,(i+0), 63,0);}}
         tracep->declBit(c+355,"top exu_step Regfile_src1_value_MPORT_en", false,-1);
