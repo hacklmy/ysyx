@@ -1,3 +1,4 @@
+/* verilator lint_off UNOPTFLAT */
 module top(
   input         clock,
   input         reset,
@@ -209,3 +210,4 @@ end // initial
 `endif
 `endif // SYNTHESIS
 endmodule
+/* verilator lint_on UNOPTFLAT */
