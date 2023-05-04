@@ -59,7 +59,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__exu_step__DOT___T_7;
         CData/*0:0*/ top__DOT__exu_step__DOT__axi_arvalid;
         CData/*0:0*/ top__DOT__exu_step__DOT__axi_rready;
-        CData/*0:0*/ top__DOT__exu_step__DOT__axi_awvalid;
+        CData/*0:0*/ top__DOT__exu_step__DOT__axi_wvalid;
         CData/*0:0*/ top__DOT__exu_step__DOT__axi_bready;
         CData/*0:0*/ top__DOT__exu_step__DOT__axi__DOT__axi_wready;
         CData/*0:0*/ top__DOT__exu_step__DOT__axi__DOT__axi_bvalid;

@@ -59,8 +59,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+16,"top idu_step_io_ctrl_sign_Writemem_en", false,-1);
         tracep->declBit(c+17,"top idu_step_io_ctrl_sign_Readmem_en", false,-1);
         tracep->declBus(c+18,"top idu_step_io_ctrl_sign_Wmask", false,-1, 7,0);
-        tracep->declBit(c+19,"top idu_step_io_exu_bvalid", false,-1);
-        tracep->declBit(c+20,"top idu_step_io_exu_rvalid", false,-1);
+        tracep->declBit(c+19,"top idu_step_io_exu_arvalid", false,-1);
+        tracep->declBit(c+20,"top idu_step_io_exu_awvalid", false,-1);
         tracep->declBit(c+346,"top exu_step_clock", false,-1);
         tracep->declBit(c+347,"top exu_step_reset", false,-1);
         tracep->declQuad(c+1,"top exu_step_io_pc", false,-1, 63,0);
@@ -81,8 +81,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+25,"top exu_step_io_inst_valid", false,-1);
         tracep->declBit(c+26,"top exu_step_io_mem_end", false,-1);
         tracep->declBit(c+27,"top exu_step_io_mem_flag", false,-1);
-        tracep->declBit(c+19,"top exu_step_io_exu_bvalid", false,-1);
-        tracep->declBit(c+20,"top exu_step_io_exu_rvalid", false,-1);
+        tracep->declBit(c+19,"top exu_step_io_exu_arvalid", false,-1);
+        tracep->declBit(c+20,"top exu_step_io_exu_awvalid", false,-1);
         tracep->declBus(c+28,"top dpi_flag", false,-1, 31,0);
         tracep->declBus(c+29,"top dpi_ecall_flag", false,-1, 31,0);
         tracep->declQuad(c+1,"top pc_now", false,-1, 63,0);
@@ -157,8 +157,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+16,"top idu_step io_ctrl_sign_Writemem_en", false,-1);
         tracep->declBit(c+17,"top idu_step io_ctrl_sign_Readmem_en", false,-1);
         tracep->declBus(c+18,"top idu_step io_ctrl_sign_Wmask", false,-1, 7,0);
-        tracep->declBit(c+19,"top idu_step io_exu_bvalid", false,-1);
-        tracep->declBit(c+20,"top idu_step io_exu_rvalid", false,-1);
+        tracep->declBit(c+19,"top idu_step io_exu_arvalid", false,-1);
+        tracep->declBit(c+20,"top idu_step io_exu_awvalid", false,-1);
         tracep->declBus(c+9,"top idu_step rd", false,-1, 4,0);
         tracep->declBus(c+40,"top idu_step imm_imm", false,-1, 11,0);
         tracep->declBus(c+41,"top idu_step imm_imm_1", false,-1, 19,0);
@@ -188,8 +188,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+25,"top exu_step io_inst_valid", false,-1);
         tracep->declBit(c+26,"top exu_step io_mem_end", false,-1);
         tracep->declBit(c+27,"top exu_step io_mem_flag", false,-1);
-        tracep->declBit(c+19,"top exu_step io_exu_bvalid", false,-1);
-        tracep->declBit(c+20,"top exu_step io_exu_rvalid", false,-1);
+        tracep->declBit(c+19,"top exu_step io_exu_arvalid", false,-1);
+        tracep->declBit(c+20,"top exu_step io_exu_awvalid", false,-1);
         {int i; for (i=0; i<32; i++) {
                 tracep->declQuad(c+47+i*2,"top exu_step Regfile", true,(i+0), 63,0);}}
         tracep->declBit(c+356,"top exu_step Regfile_src1_value_MPORT_en", false,-1);
@@ -445,17 +445,17 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+346,"top exu_step axi_clock", false,-1);
         tracep->declBit(c+347,"top exu_step axi_reset", false,-1);
         tracep->declBus(c+208,"top exu_step axi_io_axi_in_araddr", false,-1, 31,0);
-        tracep->declBit(c+209,"top exu_step axi_io_axi_in_arvalid", false,-1);
-        tracep->declBit(c+210,"top exu_step axi_io_axi_in_rready", false,-1);
+        tracep->declBit(c+19,"top exu_step axi_io_axi_in_arvalid", false,-1);
+        tracep->declBit(c+209,"top exu_step axi_io_axi_in_rready", false,-1);
         tracep->declBus(c+208,"top exu_step axi_io_axi_in_awaddr", false,-1, 31,0);
-        tracep->declBit(c+211,"top exu_step axi_io_axi_in_awvalid", false,-1);
-        tracep->declBus(c+212,"top exu_step axi_io_axi_in_wdata", false,-1, 31,0);
+        tracep->declBit(c+20,"top exu_step axi_io_axi_in_awvalid", false,-1);
+        tracep->declBus(c+210,"top exu_step axi_io_axi_in_wdata", false,-1, 31,0);
         tracep->declBus(c+18,"top exu_step axi_io_axi_in_wstrb", false,-1, 7,0);
-        tracep->declBit(c+211,"top exu_step axi_io_axi_in_wvalid", false,-1);
-        tracep->declBit(c+213,"top exu_step axi_io_axi_in_bready", false,-1);
-        tracep->declQuad(c+214,"top exu_step axi_io_axi_out_rdata", false,-1, 63,0);
-        tracep->declBit(c+20,"top exu_step axi_io_axi_out_rvalid", false,-1);
-        tracep->declBit(c+19,"top exu_step axi_io_axi_out_bvalid", false,-1);
+        tracep->declBit(c+20,"top exu_step axi_io_axi_in_wvalid", false,-1);
+        tracep->declBit(c+211,"top exu_step axi_io_axi_in_bready", false,-1);
+        tracep->declQuad(c+212,"top exu_step axi_io_axi_out_rdata", false,-1, 63,0);
+        tracep->declBit(c+214,"top exu_step axi_io_axi_out_rvalid", false,-1);
+        tracep->declBit(c+215,"top exu_step axi_io_axi_out_bvalid", false,-1);
         tracep->declBus(c+216,"top exu_step csr_addr", false,-1, 11,0);
         tracep->declQuad(c+217,"top exu_step src1_value", false,-1, 63,0);
         tracep->declQuad(c+219,"top exu_step src2_value", false,-1, 63,0);
@@ -480,15 +480,15 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+253,"top exu_step divu_res", false,-1, 63,0);
         tracep->declQuad(c+255,"top exu_step rem_res", false,-1, 63,0);
         tracep->declQuad(c+257,"top exu_step remu_res", false,-1, 63,0);
-        tracep->declQuad(c+214,"top exu_step mem_rdata", false,-1, 63,0);
+        tracep->declQuad(c+212,"top exu_step mem_rdata", false,-1, 63,0);
         tracep->declQuad(c+259,"top exu_step reg_value", false,-1, 63,0);
         tracep->declQuad(c+261,"top exu_step csr_wdata", false,-1, 63,0);
         tracep->declQuad(c+263,"top exu_step mem_wdate", false,-1, 63,0);
-        tracep->declBit(c+209,"top exu_step axi_arvalid", false,-1);
-        tracep->declBit(c+210,"top exu_step axi_rready", false,-1);
-        tracep->declBit(c+211,"top exu_step axi_awvalid", false,-1);
-        tracep->declBit(c+211,"top exu_step axi_wvalid", false,-1);
-        tracep->declBit(c+213,"top exu_step axi_bready", false,-1);
+        tracep->declBit(c+19,"top exu_step axi_arvalid", false,-1);
+        tracep->declBit(c+209,"top exu_step axi_rready", false,-1);
+        tracep->declBit(c+20,"top exu_step axi_awvalid", false,-1);
+        tracep->declBit(c+20,"top exu_step axi_wvalid", false,-1);
+        tracep->declBit(c+211,"top exu_step axi_bready", false,-1);
         tracep->declQuad(c+119,"top exu_step reg_trace input_reg_0", false,-1, 63,0);
         tracep->declQuad(c+121,"top exu_step reg_trace input_reg_1", false,-1, 63,0);
         tracep->declQuad(c+123,"top exu_step reg_trace input_reg_2", false,-1, 63,0);
@@ -533,28 +533,28 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+346,"top exu_step axi clock", false,-1);
         tracep->declBit(c+347,"top exu_step axi reset", false,-1);
         tracep->declBus(c+208,"top exu_step axi io_axi_in_araddr", false,-1, 31,0);
-        tracep->declBit(c+209,"top exu_step axi io_axi_in_arvalid", false,-1);
-        tracep->declBit(c+210,"top exu_step axi io_axi_in_rready", false,-1);
+        tracep->declBit(c+19,"top exu_step axi io_axi_in_arvalid", false,-1);
+        tracep->declBit(c+209,"top exu_step axi io_axi_in_rready", false,-1);
         tracep->declBus(c+208,"top exu_step axi io_axi_in_awaddr", false,-1, 31,0);
-        tracep->declBit(c+211,"top exu_step axi io_axi_in_awvalid", false,-1);
-        tracep->declBus(c+212,"top exu_step axi io_axi_in_wdata", false,-1, 31,0);
+        tracep->declBit(c+20,"top exu_step axi io_axi_in_awvalid", false,-1);
+        tracep->declBus(c+210,"top exu_step axi io_axi_in_wdata", false,-1, 31,0);
         tracep->declBus(c+18,"top exu_step axi io_axi_in_wstrb", false,-1, 7,0);
-        tracep->declBit(c+211,"top exu_step axi io_axi_in_wvalid", false,-1);
-        tracep->declBit(c+213,"top exu_step axi io_axi_in_bready", false,-1);
-        tracep->declQuad(c+214,"top exu_step axi io_axi_out_rdata", false,-1, 63,0);
-        tracep->declBit(c+20,"top exu_step axi io_axi_out_rvalid", false,-1);
-        tracep->declBit(c+19,"top exu_step axi io_axi_out_bvalid", false,-1);
+        tracep->declBit(c+20,"top exu_step axi io_axi_in_wvalid", false,-1);
+        tracep->declBit(c+211,"top exu_step axi io_axi_in_bready", false,-1);
+        tracep->declQuad(c+212,"top exu_step axi io_axi_out_rdata", false,-1, 63,0);
+        tracep->declBit(c+214,"top exu_step axi io_axi_out_rvalid", false,-1);
+        tracep->declBit(c+215,"top exu_step axi io_axi_out_bvalid", false,-1);
         tracep->declQuad(c+337,"top exu_step axi Mem_modle_Raddr", false,-1, 63,0);
-        tracep->declQuad(c+214,"top exu_step axi Mem_modle_Rdata", false,-1, 63,0);
+        tracep->declQuad(c+212,"top exu_step axi Mem_modle_Rdata", false,-1, 63,0);
         tracep->declQuad(c+337,"top exu_step axi Mem_modle_Waddr", false,-1, 63,0);
         tracep->declQuad(c+339,"top exu_step axi Mem_modle_Wdata", false,-1, 63,0);
         tracep->declBus(c+18,"top exu_step axi Mem_modle_Wmask", false,-1, 7,0);
         tracep->declBit(c+341,"top exu_step axi Mem_modle_Write_en", false,-1);
         tracep->declBit(c+342,"top exu_step axi Mem_modle_Read_en", false,-1);
         tracep->declBit(c+343,"top exu_step axi axi_wready", false,-1);
-        tracep->declBit(c+19,"top exu_step axi axi_bvalid", false,-1);
+        tracep->declBit(c+215,"top exu_step axi axi_bvalid", false,-1);
         tracep->declBit(c+344,"top exu_step axi axi_arready", false,-1);
-        tracep->declBit(c+20,"top exu_step axi axi_rvalid", false,-1);
+        tracep->declBit(c+214,"top exu_step axi axi_rvalid", false,-1);
         tracep->declBus(c+345,"top exu_step axi state", false,-1, 2,0);
         tracep->declQuad(c+337,"top exu_step axi Mem_modle Raddr", false,-1, 63,0);
         tracep->declQuad(c+337,"top exu_step axi Mem_modle Waddr", false,-1, 63,0);
@@ -562,7 +562,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+18,"top exu_step axi Mem_modle Wmask", false,-1, 7,0);
         tracep->declBit(c+341,"top exu_step axi Mem_modle Write_en", false,-1);
         tracep->declBit(c+342,"top exu_step axi Mem_modle Read_en", false,-1);
-        tracep->declQuad(c+214,"top exu_step axi Mem_modle Rdata", false,-1, 63,0);
+        tracep->declQuad(c+212,"top exu_step axi Mem_modle Rdata", false,-1, 63,0);
         tracep->declBus(c+28,"top dpi flag", false,-1, 31,0);
         tracep->declBus(c+29,"top dpi ecall_flag", false,-1, 31,0);
     }
@@ -657,8 +657,8 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata)))
                                                    ? 0xfU
                                                    : 0U))))),8);
-        tracep->fullBit(oldp+19,(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_bvalid));
-        tracep->fullBit(oldp+20,(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_rvalid));
+        tracep->fullBit(oldp+19,(vlSelf->top__DOT__exu_step__DOT__axi_arvalid));
+        tracep->fullBit(oldp+20,(vlSelf->top__DOT__exu_step__DOT__axi_wvalid));
         tracep->fullQData(oldp+21,(vlSelf->top__DOT__exu_step_io_pc_next),64);
         tracep->fullQData(oldp+23,((((QData)((IData)(
                                                      vlSelf->top__DOT__exu_step__DOT___io_res2rd_T_208[1U])) 
@@ -939,10 +939,8 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                    & (IData)(vlSelf->top__DOT__idu_step_io_imm)))
                                         ? 3U : (IData)(vlSelf->top__DOT__exu_step__DOT___csr_index_T_5))])),64);
         tracep->fullIData(oldp+208,((IData)(vlSelf->top__DOT__exu_step__DOT__add_res)),32);
-        tracep->fullBit(oldp+209,(vlSelf->top__DOT__exu_step__DOT__axi_arvalid));
-        tracep->fullBit(oldp+210,(vlSelf->top__DOT__exu_step__DOT__axi_rready));
-        tracep->fullBit(oldp+211,(vlSelf->top__DOT__exu_step__DOT__axi_awvalid));
-        tracep->fullIData(oldp+212,((IData)(((0x27U 
+        tracep->fullBit(oldp+209,(vlSelf->top__DOT__exu_step__DOT__axi_rready));
+        tracep->fullIData(oldp+210,((IData)(((0x27U 
                                               == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_194))
                                               ? (QData)((IData)(
                                                                 ((0U 
@@ -1017,8 +1015,10 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                                (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                 >> 0x14U)))])
                                                     : 0ULL)))))),32);
-        tracep->fullBit(oldp+213,(vlSelf->top__DOT__exu_step__DOT__axi_bready));
-        tracep->fullQData(oldp+214,(vlSelf->top__DOT__exu_step__DOT__axi__DOT__Mem_modle_Rdata),64);
+        tracep->fullBit(oldp+211,(vlSelf->top__DOT__exu_step__DOT__axi_bready));
+        tracep->fullQData(oldp+212,(vlSelf->top__DOT__exu_step__DOT__axi__DOT__Mem_modle_Rdata),64);
+        tracep->fullBit(oldp+214,(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_rvalid));
+        tracep->fullBit(oldp+215,(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_bvalid));
         tracep->fullSData(oldp+216,((0xfffU & (IData)(vlSelf->top__DOT__idu_step_io_imm))),12);
         tracep->fullQData(oldp+217,(vlSelf->top__DOT__exu_step__DOT__src1_value),64);
         tracep->fullQData(oldp+219,(vlSelf->top__DOT__exu_step__DOT__src2_value),64);
@@ -1278,7 +1278,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                                      >> 0x14U)))])
                                                          : 0ULL))))))),64);
         tracep->fullBit(oldp+341,(((IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_wready) 
-                                   & (IData)(vlSelf->top__DOT__exu_step__DOT__axi_awvalid))));
+                                   & (IData)(vlSelf->top__DOT__exu_step__DOT__axi_wvalid))));
         tracep->fullBit(oldp+342,(((IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready) 
                                    & (IData)(vlSelf->top__DOT__exu_step__DOT__axi_arvalid))));
         tracep->fullBit(oldp+343,(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_wready));
