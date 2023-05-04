@@ -36,9 +36,9 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_src2_is_imm;
         CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_src1_is_pc;
         CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_Readmem_en;
-        CData/*0:0*/ top__DOT__exu_step_io_inst_valid;
         CData/*0:0*/ top__DOT__exu_step_io_mem_end;
         CData/*0:0*/ top__DOT__exu_step_io_mem_flag;
+        CData/*0:0*/ top__DOT___exu_step_io_inst_valid_T;
         CData/*0:0*/ top__DOT__npc_step;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT__axi_wready;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT__axi_bvalid;
@@ -50,13 +50,12 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT___GEN_15;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT___GEN_27;
         CData/*0:0*/ top__DOT__ifu_step__DOT__axi__DOT___GEN_29;
+        CData/*0:0*/ top__DOT__idu_step__DOT__axi_inst_ready;
         CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_188;
         CData/*6:0*/ top__DOT__idu_step__DOT___inst_now_T_194;
         CData/*0:0*/ top__DOT__idu_step__DOT___reg_write_T_37;
-        CData/*0:0*/ top__DOT__idu_step__DOT__axi_inst_ready;
-        CData/*0:0*/ top__DOT__idu_step__DOT___GEN_2;
         CData/*1:0*/ top__DOT__exu_step__DOT___csr_index_T_5;
-        CData/*0:0*/ top__DOT__exu_step__DOT___T_5;
+        CData/*0:0*/ top__DOT__exu_step__DOT___T_7;
         CData/*0:0*/ top__DOT__exu_step__DOT__axi_arvalid;
         CData/*0:0*/ top__DOT__exu_step__DOT__axi_rready;
         CData/*0:0*/ top__DOT__exu_step__DOT__axi_awvalid;
@@ -97,9 +96,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__exu_step__DOT__xor_res;
         QData/*63:0*/ top__DOT__exu_step__DOT__and_res;
         QData/*63:0*/ top__DOT__exu_step__DOT___mluw_res_T_2;
+        QData/*32:0*/ top__DOT__exu_step__DOT___divw_res_T_4;
     };
     struct {
-        QData/*32:0*/ top__DOT__exu_step__DOT___divw_res_T_4;
         QData/*63:0*/ top__DOT__exu_step__DOT__axi__DOT__Mem_modle_Rdata;
         VlUnpacked<QData/*63:0*/, 32> top__DOT__exu_step__DOT__Regfile;
         VlUnpacked<QData/*63:0*/, 4> top__DOT__exu_step__DOT__CSR_Reg;

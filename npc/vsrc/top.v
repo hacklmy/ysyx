@@ -17,6 +17,7 @@ module top(
   wire  ifu_step_io_inst_valid; // @[top.scala 18:26]
   wire  ifu_step_io_inst_ready; // @[top.scala 18:26]
   wire [31:0] ifu_step_io_inst; // @[top.scala 18:26]
+  wire  ifu_step_io_mem_flag; // @[top.scala 18:26]
   wire  idu_step_clock; // @[top.scala 26:26]
   wire  idu_step_reset; // @[top.scala 26:26]
   wire [31:0] idu_step_io_inst; // @[top.scala 26:26]
@@ -66,7 +67,8 @@ module top(
     .io_pc(ifu_step_io_pc),
     .io_inst_valid(ifu_step_io_inst_valid),
     .io_inst_ready(ifu_step_io_inst_ready),
-    .io_inst(ifu_step_io_inst)
+    .io_inst(ifu_step_io_inst),
+    .io_mem_flag(ifu_step_io_mem_flag)
   );
   IDU idu_step ( // @[top.scala 26:26]
     .clock(idu_step_clock),
@@ -122,6 +124,7 @@ module top(
   assign ifu_step_reset = reset;
   assign ifu_step_io_pc = pc_now; // @[top.scala 19:20]
   assign ifu_step_io_inst_ready = idu_step_io_inst_ready; // @[top.scala 30:28]
+  assign ifu_step_io_mem_flag = exu_step_io_mem_flag; // @[top.scala 42:26]
   assign idu_step_clock = clock;
   assign idu_step_reset = reset;
   assign idu_step_io_inst = ifu_step_io_inst; // @[top.scala 28:22]
