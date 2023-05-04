@@ -854,7 +854,7 @@ module EXU_AXI(
       if (`PRINTF_COND) begin
     `endif
         if (_T_1) begin
-          $fwrite(32'h80000002,"axi_arvalid : %d axi_awvalid : %d\n",axi_arvalid,axi_awvalid); // @[EXU_AXI.scala 192:11]
+          $fwrite(32'h80000002,"axi_arvalid : %d axi_awvalid : %d\n\n",axi_arvalid,axi_awvalid); // @[EXU_AXI.scala 192:11]
         end
     `ifdef PRINTF_COND
       end
