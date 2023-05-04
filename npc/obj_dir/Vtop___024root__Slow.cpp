@@ -98,7 +98,6 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     QData/*63:0*/ top__DOT__exu_step__DOT___io_pc_next_T_62;
     // Body
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs[3U] = 0ULL;
-    vlSelf->io_pc = vlSelf->top__DOT__pc_now;
     vlSelf->io_step = vlSelf->top__DOT__npc_step;
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_27 
         = vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_wready;
@@ -172,6 +171,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1eU];
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs[0x1fU] 
         = vlSelf->top__DOT__exu_step__DOT__Regfile[0x1fU];
+    vlSelf->io_pc = vlSelf->top__DOT__pc_now;
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_6 
         = vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_bvalid;
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_13 
@@ -1036,7 +1036,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     Vtop___024unit____Vdpiimwrap_ecall_handle_TOP____024unit(
                                                              (0x3dU 
                                                               == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_194)));
-    vlSelf->top__DOT__exu_step__DOT___T_5 = ((0x3dU 
+    vlSelf->top__DOT__exu_step__DOT___T_7 = ((0x3dU 
                                               == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_194)) 
                                              & (IData)(vlSelf->top__DOT___exu_step_io_inst_valid_T));
     vlSelf->top__DOT__exu_step_io_mem_flag = ((IData)(vlSelf->top__DOT__idu_step_io_ctrl_sign_Readmem_en) 
@@ -1169,7 +1169,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                                 (vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                                                                                 >> 0x14U))))))
                                                     : 0ULL)))));
-    if (vlSelf->top__DOT__exu_step__DOT___T_5) {
+    if (vlSelf->top__DOT__exu_step__DOT___T_7) {
         vlSelf->top__DOT__exu_step__DOT__CSR_Reg_MPORT_1_data 
             = vlSelf->top__DOT__pc_now;
         vlSelf->top__DOT__exu_step__DOT__CSR_Reg_MPORT_3_data 
@@ -2347,7 +2347,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__exu_step__DOT__remw_res = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__exu_step__DOT__remuw_res = VL_RAND_RESET_I(32);
     VL_RAND_RESET_W(127, vlSelf->top__DOT__exu_step__DOT___io_res2rd_T_208);
-    vlSelf->top__DOT__exu_step__DOT___T_5 = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__exu_step__DOT___T_7 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__exu_step__DOT__axi_arvalid = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__exu_step__DOT__axi_rready = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__exu_step__DOT__axi_awvalid = VL_RAND_RESET_I(1);

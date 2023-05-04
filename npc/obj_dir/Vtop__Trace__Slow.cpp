@@ -868,11 +868,11 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                     [0U]),64);
         tracep->fullQData(oldp+199,(vlSelf->top__DOT__exu_step__DOT__CSR_Reg
                                     [2U]),64);
-        tracep->fullQData(oldp+201,(((IData)(vlSelf->top__DOT__exu_step__DOT___T_5)
+        tracep->fullQData(oldp+201,(((IData)(vlSelf->top__DOT__exu_step__DOT___T_7)
                                       ? vlSelf->top__DOT__pc_now
                                       : vlSelf->top__DOT__exu_step__DOT__CSR_Reg
                                      [1U])),64);
-        tracep->fullQData(oldp+203,(((IData)(vlSelf->top__DOT__exu_step__DOT___T_5)
+        tracep->fullQData(oldp+203,(((IData)(vlSelf->top__DOT__exu_step__DOT___T_7)
                                       ? vlSelf->top__DOT__exu_step__DOT__Regfile
                                      [0x11U] : vlSelf->top__DOT__exu_step__DOT__CSR_Reg
                                      [3U])),64);
