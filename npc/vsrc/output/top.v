@@ -1347,6 +1347,17 @@ module EXU_AXI(
     end
     axi_rready <= reset | ~(axi_rready & axi_io_axi_out_rvalid); // @[EXU_AXI.scala 176:{29,29} 182:16]
     axi_bready <= reset | ~(axi_bready & axi_io_axi_out_bvalid); // @[EXU_AXI.scala 179:{29,29} 185:16]
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"bvalid: %d\n",axi_io_axi_out_bvalid); // @[EXU_AXI.scala 186:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
