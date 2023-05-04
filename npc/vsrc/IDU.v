@@ -280,6 +280,17 @@ module IDU(
   assign io_ctrl_sign_Wmask = _inst_type_T_11 ? 8'hff : {{4'd0}, _Wmask_T_10}; // @[Lookup.scala 34:39]
   always @(posedge clock) begin
     axi_inst_ready <= reset | _GEN_2; // @[IDU.scala 367:{33,33}]
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"Writemem_en:%d  Readmem_en:%d inst_valid:%d\n",_imm_T_27,Readmem_en,io_inst_valid); // @[IDU.scala 366:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
