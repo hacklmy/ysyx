@@ -241,8 +241,8 @@ module IDU(
   output        io_ctrl_sign_Writemem_en,
   output        io_ctrl_sign_Readmem_en,
   output [7:0]  io_ctrl_sign_Wmask,
-  input         io_exu_bvalid,
-  input         io_exu_rvalid
+  input         io_exu_arvalid,
+  input         io_exu_awvalid
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -485,7 +485,7 @@ module IDU(
   wire [3:0] _Wmask_T_10 = _inst_type_T_35 ? 4'h3 : _Wmask_T_9; // @[Lookup.scala 34:39]
   wire  _T_1 = ~reset; // @[IDU.scala 369:11]
   reg  axi_inst_ready; // @[IDU.scala 370:33]
-  wire  _GEN_0 = io_inst_valid & (_imm_T_27 | Readmem_en) & ~(io_exu_bvalid | io_exu_rvalid) ? 1'h0 : 1'h1; // @[IDU.scala 373:94 374:24 376:24]
+  wire  _GEN_0 = (_imm_T_27 | Readmem_en) & ~(io_exu_arvalid | io_exu_awvalid) ? 1'h0 : 1'h1; // @[IDU.scala 373:79 374:24 376:24]
   wire  _GEN_1 = io_inst_valid & axi_inst_ready ? 1'h0 : _GEN_0; // @[IDU.scala 371:42 372:24]
   assign io_inst_ready = axi_inst_ready; // @[IDU.scala 378:19]
   assign io_inst_now = {{25'd0}, _inst_now_T_194}; // @[IDU.scala 132:24 226:14]
@@ -595,8 +595,8 @@ module EXU_AXI(
   input         io_inst_valid,
   output        io_mem_end,
   output        io_mem_flag,
-  output        io_exu_bvalid,
-  output        io_exu_rvalid
+  output        io_exu_arvalid,
+  output        io_exu_awvalid
 );
 `ifdef RANDOMIZE_MEM_INIT
   reg [63:0] _RAND_0;
@@ -1321,8 +1321,8 @@ module EXU_AXI(
   assign io_mem_end = io_ctrl_sign_Readmem_en & axi_rready & axi_io_axi_out_rvalid | io_ctrl_sign_Writemem_en &
     axi_bready & axi_io_axi_out_bvalid; // @[EXU_AXI.scala 209:84]
   assign io_mem_flag = io_ctrl_sign_Readmem_en | io_ctrl_sign_Writemem_en; // @[EXU_AXI.scala 208:44]
-  assign io_exu_bvalid = axi_io_axi_out_bvalid; // @[EXU_AXI.scala 205:19]
-  assign io_exu_rvalid = axi_io_axi_out_rvalid; // @[EXU_AXI.scala 206:19]
+  assign io_exu_arvalid = axi_arvalid; // @[EXU_AXI.scala 205:20]
+  assign io_exu_awvalid = axi_awvalid; // @[EXU_AXI.scala 206:20]
   assign reg_trace_input_reg_0 = Regfile_reg_trace_io_input_reg_0_MPORT_data; // @[EXU_AXI.scala 152:57]
   assign reg_trace_input_reg_1 = Regfile_reg_trace_io_input_reg_1_MPORT_data; // @[EXU_AXI.scala 152:57]
   assign reg_trace_input_reg_2 = Regfile_reg_trace_io_input_reg_2_MPORT_data; // @[EXU_AXI.scala 152:57]
@@ -1533,8 +1533,8 @@ module top(
   wire  idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 23:26]
   wire  idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 23:26]
   wire [7:0] idu_step_io_ctrl_sign_Wmask; // @[top.scala 23:26]
-  wire  idu_step_io_exu_bvalid; // @[top.scala 23:26]
-  wire  idu_step_io_exu_rvalid; // @[top.scala 23:26]
+  wire  idu_step_io_exu_arvalid; // @[top.scala 23:26]
+  wire  idu_step_io_exu_awvalid; // @[top.scala 23:26]
   wire  exu_step_clock; // @[top.scala 28:26]
   wire  exu_step_reset; // @[top.scala 28:26]
   wire [63:0] exu_step_io_pc; // @[top.scala 28:26]
@@ -1555,8 +1555,8 @@ module top(
   wire  exu_step_io_inst_valid; // @[top.scala 28:26]
   wire  exu_step_io_mem_end; // @[top.scala 28:26]
   wire  exu_step_io_mem_flag; // @[top.scala 28:26]
-  wire  exu_step_io_exu_bvalid; // @[top.scala 28:26]
-  wire  exu_step_io_exu_rvalid; // @[top.scala 28:26]
+  wire  exu_step_io_exu_arvalid; // @[top.scala 28:26]
+  wire  exu_step_io_exu_awvalid; // @[top.scala 28:26]
   wire [31:0] dpi_flag; // @[top.scala 42:21]
   wire [31:0] dpi_ecall_flag; // @[top.scala 42:21]
   reg [63:0] pc_now; // @[top.scala 15:25]
@@ -1589,8 +1589,8 @@ module top(
     .io_ctrl_sign_Writemem_en(idu_step_io_ctrl_sign_Writemem_en),
     .io_ctrl_sign_Readmem_en(idu_step_io_ctrl_sign_Readmem_en),
     .io_ctrl_sign_Wmask(idu_step_io_ctrl_sign_Wmask),
-    .io_exu_bvalid(idu_step_io_exu_bvalid),
-    .io_exu_rvalid(idu_step_io_exu_rvalid)
+    .io_exu_arvalid(idu_step_io_exu_arvalid),
+    .io_exu_awvalid(idu_step_io_exu_awvalid)
   );
   EXU_AXI exu_step ( // @[top.scala 28:26]
     .clock(exu_step_clock),
@@ -1613,8 +1613,8 @@ module top(
     .io_inst_valid(exu_step_io_inst_valid),
     .io_mem_end(exu_step_io_mem_end),
     .io_mem_flag(exu_step_io_mem_flag),
-    .io_exu_bvalid(exu_step_io_exu_bvalid),
-    .io_exu_rvalid(exu_step_io_exu_rvalid)
+    .io_exu_arvalid(exu_step_io_exu_arvalid),
+    .io_exu_awvalid(exu_step_io_exu_awvalid)
   );
   DPI dpi ( // @[top.scala 42:21]
     .flag(dpi_flag),
@@ -1633,8 +1633,8 @@ module top(
   assign idu_step_reset = reset;
   assign idu_step_io_inst = ifu_step_io_inst; // @[top.scala 25:22]
   assign idu_step_io_inst_valid = ifu_step_io_inst_valid; // @[top.scala 26:28]
-  assign idu_step_io_exu_bvalid = exu_step_io_exu_bvalid; // @[top.scala 56:28]
-  assign idu_step_io_exu_rvalid = exu_step_io_exu_rvalid; // @[top.scala 57:28]
+  assign idu_step_io_exu_arvalid = exu_step_io_exu_arvalid; // @[top.scala 56:29]
+  assign idu_step_io_exu_awvalid = exu_step_io_exu_awvalid; // @[top.scala 57:29]
   assign exu_step_clock = clock;
   assign exu_step_reset = reset;
   assign exu_step_io_pc = pc_now; // @[top.scala 29:20]

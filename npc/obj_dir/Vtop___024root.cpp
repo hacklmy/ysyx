@@ -126,7 +126,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         VL_FWRITEF(0x80000002U,"bvalid: %1#\n",1,vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_bvalid);
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"axi_arvalid : %1# axi_awvalid : %1#\n",
+        VL_FWRITEF(0x80000002U,"axi_arvalid : %1# axi_awvalid : %1#\n\n",
                    1,vlSelf->top__DOT__exu_step__DOT__axi_arvalid,
                    1,(IData)(vlSelf->top__DOT__exu_step__DOT__axi_awvalid));
     }

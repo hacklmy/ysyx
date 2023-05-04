@@ -17,8 +17,8 @@ module IDU(
   output        io_ctrl_sign_Writemem_en,
   output        io_ctrl_sign_Readmem_en,
   output [7:0]  io_ctrl_sign_Wmask,
-  input         io_exu_bvalid,
-  input         io_exu_rvalid
+  input         io_exu_arvalid,
+  input         io_exu_awvalid
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -261,7 +261,7 @@ module IDU(
   wire [3:0] _Wmask_T_10 = _inst_type_T_35 ? 4'h3 : _Wmask_T_9; // @[Lookup.scala 34:39]
   wire  _T_1 = ~reset; // @[IDU.scala 369:11]
   reg  axi_inst_ready; // @[IDU.scala 370:33]
-  wire  _GEN_0 = io_inst_valid & (_imm_T_27 | Readmem_en) & ~(io_exu_bvalid | io_exu_rvalid) ? 1'h0 : 1'h1; // @[IDU.scala 373:94 374:24 376:24]
+  wire  _GEN_0 = (_imm_T_27 | Readmem_en) & ~(io_exu_arvalid | io_exu_awvalid) ? 1'h0 : 1'h1; // @[IDU.scala 373:79 374:24 376:24]
   wire  _GEN_1 = io_inst_valid & axi_inst_ready ? 1'h0 : _GEN_0; // @[IDU.scala 371:42 372:24]
   assign io_inst_ready = axi_inst_ready; // @[IDU.scala 378:19]
   assign io_inst_now = {{25'd0}, _inst_now_T_194}; // @[IDU.scala 132:24 226:14]

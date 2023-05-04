@@ -21,8 +21,8 @@ module EXU_AXI(
   input         io_inst_valid,
   output        io_mem_end,
   output        io_mem_flag,
-  output        io_exu_bvalid,
-  output        io_exu_rvalid
+  output        io_exu_arvalid,
+  output        io_exu_awvalid
 );
 `ifdef RANDOMIZE_MEM_INIT
   reg [63:0] _RAND_0;
@@ -747,8 +747,8 @@ module EXU_AXI(
   assign io_mem_end = io_ctrl_sign_Readmem_en & axi_rready & axi_io_axi_out_rvalid | io_ctrl_sign_Writemem_en &
     axi_bready & axi_io_axi_out_bvalid; // @[EXU_AXI.scala 209:84]
   assign io_mem_flag = io_ctrl_sign_Readmem_en | io_ctrl_sign_Writemem_en; // @[EXU_AXI.scala 208:44]
-  assign io_exu_bvalid = axi_io_axi_out_bvalid; // @[EXU_AXI.scala 205:19]
-  assign io_exu_rvalid = axi_io_axi_out_rvalid; // @[EXU_AXI.scala 206:19]
+  assign io_exu_arvalid = axi_arvalid; // @[EXU_AXI.scala 205:20]
+  assign io_exu_awvalid = axi_awvalid; // @[EXU_AXI.scala 206:20]
   assign reg_trace_input_reg_0 = Regfile_reg_trace_io_input_reg_0_MPORT_data; // @[EXU_AXI.scala 152:57]
   assign reg_trace_input_reg_1 = Regfile_reg_trace_io_input_reg_1_MPORT_data; // @[EXU_AXI.scala 152:57]
   assign reg_trace_input_reg_2 = Regfile_reg_trace_io_input_reg_2_MPORT_data; // @[EXU_AXI.scala 152:57]
