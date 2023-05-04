@@ -16,12 +16,13 @@ module IDU(
   output        io_ctrl_sign_src1_is_pc,
   output        io_ctrl_sign_Writemem_en,
   output        io_ctrl_sign_Readmem_en,
-  output [7:0]  io_ctrl_sign_Wmask
+  output [7:0]  io_ctrl_sign_Wmask,
+  input         io_exu_bvalid,
+  input         io_exu_rvalid
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg  axi_inst_ready; // @[IDU.scala 51:33]
   wire [4:0] rd = io_inst[11:7]; // @[IDU.scala 150:15]
   wire [31:0] _inst_type_T = io_inst & 32'h707f; // @[Lookup.scala 31:38]
   wire  _inst_type_T_1 = 32'h13 == _inst_type_T; // @[Lookup.scala 31:38]
@@ -153,13 +154,13 @@ module IDU(
   wire [6:0] _inst_type_T_186 = _inst_type_T_5 ? 7'h42 : _inst_type_T_185; // @[Lookup.scala 34:39]
   wire [6:0] _inst_type_T_187 = _inst_type_T_3 ? 7'h42 : _inst_type_T_186; // @[Lookup.scala 34:39]
   wire [6:0] _inst_type_T_188 = _inst_type_T_1 ? 7'h40 : _inst_type_T_187; // @[Lookup.scala 34:39]
-  wire [11:0] imm_imm = io_inst[31:20]; // @[IDU.scala 22:23]
+  wire [11:0] imm_imm = io_inst[31:20]; // @[IDU.scala 24:23]
   wire [51:0] _imm_T_2 = imm_imm[11] ? 52'hfffffffffffff : 52'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _imm_T_3 = {_imm_T_2,imm_imm}; // @[Cat.scala 31:58]
   wire [19:0] imm_imm_1 = {io_inst[31],io_inst[19:12],io_inst[20],io_inst[30:21]}; // @[Cat.scala 31:58]
   wire [42:0] _imm_T_6 = imm_imm_1[19] ? 43'h7ffffffffff : 43'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _imm_T_7 = {_imm_T_6,io_inst[31],io_inst[19:12],io_inst[20],io_inst[30:21],1'h0}; // @[Cat.scala 31:58]
-  wire [19:0] imm_imm_2 = io_inst[31:12]; // @[IDU.scala 26:23]
+  wire [19:0] imm_imm_2 = io_inst[31:12]; // @[IDU.scala 28:23]
   wire [31:0] _imm_T_10 = imm_imm_2[19] ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _imm_T_12 = {_imm_T_10,imm_imm_2,12'h0}; // @[Cat.scala 31:58]
   wire [11:0] imm_imm_3 = {io_inst[31:25],rd}; // @[Cat.scala 31:58]
@@ -258,7 +259,10 @@ module IDU(
   wire [3:0] _Wmask_T_8 = _inst_type_T_75 ? 4'hf : 4'h0; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_9 = _inst_type_T_37 ? 4'h1 : _Wmask_T_8; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_10 = _inst_type_T_35 ? 4'h3 : _Wmask_T_9; // @[Lookup.scala 34:39]
-  assign io_inst_ready = axi_inst_ready; // @[IDU.scala 53:19]
+  reg  axi_inst_ready; // @[IDU.scala 370:33]
+  wire  _GEN_0 = io_inst_valid & (_imm_T_27 | Readmem_en) & ~(io_exu_bvalid | io_exu_rvalid) ? 1'h0 : 1'h1; // @[IDU.scala 373:94 374:24 376:24]
+  wire  _GEN_1 = io_inst_valid & axi_inst_ready ? 1'h0 : _GEN_0; // @[IDU.scala 371:42 372:24]
+  assign io_inst_ready = axi_inst_ready; // @[IDU.scala 378:19]
   assign io_inst_now = {{25'd0}, _inst_now_T_194}; // @[IDU.scala 132:24 226:14]
   assign io_rs1 = io_inst[19:15]; // @[IDU.scala 149:16]
   assign io_rs2 = io_inst[24:20]; // @[IDU.scala 148:16]
@@ -275,7 +279,7 @@ module IDU(
     _inst_type_T_79 | (_inst_type_T_115 | _inst_type_T_33))))); // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Wmask = _inst_type_T_11 ? 8'hff : {{4'd0}, _Wmask_T_10}; // @[Lookup.scala 34:39]
   always @(posedge clock) begin
-    axi_inst_ready <= reset | ~(io_inst_valid & axi_inst_ready); // @[IDU.scala 51:{33,33} 52:20]
+    axi_inst_ready <= reset | _GEN_1; // @[IDU.scala 370:{33,33}]
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin

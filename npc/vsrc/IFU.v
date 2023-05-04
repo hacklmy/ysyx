@@ -3,7 +3,6 @@ module IFU_AXI(
   input         clock,
   input         reset,
   input  [63:0] io_pc,
-  input         io_pc_valid,
   output        io_inst_valid,
   input         io_inst_ready,
   output [31:0] io_inst
@@ -43,7 +42,7 @@ module IFU_AXI(
   assign axi_clock = clock;
   assign axi_reset = reset;
   assign axi_io_axi_in_araddr = io_pc[31:0]; // @[IFU_AXI.scala 18:34]
-  assign axi_io_axi_in_arvalid = io_pc_valid; // @[IFU_AXI.scala 19:27]
+  assign axi_io_axi_in_arvalid = 1'h1; // @[IFU_AXI.scala 19:27]
   assign axi_io_axi_in_rready = io_inst_ready; // @[IFU_AXI.scala 20:26]
   assign axi_io_axi_in_awaddr = 32'h0; // @[IFU_AXI.scala 21:26]
   assign axi_io_axi_in_awvalid = 1'h0; // @[IFU_AXI.scala 23:27]
@@ -57,7 +56,7 @@ module IFU_AXI(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"pc_valid : %d\n",io_pc_valid); // @[IFU_AXI.scala 17:11]
+          $fwrite(32'h80000002,"pc_valid : %d\n",1'h1); // @[IFU_AXI.scala 17:11]
         end
     `ifdef PRINTF_COND
       end

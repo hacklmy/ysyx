@@ -14,7 +14,6 @@ module top(
   wire  ifu_step_clock; // @[top.scala 18:26]
   wire  ifu_step_reset; // @[top.scala 18:26]
   wire [63:0] ifu_step_io_pc; // @[top.scala 18:26]
-  wire  ifu_step_io_pc_valid; // @[top.scala 18:26]
   wire  ifu_step_io_inst_valid; // @[top.scala 18:26]
   wire  ifu_step_io_inst_ready; // @[top.scala 18:26]
   wire [31:0] ifu_step_io_inst; // @[top.scala 18:26]
@@ -35,6 +34,8 @@ module top(
   wire  idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 23:26]
   wire  idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 23:26]
   wire [7:0] idu_step_io_ctrl_sign_Wmask; // @[top.scala 23:26]
+  wire  idu_step_io_exu_bvalid; // @[top.scala 23:26]
+  wire  idu_step_io_exu_rvalid; // @[top.scala 23:26]
   wire  exu_step_clock; // @[top.scala 28:26]
   wire  exu_step_reset; // @[top.scala 28:26]
   wire [63:0] exu_step_io_pc; // @[top.scala 28:26]
@@ -55,6 +56,8 @@ module top(
   wire  exu_step_io_inst_valid; // @[top.scala 28:26]
   wire  exu_step_io_mem_end; // @[top.scala 28:26]
   wire  exu_step_io_mem_flag; // @[top.scala 28:26]
+  wire  exu_step_io_exu_bvalid; // @[top.scala 28:26]
+  wire  exu_step_io_exu_rvalid; // @[top.scala 28:26]
   wire [31:0] dpi_flag; // @[top.scala 42:21]
   wire [31:0] dpi_ecall_flag; // @[top.scala 42:21]
   reg [63:0] pc_now; // @[top.scala 15:25]
@@ -65,7 +68,6 @@ module top(
     .clock(ifu_step_clock),
     .reset(ifu_step_reset),
     .io_pc(ifu_step_io_pc),
-    .io_pc_valid(ifu_step_io_pc_valid),
     .io_inst_valid(ifu_step_io_inst_valid),
     .io_inst_ready(ifu_step_io_inst_ready),
     .io_inst(ifu_step_io_inst)
@@ -87,7 +89,9 @@ module top(
     .io_ctrl_sign_src1_is_pc(idu_step_io_ctrl_sign_src1_is_pc),
     .io_ctrl_sign_Writemem_en(idu_step_io_ctrl_sign_Writemem_en),
     .io_ctrl_sign_Readmem_en(idu_step_io_ctrl_sign_Readmem_en),
-    .io_ctrl_sign_Wmask(idu_step_io_ctrl_sign_Wmask)
+    .io_ctrl_sign_Wmask(idu_step_io_ctrl_sign_Wmask),
+    .io_exu_bvalid(idu_step_io_exu_bvalid),
+    .io_exu_rvalid(idu_step_io_exu_rvalid)
   );
   EXU_AXI exu_step ( // @[top.scala 28:26]
     .clock(exu_step_clock),
@@ -109,7 +113,9 @@ module top(
     .io_res2rd(exu_step_io_res2rd),
     .io_inst_valid(exu_step_io_inst_valid),
     .io_mem_end(exu_step_io_mem_end),
-    .io_mem_flag(exu_step_io_mem_flag)
+    .io_mem_flag(exu_step_io_mem_flag),
+    .io_exu_bvalid(exu_step_io_exu_bvalid),
+    .io_exu_rvalid(exu_step_io_exu_rvalid)
   );
   DPI dpi ( // @[top.scala 42:21]
     .flag(dpi_flag),
@@ -123,12 +129,13 @@ module top(
   assign ifu_step_clock = clock;
   assign ifu_step_reset = reset;
   assign ifu_step_io_pc = pc_now; // @[top.scala 19:20]
-  assign ifu_step_io_pc_valid = pc_now == 64'h80000000 | ~(exu_step_io_mem_end & ifu_step_io_inst_valid); // @[top.scala 54:32]
   assign ifu_step_io_inst_ready = idu_step_io_inst_ready; // @[top.scala 27:28]
   assign idu_step_clock = clock;
   assign idu_step_reset = reset;
   assign idu_step_io_inst = ifu_step_io_inst; // @[top.scala 25:22]
   assign idu_step_io_inst_valid = ifu_step_io_inst_valid; // @[top.scala 26:28]
+  assign idu_step_io_exu_bvalid = exu_step_io_exu_bvalid; // @[top.scala 56:28]
+  assign idu_step_io_exu_rvalid = exu_step_io_exu_rvalid; // @[top.scala 57:28]
   assign exu_step_clock = clock;
   assign exu_step_reset = reset;
   assign exu_step_io_pc = pc_now; // @[top.scala 29:20]
