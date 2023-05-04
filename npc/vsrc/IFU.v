@@ -38,18 +38,31 @@ module IFU_AXI(
     .io_axi_out_rvalid(axi_io_axi_out_rvalid),
     .io_axi_out_bvalid(axi_io_axi_out_bvalid)
   );
-  assign io_inst_valid = axi_io_axi_out_rvalid; // @[IFU_AXI.scala 28:19]
-  assign io_inst = axi_io_axi_out_rdata[31:0]; // @[IFU_AXI.scala 27:36]
+  assign io_inst_valid = axi_io_axi_out_rvalid; // @[IFU_AXI.scala 29:19]
+  assign io_inst = axi_io_axi_out_rdata[31:0]; // @[IFU_AXI.scala 28:36]
   assign axi_clock = clock;
   assign axi_reset = reset;
-  assign axi_io_axi_in_araddr = io_pc[31:0]; // @[IFU_AXI.scala 17:34]
-  assign axi_io_axi_in_arvalid = io_pc_valid; // @[IFU_AXI.scala 18:27]
-  assign axi_io_axi_in_rready = io_inst_ready; // @[IFU_AXI.scala 19:26]
-  assign axi_io_axi_in_awaddr = 32'h0; // @[IFU_AXI.scala 20:26]
-  assign axi_io_axi_in_awvalid = 1'h0; // @[IFU_AXI.scala 22:27]
-  assign axi_io_axi_in_wdata = 32'h0; // @[IFU_AXI.scala 21:25]
-  assign axi_io_axi_in_wstrb = 8'h0; // @[IFU_AXI.scala 23:25]
-  assign axi_io_axi_in_wvalid = 1'h0; // @[IFU_AXI.scala 24:26]
-  assign axi_io_axi_in_bready = 1'h0; // @[IFU_AXI.scala 25:26]
+  assign axi_io_axi_in_araddr = io_pc[31:0]; // @[IFU_AXI.scala 18:34]
+  assign axi_io_axi_in_arvalid = io_pc_valid; // @[IFU_AXI.scala 19:27]
+  assign axi_io_axi_in_rready = io_inst_ready; // @[IFU_AXI.scala 20:26]
+  assign axi_io_axi_in_awaddr = 32'h0; // @[IFU_AXI.scala 21:26]
+  assign axi_io_axi_in_awvalid = 1'h0; // @[IFU_AXI.scala 23:27]
+  assign axi_io_axi_in_wdata = 32'h0; // @[IFU_AXI.scala 22:25]
+  assign axi_io_axi_in_wstrb = 8'h0; // @[IFU_AXI.scala 24:25]
+  assign axi_io_axi_in_wvalid = 1'h0; // @[IFU_AXI.scala 25:26]
+  assign axi_io_axi_in_bready = 1'h0; // @[IFU_AXI.scala 26:26]
+  always @(posedge clock) begin
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"pc_valid : %d\n",io_pc_valid); // @[IFU_AXI.scala 17:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
+  end
 endmodule
 /* verilator lint_on UNUSED */
