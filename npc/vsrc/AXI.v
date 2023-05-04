@@ -34,20 +34,21 @@ module AXI(
   reg  axi_arready; // @[AXI.scala 19:30]
   reg  axi_rvalid; // @[AXI.scala 21:29]
   reg [2:0] state; // @[AXI.scala 24:24]
-  wire  _GEN_1 = io_axi_in_arvalid ? 1'h0 : axi_arready; // @[AXI.scala 48:42 50:29 19:30]
-  wire  _GEN_2 = io_axi_in_arvalid | axi_rvalid; // @[AXI.scala 48:42 51:28 21:29]
-  wire  _GEN_5 = io_axi_in_awvalid & io_axi_in_wvalid ? 1'h0 : axi_wready; // @[AXI.scala 38:56 41:28 14:29]
-  wire  _GEN_6 = io_axi_in_awvalid & io_axi_in_wvalid | axi_bvalid; // @[AXI.scala 38:56 42:28 17:29]
-  wire  _GEN_7 = io_axi_in_awvalid & io_axi_in_wvalid ? axi_arready : _GEN_1; // @[AXI.scala 19:30 38:56]
-  wire  _GEN_12 = io_axi_in_bready | axi_wready; // @[AXI.scala 55:35 59:28 14:29]
-  wire [2:0] _GEN_13 = io_axi_in_rready ? 3'h0 : state; // @[AXI.scala 63:35 64:23 24:24]
-  wire  _GEN_14 = io_axi_in_rready | axi_arready; // @[AXI.scala 63:35 65:29 19:30]
-  wire  _GEN_15 = io_axi_in_rready ? 1'h0 : axi_rvalid; // @[AXI.scala 63:35 66:28 21:29]
-  wire  _GEN_17 = 3'h4 == state ? _GEN_14 : axi_arready; // @[AXI.scala 36:18 19:30]
-  wire  _GEN_22 = 3'h3 == state ? _GEN_12 : axi_wready; // @[AXI.scala 36:18 14:29]
-  wire  _GEN_23 = 3'h3 == state ? axi_arready : _GEN_17; // @[AXI.scala 36:18 19:30]
-  wire  _GEN_27 = 3'h0 == state ? _GEN_5 : _GEN_22; // @[AXI.scala 36:18]
-  wire  _GEN_29 = 3'h0 == state ? _GEN_7 : _GEN_23; // @[AXI.scala 36:18]
+  wire  _T_1 = ~reset; // @[AXI.scala 34:11]
+  wire  _GEN_1 = io_axi_in_arvalid ? 1'h0 : axi_arready; // @[AXI.scala 49:42 51:29 19:30]
+  wire  _GEN_2 = io_axi_in_arvalid | axi_rvalid; // @[AXI.scala 49:42 52:28 21:29]
+  wire  _GEN_5 = io_axi_in_awvalid & io_axi_in_wvalid ? 1'h0 : axi_wready; // @[AXI.scala 39:56 42:28 14:29]
+  wire  _GEN_6 = io_axi_in_awvalid & io_axi_in_wvalid | axi_bvalid; // @[AXI.scala 39:56 43:28 17:29]
+  wire  _GEN_7 = io_axi_in_awvalid & io_axi_in_wvalid ? axi_arready : _GEN_1; // @[AXI.scala 19:30 39:56]
+  wire  _GEN_12 = io_axi_in_bready | axi_wready; // @[AXI.scala 56:35 60:28 14:29]
+  wire [2:0] _GEN_13 = io_axi_in_rready ? 3'h0 : state; // @[AXI.scala 64:35 65:23 24:24]
+  wire  _GEN_14 = io_axi_in_rready | axi_arready; // @[AXI.scala 64:35 66:29 19:30]
+  wire  _GEN_15 = io_axi_in_rready ? 1'h0 : axi_rvalid; // @[AXI.scala 64:35 67:28 21:29]
+  wire  _GEN_17 = 3'h4 == state ? _GEN_14 : axi_arready; // @[AXI.scala 37:18 19:30]
+  wire  _GEN_22 = 3'h3 == state ? _GEN_12 : axi_wready; // @[AXI.scala 37:18 14:29]
+  wire  _GEN_23 = 3'h3 == state ? axi_arready : _GEN_17; // @[AXI.scala 37:18 19:30]
+  wire  _GEN_27 = 3'h0 == state ? _GEN_5 : _GEN_22; // @[AXI.scala 37:18]
+  wire  _GEN_29 = 3'h0 == state ? _GEN_7 : _GEN_23; // @[AXI.scala 37:18]
   MEM Mem_modle ( // @[AXI.scala 26:27]
     .Raddr(Mem_modle_Raddr),
     .Rdata(Mem_modle_Rdata),
@@ -57,10 +58,10 @@ module AXI(
     .Write_en(Mem_modle_Write_en),
     .Read_en(Mem_modle_Read_en)
   );
-  assign io_axi_out_arready = axi_arready; // @[AXI.scala 70:24]
-  assign io_axi_out_rdata = Mem_modle_Rdata; // @[AXI.scala 71:22]
-  assign io_axi_out_rvalid = axi_rvalid; // @[AXI.scala 72:23]
-  assign io_axi_out_bvalid = axi_bvalid; // @[AXI.scala 75:23]
+  assign io_axi_out_arready = axi_arready; // @[AXI.scala 71:24]
+  assign io_axi_out_rdata = Mem_modle_Rdata; // @[AXI.scala 72:22]
+  assign io_axi_out_rvalid = axi_rvalid; // @[AXI.scala 73:23]
+  assign io_axi_out_bvalid = axi_bvalid; // @[AXI.scala 76:23]
   assign Mem_modle_Raddr = {32'h0,io_axi_in_araddr}; // @[Cat.scala 31:58]
   assign Mem_modle_Waddr = {{32'd0}, io_axi_in_awaddr}; // @[AXI.scala 28:24]
   assign Mem_modle_Wdata = {{32'd0}, io_axi_in_wdata}; // @[AXI.scala 29:24]
@@ -71,38 +72,38 @@ module AXI(
     axi_wready <= reset | _GEN_27; // @[AXI.scala 14:{29,29}]
     if (reset) begin // @[AXI.scala 17:29]
       axi_bvalid <= 1'h0; // @[AXI.scala 17:29]
-    end else if (3'h0 == state) begin // @[AXI.scala 36:18]
+    end else if (3'h0 == state) begin // @[AXI.scala 37:18]
       axi_bvalid <= _GEN_6;
-    end else if (3'h3 == state) begin // @[AXI.scala 36:18]
-      if (io_axi_in_bready) begin // @[AXI.scala 55:35]
-        axi_bvalid <= 1'h0; // @[AXI.scala 57:28]
+    end else if (3'h3 == state) begin // @[AXI.scala 37:18]
+      if (io_axi_in_bready) begin // @[AXI.scala 56:35]
+        axi_bvalid <= 1'h0; // @[AXI.scala 58:28]
       end
     end
     axi_arready <= reset | _GEN_29; // @[AXI.scala 19:{30,30}]
     if (reset) begin // @[AXI.scala 21:29]
       axi_rvalid <= 1'h0; // @[AXI.scala 21:29]
-    end else if (3'h0 == state) begin // @[AXI.scala 36:18]
-      if (!(io_axi_in_awvalid & io_axi_in_wvalid)) begin // @[AXI.scala 38:56]
+    end else if (3'h0 == state) begin // @[AXI.scala 37:18]
+      if (!(io_axi_in_awvalid & io_axi_in_wvalid)) begin // @[AXI.scala 39:56]
         axi_rvalid <= _GEN_2;
       end
-    end else if (!(3'h3 == state)) begin // @[AXI.scala 36:18]
-      if (3'h4 == state) begin // @[AXI.scala 36:18]
+    end else if (!(3'h3 == state)) begin // @[AXI.scala 37:18]
+      if (3'h4 == state) begin // @[AXI.scala 37:18]
         axi_rvalid <= _GEN_15;
       end
     end
     if (reset) begin // @[AXI.scala 24:24]
       state <= 3'h0; // @[AXI.scala 24:24]
-    end else if (3'h0 == state) begin // @[AXI.scala 36:18]
-      if (io_axi_in_awvalid & io_axi_in_wvalid) begin // @[AXI.scala 38:56]
-        state <= 3'h3; // @[AXI.scala 39:23]
-      end else if (io_axi_in_arvalid) begin // @[AXI.scala 48:42]
-        state <= 3'h4; // @[AXI.scala 49:23]
+    end else if (3'h0 == state) begin // @[AXI.scala 37:18]
+      if (io_axi_in_awvalid & io_axi_in_wvalid) begin // @[AXI.scala 39:56]
+        state <= 3'h3; // @[AXI.scala 40:23]
+      end else if (io_axi_in_arvalid) begin // @[AXI.scala 49:42]
+        state <= 3'h4; // @[AXI.scala 50:23]
       end
-    end else if (3'h3 == state) begin // @[AXI.scala 36:18]
-      if (io_axi_in_bready) begin // @[AXI.scala 55:35]
-        state <= 3'h0; // @[AXI.scala 56:23]
+    end else if (3'h3 == state) begin // @[AXI.scala 37:18]
+      if (io_axi_in_bready) begin // @[AXI.scala 56:35]
+        state <= 3'h0; // @[AXI.scala 57:23]
       end
-    end else if (3'h4 == state) begin // @[AXI.scala 36:18]
+    end else if (3'h4 == state) begin // @[AXI.scala 37:18]
       state <= _GEN_13;
     end
     `ifndef SYNTHESIS
@@ -110,7 +111,18 @@ module AXI(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"read_en:%d read_addr :%x\n",Mem_modle_Read_en,Mem_modle_Raddr); // @[AXI.scala 34:11]
+          $fwrite(32'h80000002,"axi_arready:%d axi_arvalid:%d\n",axi_arready,io_axi_in_arvalid); // @[AXI.scala 34:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (_T_1) begin
+          $fwrite(32'h80000002,"read_en:%d read_addr :%x\n",Mem_modle_Read_en,Mem_modle_Raddr); // @[AXI.scala 35:11]
         end
     `ifdef PRINTF_COND
       end

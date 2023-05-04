@@ -100,8 +100,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__exu_step__DOT__axi__DOT__state;
     __Vdly__top__DOT__exu_step__DOT__axi_bready = vlSelf->top__DOT__exu_step__DOT__axi_bready;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"read_en:%1#\n",1,((IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready) 
-                                                  & (IData)(vlSelf->top__DOT__exu_step__DOT__axi_arvalid)));
+        VL_FWRITEF(0x80000002U,"read_en:%1# read_addr :%x\n",
+                   1,((IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready) 
+                      & (IData)(vlSelf->top__DOT__exu_step__DOT__axi_arvalid)),
+                   64,(QData)((IData)(vlSelf->top__DOT__exu_step__DOT__add_res)));
     }
     __Vdly__top__DOT__exu_step__DOT__axi_wvalid = vlSelf->top__DOT__exu_step__DOT__axi_wvalid;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
@@ -125,7 +127,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     }
     __Vdly__top__DOT__exu_step__DOT__axi_rready = vlSelf->top__DOT__exu_step__DOT__axi_rready;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"read_en:%1#\n",1,vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready);
+        VL_FWRITEF(0x80000002U,"read_en:%1# read_addr :%x\n",
+                   1,vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready,
+                   64,(QData)((IData)(vlSelf->top__DOT__pc_now)));
     }
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_wready 
         = ((IData)(vlSelf->reset) | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_27));
