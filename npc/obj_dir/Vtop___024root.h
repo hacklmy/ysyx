@@ -56,9 +56,9 @@ VL_MODULE(Vtop___024root) {
         CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_188;
         CData/*6:0*/ top__DOT__idu_step__DOT___inst_now_T_194;
         CData/*0:0*/ top__DOT__idu_step__DOT___reg_write_T_37;
-        CData/*0:0*/ top__DOT__exu_step__DOT__axi_io_axi_in_arvalid;
         CData/*1:0*/ top__DOT__exu_step__DOT___csr_index_T_5;
         CData/*0:0*/ top__DOT__exu_step__DOT___T_7;
+        CData/*0:0*/ top__DOT__exu_step__DOT__axi_arvalid;
         CData/*0:0*/ top__DOT__exu_step__DOT__axi_rready;
         CData/*0:0*/ top__DOT__exu_step__DOT__axi_awvalid;
         CData/*0:0*/ top__DOT__exu_step__DOT__axi_bready;
