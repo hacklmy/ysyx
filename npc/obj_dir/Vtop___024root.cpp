@@ -108,7 +108,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         VL_FWRITEF(0x80000002U,"read_en:%1# read_addr :%x\n",
                    1,((IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready) 
                       & (IData)(vlSelf->top__DOT__exu_step__DOT__axi_arvalid)),
-                   64,(QData)((IData)(vlSelf->top__DOT__exu_step__DOT__add_res)));
+                   64,(QData)((IData)(vlSelf->top__DOT__exu_step__DOT__axi_araddr)));
     }
     __Vdly__top__DOT__exu_step__DOT__axi_wvalid = vlSelf->top__DOT__exu_step__DOT__axi_wvalid;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
@@ -195,6 +195,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                    1,vlSelf->top__DOT__exu_step__DOT__axi_wvalid,
                    1,(IData)(vlSelf->top__DOT__exu_step__DOT__axi_rready));
     }
+    vlSelf->top__DOT__exu_step__DOT__axi_araddr = ((IData)(vlSelf->reset)
+                                                    ? 0U
+                                                    : (IData)(vlSelf->top__DOT__exu_step__DOT__add_res));
     vlSelf->top__DOT__exu_step__DOT__CSR_Reg[1U] = __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v0;
     vlSelf->top__DOT__exu_step__DOT__CSR_Reg[3U] = __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v1;
     vlSelf->top__DOT__exu_step__DOT__CSR_Reg[__Vdlyvdim0__top__DOT__exu_step__DOT__CSR_Reg__v2] 
@@ -1642,7 +1645,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                 | (QData)((IData)(vlSelf->top__DOT__exu_step__DOT__add_res)));
     if (((IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready) 
          & (IData)(vlSelf->top__DOT__exu_step__DOT__axi_arvalid))) {
-        Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit((QData)((IData)(vlSelf->top__DOT__exu_step__DOT__add_res)), vlSelf->__Vtask_pmem_read__4__Rdata);
+        Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit((QData)((IData)(vlSelf->top__DOT__exu_step__DOT__axi_araddr)), vlSelf->__Vtask_pmem_read__4__Rdata);
         vlSelf->top__DOT__exu_step__DOT__axi__DOT__Mem_modle_Rdata 
             = vlSelf->__Vtask_pmem_read__4__Rdata;
     }
