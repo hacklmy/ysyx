@@ -99,6 +99,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     __Vdly__top__DOT__exu_step__DOT__axi__DOT__state 
         = vlSelf->top__DOT__exu_step__DOT__axi__DOT__state;
     __Vdly__top__DOT__exu_step__DOT__axi_bready = vlSelf->top__DOT__exu_step__DOT__axi_bready;
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"read_en:%1#\n",1,((IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready) 
+                                                  & (IData)(vlSelf->top__DOT__exu_step__DOT__axi_arvalid)));
+    }
     __Vdly__top__DOT__exu_step__DOT__axi_wvalid = vlSelf->top__DOT__exu_step__DOT__axi_wvalid;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
         VL_FWRITEF(0x80000002U,"Writemem_en:%1# Readmem_en:%1#\n",
@@ -120,6 +124,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                    vlSelf->top__DOT__idu_step__DOT__axi_inst_ready);
     }
     __Vdly__top__DOT__exu_step__DOT__axi_rready = vlSelf->top__DOT__exu_step__DOT__axi_rready;
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"read_en:%1#\n",1,vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready);
+    }
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_wready 
         = ((IData)(vlSelf->reset) | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_27));
     vlSelf->top__DOT__npc_step = ((~ (IData)(vlSelf->reset)) 
@@ -155,8 +162,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     __Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0 
         = (0x1fU & (IData)((vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata 
                             >> 7U)));
-    vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready 
-        = ((IData)(vlSelf->reset) | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_29));
     __Vdly__top__DOT__exu_step__DOT__axi_rready = (1U 
                                                    & ((IData)(vlSelf->reset) 
                                                       | (~ 
@@ -184,6 +189,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__exu_step__DOT__Regfile[__Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0] 
         = __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0;
     vlSelf->top__DOT__exu_step__DOT__axi_rready = __Vdly__top__DOT__exu_step__DOT__axi_rready;
+    vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_arready 
+        = ((IData)(vlSelf->reset) | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_29));
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_27 
         = vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_wready;
     vlSelf->io_step = vlSelf->top__DOT__npc_step;
