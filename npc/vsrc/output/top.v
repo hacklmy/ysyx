@@ -563,6 +563,7 @@ module EXU_AXI(
   reg [31:0] _RAND_3;
   reg [31:0] _RAND_4;
   reg [31:0] _RAND_5;
+  reg [31:0] _RAND_6;
 `endif // RANDOMIZE_REG_INIT
   reg [63:0] Regfile [0:31]; // @[EXU_AXI.scala 27:22]
   wire  Regfile_src1_value_MPORT_en; // @[EXU_AXI.scala 27:22]
@@ -999,6 +1000,7 @@ module EXU_AXI(
   wire [63:0] _mem_wdate_T_14 = 32'h26 == io_inst_now ? {{48'd0}, _mem_wdate_T_3[15:0]} : _mem_wdate_T_12; // @[Mux.scala 81:58]
   wire [63:0] _mem_wdate_T_16 = 32'h28 == io_inst_now ? {{56'd0}, _mem_wdate_T_6[7:0]} : _mem_wdate_T_14; // @[Mux.scala 81:58]
   wire [63:0] mem_wdate = 32'h27 == io_inst_now ? {{32'd0}, _mem_wdate_T_9[31:0]} : _mem_wdate_T_16; // @[Mux.scala 81:58]
+  reg  axi_arvalid; // @[EXU_AXI.scala 175:30]
   reg  axi_rready; // @[EXU_AXI.scala 176:29]
   reg  axi_awvalid; // @[EXU_AXI.scala 177:30]
   reg  axi_wvalid; // @[EXU_AXI.scala 178:29]
@@ -1315,7 +1317,7 @@ module EXU_AXI(
   assign axi_clock = clock;
   assign axi_reset = reset;
   assign axi_io_axi_in_araddr = add_res[31:0]; // @[EXU_AXI.scala 192:36]
-  assign axi_io_axi_in_arvalid = io_inst_valid & io_ctrl_sign_Readmem_en; // @[EXU_AXI.scala 193:44]
+  assign axi_io_axi_in_arvalid = axi_arvalid; // @[EXU_AXI.scala 193:27]
   assign axi_io_axi_in_rready = axi_rready; // @[EXU_AXI.scala 194:26]
   assign axi_io_axi_in_awaddr = add_res[31:0]; // @[EXU_AXI.scala 195:36]
   assign axi_io_axi_in_awvalid = axi_awvalid; // @[EXU_AXI.scala 196:27]
@@ -1335,6 +1337,11 @@ module EXU_AXI(
     end
     if (CSR_Reg_MPORT_6_en & CSR_Reg_MPORT_6_mask) begin
       CSR_Reg[CSR_Reg_MPORT_6_addr] <= CSR_Reg_MPORT_6_data; // @[EXU_AXI.scala 28:22]
+    end
+    if (reset) begin // @[EXU_AXI.scala 175:30]
+      axi_arvalid <= 1'h0; // @[EXU_AXI.scala 175:30]
+    end else begin
+      axi_arvalid <= io_inst_valid & io_ctrl_sign_Readmem_en; // @[EXU_AXI.scala 181:17]
     end
     axi_rready <= reset | ~(axi_rready & axi_io_axi_out_rvalid); // @[EXU_AXI.scala 176:{29,29} 182:16]
     if (reset) begin // @[EXU_AXI.scala 177:30]
@@ -1416,13 +1423,15 @@ initial begin
 `endif // RANDOMIZE_MEM_INIT
 `ifdef RANDOMIZE_REG_INIT
   _RAND_2 = {1{`RANDOM}};
-  axi_rready = _RAND_2[0:0];
+  axi_arvalid = _RAND_2[0:0];
   _RAND_3 = {1{`RANDOM}};
-  axi_awvalid = _RAND_3[0:0];
+  axi_rready = _RAND_3[0:0];
   _RAND_4 = {1{`RANDOM}};
-  axi_wvalid = _RAND_4[0:0];
+  axi_awvalid = _RAND_4[0:0];
   _RAND_5 = {1{`RANDOM}};
-  axi_bready = _RAND_5[0:0];
+  axi_wvalid = _RAND_5[0:0];
+  _RAND_6 = {1{`RANDOM}};
+  axi_bready = _RAND_6[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial

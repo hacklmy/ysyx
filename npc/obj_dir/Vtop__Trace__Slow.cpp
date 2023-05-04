@@ -478,7 +478,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+260,"top exu_step reg_value", false,-1, 63,0);
         tracep->declQuad(c+262,"top exu_step csr_wdata", false,-1, 63,0);
         tracep->declQuad(c+264,"top exu_step mem_wdate", false,-1, 63,0);
-        tracep->declBit(c+208,"top exu_step axi_arvalid", false,-1);
         tracep->declBit(c+209,"top exu_step axi_rready", false,-1);
         tracep->declBit(c+210,"top exu_step axi_awvalid", false,-1);
         tracep->declBit(c+210,"top exu_step axi_wvalid", false,-1);
@@ -914,7 +913,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                    & (IData)(vlSelf->top__DOT__idu_step_io_imm)))
                                         ? 3U : (IData)(vlSelf->top__DOT__exu_step__DOT___csr_index_T_5))])),64);
         tracep->fullIData(oldp+207,((IData)(vlSelf->top__DOT__exu_step__DOT__add_res)),32);
-        tracep->fullBit(oldp+208,(vlSelf->top__DOT__exu_step__DOT__axi_arvalid));
+        tracep->fullBit(oldp+208,(vlSelf->top__DOT__exu_step__DOT__axi_io_axi_in_arvalid));
         tracep->fullBit(oldp+209,(vlSelf->top__DOT__exu_step__DOT__axi_rready));
         tracep->fullBit(oldp+210,(vlSelf->top__DOT__exu_step__DOT__axi_awvalid));
         tracep->fullIData(oldp+211,((IData)(((0x27U 
@@ -1257,7 +1256,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+342,(((IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_wready) 
                                    & (IData)(vlSelf->top__DOT__exu_step__DOT__axi_awvalid))));
         tracep->fullBit(oldp+343,(((IData)(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready) 
-                                   & (IData)(vlSelf->top__DOT__exu_step__DOT__axi_arvalid))));
+                                   & (IData)(vlSelf->top__DOT__exu_step__DOT__axi_io_axi_in_arvalid))));
         tracep->fullBit(oldp+344,(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_wready));
         tracep->fullBit(oldp+345,(vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_arready));
         tracep->fullCData(oldp+346,(vlSelf->top__DOT__exu_step__DOT__axi__DOT__state),3);
