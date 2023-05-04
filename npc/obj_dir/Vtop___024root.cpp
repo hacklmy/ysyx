@@ -98,6 +98,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                    64,vlSelf->top__DOT__pc_now,32,(IData)(vlSelf->top__DOT__idu_step__DOT___inst_now_T_194),
                    1,vlSelf->top__DOT___exu_step_io_inst_valid_T);
     }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"bvalid: %1#\n",1,vlSelf->top__DOT__exu_step__DOT__axi__DOT__axi_bvalid);
+    }
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_wready 
         = ((IData)(vlSelf->reset) | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_27));
     vlSelf->top__DOT__npc_step = ((~ (IData)(vlSelf->reset)) 
