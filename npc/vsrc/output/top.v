@@ -164,24 +164,23 @@ module IFU_AXI(
   input  [63:0] io_pc,
   output        io_inst_valid,
   input         io_inst_ready,
-  output [31:0] io_inst,
-  input         io_mem_flag
+  output [31:0] io_inst
 );
-  wire  axi_clock; // @[IFU_AXI.scala 17:21]
-  wire  axi_reset; // @[IFU_AXI.scala 17:21]
-  wire [31:0] axi_io_axi_in_araddr; // @[IFU_AXI.scala 17:21]
-  wire  axi_io_axi_in_arvalid; // @[IFU_AXI.scala 17:21]
-  wire  axi_io_axi_in_rready; // @[IFU_AXI.scala 17:21]
-  wire [31:0] axi_io_axi_in_awaddr; // @[IFU_AXI.scala 17:21]
-  wire  axi_io_axi_in_awvalid; // @[IFU_AXI.scala 17:21]
-  wire [31:0] axi_io_axi_in_wdata; // @[IFU_AXI.scala 17:21]
-  wire [7:0] axi_io_axi_in_wstrb; // @[IFU_AXI.scala 17:21]
-  wire  axi_io_axi_in_wvalid; // @[IFU_AXI.scala 17:21]
-  wire  axi_io_axi_in_bready; // @[IFU_AXI.scala 17:21]
-  wire [63:0] axi_io_axi_out_rdata; // @[IFU_AXI.scala 17:21]
-  wire  axi_io_axi_out_rvalid; // @[IFU_AXI.scala 17:21]
-  wire  axi_io_axi_out_bvalid; // @[IFU_AXI.scala 17:21]
-  AXI axi ( // @[IFU_AXI.scala 17:21]
+  wire  axi_clock; // @[IFU_AXI.scala 16:21]
+  wire  axi_reset; // @[IFU_AXI.scala 16:21]
+  wire [31:0] axi_io_axi_in_araddr; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_in_arvalid; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_in_rready; // @[IFU_AXI.scala 16:21]
+  wire [31:0] axi_io_axi_in_awaddr; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_in_awvalid; // @[IFU_AXI.scala 16:21]
+  wire [31:0] axi_io_axi_in_wdata; // @[IFU_AXI.scala 16:21]
+  wire [7:0] axi_io_axi_in_wstrb; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_in_wvalid; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_in_bready; // @[IFU_AXI.scala 16:21]
+  wire [63:0] axi_io_axi_out_rdata; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_out_rvalid; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_out_bvalid; // @[IFU_AXI.scala 16:21]
+  AXI axi ( // @[IFU_AXI.scala 16:21]
     .clock(axi_clock),
     .reset(axi_reset),
     .io_axi_in_araddr(axi_io_axi_in_araddr),
@@ -197,19 +196,19 @@ module IFU_AXI(
     .io_axi_out_rvalid(axi_io_axi_out_rvalid),
     .io_axi_out_bvalid(axi_io_axi_out_bvalid)
   );
-  assign io_inst_valid = axi_io_axi_out_rvalid; // @[IFU_AXI.scala 29:19]
-  assign io_inst = axi_io_axi_out_rdata[31:0]; // @[IFU_AXI.scala 28:36]
+  assign io_inst_valid = axi_io_axi_out_rvalid; // @[IFU_AXI.scala 28:19]
+  assign io_inst = axi_io_axi_out_rdata[31:0]; // @[IFU_AXI.scala 27:36]
   assign axi_clock = clock;
   assign axi_reset = reset;
-  assign axi_io_axi_in_araddr = io_pc[31:0]; // @[IFU_AXI.scala 18:34]
-  assign axi_io_axi_in_arvalid = io_mem_flag; // @[IFU_AXI.scala 19:42]
-  assign axi_io_axi_in_rready = io_inst_ready; // @[IFU_AXI.scala 20:26]
-  assign axi_io_axi_in_awaddr = 32'h0; // @[IFU_AXI.scala 21:26]
-  assign axi_io_axi_in_awvalid = 1'h0; // @[IFU_AXI.scala 23:27]
-  assign axi_io_axi_in_wdata = 32'h0; // @[IFU_AXI.scala 22:25]
-  assign axi_io_axi_in_wstrb = 8'h0; // @[IFU_AXI.scala 24:25]
-  assign axi_io_axi_in_wvalid = 1'h0; // @[IFU_AXI.scala 25:26]
-  assign axi_io_axi_in_bready = 1'h0; // @[IFU_AXI.scala 26:26]
+  assign axi_io_axi_in_araddr = io_pc[31:0]; // @[IFU_AXI.scala 17:34]
+  assign axi_io_axi_in_arvalid = 1'h1; // @[IFU_AXI.scala 18:27]
+  assign axi_io_axi_in_rready = io_inst_ready; // @[IFU_AXI.scala 19:26]
+  assign axi_io_axi_in_awaddr = 32'h0; // @[IFU_AXI.scala 20:26]
+  assign axi_io_axi_in_awvalid = 1'h0; // @[IFU_AXI.scala 22:27]
+  assign axi_io_axi_in_wdata = 32'h0; // @[IFU_AXI.scala 21:25]
+  assign axi_io_axi_in_wstrb = 8'h0; // @[IFU_AXI.scala 23:25]
+  assign axi_io_axi_in_wvalid = 1'h0; // @[IFU_AXI.scala 24:26]
+  assign axi_io_axi_in_bready = 1'h0; // @[IFU_AXI.scala 25:26]
 endmodule
 module IDU(
   input         clock,
@@ -870,7 +869,7 @@ module EXU_AXI(
   wire [63:0] _io_res2rd_T_1 = io_pc + 64'h4; // @[EXU_AXI.scala 66:24]
   wire  _io_res2rd_T_4 = src1_value < src2_value; // @[EXU_AXI.scala 68:34]
   wire  _io_res2rd_T_10 = $signed(_sra_res_T) < $signed(_div_res_T_1); // @[EXU_AXI.scala 70:42]
-  wire [63:0] mem_rdata = axi_io_axi_out_rdata; // @[EXU_AXI.scala 192:15 26:25]
+  wire [63:0] mem_rdata = axi_io_axi_out_rdata; // @[EXU_AXI.scala 193:15 26:25]
   wire [31:0] _io_res2rd_T_18 = mem_rdata[31] ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _io_res2rd_T_20 = {_io_res2rd_T_18,mem_rdata[31:0]}; // @[Cat.scala 31:58]
   wire [63:0] _io_res2rd_T_23 = {56'h0,mem_rdata[7:0]}; // @[Cat.scala 31:58]
@@ -1275,8 +1274,8 @@ module EXU_AXI(
   assign io_pc_next = 32'h3e == io_inst_now ? _io_pc_next_T_46 : _io_pc_next_T_64; // @[Mux.scala 81:58]
   assign io_res2rd = _io_res2rd_T_208[63:0]; // @[EXU_AXI.scala 62:15]
   assign io_mem_end = io_ctrl_sign_Readmem_en & axi_rready & axi_io_axi_out_rvalid | io_ctrl_sign_Writemem_en &
-    axi_bready & axi_io_axi_out_bvalid; // @[EXU_AXI.scala 204:84]
-  assign io_mem_flag = io_ctrl_sign_Readmem_en | io_ctrl_sign_Writemem_en; // @[EXU_AXI.scala 203:44]
+    axi_bready & axi_io_axi_out_bvalid; // @[EXU_AXI.scala 205:84]
+  assign io_mem_flag = io_ctrl_sign_Readmem_en | io_ctrl_sign_Writemem_en; // @[EXU_AXI.scala 204:44]
   assign reg_trace_input_reg_0 = Regfile_reg_trace_io_input_reg_0_MPORT_data; // @[EXU_AXI.scala 150:57]
   assign reg_trace_input_reg_1 = Regfile_reg_trace_io_input_reg_1_MPORT_data; // @[EXU_AXI.scala 150:57]
   assign reg_trace_input_reg_2 = Regfile_reg_trace_io_input_reg_2_MPORT_data; // @[EXU_AXI.scala 150:57]
@@ -1316,15 +1315,15 @@ module EXU_AXI(
   assign reg_trace_pc = io_pc; // @[EXU_AXI.scala 151:21]
   assign axi_clock = clock;
   assign axi_reset = reset;
-  assign axi_io_axi_in_araddr = add_res[31:0]; // @[EXU_AXI.scala 193:36]
-  assign axi_io_axi_in_arvalid = axi_arvalid; // @[EXU_AXI.scala 194:27]
-  assign axi_io_axi_in_rready = axi_rready; // @[EXU_AXI.scala 195:26]
-  assign axi_io_axi_in_awaddr = add_res[31:0]; // @[EXU_AXI.scala 196:36]
-  assign axi_io_axi_in_awvalid = axi_awvalid; // @[EXU_AXI.scala 197:27]
-  assign axi_io_axi_in_wdata = mem_wdate[31:0]; // @[EXU_AXI.scala 198:25]
-  assign axi_io_axi_in_wstrb = io_ctrl_sign_Wmask; // @[EXU_AXI.scala 199:25]
-  assign axi_io_axi_in_wvalid = axi_wvalid; // @[EXU_AXI.scala 200:26]
-  assign axi_io_axi_in_bready = axi_bready; // @[EXU_AXI.scala 201:26]
+  assign axi_io_axi_in_araddr = add_res[31:0]; // @[EXU_AXI.scala 194:36]
+  assign axi_io_axi_in_arvalid = axi_arvalid; // @[EXU_AXI.scala 195:27]
+  assign axi_io_axi_in_rready = axi_rready; // @[EXU_AXI.scala 196:26]
+  assign axi_io_axi_in_awaddr = add_res[31:0]; // @[EXU_AXI.scala 197:36]
+  assign axi_io_axi_in_awvalid = axi_awvalid; // @[EXU_AXI.scala 198:27]
+  assign axi_io_axi_in_wdata = mem_wdate[31:0]; // @[EXU_AXI.scala 199:25]
+  assign axi_io_axi_in_wstrb = io_ctrl_sign_Wmask; // @[EXU_AXI.scala 200:25]
+  assign axi_io_axi_in_wvalid = axi_wvalid; // @[EXU_AXI.scala 201:26]
+  assign axi_io_axi_in_bready = axi_bready; // @[EXU_AXI.scala 202:26]
   always @(posedge clock) begin
     if (Regfile_MPORT_en & Regfile_MPORT_mask) begin
       Regfile[Regfile_MPORT_addr] <= Regfile_MPORT_data; // @[EXU_AXI.scala 27:22]
@@ -1383,6 +1382,17 @@ module EXU_AXI(
     `endif
         if (_T_1) begin
           $fwrite(32'h80000002,"axi_arvalid : %d axi_awvalid : %d\n",axi_arvalid,axi_awvalid); // @[EXU_AXI.scala 190:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (_T_1) begin
+          $fwrite(32'h80000002,"Readmem_en : %d Writemem_en : %d\n",io_ctrl_sign_Readmem_en,io_ctrl_sign_Writemem_en); // @[EXU_AXI.scala 191:11]
         end
     `ifdef PRINTF_COND
       end
@@ -1470,48 +1480,47 @@ module top(
   wire  ifu_step_io_inst_valid; // @[top.scala 18:26]
   wire  ifu_step_io_inst_ready; // @[top.scala 18:26]
   wire [31:0] ifu_step_io_inst; // @[top.scala 18:26]
-  wire  ifu_step_io_mem_flag; // @[top.scala 18:26]
-  wire  idu_step_clock; // @[top.scala 26:26]
-  wire  idu_step_reset; // @[top.scala 26:26]
-  wire [31:0] idu_step_io_inst; // @[top.scala 26:26]
-  wire  idu_step_io_inst_valid; // @[top.scala 26:26]
-  wire  idu_step_io_inst_ready; // @[top.scala 26:26]
-  wire [31:0] idu_step_io_inst_now; // @[top.scala 26:26]
-  wire [4:0] idu_step_io_rs1; // @[top.scala 26:26]
-  wire [4:0] idu_step_io_rs2; // @[top.scala 26:26]
-  wire [4:0] idu_step_io_rd; // @[top.scala 26:26]
-  wire [63:0] idu_step_io_imm; // @[top.scala 26:26]
-  wire  idu_step_io_ctrl_sign_reg_write; // @[top.scala 26:26]
-  wire  idu_step_io_ctrl_sign_csr_write; // @[top.scala 26:26]
-  wire  idu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 26:26]
-  wire  idu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 26:26]
-  wire  idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 26:26]
-  wire  idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 26:26]
-  wire [7:0] idu_step_io_ctrl_sign_Wmask; // @[top.scala 26:26]
-  wire  exu_step_clock; // @[top.scala 31:26]
-  wire  exu_step_reset; // @[top.scala 31:26]
-  wire [63:0] exu_step_io_pc; // @[top.scala 31:26]
-  wire [63:0] exu_step_io_pc_next; // @[top.scala 31:26]
-  wire [31:0] exu_step_io_inst_now; // @[top.scala 31:26]
-  wire [4:0] exu_step_io_rs1; // @[top.scala 31:26]
-  wire [4:0] exu_step_io_rs2; // @[top.scala 31:26]
-  wire [4:0] exu_step_io_rd; // @[top.scala 31:26]
-  wire [63:0] exu_step_io_imm; // @[top.scala 31:26]
-  wire  exu_step_io_ctrl_sign_reg_write; // @[top.scala 31:26]
-  wire  exu_step_io_ctrl_sign_csr_write; // @[top.scala 31:26]
-  wire  exu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 31:26]
-  wire  exu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 31:26]
-  wire  exu_step_io_ctrl_sign_Writemem_en; // @[top.scala 31:26]
-  wire  exu_step_io_ctrl_sign_Readmem_en; // @[top.scala 31:26]
-  wire [7:0] exu_step_io_ctrl_sign_Wmask; // @[top.scala 31:26]
-  wire [63:0] exu_step_io_res2rd; // @[top.scala 31:26]
-  wire  exu_step_io_inst_valid; // @[top.scala 31:26]
-  wire  exu_step_io_mem_end; // @[top.scala 31:26]
-  wire  exu_step_io_mem_flag; // @[top.scala 31:26]
+  wire  idu_step_clock; // @[top.scala 27:26]
+  wire  idu_step_reset; // @[top.scala 27:26]
+  wire [31:0] idu_step_io_inst; // @[top.scala 27:26]
+  wire  idu_step_io_inst_valid; // @[top.scala 27:26]
+  wire  idu_step_io_inst_ready; // @[top.scala 27:26]
+  wire [31:0] idu_step_io_inst_now; // @[top.scala 27:26]
+  wire [4:0] idu_step_io_rs1; // @[top.scala 27:26]
+  wire [4:0] idu_step_io_rs2; // @[top.scala 27:26]
+  wire [4:0] idu_step_io_rd; // @[top.scala 27:26]
+  wire [63:0] idu_step_io_imm; // @[top.scala 27:26]
+  wire  idu_step_io_ctrl_sign_reg_write; // @[top.scala 27:26]
+  wire  idu_step_io_ctrl_sign_csr_write; // @[top.scala 27:26]
+  wire  idu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 27:26]
+  wire  idu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 27:26]
+  wire  idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 27:26]
+  wire  idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 27:26]
+  wire [7:0] idu_step_io_ctrl_sign_Wmask; // @[top.scala 27:26]
+  wire  exu_step_clock; // @[top.scala 32:26]
+  wire  exu_step_reset; // @[top.scala 32:26]
+  wire [63:0] exu_step_io_pc; // @[top.scala 32:26]
+  wire [63:0] exu_step_io_pc_next; // @[top.scala 32:26]
+  wire [31:0] exu_step_io_inst_now; // @[top.scala 32:26]
+  wire [4:0] exu_step_io_rs1; // @[top.scala 32:26]
+  wire [4:0] exu_step_io_rs2; // @[top.scala 32:26]
+  wire [4:0] exu_step_io_rd; // @[top.scala 32:26]
+  wire [63:0] exu_step_io_imm; // @[top.scala 32:26]
+  wire  exu_step_io_ctrl_sign_reg_write; // @[top.scala 32:26]
+  wire  exu_step_io_ctrl_sign_csr_write; // @[top.scala 32:26]
+  wire  exu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 32:26]
+  wire  exu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 32:26]
+  wire  exu_step_io_ctrl_sign_Writemem_en; // @[top.scala 32:26]
+  wire  exu_step_io_ctrl_sign_Readmem_en; // @[top.scala 32:26]
+  wire [7:0] exu_step_io_ctrl_sign_Wmask; // @[top.scala 32:26]
+  wire [63:0] exu_step_io_res2rd; // @[top.scala 32:26]
+  wire  exu_step_io_inst_valid; // @[top.scala 32:26]
+  wire  exu_step_io_mem_end; // @[top.scala 32:26]
+  wire  exu_step_io_mem_flag; // @[top.scala 32:26]
   wire [31:0] dpi_flag; // @[top.scala 44:21]
   wire [31:0] dpi_ecall_flag; // @[top.scala 44:21]
   reg [63:0] pc_now; // @[top.scala 15:25]
-  wire  _exu_step_io_inst_valid_T = ifu_step_io_inst_ready & ifu_step_io_inst_valid; // @[top.scala 40:53]
+  wire  _exu_step_io_inst_valid_T = ifu_step_io_inst_ready & ifu_step_io_inst_valid; // @[top.scala 41:53]
   wire  _pc_now_T_4 = _exu_step_io_inst_valid_T & ~exu_step_io_mem_flag | exu_step_io_mem_flag & exu_step_io_mem_end; // @[top.scala 48:97]
   reg  npc_step; // @[top.scala 50:27]
   IFU_AXI ifu_step ( // @[top.scala 18:26]
@@ -1520,10 +1529,9 @@ module top(
     .io_pc(ifu_step_io_pc),
     .io_inst_valid(ifu_step_io_inst_valid),
     .io_inst_ready(ifu_step_io_inst_ready),
-    .io_inst(ifu_step_io_inst),
-    .io_mem_flag(ifu_step_io_mem_flag)
+    .io_inst(ifu_step_io_inst)
   );
-  IDU idu_step ( // @[top.scala 26:26]
+  IDU idu_step ( // @[top.scala 27:26]
     .clock(idu_step_clock),
     .reset(idu_step_reset),
     .io_inst(idu_step_io_inst),
@@ -1542,7 +1550,7 @@ module top(
     .io_ctrl_sign_Readmem_en(idu_step_io_ctrl_sign_Readmem_en),
     .io_ctrl_sign_Wmask(idu_step_io_ctrl_sign_Wmask)
   );
-  EXU_AXI exu_step ( // @[top.scala 31:26]
+  EXU_AXI exu_step ( // @[top.scala 32:26]
     .clock(exu_step_clock),
     .reset(exu_step_reset),
     .io_pc(exu_step_io_pc),
@@ -1571,33 +1579,32 @@ module top(
   assign io_inst = ifu_step_io_inst; // @[top.scala 20:13]
   assign io_pc = pc_now; // @[top.scala 16:11]
   assign io_pc_next = exu_step_io_pc_next; // @[top.scala 49:16]
-  assign io_outval = exu_step_io_res2rd; // @[top.scala 41:15]
+  assign io_outval = exu_step_io_res2rd; // @[top.scala 42:15]
   assign io_step = npc_step; // @[top.scala 52:13]
   assign ifu_step_clock = clock;
   assign ifu_step_reset = reset;
   assign ifu_step_io_pc = pc_now; // @[top.scala 19:20]
-  assign ifu_step_io_inst_ready = idu_step_io_inst_ready; // @[top.scala 30:28]
-  assign ifu_step_io_mem_flag = exu_step_io_mem_flag; // @[top.scala 43:26]
+  assign ifu_step_io_inst_ready = idu_step_io_inst_ready; // @[top.scala 31:28]
   assign idu_step_clock = clock;
   assign idu_step_reset = reset;
-  assign idu_step_io_inst = ifu_step_io_inst; // @[top.scala 28:22]
-  assign idu_step_io_inst_valid = ifu_step_io_inst_valid; // @[top.scala 29:28]
+  assign idu_step_io_inst = ifu_step_io_inst; // @[top.scala 29:22]
+  assign idu_step_io_inst_valid = ifu_step_io_inst_valid; // @[top.scala 30:28]
   assign exu_step_clock = clock;
   assign exu_step_reset = reset;
-  assign exu_step_io_pc = pc_now; // @[top.scala 32:20]
-  assign exu_step_io_inst_now = idu_step_io_inst_now; // @[top.scala 33:26]
-  assign exu_step_io_rs1 = idu_step_io_rs1; // @[top.scala 35:21]
-  assign exu_step_io_rs2 = idu_step_io_rs2; // @[top.scala 36:21]
-  assign exu_step_io_rd = idu_step_io_rd; // @[top.scala 37:20]
-  assign exu_step_io_imm = idu_step_io_imm; // @[top.scala 38:21]
-  assign exu_step_io_ctrl_sign_reg_write = idu_step_io_ctrl_sign_reg_write; // @[top.scala 39:27]
-  assign exu_step_io_ctrl_sign_csr_write = idu_step_io_ctrl_sign_csr_write; // @[top.scala 39:27]
-  assign exu_step_io_ctrl_sign_src2_is_imm = idu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 39:27]
-  assign exu_step_io_ctrl_sign_src1_is_pc = idu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 39:27]
-  assign exu_step_io_ctrl_sign_Writemem_en = idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 39:27]
-  assign exu_step_io_ctrl_sign_Readmem_en = idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 39:27]
-  assign exu_step_io_ctrl_sign_Wmask = idu_step_io_ctrl_sign_Wmask; // @[top.scala 39:27]
-  assign exu_step_io_inst_valid = ifu_step_io_inst_ready & ifu_step_io_inst_valid; // @[top.scala 40:53]
+  assign exu_step_io_pc = pc_now; // @[top.scala 33:20]
+  assign exu_step_io_inst_now = idu_step_io_inst_now; // @[top.scala 34:26]
+  assign exu_step_io_rs1 = idu_step_io_rs1; // @[top.scala 36:21]
+  assign exu_step_io_rs2 = idu_step_io_rs2; // @[top.scala 37:21]
+  assign exu_step_io_rd = idu_step_io_rd; // @[top.scala 38:20]
+  assign exu_step_io_imm = idu_step_io_imm; // @[top.scala 39:21]
+  assign exu_step_io_ctrl_sign_reg_write = idu_step_io_ctrl_sign_reg_write; // @[top.scala 40:27]
+  assign exu_step_io_ctrl_sign_csr_write = idu_step_io_ctrl_sign_csr_write; // @[top.scala 40:27]
+  assign exu_step_io_ctrl_sign_src2_is_imm = idu_step_io_ctrl_sign_src2_is_imm; // @[top.scala 40:27]
+  assign exu_step_io_ctrl_sign_src1_is_pc = idu_step_io_ctrl_sign_src1_is_pc; // @[top.scala 40:27]
+  assign exu_step_io_ctrl_sign_Writemem_en = idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 40:27]
+  assign exu_step_io_ctrl_sign_Readmem_en = idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 40:27]
+  assign exu_step_io_ctrl_sign_Wmask = idu_step_io_ctrl_sign_Wmask; // @[top.scala 40:27]
+  assign exu_step_io_inst_valid = ifu_step_io_inst_ready & ifu_step_io_inst_valid; // @[top.scala 41:53]
   assign dpi_flag = {{31'd0}, idu_step_io_inst_now == 32'h2}; // @[top.scala 45:17]
   assign dpi_ecall_flag = {{31'd0}, idu_step_io_inst_now == 32'h3d}; // @[top.scala 46:23]
   always @(posedge clock) begin

@@ -338,7 +338,7 @@ module EXU_AXI(
   wire [63:0] _io_res2rd_T_1 = io_pc + 64'h4; // @[EXU_AXI.scala 66:24]
   wire  _io_res2rd_T_4 = src1_value < src2_value; // @[EXU_AXI.scala 68:34]
   wire  _io_res2rd_T_10 = $signed(_sra_res_T) < $signed(_div_res_T_1); // @[EXU_AXI.scala 70:42]
-  wire [63:0] mem_rdata = axi_io_axi_out_rdata; // @[EXU_AXI.scala 192:15 26:25]
+  wire [63:0] mem_rdata = axi_io_axi_out_rdata; // @[EXU_AXI.scala 193:15 26:25]
   wire [31:0] _io_res2rd_T_18 = mem_rdata[31] ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _io_res2rd_T_20 = {_io_res2rd_T_18,mem_rdata[31:0]}; // @[Cat.scala 31:58]
   wire [63:0] _io_res2rd_T_23 = {56'h0,mem_rdata[7:0]}; // @[Cat.scala 31:58]
@@ -743,8 +743,8 @@ module EXU_AXI(
   assign io_pc_next = 32'h3e == io_inst_now ? _io_pc_next_T_46 : _io_pc_next_T_64; // @[Mux.scala 81:58]
   assign io_res2rd = _io_res2rd_T_208[63:0]; // @[EXU_AXI.scala 62:15]
   assign io_mem_end = io_ctrl_sign_Readmem_en & axi_rready & axi_io_axi_out_rvalid | io_ctrl_sign_Writemem_en &
-    axi_bready & axi_io_axi_out_bvalid; // @[EXU_AXI.scala 204:84]
-  assign io_mem_flag = io_ctrl_sign_Readmem_en | io_ctrl_sign_Writemem_en; // @[EXU_AXI.scala 203:44]
+    axi_bready & axi_io_axi_out_bvalid; // @[EXU_AXI.scala 205:84]
+  assign io_mem_flag = io_ctrl_sign_Readmem_en | io_ctrl_sign_Writemem_en; // @[EXU_AXI.scala 204:44]
   assign reg_trace_input_reg_0 = Regfile_reg_trace_io_input_reg_0_MPORT_data; // @[EXU_AXI.scala 150:57]
   assign reg_trace_input_reg_1 = Regfile_reg_trace_io_input_reg_1_MPORT_data; // @[EXU_AXI.scala 150:57]
   assign reg_trace_input_reg_2 = Regfile_reg_trace_io_input_reg_2_MPORT_data; // @[EXU_AXI.scala 150:57]
@@ -784,15 +784,15 @@ module EXU_AXI(
   assign reg_trace_pc = io_pc; // @[EXU_AXI.scala 151:21]
   assign axi_clock = clock;
   assign axi_reset = reset;
-  assign axi_io_axi_in_araddr = add_res[31:0]; // @[EXU_AXI.scala 193:36]
-  assign axi_io_axi_in_arvalid = axi_arvalid; // @[EXU_AXI.scala 194:27]
-  assign axi_io_axi_in_rready = axi_rready; // @[EXU_AXI.scala 195:26]
-  assign axi_io_axi_in_awaddr = add_res[31:0]; // @[EXU_AXI.scala 196:36]
-  assign axi_io_axi_in_awvalid = axi_awvalid; // @[EXU_AXI.scala 197:27]
-  assign axi_io_axi_in_wdata = mem_wdate[31:0]; // @[EXU_AXI.scala 198:25]
-  assign axi_io_axi_in_wstrb = io_ctrl_sign_Wmask; // @[EXU_AXI.scala 199:25]
-  assign axi_io_axi_in_wvalid = axi_wvalid; // @[EXU_AXI.scala 200:26]
-  assign axi_io_axi_in_bready = axi_bready; // @[EXU_AXI.scala 201:26]
+  assign axi_io_axi_in_araddr = add_res[31:0]; // @[EXU_AXI.scala 194:36]
+  assign axi_io_axi_in_arvalid = axi_arvalid; // @[EXU_AXI.scala 195:27]
+  assign axi_io_axi_in_rready = axi_rready; // @[EXU_AXI.scala 196:26]
+  assign axi_io_axi_in_awaddr = add_res[31:0]; // @[EXU_AXI.scala 197:36]
+  assign axi_io_axi_in_awvalid = axi_awvalid; // @[EXU_AXI.scala 198:27]
+  assign axi_io_axi_in_wdata = mem_wdate[31:0]; // @[EXU_AXI.scala 199:25]
+  assign axi_io_axi_in_wstrb = io_ctrl_sign_Wmask; // @[EXU_AXI.scala 200:25]
+  assign axi_io_axi_in_wvalid = axi_wvalid; // @[EXU_AXI.scala 201:26]
+  assign axi_io_axi_in_bready = axi_bready; // @[EXU_AXI.scala 202:26]
   always @(posedge clock) begin
     if (Regfile_MPORT_en & Regfile_MPORT_mask) begin
       Regfile[Regfile_MPORT_addr] <= Regfile_MPORT_data; // @[EXU_AXI.scala 27:22]
@@ -851,6 +851,17 @@ module EXU_AXI(
     `endif
         if (_T_1) begin
           $fwrite(32'h80000002,"axi_arvalid : %d axi_awvalid : %d\n",axi_arvalid,axi_awvalid); // @[EXU_AXI.scala 190:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (_T_1) begin
+          $fwrite(32'h80000002,"Readmem_en : %d Writemem_en : %d\n",io_ctrl_sign_Readmem_en,io_ctrl_sign_Writemem_en); // @[EXU_AXI.scala 191:11]
         end
     `ifdef PRINTF_COND
       end
