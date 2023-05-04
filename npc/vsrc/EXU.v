@@ -856,17 +856,6 @@ module EXU_AXI(
       end
     `endif
     `endif // SYNTHESIS
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (_T_1) begin
-          $fwrite(32'h80000002,"Readmem_en : %d Writemem_en : %d\n",io_ctrl_sign_Readmem_en,io_ctrl_sign_Writemem_en); // @[EXU_AXI.scala 191:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
