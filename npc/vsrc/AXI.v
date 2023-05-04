@@ -10,6 +10,7 @@ module AXI(
   input  [7:0]  io_axi_in_wstrb,
   input         io_axi_in_wvalid,
   input         io_axi_in_bready,
+  output        io_axi_out_arready,
   output [63:0] io_axi_out_rdata,
   output        io_axi_out_rvalid,
   output        io_axi_out_bvalid
@@ -56,6 +57,7 @@ module AXI(
     .Write_en(Mem_modle_Write_en),
     .Read_en(Mem_modle_Read_en)
   );
+  assign io_axi_out_arready = axi_arready; // @[AXI.scala 69:24]
   assign io_axi_out_rdata = Mem_modle_Rdata; // @[AXI.scala 70:22]
   assign io_axi_out_rvalid = axi_rvalid; // @[AXI.scala 71:23]
   assign io_axi_out_bvalid = axi_bvalid; // @[AXI.scala 74:23]

@@ -296,6 +296,7 @@ module EXU_AXI(
   wire [7:0] axi_io_axi_in_wstrb; // @[EXU_AXI.scala 175:21]
   wire  axi_io_axi_in_wvalid; // @[EXU_AXI.scala 175:21]
   wire  axi_io_axi_in_bready; // @[EXU_AXI.scala 175:21]
+  wire  axi_io_axi_out_arready; // @[EXU_AXI.scala 175:21]
   wire [63:0] axi_io_axi_out_rdata; // @[EXU_AXI.scala 175:21]
   wire  axi_io_axi_out_rvalid; // @[EXU_AXI.scala 175:21]
   wire  axi_io_axi_out_bvalid; // @[EXU_AXI.scala 175:21]
@@ -527,6 +528,7 @@ module EXU_AXI(
     .io_axi_in_wstrb(axi_io_axi_in_wstrb),
     .io_axi_in_wvalid(axi_io_axi_in_wvalid),
     .io_axi_in_bready(axi_io_axi_in_bready),
+    .io_axi_out_arready(axi_io_axi_out_arready),
     .io_axi_out_rdata(axi_io_axi_out_rdata),
     .io_axi_out_rvalid(axi_io_axi_out_rvalid),
     .io_axi_out_bvalid(axi_io_axi_out_bvalid)
@@ -854,7 +856,8 @@ module EXU_AXI(
       if (`PRINTF_COND) begin
     `endif
         if (_T_1) begin
-          $fwrite(32'h80000002,"axi_arvalid : %d axi_awvalid : %d\n\n",axi_arvalid,axi_awvalid); // @[EXU_AXI.scala 192:11]
+          $fwrite(32'h80000002,"axi_arvalid : %d axi_arready : %d axi_awvalid : %d  axi_rready : %d\n\n",axi_arvalid,
+            axi_io_axi_out_arready,axi_awvalid,axi_rready); // @[EXU_AXI.scala 192:11]
         end
     `ifdef PRINTF_COND
       end

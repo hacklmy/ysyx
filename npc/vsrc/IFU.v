@@ -18,6 +18,7 @@ module IFU_AXI(
   wire [7:0] axi_io_axi_in_wstrb; // @[IFU_AXI.scala 16:21]
   wire  axi_io_axi_in_wvalid; // @[IFU_AXI.scala 16:21]
   wire  axi_io_axi_in_bready; // @[IFU_AXI.scala 16:21]
+  wire  axi_io_axi_out_arready; // @[IFU_AXI.scala 16:21]
   wire [63:0] axi_io_axi_out_rdata; // @[IFU_AXI.scala 16:21]
   wire  axi_io_axi_out_rvalid; // @[IFU_AXI.scala 16:21]
   wire  axi_io_axi_out_bvalid; // @[IFU_AXI.scala 16:21]
@@ -33,6 +34,7 @@ module IFU_AXI(
     .io_axi_in_wstrb(axi_io_axi_in_wstrb),
     .io_axi_in_wvalid(axi_io_axi_in_wvalid),
     .io_axi_in_bready(axi_io_axi_in_bready),
+    .io_axi_out_arready(axi_io_axi_out_arready),
     .io_axi_out_rdata(axi_io_axi_out_rdata),
     .io_axi_out_rvalid(axi_io_axi_out_rvalid),
     .io_axi_out_bvalid(axi_io_axi_out_bvalid)
