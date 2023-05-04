@@ -96,7 +96,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     __Vdly__top__DOT__exu_step__DOT__axi_bready = vlSelf->top__DOT__exu_step__DOT__axi_bready;
     __Vdly__top__DOT__exu_step__DOT__axi_awvalid = vlSelf->top__DOT__exu_step__DOT__axi_awvalid;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"Writemem_en:%1#  Readmem_en:%1# inst_valid:%1#\n",
+        VL_FWRITEF(0x80000002U,"Writemem_en:%1#  Readmem_en:%1# inst_valid:%1# io.mem_end:%1#\n",
                    1,(0x44U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_188)),
                    1,((0x3003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
                       | ((0x2003U == (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
@@ -109,7 +109,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                              & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))) 
                                      | (0x4003U == 
                                         (0x707fU & (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__Mem_modle_Rdata))))))))),
-                   1,(IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid));
+                   1,(IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_rvalid),
+                   1,vlSelf->top__DOT__exu_step_io_mem_end);
     }
     vlSelf->top__DOT__ifu_step__DOT__axi__DOT__axi_wready 
         = ((IData)(vlSelf->reset) | (IData)(vlSelf->top__DOT__ifu_step__DOT__axi__DOT___GEN_27));
