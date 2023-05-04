@@ -31,6 +31,7 @@ module EXU_AXI(
   reg [31:0] _RAND_3;
   reg [31:0] _RAND_4;
   reg [31:0] _RAND_5;
+  reg [31:0] _RAND_6;
 `endif // RANDOMIZE_REG_INIT
   reg [63:0] Regfile [0:31]; // @[EXU_AXI.scala 27:22]
   wire  Regfile_src1_value_MPORT_en; // @[EXU_AXI.scala 27:22]
@@ -177,18 +178,18 @@ module EXU_AXI(
   wire  Regfile_reg_trace_io_input_reg_31_MPORT_en; // @[EXU_AXI.scala 27:22]
   wire [4:0] Regfile_reg_trace_io_input_reg_31_MPORT_addr; // @[EXU_AXI.scala 27:22]
   wire [63:0] Regfile_reg_trace_io_input_reg_31_MPORT_data; // @[EXU_AXI.scala 27:22]
-  wire  Regfile_mem_wdata_MPORT_en; // @[EXU_AXI.scala 27:22]
-  wire [4:0] Regfile_mem_wdata_MPORT_addr; // @[EXU_AXI.scala 27:22]
-  wire [63:0] Regfile_mem_wdata_MPORT_data; // @[EXU_AXI.scala 27:22]
-  wire  Regfile_mem_wdata_MPORT_1_en; // @[EXU_AXI.scala 27:22]
-  wire [4:0] Regfile_mem_wdata_MPORT_1_addr; // @[EXU_AXI.scala 27:22]
-  wire [63:0] Regfile_mem_wdata_MPORT_1_data; // @[EXU_AXI.scala 27:22]
-  wire  Regfile_mem_wdata_MPORT_2_en; // @[EXU_AXI.scala 27:22]
-  wire [4:0] Regfile_mem_wdata_MPORT_2_addr; // @[EXU_AXI.scala 27:22]
-  wire [63:0] Regfile_mem_wdata_MPORT_2_data; // @[EXU_AXI.scala 27:22]
-  wire  Regfile_mem_wdata_MPORT_3_en; // @[EXU_AXI.scala 27:22]
-  wire [4:0] Regfile_mem_wdata_MPORT_3_addr; // @[EXU_AXI.scala 27:22]
-  wire [63:0] Regfile_mem_wdata_MPORT_3_data; // @[EXU_AXI.scala 27:22]
+  wire  Regfile_mem_wdate_MPORT_en; // @[EXU_AXI.scala 27:22]
+  wire [4:0] Regfile_mem_wdate_MPORT_addr; // @[EXU_AXI.scala 27:22]
+  wire [63:0] Regfile_mem_wdate_MPORT_data; // @[EXU_AXI.scala 27:22]
+  wire  Regfile_mem_wdate_MPORT_1_en; // @[EXU_AXI.scala 27:22]
+  wire [4:0] Regfile_mem_wdate_MPORT_1_addr; // @[EXU_AXI.scala 27:22]
+  wire [63:0] Regfile_mem_wdate_MPORT_1_data; // @[EXU_AXI.scala 27:22]
+  wire  Regfile_mem_wdate_MPORT_2_en; // @[EXU_AXI.scala 27:22]
+  wire [4:0] Regfile_mem_wdate_MPORT_2_addr; // @[EXU_AXI.scala 27:22]
+  wire [63:0] Regfile_mem_wdate_MPORT_2_data; // @[EXU_AXI.scala 27:22]
+  wire  Regfile_mem_wdate_MPORT_3_en; // @[EXU_AXI.scala 27:22]
+  wire [4:0] Regfile_mem_wdate_MPORT_3_addr; // @[EXU_AXI.scala 27:22]
+  wire [63:0] Regfile_mem_wdate_MPORT_3_data; // @[EXU_AXI.scala 27:22]
   wire [63:0] Regfile_MPORT_data; // @[EXU_AXI.scala 27:22]
   wire [4:0] Regfile_MPORT_addr; // @[EXU_AXI.scala 27:22]
   wire  Regfile_MPORT_mask; // @[EXU_AXI.scala 27:22]
@@ -459,20 +460,20 @@ module EXU_AXI(
   wire [63:0] _io_pc_next_T_60 = 32'h2d == io_inst_now ? _io_pc_next_T_38 : _io_pc_next_T_58; // @[Mux.scala 81:58]
   wire [63:0] _io_pc_next_T_62 = 32'h3c == io_inst_now ? _io_pc_next_T_44 : _io_pc_next_T_60; // @[Mux.scala 81:58]
   wire [63:0] _io_pc_next_T_64 = 32'h3d == io_inst_now ? CSR_Reg_io_pc_next_MPORT_12_data : _io_pc_next_T_62; // @[Mux.scala 81:58]
-  wire [63:0] _mem_wdata_T_1 = io_rs2 == 5'h0 ? 64'h0 : Regfile_mem_wdata_MPORT_data; // @[EXU_AXI.scala 37:12]
-  wire [63:0] _mem_wdata_T_3 = io_rs2 == 5'h0 ? 64'h0 : Regfile_mem_wdata_MPORT_1_data; // @[EXU_AXI.scala 37:12]
-  wire [63:0] _mem_wdata_T_6 = io_rs2 == 5'h0 ? 64'h0 : Regfile_mem_wdata_MPORT_2_data; // @[EXU_AXI.scala 37:12]
-  wire [63:0] _mem_wdata_T_9 = io_rs2 == 5'h0 ? 64'h0 : Regfile_mem_wdata_MPORT_3_data; // @[EXU_AXI.scala 37:12]
-  wire [63:0] _mem_wdata_T_12 = 32'h7 == io_inst_now ? _mem_wdata_T_1 : 64'h0; // @[Mux.scala 81:58]
-  wire [63:0] _mem_wdata_T_14 = 32'h26 == io_inst_now ? {{48'd0}, _mem_wdata_T_3[15:0]} : _mem_wdata_T_12; // @[Mux.scala 81:58]
-  wire [63:0] _mem_wdata_T_16 = 32'h28 == io_inst_now ? {{56'd0}, _mem_wdata_T_6[7:0]} : _mem_wdata_T_14; // @[Mux.scala 81:58]
-  wire [63:0] mem_wdata = 32'h27 == io_inst_now ? {{32'd0}, _mem_wdata_T_9[31:0]} : _mem_wdata_T_16; // @[Mux.scala 81:58]
+  wire [63:0] _mem_wdate_T_1 = io_rs2 == 5'h0 ? 64'h0 : Regfile_mem_wdate_MPORT_data; // @[EXU_AXI.scala 37:12]
+  wire [63:0] _mem_wdate_T_3 = io_rs2 == 5'h0 ? 64'h0 : Regfile_mem_wdate_MPORT_1_data; // @[EXU_AXI.scala 37:12]
+  wire [63:0] _mem_wdate_T_6 = io_rs2 == 5'h0 ? 64'h0 : Regfile_mem_wdate_MPORT_2_data; // @[EXU_AXI.scala 37:12]
+  wire [63:0] _mem_wdate_T_9 = io_rs2 == 5'h0 ? 64'h0 : Regfile_mem_wdate_MPORT_3_data; // @[EXU_AXI.scala 37:12]
+  wire [63:0] _mem_wdate_T_12 = 32'h7 == io_inst_now ? _mem_wdate_T_1 : 64'h0; // @[Mux.scala 81:58]
+  wire [63:0] _mem_wdate_T_14 = 32'h26 == io_inst_now ? {{48'd0}, _mem_wdate_T_3[15:0]} : _mem_wdate_T_12; // @[Mux.scala 81:58]
+  wire [63:0] _mem_wdate_T_16 = 32'h28 == io_inst_now ? {{56'd0}, _mem_wdate_T_6[7:0]} : _mem_wdate_T_14; // @[Mux.scala 81:58]
+  wire [63:0] mem_wdate = 32'h27 == io_inst_now ? {{32'd0}, _mem_wdate_T_9[31:0]} : _mem_wdate_T_16; // @[Mux.scala 81:58]
   reg  axi_arvalid; // @[EXU_AXI.scala 175:30]
   reg  axi_rready; // @[EXU_AXI.scala 176:29]
   reg  axi_awvalid; // @[EXU_AXI.scala 177:30]
+  reg  axi_wvalid; // @[EXU_AXI.scala 178:29]
   reg  axi_bready; // @[EXU_AXI.scala 179:29]
-  wire  _axi_awvalid_T = io_ctrl_sign_Writemem_en & io_inst_valid; // @[EXU_AXI.scala 183:45]
-  wire  _axi_awvalid_T_1 = ~axi_io_axi_out_bvalid; // @[EXU_AXI.scala 183:65]
+  wire  _axi_awvalid_T_2 = io_ctrl_sign_Writemem_en & io_inst_valid & ~axi_io_axi_out_bvalid; // @[EXU_AXI.scala 183:62]
   traceregs reg_trace ( // @[EXU_AXI.scala 148:27]
     .input_reg_0(reg_trace_input_reg_0),
     .input_reg_1(reg_trace_input_reg_1),
@@ -672,18 +673,18 @@ module EXU_AXI(
   assign Regfile_reg_trace_io_input_reg_31_MPORT_en = 1'h1;
   assign Regfile_reg_trace_io_input_reg_31_MPORT_addr = 5'h1f;
   assign Regfile_reg_trace_io_input_reg_31_MPORT_data = Regfile[Regfile_reg_trace_io_input_reg_31_MPORT_addr]; // @[EXU_AXI.scala 27:22]
-  assign Regfile_mem_wdata_MPORT_en = 1'h1;
-  assign Regfile_mem_wdata_MPORT_addr = io_rs2;
-  assign Regfile_mem_wdata_MPORT_data = Regfile[Regfile_mem_wdata_MPORT_addr]; // @[EXU_AXI.scala 27:22]
-  assign Regfile_mem_wdata_MPORT_1_en = 1'h1;
-  assign Regfile_mem_wdata_MPORT_1_addr = io_rs2;
-  assign Regfile_mem_wdata_MPORT_1_data = Regfile[Regfile_mem_wdata_MPORT_1_addr]; // @[EXU_AXI.scala 27:22]
-  assign Regfile_mem_wdata_MPORT_2_en = 1'h1;
-  assign Regfile_mem_wdata_MPORT_2_addr = io_rs2;
-  assign Regfile_mem_wdata_MPORT_2_data = Regfile[Regfile_mem_wdata_MPORT_2_addr]; // @[EXU_AXI.scala 27:22]
-  assign Regfile_mem_wdata_MPORT_3_en = 1'h1;
-  assign Regfile_mem_wdata_MPORT_3_addr = io_rs2;
-  assign Regfile_mem_wdata_MPORT_3_data = Regfile[Regfile_mem_wdata_MPORT_3_addr]; // @[EXU_AXI.scala 27:22]
+  assign Regfile_mem_wdate_MPORT_en = 1'h1;
+  assign Regfile_mem_wdate_MPORT_addr = io_rs2;
+  assign Regfile_mem_wdate_MPORT_data = Regfile[Regfile_mem_wdate_MPORT_addr]; // @[EXU_AXI.scala 27:22]
+  assign Regfile_mem_wdate_MPORT_1_en = 1'h1;
+  assign Regfile_mem_wdate_MPORT_1_addr = io_rs2;
+  assign Regfile_mem_wdate_MPORT_1_data = Regfile[Regfile_mem_wdate_MPORT_1_addr]; // @[EXU_AXI.scala 27:22]
+  assign Regfile_mem_wdate_MPORT_2_en = 1'h1;
+  assign Regfile_mem_wdate_MPORT_2_addr = io_rs2;
+  assign Regfile_mem_wdate_MPORT_2_data = Regfile[Regfile_mem_wdate_MPORT_2_addr]; // @[EXU_AXI.scala 27:22]
+  assign Regfile_mem_wdate_MPORT_3_en = 1'h1;
+  assign Regfile_mem_wdate_MPORT_3_addr = io_rs2;
+  assign Regfile_mem_wdate_MPORT_3_data = Regfile[Regfile_mem_wdate_MPORT_3_addr]; // @[EXU_AXI.scala 27:22]
   assign Regfile_MPORT_data = _T_4 ? io_res2rd : reg_value;
   assign Regfile_MPORT_addr = io_rd;
   assign Regfile_MPORT_mask = 1'h1;
@@ -784,13 +785,13 @@ module EXU_AXI(
   assign axi_clock = clock;
   assign axi_reset = reset;
   assign axi_io_axi_in_araddr = add_res[31:0]; // @[EXU_AXI.scala 194:36]
-  assign axi_io_axi_in_arvalid = io_inst_valid & io_ctrl_sign_Readmem_en; // @[EXU_AXI.scala 195:44]
+  assign axi_io_axi_in_arvalid = axi_arvalid; // @[EXU_AXI.scala 195:27]
   assign axi_io_axi_in_rready = axi_rready; // @[EXU_AXI.scala 196:26]
   assign axi_io_axi_in_awaddr = add_res[31:0]; // @[EXU_AXI.scala 197:36]
-  assign axi_io_axi_in_awvalid = _axi_awvalid_T & _axi_awvalid_T_1; // @[EXU_AXI.scala 198:72]
-  assign axi_io_axi_in_wdata = mem_wdata[31:0]; // @[EXU_AXI.scala 199:25]
+  assign axi_io_axi_in_awvalid = axi_awvalid; // @[EXU_AXI.scala 198:27]
+  assign axi_io_axi_in_wdata = mem_wdate[31:0]; // @[EXU_AXI.scala 199:25]
   assign axi_io_axi_in_wstrb = io_ctrl_sign_Wmask; // @[EXU_AXI.scala 200:25]
-  assign axi_io_axi_in_wvalid = _axi_awvalid_T & _axi_awvalid_T_1; // @[EXU_AXI.scala 201:71]
+  assign axi_io_axi_in_wvalid = axi_wvalid; // @[EXU_AXI.scala 201:26]
   assign axi_io_axi_in_bready = axi_bready; // @[EXU_AXI.scala 202:26]
   always @(posedge clock) begin
     if (Regfile_MPORT_en & Regfile_MPORT_mask) begin
@@ -815,6 +816,11 @@ module EXU_AXI(
       axi_awvalid <= 1'h0; // @[EXU_AXI.scala 177:30]
     end else begin
       axi_awvalid <= io_ctrl_sign_Writemem_en & io_inst_valid & ~axi_io_axi_out_bvalid; // @[EXU_AXI.scala 183:17]
+    end
+    if (reset) begin // @[EXU_AXI.scala 178:29]
+      axi_wvalid <= 1'h0; // @[EXU_AXI.scala 178:29]
+    end else begin
+      axi_wvalid <= _axi_awvalid_T_2; // @[EXU_AXI.scala 184:16]
     end
     axi_bready <= reset | ~(axi_bready & axi_io_axi_out_bvalid); // @[EXU_AXI.scala 179:{29,29} 185:16]
     `ifndef SYNTHESIS
@@ -913,7 +919,9 @@ initial begin
   _RAND_4 = {1{`RANDOM}};
   axi_awvalid = _RAND_4[0:0];
   _RAND_5 = {1{`RANDOM}};
-  axi_bready = _RAND_5[0:0];
+  axi_wvalid = _RAND_5[0:0];
+  _RAND_6 = {1{`RANDOM}};
+  axi_bready = _RAND_6[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
