@@ -251,7 +251,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                    | (IData)(vlSelf->top__DOT__ifu_step__DOT___GEN_0));
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
         VL_FWRITEF(0x80000002U,"pc : %x inst:%x execute_end : %1#\n\n",
-                   64,vlSelf->top__DOT__pc_now,32,vlSelf->io_inst,
+                   64,vlSelf->top__DOT__pc_now,32,vlSelf->top__DOT__idu_step_io_inst,
                    1,(IData)(vlSelf->top__DOT__execute_end));
     }
     vlSelf->top__DOT__pc_valid = ((IData)(vlSelf->reset) 

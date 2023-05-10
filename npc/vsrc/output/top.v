@@ -2149,7 +2149,8 @@ module top(
   assign ifu_step_io_pc_valid = pc_valid; // @[top.scala 74:26]
   assign ifu_step_io_axi_in_rdata = arbiter_io_ifu_axi_out_rdata; // @[top.scala 25:24]
   assign ifu_step_io_axi_in_rvalid = arbiter_io_ifu_axi_out_rvalid; // @[top.scala 25:24]
-  assign idu_step_io_inst = ~ifu_step_io_inst_valid & ~pc_valid ? ifu_step_io_inst_reg : ifu_step_io_inst; // @[top.scala 81:28]
+  assign idu_step_io_inst = ~ifu_step_io_inst_valid & ~pc_valid & ~execute_end ? ifu_step_io_inst_reg : ifu_step_io_inst
+    ; // @[top.scala 81:28]
   assign exu_step_clock = clock;
   assign exu_step_reset = reset;
   assign exu_step_io_pc = pc_now; // @[top.scala 38:20]
