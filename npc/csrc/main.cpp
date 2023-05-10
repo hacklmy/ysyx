@@ -39,7 +39,7 @@ const char *regs[] = {
 //#define CONFIG_FTRACE
 //#define CONFIG_DIFFTEST
 //#define VerilatedVCD
-#define HAS_VGA
+//#define HAS_VGA
 #define HAS_AXI
 
 void difftest_skip_ref();
@@ -371,7 +371,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   #ifdef CONFIG_MTRACE
     printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
   #endif
-  //printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
+  printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
   uint8_t* p = guest_to_host(waddr);
   for (int i = 0; i < 8; i++) {
     if (wmask & 0x1) *p = (wdata & 0xff);
