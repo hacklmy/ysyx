@@ -382,8 +382,9 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ifu_step__DOT___GEN_0 = (1U & 
                                                (~ ((IData)(vlSelf->top__DOT__arbiter_io_ifu_axi_out_rvalid) 
                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_ready))));
-    vlSelf->top__DOT__idu_step_io_inst = ((1U & ((~ (IData)(vlSelf->top__DOT__arbiter_io_ifu_axi_out_rvalid)) 
-                                                 & (~ (IData)(vlSelf->top__DOT__pc_valid))))
+    vlSelf->top__DOT__idu_step_io_inst = ((1U & (((~ (IData)(vlSelf->top__DOT__arbiter_io_ifu_axi_out_rvalid)) 
+                                                  & (~ (IData)(vlSelf->top__DOT__pc_valid))) 
+                                                 & (~ (IData)(vlSelf->top__DOT__execute_end))))
                                            ? vlSelf->top__DOT__ifu_step__DOT__inst_reg
                                            : (IData)(vlSelf->top__DOT__arbiter_io_ifu_axi_out_rdata));
     vlSelf->top__DOT__idu_step_io_ctrl_sign_Wmask = 

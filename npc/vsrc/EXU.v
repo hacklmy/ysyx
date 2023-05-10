@@ -30,6 +30,9 @@ module EXU_AXI(
   reg [63:0] _RAND_0;
   reg [63:0] _RAND_1;
 `endif // RANDOMIZE_MEM_INIT
+`ifdef RANDOMIZE_REG_INIT
+  reg [63:0] _RAND_2;
+`endif // RANDOMIZE_REG_INIT
   reg [63:0] Regfile [0:31]; // @[EXU_AXI.scala 36:22]
   wire  Regfile_src1_value_MPORT_en; // @[EXU_AXI.scala 36:22]
   wire [4:0] Regfile_src1_value_MPORT_addr; // @[EXU_AXI.scala 36:22]
@@ -43,42 +46,42 @@ module EXU_AXI(
   wire  Regfile_MPORT_4_en; // @[EXU_AXI.scala 36:22]
   wire [4:0] Regfile_MPORT_4_addr; // @[EXU_AXI.scala 36:22]
   wire [63:0] Regfile_MPORT_4_data; // @[EXU_AXI.scala 36:22]
-  wire  Regfile_io_pc_next_MPORT_en; // @[EXU_AXI.scala 36:22]
-  wire [4:0] Regfile_io_pc_next_MPORT_addr; // @[EXU_AXI.scala 36:22]
-  wire [63:0] Regfile_io_pc_next_MPORT_data; // @[EXU_AXI.scala 36:22]
-  wire  Regfile_io_pc_next_MPORT_1_en; // @[EXU_AXI.scala 36:22]
-  wire [4:0] Regfile_io_pc_next_MPORT_1_addr; // @[EXU_AXI.scala 36:22]
-  wire [63:0] Regfile_io_pc_next_MPORT_1_data; // @[EXU_AXI.scala 36:22]
-  wire  Regfile_io_pc_next_MPORT_2_en; // @[EXU_AXI.scala 36:22]
-  wire [4:0] Regfile_io_pc_next_MPORT_2_addr; // @[EXU_AXI.scala 36:22]
-  wire [63:0] Regfile_io_pc_next_MPORT_2_data; // @[EXU_AXI.scala 36:22]
-  wire  Regfile_io_pc_next_MPORT_3_en; // @[EXU_AXI.scala 36:22]
-  wire [4:0] Regfile_io_pc_next_MPORT_3_addr; // @[EXU_AXI.scala 36:22]
-  wire [63:0] Regfile_io_pc_next_MPORT_3_data; // @[EXU_AXI.scala 36:22]
-  wire  Regfile_io_pc_next_MPORT_4_en; // @[EXU_AXI.scala 36:22]
-  wire [4:0] Regfile_io_pc_next_MPORT_4_addr; // @[EXU_AXI.scala 36:22]
-  wire [63:0] Regfile_io_pc_next_MPORT_4_data; // @[EXU_AXI.scala 36:22]
-  wire  Regfile_io_pc_next_MPORT_5_en; // @[EXU_AXI.scala 36:22]
-  wire [4:0] Regfile_io_pc_next_MPORT_5_addr; // @[EXU_AXI.scala 36:22]
-  wire [63:0] Regfile_io_pc_next_MPORT_5_data; // @[EXU_AXI.scala 36:22]
-  wire  Regfile_io_pc_next_MPORT_6_en; // @[EXU_AXI.scala 36:22]
-  wire [4:0] Regfile_io_pc_next_MPORT_6_addr; // @[EXU_AXI.scala 36:22]
-  wire [63:0] Regfile_io_pc_next_MPORT_6_data; // @[EXU_AXI.scala 36:22]
-  wire  Regfile_io_pc_next_MPORT_7_en; // @[EXU_AXI.scala 36:22]
-  wire [4:0] Regfile_io_pc_next_MPORT_7_addr; // @[EXU_AXI.scala 36:22]
-  wire [63:0] Regfile_io_pc_next_MPORT_7_data; // @[EXU_AXI.scala 36:22]
-  wire  Regfile_io_pc_next_MPORT_8_en; // @[EXU_AXI.scala 36:22]
-  wire [4:0] Regfile_io_pc_next_MPORT_8_addr; // @[EXU_AXI.scala 36:22]
-  wire [63:0] Regfile_io_pc_next_MPORT_8_data; // @[EXU_AXI.scala 36:22]
-  wire  Regfile_io_pc_next_MPORT_9_en; // @[EXU_AXI.scala 36:22]
-  wire [4:0] Regfile_io_pc_next_MPORT_9_addr; // @[EXU_AXI.scala 36:22]
-  wire [63:0] Regfile_io_pc_next_MPORT_9_data; // @[EXU_AXI.scala 36:22]
-  wire  Regfile_io_pc_next_MPORT_10_en; // @[EXU_AXI.scala 36:22]
-  wire [4:0] Regfile_io_pc_next_MPORT_10_addr; // @[EXU_AXI.scala 36:22]
-  wire [63:0] Regfile_io_pc_next_MPORT_10_data; // @[EXU_AXI.scala 36:22]
-  wire  Regfile_io_pc_next_MPORT_11_en; // @[EXU_AXI.scala 36:22]
-  wire [4:0] Regfile_io_pc_next_MPORT_11_addr; // @[EXU_AXI.scala 36:22]
-  wire [63:0] Regfile_io_pc_next_MPORT_11_data; // @[EXU_AXI.scala 36:22]
+  wire  Regfile_j_pc_MPORT_en; // @[EXU_AXI.scala 36:22]
+  wire [4:0] Regfile_j_pc_MPORT_addr; // @[EXU_AXI.scala 36:22]
+  wire [63:0] Regfile_j_pc_MPORT_data; // @[EXU_AXI.scala 36:22]
+  wire  Regfile_j_pc_MPORT_1_en; // @[EXU_AXI.scala 36:22]
+  wire [4:0] Regfile_j_pc_MPORT_1_addr; // @[EXU_AXI.scala 36:22]
+  wire [63:0] Regfile_j_pc_MPORT_1_data; // @[EXU_AXI.scala 36:22]
+  wire  Regfile_j_pc_MPORT_2_en; // @[EXU_AXI.scala 36:22]
+  wire [4:0] Regfile_j_pc_MPORT_2_addr; // @[EXU_AXI.scala 36:22]
+  wire [63:0] Regfile_j_pc_MPORT_2_data; // @[EXU_AXI.scala 36:22]
+  wire  Regfile_j_pc_MPORT_3_en; // @[EXU_AXI.scala 36:22]
+  wire [4:0] Regfile_j_pc_MPORT_3_addr; // @[EXU_AXI.scala 36:22]
+  wire [63:0] Regfile_j_pc_MPORT_3_data; // @[EXU_AXI.scala 36:22]
+  wire  Regfile_j_pc_MPORT_4_en; // @[EXU_AXI.scala 36:22]
+  wire [4:0] Regfile_j_pc_MPORT_4_addr; // @[EXU_AXI.scala 36:22]
+  wire [63:0] Regfile_j_pc_MPORT_4_data; // @[EXU_AXI.scala 36:22]
+  wire  Regfile_j_pc_MPORT_5_en; // @[EXU_AXI.scala 36:22]
+  wire [4:0] Regfile_j_pc_MPORT_5_addr; // @[EXU_AXI.scala 36:22]
+  wire [63:0] Regfile_j_pc_MPORT_5_data; // @[EXU_AXI.scala 36:22]
+  wire  Regfile_j_pc_MPORT_6_en; // @[EXU_AXI.scala 36:22]
+  wire [4:0] Regfile_j_pc_MPORT_6_addr; // @[EXU_AXI.scala 36:22]
+  wire [63:0] Regfile_j_pc_MPORT_6_data; // @[EXU_AXI.scala 36:22]
+  wire  Regfile_j_pc_MPORT_7_en; // @[EXU_AXI.scala 36:22]
+  wire [4:0] Regfile_j_pc_MPORT_7_addr; // @[EXU_AXI.scala 36:22]
+  wire [63:0] Regfile_j_pc_MPORT_7_data; // @[EXU_AXI.scala 36:22]
+  wire  Regfile_j_pc_MPORT_8_en; // @[EXU_AXI.scala 36:22]
+  wire [4:0] Regfile_j_pc_MPORT_8_addr; // @[EXU_AXI.scala 36:22]
+  wire [63:0] Regfile_j_pc_MPORT_8_data; // @[EXU_AXI.scala 36:22]
+  wire  Regfile_j_pc_MPORT_9_en; // @[EXU_AXI.scala 36:22]
+  wire [4:0] Regfile_j_pc_MPORT_9_addr; // @[EXU_AXI.scala 36:22]
+  wire [63:0] Regfile_j_pc_MPORT_9_data; // @[EXU_AXI.scala 36:22]
+  wire  Regfile_j_pc_MPORT_10_en; // @[EXU_AXI.scala 36:22]
+  wire [4:0] Regfile_j_pc_MPORT_10_addr; // @[EXU_AXI.scala 36:22]
+  wire [63:0] Regfile_j_pc_MPORT_10_data; // @[EXU_AXI.scala 36:22]
+  wire  Regfile_j_pc_MPORT_11_en; // @[EXU_AXI.scala 36:22]
+  wire [4:0] Regfile_j_pc_MPORT_11_addr; // @[EXU_AXI.scala 36:22]
+  wire [63:0] Regfile_j_pc_MPORT_11_data; // @[EXU_AXI.scala 36:22]
   wire  Regfile_reg_trace_io_input_reg_0_MPORT_en; // @[EXU_AXI.scala 36:22]
   wire [4:0] Regfile_reg_trace_io_input_reg_0_MPORT_addr; // @[EXU_AXI.scala 36:22]
   wire [63:0] Regfile_reg_trace_io_input_reg_0_MPORT_data; // @[EXU_AXI.scala 36:22]
@@ -216,12 +219,12 @@ module EXU_AXI(
   wire  CSR_Reg_MPORT_7_en; // @[EXU_AXI.scala 37:22]
   wire [1:0] CSR_Reg_MPORT_7_addr; // @[EXU_AXI.scala 37:22]
   wire [63:0] CSR_Reg_MPORT_7_data; // @[EXU_AXI.scala 37:22]
-  wire  CSR_Reg_io_pc_next_MPORT_12_en; // @[EXU_AXI.scala 37:22]
-  wire [1:0] CSR_Reg_io_pc_next_MPORT_12_addr; // @[EXU_AXI.scala 37:22]
-  wire [63:0] CSR_Reg_io_pc_next_MPORT_12_data; // @[EXU_AXI.scala 37:22]
-  wire  CSR_Reg_io_pc_next_MPORT_13_en; // @[EXU_AXI.scala 37:22]
-  wire [1:0] CSR_Reg_io_pc_next_MPORT_13_addr; // @[EXU_AXI.scala 37:22]
-  wire [63:0] CSR_Reg_io_pc_next_MPORT_13_data; // @[EXU_AXI.scala 37:22]
+  wire  CSR_Reg_j_pc_MPORT_12_en; // @[EXU_AXI.scala 37:22]
+  wire [1:0] CSR_Reg_j_pc_MPORT_12_addr; // @[EXU_AXI.scala 37:22]
+  wire [63:0] CSR_Reg_j_pc_MPORT_12_data; // @[EXU_AXI.scala 37:22]
+  wire  CSR_Reg_j_pc_MPORT_13_en; // @[EXU_AXI.scala 37:22]
+  wire [1:0] CSR_Reg_j_pc_MPORT_13_addr; // @[EXU_AXI.scala 37:22]
+  wire [63:0] CSR_Reg_j_pc_MPORT_13_data; // @[EXU_AXI.scala 37:22]
   wire  CSR_Reg_reg_trace_io_csr_reg_0_MPORT_en; // @[EXU_AXI.scala 37:22]
   wire [1:0] CSR_Reg_reg_trace_io_csr_reg_0_MPORT_addr; // @[EXU_AXI.scala 37:22]
   wire [63:0] CSR_Reg_reg_trace_io_csr_reg_0_MPORT_data; // @[EXU_AXI.scala 37:22]
@@ -243,43 +246,43 @@ module EXU_AXI(
   wire [1:0] CSR_Reg_MPORT_6_addr; // @[EXU_AXI.scala 37:22]
   wire  CSR_Reg_MPORT_6_mask; // @[EXU_AXI.scala 37:22]
   wire  CSR_Reg_MPORT_6_en; // @[EXU_AXI.scala 37:22]
-  wire [63:0] reg_trace_input_reg_0; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_1; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_2; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_3; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_4; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_5; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_6; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_7; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_8; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_9; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_10; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_11; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_12; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_13; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_14; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_15; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_16; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_17; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_18; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_19; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_20; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_21; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_22; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_23; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_24; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_25; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_26; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_27; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_28; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_29; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_30; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_input_reg_31; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_csr_reg_0; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_csr_reg_1; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_csr_reg_2; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_csr_reg_3; // @[EXU_AXI.scala 157:27]
-  wire [63:0] reg_trace_pc; // @[EXU_AXI.scala 157:27]
+  wire [63:0] reg_trace_input_reg_0; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_1; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_2; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_3; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_4; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_5; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_6; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_7; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_8; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_9; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_10; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_11; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_12; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_13; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_14; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_15; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_16; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_17; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_18; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_19; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_20; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_21; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_22; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_23; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_24; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_25; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_26; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_27; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_28; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_29; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_30; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_input_reg_31; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_csr_reg_0; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_csr_reg_1; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_csr_reg_2; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_csr_reg_3; // @[EXU_AXI.scala 162:27]
+  wire [63:0] reg_trace_pc; // @[EXU_AXI.scala 162:27]
   wire [11:0] csr_addr = io_imm[11:0]; // @[EXU_AXI.scala 38:26]
   wire [1:0] _csr_index_T_5 = 12'h300 == csr_addr ? 2'h2 : {{1'd0}, 12'h341 == csr_addr}; // @[Mux.scala 81:58]
   wire  _csr_index_T_6 = 12'h342 == csr_addr; // @[Mux.scala 81:61]
@@ -292,13 +295,13 @@ module EXU_AXI(
   wire [63:0] _sra_res_T = io_ctrl_sign_src1_is_pc ? io_pc : _src1_value_T_1; // @[EXU_AXI.scala 52:37]
   wire [63:0] sra_res = $signed(_sra_res_T) >>> src2_value[5:0]; // @[EXU_AXI.scala 52:60]
   wire [63:0] srl_res = src1_value >> src2_value[5:0]; // @[EXU_AXI.scala 53:30]
-  wire [126:0] _GEN_0 = {{63'd0}, src1_value}; // @[EXU_AXI.scala 54:30]
-  wire [126:0] sll_res = _GEN_0 << src2_value[5:0]; // @[EXU_AXI.scala 54:30]
+  wire [126:0] _GEN_1 = {{63'd0}, src1_value}; // @[EXU_AXI.scala 54:30]
+  wire [126:0] sll_res = _GEN_1 << src2_value[5:0]; // @[EXU_AXI.scala 54:30]
   wire [31:0] _sraw_res_T_1 = src1_value[31:0]; // @[EXU_AXI.scala 55:43]
   wire [31:0] sraw_res = $signed(_sraw_res_T_1) >>> src2_value[4:0]; // @[EXU_AXI.scala 55:46]
   wire [31:0] srlw_res = src1_value[31:0] >> src2_value[4:0]; // @[EXU_AXI.scala 56:37]
-  wire [62:0] _GEN_1 = {{31'd0}, src1_value[31:0]}; // @[EXU_AXI.scala 57:37]
-  wire [62:0] sllw_res = _GEN_1 << src2_value[4:0]; // @[EXU_AXI.scala 57:37]
+  wire [62:0] _GEN_2 = {{31'd0}, src1_value[31:0]}; // @[EXU_AXI.scala 57:37]
+  wire [62:0] sllw_res = _GEN_2 << src2_value[4:0]; // @[EXU_AXI.scala 57:37]
   wire [63:0] or_res = src1_value | src2_value; // @[EXU_AXI.scala 58:29]
   wire [63:0] xor_res = src1_value ^ src2_value; // @[EXU_AXI.scala 59:30]
   wire [63:0] and_res = src1_value & src2_value; // @[EXU_AXI.scala 60:30]
@@ -412,35 +415,35 @@ module EXU_AXI(
   wire [63:0] csr_wdata = 32'h47 == io_inst_now ? _csr_wdata_T_2 : _csr_wdata_T_6; // @[Mux.scala 81:58]
   wire  _T_5 = io_inst_now == 32'h3d & io_inst_valid; // @[EXU_AXI.scala 137:48]
   wire  _T_10 = io_ctrl_sign_csr_write & io_inst_valid; // @[EXU_AXI.scala 140:53]
-  wire [63:0] _io_pc_next_T = add_res & 64'hfffffffffffffffe; // @[EXU_AXI.scala 147:28]
-  wire [63:0] _io_pc_next_T_3 = io_rs1 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_data; // @[EXU_AXI.scala 148:39]
-  wire [63:0] _io_pc_next_T_6 = io_rs2 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_1_data; // @[EXU_AXI.scala 148:67]
-  wire [63:0] _io_pc_next_T_8 = $signed(_io_pc_next_T_3) != $signed(_io_pc_next_T_6) ? add_res : _io_res2rd_T_1; // @[EXU_AXI.scala 148:21]
-  wire [63:0] _io_pc_next_T_11 = io_rs1 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_2_data; // @[EXU_AXI.scala 149:39]
-  wire [63:0] _io_pc_next_T_14 = io_rs2 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_3_data; // @[EXU_AXI.scala 149:67]
-  wire [63:0] _io_pc_next_T_16 = $signed(_io_pc_next_T_11) == $signed(_io_pc_next_T_14) ? add_res : _io_res2rd_T_1; // @[EXU_AXI.scala 149:21]
-  wire [63:0] _io_pc_next_T_19 = io_rs1 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_4_data; // @[EXU_AXI.scala 150:39]
-  wire [63:0] _io_pc_next_T_22 = io_rs2 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_5_data; // @[EXU_AXI.scala 150:66]
-  wire [63:0] _io_pc_next_T_24 = $signed(_io_pc_next_T_19) >= $signed(_io_pc_next_T_22) ? add_res : _io_res2rd_T_1; // @[EXU_AXI.scala 150:21]
-  wire [63:0] _io_pc_next_T_27 = io_rs1 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_6_data; // @[EXU_AXI.scala 151:39]
-  wire [63:0] _io_pc_next_T_30 = io_rs2 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_7_data; // @[EXU_AXI.scala 151:65]
-  wire [63:0] _io_pc_next_T_32 = $signed(_io_pc_next_T_27) < $signed(_io_pc_next_T_30) ? add_res : _io_res2rd_T_1; // @[EXU_AXI.scala 151:21]
-  wire [63:0] _io_pc_next_T_34 = io_rs1 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_8_data; // @[EXU_AXI.scala 46:12]
-  wire [63:0] _io_pc_next_T_36 = io_rs2 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_9_data; // @[EXU_AXI.scala 46:12]
-  wire [63:0] _io_pc_next_T_38 = _io_pc_next_T_34 < _io_pc_next_T_36 ? add_res : _io_res2rd_T_1; // @[EXU_AXI.scala 152:22]
-  wire [63:0] _io_pc_next_T_40 = io_rs1 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_10_data; // @[EXU_AXI.scala 46:12]
-  wire [63:0] _io_pc_next_T_42 = io_rs2 == 5'h0 ? 64'h0 : Regfile_io_pc_next_MPORT_11_data; // @[EXU_AXI.scala 46:12]
-  wire [63:0] _io_pc_next_T_44 = _io_pc_next_T_40 >= _io_pc_next_T_42 ? add_res : _io_res2rd_T_1; // @[EXU_AXI.scala 153:22]
-  wire [63:0] _io_pc_next_T_46 = CSR_Reg_io_pc_next_MPORT_13_data + 64'h4; // @[EXU_AXI.scala 155:33]
-  wire [63:0] _io_pc_next_T_48 = 32'h5 == io_inst_now ? add_res : _io_res2rd_T_1; // @[Mux.scala 81:58]
-  wire [63:0] _io_pc_next_T_50 = 32'h6 == io_inst_now ? _io_pc_next_T : _io_pc_next_T_48; // @[Mux.scala 81:58]
-  wire [63:0] _io_pc_next_T_52 = 32'h2a == io_inst_now ? _io_pc_next_T_8 : _io_pc_next_T_50; // @[Mux.scala 81:58]
-  wire [63:0] _io_pc_next_T_54 = 32'h29 == io_inst_now ? _io_pc_next_T_16 : _io_pc_next_T_52; // @[Mux.scala 81:58]
-  wire [63:0] _io_pc_next_T_56 = 32'h2b == io_inst_now ? _io_pc_next_T_24 : _io_pc_next_T_54; // @[Mux.scala 81:58]
-  wire [63:0] _io_pc_next_T_58 = 32'h2c == io_inst_now ? _io_pc_next_T_32 : _io_pc_next_T_56; // @[Mux.scala 81:58]
-  wire [63:0] _io_pc_next_T_60 = 32'h2d == io_inst_now ? _io_pc_next_T_38 : _io_pc_next_T_58; // @[Mux.scala 81:58]
-  wire [63:0] _io_pc_next_T_62 = 32'h3c == io_inst_now ? _io_pc_next_T_44 : _io_pc_next_T_60; // @[Mux.scala 81:58]
-  wire [63:0] _io_pc_next_T_64 = 32'h3d == io_inst_now ? CSR_Reg_io_pc_next_MPORT_12_data : _io_pc_next_T_62; // @[Mux.scala 81:58]
+  wire [63:0] _j_pc_T = add_res & 64'hfffffffffffffffe; // @[EXU_AXI.scala 147:28]
+  wire [63:0] _j_pc_T_3 = io_rs1 == 5'h0 ? 64'h0 : Regfile_j_pc_MPORT_data; // @[EXU_AXI.scala 148:39]
+  wire [63:0] _j_pc_T_6 = io_rs2 == 5'h0 ? 64'h0 : Regfile_j_pc_MPORT_1_data; // @[EXU_AXI.scala 148:67]
+  wire [63:0] _j_pc_T_8 = $signed(_j_pc_T_3) != $signed(_j_pc_T_6) ? add_res : _io_res2rd_T_1; // @[EXU_AXI.scala 148:21]
+  wire [63:0] _j_pc_T_11 = io_rs1 == 5'h0 ? 64'h0 : Regfile_j_pc_MPORT_2_data; // @[EXU_AXI.scala 149:39]
+  wire [63:0] _j_pc_T_14 = io_rs2 == 5'h0 ? 64'h0 : Regfile_j_pc_MPORT_3_data; // @[EXU_AXI.scala 149:67]
+  wire [63:0] _j_pc_T_16 = $signed(_j_pc_T_11) == $signed(_j_pc_T_14) ? add_res : _io_res2rd_T_1; // @[EXU_AXI.scala 149:21]
+  wire [63:0] _j_pc_T_19 = io_rs1 == 5'h0 ? 64'h0 : Regfile_j_pc_MPORT_4_data; // @[EXU_AXI.scala 150:39]
+  wire [63:0] _j_pc_T_22 = io_rs2 == 5'h0 ? 64'h0 : Regfile_j_pc_MPORT_5_data; // @[EXU_AXI.scala 150:66]
+  wire [63:0] _j_pc_T_24 = $signed(_j_pc_T_19) >= $signed(_j_pc_T_22) ? add_res : _io_res2rd_T_1; // @[EXU_AXI.scala 150:21]
+  wire [63:0] _j_pc_T_27 = io_rs1 == 5'h0 ? 64'h0 : Regfile_j_pc_MPORT_6_data; // @[EXU_AXI.scala 151:39]
+  wire [63:0] _j_pc_T_30 = io_rs2 == 5'h0 ? 64'h0 : Regfile_j_pc_MPORT_7_data; // @[EXU_AXI.scala 151:65]
+  wire [63:0] _j_pc_T_32 = $signed(_j_pc_T_27) < $signed(_j_pc_T_30) ? add_res : _io_res2rd_T_1; // @[EXU_AXI.scala 151:21]
+  wire [63:0] _j_pc_T_34 = io_rs1 == 5'h0 ? 64'h0 : Regfile_j_pc_MPORT_8_data; // @[EXU_AXI.scala 46:12]
+  wire [63:0] _j_pc_T_36 = io_rs2 == 5'h0 ? 64'h0 : Regfile_j_pc_MPORT_9_data; // @[EXU_AXI.scala 46:12]
+  wire [63:0] _j_pc_T_38 = _j_pc_T_34 < _j_pc_T_36 ? add_res : _io_res2rd_T_1; // @[EXU_AXI.scala 152:22]
+  wire [63:0] _j_pc_T_40 = io_rs1 == 5'h0 ? 64'h0 : Regfile_j_pc_MPORT_10_data; // @[EXU_AXI.scala 46:12]
+  wire [63:0] _j_pc_T_42 = io_rs2 == 5'h0 ? 64'h0 : Regfile_j_pc_MPORT_11_data; // @[EXU_AXI.scala 46:12]
+  wire [63:0] _j_pc_T_44 = _j_pc_T_40 >= _j_pc_T_42 ? add_res : _io_res2rd_T_1; // @[EXU_AXI.scala 153:22]
+  wire [63:0] _j_pc_T_46 = CSR_Reg_j_pc_MPORT_13_data + 64'h4; // @[EXU_AXI.scala 155:33]
+  wire [63:0] _j_pc_T_48 = 32'h5 == io_inst_now ? add_res : _io_res2rd_T_1; // @[Mux.scala 81:58]
+  wire [63:0] _j_pc_T_50 = 32'h6 == io_inst_now ? _j_pc_T : _j_pc_T_48; // @[Mux.scala 81:58]
+  wire [63:0] _j_pc_T_52 = 32'h2a == io_inst_now ? _j_pc_T_8 : _j_pc_T_50; // @[Mux.scala 81:58]
+  wire [63:0] _j_pc_T_54 = 32'h29 == io_inst_now ? _j_pc_T_16 : _j_pc_T_52; // @[Mux.scala 81:58]
+  wire [63:0] _j_pc_T_56 = 32'h2b == io_inst_now ? _j_pc_T_24 : _j_pc_T_54; // @[Mux.scala 81:58]
+  wire [63:0] _j_pc_T_58 = 32'h2c == io_inst_now ? _j_pc_T_32 : _j_pc_T_56; // @[Mux.scala 81:58]
+  wire [63:0] _j_pc_T_60 = 32'h2d == io_inst_now ? _j_pc_T_38 : _j_pc_T_58; // @[Mux.scala 81:58]
+  wire [63:0] _j_pc_T_62 = 32'h3c == io_inst_now ? _j_pc_T_44 : _j_pc_T_60; // @[Mux.scala 81:58]
+  reg [63:0] pc_next; // @[EXU_AXI.scala 157:26]
   wire [63:0] _mem_wdata_T_1 = io_rs2 == 5'h0 ? 64'h0 : Regfile_mem_wdata_MPORT_data; // @[EXU_AXI.scala 46:12]
   wire [63:0] _mem_wdata_T_3 = io_rs2 == 5'h0 ? 64'h0 : Regfile_mem_wdata_MPORT_1_data; // @[EXU_AXI.scala 46:12]
   wire [63:0] _mem_wdata_T_6 = io_rs2 == 5'h0 ? 64'h0 : Regfile_mem_wdata_MPORT_2_data; // @[EXU_AXI.scala 46:12]
@@ -448,7 +451,7 @@ module EXU_AXI(
   wire [63:0] _mem_wdata_T_12 = 32'h7 == io_inst_now ? _mem_wdata_T_1 : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _mem_wdata_T_14 = 32'h26 == io_inst_now ? {{48'd0}, _mem_wdata_T_3[15:0]} : _mem_wdata_T_12; // @[Mux.scala 81:58]
   wire [63:0] _mem_wdata_T_16 = 32'h28 == io_inst_now ? {{56'd0}, _mem_wdata_T_6[7:0]} : _mem_wdata_T_14; // @[Mux.scala 81:58]
-  traceregs reg_trace ( // @[EXU_AXI.scala 157:27]
+  traceregs reg_trace ( // @[EXU_AXI.scala 162:27]
     .input_reg_0(reg_trace_input_reg_0),
     .input_reg_1(reg_trace_input_reg_1),
     .input_reg_2(reg_trace_input_reg_2),
@@ -499,42 +502,42 @@ module EXU_AXI(
   assign Regfile_MPORT_4_en = 1'h1;
   assign Regfile_MPORT_4_addr = 5'h11;
   assign Regfile_MPORT_4_data = Regfile[Regfile_MPORT_4_addr]; // @[EXU_AXI.scala 36:22]
-  assign Regfile_io_pc_next_MPORT_en = 1'h1;
-  assign Regfile_io_pc_next_MPORT_addr = io_rs1;
-  assign Regfile_io_pc_next_MPORT_data = Regfile[Regfile_io_pc_next_MPORT_addr]; // @[EXU_AXI.scala 36:22]
-  assign Regfile_io_pc_next_MPORT_1_en = 1'h1;
-  assign Regfile_io_pc_next_MPORT_1_addr = io_rs2;
-  assign Regfile_io_pc_next_MPORT_1_data = Regfile[Regfile_io_pc_next_MPORT_1_addr]; // @[EXU_AXI.scala 36:22]
-  assign Regfile_io_pc_next_MPORT_2_en = 1'h1;
-  assign Regfile_io_pc_next_MPORT_2_addr = io_rs1;
-  assign Regfile_io_pc_next_MPORT_2_data = Regfile[Regfile_io_pc_next_MPORT_2_addr]; // @[EXU_AXI.scala 36:22]
-  assign Regfile_io_pc_next_MPORT_3_en = 1'h1;
-  assign Regfile_io_pc_next_MPORT_3_addr = io_rs2;
-  assign Regfile_io_pc_next_MPORT_3_data = Regfile[Regfile_io_pc_next_MPORT_3_addr]; // @[EXU_AXI.scala 36:22]
-  assign Regfile_io_pc_next_MPORT_4_en = 1'h1;
-  assign Regfile_io_pc_next_MPORT_4_addr = io_rs1;
-  assign Regfile_io_pc_next_MPORT_4_data = Regfile[Regfile_io_pc_next_MPORT_4_addr]; // @[EXU_AXI.scala 36:22]
-  assign Regfile_io_pc_next_MPORT_5_en = 1'h1;
-  assign Regfile_io_pc_next_MPORT_5_addr = io_rs2;
-  assign Regfile_io_pc_next_MPORT_5_data = Regfile[Regfile_io_pc_next_MPORT_5_addr]; // @[EXU_AXI.scala 36:22]
-  assign Regfile_io_pc_next_MPORT_6_en = 1'h1;
-  assign Regfile_io_pc_next_MPORT_6_addr = io_rs1;
-  assign Regfile_io_pc_next_MPORT_6_data = Regfile[Regfile_io_pc_next_MPORT_6_addr]; // @[EXU_AXI.scala 36:22]
-  assign Regfile_io_pc_next_MPORT_7_en = 1'h1;
-  assign Regfile_io_pc_next_MPORT_7_addr = io_rs2;
-  assign Regfile_io_pc_next_MPORT_7_data = Regfile[Regfile_io_pc_next_MPORT_7_addr]; // @[EXU_AXI.scala 36:22]
-  assign Regfile_io_pc_next_MPORT_8_en = 1'h1;
-  assign Regfile_io_pc_next_MPORT_8_addr = io_rs1;
-  assign Regfile_io_pc_next_MPORT_8_data = Regfile[Regfile_io_pc_next_MPORT_8_addr]; // @[EXU_AXI.scala 36:22]
-  assign Regfile_io_pc_next_MPORT_9_en = 1'h1;
-  assign Regfile_io_pc_next_MPORT_9_addr = io_rs2;
-  assign Regfile_io_pc_next_MPORT_9_data = Regfile[Regfile_io_pc_next_MPORT_9_addr]; // @[EXU_AXI.scala 36:22]
-  assign Regfile_io_pc_next_MPORT_10_en = 1'h1;
-  assign Regfile_io_pc_next_MPORT_10_addr = io_rs1;
-  assign Regfile_io_pc_next_MPORT_10_data = Regfile[Regfile_io_pc_next_MPORT_10_addr]; // @[EXU_AXI.scala 36:22]
-  assign Regfile_io_pc_next_MPORT_11_en = 1'h1;
-  assign Regfile_io_pc_next_MPORT_11_addr = io_rs2;
-  assign Regfile_io_pc_next_MPORT_11_data = Regfile[Regfile_io_pc_next_MPORT_11_addr]; // @[EXU_AXI.scala 36:22]
+  assign Regfile_j_pc_MPORT_en = 1'h1;
+  assign Regfile_j_pc_MPORT_addr = io_rs1;
+  assign Regfile_j_pc_MPORT_data = Regfile[Regfile_j_pc_MPORT_addr]; // @[EXU_AXI.scala 36:22]
+  assign Regfile_j_pc_MPORT_1_en = 1'h1;
+  assign Regfile_j_pc_MPORT_1_addr = io_rs2;
+  assign Regfile_j_pc_MPORT_1_data = Regfile[Regfile_j_pc_MPORT_1_addr]; // @[EXU_AXI.scala 36:22]
+  assign Regfile_j_pc_MPORT_2_en = 1'h1;
+  assign Regfile_j_pc_MPORT_2_addr = io_rs1;
+  assign Regfile_j_pc_MPORT_2_data = Regfile[Regfile_j_pc_MPORT_2_addr]; // @[EXU_AXI.scala 36:22]
+  assign Regfile_j_pc_MPORT_3_en = 1'h1;
+  assign Regfile_j_pc_MPORT_3_addr = io_rs2;
+  assign Regfile_j_pc_MPORT_3_data = Regfile[Regfile_j_pc_MPORT_3_addr]; // @[EXU_AXI.scala 36:22]
+  assign Regfile_j_pc_MPORT_4_en = 1'h1;
+  assign Regfile_j_pc_MPORT_4_addr = io_rs1;
+  assign Regfile_j_pc_MPORT_4_data = Regfile[Regfile_j_pc_MPORT_4_addr]; // @[EXU_AXI.scala 36:22]
+  assign Regfile_j_pc_MPORT_5_en = 1'h1;
+  assign Regfile_j_pc_MPORT_5_addr = io_rs2;
+  assign Regfile_j_pc_MPORT_5_data = Regfile[Regfile_j_pc_MPORT_5_addr]; // @[EXU_AXI.scala 36:22]
+  assign Regfile_j_pc_MPORT_6_en = 1'h1;
+  assign Regfile_j_pc_MPORT_6_addr = io_rs1;
+  assign Regfile_j_pc_MPORT_6_data = Regfile[Regfile_j_pc_MPORT_6_addr]; // @[EXU_AXI.scala 36:22]
+  assign Regfile_j_pc_MPORT_7_en = 1'h1;
+  assign Regfile_j_pc_MPORT_7_addr = io_rs2;
+  assign Regfile_j_pc_MPORT_7_data = Regfile[Regfile_j_pc_MPORT_7_addr]; // @[EXU_AXI.scala 36:22]
+  assign Regfile_j_pc_MPORT_8_en = 1'h1;
+  assign Regfile_j_pc_MPORT_8_addr = io_rs1;
+  assign Regfile_j_pc_MPORT_8_data = Regfile[Regfile_j_pc_MPORT_8_addr]; // @[EXU_AXI.scala 36:22]
+  assign Regfile_j_pc_MPORT_9_en = 1'h1;
+  assign Regfile_j_pc_MPORT_9_addr = io_rs2;
+  assign Regfile_j_pc_MPORT_9_data = Regfile[Regfile_j_pc_MPORT_9_addr]; // @[EXU_AXI.scala 36:22]
+  assign Regfile_j_pc_MPORT_10_en = 1'h1;
+  assign Regfile_j_pc_MPORT_10_addr = io_rs1;
+  assign Regfile_j_pc_MPORT_10_data = Regfile[Regfile_j_pc_MPORT_10_addr]; // @[EXU_AXI.scala 36:22]
+  assign Regfile_j_pc_MPORT_11_en = 1'h1;
+  assign Regfile_j_pc_MPORT_11_addr = io_rs2;
+  assign Regfile_j_pc_MPORT_11_data = Regfile[Regfile_j_pc_MPORT_11_addr]; // @[EXU_AXI.scala 36:22]
   assign Regfile_reg_trace_io_input_reg_0_MPORT_en = 1'h1;
   assign Regfile_reg_trace_io_input_reg_0_MPORT_addr = 5'h0;
   assign Regfile_reg_trace_io_input_reg_0_MPORT_data = Regfile[Regfile_reg_trace_io_input_reg_0_MPORT_addr]; // @[EXU_AXI.scala 36:22]
@@ -671,12 +674,12 @@ module EXU_AXI(
   assign CSR_Reg_MPORT_7_en = 1'h1;
   assign CSR_Reg_MPORT_7_addr = _csr_index_T_6 ? 2'h3 : _csr_index_T_5;
   assign CSR_Reg_MPORT_7_data = CSR_Reg[CSR_Reg_MPORT_7_addr]; // @[EXU_AXI.scala 37:22]
-  assign CSR_Reg_io_pc_next_MPORT_12_en = 1'h1;
-  assign CSR_Reg_io_pc_next_MPORT_12_addr = 2'h0;
-  assign CSR_Reg_io_pc_next_MPORT_12_data = CSR_Reg[CSR_Reg_io_pc_next_MPORT_12_addr]; // @[EXU_AXI.scala 37:22]
-  assign CSR_Reg_io_pc_next_MPORT_13_en = 1'h1;
-  assign CSR_Reg_io_pc_next_MPORT_13_addr = 2'h1;
-  assign CSR_Reg_io_pc_next_MPORT_13_data = CSR_Reg[CSR_Reg_io_pc_next_MPORT_13_addr]; // @[EXU_AXI.scala 37:22]
+  assign CSR_Reg_j_pc_MPORT_12_en = 1'h1;
+  assign CSR_Reg_j_pc_MPORT_12_addr = 2'h0;
+  assign CSR_Reg_j_pc_MPORT_12_data = CSR_Reg[CSR_Reg_j_pc_MPORT_12_addr]; // @[EXU_AXI.scala 37:22]
+  assign CSR_Reg_j_pc_MPORT_13_en = 1'h1;
+  assign CSR_Reg_j_pc_MPORT_13_addr = 2'h1;
+  assign CSR_Reg_j_pc_MPORT_13_data = CSR_Reg[CSR_Reg_j_pc_MPORT_13_addr]; // @[EXU_AXI.scala 37:22]
   assign CSR_Reg_reg_trace_io_csr_reg_0_MPORT_en = 1'h1;
   assign CSR_Reg_reg_trace_io_csr_reg_0_MPORT_addr = 2'h0;
   assign CSR_Reg_reg_trace_io_csr_reg_0_MPORT_data = CSR_Reg[CSR_Reg_reg_trace_io_csr_reg_0_MPORT_addr]; // @[EXU_AXI.scala 37:22]
@@ -698,50 +701,50 @@ module EXU_AXI(
   assign CSR_Reg_MPORT_6_addr = _csr_index_T_6 ? 2'h3 : _csr_index_T_5;
   assign CSR_Reg_MPORT_6_mask = 1'h1;
   assign CSR_Reg_MPORT_6_en = 1'h1;
-  assign io_pc_next = 32'h3e == io_inst_now ? _io_pc_next_T_46 : _io_pc_next_T_64; // @[Mux.scala 81:58]
+  assign io_pc_next = pc_next; // @[EXU_AXI.scala 161:16]
   assign io_res2rd = _io_res2rd_T_208[63:0]; // @[EXU_AXI.scala 71:15]
-  assign io_inst_store = io_ctrl_sign_Writemem_en; // @[EXU_AXI.scala 182:19]
-  assign io_inst_load = io_ctrl_sign_Readmem_en; // @[EXU_AXI.scala 183:18]
-  assign io_Mem_addr = add_res[31:0]; // @[EXU_AXI.scala 184:17]
+  assign io_inst_store = io_ctrl_sign_Writemem_en; // @[EXU_AXI.scala 187:19]
+  assign io_inst_load = io_ctrl_sign_Readmem_en; // @[EXU_AXI.scala 188:18]
+  assign io_Mem_addr = add_res[31:0]; // @[EXU_AXI.scala 189:17]
   assign io_Mem_wdata = 32'h27 == io_inst_now ? {{32'd0}, _mem_wdata_T_9[31:0]} : _mem_wdata_T_16; // @[Mux.scala 81:58]
-  assign io_Mem_wstrb = io_ctrl_sign_Wmask; // @[EXU_AXI.scala 186:18]
-  assign reg_trace_input_reg_0 = Regfile_reg_trace_io_input_reg_0_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_1 = Regfile_reg_trace_io_input_reg_1_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_2 = Regfile_reg_trace_io_input_reg_2_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_3 = Regfile_reg_trace_io_input_reg_3_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_4 = Regfile_reg_trace_io_input_reg_4_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_5 = Regfile_reg_trace_io_input_reg_5_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_6 = Regfile_reg_trace_io_input_reg_6_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_7 = Regfile_reg_trace_io_input_reg_7_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_8 = Regfile_reg_trace_io_input_reg_8_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_9 = Regfile_reg_trace_io_input_reg_9_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_10 = Regfile_reg_trace_io_input_reg_10_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_11 = Regfile_reg_trace_io_input_reg_11_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_12 = Regfile_reg_trace_io_input_reg_12_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_13 = Regfile_reg_trace_io_input_reg_13_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_14 = Regfile_reg_trace_io_input_reg_14_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_15 = Regfile_reg_trace_io_input_reg_15_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_16 = Regfile_reg_trace_io_input_reg_16_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_17 = Regfile_reg_trace_io_input_reg_17_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_18 = Regfile_reg_trace_io_input_reg_18_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_19 = Regfile_reg_trace_io_input_reg_19_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_20 = Regfile_reg_trace_io_input_reg_20_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_21 = Regfile_reg_trace_io_input_reg_21_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_22 = Regfile_reg_trace_io_input_reg_22_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_23 = Regfile_reg_trace_io_input_reg_23_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_24 = Regfile_reg_trace_io_input_reg_24_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_25 = Regfile_reg_trace_io_input_reg_25_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_26 = Regfile_reg_trace_io_input_reg_26_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_27 = Regfile_reg_trace_io_input_reg_27_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_28 = Regfile_reg_trace_io_input_reg_28_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_29 = Regfile_reg_trace_io_input_reg_29_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_30 = Regfile_reg_trace_io_input_reg_30_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_input_reg_31 = Regfile_reg_trace_io_input_reg_31_MPORT_data; // @[EXU_AXI.scala 159:57]
-  assign reg_trace_csr_reg_0 = CSR_Reg_reg_trace_io_csr_reg_0_MPORT_data; // @[EXU_AXI.scala 162:54]
-  assign reg_trace_csr_reg_1 = CSR_Reg_reg_trace_io_csr_reg_1_MPORT_data; // @[EXU_AXI.scala 162:54]
-  assign reg_trace_csr_reg_2 = CSR_Reg_reg_trace_io_csr_reg_2_MPORT_data; // @[EXU_AXI.scala 162:54]
-  assign reg_trace_csr_reg_3 = 64'h0; // @[EXU_AXI.scala 161:{36,36}]
-  assign reg_trace_pc = io_pc; // @[EXU_AXI.scala 160:21]
+  assign io_Mem_wstrb = io_ctrl_sign_Wmask; // @[EXU_AXI.scala 191:18]
+  assign reg_trace_input_reg_0 = Regfile_reg_trace_io_input_reg_0_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_1 = Regfile_reg_trace_io_input_reg_1_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_2 = Regfile_reg_trace_io_input_reg_2_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_3 = Regfile_reg_trace_io_input_reg_3_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_4 = Regfile_reg_trace_io_input_reg_4_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_5 = Regfile_reg_trace_io_input_reg_5_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_6 = Regfile_reg_trace_io_input_reg_6_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_7 = Regfile_reg_trace_io_input_reg_7_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_8 = Regfile_reg_trace_io_input_reg_8_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_9 = Regfile_reg_trace_io_input_reg_9_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_10 = Regfile_reg_trace_io_input_reg_10_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_11 = Regfile_reg_trace_io_input_reg_11_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_12 = Regfile_reg_trace_io_input_reg_12_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_13 = Regfile_reg_trace_io_input_reg_13_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_14 = Regfile_reg_trace_io_input_reg_14_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_15 = Regfile_reg_trace_io_input_reg_15_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_16 = Regfile_reg_trace_io_input_reg_16_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_17 = Regfile_reg_trace_io_input_reg_17_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_18 = Regfile_reg_trace_io_input_reg_18_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_19 = Regfile_reg_trace_io_input_reg_19_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_20 = Regfile_reg_trace_io_input_reg_20_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_21 = Regfile_reg_trace_io_input_reg_21_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_22 = Regfile_reg_trace_io_input_reg_22_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_23 = Regfile_reg_trace_io_input_reg_23_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_24 = Regfile_reg_trace_io_input_reg_24_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_25 = Regfile_reg_trace_io_input_reg_25_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_26 = Regfile_reg_trace_io_input_reg_26_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_27 = Regfile_reg_trace_io_input_reg_27_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_28 = Regfile_reg_trace_io_input_reg_28_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_29 = Regfile_reg_trace_io_input_reg_29_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_30 = Regfile_reg_trace_io_input_reg_30_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_input_reg_31 = Regfile_reg_trace_io_input_reg_31_MPORT_data; // @[EXU_AXI.scala 164:57]
+  assign reg_trace_csr_reg_0 = CSR_Reg_reg_trace_io_csr_reg_0_MPORT_data; // @[EXU_AXI.scala 167:54]
+  assign reg_trace_csr_reg_1 = CSR_Reg_reg_trace_io_csr_reg_1_MPORT_data; // @[EXU_AXI.scala 167:54]
+  assign reg_trace_csr_reg_2 = CSR_Reg_reg_trace_io_csr_reg_2_MPORT_data; // @[EXU_AXI.scala 167:54]
+  assign reg_trace_csr_reg_3 = 64'h0; // @[EXU_AXI.scala 166:{36,36}]
+  assign reg_trace_pc = io_pc; // @[EXU_AXI.scala 165:21]
   always @(posedge clock) begin
     if (Regfile_MPORT_en & Regfile_MPORT_mask) begin
       Regfile[Regfile_MPORT_addr] <= Regfile_MPORT_data; // @[EXU_AXI.scala 36:22]
@@ -755,12 +758,23 @@ module EXU_AXI(
     if (CSR_Reg_MPORT_6_en & CSR_Reg_MPORT_6_mask) begin
       CSR_Reg[CSR_Reg_MPORT_6_addr] <= CSR_Reg_MPORT_6_data; // @[EXU_AXI.scala 37:22]
     end
+    if (reset) begin // @[EXU_AXI.scala 157:26]
+      pc_next <= 64'h0; // @[EXU_AXI.scala 157:26]
+    end else if (io_inst_valid) begin // @[EXU_AXI.scala 158:24]
+      if (32'h3e == io_inst_now) begin // @[Mux.scala 81:58]
+        pc_next <= _j_pc_T_46;
+      end else if (32'h3d == io_inst_now) begin // @[Mux.scala 81:58]
+        pc_next <= CSR_Reg_j_pc_MPORT_12_data;
+      end else begin
+        pc_next <= _j_pc_T_62;
+      end
+    end
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"inst_store :%d inst_load:%d\n",io_inst_store,io_inst_load); // @[EXU_AXI.scala 188:11]
+          $fwrite(32'h80000002,"inst_store :%d inst_load:%d\n",io_inst_store,io_inst_load); // @[EXU_AXI.scala 193:11]
         end
     `ifdef PRINTF_COND
       end
@@ -810,6 +824,10 @@ initial begin
   for (initvar = 0; initvar < 4; initvar = initvar+1)
     CSR_Reg[initvar] = _RAND_1[63:0];
 `endif // RANDOMIZE_MEM_INIT
+`ifdef RANDOMIZE_REG_INIT
+  _RAND_2 = {2{`RANDOM}};
+  pc_next = _RAND_2[63:0];
+`endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
 `ifdef FIRRTL_AFTER_INITIAL
