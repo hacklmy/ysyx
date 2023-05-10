@@ -6,6 +6,7 @@ import "DPI-C" function void pmem_write(
 /* verilator lint_off UNUSED */
 /* verilator lint_off LATCH */
 module MEM (
+    input clock,
     input [63:0] Raddr,
     input [63:0] Waddr,
     input [63:0] Wdata,
@@ -15,7 +16,7 @@ module MEM (
     output [63:0] Rdata
 );
  
- always@(*) begin
+ always@(posedge clock) begin
     if(Read_en)begin
       pmem_read(Raddr, Rdata);
     end

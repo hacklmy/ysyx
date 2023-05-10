@@ -29,6 +29,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     QData/*63:0*/ __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v2;
     // Body
     __Vdly__top__DOT__axi__DOT__state = vlSelf->top__DOT__axi__DOT__state;
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"write_en:%1#\n",1,((IData)(vlSelf->top__DOT__axi__DOT__axi_wready) 
+                                                   & (IData)(vlSelf->top__DOT__arbiter_io_axi_out_wvalid)));
+    }
     __Vdly__top__DOT__lsu_step__DOT__state = vlSelf->top__DOT__lsu_step__DOT__state;
     __Vdly__top__DOT__arbiter__DOT__state = vlSelf->top__DOT__arbiter__DOT__state;
     vlSelf->top__DOT__axi__DOT__axi_arready = ((IData)(vlSelf->reset) 
