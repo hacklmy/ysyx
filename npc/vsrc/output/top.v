@@ -411,29 +411,25 @@ module AXI_ARBITER(
 `endif // RANDOMIZE_REG_INIT
   reg [1:0] state; // @[axi_arbiter.scala 18:24]
   wire [1:0] _GEN_0 = io_ifu_axi_in_arvalid ? 2'h1 : state; // @[axi_arbiter.scala 50:46 51:23 18:24]
+  wire [31:0] _GEN_1 = io_ifu_axi_in_arvalid ? io_ifu_axi_in_araddr : 32'h0; // @[axi_arbiter.scala 50:46 52:28 56:28]
+  wire  _GEN_3 = io_ifu_axi_in_arvalid & io_ifu_axi_in_rready; // @[axi_arbiter.scala 50:46 52:28 56:28]
   wire [63:0] _GEN_11 = io_ifu_axi_in_arvalid ? io_axi_in_rdata : 64'h0; // @[axi_arbiter.scala 50:46 53:32 58:32]
   wire  _GEN_12 = io_ifu_axi_in_arvalid & io_axi_in_rvalid; // @[axi_arbiter.scala 50:46 53:32 58:32]
-  wire  _GEN_16 = io_ifu_axi_in_arvalid ? 1'h0 : io_axi_in_arready; // @[axi_arbiter.scala 50:46 54:32 57:32]
-  wire [63:0] _GEN_17 = io_ifu_axi_in_arvalid ? 64'h0 : io_axi_in_rdata; // @[axi_arbiter.scala 50:46 54:32 57:32]
-  wire  _GEN_18 = io_ifu_axi_in_arvalid ? 1'h0 : io_axi_in_rvalid; // @[axi_arbiter.scala 50:46 54:32 57:32]
-  wire  _GEN_19 = io_ifu_axi_in_arvalid ? 1'h0 : io_axi_in_awready; // @[axi_arbiter.scala 50:46 54:32 57:32]
-  wire  _GEN_20 = io_ifu_axi_in_arvalid ? 1'h0 : io_axi_in_wready; // @[axi_arbiter.scala 50:46 54:32 57:32]
-  wire  _GEN_21 = io_ifu_axi_in_arvalid ? 1'h0 : io_axi_in_bvalid; // @[axi_arbiter.scala 50:46 54:32 57:32]
-  wire [31:0] _GEN_23 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_araddr : io_ifu_axi_in_araddr; // @[axi_arbiter.scala 45:46 47:28]
+  wire [31:0] _GEN_23 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_araddr : _GEN_1; // @[axi_arbiter.scala 45:46 47:28]
   wire  _GEN_24 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_arvalid : io_ifu_axi_in_arvalid; // @[axi_arbiter.scala 45:46 47:28]
-  wire  _GEN_25 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_rready : io_ifu_axi_in_rready; // @[axi_arbiter.scala 45:46 47:28]
+  wire  _GEN_25 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_rready : _GEN_3; // @[axi_arbiter.scala 45:46 47:28]
   wire [31:0] _GEN_26 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_awaddr : 32'h0; // @[axi_arbiter.scala 45:46 47:28]
   wire  _GEN_27 = io_lsu_axi_in_arvalid & io_lsu_axi_in_awvalid; // @[axi_arbiter.scala 45:46 47:28]
   wire [31:0] _GEN_28 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_wdata : 32'h0; // @[axi_arbiter.scala 45:46 47:28]
   wire [7:0] _GEN_29 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_wstrb : 8'h0; // @[axi_arbiter.scala 45:46 47:28]
   wire  _GEN_30 = io_lsu_axi_in_arvalid & io_lsu_axi_in_wvalid; // @[axi_arbiter.scala 45:46 47:28]
   wire  _GEN_31 = io_lsu_axi_in_arvalid & io_lsu_axi_in_bready; // @[axi_arbiter.scala 45:46 47:28]
-  wire  _GEN_32 = io_lsu_axi_in_arvalid ? io_axi_in_arready : _GEN_16; // @[axi_arbiter.scala 45:46 48:32]
-  wire [63:0] _GEN_33 = io_lsu_axi_in_arvalid ? io_axi_in_rdata : _GEN_17; // @[axi_arbiter.scala 45:46 48:32]
-  wire  _GEN_34 = io_lsu_axi_in_arvalid ? io_axi_in_rvalid : _GEN_18; // @[axi_arbiter.scala 45:46 48:32]
-  wire  _GEN_35 = io_lsu_axi_in_arvalid ? io_axi_in_awready : _GEN_19; // @[axi_arbiter.scala 45:46 48:32]
-  wire  _GEN_36 = io_lsu_axi_in_arvalid ? io_axi_in_wready : _GEN_20; // @[axi_arbiter.scala 45:46 48:32]
-  wire  _GEN_37 = io_lsu_axi_in_arvalid ? io_axi_in_bvalid : _GEN_21; // @[axi_arbiter.scala 45:46 48:32]
+  wire  _GEN_32 = io_lsu_axi_in_arvalid & io_axi_in_arready; // @[axi_arbiter.scala 45:46 48:32]
+  wire [63:0] _GEN_33 = io_lsu_axi_in_arvalid ? io_axi_in_rdata : 64'h0; // @[axi_arbiter.scala 45:46 48:32]
+  wire  _GEN_34 = io_lsu_axi_in_arvalid & io_axi_in_rvalid; // @[axi_arbiter.scala 45:46 48:32]
+  wire  _GEN_35 = io_lsu_axi_in_arvalid & io_axi_in_awready; // @[axi_arbiter.scala 45:46 48:32]
+  wire  _GEN_36 = io_lsu_axi_in_arvalid & io_axi_in_wready; // @[axi_arbiter.scala 45:46 48:32]
+  wire  _GEN_37 = io_lsu_axi_in_arvalid & io_axi_in_bvalid; // @[axi_arbiter.scala 45:46 48:32]
   wire [63:0] _GEN_39 = io_lsu_axi_in_arvalid ? 64'h0 : _GEN_11; // @[axi_arbiter.scala 45:46 49:32]
   wire  _GEN_40 = io_lsu_axi_in_arvalid ? 1'h0 : _GEN_12; // @[axi_arbiter.scala 45:46 49:32]
   wire [31:0] _GEN_45 = io_lsu_axi_in_awvalid ? io_lsu_axi_in_araddr : _GEN_23; // @[axi_arbiter.scala 40:40 42:28]
@@ -613,23 +609,30 @@ module IFU_AXI(
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
+  reg [31:0] _RAND_1;
 `endif // RANDOMIZE_REG_INIT
   reg  inst_ready; // @[IFU_AXI.scala 18:29]
   wire  _GEN_0 = io_axi_in_rvalid & inst_ready ? 1'h0 : 1'h1; // @[IFU_AXI.scala 19:41 20:20 22:20]
-  wire  _T_2 = ~reset; // @[IFU_AXI.scala 36:11]
-  assign io_inst_valid = io_axi_in_rvalid; // @[IFU_AXI.scala 35:19]
-  assign io_inst = io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 34:31]
-  assign io_axi_out_araddr = io_pc[31:0]; // @[IFU_AXI.scala 24:31]
-  assign io_axi_out_arvalid = io_pc_valid; // @[IFU_AXI.scala 25:24]
-  assign io_axi_out_rready = inst_ready; // @[IFU_AXI.scala 26:23]
+  reg [31:0] inst; // @[IFU_AXI.scala 24:23]
+  wire  _T_2 = ~reset; // @[IFU_AXI.scala 38:11]
+  assign io_inst_valid = io_axi_in_rvalid; // @[IFU_AXI.scala 37:19]
+  assign io_inst = inst; // @[IFU_AXI.scala 36:13]
+  assign io_axi_out_araddr = io_pc[31:0]; // @[IFU_AXI.scala 26:31]
+  assign io_axi_out_arvalid = io_pc_valid; // @[IFU_AXI.scala 27:24]
+  assign io_axi_out_rready = inst_ready; // @[IFU_AXI.scala 28:23]
   always @(posedge clock) begin
     inst_ready <= reset | _GEN_0; // @[IFU_AXI.scala 18:{29,29}]
+    if (reset) begin // @[IFU_AXI.scala 24:23]
+      inst <= 32'h0; // @[IFU_AXI.scala 24:23]
+    end else begin
+      inst <= io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 25:10]
+    end
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"inst_valid : %d pc_ready: %d \n",io_inst_valid,io_pc_valid); // @[IFU_AXI.scala 36:11]
+          $fwrite(32'h80000002,"inst_valid : %d pc_ready: %d \n",io_inst_valid,io_pc_valid); // @[IFU_AXI.scala 38:11]
         end
     `ifdef PRINTF_COND
       end
@@ -640,7 +643,7 @@ module IFU_AXI(
       if (`PRINTF_COND) begin
     `endif
         if (_T_2) begin
-          $fwrite(32'h80000002,"inst:%x\n",io_inst); // @[IFU_AXI.scala 37:11]
+          $fwrite(32'h80000002,"inst:%x\n",io_inst); // @[IFU_AXI.scala 39:11]
         end
     `ifdef PRINTF_COND
       end
@@ -685,6 +688,8 @@ initial begin
 `ifdef RANDOMIZE_REG_INIT
   _RAND_0 = {1{`RANDOM}};
   inst_ready = _RAND_0[0:0];
+  _RAND_1 = {1{`RANDOM}};
+  inst = _RAND_1[31:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
