@@ -33,6 +33,7 @@ VL_MODULE(Vtop___024root) {
     // LOCAL SIGNALS
     // Anonymous structures to workaround compiler member-count bugs
     struct {
+        CData/*0:0*/ top__DOT__axi__DOT__Mem_modle__DOT__clock;
         CData/*0:0*/ top__DOT__arbiter_io_ifu_axi_out_rvalid;
         CData/*0:0*/ top__DOT__arbiter_io_lsu_axi_out_rvalid;
         CData/*0:0*/ top__DOT__arbiter_io_lsu_axi_out_bvalid;
@@ -96,9 +97,9 @@ VL_MODULE(Vtop___024root) {
         VlWide<4>/*126:0*/ top__DOT__exu_step__DOT___io_res2rd_T_208;
         QData/*63:0*/ top__DOT__arbiter_io_ifu_axi_out_rdata;
         QData/*63:0*/ top__DOT__arbiter_io_lsu_axi_out_rdata;
-        QData/*63:0*/ top__DOT__idu_step_io_imm;
     };
     struct {
+        QData/*63:0*/ top__DOT__idu_step_io_imm;
         QData/*63:0*/ top__DOT__exu_step_io_Mem_wdata;
         QData/*63:0*/ top__DOT__pc_now;
         QData/*63:0*/ top__DOT__axi__DOT__Mem_modle_Rdata;
@@ -127,9 +128,8 @@ VL_MODULE(Vtop___024root) {
     };
 
     // LOCAL VARIABLES
+    CData/*0:0*/ __Vclklast__TOP__top__DOT__axi__DOT__Mem_modle__DOT__clock;
     CData/*0:0*/ __Vclklast__TOP__clock;
-    QData/*63:0*/ __Vtask_pmem_read__0__Rdata;
-    QData/*63:0*/ __Vchglast__TOP__top__DOT__axi__DOT__Mem_modle_Rdata;
     VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
 
     // INTERNAL VARIABLES
