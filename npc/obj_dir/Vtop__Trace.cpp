@@ -393,11 +393,11 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                        [((0x342U == 
                                           (0xfffU & (IData)(vlSelf->top__DOT__idu_step_io_imm)))
                                           ? 3U : (IData)(vlSelf->top__DOT__exu_step__DOT___csr_index_T_5))]),64);
-            tracep->chgQData(oldp+270,(((IData)(vlSelf->top__DOT__exu_step__DOT___T_7)
+            tracep->chgQData(oldp+270,(((IData)(vlSelf->top__DOT__exu_step__DOT___T_9)
                                          ? vlSelf->top__DOT__pc_now
                                          : vlSelf->top__DOT__exu_step__DOT__CSR_Reg
                                         [1U])),64);
-            tracep->chgQData(oldp+272,(((IData)(vlSelf->top__DOT__exu_step__DOT___T_7)
+            tracep->chgQData(oldp+272,(((IData)(vlSelf->top__DOT__exu_step__DOT___T_9)
                                          ? vlSelf->top__DOT__exu_step__DOT__Regfile
                                         [0x11U] : vlSelf->top__DOT__exu_step__DOT__CSR_Reg
                                         [3U])),64);
