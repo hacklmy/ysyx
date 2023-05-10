@@ -1395,15 +1395,16 @@ module EXU_AXI(
   wire [126:0] _io_res2rd_T_206 = 32'h46 == io_inst_now ? {{63'd0}, CSR_Reg_io_res2rd_MPORT_1_data} : _io_res2rd_T_204; // @[Mux.scala 81:58]
   wire [126:0] _io_res2rd_T_208 = 32'h47 == io_inst_now ? {{63'd0}, CSR_Reg_io_res2rd_MPORT_2_data} : _io_res2rd_T_206; // @[Mux.scala 81:58]
   wire [63:0] reg_value = io_rd == 5'h0 ? 64'h0 : Regfile_reg_value_MPORT_data; // @[EXU_AXI.scala 47:12]
-  wire  _T_4 = io_ctrl_sign_reg_write & io_rd != 5'h0 & (io_inst_valid | io_ctrl_sign_Readmem_en & io_rdata_valid); // @[EXU_AXI.scala 129:63]
+  wire  _T_6 = io_ctrl_sign_reg_write & io_rd != 5'h0 & (io_inst_valid & ~io_ctrl_sign_Readmem_en |
+    io_ctrl_sign_Readmem_en & io_rdata_valid); // @[EXU_AXI.scala 129:63]
   wire [63:0] _csr_wdata_T = src1_value | CSR_Reg_csr_wdata_MPORT_data; // @[EXU_AXI.scala 134:32]
   wire [63:0] _csr_wdata_T_1 = ~CSR_Reg_csr_wdata_MPORT_1_data; // @[EXU_AXI.scala 135:35]
   wire [63:0] _csr_wdata_T_2 = src1_value & _csr_wdata_T_1; // @[EXU_AXI.scala 135:32]
   wire [63:0] _csr_wdata_T_4 = 32'h3f == io_inst_now ? src1_value : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _csr_wdata_T_6 = 32'h46 == io_inst_now ? _csr_wdata_T : _csr_wdata_T_4; // @[Mux.scala 81:58]
   wire [63:0] csr_wdata = 32'h47 == io_inst_now ? _csr_wdata_T_2 : _csr_wdata_T_6; // @[Mux.scala 81:58]
-  wire  _T_7 = io_inst_now == 32'h3d & io_inst_valid; // @[EXU_AXI.scala 138:48]
-  wire  _T_12 = io_ctrl_sign_csr_write & io_inst_valid; // @[EXU_AXI.scala 141:53]
+  wire  _T_9 = io_inst_now == 32'h3d & io_inst_valid; // @[EXU_AXI.scala 138:48]
+  wire  _T_14 = io_ctrl_sign_csr_write & io_inst_valid; // @[EXU_AXI.scala 141:53]
   wire [63:0] _j_pc_T = add_res & 64'hfffffffffffffffe; // @[EXU_AXI.scala 148:28]
   wire [63:0] _j_pc_T_3 = io_rs1 == 5'h0 ? 64'h0 : Regfile_j_pc_MPORT_data; // @[EXU_AXI.scala 149:39]
   wire [63:0] _j_pc_T_6 = io_rs2 == 5'h0 ? 64'h0 : Regfile_j_pc_MPORT_1_data; // @[EXU_AXI.scala 149:67]
@@ -1440,7 +1441,7 @@ module EXU_AXI(
   wire [63:0] _mem_wdata_T_12 = 32'h7 == io_inst_now ? _mem_wdata_T_1 : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _mem_wdata_T_14 = 32'h26 == io_inst_now ? {{48'd0}, _mem_wdata_T_3[15:0]} : _mem_wdata_T_12; // @[Mux.scala 81:58]
   wire [63:0] _mem_wdata_T_16 = 32'h28 == io_inst_now ? {{56'd0}, _mem_wdata_T_6[7:0]} : _mem_wdata_T_14; // @[Mux.scala 81:58]
-  wire  _T_15 = ~reset; // @[EXU_AXI.scala 194:11]
+  wire  _T_17 = ~reset; // @[EXU_AXI.scala 194:11]
   traceregs reg_trace ( // @[EXU_AXI.scala 163:27]
     .input_reg_0(reg_trace_input_reg_0),
     .input_reg_1(reg_trace_input_reg_1),
@@ -1636,7 +1637,7 @@ module EXU_AXI(
   assign Regfile_mem_wdata_MPORT_3_en = 1'h1;
   assign Regfile_mem_wdata_MPORT_3_addr = io_rs2;
   assign Regfile_mem_wdata_MPORT_3_data = Regfile[Regfile_mem_wdata_MPORT_3_addr]; // @[EXU_AXI.scala 37:22]
-  assign Regfile_MPORT_data = _T_4 ? io_res2rd : reg_value;
+  assign Regfile_MPORT_data = _T_6 ? io_res2rd : reg_value;
   assign Regfile_MPORT_addr = io_rd;
   assign Regfile_MPORT_mask = 1'h1;
   assign Regfile_MPORT_en = 1'h1;
@@ -1679,15 +1680,15 @@ module EXU_AXI(
   assign CSR_Reg_reg_trace_io_csr_reg_2_MPORT_en = 1'h1;
   assign CSR_Reg_reg_trace_io_csr_reg_2_MPORT_addr = 2'h2;
   assign CSR_Reg_reg_trace_io_csr_reg_2_MPORT_data = CSR_Reg[CSR_Reg_reg_trace_io_csr_reg_2_MPORT_addr]; // @[EXU_AXI.scala 38:22]
-  assign CSR_Reg_MPORT_1_data = _T_7 ? io_pc : CSR_Reg_MPORT_2_data;
+  assign CSR_Reg_MPORT_1_data = _T_9 ? io_pc : CSR_Reg_MPORT_2_data;
   assign CSR_Reg_MPORT_1_addr = 2'h1;
   assign CSR_Reg_MPORT_1_mask = 1'h1;
   assign CSR_Reg_MPORT_1_en = 1'h1;
-  assign CSR_Reg_MPORT_3_data = _T_7 ? Regfile_MPORT_4_data : CSR_Reg_MPORT_5_data;
+  assign CSR_Reg_MPORT_3_data = _T_9 ? Regfile_MPORT_4_data : CSR_Reg_MPORT_5_data;
   assign CSR_Reg_MPORT_3_addr = 2'h3;
   assign CSR_Reg_MPORT_3_mask = 1'h1;
   assign CSR_Reg_MPORT_3_en = 1'h1;
-  assign CSR_Reg_MPORT_6_data = _T_12 ? csr_wdata : CSR_Reg_MPORT_7_data;
+  assign CSR_Reg_MPORT_6_data = _T_14 ? csr_wdata : CSR_Reg_MPORT_7_data;
   assign CSR_Reg_MPORT_6_addr = _csr_index_T_6 ? 2'h3 : _csr_index_T_5;
   assign CSR_Reg_MPORT_6_mask = 1'h1;
   assign CSR_Reg_MPORT_6_en = 1'h1;
@@ -1774,7 +1775,7 @@ module EXU_AXI(
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
-        if (_T_15) begin
+        if (_T_17) begin
           $fwrite(32'h80000002,"mem_addr:%x\n",io_Mem_addr); // @[EXU_AXI.scala 195:11]
         end
     `ifdef PRINTF_COND
