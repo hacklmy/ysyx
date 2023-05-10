@@ -256,6 +256,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     }
     vlSelf->top__DOT__pc_valid = ((IData)(vlSelf->reset) 
                                   | (IData)(vlSelf->top__DOT__execute_end));
+    vlSelf->top__DOT__diff_step = ((~ (IData)(vlSelf->reset)) 
+                                   & (IData)(vlSelf->top__DOT__execute_end));
     if (vlSelf->reset) {
         vlSelf->top__DOT__pc_now = 0x80000000ULL;
     } else if (vlSelf->top__DOT__execute_end) {
@@ -325,6 +327,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     }
     vlSelf->top__DOT__lsu_step__DOT__state = __Vdly__top__DOT__lsu_step__DOT__state;
     vlSelf->top__DOT__arbiter__DOT__state = __Vdly__top__DOT__arbiter__DOT__state;
+    vlSelf->io_step = vlSelf->top__DOT__diff_step;
     Vtop___024unit____Vdpiimwrap_get_pc_TOP____024unit(vlSelf->top__DOT__pc_now);
     Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs);
     Vtop___024unit____Vdpiimwrap_set_csr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs);
@@ -496,7 +499,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                 & (IData)(vlSelf->top__DOT__lsu_step__DOT__axi_rready))
                                                 ? 0U
                                                 : (IData)(vlSelf->top__DOT__arbiter__DOT__state));
-    vlSelf->io_step = vlSelf->top__DOT__execute_end;
     vlSelf->top__DOT__ifu_step__DOT___GEN_0 = (1U & 
                                                (~ ((IData)(vlSelf->top__DOT__arbiter_io_ifu_axi_out_rvalid) 
                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_ready))));
