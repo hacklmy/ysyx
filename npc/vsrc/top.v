@@ -95,6 +95,7 @@ module top(
   wire  ifu_step_io_pc_valid; // @[top.scala 21:26]
   wire  ifu_step_io_inst_valid; // @[top.scala 21:26]
   wire [31:0] ifu_step_io_inst; // @[top.scala 21:26]
+  wire [31:0] ifu_step_io_inst_reg; // @[top.scala 21:26]
   wire [63:0] ifu_step_io_axi_in_rdata; // @[top.scala 21:26]
   wire  ifu_step_io_axi_in_rvalid; // @[top.scala 21:26]
   wire [31:0] ifu_step_io_axi_out_araddr; // @[top.scala 21:26]
@@ -232,6 +233,7 @@ module top(
     .io_pc_valid(ifu_step_io_pc_valid),
     .io_inst_valid(ifu_step_io_inst_valid),
     .io_inst(ifu_step_io_inst),
+    .io_inst_reg(ifu_step_io_inst_reg),
     .io_axi_in_rdata(ifu_step_io_axi_in_rdata),
     .io_axi_in_rvalid(ifu_step_io_axi_in_rvalid),
     .io_axi_out_araddr(ifu_step_io_axi_out_araddr),
@@ -338,7 +340,8 @@ module top(
   assign ifu_step_io_pc_valid = pc_valid; // @[top.scala 74:26]
   assign ifu_step_io_axi_in_rdata = arbiter_io_ifu_axi_out_rdata; // @[top.scala 25:24]
   assign ifu_step_io_axi_in_rvalid = arbiter_io_ifu_axi_out_rvalid; // @[top.scala 25:24]
-  assign idu_step_io_inst = ifu_step_io_inst; // @[top.scala 34:22]
+  assign idu_step_io_inst = ~ifu_step_io_inst_valid & ~pc_valid & ~execute_end ? ifu_step_io_inst_reg : ifu_step_io_inst
+    ; // @[top.scala 79:28]
   assign exu_step_clock = clock;
   assign exu_step_reset = reset;
   assign exu_step_io_pc = pc_now; // @[top.scala 38:20]

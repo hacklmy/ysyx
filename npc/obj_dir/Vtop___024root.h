@@ -81,18 +81,18 @@ VL_MODULE(Vtop___024root) {
         CData/*1:0*/ top__DOT__arbiter__DOT___GEN_90;
         CData/*0:0*/ top__DOT__ifu_step__DOT__inst_ready;
         CData/*0:0*/ top__DOT__ifu_step__DOT___GEN_0;
-        CData/*0:0*/ top__DOT__ifu_step__DOT__inst_valid_reg;
         CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_188;
         CData/*6:0*/ top__DOT__idu_step__DOT___inst_now_T_194;
+        CData/*0:0*/ top__DOT__idu_step__DOT___reg_write_T_37;
         CData/*1:0*/ top__DOT__exu_step__DOT___csr_index_T_5;
         CData/*0:0*/ top__DOT__exu_step__DOT___T_5;
-        IData/*31:0*/ top__DOT__ifu_step__DOT__inst_reg;
         VlWide<4>/*126:0*/ top__DOT__exu_step__DOT__sll_res;
         IData/*31:0*/ top__DOT__exu_step__DOT__srlw_res;
         IData/*31:0*/ top__DOT__exu_step__DOT__divuw_res;
         IData/*31:0*/ top__DOT__exu_step__DOT__remw_res;
         IData/*31:0*/ top__DOT__exu_step__DOT__remuw_res;
         VlWide<4>/*126:0*/ top__DOT__exu_step__DOT___io_res2rd_T_208;
+        QData/*63:0*/ top__DOT__arbiter_io_ifu_axi_out_rdata;
         QData/*63:0*/ top__DOT__arbiter_io_lsu_axi_out_rdata;
         QData/*63:0*/ top__DOT__idu_step_io_imm;
         QData/*63:0*/ top__DOT__exu_step_io_pc_next;
@@ -126,7 +126,8 @@ VL_MODULE(Vtop___024root) {
     // LOCAL VARIABLES
     CData/*0:0*/ __Vclklast__TOP__clock;
     QData/*63:0*/ __Vtask_pmem_read__0__Rdata;
-    VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
+    QData/*63:0*/ __Vchglast__TOP__top__DOT__axi__DOT__Mem_modle_Rdata;
+    VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
 
     // INTERNAL VARIABLES
     Vtop__Syms* vlSymsp;  // Symbol table

@@ -625,6 +625,7 @@ module IFU_AXI(
   input         io_pc_valid,
   output        io_inst_valid,
   output [31:0] io_inst,
+  output [31:0] io_inst_reg,
   input  [63:0] io_axi_in_rdata,
   input         io_axi_in_rvalid,
   output [31:0] io_axi_out_araddr,
@@ -633,23 +634,31 @@ module IFU_AXI(
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
+  reg [31:0] _RAND_1;
 `endif // RANDOMIZE_REG_INIT
-  reg  inst_ready; // @[IFU_AXI.scala 18:29]
-  wire  _GEN_0 = io_axi_in_rvalid & inst_ready ? 1'h0 : 1'h1; // @[IFU_AXI.scala 19:41 20:20 22:20]
-  wire  _T_2 = ~reset; // @[IFU_AXI.scala 36:11]
-  assign io_inst_valid = io_axi_in_rvalid; // @[IFU_AXI.scala 35:19]
-  assign io_inst = io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 34:31]
-  assign io_axi_out_araddr = io_pc[31:0]; // @[IFU_AXI.scala 24:31]
-  assign io_axi_out_arvalid = io_pc_valid; // @[IFU_AXI.scala 25:24]
-  assign io_axi_out_rready = inst_ready; // @[IFU_AXI.scala 26:23]
+  reg  inst_ready; // @[IFU_AXI.scala 19:29]
+  wire  _GEN_0 = io_axi_in_rvalid & inst_ready ? 1'h0 : 1'h1; // @[IFU_AXI.scala 20:41 21:20 23:20]
+  reg [31:0] inst_reg; // @[IFU_AXI.scala 25:27]
+  wire  _T_2 = ~reset; // @[IFU_AXI.scala 42:11]
+  assign io_inst_valid = io_axi_in_rvalid; // @[IFU_AXI.scala 41:19]
+  assign io_inst = io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 39:31]
+  assign io_inst_reg = inst_reg; // @[IFU_AXI.scala 40:17]
+  assign io_axi_out_araddr = io_pc[31:0]; // @[IFU_AXI.scala 29:31]
+  assign io_axi_out_arvalid = io_pc_valid; // @[IFU_AXI.scala 30:24]
+  assign io_axi_out_rready = inst_ready; // @[IFU_AXI.scala 31:23]
   always @(posedge clock) begin
-    inst_ready <= reset | _GEN_0; // @[IFU_AXI.scala 18:{29,29}]
+    inst_ready <= reset | _GEN_0; // @[IFU_AXI.scala 19:{29,29}]
+    if (reset) begin // @[IFU_AXI.scala 25:27]
+      inst_reg <= 32'h0; // @[IFU_AXI.scala 25:27]
+    end else if (io_axi_in_rvalid) begin // @[IFU_AXI.scala 26:27]
+      inst_reg <= io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 27:18]
+    end
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"inst_valid : %d pc_valid:%d\n",io_inst_valid,io_pc_valid); // @[IFU_AXI.scala 36:11]
+          $fwrite(32'h80000002,"inst_valid : %d pc_valid:%d\n",io_inst_valid,io_pc_valid); // @[IFU_AXI.scala 42:11]
         end
     `ifdef PRINTF_COND
       end
@@ -660,7 +669,7 @@ module IFU_AXI(
       if (`PRINTF_COND) begin
     `endif
         if (_T_2) begin
-          $fwrite(32'h80000002,"inst:%x\n",io_inst); // @[IFU_AXI.scala 37:11]
+          $fwrite(32'h80000002,"inst:%x\n",io_inst); // @[IFU_AXI.scala 43:11]
         end
     `ifdef PRINTF_COND
       end
@@ -705,6 +714,8 @@ initial begin
 `ifdef RANDOMIZE_REG_INIT
   _RAND_0 = {1{`RANDOM}};
   inst_ready = _RAND_0[0:0];
+  _RAND_1 = {1{`RANDOM}};
+  inst_reg = _RAND_1[31:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
@@ -1891,6 +1902,7 @@ module top(
   wire  ifu_step_io_pc_valid; // @[top.scala 21:26]
   wire  ifu_step_io_inst_valid; // @[top.scala 21:26]
   wire [31:0] ifu_step_io_inst; // @[top.scala 21:26]
+  wire [31:0] ifu_step_io_inst_reg; // @[top.scala 21:26]
   wire [63:0] ifu_step_io_axi_in_rdata; // @[top.scala 21:26]
   wire  ifu_step_io_axi_in_rvalid; // @[top.scala 21:26]
   wire [31:0] ifu_step_io_axi_out_araddr; // @[top.scala 21:26]
@@ -2028,6 +2040,7 @@ module top(
     .io_pc_valid(ifu_step_io_pc_valid),
     .io_inst_valid(ifu_step_io_inst_valid),
     .io_inst(ifu_step_io_inst),
+    .io_inst_reg(ifu_step_io_inst_reg),
     .io_axi_in_rdata(ifu_step_io_axi_in_rdata),
     .io_axi_in_rvalid(ifu_step_io_axi_in_rvalid),
     .io_axi_out_araddr(ifu_step_io_axi_out_araddr),
@@ -2134,7 +2147,8 @@ module top(
   assign ifu_step_io_pc_valid = pc_valid; // @[top.scala 74:26]
   assign ifu_step_io_axi_in_rdata = arbiter_io_ifu_axi_out_rdata; // @[top.scala 25:24]
   assign ifu_step_io_axi_in_rvalid = arbiter_io_ifu_axi_out_rvalid; // @[top.scala 25:24]
-  assign idu_step_io_inst = ifu_step_io_inst; // @[top.scala 34:22]
+  assign idu_step_io_inst = ~ifu_step_io_inst_valid & ~pc_valid & ~execute_end ? ifu_step_io_inst_reg : ifu_step_io_inst
+    ; // @[top.scala 79:28]
   assign exu_step_clock = clock;
   assign exu_step_reset = reset;
   assign exu_step_io_pc = pc_now; // @[top.scala 38:20]
