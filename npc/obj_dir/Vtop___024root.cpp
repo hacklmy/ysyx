@@ -290,8 +290,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs);
     Vtop___024unit____Vdpiimwrap_set_csr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs);
     vlSelf->io_pc = vlSelf->top__DOT__pc_now;
-    vlSelf->top__DOT__execute_end = ((IData)(vlSelf->reset) 
-                                     | ((0x44U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_188))
+    vlSelf->top__DOT__execute_end = ((~ (IData)(vlSelf->reset)) 
+                                     & ((0x44U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_188))
                                          ? (IData)(vlSelf->top__DOT__arbiter_io_lsu_axi_out_bvalid)
                                          : ((IData)(vlSelf->top__DOT__idu_step_io_ctrl_sign_Readmem_en)
                                              ? (IData)(vlSelf->top__DOT__arbiter_io_lsu_axi_out_rvalid)

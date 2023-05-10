@@ -1864,6 +1864,8 @@ module top(
   wire [31:0] dpi_ecall_flag; // @[top.scala 58:21]
   reg [63:0] pc_now; // @[top.scala 15:25]
   reg  execute_end; // @[top.scala 17:30]
+  wire  _execute_end_T = exu_step_io_inst_load ? lsu_step_io_axi_in_rvalid : ifu_step_io_inst_valid; // @[top.scala 70:76]
+  wire  _execute_end_T_1 = exu_step_io_inst_store ? lsu_step_io_axi_in_bvalid : _execute_end_T; // @[top.scala 70:23]
   AXI axi ( // @[top.scala 18:21]
     .clock(axi_clock),
     .reset(axi_reset),
@@ -2084,15 +2086,7 @@ module top(
     end else if (execute_end) begin // @[top.scala 73:18]
       pc_now <= exu_step_io_pc_next;
     end
-    if (reset) begin // @[top.scala 17:30]
-      execute_end <= 1'h0; // @[top.scala 17:30]
-    end else if (exu_step_io_inst_store) begin // @[top.scala 70:23]
-      execute_end <= lsu_step_io_axi_in_bvalid;
-    end else if (exu_step_io_inst_load) begin // @[top.scala 70:76]
-      execute_end <= lsu_step_io_axi_in_rvalid;
-    end else begin
-      execute_end <= ifu_step_io_inst_valid;
-    end
+    execute_end <= reset | _execute_end_T_1; // @[top.scala 17:{30,30} 70:17]
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
