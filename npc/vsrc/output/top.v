@@ -133,7 +133,8 @@ module AXI(
       if (`PRINTF_COND) begin
     `endif
         if (_T_1) begin
-          $fwrite(32'h80000002,"read_en:%d read_addr :%x\n",Mem_modle_Read_en,Mem_modle_Raddr); // @[AXI.scala 35:11]
+          $fwrite(32'h80000002,"read_en:%d read_addr :%x rvalid:%d read_data:%x\n",Mem_modle_Read_en,Mem_modle_Raddr,
+            axi_rvalid,Mem_modle_Rdata); // @[AXI.scala 35:11]
         end
     `ifdef PRINTF_COND
       end
