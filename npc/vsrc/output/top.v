@@ -2136,7 +2136,7 @@ module top(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"execute_end : %d\n",execute_end); // @[top.scala 71:11]
+          $fwrite(32'h80000002,"execute_end : %d\n\n",execute_end); // @[top.scala 71:11]
         end
     `ifdef PRINTF_COND
       end
