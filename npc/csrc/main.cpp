@@ -371,7 +371,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   #ifdef CONFIG_MTRACE
     printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
   #endif
-  printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
+  //printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
   uint8_t* p = guest_to_host(waddr);
   for (int i = 0; i < 8; i++) {
     if (wmask & 0x1) *p = (wdata & 0xff);
@@ -733,7 +733,7 @@ void cpu_exec(int n){
       printf("%lx %x\n",top->io_pc , top->io_inst);
       top->clock ^= 1;
       top->eval();
-      printf("%lx %x\n",top->io_pc , top->io_inst);
+      //printf("%lx %x\n",top->io_pc , top->io_inst);
       //printf("%d\n",sim_time);
       #ifdef CONFIG_ITRACE
     char p[1024];
