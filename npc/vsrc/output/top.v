@@ -607,6 +607,17 @@ module IFU_AXI(
   assign io_axi_out_rready = inst_ready; // @[IFU_AXI.scala 26:23]
   always @(posedge clock) begin
     inst_ready <= reset | _GEN_0; // @[IFU_AXI.scala 18:{29,29}]
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"inst_valid : %d pc_ready: %d \n",io_inst_valid,io_pc_valid); // @[IFU_AXI.scala 36:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
