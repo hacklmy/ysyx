@@ -312,6 +312,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
       *rdata = vgactl_port_base[1];
       printf("%lld\n", *rdata);
     }
+    vga_update_screen();
     return;
   }
   if(raddr==KBD_ADDR){
@@ -370,7 +371,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   #ifdef CONFIG_MTRACE
     printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
   #endif
-  printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
+  //printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
   uint8_t* p = guest_to_host(waddr);
   for (int i = 0; i < 8; i++) {
     if (wmask & 0x1) *p = (wdata & 0xff);
@@ -767,7 +768,7 @@ void cpu_exec(int n){
     tfp->dump(contextp->time()); //dump wave
     #endif
     #ifdef HAS_VGA
-    vga_update_screen();
+    //vga_update_screen();
     #endif
     sim_time++;
   }

@@ -41,7 +41,6 @@ module AXI_ARBITER(
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
   reg [1:0] state; // @[axi_arbiter.scala 18:24]
-  wire  _T_1 = ~reset; // @[axi_arbiter.scala 38:11]
   wire [1:0] _GEN_0 = io_ifu_axi_in_arvalid ? 2'h1 : state; // @[axi_arbiter.scala 51:46 52:23 18:24]
   wire [31:0] _GEN_1 = io_ifu_axi_in_arvalid ? io_ifu_axi_in_araddr : 32'h0; // @[axi_arbiter.scala 51:46 53:28 57:28]
   wire  _GEN_3 = io_ifu_axi_in_arvalid & io_ifu_axi_in_rready; // @[axi_arbiter.scala 51:46 53:28 57:28]
@@ -168,29 +167,6 @@ module AXI_ARBITER(
     end else begin
       state <= _GEN_90;
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"arbiter state:%d\n",state); // @[axi_arbiter.scala 38:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (_T_1) begin
-          $fwrite(32'h80000002,"ifu_arvalid:%d lsu_awvalid:%d lsu_arvalid:%d\n",io_ifu_axi_in_arvalid,
-            io_lsu_axi_in_awvalid,io_lsu_axi_in_arvalid); // @[axi_arbiter.scala 39:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN

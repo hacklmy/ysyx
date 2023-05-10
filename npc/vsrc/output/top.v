@@ -38,7 +38,6 @@ module AXI(
   reg  axi_arready; // @[AXI.scala 19:30]
   reg  axi_rvalid; // @[AXI.scala 21:29]
   reg [2:0] state; // @[AXI.scala 24:24]
-  wire  _T_1 = ~reset; // @[AXI.scala 34:11]
   wire  _GEN_1 = io_axi_in_arvalid ? 1'h0 : axi_arready; // @[AXI.scala 49:42 51:29 19:30]
   wire  _GEN_2 = io_axi_in_arvalid | axi_rvalid; // @[AXI.scala 49:42 52:28 21:29]
   wire  _GEN_4 = io_axi_in_awvalid & io_axi_in_wvalid ? 1'h0 : axi_awready; // @[AXI.scala 39:56 41:29 13:30]
@@ -117,29 +116,6 @@ module AXI(
     end else if (3'h4 == state) begin // @[AXI.scala 37:18]
       state <= _GEN_13;
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"axi_arready:%d axi_arvalid:%d\n",axi_arready,io_axi_in_arvalid); // @[AXI.scala 34:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (_T_1) begin
-          $fwrite(32'h80000002,"read_en:%d read_addr :%x rvalid:%d read_data:%x\n",Mem_modle_Read_en,Mem_modle_Raddr,
-            axi_rvalid,Mem_modle_Rdata); // @[AXI.scala 35:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -310,17 +286,6 @@ module LSU(
     end else if (2'h2 == state) begin // @[LSU.scala 30:18]
       state <= _GEN_15;
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"bvalid: %d\n",io_axi_in_bvalid); // @[LSU.scala 65:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -421,7 +386,6 @@ module AXI_ARBITER(
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
   reg [1:0] state; // @[axi_arbiter.scala 18:24]
-  wire  _T_1 = ~reset; // @[axi_arbiter.scala 38:11]
   wire [1:0] _GEN_0 = io_ifu_axi_in_arvalid ? 2'h1 : state; // @[axi_arbiter.scala 51:46 52:23 18:24]
   wire [31:0] _GEN_1 = io_ifu_axi_in_arvalid ? io_ifu_axi_in_araddr : 32'h0; // @[axi_arbiter.scala 51:46 53:28 57:28]
   wire  _GEN_3 = io_ifu_axi_in_arvalid & io_ifu_axi_in_rready; // @[axi_arbiter.scala 51:46 53:28 57:28]
@@ -548,29 +512,6 @@ module AXI_ARBITER(
     end else begin
       state <= _GEN_90;
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"arbiter state:%d\n",state); // @[axi_arbiter.scala 38:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (_T_1) begin
-          $fwrite(32'h80000002,"ifu_arvalid:%d lsu_awvalid:%d lsu_arvalid:%d\n",io_ifu_axi_in_arvalid,
-            io_lsu_axi_in_awvalid,io_lsu_axi_in_arvalid); // @[axi_arbiter.scala 39:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -639,7 +580,6 @@ module IFU_AXI(
   reg  inst_ready; // @[IFU_AXI.scala 19:29]
   wire  _GEN_0 = io_axi_in_rvalid & inst_ready ? 1'h0 : 1'h1; // @[IFU_AXI.scala 20:41 21:20 23:20]
   reg [31:0] inst_reg; // @[IFU_AXI.scala 25:27]
-  wire  _T_2 = ~reset; // @[IFU_AXI.scala 42:11]
   assign io_inst_valid = io_axi_in_rvalid; // @[IFU_AXI.scala 41:19]
   assign io_inst = io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 39:31]
   assign io_inst_reg = inst_reg; // @[IFU_AXI.scala 40:17]
@@ -653,28 +593,6 @@ module IFU_AXI(
     end else if (io_axi_in_rvalid) begin // @[IFU_AXI.scala 26:27]
       inst_reg <= io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 27:18]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"inst_valid : %d pc_valid:%d\n",io_inst_valid,io_pc_valid); // @[IFU_AXI.scala 42:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (_T_2) begin
-          $fwrite(32'h80000002,"inst:%x\n",io_inst); // @[IFU_AXI.scala 43:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -1441,7 +1359,6 @@ module EXU_AXI(
   wire [63:0] _mem_wdata_T_12 = 32'h7 == io_inst_now ? _mem_wdata_T_1 : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _mem_wdata_T_14 = 32'h26 == io_inst_now ? {{48'd0}, _mem_wdata_T_3[15:0]} : _mem_wdata_T_12; // @[Mux.scala 81:58]
   wire [63:0] _mem_wdata_T_16 = 32'h28 == io_inst_now ? {{56'd0}, _mem_wdata_T_6[7:0]} : _mem_wdata_T_14; // @[Mux.scala 81:58]
-  wire  _T_17 = ~reset; // @[EXU_AXI.scala 194:11]
   traceregs reg_trace ( // @[EXU_AXI.scala 163:27]
     .input_reg_0(reg_trace_input_reg_0),
     .input_reg_1(reg_trace_input_reg_1),
@@ -1760,28 +1677,6 @@ module EXU_AXI(
         pc_next <= _j_pc_T_62;
       end
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"inst_store :%d inst_load:%d\n",io_inst_store,io_inst_load); // @[EXU_AXI.scala 194:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (_T_17) begin
-          $fwrite(32'h80000002,"mem_addr:%x\n",io_Mem_addr); // @[EXU_AXI.scala 195:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -2226,17 +2121,6 @@ module top(
     end else begin
       diff_step <= execute_end; // @[top.scala 77:15]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"pc : %x inst:%x execute_end : %d\n\n",pc_now,idu_step_io_inst,execute_end); // @[top.scala 72:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN

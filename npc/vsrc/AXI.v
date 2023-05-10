@@ -39,7 +39,6 @@ module AXI(
   reg  axi_arready; // @[AXI.scala 19:30]
   reg  axi_rvalid; // @[AXI.scala 21:29]
   reg [2:0] state; // @[AXI.scala 24:24]
-  wire  _T_1 = ~reset; // @[AXI.scala 34:11]
   wire  _GEN_1 = io_axi_in_arvalid ? 1'h0 : axi_arready; // @[AXI.scala 49:42 51:29 19:30]
   wire  _GEN_2 = io_axi_in_arvalid | axi_rvalid; // @[AXI.scala 49:42 52:28 21:29]
   wire  _GEN_4 = io_axi_in_awvalid & io_axi_in_wvalid ? 1'h0 : axi_awready; // @[AXI.scala 39:56 41:29 13:30]
@@ -118,29 +117,6 @@ module AXI(
     end else if (3'h4 == state) begin // @[AXI.scala 37:18]
       state <= _GEN_13;
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"axi_arready:%d axi_arvalid:%d\n",axi_arready,io_axi_in_arvalid); // @[AXI.scala 34:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (_T_1) begin
-          $fwrite(32'h80000002,"read_en:%d read_addr :%x rvalid:%d read_data:%x\n",Mem_modle_Read_en,Mem_modle_Raddr,
-            axi_rvalid,Mem_modle_Rdata); // @[AXI.scala 35:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
