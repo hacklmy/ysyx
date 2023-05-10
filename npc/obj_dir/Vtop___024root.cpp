@@ -159,7 +159,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         __Vdly__top__DOT__axi__DOT__state = vlSelf->top__DOT__axi__DOT___GEN_13;
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"execute_end : %1#\n",
+        VL_FWRITEF(0x80000002U,"execute_end : %1#\n\n",
                    1,vlSelf->top__DOT__execute_end);
     }
     if (vlSelf->reset) {

@@ -325,7 +325,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     return;
   }
   *rdata = *((long long *)guest_to_host(raddr));
-  printf("read memory at %llx, value = %llx\n",raddr,*rdata);
+  //printf("read memory at %llx, value = %llx\n",raddr,*rdata);
   #ifdef CONFIG_MTRACE
     printf("read memory at %llx, value = %llx\n",raddr,*rdata);
   #endif
