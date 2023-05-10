@@ -116,6 +116,17 @@ module AXI(
     end else if (3'h4 == state) begin // @[AXI.scala 37:18]
       state <= _GEN_13;
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"write_en:%d\n",Mem_modle_Write_en); // @[AXI.scala 36:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
