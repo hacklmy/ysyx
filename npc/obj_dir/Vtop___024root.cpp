@@ -34,6 +34,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                    1,(0x44U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_188)),
                    1,(IData)(vlSelf->top__DOT__idu_step_io_ctrl_sign_Readmem_en));
     }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"mem_addr:%x\n",32,(IData)(vlSelf->top__DOT__exu_step__DOT__add_res));
+    }
     __Vdly__top__DOT__lsu_step__DOT__state = vlSelf->top__DOT__lsu_step__DOT__state;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
         VL_FWRITEF(0x80000002U,"bvalid: %1#\n",1,vlSelf->top__DOT__arbiter_io_lsu_axi_out_bvalid);
