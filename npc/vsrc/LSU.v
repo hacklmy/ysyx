@@ -111,6 +111,17 @@ module LSU(
     end else if (2'h2 == state) begin // @[LSU.scala 30:18]
       state <= _GEN_15;
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"bvalid: %d\n",io_axi_in_bvalid); // @[LSU.scala 65:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
