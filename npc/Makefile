@@ -27,5 +27,7 @@ copy_top:
 	sed -n '/module AXI_IFU/,/endmodule/p' vsrc/output/top.v > vsrc/AXI_IFU.v
 	sed -n '/module AXI_EXU/,/endmodule/p' vsrc/output/top.v > vsrc/AXI_EXU.v
 	sed -n '/module AXI/,/endmodule/p' vsrc/output/top.v > vsrc/AXI.v
+	sed -n '/module AXI_ARBITER/,/endmodule/p' vsrc/output/top.v > vsrc/AXI_ARBITER.v
+	sed -n '/module LSU/,/endmodule/p' vsrc/output/top.v > vsrc/LSU.v
 
 include ../Makefile

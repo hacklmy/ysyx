@@ -3,67 +3,72 @@ module IFU_AXI(
   input         clock,
   input         reset,
   input  [63:0] io_pc,
+  input         io_pc_valid,
   output        io_inst_valid,
-  input         io_inst_ready,
-  output [31:0] io_inst
+  output [31:0] io_inst,
+  input  [63:0] io_axi_in_rdata,
+  input         io_axi_in_rvalid,
+  output [31:0] io_axi_out_araddr,
+  output        io_axi_out_arvalid,
+  output        io_axi_out_rready
 );
-  wire  axi_clock; // @[IFU_AXI.scala 16:21]
-  wire  axi_reset; // @[IFU_AXI.scala 16:21]
-  wire [31:0] axi_io_axi_in_araddr; // @[IFU_AXI.scala 16:21]
-  wire  axi_io_axi_in_arvalid; // @[IFU_AXI.scala 16:21]
-  wire  axi_io_axi_in_rready; // @[IFU_AXI.scala 16:21]
-  wire [31:0] axi_io_axi_in_awaddr; // @[IFU_AXI.scala 16:21]
-  wire  axi_io_axi_in_awvalid; // @[IFU_AXI.scala 16:21]
-  wire [31:0] axi_io_axi_in_wdata; // @[IFU_AXI.scala 16:21]
-  wire [7:0] axi_io_axi_in_wstrb; // @[IFU_AXI.scala 16:21]
-  wire  axi_io_axi_in_wvalid; // @[IFU_AXI.scala 16:21]
-  wire  axi_io_axi_in_bready; // @[IFU_AXI.scala 16:21]
-  wire  axi_io_axi_out_arready; // @[IFU_AXI.scala 16:21]
-  wire [63:0] axi_io_axi_out_rdata; // @[IFU_AXI.scala 16:21]
-  wire  axi_io_axi_out_rvalid; // @[IFU_AXI.scala 16:21]
-  wire  axi_io_axi_out_bvalid; // @[IFU_AXI.scala 16:21]
-  AXI axi ( // @[IFU_AXI.scala 16:21]
-    .clock(axi_clock),
-    .reset(axi_reset),
-    .io_axi_in_araddr(axi_io_axi_in_araddr),
-    .io_axi_in_arvalid(axi_io_axi_in_arvalid),
-    .io_axi_in_rready(axi_io_axi_in_rready),
-    .io_axi_in_awaddr(axi_io_axi_in_awaddr),
-    .io_axi_in_awvalid(axi_io_axi_in_awvalid),
-    .io_axi_in_wdata(axi_io_axi_in_wdata),
-    .io_axi_in_wstrb(axi_io_axi_in_wstrb),
-    .io_axi_in_wvalid(axi_io_axi_in_wvalid),
-    .io_axi_in_bready(axi_io_axi_in_bready),
-    .io_axi_out_arready(axi_io_axi_out_arready),
-    .io_axi_out_rdata(axi_io_axi_out_rdata),
-    .io_axi_out_rvalid(axi_io_axi_out_rvalid),
-    .io_axi_out_bvalid(axi_io_axi_out_bvalid)
-  );
-  assign io_inst_valid = axi_io_axi_out_rvalid; // @[IFU_AXI.scala 28:19]
-  assign io_inst = axi_io_axi_out_rdata[31:0]; // @[IFU_AXI.scala 27:36]
-  assign axi_clock = clock;
-  assign axi_reset = reset;
-  assign axi_io_axi_in_araddr = io_pc[31:0]; // @[IFU_AXI.scala 17:34]
-  assign axi_io_axi_in_arvalid = 1'h1; // @[IFU_AXI.scala 18:27]
-  assign axi_io_axi_in_rready = io_inst_ready; // @[IFU_AXI.scala 19:26]
-  assign axi_io_axi_in_awaddr = 32'h0; // @[IFU_AXI.scala 20:26]
-  assign axi_io_axi_in_awvalid = 1'h0; // @[IFU_AXI.scala 22:27]
-  assign axi_io_axi_in_wdata = 32'h0; // @[IFU_AXI.scala 21:25]
-  assign axi_io_axi_in_wstrb = 8'h0; // @[IFU_AXI.scala 23:25]
-  assign axi_io_axi_in_wvalid = 1'h0; // @[IFU_AXI.scala 24:26]
-  assign axi_io_axi_in_bready = 1'h0; // @[IFU_AXI.scala 25:26]
+`ifdef RANDOMIZE_REG_INIT
+  reg [31:0] _RAND_0;
+`endif // RANDOMIZE_REG_INIT
+  reg  inst_ready; // @[IFU_AXI.scala 18:29]
+  wire  _GEN_0 = io_axi_in_rvalid & inst_ready ? 1'h0 : 1'h1; // @[IFU_AXI.scala 19:41 20:20 22:20]
+  assign io_inst_valid = io_axi_in_rvalid; // @[IFU_AXI.scala 35:19]
+  assign io_inst = io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 34:31]
+  assign io_axi_out_araddr = io_pc[31:0]; // @[IFU_AXI.scala 24:31]
+  assign io_axi_out_arvalid = io_pc_valid; // @[IFU_AXI.scala 25:24]
+  assign io_axi_out_rready = inst_ready; // @[IFU_AXI.scala 26:23]
   always @(posedge clock) begin
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"inst_valid : %d pc_ready: %d \n",io_inst_valid,1'h1); // @[IFU_AXI.scala 29:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
+    inst_ready <= reset | _GEN_0; // @[IFU_AXI.scala 18:{29,29}]
   end
+// Register and memory initialization
+`ifdef RANDOMIZE_GARBAGE_ASSIGN
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_INVALID_ASSIGN
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_REG_INIT
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_MEM_INIT
+`define RANDOMIZE
+`endif
+`ifndef RANDOM
+`define RANDOM $random
+`endif
+`ifdef RANDOMIZE_MEM_INIT
+  integer initvar;
+`endif
+`ifndef SYNTHESIS
+`ifdef FIRRTL_BEFORE_INITIAL
+`FIRRTL_BEFORE_INITIAL
+`endif
+initial begin
+  `ifdef RANDOMIZE
+    `ifdef INIT_RANDOM
+      `INIT_RANDOM
+    `endif
+    `ifndef VERILATOR
+      `ifdef RANDOMIZE_DELAY
+        #`RANDOMIZE_DELAY begin end
+      `else
+        #0.002 begin end
+      `endif
+    `endif
+`ifdef RANDOMIZE_REG_INIT
+  _RAND_0 = {1{`RANDOM}};
+  inst_ready = _RAND_0[0:0];
+`endif // RANDOMIZE_REG_INIT
+  `endif // RANDOMIZE
+end // initial
+`ifdef FIRRTL_AFTER_INITIAL
+`FIRRTL_AFTER_INITIAL
+`endif
+`endif // SYNTHESIS
 endmodule
 /* verilator lint_on UNUSED */

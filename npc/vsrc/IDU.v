@@ -1,10 +1,6 @@
 /* verilator lint_off UNUSED */
 module IDU(
-  input         clock,
-  input         reset,
   input  [31:0] io_inst,
-  input         io_inst_valid,
-  output        io_inst_ready,
   output [31:0] io_inst_now,
   output [4:0]  io_rs1,
   output [4:0]  io_rs2,
@@ -16,13 +12,8 @@ module IDU(
   output        io_ctrl_sign_src1_is_pc,
   output        io_ctrl_sign_Writemem_en,
   output        io_ctrl_sign_Readmem_en,
-  output [7:0]  io_ctrl_sign_Wmask,
-  input         io_exu_arvalid,
-  input         io_exu_awvalid
+  output [7:0]  io_ctrl_sign_Wmask
 );
-`ifdef RANDOMIZE_REG_INIT
-  reg [31:0] _RAND_0;
-`endif // RANDOMIZE_REG_INIT
   wire [4:0] rd = io_inst[11:7]; // @[IDU.scala 150:15]
   wire [31:0] _inst_type_T = io_inst & 32'h707f; // @[Lookup.scala 31:38]
   wire  _inst_type_T_1 = 32'h13 == _inst_type_T; // @[Lookup.scala 31:38]
@@ -173,7 +164,6 @@ module IDU(
   wire [63:0] _imm_T_22 = 32'h40 == inst_type ? _imm_T_3 : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _imm_T_24 = 32'h43 == inst_type ? _imm_T_7 : _imm_T_22; // @[Mux.scala 81:58]
   wire [63:0] _imm_T_26 = 32'h42 == inst_type ? _imm_T_12 : _imm_T_24; // @[Mux.scala 81:58]
-  wire  _imm_T_27 = 32'h44 == inst_type; // @[Mux.scala 81:61]
   wire [63:0] _imm_T_28 = 32'h44 == inst_type ? _imm_T_16 : _imm_T_26; // @[Mux.scala 81:58]
   wire  _inst_now_T_3 = 32'h100073 == io_inst; // @[Lookup.scala 31:38]
   wire  _inst_now_T_123 = 32'h30200073 == io_inst; // @[Lookup.scala 31:38]
@@ -254,16 +244,9 @@ module IDU(
   wire  _reg_write_T_35 = _inst_type_T_37 ? 1'h0 : _reg_write_T_34; // @[Lookup.scala 34:39]
   wire  _reg_write_T_36 = _inst_type_T_35 ? 1'h0 : _reg_write_T_35; // @[Lookup.scala 34:39]
   wire  _reg_write_T_37 = _inst_type_T_11 ? 1'h0 : _reg_write_T_36; // @[Lookup.scala 34:39]
-  wire  Readmem_en = _inst_type_T_25 | (_inst_type_T_15 | (_inst_type_T_113 | (_inst_type_T_77 | (_inst_type_T_79 | (
-    _inst_type_T_115 | _inst_type_T_33))))); // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_8 = _inst_type_T_75 ? 4'hf : 4'h0; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_9 = _inst_type_T_37 ? 4'h1 : _Wmask_T_8; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_10 = _inst_type_T_35 ? 4'h3 : _Wmask_T_9; // @[Lookup.scala 34:39]
-  wire  _T_1 = ~reset; // @[IDU.scala 369:11]
-  reg  axi_inst_ready; // @[IDU.scala 370:33]
-  wire  _GEN_0 = (_imm_T_27 | Readmem_en) & ~(io_exu_arvalid | io_exu_awvalid) ? 1'h0 : 1'h1; // @[IDU.scala 373:79 374:24 376:24]
-  wire  _GEN_1 = io_inst_valid & axi_inst_ready ? 1'h0 : _GEN_0; // @[IDU.scala 371:42 372:24]
-  assign io_inst_ready = axi_inst_ready; // @[IDU.scala 378:19]
   assign io_inst_now = {{25'd0}, _inst_now_T_194}; // @[IDU.scala 132:24 226:14]
   assign io_rs1 = io_inst[19:15]; // @[IDU.scala 149:16]
   assign io_rs2 = io_inst[24:20]; // @[IDU.scala 148:16]
@@ -279,75 +262,5 @@ module IDU(
   assign io_ctrl_sign_Readmem_en = _inst_type_T_25 | (_inst_type_T_15 | (_inst_type_T_113 | (_inst_type_T_77 | (
     _inst_type_T_79 | (_inst_type_T_115 | _inst_type_T_33))))); // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Wmask = _inst_type_T_11 ? 8'hff : {{4'd0}, _Wmask_T_10}; // @[Lookup.scala 34:39]
-  always @(posedge clock) begin
-    axi_inst_ready <= reset | _GEN_1; // @[IDU.scala 370:{33,33}]
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"Writemem_en:%d Readmem_en:%d\n",_imm_T_27,Readmem_en); // @[IDU.scala 369:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (_T_1) begin
-          $fwrite(32'h80000002,"inst_ready:%d\n",axi_inst_ready); // @[IDU.scala 379:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-  end
-// Register and memory initialization
-`ifdef RANDOMIZE_GARBAGE_ASSIGN
-`define RANDOMIZE
-`endif
-`ifdef RANDOMIZE_INVALID_ASSIGN
-`define RANDOMIZE
-`endif
-`ifdef RANDOMIZE_REG_INIT
-`define RANDOMIZE
-`endif
-`ifdef RANDOMIZE_MEM_INIT
-`define RANDOMIZE
-`endif
-`ifndef RANDOM
-`define RANDOM $random
-`endif
-`ifdef RANDOMIZE_MEM_INIT
-  integer initvar;
-`endif
-`ifndef SYNTHESIS
-`ifdef FIRRTL_BEFORE_INITIAL
-`FIRRTL_BEFORE_INITIAL
-`endif
-initial begin
-  `ifdef RANDOMIZE
-    `ifdef INIT_RANDOM
-      `INIT_RANDOM
-    `endif
-    `ifndef VERILATOR
-      `ifdef RANDOMIZE_DELAY
-        #`RANDOMIZE_DELAY begin end
-      `else
-        #0.002 begin end
-      `endif
-    `endif
-`ifdef RANDOMIZE_REG_INIT
-  _RAND_0 = {1{`RANDOM}};
-  axi_inst_ready = _RAND_0[0:0];
-`endif // RANDOMIZE_REG_INIT
-  `endif // RANDOMIZE
-end // initial
-`ifdef FIRRTL_AFTER_INITIAL
-`FIRRTL_AFTER_INITIAL
-`endif
-`endif // SYNTHESIS
 endmodule
 /* verilator lint_on UNUSED */
