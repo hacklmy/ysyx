@@ -2330,8 +2330,6 @@ void Vtop___024root___eval_initial(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_initial\n"); );
     // Body
-    vlSelf->__Vclklast__TOP__top__DOT__axi__DOT__Mem_modle__DOT__clock 
-        = vlSelf->top__DOT__axi__DOT__Mem_modle__DOT__clock;
     vlSelf->__Vclklast__TOP__clock = vlSelf->clock;
 }
 
@@ -2341,7 +2339,6 @@ void Vtop___024root___eval_settle(Vtop___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_settle\n"); );
     // Body
     Vtop___024root___settle__TOP__1(vlSelf);
-    vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->__Vm_traceActivity[1U] = 1U;
     vlSelf->__Vm_traceActivity[0U] = 1U;
 }
@@ -2399,7 +2396,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__axi__DOT___GEN_26 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__axi__DOT___GEN_27 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__axi__DOT___GEN_29 = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__axi__DOT__Mem_modle__DOT__clock = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__lsu_step__DOT__axi_arvalid = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__lsu_step__DOT__axi_rready = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__lsu_step__DOT__axi_awvalid = VL_RAND_RESET_I(1);
@@ -2462,7 +2458,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     for (int __Vi0=0; __Vi0<4; ++__Vi0) {
         vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs[__Vi0] = VL_RAND_RESET_Q(64);
     }
-    for (int __Vi0=0; __Vi0<3; ++__Vi0) {
+    for (int __Vi0=0; __Vi0<2; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = VL_RAND_RESET_I(1);
     }
 }
