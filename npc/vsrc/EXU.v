@@ -2,6 +2,7 @@
 /* verilator lint_off WIDTH */
 module EXU_AXI(
   input         clock,
+  input         reset,
   input  [63:0] io_pc,
   output [63:0] io_pc_next,
   input  [31:0] io_inst_now,
@@ -754,6 +755,17 @@ module EXU_AXI(
     if (CSR_Reg_MPORT_6_en & CSR_Reg_MPORT_6_mask) begin
       CSR_Reg[CSR_Reg_MPORT_6_addr] <= CSR_Reg_MPORT_6_data; // @[EXU_AXI.scala 37:22]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"inst_store :%d inst_load:%d\n",io_inst_store,io_inst_load); // @[EXU_AXI.scala 188:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN

@@ -968,6 +968,7 @@ module IDU(
 endmodule
 module EXU_AXI(
   input         clock,
+  input         reset,
   input  [63:0] io_pc,
   output [63:0] io_pc_next,
   input  [31:0] io_inst_now,
@@ -1720,6 +1721,17 @@ module EXU_AXI(
     if (CSR_Reg_MPORT_6_en & CSR_Reg_MPORT_6_mask) begin
       CSR_Reg[CSR_Reg_MPORT_6_addr] <= CSR_Reg_MPORT_6_data; // @[EXU_AXI.scala 37:22]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"inst_store :%d inst_load:%d\n",io_inst_store,io_inst_load); // @[EXU_AXI.scala 188:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -1887,6 +1899,7 @@ module top(
   wire  idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 32:26]
   wire [7:0] idu_step_io_ctrl_sign_Wmask; // @[top.scala 32:26]
   wire  exu_step_clock; // @[top.scala 37:26]
+  wire  exu_step_reset; // @[top.scala 37:26]
   wire [63:0] exu_step_io_pc; // @[top.scala 37:26]
   wire [63:0] exu_step_io_pc_next; // @[top.scala 37:26]
   wire [31:0] exu_step_io_inst_now; // @[top.scala 37:26]
@@ -2027,6 +2040,7 @@ module top(
   );
   EXU_AXI exu_step ( // @[top.scala 37:26]
     .clock(exu_step_clock),
+    .reset(exu_step_reset),
     .io_pc(exu_step_io_pc),
     .io_pc_next(exu_step_io_pc_next),
     .io_inst_now(exu_step_io_inst_now),
@@ -2111,6 +2125,7 @@ module top(
   assign ifu_step_io_axi_in_rvalid = arbiter_io_ifu_axi_out_rvalid; // @[top.scala 25:24]
   assign idu_step_io_inst = ifu_step_io_inst; // @[top.scala 34:22]
   assign exu_step_clock = clock;
+  assign exu_step_reset = reset;
   assign exu_step_io_pc = pc_now; // @[top.scala 38:20]
   assign exu_step_io_inst_now = idu_step_io_inst_now; // @[top.scala 39:26]
   assign exu_step_io_rs1 = idu_step_io_rs1; // @[top.scala 41:21]
