@@ -159,16 +159,17 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         __Vdly__top__DOT__axi__DOT__state = vlSelf->top__DOT__axi__DOT___GEN_13;
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"execute_end : %1#\n\n",
-                   1,vlSelf->top__DOT__execute_end);
+        VL_FWRITEF(0x80000002U,"pc : %x inst:%x execute_end : %1#\n\n",
+                   64,vlSelf->top__DOT__pc_now,32,vlSelf->io_inst,
+                   1,(IData)(vlSelf->top__DOT__execute_end));
     }
+    vlSelf->top__DOT__pc_valid = ((IData)(vlSelf->reset) 
+                                  | (IData)(vlSelf->top__DOT__execute_end));
     if (vlSelf->reset) {
         vlSelf->top__DOT__pc_now = 0x80000000ULL;
     } else if (vlSelf->top__DOT__execute_end) {
         vlSelf->top__DOT__pc_now = vlSelf->top__DOT__exu_step_io_pc_next;
     }
-    vlSelf->top__DOT__pc_valid = ((IData)(vlSelf->reset) 
-                                  | (IData)(vlSelf->top__DOT__execute_end));
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs[0U] 
         = vlSelf->top__DOT__exu_step__DOT__CSR_Reg[0U];
     vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs[1U] 
