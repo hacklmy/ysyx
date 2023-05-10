@@ -167,6 +167,18 @@ module AXI_ARBITER(
     end else begin
       state <= _GEN_90;
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"ifu_arvalid:%d lsu_awvalid:%d lsu_arvalid:%d\n",io_ifu_axi_in_arvalid,
+            io_lsu_axi_in_awvalid,io_lsu_axi_in_arvalid); // @[axi_arbiter.scala 39:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN

@@ -512,6 +512,18 @@ module AXI_ARBITER(
     end else begin
       state <= _GEN_90;
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"ifu_arvalid:%d lsu_awvalid:%d lsu_arvalid:%d\n",io_ifu_axi_in_arvalid,
+            io_lsu_axi_in_awvalid,io_lsu_axi_in_arvalid); // @[axi_arbiter.scala 39:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -2121,6 +2133,17 @@ module top(
     end else begin
       diff_step <= execute_end; // @[top.scala 77:15]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"pc : %x inst:%x execute_end : %d\n\n",pc_now,idu_step_io_inst,execute_end); // @[top.scala 72:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
