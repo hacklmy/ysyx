@@ -36,6 +36,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     }
     __Vdly__top__DOT__lsu_step__DOT__state = vlSelf->top__DOT__lsu_step__DOT__state;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"bvalid: %1#\n",1,vlSelf->top__DOT__arbiter_io_lsu_axi_out_bvalid);
+    }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
         VL_FWRITEF(0x80000002U,"inst_valid : %1# pc_valid:%1#\n",
                    1,vlSelf->top__DOT__arbiter_io_ifu_axi_out_rvalid,
                    1,(IData)(vlSelf->top__DOT__pc_valid));
