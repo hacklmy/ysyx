@@ -140,7 +140,7 @@ module top(
   wire [31:0] dpi_ecall_flag; // @[top.scala 58:21]
   reg [63:0] pc_now; // @[top.scala 15:25]
   reg  execute_end; // @[top.scala 17:30]
-  reg  pc_valid; // @[top.scala 71:27]
+  reg  pc_valid; // @[top.scala 72:27]
   AXI axi ( // @[top.scala 18:21]
     .clock(axi_clock),
     .reset(axi_reset),
@@ -283,9 +283,9 @@ module top(
   );
   assign io_inst = ifu_step_io_inst; // @[top.scala 23:13]
   assign io_pc = pc_now; // @[top.scala 16:11]
-  assign io_pc_next = exu_step_io_pc_next; // @[top.scala 76:16]
+  assign io_pc_next = exu_step_io_pc_next; // @[top.scala 77:16]
   assign io_outval = exu_step_io_res2rd; // @[top.scala 54:15]
-  assign io_step = execute_end; // @[top.scala 74:13]
+  assign io_step = execute_end; // @[top.scala 75:13]
   assign axi_clock = clock;
   assign axi_reset = reset;
   assign axi_io_axi_in_araddr = arbiter_io_axi_out_araddr; // @[top.scala 29:19]
@@ -333,7 +333,7 @@ module top(
   assign ifu_step_clock = clock;
   assign ifu_step_reset = reset;
   assign ifu_step_io_pc = pc_now; // @[top.scala 22:20]
-  assign ifu_step_io_pc_valid = pc_valid; // @[top.scala 73:26]
+  assign ifu_step_io_pc_valid = pc_valid; // @[top.scala 74:26]
   assign ifu_step_io_axi_in_rdata = arbiter_io_ifu_axi_out_rdata; // @[top.scala 25:24]
   assign ifu_step_io_axi_in_rvalid = arbiter_io_ifu_axi_out_rvalid; // @[top.scala 25:24]
   assign idu_step_io_inst = ifu_step_io_inst; // @[top.scala 34:22]
@@ -358,7 +358,7 @@ module top(
   always @(posedge clock) begin
     if (reset) begin // @[top.scala 15:25]
       pc_now <= 64'h80000000; // @[top.scala 15:25]
-    end else if (execute_end) begin // @[top.scala 75:18]
+    end else if (execute_end) begin // @[top.scala 76:18]
       pc_now <= exu_step_io_pc_next;
     end
     if (reset) begin // @[top.scala 17:30]
@@ -370,7 +370,18 @@ module top(
     end else begin
       execute_end <= ifu_step_io_inst_valid;
     end
-    pc_valid <= reset | execute_end; // @[top.scala 71:{27,27} 72:14]
+    pc_valid <= reset | execute_end; // @[top.scala 72:{27,27} 73:14]
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"execute_end : %d\n",execute_end); // @[top.scala 71:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
