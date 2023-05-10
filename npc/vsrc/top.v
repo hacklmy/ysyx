@@ -139,12 +139,13 @@ module top(
   wire [63:0] exu_step_io_Mem_rdata; // @[top.scala 37:26]
   wire [63:0] exu_step_io_Mem_wdata; // @[top.scala 37:26]
   wire [7:0] exu_step_io_Mem_wstrb; // @[top.scala 37:26]
-  wire [31:0] dpi_flag; // @[top.scala 58:21]
-  wire [31:0] dpi_ecall_flag; // @[top.scala 58:21]
+  wire  exu_step_io_rdata_valid; // @[top.scala 37:26]
+  wire [31:0] dpi_flag; // @[top.scala 59:21]
+  wire [31:0] dpi_ecall_flag; // @[top.scala 59:21]
   reg [63:0] pc_now; // @[top.scala 15:25]
   reg  execute_end; // @[top.scala 17:30]
-  reg  pc_valid; // @[top.scala 72:27]
-  reg  diff_step; // @[top.scala 75:28]
+  reg  pc_valid; // @[top.scala 73:27]
+  reg  diff_step; // @[top.scala 76:28]
   AXI axi ( // @[top.scala 18:21]
     .clock(axi_clock),
     .reset(axi_reset),
@@ -281,17 +282,18 @@ module top(
     .io_Mem_addr(exu_step_io_Mem_addr),
     .io_Mem_rdata(exu_step_io_Mem_rdata),
     .io_Mem_wdata(exu_step_io_Mem_wdata),
-    .io_Mem_wstrb(exu_step_io_Mem_wstrb)
+    .io_Mem_wstrb(exu_step_io_Mem_wstrb),
+    .io_rdata_valid(exu_step_io_rdata_valid)
   );
-  DPI dpi ( // @[top.scala 58:21]
+  DPI dpi ( // @[top.scala 59:21]
     .flag(dpi_flag),
     .ecall_flag(dpi_ecall_flag)
   );
   assign io_inst = ifu_step_io_inst; // @[top.scala 23:13]
   assign io_pc = pc_now; // @[top.scala 16:11]
-  assign io_pc_next = exu_step_io_pc_next; // @[top.scala 79:16]
-  assign io_outval = exu_step_io_res2rd; // @[top.scala 54:15]
-  assign io_step = diff_step; // @[top.scala 77:13]
+  assign io_pc_next = exu_step_io_pc_next; // @[top.scala 80:16]
+  assign io_outval = exu_step_io_res2rd; // @[top.scala 55:15]
+  assign io_step = diff_step; // @[top.scala 78:13]
   assign axi_clock = clock;
   assign axi_reset = reset;
   assign axi_io_axi_in_araddr = arbiter_io_axi_out_araddr; // @[top.scala 29:19]
@@ -339,11 +341,11 @@ module top(
   assign ifu_step_clock = clock;
   assign ifu_step_reset = reset;
   assign ifu_step_io_pc = pc_now; // @[top.scala 22:20]
-  assign ifu_step_io_pc_valid = pc_valid; // @[top.scala 74:26]
+  assign ifu_step_io_pc_valid = pc_valid; // @[top.scala 75:26]
   assign ifu_step_io_axi_in_rdata = arbiter_io_ifu_axi_out_rdata; // @[top.scala 25:24]
   assign ifu_step_io_axi_in_rvalid = arbiter_io_ifu_axi_out_rvalid; // @[top.scala 25:24]
   assign idu_step_io_inst = ~ifu_step_io_inst_valid & ~pc_valid & ~execute_end ? ifu_step_io_inst_reg : ifu_step_io_inst
-    ; // @[top.scala 81:28]
+    ; // @[top.scala 82:28]
   assign exu_step_clock = clock;
   assign exu_step_reset = reset;
   assign exu_step_io_pc = pc_now; // @[top.scala 38:20]
@@ -359,37 +361,38 @@ module top(
   assign exu_step_io_ctrl_sign_Writemem_en = idu_step_io_ctrl_sign_Writemem_en; // @[top.scala 45:27]
   assign exu_step_io_ctrl_sign_Readmem_en = idu_step_io_ctrl_sign_Readmem_en; // @[top.scala 45:27]
   assign exu_step_io_ctrl_sign_Wmask = idu_step_io_ctrl_sign_Wmask; // @[top.scala 45:27]
-  assign exu_step_io_inst_valid = ifu_step_io_inst_valid; // @[top.scala 53:28]
+  assign exu_step_io_inst_valid = ifu_step_io_inst_valid; // @[top.scala 54:28]
   assign exu_step_io_Mem_rdata = lsu_step_io_mem_rdata; // @[top.scala 51:27]
-  assign dpi_flag = {{31'd0}, idu_step_io_inst_now == 32'h2}; // @[top.scala 59:17]
-  assign dpi_ecall_flag = {{31'd0}, idu_step_io_inst_now == 32'h3d}; // @[top.scala 60:23]
+  assign exu_step_io_rdata_valid = lsu_step_io_axi_in_rvalid; // @[top.scala 52:29]
+  assign dpi_flag = {{31'd0}, idu_step_io_inst_now == 32'h2}; // @[top.scala 60:17]
+  assign dpi_ecall_flag = {{31'd0}, idu_step_io_inst_now == 32'h3d}; // @[top.scala 61:23]
   always @(posedge clock) begin
     if (reset) begin // @[top.scala 15:25]
       pc_now <= 64'h80000000; // @[top.scala 15:25]
-    end else if (execute_end) begin // @[top.scala 78:18]
+    end else if (execute_end) begin // @[top.scala 79:18]
       pc_now <= exu_step_io_pc_next;
     end
     if (reset) begin // @[top.scala 17:30]
       execute_end <= 1'h0; // @[top.scala 17:30]
-    end else if (exu_step_io_inst_store) begin // @[top.scala 70:23]
+    end else if (exu_step_io_inst_store) begin // @[top.scala 71:23]
       execute_end <= lsu_step_io_axi_in_bvalid;
-    end else if (exu_step_io_inst_load) begin // @[top.scala 70:76]
+    end else if (exu_step_io_inst_load) begin // @[top.scala 71:76]
       execute_end <= lsu_step_io_axi_in_rvalid;
     end else begin
       execute_end <= ifu_step_io_inst_valid;
     end
-    pc_valid <= reset | execute_end; // @[top.scala 72:{27,27} 73:14]
-    if (reset) begin // @[top.scala 75:28]
-      diff_step <= 1'h0; // @[top.scala 75:28]
+    pc_valid <= reset | execute_end; // @[top.scala 73:{27,27} 74:14]
+    if (reset) begin // @[top.scala 76:28]
+      diff_step <= 1'h0; // @[top.scala 76:28]
     end else begin
-      diff_step <= execute_end; // @[top.scala 76:15]
+      diff_step <= execute_end; // @[top.scala 77:15]
     end
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"pc : %x inst:%x execute_end : %d\n\n",pc_now,idu_step_io_inst,execute_end); // @[top.scala 71:11]
+          $fwrite(32'h80000002,"pc : %x inst:%x execute_end : %d\n\n",pc_now,idu_step_io_inst,execute_end); // @[top.scala 72:11]
         end
     `ifdef PRINTF_COND
       end
