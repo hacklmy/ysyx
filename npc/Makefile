@@ -26,8 +26,10 @@ copy_top:
 	echo "/* verilator lint_on UNUSED */" >> vsrc/EXU.v
 	sed -n '/module AXI_IFU/,/endmodule/p' vsrc/output/top.v > vsrc/AXI_IFU.v
 	sed -n '/module AXI_EXU/,/endmodule/p' vsrc/output/top.v > vsrc/AXI_EXU.v
-	sed -n '/module AXI/,/endmodule/p' vsrc/output/top.v > vsrc/AXI.v
 	sed -n '/module AXI_ARBITER/,/endmodule/p' vsrc/output/top.v > vsrc/AXI_ARBITER.v
+	echo "/* verilator lint_off UNOPTFLAT */" > vsrc/AXI.v	
+	sed -n '/module AXI/,/endmodule/p' vsrc/output/top.v >> vsrc/AXI.v
+	echo "/* verilator lint_on UNOPTFLAT */" >> vsrc/AXI.v
 	sed -n '/module LSU/,/endmodule/p' vsrc/output/top.v > vsrc/LSU.v
 
 include ../Makefile
