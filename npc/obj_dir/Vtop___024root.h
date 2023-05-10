@@ -46,6 +46,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__idu_step_io_ctrl_sign_Readmem_en;
         CData/*7:0*/ top__DOT__idu_step_io_ctrl_sign_Wmask;
         CData/*0:0*/ top__DOT__execute_end;
+        CData/*0:0*/ top__DOT__pc_valid;
         CData/*0:0*/ top__DOT__axi__DOT__axi_awready;
         CData/*0:0*/ top__DOT__axi__DOT__axi_wready;
         CData/*0:0*/ top__DOT__axi__DOT__axi_bvalid;
@@ -96,18 +97,18 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__idu_step_io_imm;
         QData/*63:0*/ top__DOT__exu_step_io_pc_next;
         QData/*63:0*/ top__DOT__exu_step_io_Mem_wdata;
-        QData/*63:0*/ top__DOT__pc_now;
     };
     struct {
+        QData/*63:0*/ top__DOT__pc_now;
         QData/*63:0*/ top__DOT__axi__DOT__Mem_modle_Rdata;
         QData/*63:0*/ top__DOT__exu_step__DOT__Regfile_MPORT_data;
         QData/*63:0*/ top__DOT__exu_step__DOT__CSR_Reg_MPORT_1_data;
         QData/*63:0*/ top__DOT__exu_step__DOT__CSR_Reg_MPORT_3_data;
         QData/*63:0*/ top__DOT__exu_step__DOT__CSR_Reg_MPORT_6_data;
+        QData/*63:0*/ top__DOT__exu_step__DOT__src1_value;
         QData/*63:0*/ top__DOT__exu_step__DOT__src2_value;
         QData/*63:0*/ top__DOT__exu_step__DOT__add_res;
         QData/*63:0*/ top__DOT__exu_step__DOT__sub_res;
-        QData/*63:0*/ top__DOT__exu_step__DOT___sra_res_T;
         QData/*63:0*/ top__DOT__exu_step__DOT__sra_res;
         QData/*63:0*/ top__DOT__exu_step__DOT__srl_res;
         QData/*62:0*/ top__DOT__exu_step__DOT__sllw_res;
