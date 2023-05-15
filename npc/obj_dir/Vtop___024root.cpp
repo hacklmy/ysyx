@@ -7843,7 +7843,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
                                    : (IData)(vlSelf->top__DOT__cache__DOT___GEN_4365)));
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"state:%1#\n",2,vlSelf->top__DOT__cache__DOT__state);
+        VL_FWRITEF(0x80000002U,"cache state:%1#\n",
+                   2,vlSelf->top__DOT__cache__DOT__state);
     }
     vlSelf->top__DOT__axi__DOT__state = __Vdly__top__DOT__axi__DOT__state;
     vlSelf->top__DOT__exu_step__DOT__Regfile[__Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0] 
