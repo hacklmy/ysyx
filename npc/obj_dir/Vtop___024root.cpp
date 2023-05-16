@@ -135,6 +135,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__ifu_step__DOT__inst_reg = 0U;
     } else if (vlSelf->top__DOT__cache_io_to_ifu_rvalid) {
         vlSelf->top__DOT__ifu_step__DOT__inst_reg = (IData)(vlSelf->top__DOT__cache_io_to_ifu_rdata);
+    } else if (vlSelf->top__DOT__pc_valid) {
+        vlSelf->top__DOT__ifu_step__DOT__inst_reg = 0U;
     }
     vlSelf->__Vdly__top__DOT__cache__DOT__way0_hit 
         = ((~ (IData)(vlSelf->reset)) & ((((0x7fU == 
