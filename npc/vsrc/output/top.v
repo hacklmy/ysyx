@@ -17082,6 +17082,17 @@ module top(
     end else begin
       diff_step <= execute_end; // @[top.scala 84:15]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"cache arvalid:%d\n",cache_io_to_axi_arvalid); // @[top.scala 29:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
