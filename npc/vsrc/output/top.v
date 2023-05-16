@@ -592,6 +592,7 @@ module IFU_AXI(
   reg  inst_ready; // @[IFU_AXI.scala 19:29]
   wire  _GEN_0 = io_axi_in_rvalid & inst_ready ? 1'h0 : 1'h1; // @[IFU_AXI.scala 20:41 21:20 23:20]
   reg [31:0] inst_reg; // @[IFU_AXI.scala 25:27]
+  wire  _T_2 = ~reset; // @[IFU_AXI.scala 42:11]
   assign io_inst_valid = io_axi_in_rvalid; // @[IFU_AXI.scala 41:19]
   assign io_inst = io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 39:31]
   assign io_inst_reg = inst_reg; // @[IFU_AXI.scala 40:17]
@@ -611,6 +612,17 @@ module IFU_AXI(
     `endif
         if (~reset) begin
           $fwrite(32'h80000002,"inst_valid : %d pc_valid:%d\n",io_inst_valid,io_pc_valid); // @[IFU_AXI.scala 42:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (_T_2) begin
+          $fwrite(32'h80000002,"inst:%x\n",io_inst); // @[IFU_AXI.scala 43:11]
         end
     `ifdef PRINTF_COND
       end
@@ -13972,6 +13984,17 @@ module I_CACHE(
     `endif
         if (_T_1) begin
           $fwrite(32'h80000002,"cache state:%d\n",state); // @[cache.scala 54:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (_T_1) begin
+          $fwrite(32'h80000002,"to ifu rdata:%x\n",io_to_ifu_rdata); // @[cache.scala 212:11]
         end
     `ifdef PRINTF_COND
       end
