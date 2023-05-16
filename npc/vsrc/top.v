@@ -102,18 +102,6 @@ module top(
   wire [31:0] ifu_step_io_axi_out_araddr; // @[top.scala 21:26]
   wire  ifu_step_io_axi_out_arvalid; // @[top.scala 21:26]
   wire  ifu_step_io_axi_out_rready; // @[top.scala 21:26]
-  wire  cache_clock; // @[top.scala 22:23]
-  wire  cache_reset; // @[top.scala 22:23]
-  wire [31:0] cache_io_from_ifu_araddr; // @[top.scala 22:23]
-  wire  cache_io_from_ifu_arvalid; // @[top.scala 22:23]
-  wire  cache_io_from_ifu_rready; // @[top.scala 22:23]
-  wire [63:0] cache_io_to_ifu_rdata; // @[top.scala 22:23]
-  wire  cache_io_to_ifu_rvalid; // @[top.scala 22:23]
-  wire [31:0] cache_io_to_axi_araddr; // @[top.scala 22:23]
-  wire  cache_io_to_axi_arvalid; // @[top.scala 22:23]
-  wire  cache_io_to_axi_rready; // @[top.scala 22:23]
-  wire [63:0] cache_io_from_axi_rdata; // @[top.scala 22:23]
-  wire  cache_io_from_axi_rvalid; // @[top.scala 22:23]
   wire [31:0] idu_step_io_inst; // @[top.scala 39:26]
   wire [31:0] idu_step_io_inst_now; // @[top.scala 39:26]
   wire [4:0] idu_step_io_rs1; // @[top.scala 39:26]
@@ -255,20 +243,6 @@ module top(
     .io_axi_out_arvalid(ifu_step_io_axi_out_arvalid),
     .io_axi_out_rready(ifu_step_io_axi_out_rready)
   );
-  I_CACHE cache ( // @[top.scala 22:23]
-    .clock(cache_clock),
-    .reset(cache_reset),
-    .io_from_ifu_araddr(cache_io_from_ifu_araddr),
-    .io_from_ifu_arvalid(cache_io_from_ifu_arvalid),
-    .io_from_ifu_rready(cache_io_from_ifu_rready),
-    .io_to_ifu_rdata(cache_io_to_ifu_rdata),
-    .io_to_ifu_rvalid(cache_io_to_ifu_rvalid),
-    .io_to_axi_araddr(cache_io_to_axi_araddr),
-    .io_to_axi_arvalid(cache_io_to_axi_arvalid),
-    .io_to_axi_rready(cache_io_to_axi_rready),
-    .io_from_axi_rdata(cache_io_from_axi_rdata),
-    .io_from_axi_rvalid(cache_io_from_axi_rvalid)
-  );
   IDU idu_step ( // @[top.scala 39:26]
     .io_inst(idu_step_io_inst),
     .io_inst_now(idu_step_io_inst_now),
@@ -346,9 +320,9 @@ module top(
   assign lsu_step_io_axi_in_bvalid = arbiter_io_lsu_axi_out_bvalid; // @[top.scala 34:24]
   assign arbiter_clock = clock;
   assign arbiter_reset = reset;
-  assign arbiter_io_ifu_axi_in_araddr = cache_io_to_axi_araddr; // @[top.scala 25:27]
-  assign arbiter_io_ifu_axi_in_arvalid = cache_io_to_axi_arvalid; // @[top.scala 25:27]
-  assign arbiter_io_ifu_axi_in_rready = cache_io_to_axi_rready; // @[top.scala 25:27]
+  assign arbiter_io_ifu_axi_in_araddr = ifu_step_io_axi_out_araddr; // @[top.scala 31:27]
+  assign arbiter_io_ifu_axi_in_arvalid = ifu_step_io_axi_out_arvalid; // @[top.scala 31:27]
+  assign arbiter_io_ifu_axi_in_rready = ifu_step_io_axi_out_rready; // @[top.scala 31:27]
   assign arbiter_io_lsu_axi_in_araddr = lsu_step_io_axi_out_araddr; // @[top.scala 33:27]
   assign arbiter_io_lsu_axi_in_arvalid = lsu_step_io_axi_out_arvalid; // @[top.scala 33:27]
   assign arbiter_io_lsu_axi_in_rready = lsu_step_io_axi_out_rready; // @[top.scala 33:27]
@@ -368,15 +342,8 @@ module top(
   assign ifu_step_reset = reset;
   assign ifu_step_io_pc = pc_now; // @[top.scala 23:20]
   assign ifu_step_io_pc_valid = pc_valid; // @[top.scala 82:26]
-  assign ifu_step_io_axi_in_rdata = cache_io_to_ifu_rdata; // @[top.scala 27:24]
-  assign ifu_step_io_axi_in_rvalid = cache_io_to_ifu_rvalid; // @[top.scala 27:24]
-  assign cache_clock = clock;
-  assign cache_reset = reset;
-  assign cache_io_from_ifu_araddr = ifu_step_io_axi_out_araddr; // @[top.scala 28:23]
-  assign cache_io_from_ifu_arvalid = ifu_step_io_axi_out_arvalid; // @[top.scala 28:23]
-  assign cache_io_from_ifu_rready = ifu_step_io_axi_out_rready; // @[top.scala 28:23]
-  assign cache_io_from_axi_rdata = arbiter_io_ifu_axi_out_rdata; // @[top.scala 26:23]
-  assign cache_io_from_axi_rvalid = arbiter_io_ifu_axi_out_rvalid; // @[top.scala 26:23]
+  assign ifu_step_io_axi_in_rdata = arbiter_io_ifu_axi_out_rdata; // @[top.scala 32:24]
+  assign ifu_step_io_axi_in_rvalid = arbiter_io_ifu_axi_out_rvalid; // @[top.scala 32:24]
   assign idu_step_io_inst = ~ifu_step_io_inst_valid & ~pc_valid & ~execute_end ? ifu_step_io_inst_reg : ifu_step_io_inst
     ; // @[top.scala 89:28]
   assign exu_step_clock = clock;
@@ -420,17 +387,6 @@ module top(
     end else begin
       diff_step <= execute_end; // @[top.scala 84:15]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"cache arvalid:%d\n",cache_io_to_axi_arvalid); // @[top.scala 29:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
