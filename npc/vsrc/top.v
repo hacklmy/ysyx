@@ -156,6 +156,7 @@ module top(
   wire [31:0] dpi_ecall_flag; // @[top.scala 66:21]
   reg [63:0] pc_now; // @[top.scala 15:25]
   reg  execute_end; // @[top.scala 17:30]
+  wire  _T_1 = ~reset; // @[top.scala 29:11]
   reg  pc_valid; // @[top.scala 80:27]
   reg  diff_step; // @[top.scala 83:28]
   AXI axi ( // @[top.scala 18:21]
@@ -426,6 +427,17 @@ module top(
     `endif
         if (~reset) begin
           $fwrite(32'h80000002,"cache arvalid:%d\n",cache_io_to_axi_arvalid); // @[top.scala 29:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (_T_1) begin
+          $fwrite(32'h80000002,"pc : %x inst:%x execute_end : %d\n\n",pc_now,idu_step_io_inst,execute_end); // @[top.scala 79:11]
         end
     `ifdef PRINTF_COND
       end
