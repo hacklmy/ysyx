@@ -1086,7 +1086,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+1110,"top cache quene", false,-1);
         tracep->declBus(c+1111,"top cache index", false,-1, 6,0);
         tracep->declBus(c+1112,"top cache tag", false,-1, 18,0);
-        tracep->declBus(c+1113,"top cache state", false,-1, 1,0);
+        tracep->declBus(c+1113,"top cache state", false,-1, 2,0);
         tracep->declBus(c+51,"top idu_step io_inst", false,-1, 31,0);
         tracep->declBus(c+52,"top idu_step io_inst_now", false,-1, 31,0);
         tracep->declBus(c+53,"top idu_step io_rs1", false,-1, 4,0);
@@ -2554,7 +2554,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullIData(oldp+1112,((0x7ffffU & (IData)(
                                                          (vlSelf->top__DOT__pc_now 
                                                           >> 0xdU)))),19);
-        tracep->fullCData(oldp+1113,(vlSelf->top__DOT__cache__DOT__state),2);
+        tracep->fullCData(oldp+1113,(vlSelf->top__DOT__cache__DOT__state),3);
         tracep->fullSData(oldp+1114,((vlSelf->top__DOT__idu_step_io_inst 
                                       >> 0x14U)),12);
         tracep->fullIData(oldp+1115,(((0x80000U & (vlSelf->top__DOT__idu_step_io_inst 

@@ -1103,7 +1103,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgIData(oldp+1111,((0x7ffffU & (IData)(
                                                             (vlSelf->top__DOT__pc_now 
                                                              >> 0xdU)))),19);
-            tracep->chgCData(oldp+1112,(vlSelf->top__DOT__cache__DOT__state),2);
+            tracep->chgCData(oldp+1112,(vlSelf->top__DOT__cache__DOT__state),3);
             tracep->chgSData(oldp+1113,((vlSelf->top__DOT__idu_step_io_inst 
                                          >> 0x14U)),12);
             tracep->chgIData(oldp+1114,(((0x80000U 
