@@ -5573,8 +5573,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__cache__DOT___GEN_4878 = vlSelf->top__DOT__cache__DOT__ram_1_126;
         vlSelf->top__DOT__cache__DOT___GEN_4879 = vlSelf->top__DOT__cache__DOT__ram_1_127;
     }
-    if ((0x1aU == (0x7fU & (IData)((vlSelf->top__DOT__pc_now 
-                                    >> 6U))))) {
+    if ((0x1aU == (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))) {
         top__DOT__cache__DOT___GEN_26 = vlSelf->top__DOT__cache__DOT__tag_0_26;
         top__DOT__cache__DOT___GEN_283 = vlSelf->top__DOT__cache__DOT__tag_1_26;
         top__DOT__cache__DOT___GEN_154 = vlSelf->top__DOT__cache__DOT__valid_0_26;
@@ -5583,555 +5582,411 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
         top__DOT__cache__DOT___GEN_7603 = vlSelf->top__DOT__cache__DOT__ram_1_26;
     } else {
         top__DOT__cache__DOT___GEN_26 = ((0x19U == 
-                                          (0x7fU & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                          (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                           ? vlSelf->top__DOT__cache__DOT__tag_0_25
                                           : ((0x18U 
                                               == (0x7fU 
-                                                  & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                                  & (IData)(vlSelf->top__DOT__pc_now)))
                                               ? vlSelf->top__DOT__cache__DOT__tag_0_24
                                               : ((0x17U 
                                                   == 
                                                   (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                   ? vlSelf->top__DOT__cache__DOT__tag_0_23
                                                   : 
                                                  ((0x16U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_0_22
                                                    : 
                                                   ((0x15U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_0_21
                                                     : 
                                                    ((0x14U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_0_20
                                                      : 
                                                     ((0x13U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_0_19
                                                       : 
                                                      ((0x12U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_0_18
                                                        : 
                                                       ((0x11U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_0_17
                                                         : 
                                                        ((0x10U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_0_16
                                                          : 
                                                         ((0xfU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_0_15
                                                           : 
                                                          ((0xeU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_0_14
                                                            : vlSelf->top__DOT__cache__DOT___GEN_13))))))))))));
         top__DOT__cache__DOT___GEN_283 = ((0x19U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? vlSelf->top__DOT__cache__DOT__tag_1_25
                                            : ((0x18U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? vlSelf->top__DOT__cache__DOT__tag_1_24
                                                : ((0x17U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_1_23
                                                    : 
                                                   ((0x16U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_1_22
                                                     : 
                                                    ((0x15U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_1_21
                                                      : 
                                                     ((0x14U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_1_20
                                                       : 
                                                      ((0x13U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_1_19
                                                        : 
                                                       ((0x12U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_1_18
                                                         : 
                                                        ((0x11U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_1_17
                                                          : 
                                                         ((0x10U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_1_16
                                                           : 
                                                          ((0xfU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_1_15
                                                            : 
                                                           ((0xeU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__tag_1_14
                                                             : vlSelf->top__DOT__cache__DOT___GEN_270))))))))))));
         top__DOT__cache__DOT___GEN_154 = ((0x19U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_25)
                                            : ((0x18U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_24)
                                                : ((0x17U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_23)
                                                    : 
                                                   ((0x16U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_22)
                                                     : 
                                                    ((0x15U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_21)
                                                      : 
                                                     ((0x14U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_20)
                                                       : 
                                                      ((0x13U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_19)
                                                        : 
                                                       ((0x12U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_18)
                                                         : 
                                                        ((0x11U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_17)
                                                          : 
                                                         ((0x10U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_16)
                                                           : 
                                                          ((0xfU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_15)
                                                            : 
                                                           ((0xeU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_14)
                                                             : (IData)(vlSelf->top__DOT__cache__DOT___GEN_141)))))))))))));
         top__DOT__cache__DOT___GEN_411 = ((0x19U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_25)
                                            : ((0x18U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_24)
                                                : ((0x17U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_23)
                                                    : 
                                                   ((0x16U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_22)
                                                     : 
                                                    ((0x15U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_21)
                                                      : 
                                                     ((0x14U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_20)
                                                       : 
                                                      ((0x13U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_19)
                                                        : 
                                                       ((0x12U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_18)
                                                         : 
                                                        ((0x11U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_17)
                                                          : 
                                                         ((0x10U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_16)
                                                           : 
                                                          ((0xfU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_15)
                                                            : 
                                                           ((0xeU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_14)
                                                             : (IData)(vlSelf->top__DOT__cache__DOT___GEN_398)))))))))))));
         top__DOT__cache__DOT___GEN_7475 = ((0x19U == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_0_25
                                             : ((0x18U 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_0_24
                                                 : (
                                                    (0x17U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_0_23
                                                     : 
                                                    ((0x16U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_0_22
                                                      : 
                                                     ((0x15U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_0_21
                                                       : 
                                                      ((0x14U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_0_20
                                                        : 
                                                       ((0x13U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_0_19
                                                         : 
                                                        ((0x12U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_0_18
                                                          : 
                                                         ((0x11U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_0_17
                                                           : 
                                                          ((0x10U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_0_16
                                                            : 
                                                           ((0xfU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_0_15
                                                             : 
                                                            ((0xeU 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_0_14
                                                              : vlSelf->top__DOT__cache__DOT___GEN_7462))))))))))));
         top__DOT__cache__DOT___GEN_7603 = ((0x19U == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_1_25
                                             : ((0x18U 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_1_24
                                                 : (
                                                    (0x17U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_1_23
                                                     : 
                                                    ((0x16U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_1_22
                                                      : 
                                                     ((0x15U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_1_21
                                                       : 
                                                      ((0x14U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_1_20
                                                        : 
                                                       ((0x13U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_1_19
                                                         : 
                                                        ((0x12U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_1_18
                                                          : 
                                                         ((0x11U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_1_17
                                                           : 
                                                          ((0x10U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_1_16
                                                            : 
                                                           ((0xfU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_1_15
                                                             : 
                                                            ((0xeU 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_1_14
                                                              : vlSelf->top__DOT__cache__DOT___GEN_7590))))))))))));
     }
@@ -6186,8 +6041,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ifu_step__DOT___GEN_0 = (1U & 
                                                (~ ((IData)(vlSelf->top__DOT__cache_io_to_ifu_rvalid) 
                                                    & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_ready))));
-    if ((0x27U == (0x7fU & (IData)((vlSelf->top__DOT__pc_now 
-                                    >> 6U))))) {
+    if ((0x27U == (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))) {
         top__DOT__cache__DOT___GEN_39 = vlSelf->top__DOT__cache__DOT__tag_0_39;
         top__DOT__cache__DOT___GEN_296 = vlSelf->top__DOT__cache__DOT__tag_1_39;
         top__DOT__cache__DOT___GEN_167 = vlSelf->top__DOT__cache__DOT__valid_0_39;
@@ -6196,563 +6050,418 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
         top__DOT__cache__DOT___GEN_7616 = vlSelf->top__DOT__cache__DOT__ram_1_39;
     } else {
         top__DOT__cache__DOT___GEN_39 = ((0x26U == 
-                                          (0x7fU & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                          (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                           ? vlSelf->top__DOT__cache__DOT__tag_0_38
                                           : ((0x25U 
                                               == (0x7fU 
-                                                  & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                                  & (IData)(vlSelf->top__DOT__pc_now)))
                                               ? vlSelf->top__DOT__cache__DOT__tag_0_37
                                               : ((0x24U 
                                                   == 
                                                   (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                   ? vlSelf->top__DOT__cache__DOT__tag_0_36
                                                   : 
                                                  ((0x23U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_0_35
                                                    : 
                                                   ((0x22U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_0_34
                                                     : 
                                                    ((0x21U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_0_33
                                                      : 
                                                     ((0x20U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_0_32
                                                       : 
                                                      ((0x1fU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_0_31
                                                        : 
                                                       ((0x1eU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_0_30
                                                         : 
                                                        ((0x1dU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_0_29
                                                          : 
                                                         ((0x1cU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_0_28
                                                           : 
                                                          ((0x1bU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_0_27
                                                            : top__DOT__cache__DOT___GEN_26))))))))))));
         top__DOT__cache__DOT___GEN_296 = ((0x26U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? vlSelf->top__DOT__cache__DOT__tag_1_38
                                            : ((0x25U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? vlSelf->top__DOT__cache__DOT__tag_1_37
                                                : ((0x24U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_1_36
                                                    : 
                                                   ((0x23U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_1_35
                                                     : 
                                                    ((0x22U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_1_34
                                                      : 
                                                     ((0x21U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_1_33
                                                       : 
                                                      ((0x20U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_1_32
                                                        : 
                                                       ((0x1fU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_1_31
                                                         : 
                                                        ((0x1eU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_1_30
                                                          : 
                                                         ((0x1dU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_1_29
                                                           : 
                                                          ((0x1cU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_1_28
                                                            : 
                                                           ((0x1bU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__tag_1_27
                                                             : top__DOT__cache__DOT___GEN_283))))))))))));
         top__DOT__cache__DOT___GEN_167 = ((0x26U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_38)
                                            : ((0x25U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_37)
                                                : ((0x24U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_36)
                                                    : 
                                                   ((0x23U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_35)
                                                     : 
                                                    ((0x22U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_34)
                                                      : 
                                                     ((0x21U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_33)
                                                       : 
                                                      ((0x20U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_32)
                                                        : 
                                                       ((0x1fU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_31)
                                                         : 
                                                        ((0x1eU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_30)
                                                          : 
                                                         ((0x1dU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_29)
                                                           : 
                                                          ((0x1cU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_28)
                                                            : 
                                                           ((0x1bU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_27)
                                                             : (IData)(top__DOT__cache__DOT___GEN_154)))))))))))));
         top__DOT__cache__DOT___GEN_424 = ((0x26U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_38)
                                            : ((0x25U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_37)
                                                : ((0x24U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_36)
                                                    : 
                                                   ((0x23U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_35)
                                                     : 
                                                    ((0x22U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_34)
                                                      : 
                                                     ((0x21U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_33)
                                                       : 
                                                      ((0x20U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_32)
                                                        : 
                                                       ((0x1fU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_31)
                                                         : 
                                                        ((0x1eU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_30)
                                                          : 
                                                         ((0x1dU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_29)
                                                           : 
                                                          ((0x1cU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_28)
                                                            : 
                                                           ((0x1bU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_27)
                                                             : (IData)(top__DOT__cache__DOT___GEN_411)))))))))))));
         top__DOT__cache__DOT___GEN_7488 = ((0x26U == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_0_38
                                             : ((0x25U 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_0_37
                                                 : (
                                                    (0x24U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_0_36
                                                     : 
                                                    ((0x23U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_0_35
                                                      : 
                                                     ((0x22U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_0_34
                                                       : 
                                                      ((0x21U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_0_33
                                                        : 
                                                       ((0x20U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_0_32
                                                         : 
                                                        ((0x1fU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_0_31
                                                          : 
                                                         ((0x1eU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_0_30
                                                           : 
                                                          ((0x1dU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_0_29
                                                            : 
                                                           ((0x1cU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_0_28
                                                             : 
                                                            ((0x1bU 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_0_27
                                                              : top__DOT__cache__DOT___GEN_7475))))))))))));
         top__DOT__cache__DOT___GEN_7616 = ((0x26U == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_1_38
                                             : ((0x25U 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_1_37
                                                 : (
                                                    (0x24U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_1_36
                                                     : 
                                                    ((0x23U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_1_35
                                                      : 
                                                     ((0x22U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_1_34
                                                       : 
                                                      ((0x21U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_1_33
                                                        : 
                                                       ((0x20U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_1_32
                                                         : 
                                                        ((0x1fU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_1_31
                                                          : 
                                                         ((0x1eU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_1_30
                                                           : 
                                                          ((0x1dU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_1_29
                                                            : 
                                                           ((0x1cU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_1_28
                                                             : 
                                                            ((0x1bU 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_1_27
                                                              : top__DOT__cache__DOT___GEN_7603))))))))))));
     }
     Vtop___024unit____Vdpiimwrap_get_pc_TOP____024unit(vlSelf->top__DOT__pc_now);
     Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__traceregs);
     Vtop___024unit____Vdpiimwrap_set_csr_ptr__Vdpioc2_TOP____024unit(vlSelf->top__DOT__exu_step__DOT__reg_trace__DOT__csr_regs);
-    if ((0x34U == (0x7fU & (IData)((vlSelf->top__DOT__pc_now 
-                                    >> 6U))))) {
+    if ((0x34U == (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))) {
         top__DOT__cache__DOT___GEN_52 = vlSelf->top__DOT__cache__DOT__tag_0_52;
         top__DOT__cache__DOT___GEN_309 = vlSelf->top__DOT__cache__DOT__tag_1_52;
         top__DOT__cache__DOT___GEN_180 = vlSelf->top__DOT__cache__DOT__valid_0_52;
@@ -6761,560 +6470,415 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
         top__DOT__cache__DOT___GEN_7629 = vlSelf->top__DOT__cache__DOT__ram_1_52;
     } else {
         top__DOT__cache__DOT___GEN_52 = ((0x33U == 
-                                          (0x7fU & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                          (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                           ? vlSelf->top__DOT__cache__DOT__tag_0_51
                                           : ((0x32U 
                                               == (0x7fU 
-                                                  & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                                  & (IData)(vlSelf->top__DOT__pc_now)))
                                               ? vlSelf->top__DOT__cache__DOT__tag_0_50
                                               : ((0x31U 
                                                   == 
                                                   (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                   ? vlSelf->top__DOT__cache__DOT__tag_0_49
                                                   : 
                                                  ((0x30U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_0_48
                                                    : 
                                                   ((0x2fU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_0_47
                                                     : 
                                                    ((0x2eU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_0_46
                                                      : 
                                                     ((0x2dU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_0_45
                                                       : 
                                                      ((0x2cU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_0_44
                                                        : 
                                                       ((0x2bU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_0_43
                                                         : 
                                                        ((0x2aU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_0_42
                                                          : 
                                                         ((0x29U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_0_41
                                                           : 
                                                          ((0x28U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_0_40
                                                            : top__DOT__cache__DOT___GEN_39))))))))))));
         top__DOT__cache__DOT___GEN_309 = ((0x33U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? vlSelf->top__DOT__cache__DOT__tag_1_51
                                            : ((0x32U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? vlSelf->top__DOT__cache__DOT__tag_1_50
                                                : ((0x31U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_1_49
                                                    : 
                                                   ((0x30U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_1_48
                                                     : 
                                                    ((0x2fU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_1_47
                                                      : 
                                                     ((0x2eU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_1_46
                                                       : 
                                                      ((0x2dU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_1_45
                                                        : 
                                                       ((0x2cU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_1_44
                                                         : 
                                                        ((0x2bU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_1_43
                                                          : 
                                                         ((0x2aU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_1_42
                                                           : 
                                                          ((0x29U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_1_41
                                                            : 
                                                           ((0x28U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__tag_1_40
                                                             : top__DOT__cache__DOT___GEN_296))))))))))));
         top__DOT__cache__DOT___GEN_180 = ((0x33U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_51)
                                            : ((0x32U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_50)
                                                : ((0x31U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_49)
                                                    : 
                                                   ((0x30U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_48)
                                                     : 
                                                    ((0x2fU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_47)
                                                      : 
                                                     ((0x2eU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_46)
                                                       : 
                                                      ((0x2dU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_45)
                                                        : 
                                                       ((0x2cU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_44)
                                                         : 
                                                        ((0x2bU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_43)
                                                          : 
                                                         ((0x2aU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_42)
                                                           : 
                                                          ((0x29U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_41)
                                                            : 
                                                           ((0x28U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_40)
                                                             : (IData)(top__DOT__cache__DOT___GEN_167)))))))))))));
         top__DOT__cache__DOT___GEN_437 = ((0x33U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_51)
                                            : ((0x32U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_50)
                                                : ((0x31U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_49)
                                                    : 
                                                   ((0x30U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_48)
                                                     : 
                                                    ((0x2fU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_47)
                                                      : 
                                                     ((0x2eU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_46)
                                                       : 
                                                      ((0x2dU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_45)
                                                        : 
                                                       ((0x2cU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_44)
                                                         : 
                                                        ((0x2bU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_43)
                                                          : 
                                                         ((0x2aU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_42)
                                                           : 
                                                          ((0x29U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_41)
                                                            : 
                                                           ((0x28U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_40)
                                                             : (IData)(top__DOT__cache__DOT___GEN_424)))))))))))));
         top__DOT__cache__DOT___GEN_7501 = ((0x33U == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_0_51
                                             : ((0x32U 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_0_50
                                                 : (
                                                    (0x31U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_0_49
                                                     : 
                                                    ((0x30U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_0_48
                                                      : 
                                                     ((0x2fU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_0_47
                                                       : 
                                                      ((0x2eU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_0_46
                                                        : 
                                                       ((0x2dU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_0_45
                                                         : 
                                                        ((0x2cU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_0_44
                                                          : 
                                                         ((0x2bU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_0_43
                                                           : 
                                                          ((0x2aU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_0_42
                                                            : 
                                                           ((0x29U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_0_41
                                                             : 
                                                            ((0x28U 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_0_40
                                                              : top__DOT__cache__DOT___GEN_7488))))))))))));
         top__DOT__cache__DOT___GEN_7629 = ((0x33U == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_1_51
                                             : ((0x32U 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_1_50
                                                 : (
                                                    (0x31U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_1_49
                                                     : 
                                                    ((0x30U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_1_48
                                                      : 
                                                     ((0x2fU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_1_47
                                                       : 
                                                      ((0x2eU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_1_46
                                                        : 
                                                       ((0x2dU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_1_45
                                                         : 
                                                        ((0x2cU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_1_44
                                                          : 
                                                         ((0x2bU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_1_43
                                                           : 
                                                          ((0x2aU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_1_42
                                                            : 
                                                           ((0x29U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_1_41
                                                             : 
                                                            ((0x28U 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_1_40
                                                              : top__DOT__cache__DOT___GEN_7616))))))))))));
     }
-    if ((0x41U == (0x7fU & (IData)((vlSelf->top__DOT__pc_now 
-                                    >> 6U))))) {
+    if ((0x41U == (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))) {
         top__DOT__cache__DOT___GEN_65 = vlSelf->top__DOT__cache__DOT__tag_0_65;
         top__DOT__cache__DOT___GEN_322 = vlSelf->top__DOT__cache__DOT__tag_1_65;
         top__DOT__cache__DOT___GEN_193 = vlSelf->top__DOT__cache__DOT__valid_0_65;
@@ -7323,560 +6887,415 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
         top__DOT__cache__DOT___GEN_7642 = vlSelf->top__DOT__cache__DOT__ram_1_65;
     } else {
         top__DOT__cache__DOT___GEN_65 = ((0x40U == 
-                                          (0x7fU & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                          (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                           ? vlSelf->top__DOT__cache__DOT__tag_0_64
                                           : ((0x3fU 
                                               == (0x7fU 
-                                                  & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                                  & (IData)(vlSelf->top__DOT__pc_now)))
                                               ? vlSelf->top__DOT__cache__DOT__tag_0_63
                                               : ((0x3eU 
                                                   == 
                                                   (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                   ? vlSelf->top__DOT__cache__DOT__tag_0_62
                                                   : 
                                                  ((0x3dU 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_0_61
                                                    : 
                                                   ((0x3cU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_0_60
                                                     : 
                                                    ((0x3bU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_0_59
                                                      : 
                                                     ((0x3aU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_0_58
                                                       : 
                                                      ((0x39U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_0_57
                                                        : 
                                                       ((0x38U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_0_56
                                                         : 
                                                        ((0x37U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_0_55
                                                          : 
                                                         ((0x36U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_0_54
                                                           : 
                                                          ((0x35U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_0_53
                                                            : top__DOT__cache__DOT___GEN_52))))))))))));
         top__DOT__cache__DOT___GEN_322 = ((0x40U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? vlSelf->top__DOT__cache__DOT__tag_1_64
                                            : ((0x3fU 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? vlSelf->top__DOT__cache__DOT__tag_1_63
                                                : ((0x3eU 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_1_62
                                                    : 
                                                   ((0x3dU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_1_61
                                                     : 
                                                    ((0x3cU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_1_60
                                                      : 
                                                     ((0x3bU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_1_59
                                                       : 
                                                      ((0x3aU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_1_58
                                                        : 
                                                       ((0x39U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_1_57
                                                         : 
                                                        ((0x38U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_1_56
                                                          : 
                                                         ((0x37U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_1_55
                                                           : 
                                                          ((0x36U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_1_54
                                                            : 
                                                           ((0x35U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__tag_1_53
                                                             : top__DOT__cache__DOT___GEN_309))))))))))));
         top__DOT__cache__DOT___GEN_193 = ((0x40U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_64)
                                            : ((0x3fU 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_63)
                                                : ((0x3eU 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_62)
                                                    : 
                                                   ((0x3dU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_61)
                                                     : 
                                                    ((0x3cU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_60)
                                                      : 
                                                     ((0x3bU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_59)
                                                       : 
                                                      ((0x3aU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_58)
                                                        : 
                                                       ((0x39U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_57)
                                                         : 
                                                        ((0x38U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_56)
                                                          : 
                                                         ((0x37U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_55)
                                                           : 
                                                          ((0x36U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_54)
                                                            : 
                                                           ((0x35U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_53)
                                                             : (IData)(top__DOT__cache__DOT___GEN_180)))))))))))));
         top__DOT__cache__DOT___GEN_450 = ((0x40U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_64)
                                            : ((0x3fU 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_63)
                                                : ((0x3eU 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_62)
                                                    : 
                                                   ((0x3dU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_61)
                                                     : 
                                                    ((0x3cU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_60)
                                                      : 
                                                     ((0x3bU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_59)
                                                       : 
                                                      ((0x3aU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_58)
                                                        : 
                                                       ((0x39U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_57)
                                                         : 
                                                        ((0x38U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_56)
                                                          : 
                                                         ((0x37U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_55)
                                                           : 
                                                          ((0x36U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_54)
                                                            : 
                                                           ((0x35U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_53)
                                                             : (IData)(top__DOT__cache__DOT___GEN_437)))))))))))));
         top__DOT__cache__DOT___GEN_7514 = ((0x40U == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_0_64
                                             : ((0x3fU 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_0_63
                                                 : (
                                                    (0x3eU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_0_62
                                                     : 
                                                    ((0x3dU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_0_61
                                                      : 
                                                     ((0x3cU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_0_60
                                                       : 
                                                      ((0x3bU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_0_59
                                                        : 
                                                       ((0x3aU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_0_58
                                                         : 
                                                        ((0x39U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_0_57
                                                          : 
                                                         ((0x38U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_0_56
                                                           : 
                                                          ((0x37U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_0_55
                                                            : 
                                                           ((0x36U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_0_54
                                                             : 
                                                            ((0x35U 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_0_53
                                                              : top__DOT__cache__DOT___GEN_7501))))))))))));
         top__DOT__cache__DOT___GEN_7642 = ((0x40U == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_1_64
                                             : ((0x3fU 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_1_63
                                                 : (
                                                    (0x3eU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_1_62
                                                     : 
                                                    ((0x3dU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_1_61
                                                      : 
                                                     ((0x3cU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_1_60
                                                       : 
                                                      ((0x3bU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_1_59
                                                        : 
                                                       ((0x3aU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_1_58
                                                         : 
                                                        ((0x39U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_1_57
                                                          : 
                                                         ((0x38U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_1_56
                                                           : 
                                                          ((0x37U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_1_55
                                                            : 
                                                           ((0x36U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_1_54
                                                             : 
                                                            ((0x35U 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_1_53
                                                              : top__DOT__cache__DOT___GEN_7629))))))))))));
     }
-    if ((0x4eU == (0x7fU & (IData)((vlSelf->top__DOT__pc_now 
-                                    >> 6U))))) {
+    if ((0x4eU == (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))) {
         top__DOT__cache__DOT___GEN_78 = vlSelf->top__DOT__cache__DOT__tag_0_78;
         top__DOT__cache__DOT___GEN_335 = vlSelf->top__DOT__cache__DOT__tag_1_78;
         top__DOT__cache__DOT___GEN_206 = vlSelf->top__DOT__cache__DOT__valid_0_78;
@@ -7885,560 +7304,415 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
         top__DOT__cache__DOT___GEN_7655 = vlSelf->top__DOT__cache__DOT__ram_1_78;
     } else {
         top__DOT__cache__DOT___GEN_78 = ((0x4dU == 
-                                          (0x7fU & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                          (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                           ? vlSelf->top__DOT__cache__DOT__tag_0_77
                                           : ((0x4cU 
                                               == (0x7fU 
-                                                  & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                                  & (IData)(vlSelf->top__DOT__pc_now)))
                                               ? vlSelf->top__DOT__cache__DOT__tag_0_76
                                               : ((0x4bU 
                                                   == 
                                                   (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                   ? vlSelf->top__DOT__cache__DOT__tag_0_75
                                                   : 
                                                  ((0x4aU 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_0_74
                                                    : 
                                                   ((0x49U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_0_73
                                                     : 
                                                    ((0x48U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_0_72
                                                      : 
                                                     ((0x47U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_0_71
                                                       : 
                                                      ((0x46U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_0_70
                                                        : 
                                                       ((0x45U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_0_69
                                                         : 
                                                        ((0x44U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_0_68
                                                          : 
                                                         ((0x43U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_0_67
                                                           : 
                                                          ((0x42U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_0_66
                                                            : top__DOT__cache__DOT___GEN_65))))))))))));
         top__DOT__cache__DOT___GEN_335 = ((0x4dU == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? vlSelf->top__DOT__cache__DOT__tag_1_77
                                            : ((0x4cU 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? vlSelf->top__DOT__cache__DOT__tag_1_76
                                                : ((0x4bU 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_1_75
                                                    : 
                                                   ((0x4aU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_1_74
                                                     : 
                                                    ((0x49U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_1_73
                                                      : 
                                                     ((0x48U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_1_72
                                                       : 
                                                      ((0x47U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_1_71
                                                        : 
                                                       ((0x46U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_1_70
                                                         : 
                                                        ((0x45U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_1_69
                                                          : 
                                                         ((0x44U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_1_68
                                                           : 
                                                          ((0x43U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_1_67
                                                            : 
                                                           ((0x42U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__tag_1_66
                                                             : top__DOT__cache__DOT___GEN_322))))))))))));
         top__DOT__cache__DOT___GEN_206 = ((0x4dU == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_77)
                                            : ((0x4cU 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_76)
                                                : ((0x4bU 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_75)
                                                    : 
                                                   ((0x4aU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_74)
                                                     : 
                                                    ((0x49U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_73)
                                                      : 
                                                     ((0x48U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_72)
                                                       : 
                                                      ((0x47U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_71)
                                                        : 
                                                       ((0x46U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_70)
                                                         : 
                                                        ((0x45U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_69)
                                                          : 
                                                         ((0x44U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_68)
                                                           : 
                                                          ((0x43U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_67)
                                                            : 
                                                           ((0x42U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_66)
                                                             : (IData)(top__DOT__cache__DOT___GEN_193)))))))))))));
         top__DOT__cache__DOT___GEN_463 = ((0x4dU == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_77)
                                            : ((0x4cU 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_76)
                                                : ((0x4bU 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_75)
                                                    : 
                                                   ((0x4aU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_74)
                                                     : 
                                                    ((0x49U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_73)
                                                      : 
                                                     ((0x48U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_72)
                                                       : 
                                                      ((0x47U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_71)
                                                        : 
                                                       ((0x46U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_70)
                                                         : 
                                                        ((0x45U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_69)
                                                          : 
                                                         ((0x44U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_68)
                                                           : 
                                                          ((0x43U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_67)
                                                            : 
                                                           ((0x42U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_66)
                                                             : (IData)(top__DOT__cache__DOT___GEN_450)))))))))))));
         top__DOT__cache__DOT___GEN_7527 = ((0x4dU == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_0_77
                                             : ((0x4cU 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_0_76
                                                 : (
                                                    (0x4bU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_0_75
                                                     : 
                                                    ((0x4aU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_0_74
                                                      : 
                                                     ((0x49U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_0_73
                                                       : 
                                                      ((0x48U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_0_72
                                                        : 
                                                       ((0x47U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_0_71
                                                         : 
                                                        ((0x46U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_0_70
                                                          : 
                                                         ((0x45U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_0_69
                                                           : 
                                                          ((0x44U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_0_68
                                                            : 
                                                           ((0x43U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_0_67
                                                             : 
                                                            ((0x42U 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_0_66
                                                              : top__DOT__cache__DOT___GEN_7514))))))))))));
         top__DOT__cache__DOT___GEN_7655 = ((0x4dU == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_1_77
                                             : ((0x4cU 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_1_76
                                                 : (
                                                    (0x4bU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_1_75
                                                     : 
                                                    ((0x4aU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_1_74
                                                      : 
                                                     ((0x49U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_1_73
                                                       : 
                                                      ((0x48U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_1_72
                                                        : 
                                                       ((0x47U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_1_71
                                                         : 
                                                        ((0x46U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_1_70
                                                          : 
                                                         ((0x45U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_1_69
                                                           : 
                                                          ((0x44U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_1_68
                                                            : 
                                                           ((0x43U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_1_67
                                                             : 
                                                            ((0x42U 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_1_66
                                                              : top__DOT__cache__DOT___GEN_7642))))))))))));
     }
-    if ((0x5bU == (0x7fU & (IData)((vlSelf->top__DOT__pc_now 
-                                    >> 6U))))) {
+    if ((0x5bU == (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))) {
         top__DOT__cache__DOT___GEN_91 = vlSelf->top__DOT__cache__DOT__tag_0_91;
         top__DOT__cache__DOT___GEN_348 = vlSelf->top__DOT__cache__DOT__tag_1_91;
         top__DOT__cache__DOT___GEN_219 = vlSelf->top__DOT__cache__DOT__valid_0_91;
@@ -8447,560 +7721,415 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
         top__DOT__cache__DOT___GEN_7668 = vlSelf->top__DOT__cache__DOT__ram_1_91;
     } else {
         top__DOT__cache__DOT___GEN_91 = ((0x5aU == 
-                                          (0x7fU & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                          (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                           ? vlSelf->top__DOT__cache__DOT__tag_0_90
                                           : ((0x59U 
                                               == (0x7fU 
-                                                  & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                                  & (IData)(vlSelf->top__DOT__pc_now)))
                                               ? vlSelf->top__DOT__cache__DOT__tag_0_89
                                               : ((0x58U 
                                                   == 
                                                   (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                   ? vlSelf->top__DOT__cache__DOT__tag_0_88
                                                   : 
                                                  ((0x57U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_0_87
                                                    : 
                                                   ((0x56U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_0_86
                                                     : 
                                                    ((0x55U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_0_85
                                                      : 
                                                     ((0x54U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_0_84
                                                       : 
                                                      ((0x53U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_0_83
                                                        : 
                                                       ((0x52U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_0_82
                                                         : 
                                                        ((0x51U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_0_81
                                                          : 
                                                         ((0x50U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_0_80
                                                           : 
                                                          ((0x4fU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_0_79
                                                            : top__DOT__cache__DOT___GEN_78))))))))))));
         top__DOT__cache__DOT___GEN_348 = ((0x5aU == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? vlSelf->top__DOT__cache__DOT__tag_1_90
                                            : ((0x59U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? vlSelf->top__DOT__cache__DOT__tag_1_89
                                                : ((0x58U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_1_88
                                                    : 
                                                   ((0x57U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_1_87
                                                     : 
                                                    ((0x56U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_1_86
                                                      : 
                                                     ((0x55U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_1_85
                                                       : 
                                                      ((0x54U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_1_84
                                                        : 
                                                       ((0x53U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_1_83
                                                         : 
                                                        ((0x52U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_1_82
                                                          : 
                                                         ((0x51U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_1_81
                                                           : 
                                                          ((0x50U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_1_80
                                                            : 
                                                           ((0x4fU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__tag_1_79
                                                             : top__DOT__cache__DOT___GEN_335))))))))))));
         top__DOT__cache__DOT___GEN_219 = ((0x5aU == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_90)
                                            : ((0x59U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_89)
                                                : ((0x58U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_88)
                                                    : 
                                                   ((0x57U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_87)
                                                     : 
                                                    ((0x56U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_86)
                                                      : 
                                                     ((0x55U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_85)
                                                       : 
                                                      ((0x54U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_84)
                                                        : 
                                                       ((0x53U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_83)
                                                         : 
                                                        ((0x52U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_82)
                                                          : 
                                                         ((0x51U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_81)
                                                           : 
                                                          ((0x50U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_80)
                                                            : 
                                                           ((0x4fU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_79)
                                                             : (IData)(top__DOT__cache__DOT___GEN_206)))))))))))));
         top__DOT__cache__DOT___GEN_476 = ((0x5aU == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_90)
                                            : ((0x59U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_89)
                                                : ((0x58U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_88)
                                                    : 
                                                   ((0x57U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_87)
                                                     : 
                                                    ((0x56U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_86)
                                                      : 
                                                     ((0x55U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_85)
                                                       : 
                                                      ((0x54U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_84)
                                                        : 
                                                       ((0x53U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_83)
                                                         : 
                                                        ((0x52U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_82)
                                                          : 
                                                         ((0x51U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_81)
                                                           : 
                                                          ((0x50U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_80)
                                                            : 
                                                           ((0x4fU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_79)
                                                             : (IData)(top__DOT__cache__DOT___GEN_463)))))))))))));
         top__DOT__cache__DOT___GEN_7540 = ((0x5aU == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_0_90
                                             : ((0x59U 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_0_89
                                                 : (
                                                    (0x58U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_0_88
                                                     : 
                                                    ((0x57U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_0_87
                                                      : 
                                                     ((0x56U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_0_86
                                                       : 
                                                      ((0x55U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_0_85
                                                        : 
                                                       ((0x54U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_0_84
                                                         : 
                                                        ((0x53U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_0_83
                                                          : 
                                                         ((0x52U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_0_82
                                                           : 
                                                          ((0x51U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_0_81
                                                            : 
                                                           ((0x50U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_0_80
                                                             : 
                                                            ((0x4fU 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_0_79
                                                              : top__DOT__cache__DOT___GEN_7527))))))))))));
         top__DOT__cache__DOT___GEN_7668 = ((0x5aU == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_1_90
                                             : ((0x59U 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_1_89
                                                 : (
                                                    (0x58U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_1_88
                                                     : 
                                                    ((0x57U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_1_87
                                                      : 
                                                     ((0x56U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_1_86
                                                       : 
                                                      ((0x55U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_1_85
                                                        : 
                                                       ((0x54U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_1_84
                                                         : 
                                                        ((0x53U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_1_83
                                                          : 
                                                         ((0x52U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_1_82
                                                           : 
                                                          ((0x51U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_1_81
                                                            : 
                                                           ((0x50U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_1_80
                                                             : 
                                                            ((0x4fU 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_1_79
                                                              : top__DOT__cache__DOT___GEN_7655))))))))))));
     }
-    if ((0x68U == (0x7fU & (IData)((vlSelf->top__DOT__pc_now 
-                                    >> 6U))))) {
+    if ((0x68U == (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))) {
         top__DOT__cache__DOT___GEN_104 = vlSelf->top__DOT__cache__DOT__tag_0_104;
         top__DOT__cache__DOT___GEN_361 = vlSelf->top__DOT__cache__DOT__tag_1_104;
         top__DOT__cache__DOT___GEN_232 = vlSelf->top__DOT__cache__DOT__valid_0_104;
@@ -9009,560 +8138,415 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
         top__DOT__cache__DOT___GEN_7681 = vlSelf->top__DOT__cache__DOT__ram_1_104;
     } else {
         top__DOT__cache__DOT___GEN_104 = ((0x67U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? vlSelf->top__DOT__cache__DOT__tag_0_103
                                            : ((0x66U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? vlSelf->top__DOT__cache__DOT__tag_0_102
                                                : ((0x65U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_0_101
                                                    : 
                                                   ((0x64U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_0_100
                                                     : 
                                                    ((0x63U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_0_99
                                                      : 
                                                     ((0x62U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_0_98
                                                       : 
                                                      ((0x61U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_0_97
                                                        : 
                                                       ((0x60U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_0_96
                                                         : 
                                                        ((0x5fU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_0_95
                                                          : 
                                                         ((0x5eU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_0_94
                                                           : 
                                                          ((0x5dU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_0_93
                                                            : 
                                                           ((0x5cU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__tag_0_92
                                                             : top__DOT__cache__DOT___GEN_91))))))))))));
         top__DOT__cache__DOT___GEN_361 = ((0x67U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? vlSelf->top__DOT__cache__DOT__tag_1_103
                                            : ((0x66U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? vlSelf->top__DOT__cache__DOT__tag_1_102
                                                : ((0x65U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_1_101
                                                    : 
                                                   ((0x64U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_1_100
                                                     : 
                                                    ((0x63U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_1_99
                                                      : 
                                                     ((0x62U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_1_98
                                                       : 
                                                      ((0x61U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_1_97
                                                        : 
                                                       ((0x60U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_1_96
                                                         : 
                                                        ((0x5fU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_1_95
                                                          : 
                                                         ((0x5eU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_1_94
                                                           : 
                                                          ((0x5dU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_1_93
                                                            : 
                                                           ((0x5cU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__tag_1_92
                                                             : top__DOT__cache__DOT___GEN_348))))))))))));
         top__DOT__cache__DOT___GEN_232 = ((0x67U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_103)
                                            : ((0x66U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_102)
                                                : ((0x65U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_101)
                                                    : 
                                                   ((0x64U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_100)
                                                     : 
                                                    ((0x63U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_99)
                                                      : 
                                                     ((0x62U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_98)
                                                       : 
                                                      ((0x61U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_97)
                                                        : 
                                                       ((0x60U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_96)
                                                         : 
                                                        ((0x5fU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_95)
                                                          : 
                                                         ((0x5eU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_94)
                                                           : 
                                                          ((0x5dU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_93)
                                                            : 
                                                           ((0x5cU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_92)
                                                             : (IData)(top__DOT__cache__DOT___GEN_219)))))))))))));
         top__DOT__cache__DOT___GEN_489 = ((0x67U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_103)
                                            : ((0x66U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_102)
                                                : ((0x65U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_101)
                                                    : 
                                                   ((0x64U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_100)
                                                     : 
                                                    ((0x63U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_99)
                                                      : 
                                                     ((0x62U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_98)
                                                       : 
                                                      ((0x61U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_97)
                                                        : 
                                                       ((0x60U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_96)
                                                         : 
                                                        ((0x5fU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_95)
                                                          : 
                                                         ((0x5eU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_94)
                                                           : 
                                                          ((0x5dU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_93)
                                                            : 
                                                           ((0x5cU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_92)
                                                             : (IData)(top__DOT__cache__DOT___GEN_476)))))))))))));
         top__DOT__cache__DOT___GEN_7553 = ((0x67U == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_0_103
                                             : ((0x66U 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_0_102
                                                 : (
                                                    (0x65U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_0_101
                                                     : 
                                                    ((0x64U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_0_100
                                                      : 
                                                     ((0x63U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_0_99
                                                       : 
                                                      ((0x62U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_0_98
                                                        : 
                                                       ((0x61U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_0_97
                                                         : 
                                                        ((0x60U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_0_96
                                                          : 
                                                         ((0x5fU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_0_95
                                                           : 
                                                          ((0x5eU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_0_94
                                                            : 
                                                           ((0x5dU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_0_93
                                                             : 
                                                            ((0x5cU 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_0_92
                                                              : top__DOT__cache__DOT___GEN_7540))))))))))));
         top__DOT__cache__DOT___GEN_7681 = ((0x67U == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_1_103
                                             : ((0x66U 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_1_102
                                                 : (
                                                    (0x65U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_1_101
                                                     : 
                                                    ((0x64U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_1_100
                                                      : 
                                                     ((0x63U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_1_99
                                                       : 
                                                      ((0x62U 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_1_98
                                                        : 
                                                       ((0x61U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_1_97
                                                         : 
                                                        ((0x60U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_1_96
                                                          : 
                                                         ((0x5fU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_1_95
                                                           : 
                                                          ((0x5eU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_1_94
                                                            : 
                                                           ((0x5dU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_1_93
                                                             : 
                                                            ((0x5cU 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_1_92
                                                              : top__DOT__cache__DOT___GEN_7668))))))))))));
     }
-    if ((0x75U == (0x7fU & (IData)((vlSelf->top__DOT__pc_now 
-                                    >> 6U))))) {
+    if ((0x75U == (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))) {
         top__DOT__cache__DOT___GEN_117 = vlSelf->top__DOT__cache__DOT__tag_0_117;
         top__DOT__cache__DOT___GEN_374 = vlSelf->top__DOT__cache__DOT__tag_1_117;
         top__DOT__cache__DOT___GEN_245 = vlSelf->top__DOT__cache__DOT__valid_0_117;
@@ -9571,1041 +8555,780 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
         top__DOT__cache__DOT___GEN_7694 = vlSelf->top__DOT__cache__DOT__ram_1_117;
     } else {
         top__DOT__cache__DOT___GEN_117 = ((0x74U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? vlSelf->top__DOT__cache__DOT__tag_0_116
                                            : ((0x73U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? vlSelf->top__DOT__cache__DOT__tag_0_115
                                                : ((0x72U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_0_114
                                                    : 
                                                   ((0x71U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_0_113
                                                     : 
                                                    ((0x70U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_0_112
                                                      : 
                                                     ((0x6fU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_0_111
                                                       : 
                                                      ((0x6eU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_0_110
                                                        : 
                                                       ((0x6dU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_0_109
                                                         : 
                                                        ((0x6cU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_0_108
                                                          : 
                                                         ((0x6bU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_0_107
                                                           : 
                                                          ((0x6aU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_0_106
                                                            : 
                                                           ((0x69U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__tag_0_105
                                                             : top__DOT__cache__DOT___GEN_104))))))))))));
         top__DOT__cache__DOT___GEN_374 = ((0x74U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? vlSelf->top__DOT__cache__DOT__tag_1_116
                                            : ((0x73U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? vlSelf->top__DOT__cache__DOT__tag_1_115
                                                : ((0x72U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_1_114
                                                    : 
                                                   ((0x71U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_1_113
                                                     : 
                                                    ((0x70U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_1_112
                                                      : 
                                                     ((0x6fU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_1_111
                                                       : 
                                                      ((0x6eU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_1_110
                                                        : 
                                                       ((0x6dU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_1_109
                                                         : 
                                                        ((0x6cU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_1_108
                                                          : 
                                                         ((0x6bU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_1_107
                                                           : 
                                                          ((0x6aU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_1_106
                                                            : 
                                                           ((0x69U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__tag_1_105
                                                             : top__DOT__cache__DOT___GEN_361))))))))))));
         top__DOT__cache__DOT___GEN_245 = ((0x74U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_116)
                                            : ((0x73U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_115)
                                                : ((0x72U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_114)
                                                    : 
                                                   ((0x71U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_113)
                                                     : 
                                                    ((0x70U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_112)
                                                      : 
                                                     ((0x6fU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_111)
                                                       : 
                                                      ((0x6eU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_110)
                                                        : 
                                                       ((0x6dU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_109)
                                                         : 
                                                        ((0x6cU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_108)
                                                          : 
                                                         ((0x6bU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_107)
                                                           : 
                                                          ((0x6aU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_106)
                                                            : 
                                                           ((0x69U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_105)
                                                             : (IData)(top__DOT__cache__DOT___GEN_232)))))))))))));
         top__DOT__cache__DOT___GEN_502 = ((0x74U == 
-                                           (0x7fU & (IData)(
-                                                            (vlSelf->top__DOT__pc_now 
-                                                             >> 6U))))
+                                           (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))
                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_116)
                                            : ((0x73U 
                                                == (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_115)
                                                : ((0x72U 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_114)
                                                    : 
                                                   ((0x71U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_113)
                                                     : 
                                                    ((0x70U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_112)
                                                      : 
                                                     ((0x6fU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_111)
                                                       : 
                                                      ((0x6eU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_110)
                                                        : 
                                                       ((0x6dU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_109)
                                                         : 
                                                        ((0x6cU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_108)
                                                          : 
                                                         ((0x6bU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_107)
                                                           : 
                                                          ((0x6aU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_106)
                                                            : 
                                                           ((0x69U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_105)
                                                             : (IData)(top__DOT__cache__DOT___GEN_489)))))))))))));
         top__DOT__cache__DOT___GEN_7566 = ((0x74U == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_0_116
                                             : ((0x73U 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_0_115
                                                 : (
                                                    (0x72U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_0_114
                                                     : 
                                                    ((0x71U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_0_113
                                                      : 
                                                     ((0x70U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_0_112
                                                       : 
                                                      ((0x6fU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_0_111
                                                        : 
                                                       ((0x6eU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_0_110
                                                         : 
                                                        ((0x6dU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_0_109
                                                          : 
                                                         ((0x6cU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_0_108
                                                           : 
                                                          ((0x6bU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_0_107
                                                            : 
                                                           ((0x6aU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_0_106
                                                             : 
                                                            ((0x69U 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_0_105
                                                              : top__DOT__cache__DOT___GEN_7553))))))))))));
         top__DOT__cache__DOT___GEN_7694 = ((0x74U == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_1_116
                                             : ((0x73U 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_1_115
                                                 : (
                                                    (0x72U 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_1_114
                                                     : 
                                                    ((0x71U 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_1_113
                                                      : 
                                                     ((0x70U 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_1_112
                                                       : 
                                                      ((0x6fU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_1_111
                                                        : 
                                                       ((0x6eU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_1_110
                                                         : 
                                                        ((0x6dU 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_1_109
                                                          : 
                                                         ((0x6cU 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_1_108
                                                           : 
                                                          ((0x6bU 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_1_107
                                                            : 
                                                           ((0x6aU 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_1_106
                                                             : 
                                                            ((0x69U 
                                                              == 
                                                              (0x7fU 
-                                                              & (IData)(
-                                                                        (vlSelf->top__DOT__pc_now 
-                                                                         >> 6U))))
+                                                              & (IData)(vlSelf->top__DOT__pc_now)))
                                                              ? vlSelf->top__DOT__cache__DOT__ram_1_105
                                                              : top__DOT__cache__DOT___GEN_7681))))))))))));
     }
-    if ((0x7fU == (0x7fU & (IData)((vlSelf->top__DOT__pc_now 
-                                    >> 6U))))) {
+    if ((0x7fU == (0x7fU & (IData)(vlSelf->top__DOT__pc_now)))) {
         vlSelf->top__DOT__cache__DOT___GEN_255 = vlSelf->top__DOT__cache__DOT__valid_0_127;
         vlSelf->top__DOT__cache__DOT___GEN_512 = vlSelf->top__DOT__cache__DOT__valid_1_127;
     } else {
         vlSelf->top__DOT__cache__DOT___GEN_255 = ((0x7eU 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_126)
                                                    : 
                                                   ((0x7dU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_125)
                                                     : 
                                                    ((0x7cU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_124)
                                                      : 
                                                     ((0x7bU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_123)
                                                       : 
                                                      ((0x7aU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_122)
                                                        : 
                                                       ((0x79U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_121)
                                                         : 
                                                        ((0x78U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_120)
                                                          : 
                                                         ((0x77U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_119)
                                                           : 
                                                          ((0x76U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_0_118)
                                                            : (IData)(top__DOT__cache__DOT___GEN_245))))))))));
         vlSelf->top__DOT__cache__DOT___GEN_512 = ((0x7eU 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_126)
                                                    : 
                                                   ((0x7dU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_125)
                                                     : 
                                                    ((0x7cU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_124)
                                                      : 
                                                     ((0x7bU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_123)
                                                       : 
                                                      ((0x7aU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_122)
                                                        : 
                                                       ((0x79U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_121)
                                                         : 
                                                        ((0x78U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_120)
                                                          : 
                                                         ((0x77U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_119)
                                                           : 
                                                          ((0x76U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_118)
                                                            : (IData)(top__DOT__cache__DOT___GEN_502))))))))));
     }
     top__DOT__cache__DOT___GEN_7709 = ((IData)(vlSelf->top__DOT__cache__DOT__way0_hit)
                                         ? ((0x7fU == 
                                             (0x7fU 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__pc_now 
-                                                        >> 6U))))
+                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                             ? vlSelf->top__DOT__cache__DOT__ram_0_127
                                             : ((0x7eU 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_0_126
                                                 : (
                                                    (0x7dU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_0_125
                                                     : 
                                                    ((0x7cU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_0_124
                                                      : 
                                                     ((0x7bU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_0_123
                                                       : 
                                                      ((0x7aU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_0_122
                                                        : 
                                                       ((0x79U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_0_121
                                                         : 
                                                        ((0x78U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_0_120
                                                          : 
                                                         ((0x77U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_0_119
                                                           : 
                                                          ((0x76U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_0_118
                                                            : top__DOT__cache__DOT___GEN_7566))))))))))
                                         : ((IData)(vlSelf->top__DOT__cache__DOT__way1_hit)
                                             ? ((0x7fU 
                                                 == 
                                                 (0x7fU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__pc_now 
-                                                            >> 6U))))
+                                                 & (IData)(vlSelf->top__DOT__pc_now)))
                                                 ? vlSelf->top__DOT__cache__DOT__ram_1_127
                                                 : (
                                                    (0x7eU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__ram_1_126
                                                     : 
                                                    ((0x7dU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__ram_1_125
                                                      : 
                                                     ((0x7cU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__ram_1_124
                                                       : 
                                                      ((0x7bU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__ram_1_123
                                                        : 
                                                       ((0x7aU 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__ram_1_122
                                                         : 
                                                        ((0x79U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__ram_1_121
                                                          : 
                                                         ((0x78U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__ram_1_120
                                                           : 
                                                          ((0x77U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__ram_1_119
                                                            : 
                                                           ((0x76U 
                                                             == 
                                                             (0x7fU 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__pc_now 
-                                                                        >> 6U))))
+                                                             & (IData)(vlSelf->top__DOT__pc_now)))
                                                             ? vlSelf->top__DOT__cache__DOT__ram_1_118
                                                             : top__DOT__cache__DOT___GEN_7694))))))))))
                                             : 0ULL));
     vlSelf->top__DOT__cache__DOT___GEN_256 = (((((0x7fU 
                                                   == 
                                                   (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                   ? vlSelf->top__DOT__cache__DOT__tag_0_127
                                                   : 
                                                  ((0x7eU 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_0_126
                                                    : 
                                                   ((0x7dU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_0_125
                                                     : 
                                                    ((0x7cU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_0_124
                                                      : 
                                                     ((0x7bU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_0_123
                                                       : 
                                                      ((0x7aU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_0_122
                                                        : 
                                                       ((0x79U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_0_121
                                                         : 
                                                        ((0x78U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_0_120
                                                          : 
                                                         ((0x77U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_0_119
                                                           : 
                                                          ((0x76U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_0_118
                                                            : top__DOT__cache__DOT___GEN_117)))))))))) 
                                                 == 
-                                                (0x7ffffU 
+                                                (0x1ffffffU 
                                                  & (IData)(
                                                            (vlSelf->top__DOT__pc_now 
-                                                            >> 0xdU)))) 
+                                                            >> 7U)))) 
                                                & (IData)(vlSelf->top__DOT__cache__DOT___GEN_255)) 
                                               | (IData)(vlSelf->top__DOT__cache__DOT__way0_hit));
     vlSelf->top__DOT__cache__DOT___GEN_513 = (((((0x7fU 
                                                   == 
                                                   (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__pc_now 
-                                                              >> 6U))))
+                                                   & (IData)(vlSelf->top__DOT__pc_now)))
                                                   ? vlSelf->top__DOT__cache__DOT__tag_1_127
                                                   : 
                                                  ((0x7eU 
                                                    == 
                                                    (0x7fU 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__pc_now 
-                                                               >> 6U))))
+                                                    & (IData)(vlSelf->top__DOT__pc_now)))
                                                    ? vlSelf->top__DOT__cache__DOT__tag_1_126
                                                    : 
                                                   ((0x7dU 
                                                     == 
                                                     (0x7fU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__pc_now 
-                                                                >> 6U))))
+                                                     & (IData)(vlSelf->top__DOT__pc_now)))
                                                     ? vlSelf->top__DOT__cache__DOT__tag_1_125
                                                     : 
                                                    ((0x7cU 
                                                      == 
                                                      (0x7fU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__pc_now 
-                                                                 >> 6U))))
+                                                      & (IData)(vlSelf->top__DOT__pc_now)))
                                                      ? vlSelf->top__DOT__cache__DOT__tag_1_124
                                                      : 
                                                     ((0x7bU 
                                                       == 
                                                       (0x7fU 
-                                                       & (IData)(
-                                                                 (vlSelf->top__DOT__pc_now 
-                                                                  >> 6U))))
+                                                       & (IData)(vlSelf->top__DOT__pc_now)))
                                                       ? vlSelf->top__DOT__cache__DOT__tag_1_123
                                                       : 
                                                      ((0x7aU 
                                                        == 
                                                        (0x7fU 
-                                                        & (IData)(
-                                                                  (vlSelf->top__DOT__pc_now 
-                                                                   >> 6U))))
+                                                        & (IData)(vlSelf->top__DOT__pc_now)))
                                                        ? vlSelf->top__DOT__cache__DOT__tag_1_122
                                                        : 
                                                       ((0x79U 
                                                         == 
                                                         (0x7fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__pc_now 
-                                                                    >> 6U))))
+                                                         & (IData)(vlSelf->top__DOT__pc_now)))
                                                         ? vlSelf->top__DOT__cache__DOT__tag_1_121
                                                         : 
                                                        ((0x78U 
                                                          == 
                                                          (0x7fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__pc_now 
-                                                                     >> 6U))))
+                                                          & (IData)(vlSelf->top__DOT__pc_now)))
                                                          ? vlSelf->top__DOT__cache__DOT__tag_1_120
                                                          : 
                                                         ((0x77U 
                                                           == 
                                                           (0x7fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__pc_now 
-                                                                      >> 6U))))
+                                                           & (IData)(vlSelf->top__DOT__pc_now)))
                                                           ? vlSelf->top__DOT__cache__DOT__tag_1_119
                                                           : 
                                                          ((0x76U 
                                                            == 
                                                            (0x7fU 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__pc_now 
-                                                                       >> 6U))))
+                                                            & (IData)(vlSelf->top__DOT__pc_now)))
                                                            ? vlSelf->top__DOT__cache__DOT__tag_1_118
                                                            : top__DOT__cache__DOT___GEN_374)))))))))) 
                                                 == 
-                                                (0x7ffffU 
+                                                (0x1ffffffU 
                                                  & (IData)(
                                                            (vlSelf->top__DOT__pc_now 
-                                                            >> 0xdU)))) 
+                                                            >> 7U)))) 
                                                & (IData)(vlSelf->top__DOT__cache__DOT___GEN_512)) 
                                               | (IData)(vlSelf->top__DOT__cache__DOT__way1_hit));
     vlSelf->top__DOT__cache_io_to_ifu_rdata = ((0U 
@@ -12702,3 +11425,54 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                [(0x1fU & (vlSelf->top__DOT__idu_step_io_inst 
                           >> 7U))]));
 }
+
+void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf);
+void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf);
+
+void Vtop___024root___eval(Vtop___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval\n"); );
+    // Body
+    if (((IData)(vlSelf->clock) & (~ (IData)(vlSelf->__Vclklast__TOP__clock)))) {
+        vlSelf->__Vm_traceActivity[1U] = 1U;
+        Vtop___024root___sequent__TOP__4(vlSelf);
+        Vtop___024root___sequent__TOP__5(vlSelf);
+        Vtop___024root___sequent__TOP__6(vlSelf);
+    }
+    // Final
+    vlSelf->__Vclklast__TOP__clock = vlSelf->clock;
+}
+
+QData Vtop___024root___change_request_1(Vtop___024root* vlSelf);
+
+VL_INLINE_OPT QData Vtop___024root___change_request(Vtop___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___change_request\n"); );
+    // Body
+    return (Vtop___024root___change_request_1(vlSelf));
+}
+
+VL_INLINE_OPT QData Vtop___024root___change_request_1(Vtop___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___change_request_1\n"); );
+    // Body
+    // Change detection
+    QData __req = false;  // Logically a bool
+    return __req;
+}
+
+#ifdef VL_DEBUG
+void Vtop___024root___eval_debug_assertions(Vtop___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_debug_assertions\n"); );
+    // Body
+    if (VL_UNLIKELY((vlSelf->clock & 0xfeU))) {
+        Verilated::overWidthError("clock");}
+    if (VL_UNLIKELY((vlSelf->reset & 0xfeU))) {
+        Verilated::overWidthError("reset");}
+}
+#endif  // VL_DEBUG
