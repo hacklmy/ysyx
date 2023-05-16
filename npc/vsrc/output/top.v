@@ -605,6 +605,17 @@ module IFU_AXI(
     end else if (io_axi_in_rvalid) begin // @[IFU_AXI.scala 26:27]
       inst_reg <= io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 27:18]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"inst_valid : %d pc_valid:%d\n",io_inst_valid,io_pc_valid); // @[IFU_AXI.scala 42:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
