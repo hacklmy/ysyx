@@ -185,7 +185,6 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     CData/*0:0*/ top__DOT__cache__DOT___GEN_1184;
     CData/*0:0*/ top__DOT__cache__DOT___GEN_1185;
     CData/*0:0*/ top__DOT__cache__DOT___GEN_1186;
-    CData/*0:0*/ top__DOT__cache__DOT___GEN_1187;
     IData/*31:0*/ top__DOT__cache__DOT___GEN_650;
     IData/*31:0*/ top__DOT__cache__DOT___GEN_651;
     IData/*31:0*/ top__DOT__cache__DOT___GEN_652;
@@ -2867,9 +2866,11 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     top__DOT__cache__DOT___GEN_1186 = ((0x18U == (0x7fU 
                                                   & (IData)(vlSelf->top__DOT__pc_now))) 
                                        | (IData)(vlSelf->top__DOT__cache__DOT__valid_1_24));
-    top__DOT__cache__DOT___GEN_1187 = ((0x19U == (0x7fU 
-                                                  & (IData)(vlSelf->top__DOT__pc_now))) 
-                                       | (IData)(vlSelf->top__DOT__cache__DOT__valid_1_25));
+    vlSelf->top__DOT__cache__DOT___GEN_1187 = ((0x19U 
+                                                == 
+                                                (0x7fU 
+                                                 & (IData)(vlSelf->top__DOT__pc_now))) 
+                                               | (IData)(vlSelf->top__DOT__cache__DOT__valid_1_25));
     vlSelf->top__DOT__cache__DOT___GEN_1188 = ((0x1aU 
                                                 == 
                                                 (0x7fU 
@@ -10154,10 +10155,10 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                     : 
                                                    ((2U 
                                                      == (IData)(vlSelf->top__DOT__cache__DOT__unuse_way))
-                                                     ? (IData)(top__DOT__cache__DOT___GEN_1187)
+                                                     ? (IData)(vlSelf->top__DOT__cache__DOT___GEN_1187)
                                                      : 
                                                     ((IData)(vlSelf->top__DOT__cache__DOT__quene)
-                                                      ? (IData)(top__DOT__cache__DOT___GEN_1187)
+                                                      ? (IData)(vlSelf->top__DOT__cache__DOT___GEN_1187)
                                                       : (IData)(vlSelf->top__DOT__cache__DOT__valid_1_25))));
         vlSelf->top__DOT__cache__DOT___GEN_5034 = (
                                                    (1U 

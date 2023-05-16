@@ -122,6 +122,18 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
     QData/*63:0*/ top__DOT__exu_step__DOT___j_pc_T_56;
     // Body
     if ((3U == (IData)(vlSelf->top__DOT__cache__DOT__state))) {
+        vlSelf->top__DOT__cache__DOT___GEN_5033 = (
+                                                   (1U 
+                                                    == (IData)(vlSelf->top__DOT__cache__DOT__unuse_way))
+                                                    ? (IData)(vlSelf->top__DOT__cache__DOT__valid_1_25)
+                                                    : 
+                                                   ((2U 
+                                                     == (IData)(vlSelf->top__DOT__cache__DOT__unuse_way))
+                                                     ? (IData)(vlSelf->top__DOT__cache__DOT___GEN_1187)
+                                                     : 
+                                                    ((IData)(vlSelf->top__DOT__cache__DOT__quene)
+                                                      ? (IData)(vlSelf->top__DOT__cache__DOT___GEN_1187)
+                                                      : (IData)(vlSelf->top__DOT__cache__DOT__valid_1_25))));
         vlSelf->top__DOT__cache__DOT___GEN_5034 = (
                                                    (1U 
                                                     == (IData)(vlSelf->top__DOT__cache__DOT__unuse_way))
@@ -4419,6 +4431,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                                                       ? vlSelf->top__DOT__cache__DOT___GEN_1033
                                                       : vlSelf->top__DOT__cache__DOT__ram_1_127)));
     } else {
+        vlSelf->top__DOT__cache__DOT___GEN_5033 = vlSelf->top__DOT__cache__DOT__valid_1_25;
         vlSelf->top__DOT__cache__DOT___GEN_5034 = vlSelf->top__DOT__cache__DOT__valid_1_26;
         vlSelf->top__DOT__cache__DOT___GEN_5035 = vlSelf->top__DOT__cache__DOT__valid_1_27;
         vlSelf->top__DOT__cache__DOT___GEN_5036 = vlSelf->top__DOT__cache__DOT__valid_1_28;

@@ -592,26 +592,28 @@ module IFU_AXI(
   reg  inst_ready; // @[IFU_AXI.scala 19:29]
   wire  _GEN_0 = io_axi_in_rvalid & inst_ready ? 1'h0 : 1'h1; // @[IFU_AXI.scala 20:41 21:20 23:20]
   reg [31:0] inst_reg; // @[IFU_AXI.scala 25:27]
-  wire  _T_2 = ~reset; // @[IFU_AXI.scala 42:11]
-  assign io_inst_valid = io_axi_in_rvalid; // @[IFU_AXI.scala 41:19]
-  assign io_inst = io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 39:31]
-  assign io_inst_reg = inst_reg; // @[IFU_AXI.scala 40:17]
-  assign io_axi_out_araddr = io_pc[31:0]; // @[IFU_AXI.scala 29:31]
-  assign io_axi_out_arvalid = io_pc_valid; // @[IFU_AXI.scala 30:24]
-  assign io_axi_out_rready = inst_ready; // @[IFU_AXI.scala 31:23]
+  wire  _T_2 = ~reset; // @[IFU_AXI.scala 44:11]
+  assign io_inst_valid = io_axi_in_rvalid; // @[IFU_AXI.scala 43:19]
+  assign io_inst = io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 41:31]
+  assign io_inst_reg = inst_reg; // @[IFU_AXI.scala 42:17]
+  assign io_axi_out_araddr = io_pc[31:0]; // @[IFU_AXI.scala 31:31]
+  assign io_axi_out_arvalid = io_pc_valid; // @[IFU_AXI.scala 32:24]
+  assign io_axi_out_rready = inst_ready; // @[IFU_AXI.scala 33:23]
   always @(posedge clock) begin
     inst_ready <= reset | _GEN_0; // @[IFU_AXI.scala 19:{29,29}]
     if (reset) begin // @[IFU_AXI.scala 25:27]
       inst_reg <= 32'h0; // @[IFU_AXI.scala 25:27]
     end else if (io_axi_in_rvalid) begin // @[IFU_AXI.scala 26:27]
       inst_reg <= io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 27:18]
+    end else if (io_pc_valid) begin // @[IFU_AXI.scala 28:28]
+      inst_reg <= 32'h0; // @[IFU_AXI.scala 29:18]
     end
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"inst_valid : %d pc_valid:%d\n",io_inst_valid,io_pc_valid); // @[IFU_AXI.scala 42:11]
+          $fwrite(32'h80000002,"inst_valid : %d pc_valid:%d\n",io_inst_valid,io_pc_valid); // @[IFU_AXI.scala 44:11]
         end
     `ifdef PRINTF_COND
       end
@@ -622,7 +624,7 @@ module IFU_AXI(
       if (`PRINTF_COND) begin
     `endif
         if (_T_2) begin
-          $fwrite(32'h80000002,"inst:%x\n",io_inst); // @[IFU_AXI.scala 43:11]
+          $fwrite(32'h80000002,"inst:%x\n",io_inst); // @[IFU_AXI.scala 45:11]
         end
     `ifdef PRINTF_COND
       end
