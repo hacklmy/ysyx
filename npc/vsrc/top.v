@@ -39,11 +39,13 @@ module top(
   wire  lsu_step_io_axi_in_arready; // @[top.scala 19:26]
   wire [63:0] lsu_step_io_axi_in_rdata; // @[top.scala 19:26]
   wire  lsu_step_io_axi_in_rvalid; // @[top.scala 19:26]
+  wire  lsu_step_io_axi_in_awready; // @[top.scala 19:26]
   wire  lsu_step_io_axi_in_bvalid; // @[top.scala 19:26]
   wire [31:0] lsu_step_io_axi_out_araddr; // @[top.scala 19:26]
   wire  lsu_step_io_axi_out_arvalid; // @[top.scala 19:26]
   wire  lsu_step_io_axi_out_rready; // @[top.scala 19:26]
   wire [31:0] lsu_step_io_axi_out_awaddr; // @[top.scala 19:26]
+  wire  lsu_step_io_axi_out_awvalid; // @[top.scala 19:26]
   wire [31:0] lsu_step_io_axi_out_wdata; // @[top.scala 19:26]
   wire [7:0] lsu_step_io_axi_out_wstrb; // @[top.scala 19:26]
   wire  arbiter_clock; // @[top.scala 20:25]
@@ -109,11 +111,13 @@ module top(
   wire  d_cache_io_from_lsu_arvalid; // @[top.scala 23:25]
   wire  d_cache_io_from_lsu_rready; // @[top.scala 23:25]
   wire [31:0] d_cache_io_from_lsu_awaddr; // @[top.scala 23:25]
+  wire  d_cache_io_from_lsu_awvalid; // @[top.scala 23:25]
   wire [31:0] d_cache_io_from_lsu_wdata; // @[top.scala 23:25]
   wire [7:0] d_cache_io_from_lsu_wstrb; // @[top.scala 23:25]
   wire  d_cache_io_to_lsu_arready; // @[top.scala 23:25]
   wire [63:0] d_cache_io_to_lsu_rdata; // @[top.scala 23:25]
   wire  d_cache_io_to_lsu_rvalid; // @[top.scala 23:25]
+  wire  d_cache_io_to_lsu_awready; // @[top.scala 23:25]
   wire  d_cache_io_to_lsu_bvalid; // @[top.scala 23:25]
   wire [31:0] d_cache_io_to_axi_araddr; // @[top.scala 23:25]
   wire  d_cache_io_to_axi_arvalid; // @[top.scala 23:25]
@@ -201,11 +205,13 @@ module top(
     .io_axi_in_arready(lsu_step_io_axi_in_arready),
     .io_axi_in_rdata(lsu_step_io_axi_in_rdata),
     .io_axi_in_rvalid(lsu_step_io_axi_in_rvalid),
+    .io_axi_in_awready(lsu_step_io_axi_in_awready),
     .io_axi_in_bvalid(lsu_step_io_axi_in_bvalid),
     .io_axi_out_araddr(lsu_step_io_axi_out_araddr),
     .io_axi_out_arvalid(lsu_step_io_axi_out_arvalid),
     .io_axi_out_rready(lsu_step_io_axi_out_rready),
     .io_axi_out_awaddr(lsu_step_io_axi_out_awaddr),
+    .io_axi_out_awvalid(lsu_step_io_axi_out_awvalid),
     .io_axi_out_wdata(lsu_step_io_axi_out_wdata),
     .io_axi_out_wstrb(lsu_step_io_axi_out_wstrb)
   );
@@ -279,11 +285,13 @@ module top(
     .io_from_lsu_arvalid(d_cache_io_from_lsu_arvalid),
     .io_from_lsu_rready(d_cache_io_from_lsu_rready),
     .io_from_lsu_awaddr(d_cache_io_from_lsu_awaddr),
+    .io_from_lsu_awvalid(d_cache_io_from_lsu_awvalid),
     .io_from_lsu_wdata(d_cache_io_from_lsu_wdata),
     .io_from_lsu_wstrb(d_cache_io_from_lsu_wstrb),
     .io_to_lsu_arready(d_cache_io_to_lsu_arready),
     .io_to_lsu_rdata(d_cache_io_to_lsu_rdata),
     .io_to_lsu_rvalid(d_cache_io_to_lsu_rvalid),
+    .io_to_lsu_awready(d_cache_io_to_lsu_awready),
     .io_to_lsu_bvalid(d_cache_io_to_lsu_bvalid),
     .io_to_axi_araddr(d_cache_io_to_axi_araddr),
     .io_to_axi_arvalid(d_cache_io_to_axi_arvalid),
@@ -371,6 +379,7 @@ module top(
   assign lsu_step_io_axi_in_arready = d_cache_io_to_lsu_arready; // @[top.scala 36:24]
   assign lsu_step_io_axi_in_rdata = d_cache_io_to_lsu_rdata; // @[top.scala 36:24]
   assign lsu_step_io_axi_in_rvalid = d_cache_io_to_lsu_rvalid; // @[top.scala 36:24]
+  assign lsu_step_io_axi_in_awready = d_cache_io_to_lsu_awready; // @[top.scala 36:24]
   assign lsu_step_io_axi_in_bvalid = d_cache_io_to_lsu_bvalid; // @[top.scala 36:24]
   assign arbiter_clock = clock;
   assign arbiter_reset = reset;
@@ -409,6 +418,7 @@ module top(
   assign d_cache_io_from_lsu_arvalid = lsu_step_io_axi_out_arvalid; // @[top.scala 37:25]
   assign d_cache_io_from_lsu_rready = lsu_step_io_axi_out_rready; // @[top.scala 37:25]
   assign d_cache_io_from_lsu_awaddr = lsu_step_io_axi_out_awaddr; // @[top.scala 37:25]
+  assign d_cache_io_from_lsu_awvalid = lsu_step_io_axi_out_awvalid; // @[top.scala 37:25]
   assign d_cache_io_from_lsu_wdata = lsu_step_io_axi_out_wdata; // @[top.scala 37:25]
   assign d_cache_io_from_lsu_wstrb = lsu_step_io_axi_out_wstrb; // @[top.scala 37:25]
   assign d_cache_io_from_axi_rdata = arbiter_io_lsu_axi_out_rdata; // @[top.scala 35:25]
