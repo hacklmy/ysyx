@@ -15,16 +15,12 @@ module AXI_ARBITER(
   input  [7:0]  io_lsu_axi_in_wstrb,
   input         io_lsu_axi_in_wvalid,
   input         io_lsu_axi_in_bready,
-  output        io_lsu_axi_out_arready,
   output [63:0] io_lsu_axi_out_rdata,
   output        io_lsu_axi_out_rvalid,
-  output        io_lsu_axi_out_awready,
   output        io_lsu_axi_out_wready,
   output        io_lsu_axi_out_bvalid,
-  input         io_axi_in_arready,
   input  [63:0] io_axi_in_rdata,
   input         io_axi_in_rvalid,
-  input         io_axi_in_awready,
   input         io_axi_in_wready,
   input         io_axi_in_bvalid,
   output [31:0] io_axi_out_araddr,
@@ -55,10 +51,8 @@ module AXI_ARBITER(
   wire [7:0] _GEN_29 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_wstrb : 8'h0; // @[axi_arbiter.scala 46:46 48:28]
   wire  _GEN_30 = io_lsu_axi_in_arvalid & io_lsu_axi_in_wvalid; // @[axi_arbiter.scala 46:46 48:28]
   wire  _GEN_31 = io_lsu_axi_in_arvalid & io_lsu_axi_in_bready; // @[axi_arbiter.scala 46:46 48:28]
-  wire  _GEN_32 = io_lsu_axi_in_arvalid & io_axi_in_arready; // @[axi_arbiter.scala 46:46 49:32]
   wire [63:0] _GEN_33 = io_lsu_axi_in_arvalid ? io_axi_in_rdata : 64'h0; // @[axi_arbiter.scala 46:46 49:32]
   wire  _GEN_34 = io_lsu_axi_in_arvalid & io_axi_in_rvalid; // @[axi_arbiter.scala 46:46 49:32]
-  wire  _GEN_35 = io_lsu_axi_in_arvalid & io_axi_in_awready; // @[axi_arbiter.scala 46:46 49:32]
   wire  _GEN_36 = io_lsu_axi_in_arvalid & io_axi_in_wready; // @[axi_arbiter.scala 46:46 49:32]
   wire  _GEN_37 = io_lsu_axi_in_arvalid & io_axi_in_bvalid; // @[axi_arbiter.scala 46:46 49:32]
   wire [63:0] _GEN_39 = io_lsu_axi_in_arvalid ? 64'h0 : _GEN_11; // @[axi_arbiter.scala 46:46 50:32]
@@ -72,10 +66,8 @@ module AXI_ARBITER(
   wire [7:0] _GEN_51 = io_lsu_axi_in_awvalid ? io_lsu_axi_in_wstrb : _GEN_29; // @[axi_arbiter.scala 41:40 43:28]
   wire  _GEN_52 = io_lsu_axi_in_awvalid ? io_lsu_axi_in_wvalid : _GEN_30; // @[axi_arbiter.scala 41:40 43:28]
   wire  _GEN_53 = io_lsu_axi_in_awvalid ? io_lsu_axi_in_bready : _GEN_31; // @[axi_arbiter.scala 41:40 43:28]
-  wire  _GEN_54 = io_lsu_axi_in_awvalid ? io_axi_in_arready : _GEN_32; // @[axi_arbiter.scala 41:40 44:32]
   wire [63:0] _GEN_55 = io_lsu_axi_in_awvalid ? io_axi_in_rdata : _GEN_33; // @[axi_arbiter.scala 41:40 44:32]
   wire  _GEN_56 = io_lsu_axi_in_awvalid ? io_axi_in_rvalid : _GEN_34; // @[axi_arbiter.scala 41:40 44:32]
-  wire  _GEN_57 = io_lsu_axi_in_awvalid ? io_axi_in_awready : _GEN_35; // @[axi_arbiter.scala 41:40 44:32]
   wire  _GEN_58 = io_lsu_axi_in_awvalid ? io_axi_in_wready : _GEN_36; // @[axi_arbiter.scala 41:40 44:32]
   wire  _GEN_59 = io_lsu_axi_in_awvalid ? io_axi_in_bvalid : _GEN_37; // @[axi_arbiter.scala 41:40 44:32]
   wire [63:0] _GEN_61 = io_lsu_axi_in_awvalid ? 64'h0 : _GEN_39; // @[axi_arbiter.scala 41:40 45:32]
@@ -91,10 +83,8 @@ module AXI_ARBITER(
   wire [7:0] _GEN_75 = state == 2'h3 ? io_lsu_axi_in_wstrb : 8'h0; // @[axi_arbiter.scala 78:39 79:24 87:24]
   wire  _GEN_76 = state == 2'h3 & io_lsu_axi_in_wvalid; // @[axi_arbiter.scala 78:39 79:24 87:24]
   wire  _GEN_77 = state == 2'h3 & io_lsu_axi_in_bready; // @[axi_arbiter.scala 78:39 79:24 87:24]
-  wire  _GEN_78 = state == 2'h3 & io_axi_in_arready; // @[axi_arbiter.scala 78:39 80:28 88:28]
   wire [63:0] _GEN_79 = state == 2'h3 ? io_axi_in_rdata : 64'h0; // @[axi_arbiter.scala 78:39 80:28 88:28]
   wire  _GEN_80 = state == 2'h3 & io_axi_in_rvalid; // @[axi_arbiter.scala 78:39 80:28 88:28]
-  wire  _GEN_81 = state == 2'h3 & io_axi_in_awready; // @[axi_arbiter.scala 78:39 80:28 88:28]
   wire  _GEN_82 = state == 2'h3 & io_axi_in_wready; // @[axi_arbiter.scala 78:39 80:28 88:28]
   wire  _GEN_83 = state == 2'h3 & io_axi_in_bvalid; // @[axi_arbiter.scala 78:39 80:28 88:28]
   wire [1:0] _GEN_90 = state == 2'h3 ? _GEN_68 : state; // @[axi_arbiter.scala 18:24 78:39]
@@ -107,10 +97,8 @@ module AXI_ARBITER(
   wire [7:0] _GEN_97 = state == 2'h2 ? io_lsu_axi_in_wstrb : _GEN_75; // @[axi_arbiter.scala 70:39 71:24]
   wire  _GEN_98 = state == 2'h2 ? io_lsu_axi_in_wvalid : _GEN_76; // @[axi_arbiter.scala 70:39 71:24]
   wire  _GEN_99 = state == 2'h2 ? io_lsu_axi_in_bready : _GEN_77; // @[axi_arbiter.scala 70:39 71:24]
-  wire  _GEN_100 = state == 2'h2 ? io_axi_in_arready : _GEN_78; // @[axi_arbiter.scala 70:39 72:28]
   wire [63:0] _GEN_101 = state == 2'h2 ? io_axi_in_rdata : _GEN_79; // @[axi_arbiter.scala 70:39 72:28]
   wire  _GEN_102 = state == 2'h2 ? io_axi_in_rvalid : _GEN_80; // @[axi_arbiter.scala 70:39 72:28]
-  wire  _GEN_103 = state == 2'h2 ? io_axi_in_awready : _GEN_81; // @[axi_arbiter.scala 70:39 72:28]
   wire  _GEN_104 = state == 2'h2 ? io_axi_in_wready : _GEN_82; // @[axi_arbiter.scala 70:39 72:28]
   wire  _GEN_105 = state == 2'h2 ? io_axi_in_bvalid : _GEN_83; // @[axi_arbiter.scala 70:39 72:28]
   wire [31:0] _GEN_113 = state == 2'h1 ? io_ifu_axi_in_araddr : _GEN_91; // @[axi_arbiter.scala 62:39 63:24]
@@ -124,18 +112,14 @@ module AXI_ARBITER(
   wire  _GEN_121 = state == 2'h1 ? 1'h0 : _GEN_99; // @[axi_arbiter.scala 62:39 63:24]
   wire [63:0] _GEN_123 = state == 2'h1 ? io_axi_in_rdata : 64'h0; // @[axi_arbiter.scala 62:39 64:28]
   wire  _GEN_124 = state == 2'h1 & io_axi_in_rvalid; // @[axi_arbiter.scala 62:39 64:28]
-  wire  _GEN_128 = state == 2'h1 ? 1'h0 : _GEN_100; // @[axi_arbiter.scala 62:39 65:28]
   wire [63:0] _GEN_129 = state == 2'h1 ? 64'h0 : _GEN_101; // @[axi_arbiter.scala 62:39 65:28]
   wire  _GEN_130 = state == 2'h1 ? 1'h0 : _GEN_102; // @[axi_arbiter.scala 62:39 65:28]
-  wire  _GEN_131 = state == 2'h1 ? 1'h0 : _GEN_103; // @[axi_arbiter.scala 62:39 65:28]
   wire  _GEN_132 = state == 2'h1 ? 1'h0 : _GEN_104; // @[axi_arbiter.scala 62:39 65:28]
   wire  _GEN_133 = state == 2'h1 ? 1'h0 : _GEN_105; // @[axi_arbiter.scala 62:39 65:28]
   assign io_ifu_axi_out_rdata = state == 2'h0 ? _GEN_61 : _GEN_123; // @[axi_arbiter.scala 40:27]
   assign io_ifu_axi_out_rvalid = state == 2'h0 ? _GEN_62 : _GEN_124; // @[axi_arbiter.scala 40:27]
-  assign io_lsu_axi_out_arready = state == 2'h0 ? _GEN_54 : _GEN_128; // @[axi_arbiter.scala 40:27]
   assign io_lsu_axi_out_rdata = state == 2'h0 ? _GEN_55 : _GEN_129; // @[axi_arbiter.scala 40:27]
   assign io_lsu_axi_out_rvalid = state == 2'h0 ? _GEN_56 : _GEN_130; // @[axi_arbiter.scala 40:27]
-  assign io_lsu_axi_out_awready = state == 2'h0 ? _GEN_57 : _GEN_131; // @[axi_arbiter.scala 40:27]
   assign io_lsu_axi_out_wready = state == 2'h0 ? _GEN_58 : _GEN_132; // @[axi_arbiter.scala 40:27]
   assign io_lsu_axi_out_bvalid = state == 2'h0 ? _GEN_59 : _GEN_133; // @[axi_arbiter.scala 40:27]
   assign io_axi_out_araddr = state == 2'h0 ? _GEN_45 : _GEN_113; // @[axi_arbiter.scala 40:27]

@@ -11,10 +11,8 @@ module AXI(
   input  [7:0]  io_axi_in_wstrb,
   input         io_axi_in_wvalid,
   input         io_axi_in_bready,
-  output        io_axi_out_arready,
   output [63:0] io_axi_out_rdata,
   output        io_axi_out_rvalid,
-  output        io_axi_out_awready,
   output        io_axi_out_wready,
   output        io_axi_out_bvalid
 );
@@ -24,7 +22,6 @@ module AXI(
   reg [31:0] _RAND_2;
   reg [31:0] _RAND_3;
   reg [31:0] _RAND_4;
-  reg [31:0] _RAND_5;
 `endif // RANDOMIZE_REG_INIT
   wire [63:0] Mem_modle_Raddr; // @[AXI.scala 26:27]
   wire [63:0] Mem_modle_Rdata; // @[AXI.scala 26:27]
@@ -33,7 +30,6 @@ module AXI(
   wire [7:0] Mem_modle_Wmask; // @[AXI.scala 26:27]
   wire  Mem_modle_Write_en; // @[AXI.scala 26:27]
   wire  Mem_modle_Read_en; // @[AXI.scala 26:27]
-  reg  axi_awready; // @[AXI.scala 13:30]
   reg  axi_wready; // @[AXI.scala 14:29]
   reg  axi_bvalid; // @[AXI.scala 17:29]
   reg  axi_arready; // @[AXI.scala 19:30]
@@ -41,20 +37,16 @@ module AXI(
   reg [2:0] state; // @[AXI.scala 24:24]
   wire  _GEN_1 = io_axi_in_arvalid ? 1'h0 : axi_arready; // @[AXI.scala 49:42 51:29 19:30]
   wire  _GEN_2 = io_axi_in_arvalid | axi_rvalid; // @[AXI.scala 49:42 52:28 21:29]
-  wire  _GEN_4 = io_axi_in_awvalid & io_axi_in_wvalid ? 1'h0 : axi_awready; // @[AXI.scala 39:56 41:29 13:30]
   wire  _GEN_5 = io_axi_in_awvalid & io_axi_in_wvalid ? 1'h0 : axi_wready; // @[AXI.scala 39:56 42:28 14:29]
   wire  _GEN_6 = io_axi_in_awvalid & io_axi_in_wvalid | axi_bvalid; // @[AXI.scala 39:56 43:28 17:29]
   wire  _GEN_7 = io_axi_in_awvalid & io_axi_in_wvalid ? axi_arready : _GEN_1; // @[AXI.scala 19:30 39:56]
-  wire  _GEN_11 = io_axi_in_bready | axi_awready; // @[AXI.scala 56:35 59:29 13:30]
   wire  _GEN_12 = io_axi_in_bready | axi_wready; // @[AXI.scala 56:35 60:28 14:29]
   wire [2:0] _GEN_13 = io_axi_in_rready ? 3'h0 : state; // @[AXI.scala 64:35 65:23 24:24]
   wire  _GEN_14 = io_axi_in_rready | axi_arready; // @[AXI.scala 64:35 66:29 19:30]
   wire  _GEN_15 = io_axi_in_rready ? 1'h0 : axi_rvalid; // @[AXI.scala 64:35 67:28 21:29]
   wire  _GEN_17 = 3'h4 == state ? _GEN_14 : axi_arready; // @[AXI.scala 37:18 19:30]
-  wire  _GEN_21 = 3'h3 == state ? _GEN_11 : axi_awready; // @[AXI.scala 37:18 13:30]
   wire  _GEN_22 = 3'h3 == state ? _GEN_12 : axi_wready; // @[AXI.scala 37:18 14:29]
   wire  _GEN_23 = 3'h3 == state ? axi_arready : _GEN_17; // @[AXI.scala 37:18 19:30]
-  wire  _GEN_26 = 3'h0 == state ? _GEN_4 : _GEN_21; // @[AXI.scala 37:18]
   wire  _GEN_27 = 3'h0 == state ? _GEN_5 : _GEN_22; // @[AXI.scala 37:18]
   wire  _GEN_29 = 3'h0 == state ? _GEN_7 : _GEN_23; // @[AXI.scala 37:18]
   MEM Mem_modle ( // @[AXI.scala 26:27]
@@ -66,10 +58,8 @@ module AXI(
     .Write_en(Mem_modle_Write_en),
     .Read_en(Mem_modle_Read_en)
   );
-  assign io_axi_out_arready = axi_arready; // @[AXI.scala 71:24]
   assign io_axi_out_rdata = Mem_modle_Rdata; // @[AXI.scala 72:22]
   assign io_axi_out_rvalid = axi_rvalid; // @[AXI.scala 73:23]
-  assign io_axi_out_awready = axi_awready; // @[AXI.scala 74:24]
   assign io_axi_out_wready = axi_wready; // @[AXI.scala 75:23]
   assign io_axi_out_bvalid = axi_bvalid; // @[AXI.scala 76:23]
   assign Mem_modle_Raddr = {32'h0,io_axi_in_araddr}; // @[Cat.scala 31:58]
@@ -79,7 +69,6 @@ module AXI(
   assign Mem_modle_Write_en = axi_wready & io_axi_in_wvalid; // @[AXI.scala 31:48]
   assign Mem_modle_Read_en = axi_arready & io_axi_in_arvalid; // @[AXI.scala 32:48]
   always @(posedge clock) begin
-    axi_awready <= reset | _GEN_26; // @[AXI.scala 13:{30,30}]
     axi_wready <= reset | _GEN_27; // @[AXI.scala 14:{29,29}]
     if (reset) begin // @[AXI.scala 17:29]
       axi_bvalid <= 1'h0; // @[AXI.scala 17:29]
@@ -155,17 +144,15 @@ initial begin
     `endif
 `ifdef RANDOMIZE_REG_INIT
   _RAND_0 = {1{`RANDOM}};
-  axi_awready = _RAND_0[0:0];
+  axi_wready = _RAND_0[0:0];
   _RAND_1 = {1{`RANDOM}};
-  axi_wready = _RAND_1[0:0];
+  axi_bvalid = _RAND_1[0:0];
   _RAND_2 = {1{`RANDOM}};
-  axi_bvalid = _RAND_2[0:0];
+  axi_arready = _RAND_2[0:0];
   _RAND_3 = {1{`RANDOM}};
-  axi_arready = _RAND_3[0:0];
+  axi_rvalid = _RAND_3[0:0];
   _RAND_4 = {1{`RANDOM}};
-  axi_rvalid = _RAND_4[0:0];
-  _RAND_5 = {1{`RANDOM}};
-  state = _RAND_5[2:0];
+  state = _RAND_4[2:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
