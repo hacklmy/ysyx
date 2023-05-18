@@ -1356,6 +1356,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__13(Vtop___024root* vlSelf) {
                                                        & (vlSelf->top__DOT__idu_step_io_inst 
                                                           >> 0x14U))])
                                                       : 0ULL))));
+    vlSelf->top__DOT__lsu_step__DOT___GEN_1 = ((0x44U 
+                                                == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_188)) 
+                                               | (IData)(vlSelf->top__DOT__lsu_step__DOT__axi_awvalid));
     vlSelf->top__DOT__idu_step_io_ctrl_sign_src2_is_imm 
         = ((0x45U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_188)) 
            | ((0x43U == (IData)(vlSelf->top__DOT__idu_step__DOT___inst_type_T_188)) 
@@ -9643,9 +9646,4 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__13(Vtop___024root* vlSelf) {
                                                   (0x7fU 
                                                    & (IData)(vlSelf->top__DOT__exu_step__DOT__add_res))) 
                                                  | (IData)(vlSelf->top__DOT__d_cache__DOT__valid_1_78));
-    vlSelf->top__DOT__d_cache__DOT___GEN_1112 = ((0x4fU 
-                                                  == 
-                                                  (0x7fU 
-                                                   & (IData)(vlSelf->top__DOT__exu_step__DOT__add_res))) 
-                                                 | (IData)(vlSelf->top__DOT__d_cache__DOT__valid_1_79));
 }

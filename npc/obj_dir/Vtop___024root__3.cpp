@@ -80,6 +80,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__14(Vtop___024root* vlSelf) {
     QData/*63:0*/ top__DOT__d_cache__DOT___GEN_4858;
     QData/*63:0*/ top__DOT__d_cache__DOT___GEN_4871;
     // Body
+    vlSelf->top__DOT__d_cache__DOT___GEN_1112 = ((0x4fU 
+                                                  == 
+                                                  (0x7fU 
+                                                   & (IData)(vlSelf->top__DOT__exu_step__DOT__add_res))) 
+                                                 | (IData)(vlSelf->top__DOT__d_cache__DOT__valid_1_79));
     vlSelf->top__DOT__d_cache__DOT___GEN_1113 = ((0x50U 
                                                   == 
                                                   (0x7fU 
