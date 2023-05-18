@@ -127,6 +127,7 @@ module top(
   wire [63:0] d_cache_io_from_axi_rdata; // @[top.scala 23:25]
   wire  d_cache_io_from_axi_rvalid; // @[top.scala 23:25]
   wire  d_cache_io_from_axi_wready; // @[top.scala 23:25]
+  wire  d_cache_io_from_axi_bvalid; // @[top.scala 23:25]
   wire [31:0] idu_step_io_inst; // @[top.scala 46:26]
   wire [31:0] idu_step_io_inst_now; // @[top.scala 46:26]
   wire [4:0] idu_step_io_rs1; // @[top.scala 46:26]
@@ -295,7 +296,8 @@ module top(
     .io_to_axi_bready(d_cache_io_to_axi_bready),
     .io_from_axi_rdata(d_cache_io_from_axi_rdata),
     .io_from_axi_rvalid(d_cache_io_from_axi_rvalid),
-    .io_from_axi_wready(d_cache_io_from_axi_wready)
+    .io_from_axi_wready(d_cache_io_from_axi_wready),
+    .io_from_axi_bvalid(d_cache_io_from_axi_bvalid)
   );
   IDU idu_step ( // @[top.scala 46:26]
     .io_inst(idu_step_io_inst),
@@ -412,6 +414,7 @@ module top(
   assign d_cache_io_from_axi_rdata = arbiter_io_lsu_axi_out_rdata; // @[top.scala 35:25]
   assign d_cache_io_from_axi_rvalid = arbiter_io_lsu_axi_out_rvalid; // @[top.scala 35:25]
   assign d_cache_io_from_axi_wready = arbiter_io_lsu_axi_out_wready; // @[top.scala 35:25]
+  assign d_cache_io_from_axi_bvalid = arbiter_io_lsu_axi_out_bvalid; // @[top.scala 35:25]
   assign idu_step_io_inst = ~ifu_step_io_inst_valid & ~pc_valid & ~execute_end ? ifu_step_io_inst_reg : ifu_step_io_inst
     ; // @[top.scala 96:28]
   assign exu_step_clock = clock;
