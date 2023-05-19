@@ -372,6 +372,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
   #endif
   printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
+  if(waddr==0x80000d40)exit(0);
   uint8_t* p = guest_to_host(waddr);
   for (int i = 0; i < 8; i++) {
     if (wmask & 0x1) *p = (wdata & 0xff);

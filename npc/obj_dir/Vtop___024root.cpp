@@ -10439,6 +10439,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__10(Vtop___024root* vlSelf) {
                                    : (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_11181)));
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"read addr : %x  write addr : %x\n",
+                   32,(IData)(vlSelf->top__DOT__exu_step__DOT__add_res),
+                   32,(IData)(vlSelf->top__DOT__exu_step__DOT__add_res));
+    }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
         VL_FWRITEF(0x80000002U,"d_cache state:%1#\n",
                    3,vlSelf->top__DOT__d_cache__DOT__state);
     }
@@ -15316,16 +15321,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__10(Vtop___024root* vlSelf) {
             if ((2U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
                 vlSelf->top__DOT__i_cache__DOT__tag_1_75 
                     = vlSelf->top__DOT__i_cache__DOT___GEN_4955;
-            }
-        }
-    }
-    if (vlSelf->reset) {
-        vlSelf->top__DOT__i_cache__DOT__tag_1_76 = 0U;
-    } else if ((0U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-        if ((1U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-            if ((2U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-                vlSelf->top__DOT__i_cache__DOT__tag_1_76 
-                    = vlSelf->top__DOT__i_cache__DOT___GEN_4956;
             }
         }
     }
