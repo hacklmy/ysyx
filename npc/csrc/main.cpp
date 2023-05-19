@@ -332,7 +332,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
   #endif
 }
 
-
+long long read_data = 0;
 extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   // 总是往地址为`waddr & ~0x7ull`的8字节按写掩码`wmask`写入`wdata`
   // `wmask`中每比特表示`wdata`中1个字节的掩码,
@@ -372,7 +372,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
     printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
   #endif
   printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
-  //if(waddr==0x80000d40)exit(0);
+  if(waddr==0x80000d40)read_data=wdata;
   uint8_t* p = guest_to_host(waddr);
   for (int i = 0; i < 8; i++) {
     if (wmask & 0x1) *p = (wdata & 0xff);
@@ -816,6 +816,7 @@ int main(int argc, char** argv) {
   init_difftest(difftest_file,CONFIG_MSIZE);
   #endif
   while(sdb_mainloop() && !cpu_stop && !SDL_quite);
+  printf("read data:%lld\n",read_data);
   if(stop_status==0)printf("\33[1;32mHIT GOOD TRAP\n\33[0m");
   else printf("\33[1;31mHIT BAD TRAP\n\33[0m");
   delete top;
