@@ -822,7 +822,7 @@ int main(int argc, char** argv) {
   #endif
   while(sdb_mainloop() && !cpu_stop && !SDL_quite);
   printf("%lld\n",*((long long *)(0x80000d40 - CONFIG_MBASE + pmem)));
-  printf("%lld %d\n",write_data,write_mask);
+  printf("%lld %x\n",write_data,write_mask);
   if(stop_status==0)printf("\33[1;32mHIT GOOD TRAP\n\33[0m");
   else printf("\33[1;31mHIT BAD TRAP\n\33[0m");
   delete top;
