@@ -6242,6 +6242,7 @@ VL_MODULE(Vtop___024root) {
     CData/*1:0*/ __Vdlyvdim0__top__DOT__exu_step__DOT__CSR_Reg__v2;
     CData/*0:0*/ __Vclklast__TOP__clock;
     QData/*63:0*/ __Vtask_pmem_read__0__Rdata;
+    QData/*63:0*/ __Vdly__top__DOT__d_cache__DOT__receive_data;
     QData/*63:0*/ __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v0;
     QData/*63:0*/ __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v1;
     QData/*63:0*/ __Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v2;

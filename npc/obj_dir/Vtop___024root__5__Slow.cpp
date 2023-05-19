@@ -7406,6 +7406,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->__Vdly__top__DOT__i_cache__DOT__way1_hit = VL_RAND_RESET_I(1);
     vlSelf->__Vdly__top__DOT__i_cache__DOT__state = VL_RAND_RESET_I(3);
     vlSelf->__Vdly__top__DOT__i_cache__DOT__way0_hit = VL_RAND_RESET_I(1);
+    vlSelf->__Vdly__top__DOT__d_cache__DOT__receive_data = VL_RAND_RESET_Q(64);
     vlSelf->__Vdly__top__DOT__d_cache__DOT__state = VL_RAND_RESET_I(3);
     vlSelf->__Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v0 = VL_RAND_RESET_Q(64);
     vlSelf->__Vdlyvval__top__DOT__exu_step__DOT__CSR_Reg__v1 = VL_RAND_RESET_Q(64);

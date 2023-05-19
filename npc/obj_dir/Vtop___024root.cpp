@@ -24,6 +24,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__9(Vtop___024root* vlSelf) {
     }
     vlSelf->__Vdly__top__DOT__lsu_step__DOT__state 
         = vlSelf->top__DOT__lsu_step__DOT__state;
+    vlSelf->__Vdly__top__DOT__d_cache__DOT__receive_data 
+        = vlSelf->top__DOT__d_cache__DOT__receive_data;
     vlSelf->__Vdly__top__DOT__d_cache__DOT__state = vlSelf->top__DOT__d_cache__DOT__state;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
         VL_FWRITEF(0x80000002U,"inst_store :%1# inst_load:%1#\n",
@@ -10397,11 +10399,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__10(Vtop___024root* vlSelf) {
         }
     }
     if (vlSelf->reset) {
-        vlSelf->top__DOT__d_cache__DOT__receive_data = 0ULL;
+        vlSelf->__Vdly__top__DOT__d_cache__DOT__receive_data = 0ULL;
     } else if ((0U != (IData)(vlSelf->top__DOT__d_cache__DOT__state))) {
         if ((1U != (IData)(vlSelf->top__DOT__d_cache__DOT__state))) {
             if ((2U != (IData)(vlSelf->top__DOT__d_cache__DOT__state))) {
-                vlSelf->top__DOT__d_cache__DOT__receive_data 
+                vlSelf->__Vdly__top__DOT__d_cache__DOT__receive_data 
                     = vlSelf->top__DOT__d_cache__DOT___GEN_11182;
             }
         }
@@ -10449,6 +10451,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__10(Vtop___024root* vlSelf) {
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
         VL_FWRITEF(0x80000002U,"bvalid:%1#\n",1,vlSelf->top__DOT__arbiter_io_lsu_axi_out_bvalid);
+    }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"receive data:%x\n",
+                   64,vlSelf->top__DOT__d_cache__DOT__receive_data);
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
         VL_FWRITEF(0x80000002U,"to lsu rdata:%x\n",
@@ -10596,6 +10602,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__10(Vtop___024root* vlSelf) {
                                          & (IData)(vlSelf->top__DOT__i_cache__DOT___GEN_512)));
     vlSelf->top__DOT__axi__DOT__state = vlSelf->__Vdly__top__DOT__axi__DOT__state;
     vlSelf->top__DOT__arbiter__DOT__state = vlSelf->__Vdly__top__DOT__arbiter__DOT__state;
+    vlSelf->top__DOT__d_cache__DOT__receive_data = vlSelf->__Vdly__top__DOT__d_cache__DOT__receive_data;
     vlSelf->top__DOT__exu_step__DOT__Regfile[__Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0] 
         = __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0;
     vlSelf->top__DOT__d_cache__DOT__way1_hit = ((~ (IData)(vlSelf->reset)) 
