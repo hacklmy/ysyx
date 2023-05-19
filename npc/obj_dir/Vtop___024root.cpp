@@ -45,10 +45,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__9(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__i_cache__DOT__way1_hit;
     vlSelf->top__DOT__axi__DOT__axi_awready = ((IData)(vlSelf->reset) 
                                                | (IData)(vlSelf->top__DOT__axi__DOT___GEN_26));
-    vlSelf->top__DOT__axi__DOT__axi_arready = ((IData)(vlSelf->reset) 
-                                               | (IData)(vlSelf->top__DOT__axi__DOT___GEN_29));
     vlSelf->top__DOT__axi__DOT__axi_wready = ((IData)(vlSelf->reset) 
                                               | (IData)(vlSelf->top__DOT__axi__DOT___GEN_27));
+    vlSelf->top__DOT__axi__DOT__axi_arready = ((IData)(vlSelf->reset) 
+                                               | (IData)(vlSelf->top__DOT__axi__DOT___GEN_29));
     vlSelf->top__DOT__lsu_step__DOT__axi_bready = ((IData)(vlSelf->reset) 
                                                    | (IData)(vlSelf->top__DOT__lsu_step__DOT___GEN_31));
     vlSelf->top__DOT__ifu_step__DOT__inst_ready = ((IData)(vlSelf->reset) 
