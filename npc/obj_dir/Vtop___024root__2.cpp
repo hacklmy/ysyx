@@ -1459,7 +1459,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__13(Vtop___024root* vlSelf) {
             = vlSelf->top__DOT__exu_step__DOT__CSR_Reg
             [3U];
     }
-    vlSelf->top__DOT__d_cache__DOT___GEN_15379 = ((0U 
+    vlSelf->top__DOT__d_cache__DOT___GEN_15374 = ((0U 
                                                    == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
                                                    ? 0ULL
                                                    : 

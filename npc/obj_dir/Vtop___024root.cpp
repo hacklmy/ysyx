@@ -10439,6 +10439,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__10(Vtop___024root* vlSelf) {
                    3,vlSelf->top__DOT__d_cache__DOT__state);
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"bvalid:%1#\n",1,vlSelf->top__DOT__arbiter_io_lsu_axi_out_bvalid);
+    }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
         VL_FWRITEF(0x80000002U,"to lsu rdata:%x\n",
                    64,vlSelf->top__DOT__d_cache_io_to_lsu_rdata);
     }
