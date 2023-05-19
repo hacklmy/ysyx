@@ -15,6 +15,7 @@ module AXI(
   output [63:0] io_axi_out_rdata,
   output        io_axi_out_rvalid,
   output        io_axi_out_awready,
+  output        io_axi_out_wready,
   output        io_axi_out_bvalid
 );
 `ifdef RANDOMIZE_REG_INIT
@@ -69,6 +70,7 @@ module AXI(
   assign io_axi_out_rdata = Mem_modle_Rdata; // @[AXI.scala 72:22]
   assign io_axi_out_rvalid = axi_rvalid; // @[AXI.scala 73:23]
   assign io_axi_out_awready = axi_awready; // @[AXI.scala 74:24]
+  assign io_axi_out_wready = axi_wready; // @[AXI.scala 75:23]
   assign io_axi_out_bvalid = axi_bvalid; // @[AXI.scala 76:23]
   assign Mem_modle_Raddr = {32'h0,io_axi_in_araddr}; // @[Cat.scala 31:58]
   assign Mem_modle_Waddr = {{32'd0}, io_axi_in_awaddr}; // @[AXI.scala 28:24]
