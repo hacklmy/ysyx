@@ -148,8 +148,8 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                    == (IData)(vlSelf->top__DOT__i_cache__DOT__state))
                                                    ? 1U
                                                    : (IData)(vlSelf->top__DOT__i_cache__DOT__state)));
-    vlSelf->top__DOT__d_cache__DOT___T_16 = (0U == (IData)(vlSelf->top__DOT__d_cache__DOT__state));
-    vlSelf->top__DOT__d_cache__DOT___T_17 = (1U == (IData)(vlSelf->top__DOT__d_cache__DOT__state));
+    vlSelf->top__DOT__d_cache__DOT___T_18 = (0U == (IData)(vlSelf->top__DOT__d_cache__DOT__state));
+    vlSelf->top__DOT__d_cache__DOT___T_19 = (1U == (IData)(vlSelf->top__DOT__d_cache__DOT__state));
     vlSelf->top__DOT__d_cache__DOT___GEN_16301 = ((0U 
                                                    != (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
                                                   & (1U 

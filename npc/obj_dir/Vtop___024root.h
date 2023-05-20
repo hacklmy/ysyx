@@ -1438,8 +1438,8 @@ VL_MODULE(Vtop___024root) {
             CData/*0:0*/ top__DOT__d_cache__DOT___GEN_398;
             CData/*0:0*/ top__DOT__d_cache__DOT___GEN_512;
             CData/*2:0*/ top__DOT__d_cache__DOT__state;
-            CData/*0:0*/ top__DOT__d_cache__DOT___T_16;
-            CData/*0:0*/ top__DOT__d_cache__DOT___T_17;
+            CData/*0:0*/ top__DOT__d_cache__DOT___T_18;
+            CData/*0:0*/ top__DOT__d_cache__DOT___T_19;
             CData/*0:0*/ top__DOT__d_cache__DOT___GEN_531;
             CData/*0:0*/ top__DOT__d_cache__DOT___GEN_644;
             CData/*0:0*/ top__DOT__d_cache__DOT___GEN_645;

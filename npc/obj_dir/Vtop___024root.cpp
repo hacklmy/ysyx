@@ -10456,8 +10456,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__9(Vtop___024root* vlSelf) {
         VL_FWRITEF(0x80000002U,"receive data:%x\n",
                    64,vlSelf->top__DOT__d_cache__DOT__receive_data);
     }
-    if (VL_UNLIKELY((((((~ (IData)(vlSelf->top__DOT__d_cache__DOT___T_16)) 
-                        & (IData)(vlSelf->top__DOT__d_cache__DOT___T_17)) 
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"wstrb:%x\n",8,vlSelf->top__DOT__idu_step_io_ctrl_sign_Wmask);
+    }
+    if (VL_UNLIKELY((((((~ (IData)(vlSelf->top__DOT__d_cache__DOT___T_18)) 
+                        & (IData)(vlSelf->top__DOT__d_cache__DOT___T_19)) 
                        & (IData)(vlSelf->top__DOT__d_cache__DOT__way0_hit)) 
                       & (IData)(vlSelf->top__DOT__lsu_step__DOT__axi_rready)) 
                      & (~ (IData)(vlSelf->reset))))) {
