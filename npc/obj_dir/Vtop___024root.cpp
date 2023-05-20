@@ -10484,6 +10484,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__9(Vtop___024root* vlSelf) {
         VL_FWRITEF(0x80000002U,"to lsu rdata:%x\n",
                    64,vlSelf->top__DOT__d_cache_io_to_lsu_rdata);
     }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"cacheline0:%x   cacheline1:%x\n",
+                   64,vlSelf->top__DOT__d_cache__DOT___GEN_2957,
+                   64,vlSelf->top__DOT__d_cache__DOT___GEN_4497);
+    }
     __Vdlyvval__top__DOT__exu_step__DOT__Regfile__v0 
         = vlSelf->top__DOT__exu_step__DOT__Regfile_MPORT_data;
     __Vdlyvdim0__top__DOT__exu_step__DOT__Regfile__v0 
@@ -15452,16 +15457,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__9(Vtop___024root* vlSelf) {
             if ((2U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
                 vlSelf->top__DOT__i_cache__DOT__tag_1_82 
                     = vlSelf->top__DOT__i_cache__DOT___GEN_4962;
-            }
-        }
-    }
-    if (vlSelf->reset) {
-        vlSelf->top__DOT__i_cache__DOT__tag_1_83 = 0U;
-    } else if ((0U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-        if ((1U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-            if ((2U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-                vlSelf->top__DOT__i_cache__DOT__tag_1_83 
-                    = vlSelf->top__DOT__i_cache__DOT___GEN_4963;
             }
         }
     }
