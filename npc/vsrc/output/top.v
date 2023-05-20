@@ -38820,6 +38820,17 @@ module D_CACHE(
       end
     `endif
     `endif // SYNTHESIS
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (_T_1) begin
+          $fwrite(32'h80000002,"cacheline0:%x   cacheline1:%x\n",_GEN_2957,_GEN_4497); // @[d_cache.scala 342:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
