@@ -2673,26 +2673,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+18,(vlSelf->top__DOT__idu_step_io_ctrl_sign_Readmem_en));
         tracep->fullIData(oldp+19,((IData)(vlSelf->top__DOT__exu_step__DOT__add_res)),32);
         tracep->fullQData(oldp+20,(vlSelf->top__DOT__exu_step_io_Mem_wdata),64);
-        tracep->fullCData(oldp+22,(((0x3023U == (0x707fU 
-                                                 & vlSelf->top__DOT__idu_step_io_inst))
-                                     ? 0xffU : ((0x1023U 
-                                                 == 
-                                                 (0x707fU 
-                                                  & vlSelf->top__DOT__idu_step_io_inst))
-                                                 ? 3U
-                                                 : 
-                                                ((0x23U 
-                                                  == 
-                                                  (0x707fU 
-                                                   & vlSelf->top__DOT__idu_step_io_inst))
-                                                  ? 1U
-                                                  : 
-                                                 ((0x2023U 
-                                                   == 
-                                                   (0x707fU 
-                                                    & vlSelf->top__DOT__idu_step_io_inst))
-                                                   ? 0xfU
-                                                   : 0U))))),8);
+        tracep->fullCData(oldp+22,(vlSelf->top__DOT__idu_step_io_ctrl_sign_Wmask),8);
         tracep->fullQData(oldp+23,(vlSelf->top__DOT__d_cache_io_to_lsu_rdata),64);
         tracep->fullBit(oldp+25,((1U & ((0U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
                                          ? ((0U == (IData)(vlSelf->top__DOT__arbiter__DOT__state))

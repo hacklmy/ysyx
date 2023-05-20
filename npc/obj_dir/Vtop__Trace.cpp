@@ -117,27 +117,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgBit(oldp+17,(vlSelf->top__DOT__idu_step_io_ctrl_sign_Readmem_en));
             tracep->chgIData(oldp+18,((IData)(vlSelf->top__DOT__exu_step__DOT__add_res)),32);
             tracep->chgQData(oldp+19,(vlSelf->top__DOT__exu_step_io_Mem_wdata),64);
-            tracep->chgCData(oldp+21,(((0x3023U == 
-                                        (0x707fU & vlSelf->top__DOT__idu_step_io_inst))
-                                        ? 0xffU : (
-                                                   (0x1023U 
-                                                    == 
-                                                    (0x707fU 
-                                                     & vlSelf->top__DOT__idu_step_io_inst))
-                                                    ? 3U
-                                                    : 
-                                                   ((0x23U 
-                                                     == 
-                                                     (0x707fU 
-                                                      & vlSelf->top__DOT__idu_step_io_inst))
-                                                     ? 1U
-                                                     : 
-                                                    ((0x2023U 
-                                                      == 
-                                                      (0x707fU 
-                                                       & vlSelf->top__DOT__idu_step_io_inst))
-                                                      ? 0xfU
-                                                      : 0U))))),8);
+            tracep->chgCData(oldp+21,(vlSelf->top__DOT__idu_step_io_ctrl_sign_Wmask),8);
             tracep->chgQData(oldp+22,(vlSelf->top__DOT__d_cache_io_to_lsu_rdata),64);
             tracep->chgBit(oldp+24,((1U & ((0U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
                                             ? ((0U 
