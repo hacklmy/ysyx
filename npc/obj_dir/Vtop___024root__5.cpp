@@ -47,6 +47,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__15(Vtop___024root* vlSelf) {
     QData/*63:0*/ top__DOT__exu_step__DOT___io_res2rd_T_162;
     // Body
     if ((3U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))) {
+        vlSelf->top__DOT__d_cache__DOT___GEN_11991 
+            = vlSelf->top__DOT__d_cache__DOT__dirty_1_37;
+        vlSelf->top__DOT__d_cache__DOT___GEN_11992 
+            = vlSelf->top__DOT__d_cache__DOT__dirty_1_38;
         vlSelf->top__DOT__d_cache__DOT___GEN_11993 
             = vlSelf->top__DOT__d_cache__DOT__dirty_1_39;
         vlSelf->top__DOT__d_cache__DOT___GEN_11994 
@@ -231,6 +235,38 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__15(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__d_cache__DOT___GEN_11824 
             = vlSelf->top__DOT__d_cache__DOT__write_back_data;
     } else {
+        vlSelf->top__DOT__d_cache__DOT___GEN_11991 
+            = ((4U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+                ? (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_37)
+                : ((5U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+                    ? ((1U == (IData)(vlSelf->top__DOT__d_cache__DOT__unuse_way))
+                        ? (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_37)
+                        : ((2U == (IData)(vlSelf->top__DOT__d_cache__DOT__unuse_way))
+                            ? (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_37)
+                            : ((IData)(vlSelf->top__DOT__d_cache__DOT__quene)
+                                ? ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_774)
+                                    ? ((0x25U != (0x7fU 
+                                                  & (IData)(vlSelf->top__DOT__exu_step__DOT__add_res))) 
+                                       & (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_37))
+                                    : (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_37))
+                                : (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_37))))
+                    : (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_37)));
+        vlSelf->top__DOT__d_cache__DOT___GEN_11992 
+            = ((4U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+                ? (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_38)
+                : ((5U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+                    ? ((1U == (IData)(vlSelf->top__DOT__d_cache__DOT__unuse_way))
+                        ? (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_38)
+                        : ((2U == (IData)(vlSelf->top__DOT__d_cache__DOT__unuse_way))
+                            ? (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_38)
+                            : ((IData)(vlSelf->top__DOT__d_cache__DOT__quene)
+                                ? ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_774)
+                                    ? ((0x26U != (0x7fU 
+                                                  & (IData)(vlSelf->top__DOT__exu_step__DOT__add_res))) 
+                                       & (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_38))
+                                    : (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_38))
+                                : (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_38))))
+                    : (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_38)));
         vlSelf->top__DOT__d_cache__DOT___GEN_11993 
             = ((4U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
                 ? (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_1_39)
@@ -2243,7 +2279,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__16(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___combo__TOP__16\n"); );
     // Body
-    vlSelf->top__DOT__d_cache__DOT___GEN_16280 = ((IData)(vlSelf->reset)
+    vlSelf->top__DOT__d_cache__DOT___GEN_16293 = ((IData)(vlSelf->reset)
                                                    ? 0ULL
                                                    : 
                                                   ((0U 

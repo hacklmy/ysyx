@@ -7789,7 +7789,7 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
                                     : vlSelf->top__DOT__d_cache__DOT__write_back_data))))
                     : vlSelf->top__DOT__d_cache__DOT__write_back_data));
     }
-    vlSelf->top__DOT__d_cache__DOT___GEN_16280 = ((IData)(vlSelf->reset)
+    vlSelf->top__DOT__d_cache__DOT___GEN_16293 = ((IData)(vlSelf->reset)
                                                    ? 0ULL
                                                    : 
                                                   ((0U 
