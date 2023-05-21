@@ -2507,7 +2507,7 @@ VL_MODULE(Vtop___024root) {
             CData/*0:0*/ top__DOT__d_cache__DOT___GEN_13104;
             CData/*0:0*/ top__DOT__d_cache__DOT___GEN_13105;
             CData/*0:0*/ top__DOT__d_cache__DOT___GEN_16455;
-            CData/*0:0*/ top__DOT__d_cache__DOT___GEN_17580;
+            CData/*0:0*/ top__DOT__d_cache__DOT___GEN_17836;
             CData/*6:0*/ top__DOT__idu_step__DOT___inst_type_T_188;
             CData/*6:0*/ top__DOT__idu_step__DOT___inst_now_T_194;
             CData/*1:0*/ top__DOT__exu_step__DOT___csr_index_T_5;
@@ -5946,7 +5946,7 @@ VL_MODULE(Vtop___024root) {
             QData/*63:0*/ top__DOT__d_cache__DOT___GEN_12848;
             QData/*63:0*/ top__DOT__d_cache__DOT___GEN_16537;
             QData/*63:0*/ top__DOT__d_cache__DOT___GEN_16541;
-            QData/*41:0*/ top__DOT__d_cache__DOT___GEN_17578;
+            QData/*41:0*/ top__DOT__d_cache__DOT___GEN_17834;
             QData/*63:0*/ top__DOT__exu_step__DOT__Regfile_MPORT_data;
             QData/*63:0*/ top__DOT__exu_step__DOT__CSR_Reg_MPORT_1_data;
             QData/*63:0*/ top__DOT__exu_step__DOT__CSR_Reg_MPORT_3_data;

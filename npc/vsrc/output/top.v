@@ -16594,6 +16594,7 @@ module D_CACHE(
   reg [31:0] _RAND_1030;
   reg [31:0] _RAND_1031;
 `endif // RANDOMIZE_REG_INIT
+  wire  _T_1 = ~reset; // @[d_cache.scala 15:11]
   reg [63:0] ram_0_0; // @[d_cache.scala 18:24]
   reg [63:0] ram_0_1; // @[d_cache.scala 18:24]
   reg [63:0] ram_0_2; // @[d_cache.scala 18:24]
@@ -17895,7 +17896,7 @@ module D_CACHE(
   wire  _GEN_253 = 7'h7d == index[6:0] ? valid_0_125 : _GEN_252; // @[d_cache.scala 55:{50,50}]
   wire  _GEN_254 = 7'h7e == index[6:0] ? valid_0_126 : _GEN_253; // @[d_cache.scala 55:{50,50}]
   wire  _GEN_255 = 7'h7f == index[6:0] ? valid_0_127 : _GEN_254; // @[d_cache.scala 55:{50,50}]
-  wire  _T_4 = _GEN_127 == _GEN_16801 & _GEN_255; // @[d_cache.scala 55:33]
+  wire  _T_6 = _GEN_127 == _GEN_16801 & _GEN_255; // @[d_cache.scala 55:33]
   wire [31:0] _GEN_258 = 7'h1 == index[6:0] ? tag_1_1 : tag_1_0; // @[d_cache.scala 60:{24,24}]
   wire [31:0] _GEN_259 = 7'h2 == index[6:0] ? tag_1_2 : _GEN_258; // @[d_cache.scala 60:{24,24}]
   wire [31:0] _GEN_260 = 7'h3 == index[6:0] ? tag_1_3 : _GEN_259; // @[d_cache.scala 60:{24,24}]
@@ -18150,11 +18151,10 @@ module D_CACHE(
   wire  _GEN_510 = 7'h7d == index[6:0] ? valid_1_125 : _GEN_509; // @[d_cache.scala 60:{50,50}]
   wire  _GEN_511 = 7'h7e == index[6:0] ? valid_1_126 : _GEN_510; // @[d_cache.scala 60:{50,50}]
   wire  _GEN_512 = 7'h7f == index[6:0] ? valid_1_127 : _GEN_511; // @[d_cache.scala 60:{50,50}]
-  wire  _T_9 = _GEN_384 == _GEN_16801 & _GEN_512; // @[d_cache.scala 60:33]
+  wire  _T_11 = _GEN_384 == _GEN_16801 & _GEN_512; // @[d_cache.scala 60:33]
   reg [2:0] state; // @[d_cache.scala 74:24]
-  wire  _T_15 = ~reset; // @[d_cache.scala 75:11]
-  wire  _T_18 = 3'h0 == state; // @[d_cache.scala 79:18]
-  wire  _T_19 = 3'h1 == state; // @[d_cache.scala 79:18]
+  wire  _T_20 = 3'h0 == state; // @[d_cache.scala 79:18]
+  wire  _T_21 = 3'h1 == state; // @[d_cache.scala 79:18]
   wire  _GEN_775 = 7'h1 == index[6:0] ? dirty_0_1 : dirty_0_0; // @[d_cache.scala 91:{27,27}]
   wire  _GEN_776 = 7'h2 == index[6:0] ? dirty_0_2 : _GEN_775; // @[d_cache.scala 91:{27,27}]
   wire  _GEN_777 = 7'h3 == index[6:0] ? dirty_0_3 : _GEN_776; // @[d_cache.scala 91:{27,27}]
@@ -20729,7 +20729,7 @@ module D_CACHE(
   wire  _GEN_3339 = _GEN_16930 | valid_1_125; // @[d_cache.scala 145:{32,32} 23:26]
   wire  _GEN_3340 = _GEN_16931 | valid_1_126; // @[d_cache.scala 145:{32,32} 23:26]
   wire  _GEN_3341 = _GEN_16932 | valid_1_127; // @[d_cache.scala 145:{32,32} 23:26]
-  wire  _T_42 = ~quene; // @[d_cache.scala 148:27]
+  wire  _T_44 = ~quene; // @[d_cache.scala 148:27]
   wire [41:0] _write_back_addr_T_1 = {_GEN_127, 10'h0}; // @[d_cache.scala 152:58]
   wire [34:0] _write_back_addr_T_2 = {index, 3'h0}; // @[d_cache.scala 152:74]
   wire [41:0] _GEN_17319 = {{7'd0}, _write_back_addr_T_2}; // @[d_cache.scala 152:65]
@@ -23561,7 +23561,7 @@ module D_CACHE(
   wire  _GEN_8344 = unuse_way == 2'h2 ? _GEN_3339 : _GEN_7959; // @[d_cache.scala 141:40]
   wire  _GEN_8345 = unuse_way == 2'h2 ? _GEN_3340 : _GEN_7960; // @[d_cache.scala 141:40]
   wire  _GEN_8346 = unuse_way == 2'h2 ? _GEN_3341 : _GEN_7961; // @[d_cache.scala 141:40]
-  wire  _GEN_8347 = unuse_way == 2'h2 ? 1'h0 : _T_42; // @[d_cache.scala 141:40 146:23]
+  wire  _GEN_8347 = unuse_way == 2'h2 ? 1'h0 : _T_44; // @[d_cache.scala 141:40 146:23]
   wire [63:0] _GEN_8348 = unuse_way == 2'h2 ? write_back_data : _GEN_6934; // @[d_cache.scala 141:40 29:34]
   wire [41:0] _GEN_8349 = unuse_way == 2'h2 ? {{10'd0}, write_back_addr} : _GEN_6935; // @[d_cache.scala 141:40 30:34]
   wire [63:0] _GEN_8350 = unuse_way == 2'h2 ? ram_0_0 : _GEN_6936; // @[d_cache.scala 141:40 18:24]
@@ -28330,20 +28330,20 @@ module D_CACHE(
   wire  _GEN_16455 = way0_hit | way1_hit; // @[d_cache.scala 221:23 224:34]
   wire  _GEN_16457 = way1_hit ? 1'h0 : 1'h1; // @[d_cache.scala 260:33 262:35 269:35]
   wire  _GEN_16458 = way0_hit ? 1'h0 : _GEN_16457; // @[d_cache.scala 253:23 255:35]
-  wire  _T_66 = state == 3'h3; // @[d_cache.scala 275:21]
+  wire  _T_68 = state == 3'h3; // @[d_cache.scala 275:21]
   wire [63:0] _GEN_17833 = {{32'd0}, io_from_lsu_araddr}; // @[d_cache.scala 283:48]
   wire [63:0] _io_to_axi_araddr_T = _GEN_17833 & 64'hfffffffffffffff8; // @[d_cache.scala 283:48]
-  wire  _T_69 = state == 3'h6; // @[d_cache.scala 324:21]
+  wire  _T_71 = state == 3'h6; // @[d_cache.scala 324:21]
   wire [31:0] _GEN_16461 = state == 3'h6 ? 32'h0 : io_from_lsu_araddr; // @[d_cache.scala 324:35 332:26 348:26]
   wire  _GEN_16462 = state == 3'h6 ? 1'h0 : io_from_lsu_rready; // @[d_cache.scala 324:35 333:26 349:26]
   wire [31:0] _GEN_16463 = state == 3'h6 ? write_back_addr : 32'h0; // @[d_cache.scala 324:35 334:26 350:26]
   wire [63:0] _GEN_16464 = state == 3'h6 ? write_back_data : 64'h0; // @[d_cache.scala 324:35 336:25 352:25]
   wire [31:0] _GEN_16465 = state == 3'h6 ? 32'hffffffff : 32'h0; // @[d_cache.scala 324:35 337:25 353:25]
-  wire  _GEN_16467 = state == 3'h5 | _T_69; // @[d_cache.scala 308:31 310:27]
+  wire  _GEN_16467 = state == 3'h5 | _T_71; // @[d_cache.scala 308:31 310:27]
   wire [31:0] _GEN_16468 = state == 3'h5 ? io_from_lsu_araddr : _GEN_16461; // @[d_cache.scala 308:31 316:26]
   wire  _GEN_16469 = state == 3'h5 ? io_from_lsu_rready : _GEN_16462; // @[d_cache.scala 308:31 317:26]
   wire [31:0] _GEN_16470 = state == 3'h5 ? 32'h0 : _GEN_16463; // @[d_cache.scala 308:31 318:26]
-  wire  _GEN_16471 = state == 3'h5 ? 1'h0 : _T_69; // @[d_cache.scala 308:31 319:27]
+  wire  _GEN_16471 = state == 3'h5 ? 1'h0 : _T_71; // @[d_cache.scala 308:31 319:27]
   wire [63:0] _GEN_16472 = state == 3'h5 ? 64'h0 : _GEN_16464; // @[d_cache.scala 308:31 320:25]
   wire [31:0] _GEN_16473 = state == 3'h5 ? 32'h0 : _GEN_16465; // @[d_cache.scala 308:31 321:25]
   wire  _GEN_16475 = state == 3'h4 | _GEN_16467; // @[d_cache.scala 291:31 293:27]
@@ -28370,7 +28370,7 @@ module D_CACHE(
   wire [31:0] _GEN_16498 = state == 3'h3 ? 32'h0 : _GEN_16484; // @[d_cache.scala 275:31 288:25]
   wire  _GEN_16499 = state == 3'h3 ? 1'h0 : _GEN_16485; // @[d_cache.scala 275:31 289:26]
   wire  _GEN_16500 = state == 3'h3 ? 1'h0 : _GEN_16486; // @[d_cache.scala 275:31 290:26]
-  wire  _GEN_16501 = state == 3'h2 ? 1'h0 : _T_66; // @[d_cache.scala 243:33 244:27]
+  wire  _GEN_16501 = state == 3'h2 ? 1'h0 : _T_68; // @[d_cache.scala 243:33 244:27]
   wire [63:0] _GEN_16502 = state == 3'h2 ? {{32'd0}, io_from_lsu_araddr} : _GEN_16493; // @[d_cache.scala 243:33 245:26]
   wire  _GEN_16503 = state == 3'h2 ? 1'h0 : _GEN_16494; // @[d_cache.scala 243:33 246:26]
   wire [31:0] _GEN_16504 = state == 3'h2 ? 32'h0 : _GEN_16495; // @[d_cache.scala 243:33 247:26]
@@ -28402,7 +28402,7 @@ module D_CACHE(
   wire [63:0] _GEN_16541 = state == 3'h0 ? 64'h0 : _GEN_16520; // @[d_cache.scala 195:23 207:25]
   wire [31:0] _GEN_16542 = state == 3'h0 ? 32'h0 : _GEN_16521; // @[d_cache.scala 195:23 208:25]
   wire [41:0] _GEN_17834 = reset ? 42'h0 : _GEN_16192; // @[d_cache.scala 30:{34,34}]
-  wire  _GEN_17836 = ~_T_18 & _T_19; // @[d_cache.scala 91:27]
+  wire  _GEN_17836 = ~_T_20 & _T_21; // @[d_cache.scala 91:27]
   assign io_to_lsu_arready = state == 3'h0 ? io_from_axi_arready : _GEN_16525; // @[d_cache.scala 195:23 197:27]
   assign io_to_lsu_rdata = state == 3'h0 ? 64'h0 : _GEN_16524; // @[d_cache.scala 195:23 196:25]
   assign io_to_lsu_rvalid = state == 3'h0 ? 1'h0 : _GEN_16526; // @[d_cache.scala 195:23 198:26]
@@ -38662,12 +38662,12 @@ module D_CACHE(
     if (reset) begin // @[d_cache.scala 26:27]
       way0_hit <= 1'h0; // @[d_cache.scala 26:27]
     end else begin
-      way0_hit <= _T_4;
+      way0_hit <= _T_6;
     end
     if (reset) begin // @[d_cache.scala 27:27]
       way1_hit <= 1'h0; // @[d_cache.scala 27:27]
     end else begin
-      way1_hit <= _T_9;
+      way1_hit <= _T_11;
     end
     if (reset) begin // @[d_cache.scala 29:34]
       write_back_data <= 64'h0; // @[d_cache.scala 29:34]
@@ -38730,6 +38730,17 @@ module D_CACHE(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
+          $fwrite(32'h80000002,"read addr : %x  write addr : %x\n",io_from_lsu_araddr,io_from_lsu_awaddr); // @[d_cache.scala 15:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (_T_1) begin
           $fwrite(32'h80000002,"d_cache state:%d\n",state); // @[d_cache.scala 75:11]
         end
     `ifdef PRINTF_COND
@@ -38740,7 +38751,7 @@ module D_CACHE(
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
-        if (_T_15) begin
+        if (_T_1) begin
           $fwrite(32'h80000002,"receive data:%x\n",receive_data); // @[d_cache.scala 77:11]
         end
     `ifdef PRINTF_COND
@@ -38751,7 +38762,7 @@ module D_CACHE(
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
-        if (~_T_18 & _T_19 & way0_hit & io_from_lsu_rready & _T_15) begin
+        if (~_T_20 & _T_21 & way0_hit & io_from_lsu_rready & _T_1) begin
           $fwrite(32'h80000002,"dirty_0:%d\n",7'h7f == index[6:0] ? dirty_0_127 : _GEN_900); // @[d_cache.scala 91:27]
         end
     `ifdef PRINTF_COND
@@ -38762,7 +38773,7 @@ module D_CACHE(
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
-        if (_GEN_17836 & ~way0_hit & way1_hit & io_from_lsu_rready & _T_15) begin
+        if (_GEN_17836 & ~way0_hit & way1_hit & io_from_lsu_rready & _T_1) begin
           $fwrite(32'h80000002,"dirty_1:%d\n",7'h7f == index[6:0] ? dirty_1_127 : _GEN_1029); // @[d_cache.scala 97:27]
         end
     `ifdef PRINTF_COND
@@ -38773,7 +38784,7 @@ module D_CACHE(
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
-        if (_T_15) begin
+        if (_T_1) begin
           $fwrite(32'h80000002,"cacheline0:%x   cacheline1:%x\n",_GEN_1160,_GEN_5393); // @[d_cache.scala 358:11]
         end
     `ifdef PRINTF_COND
