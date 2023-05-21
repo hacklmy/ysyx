@@ -10422,6 +10422,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__9(Vtop___024root* vlSelf) {
                                    : (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_12077)));
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"read addr : %x  write addr : %x\n",
+                   32,(IData)(vlSelf->top__DOT__exu_step__DOT__add_res),
+                   32,(IData)(vlSelf->top__DOT__exu_step__DOT__add_res));
+    }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
         VL_FWRITEF(0x80000002U,"d_cache state:%1#\n",
                    3,vlSelf->top__DOT__d_cache__DOT__state);
     }
@@ -10429,8 +10434,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__9(Vtop___024root* vlSelf) {
         VL_FWRITEF(0x80000002U,"receive data:%x\n",
                    64,vlSelf->top__DOT__d_cache__DOT__receive_data);
     }
-    if (VL_UNLIKELY((((((~ (IData)(vlSelf->top__DOT__d_cache__DOT___T_18)) 
-                        & (IData)(vlSelf->top__DOT__d_cache__DOT___T_19)) 
+    if (VL_UNLIKELY((((((~ (IData)(vlSelf->top__DOT__d_cache__DOT___T_20)) 
+                        & (IData)(vlSelf->top__DOT__d_cache__DOT___T_21)) 
                        & (IData)(vlSelf->top__DOT__d_cache__DOT__way0_hit)) 
                       & (IData)(vlSelf->top__DOT__lsu_step__DOT__axi_rready)) 
                      & (~ (IData)(vlSelf->reset))))) {
@@ -15460,16 +15465,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__9(Vtop___024root* vlSelf) {
             if ((2U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
                 vlSelf->top__DOT__i_cache__DOT__tag_1_85 
                     = vlSelf->top__DOT__i_cache__DOT___GEN_4965;
-            }
-        }
-    }
-    if (vlSelf->reset) {
-        vlSelf->top__DOT__i_cache__DOT__tag_1_86 = 0U;
-    } else if ((0U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-        if ((1U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-            if ((2U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-                vlSelf->top__DOT__i_cache__DOT__tag_1_86 
-                    = vlSelf->top__DOT__i_cache__DOT___GEN_4966;
             }
         }
     }
