@@ -766,7 +766,7 @@ void cpu_exec(int n){
 #endif
 #endif
     #ifdef VerilatedVCD
-    tfp->dump(contextp->time()); //dump wave
+    tfp->dump(sim_time); //dump wave
     #endif
     #ifdef HAS_VGA
     //vga_update_screen();
