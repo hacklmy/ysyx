@@ -771,17 +771,6 @@ module EXU_AXI(
         pc_next <= _j_pc_T_62;
       end
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"inst_store :%d inst_load:%d\n",io_inst_store,io_inst_load); // @[EXU_AXI.scala 194:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN

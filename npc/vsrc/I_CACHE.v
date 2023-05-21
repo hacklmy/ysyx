@@ -2975,7 +2975,7 @@ module I_CACHE(
   wire  _GEN_1287 = _GEN_7855 | valid_1_125; // @[i_cache.scala 22:26 94:{32,32}]
   wire  _GEN_1288 = _GEN_7856 | valid_1_126; // @[i_cache.scala 22:26 94:{32,32}]
   wire  _GEN_1289 = _GEN_7857 | valid_1_127; // @[i_cache.scala 22:26 94:{32,32}]
-  wire  _T_16 = ~quene; // @[i_cache.scala 97:27]
+  wire  _T_14 = ~quene; // @[i_cache.scala 97:27]
   wire [63:0] _GEN_2058 = ~quene ? _GEN_522 : ram_0_0; // @[i_cache.scala 17:24 97:34]
   wire [63:0] _GEN_2059 = ~quene ? _GEN_523 : ram_0_1; // @[i_cache.scala 17:24 97:34]
   wire [63:0] _GEN_2060 = ~quene ? _GEN_524 : ram_0_2; // @[i_cache.scala 17:24 97:34]
@@ -4128,7 +4128,7 @@ module I_CACHE(
   wire  _GEN_3208 = unuse_way == 2'h2 ? _GEN_1287 : _GEN_2824; // @[i_cache.scala 91:40]
   wire  _GEN_3209 = unuse_way == 2'h2 ? _GEN_1288 : _GEN_2825; // @[i_cache.scala 91:40]
   wire  _GEN_3210 = unuse_way == 2'h2 ? _GEN_1289 : _GEN_2826; // @[i_cache.scala 91:40]
-  wire  _GEN_3211 = unuse_way == 2'h2 ? 1'h0 : _T_16; // @[i_cache.scala 91:40 95:23]
+  wire  _GEN_3211 = unuse_way == 2'h2 ? 1'h0 : _T_14; // @[i_cache.scala 91:40 95:23]
   wire [63:0] _GEN_3212 = unuse_way == 2'h2 ? ram_0_0 : _GEN_2058; // @[i_cache.scala 17:24 91:40]
   wire [63:0] _GEN_3213 = unuse_way == 2'h2 ? ram_0_1 : _GEN_2059; // @[i_cache.scala 17:24 91:40]
   wire [63:0] _GEN_3214 = unuse_way == 2'h2 ? ram_0_2 : _GEN_2060; // @[i_cache.scala 17:24 91:40]
@@ -6310,8 +6310,8 @@ module I_CACHE(
   wire [63:0] _GEN_7705 = way1_hit ? _GEN_7704 : 64'h0; // @[i_cache.scala 148:33 149:33 156:33]
   wire [63:0] _GEN_7709 = way0_hit ? _GEN_7576 : _GEN_7705; // @[i_cache.scala 140:23 141:33]
   wire  _GEN_7711 = way0_hit | way1_hit; // @[i_cache.scala 140:23 143:34]
-  wire  _T_20 = state == 3'h2; // @[i_cache.scala 163:21]
-  wire  _GEN_7722 = state == 3'h1 ? 1'h0 : _T_20; // @[i_cache.scala 130:31 131:27]
+  wire  _T_18 = state == 3'h2; // @[i_cache.scala 163:21]
+  wire  _GEN_7722 = state == 3'h1 ? 1'h0 : _T_18; // @[i_cache.scala 130:31 131:27]
   wire  _GEN_7724 = state == 3'h1 ? 1'h0 : io_from_ifu_rready; // @[i_cache.scala 130:31 133:26]
   wire [63:0] _GEN_7726 = state == 3'h1 ? _GEN_7709 : 64'h0; // @[i_cache.scala 130:31]
   wire  _GEN_7728 = state == 3'h1 & _GEN_7711; // @[i_cache.scala 130:31]
@@ -13287,17 +13287,6 @@ module I_CACHE(
     end else begin
       state <= _GEN_4366;
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"i_cache state:%d\n",state); // @[i_cache.scala 54:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
