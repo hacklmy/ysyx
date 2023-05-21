@@ -58,7 +58,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__8(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ifu_step__DOT__inst_ready = ((IData)(vlSelf->reset) 
                                                    | (IData)(vlSelf->top__DOT__ifu_step__DOT___GEN_0));
     vlSelf->top__DOT__d_cache__DOT__write_back_addr 
-        = (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_17833);
+        = (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_17834);
     if (vlSelf->reset) {
         vlSelf->top__DOT__axi__DOT__axi_bvalid = 0U;
     } else if ((0U == (IData)(vlSelf->top__DOT__axi__DOT__state))) {
@@ -10473,7 +10473,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__9(Vtop___024root* vlSelf) {
                                                    ? (IData)(vlSelf->top__DOT__d_cache__DOT__dirty_0_127)
                                                    : (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_900)));
     }
-    if (VL_UNLIKELY((((((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_17835) 
+    if (VL_UNLIKELY((((((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_17836) 
                         & (~ (IData)(vlSelf->top__DOT__d_cache__DOT__way0_hit))) 
                        & (IData)(vlSelf->top__DOT__d_cache__DOT__way1_hit)) 
                       & (IData)(vlSelf->top__DOT__lsu_step__DOT__axi_rready)) 

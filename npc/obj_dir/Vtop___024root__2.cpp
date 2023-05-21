@@ -10220,22 +10220,25 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__12(Vtop___024root* vlSelf) {
                                                        (4ULL 
                                                         + vlSelf->top__DOT__pc_now))))));
     if ((0U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))) {
-        vlSelf->top__DOT__d_cache_io_to_axi_araddr 
-            = (IData)(vlSelf->top__DOT__exu_step__DOT__add_res);
+        vlSelf->top__DOT__d_cache__DOT___GEN_16537 
+            = (QData)((IData)(vlSelf->top__DOT__exu_step__DOT__add_res));
         vlSelf->top__DOT__d_cache_io_to_axi_awaddr = 0U;
     } else {
-        vlSelf->top__DOT__d_cache_io_to_axi_araddr 
+        vlSelf->top__DOT__d_cache__DOT___GEN_16537 
             = ((1U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
-                ? (IData)(vlSelf->top__DOT__exu_step__DOT__add_res)
+                ? (QData)((IData)(vlSelf->top__DOT__exu_step__DOT__add_res))
                 : ((2U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
-                    ? (IData)(vlSelf->top__DOT__exu_step__DOT__add_res)
+                    ? (QData)((IData)(vlSelf->top__DOT__exu_step__DOT__add_res))
                     : ((3U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
-                        ? (IData)(vlSelf->top__DOT__exu_step__DOT__add_res)
-                        : ((4U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
-                            ? 0U : ((5U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
-                                     ? (IData)(vlSelf->top__DOT__exu_step__DOT__add_res)
-                                     : ((6U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
-                                         ? 0U : (IData)(vlSelf->top__DOT__exu_step__DOT__add_res)))))));
+                        ? (0xfffffffffffffff8ULL & (QData)((IData)(vlSelf->top__DOT__exu_step__DOT__add_res)))
+                        : (QData)((IData)(((4U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+                                            ? 0U : 
+                                           ((5U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+                                             ? (IData)(vlSelf->top__DOT__exu_step__DOT__add_res)
+                                             : ((6U 
+                                                 == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+                                                 ? 0U
+                                                 : (IData)(vlSelf->top__DOT__exu_step__DOT__add_res)))))))));
         vlSelf->top__DOT__d_cache_io_to_axi_awaddr 
             = ((1U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
                 ? 0U : ((2U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))

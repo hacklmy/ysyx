@@ -47,6 +47,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__15(Vtop___024root* vlSelf) {
     QData/*63:0*/ top__DOT__exu_step__DOT___io_res2rd_T_162;
     // Body
     if (vlSelf->top__DOT__d_cache__DOT__way0_hit) {
+        vlSelf->top__DOT__d_cache__DOT___GEN_2114 = 
+            ((0x37U == (0x7fU & (IData)((vlSelf->top__DOT__exu_step__DOT__add_res 
+                                         >> 3U)))) ? 
+             (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___ram_0_T_6[1U])) 
+               << 0x20U) | (QData)((IData)(vlSelf->top__DOT__d_cache__DOT___ram_0_T_6[0U])))
+              : vlSelf->top__DOT__d_cache__DOT__ram_0_55);
         vlSelf->top__DOT__d_cache__DOT___GEN_2115 = 
             ((0x38U == (0x7fU & (IData)((vlSelf->top__DOT__exu_step__DOT__add_res 
                                          >> 3U)))) ? 
@@ -608,6 +614,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__15(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__d_cache__DOT___GEN_2441 = vlSelf->top__DOT__d_cache__DOT__ram_1_126;
         vlSelf->top__DOT__d_cache__DOT___GEN_2442 = vlSelf->top__DOT__d_cache__DOT__ram_1_127;
     } else {
+        vlSelf->top__DOT__d_cache__DOT___GEN_2114 = vlSelf->top__DOT__d_cache__DOT__ram_0_55;
         vlSelf->top__DOT__d_cache__DOT___GEN_2115 = vlSelf->top__DOT__d_cache__DOT__ram_0_56;
         vlSelf->top__DOT__d_cache__DOT___GEN_2116 = vlSelf->top__DOT__d_cache__DOT__ram_0_57;
         vlSelf->top__DOT__d_cache__DOT___GEN_2117 = vlSelf->top__DOT__d_cache__DOT__ram_0_58;
@@ -2267,7 +2274,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__16(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___combo__TOP__16\n"); );
     // Body
-    vlSelf->top__DOT__d_cache__DOT___GEN_17833 = ((IData)(vlSelf->reset)
+    vlSelf->top__DOT__d_cache__DOT___GEN_17834 = ((IData)(vlSelf->reset)
                                                    ? 0ULL
                                                    : 
                                                   ((0U 

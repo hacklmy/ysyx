@@ -3118,7 +3118,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__10(Vtop___024root* vlSelf) {
                                               | (IData)(vlSelf->top__DOT__axi__DOT___GEN_27));
     vlSelf->top__DOT__d_cache__DOT___T_24 = (0U == (IData)(vlSelf->top__DOT__d_cache__DOT__state));
     vlSelf->top__DOT__d_cache__DOT___T_25 = (1U == (IData)(vlSelf->top__DOT__d_cache__DOT__state));
-    vlSelf->top__DOT__d_cache__DOT___GEN_17835 = ((0U 
+    vlSelf->top__DOT__d_cache__DOT___GEN_17836 = ((0U 
                                                    != (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
                                                   & (1U 
                                                      == (IData)(vlSelf->top__DOT__d_cache__DOT__state)));

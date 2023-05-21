@@ -51,6 +51,14 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
     VlWide<4>/*127:0*/ __Vtemp72;
     QData/*63:0*/ top__DOT__exu_step__DOT___io_res2rd_T_162;
     // Body
+    if ((0x7fU == (0x7fU & (IData)((vlSelf->top__DOT__exu_step__DOT__add_res 
+                                    >> 3U))))) {
+        vlSelf->top__DOT__d_cache__DOT___GEN_901 = vlSelf->top__DOT__d_cache__DOT__dirty_0_127;
+        vlSelf->top__DOT__d_cache__DOT___GEN_1030 = vlSelf->top__DOT__d_cache__DOT__dirty_1_127;
+    } else {
+        vlSelf->top__DOT__d_cache__DOT___GEN_901 = vlSelf->top__DOT__d_cache__DOT___GEN_900;
+        vlSelf->top__DOT__d_cache__DOT___GEN_1030 = vlSelf->top__DOT__d_cache__DOT___GEN_1029;
+    }
     vlSelf->top__DOT__d_cache_io_to_lsu_rdata = ((0U 
                                                   == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
                                                   ? 0ULL
@@ -5245,7 +5253,7 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
                                     : vlSelf->top__DOT__d_cache__DOT__write_back_data))))
                     : vlSelf->top__DOT__d_cache__DOT__write_back_data));
     }
-    vlSelf->top__DOT__d_cache__DOT___GEN_17833 = ((IData)(vlSelf->reset)
+    vlSelf->top__DOT__d_cache__DOT___GEN_17834 = ((IData)(vlSelf->reset)
                                                    ? 0ULL
                                                    : 
                                                   ((0U 
