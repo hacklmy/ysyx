@@ -61,16 +61,12 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
                                                   ((IData)(vlSelf->top__DOT__d_cache__DOT__way0_hit)
                                                     ? 
                                                    (vlSelf->top__DOT__d_cache__DOT___GEN_1160 
-                                                    >> 
-                                                    (7U 
-                                                     & (IData)(vlSelf->top__DOT__exu_step__DOT__add_res)))
+                                                    >> (IData)(vlSelf->top__DOT__d_cache__DOT__shift_bit))
                                                     : 
                                                    ((IData)(vlSelf->top__DOT__d_cache__DOT__way1_hit)
                                                      ? 
                                                     (vlSelf->top__DOT__d_cache__DOT___GEN_5393 
-                                                     >> 
-                                                     (7U 
-                                                      & (IData)(vlSelf->top__DOT__exu_step__DOT__add_res)))
+                                                     >> (IData)(vlSelf->top__DOT__d_cache__DOT__shift_bit))
                                                      : 0ULL))
                                                    : 0ULL));
     VL_EXTEND_WQ(127,64, __Vtemp6, ((QData)((IData)(vlSelf->top__DOT__exu_step_io_Mem_wdata)) 
