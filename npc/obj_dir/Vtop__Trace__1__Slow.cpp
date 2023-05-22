@@ -91,25 +91,19 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                   == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
                                                   ? (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_18333)
                                                   : 0U))))),32);
-        tracep->fullCData(oldp+7,((0xffU & ((0U == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
-                                             ? ((IData)(vlSelf->top__DOT__d_cache_io_to_axi_awvalid)
-                                                 ? vlSelf->top__DOT__d_cache__DOT___GEN_18334
-                                                 : 
-                                                ((IData)(vlSelf->top__DOT__d_cache_io_to_axi_arvalid)
-                                                  ? vlSelf->top__DOT__d_cache__DOT___GEN_18334
-                                                  : 0U))
-                                             : ((1U 
-                                                 == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
-                                                 ? 0U
-                                                 : 
-                                                ((2U 
+        tracep->fullCData(oldp+7,(((0U == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
+                                    ? ((IData)(vlSelf->top__DOT__d_cache_io_to_axi_awvalid)
+                                        ? (IData)(vlSelf->top__DOT__d_cache_io_to_axi_wstrb)
+                                        : ((IData)(vlSelf->top__DOT__d_cache_io_to_axi_arvalid)
+                                            ? (IData)(vlSelf->top__DOT__d_cache_io_to_axi_wstrb)
+                                            : 0U)) : 
+                                   ((1U == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
+                                     ? 0U : ((2U == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
+                                              ? (IData)(vlSelf->top__DOT__d_cache_io_to_axi_wstrb)
+                                              : ((3U 
                                                   == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
-                                                  ? vlSelf->top__DOT__d_cache__DOT___GEN_18334
-                                                  : 
-                                                 ((3U 
-                                                   == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
-                                                   ? vlSelf->top__DOT__d_cache__DOT___GEN_18334
-                                                   : 0U)))))),8);
+                                                  ? (IData)(vlSelf->top__DOT__d_cache_io_to_axi_wstrb)
+                                                  : 0U))))),8);
         tracep->fullBit(oldp+8,(vlSelf->top__DOT__arbiter_io_axi_out_wvalid));
         tracep->fullBit(oldp+9,(vlSelf->top__DOT__arbiter_io_axi_out_bready));
         tracep->fullBit(oldp+10,(vlSelf->top__DOT__axi__DOT__axi_arready));
@@ -218,7 +212,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullIData(oldp+45,(vlSelf->top__DOT__d_cache_io_to_axi_awaddr),32);
         tracep->fullBit(oldp+46,(vlSelf->top__DOT__d_cache_io_to_axi_awvalid));
         tracep->fullIData(oldp+47,((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_18333)),32);
-        tracep->fullCData(oldp+48,((0xffU & vlSelf->top__DOT__d_cache__DOT___GEN_18334)),8);
+        tracep->fullCData(oldp+48,(vlSelf->top__DOT__d_cache_io_to_axi_wstrb),8);
         tracep->fullBit(oldp+49,(vlSelf->top__DOT__d_cache_io_to_axi_wvalid));
         tracep->fullBit(oldp+50,(vlSelf->top__DOT__d_cache_io_to_axi_bready));
         tracep->fullBit(oldp+51,(((0U == (IData)(vlSelf->top__DOT__arbiter__DOT__state))

@@ -13,7 +13,6 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___settle__TOP__4\n"); );
     // Body
     if (vlSelf->top__DOT__d_cache__DOT__way0_hit) {
-        vlSelf->top__DOT__d_cache__DOT___GEN_2386 = vlSelf->top__DOT__d_cache__DOT__ram_1_71;
         vlSelf->top__DOT__d_cache__DOT___GEN_2387 = vlSelf->top__DOT__d_cache__DOT__ram_1_72;
         vlSelf->top__DOT__d_cache__DOT___GEN_2388 = vlSelf->top__DOT__d_cache__DOT__ram_1_73;
         vlSelf->top__DOT__d_cache__DOT___GEN_2389 = vlSelf->top__DOT__d_cache__DOT__ram_1_74;
@@ -71,14 +70,6 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__d_cache__DOT___GEN_2441 = vlSelf->top__DOT__d_cache__DOT__ram_1_126;
         vlSelf->top__DOT__d_cache__DOT___GEN_2442 = vlSelf->top__DOT__d_cache__DOT__ram_1_127;
     } else {
-        vlSelf->top__DOT__d_cache__DOT___GEN_2386 = 
-            ((IData)(vlSelf->top__DOT__d_cache__DOT__way1_hit)
-              ? ((0x47U == (0x7fU & (IData)((vlSelf->top__DOT__exu_step__DOT__add_res 
-                                             >> 3U))))
-                  ? (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___ram_1_T_6[1U])) 
-                      << 0x20U) | (QData)((IData)(vlSelf->top__DOT__d_cache__DOT___ram_1_T_6[0U])))
-                  : vlSelf->top__DOT__d_cache__DOT__ram_1_71)
-              : vlSelf->top__DOT__d_cache__DOT__ram_1_71);
         vlSelf->top__DOT__d_cache__DOT___GEN_2387 = 
             ((IData)(vlSelf->top__DOT__d_cache__DOT__way1_hit)
               ? ((0x48U == (0x7fU & (IData)((vlSelf->top__DOT__exu_step__DOT__add_res 
