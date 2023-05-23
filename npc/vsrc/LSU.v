@@ -18,7 +18,7 @@ module LSU(
   output        io_axi_out_rready,
   output [31:0] io_axi_out_awaddr,
   output        io_axi_out_awvalid,
-  output [31:0] io_axi_out_wdata,
+  output [63:0] io_axi_out_wdata,
   output [7:0]  io_axi_out_wstrb,
   output        io_axi_out_wvalid,
   output        io_axi_out_bready
@@ -58,7 +58,7 @@ module LSU(
   assign io_axi_out_rready = axi_rready; // @[LSU.scala 75:23]
   assign io_axi_out_awaddr = io_mem_addr; // @[LSU.scala 76:23]
   assign io_axi_out_awvalid = axi_awvalid; // @[LSU.scala 77:24]
-  assign io_axi_out_wdata = io_mem_wdata[31:0]; // @[LSU.scala 78:22]
+  assign io_axi_out_wdata = io_mem_wdata; // @[LSU.scala 78:22]
   assign io_axi_out_wstrb = io_mem_wstrb; // @[LSU.scala 79:22]
   assign io_axi_out_wvalid = axi_wvalid; // @[LSU.scala 80:23]
   assign io_axi_out_bready = axi_bready; // @[LSU.scala 81:23]
