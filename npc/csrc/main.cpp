@@ -296,6 +296,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     }
     else if(raddr == RTC_ADDR + 4){
       *rdata = (time_now >> 32) & 0xffffffff;
+      printf("read time :%lld\n",*rdata);
     }
     return;
   }
