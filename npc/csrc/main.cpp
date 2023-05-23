@@ -39,7 +39,7 @@ const char *regs[] = {
 //#define CONFIG_FTRACE
 //#define CONFIG_DIFFTEST
 //#define VerilatedVCD
-//#define HAS_VGA
+#define HAS_VGA
 #define HAS_AXI
 
 void difftest_skip_ref();
@@ -815,7 +815,7 @@ int main(int argc, char** argv) {
   init_difftest(difftest_file,CONFIG_MSIZE);
   #endif
   while(sdb_mainloop() && !cpu_stop && !SDL_quite);
-  printf("%llx\n",*((long long *)(0x8204de98 - CONFIG_MBASE + pmem)));
+  //printf("%llx\n",*((long long *)(0x8204de98 - CONFIG_MBASE + pmem)));
   //printf("%lld %x\n",write_data,write_mask);
   if(stop_status==0)printf("\33[1;32mHIT GOOD TRAP\n\33[0m");
   else printf("\33[1;31mHIT BAD TRAP\n\33[0m");
