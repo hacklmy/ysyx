@@ -290,7 +290,8 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     }
     //printf("time : %lld\n",*rdata);
     if(raddr == RTC_ADDR){
-      *rdata = time_now & 0xffffffff;
+      //*rdata = time_now & 0xffffffff;
+      *rdata = time_now
     }
     else if(raddr == RTC_ADDR + 4){
       *rdata = (time_now >> 32) & 0xffffffff;
@@ -301,7 +302,8 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     //printf("base: %d\n",vgactl_port_base[0] );
     if(raddr==VGACTL_ADDR){
       printf("read gpu size\n");
-      *rdata = vgactl_port_base[0];
+      //*rdata = vgactl_port_base[0] & 0xffff;
+      *rdata = vgactl_port_base[0]
       printf("%lld\n", *rdata);
     }else if(raddr == VGACTL_ADDR+2){
       printf("read gpu size\n");
