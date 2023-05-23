@@ -116,7 +116,6 @@ module top(
   wire  i_cache_io_from_axi_rvalid; // @[top.scala 22:25]
   wire  d_cache_clock; // @[top.scala 23:25]
   wire  d_cache_reset; // @[top.scala 23:25]
-  wire [63:0] d_cache_io_pc_now; // @[top.scala 23:25]
   wire [31:0] d_cache_io_from_lsu_araddr; // @[top.scala 23:25]
   wire  d_cache_io_from_lsu_arvalid; // @[top.scala 23:25]
   wire  d_cache_io_from_lsu_rready; // @[top.scala 23:25]
@@ -305,7 +304,6 @@ module top(
   D_CACHE d_cache ( // @[top.scala 23:25]
     .clock(d_cache_clock),
     .reset(d_cache_reset),
-    .io_pc_now(d_cache_io_pc_now),
     .io_from_lsu_araddr(d_cache_io_from_lsu_araddr),
     .io_from_lsu_arvalid(d_cache_io_from_lsu_arvalid),
     .io_from_lsu_rready(d_cache_io_from_lsu_rready),
@@ -447,7 +445,6 @@ module top(
   assign i_cache_io_from_axi_rvalid = arbiter_io_ifu_axi_out_rvalid; // @[top.scala 27:25]
   assign d_cache_clock = clock;
   assign d_cache_reset = reset;
-  assign d_cache_io_pc_now = pc_now; // @[top.scala 38:23]
   assign d_cache_io_from_lsu_araddr = lsu_step_io_axi_out_araddr; // @[top.scala 37:25]
   assign d_cache_io_from_lsu_arvalid = lsu_step_io_axi_out_arvalid; // @[top.scala 37:25]
   assign d_cache_io_from_lsu_rready = lsu_step_io_axi_out_rready; // @[top.scala 37:25]
@@ -506,17 +503,6 @@ module top(
     end else begin
       diff_step <= execute_end; // @[top.scala 91:15]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"pc : %x inst:%x execute_end : %d\n\n",pc_now,idu_step_io_inst,execute_end); // @[top.scala 86:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN

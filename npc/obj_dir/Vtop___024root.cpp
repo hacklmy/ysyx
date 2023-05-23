@@ -49,7 +49,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__9(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ifu_step__DOT__inst_ready = ((IData)(vlSelf->reset) 
                                                    | (IData)(vlSelf->top__DOT__ifu_step__DOT___GEN_0));
     vlSelf->top__DOT__d_cache__DOT__write_back_addr 
-        = (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_20776);
+        = (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_20774);
     if (vlSelf->reset) {
         vlSelf->top__DOT__axi__DOT__axi_bvalid = 0U;
     } else if ((0U == (IData)(vlSelf->top__DOT__axi__DOT__state))) {

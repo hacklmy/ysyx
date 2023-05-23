@@ -12,7 +12,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__18(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___combo__TOP__18\n"); );
     // Body
-    vlSelf->top__DOT__d_cache__DOT___GEN_20776 = ((IData)(vlSelf->reset)
+    vlSelf->top__DOT__d_cache__DOT___GEN_20774 = ((IData)(vlSelf->reset)
                                                    ? 0ULL
                                                    : 
                                                   ((0U 
