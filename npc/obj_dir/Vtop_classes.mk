@@ -32,8 +32,6 @@ VM_CLASSES_FAST += \
 	Vtop___024root__3 \
 	Vtop___024root__4 \
 	Vtop___024root__5 \
-	Vtop___024root__6 \
-	Vtop___024root__7 \
 	Vtop___024unit \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
@@ -55,7 +53,6 @@ VM_SUPPORT_FAST += \
 VM_SUPPORT_SLOW += \
 	Vtop__Syms \
 	Vtop__Trace__Slow \
-	Vtop__Trace__1__Slow \
 
 # Global classes, need linked once per executable, fast-path, compile with highest optimization
 VM_GLOBAL_FAST += \

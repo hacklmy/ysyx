@@ -37,8 +37,8 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-#define CONFIG_DIFFTEST
-#define VerilatedVCD
+//#define CONFIG_DIFFTEST
+//#define VerilatedVCD
 //#define HAS_VGA
 #define HAS_AXI
 
