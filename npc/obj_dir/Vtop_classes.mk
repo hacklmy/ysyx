@@ -55,6 +55,7 @@ VM_SUPPORT_FAST += \
 VM_SUPPORT_SLOW += \
 	Vtop__Syms \
 	Vtop__Trace__Slow \
+	Vtop__Trace__1__Slow \
 
 # Global classes, need linked once per executable, fast-path, compile with highest optimization
 VM_GLOBAL_FAST += \
