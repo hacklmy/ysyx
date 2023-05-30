@@ -116,6 +116,17 @@ module LSU(
     end else if (io_es_to_ms_valid) begin // @[LSU.scala 48:40]
       ren <= io_ren; // @[LSU.scala 57:13]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"ms_pc:%x\n",ms_pc); // @[LSU.scala 82:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN

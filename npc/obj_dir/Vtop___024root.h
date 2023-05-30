@@ -87,8 +87,10 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__EXU__DOT___mluw_res_T_2;
     QData/*32:0*/ top__DOT__EXU__DOT___divw_res_T_4;
     QData/*63:0*/ top__DOT__LSU__DOT__Mem_modle_Rdata;
+    QData/*63:0*/ top__DOT__LSU__DOT__ms_pc;
     QData/*63:0*/ top__DOT__LSU__DOT__ms_res;
     QData/*63:0*/ top__DOT__LSU__DOT__store_data;
+    QData/*63:0*/ top__DOT__WBU__DOT__ws_pc;
     QData/*63:0*/ top__DOT__WBU__DOT__ws_res;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__Register__DOT__Reg;
 

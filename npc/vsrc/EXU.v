@@ -144,6 +144,7 @@ module EXU(
   wire [126:0] _alu_res_T_160 = 32'h37 == io_inst_now ? sll_res : _alu_res_T_158; // @[Mux.scala 81:58]
   wire [126:0] _alu_res_T_162 = 32'h39 == io_inst_now ? {{63'd0}, sra_res} : _alu_res_T_160; // @[Mux.scala 81:58]
   wire [126:0] _alu_res_T_164 = 32'h38 == io_inst_now ? {{63'd0}, srl_res} : _alu_res_T_162; // @[Mux.scala 81:58]
+  wire [63:0] alu_res = _alu_res_T_164[63:0]; // @[EXU.scala 109:13 49:23]
   assign io_es_to_ms_valid = es_valid; // @[EXU.scala 67:32]
   assign io_to_ms_pc = es_pc; // @[EXU.scala 204:17]
   assign io_to_ms_alures = _alu_res_T_164[63:0]; // @[EXU.scala 109:13 49:23]
@@ -208,6 +209,17 @@ module EXU(
     end else if (io_ds_to_es_valid) begin // @[EXU.scala 54:42]
       ld_we <= io_ctrl_sign_Readmem_en; // @[EXU.scala 64:15]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"es_pc:%x alu_res:%x\n",es_pc,alu_res); // @[EXU.scala 217:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
