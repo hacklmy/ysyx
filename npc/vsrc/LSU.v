@@ -62,7 +62,7 @@ module LSU(
   assign io_to_ws_rf_we = ms_rf_we; // @[LSU.scala 76:20]
   assign io_to_ws_rf_dst = ms_rf_dst; // @[LSU.scala 75:21]
   assign io_ms_valid = ms_valid; // @[LSU.scala 79:17]
-  assign io_ms_rf_we = ms_rf_we; // @[LSU.scala 81:17]
+  assign io_ms_rf_we = ms_rf_we & ms_valid; // @[LSU.scala 81:28]
   assign io_ms_rf_dst = ms_rf_dst; // @[LSU.scala 80:18]
   assign Mem_modle_Raddr = io_maddr; // @[LSU.scala 66:24]
   assign Mem_modle_Waddr = io_maddr; // @[LSU.scala 67:24]

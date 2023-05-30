@@ -25,7 +25,7 @@ module WBU(
   reg  ws_rf_we; // @[WBU.scala 27:27]
   reg [4:0] ws_rf_dst; // @[WBU.scala 28:28]
   reg [63:0] ws_res; // @[WBU.scala 29:25]
-  assign io_we = ws_rf_we; // @[WBU.scala 58:11]
+  assign io_we = ws_rf_we & ws_valid; // @[WBU.scala 58:22]
   assign io_waddr = ws_rf_dst; // @[WBU.scala 59:14]
   assign io_wdata = ws_res; // @[WBU.scala 60:14]
   assign io_ws_valid = ws_valid; // @[WBU.scala 61:17]
