@@ -733,6 +733,15 @@ void cpu_exec(int n){
       top->reset = 0;
       top->clock ^= 1;
       top->eval();
+      #ifdef CONFIG_DIFFTEST
+#ifdef HAS_AXI
+    if(top->io_step){
+      difftest_step(pc_now);
+    }
+#else
+    difftest_step(pc_now);
+#endif
+#endif
       top->clock ^= 1;
       top->eval();
       //printf("%lx %x\n",top->io_pc , top->io_inst);
@@ -758,15 +767,7 @@ void cpu_exec(int n){
       is_func(top->io_pc,top->io_pc_next, false);
     }
 #endif
-#ifdef CONFIG_DIFFTEST
-#ifdef HAS_AXI
-    if(top->io_step){
-      difftest_step(pc_now);
-    }
-#else
-    difftest_step(pc_now);
-#endif
-#endif
+
     #ifdef VerilatedVCD
     tfp->dump(sim_time); //dump wave
     #endif
