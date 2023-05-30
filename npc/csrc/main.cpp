@@ -290,13 +290,13 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     }
     //printf("time : %lld\n",*rdata);
     if(raddr == RTC_ADDR){
-      //*rdata = time_now & 0xffffffff;
-      *rdata = time_now;
-      printf("read time :%lld\n",*rdata);
+      *rdata = time_now & 0xffffffff;
+      //*rdata = time_now;
+      //printf("read time :%lld\n",*rdata);
     }
     else if(raddr == RTC_ADDR + 4){
       *rdata = (time_now >> 32) & 0xffffffff;
-      printf("read time :%lld\n",*rdata);
+      //printf("read time :%lld\n",*rdata);
     }
     return;
   }

@@ -33,5 +33,7 @@ copy_top:
 	sed -n '/module LSU/,/endmodule/p' vsrc/output/top.v > vsrc/LSU.v
 	sed -n '/module I_CACHE/,/endmodule/p' vsrc/output/top.v > vsrc/I_CACHE.v
 	sed -n '/module D_CACHE/,/endmodule/p' vsrc/output/top.v > vsrc/D_CACHE.v
+	sed -n '/module WBU/,/endmodule/p' vsrc/output/top.v > vsrc/WBU.v
+	sed -n '/module Register/,/endmodule/p' vsrc/output/top.v > vsrc/Register.v	
 
 include ../Makefile
