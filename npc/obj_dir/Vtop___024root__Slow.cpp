@@ -69,6 +69,8 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     QData/*63:0*/ top__DOT__EXU__DOT___alu_res_T_118;
     // Body
     vlSelf->io_step = vlSelf->top__DOT__WBU__DOT__ws_valid;
+    vlSelf->top__DOT__LSU_io_ms_rf_we = ((IData)(vlSelf->top__DOT__LSU__DOT__ms_rf_we) 
+                                         & (IData)(vlSelf->top__DOT__LSU__DOT__ms_valid));
     vlSelf->top__DOT__EXU__DOT__divuw_res = VL_DIV_III(32, (IData)(vlSelf->top__DOT__EXU__DOT__src1_value), (IData)(vlSelf->top__DOT__EXU__DOT__src2_value));
     vlSelf->top__DOT__EXU__DOT__remw_res = VL_MODDIVS_III(32, (IData)(vlSelf->top__DOT__EXU__DOT__src1_value), (IData)(vlSelf->top__DOT__EXU__DOT__src2_value));
     vlSelf->top__DOT__EXU__DOT__remuw_res = VL_MODDIV_III(32, (IData)(vlSelf->top__DOT__EXU__DOT__src1_value), (IData)(vlSelf->top__DOT__EXU__DOT__src2_value));
@@ -1361,7 +1363,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                          (0x1fU 
                                                           & (vlSelf->top__DOT__IDU__DOT__inst 
                                                              >> 0xfU)))) 
-                                                     & (IData)(vlSelf->top__DOT__LSU__DOT__ms_rf_we)) 
+                                                     & (IData)(vlSelf->top__DOT__LSU_io_ms_rf_we)) 
                                                     & (IData)(vlSelf->top__DOT__LSU__DOT__ms_valid))) 
                                                 | (((((0x1fU 
                                                        & (vlSelf->top__DOT__IDU__DOT__inst 
@@ -1397,7 +1399,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                            (0x1fU 
                                                             & (vlSelf->top__DOT__IDU__DOT__inst 
                                                                >> 0x14U)))) 
-                                                       & (IData)(vlSelf->top__DOT__LSU__DOT__ms_rf_we)) 
+                                                       & (IData)(vlSelf->top__DOT__LSU_io_ms_rf_we)) 
                                                       & (IData)(vlSelf->top__DOT__LSU__DOT__ms_valid))) 
                                                   | (((((0x1fU 
                                                          & (vlSelf->top__DOT__IDU__DOT__inst 
@@ -1463,6 +1465,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__Register_io_rdata2 = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__IDU_io_ds_to_es_valid = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__EXU_io_to_ms_maddr = VL_RAND_RESET_Q(64);
+    vlSelf->top__DOT__LSU_io_ms_rf_we = VL_RAND_RESET_I(1);
     for (int __Vi0=0; __Vi0<32; ++__Vi0) {
         vlSelf->top__DOT__Register__DOT__Reg[__Vi0] = VL_RAND_RESET_Q(64);
     }
