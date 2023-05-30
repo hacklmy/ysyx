@@ -387,7 +387,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
 
 //==========================sdb============================
 CPU_state cpu_gpr;
-cpu_gpr.pc = 0x80000000;
+
 extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
   uint64_t *gpr = NULL;
   gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
@@ -811,6 +811,7 @@ int main(int argc, char** argv) {
     top->eval();
     sim_time++;
   }
+  cpu_gpr.pc = 0x80000000;
   #ifdef CONFIG_DIFFTEST
   char difftest_file[] = "/home/lmy/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
   printf("so succuss\n");
