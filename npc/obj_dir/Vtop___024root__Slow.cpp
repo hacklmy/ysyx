@@ -1536,11 +1536,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     for (int __Vi0=0; __Vi0<32; ++__Vi0) {
         vlSelf->top__DOT__Register__DOT__Reg[__Vi0] = VL_RAND_RESET_Q(64);
     }
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__csr_reg_0 = VL_RAND_RESET_Q(64);
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__csr_reg_1 = VL_RAND_RESET_Q(64);
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__csr_reg_2 = VL_RAND_RESET_Q(64);
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__csr_reg_3 = VL_RAND_RESET_Q(64);
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__pc = VL_RAND_RESET_Q(64);
     for (int __Vi0=0; __Vi0<32; ++__Vi0) {
         vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[__Vi0] = VL_RAND_RESET_Q(64);
     }

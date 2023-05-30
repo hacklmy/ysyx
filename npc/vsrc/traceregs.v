@@ -34,7 +34,7 @@ module traceregs(
     input [63:0] input_reg_28,
     input [63:0] input_reg_29,
     input [63:0] input_reg_30,
-    input [63:0] input_reg_31,
+    input [63:0] input_reg_31
     // input [63:0] csr_reg_0,
     // input [63:0] csr_reg_1,
     // input [63:0] csr_reg_2,

@@ -325,11 +325,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+191,"top Register reg_trace input_reg_29", false,-1, 63,0);
         tracep->declQuad(c+193,"top Register reg_trace input_reg_30", false,-1, 63,0);
         tracep->declQuad(c+195,"top Register reg_trace input_reg_31", false,-1, 63,0);
-        tracep->declQuad(c+375,"top Register reg_trace csr_reg_0", false,-1, 63,0);
-        tracep->declQuad(c+377,"top Register reg_trace csr_reg_1", false,-1, 63,0);
-        tracep->declQuad(c+379,"top Register reg_trace csr_reg_2", false,-1, 63,0);
-        tracep->declQuad(c+381,"top Register reg_trace csr_reg_3", false,-1, 63,0);
-        tracep->declQuad(c+383,"top Register reg_trace pc", false,-1, 63,0);
         {int i; for (i=0; i<32; i++) {
                 tracep->declQuad(c+197+i*2,"top Register reg_trace traceregs", true,(i+0), 63,0);}}
         tracep->declBit(c+336,"top IFU clock", false,-1);
@@ -343,20 +338,20 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+19,"top IFU io_inst", false,-1, 31,0);
         tracep->declQuad(c+16,"top IFU inst_read_Raddr", false,-1, 63,0);
         tracep->declQuad(c+261,"top IFU inst_read_Rdata", false,-1, 63,0);
-        tracep->declQuad(c+385,"top IFU inst_read_Waddr", false,-1, 63,0);
-        tracep->declQuad(c+385,"top IFU inst_read_Wdata", false,-1, 63,0);
-        tracep->declBus(c+387,"top IFU inst_read_Wmask", false,-1, 7,0);
-        tracep->declBit(c+388,"top IFU inst_read_Write_en", false,-1);
+        tracep->declQuad(c+375,"top IFU inst_read_Waddr", false,-1, 63,0);
+        tracep->declQuad(c+375,"top IFU inst_read_Wdata", false,-1, 63,0);
+        tracep->declBus(c+377,"top IFU inst_read_Wmask", false,-1, 7,0);
+        tracep->declBit(c+378,"top IFU inst_read_Write_en", false,-1);
         tracep->declBit(c+18,"top IFU inst_read_Read_en", false,-1);
         tracep->declBit(c+18,"top IFU fs_valid", false,-1);
         tracep->declQuad(c+16,"top IFU fs_pc", false,-1, 63,0);
         tracep->declQuad(c+263,"top IFU seq_pc", false,-1, 63,0);
         tracep->declBit(c+265,"top IFU fs_allowin", false,-1);
         tracep->declQuad(c+16,"top IFU inst_read Raddr", false,-1, 63,0);
-        tracep->declQuad(c+385,"top IFU inst_read Waddr", false,-1, 63,0);
-        tracep->declQuad(c+385,"top IFU inst_read Wdata", false,-1, 63,0);
-        tracep->declBus(c+387,"top IFU inst_read Wmask", false,-1, 7,0);
-        tracep->declBit(c+388,"top IFU inst_read Write_en", false,-1);
+        tracep->declQuad(c+375,"top IFU inst_read Waddr", false,-1, 63,0);
+        tracep->declQuad(c+375,"top IFU inst_read Wdata", false,-1, 63,0);
+        tracep->declBus(c+377,"top IFU inst_read Wmask", false,-1, 7,0);
+        tracep->declBit(c+378,"top IFU inst_read Write_en", false,-1);
         tracep->declBit(c+18,"top IFU inst_read Read_en", false,-1);
         tracep->declQuad(c+261,"top IFU inst_read Rdata", false,-1, 63,0);
         tracep->declBit(c+336,"top IDU clock", false,-1);
@@ -1169,13 +1164,8 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullCData(oldp+372,(0x1dU),5);
         tracep->fullCData(oldp+373,(0x1eU),5);
         tracep->fullCData(oldp+374,(0x1fU),5);
-        tracep->fullQData(oldp+375,(vlSelf->top__DOT__Register__DOT__reg_trace__DOT__csr_reg_0),64);
-        tracep->fullQData(oldp+377,(vlSelf->top__DOT__Register__DOT__reg_trace__DOT__csr_reg_1),64);
-        tracep->fullQData(oldp+379,(vlSelf->top__DOT__Register__DOT__reg_trace__DOT__csr_reg_2),64);
-        tracep->fullQData(oldp+381,(vlSelf->top__DOT__Register__DOT__reg_trace__DOT__csr_reg_3),64);
-        tracep->fullQData(oldp+383,(vlSelf->top__DOT__Register__DOT__reg_trace__DOT__pc),64);
-        tracep->fullQData(oldp+385,(0ULL),64);
-        tracep->fullCData(oldp+387,(0U),8);
-        tracep->fullBit(oldp+388,(0U));
+        tracep->fullQData(oldp+375,(0ULL),64);
+        tracep->fullCData(oldp+377,(0U),8);
+        tracep->fullBit(oldp+378,(0U));
     }
 }
