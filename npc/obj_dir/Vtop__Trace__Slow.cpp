@@ -24,12 +24,14 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
     {
         tracep->declBit(c+192,"clock", false,-1);
         tracep->declBit(c+193,"reset", false,-1);
-        tracep->declQuad(c+194,"io_pc", false,-1, 63,0);
-        tracep->declBit(c+196,"io_step", false,-1);
+        tracep->declBus(c+194,"io_inst", false,-1, 31,0);
+        tracep->declQuad(c+195,"io_pc", false,-1, 63,0);
+        tracep->declBit(c+197,"io_step", false,-1);
         tracep->declBit(c+192,"top clock", false,-1);
         tracep->declBit(c+193,"top reset", false,-1);
-        tracep->declQuad(c+194,"top io_pc", false,-1, 63,0);
-        tracep->declBit(c+196,"top io_step", false,-1);
+        tracep->declBus(c+194,"top io_inst", false,-1, 31,0);
+        tracep->declQuad(c+195,"top io_pc", false,-1, 63,0);
+        tracep->declBit(c+197,"top io_step", false,-1);
         tracep->declBit(c+192,"top Register_clock", false,-1);
         tracep->declBus(c+1,"top Register_io_raddr1", false,-1, 4,0);
         tracep->declBus(c+2,"top Register_io_raddr2", false,-1, 4,0);
@@ -46,6 +48,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+15,"top IFU_io_br_taken_cancel", false,-1);
         tracep->declQuad(c+16,"top IFU_io_to_ds_pc", false,-1, 63,0);
         tracep->declBit(c+18,"top IFU_io_fs_to_ds_valid", false,-1);
+        tracep->declBus(c+198,"top IFU_io_inst", false,-1, 31,0);
         tracep->declBit(c+192,"top IDU_clock", false,-1);
         tracep->declBit(c+193,"top IDU_reset", false,-1);
         tracep->declQuad(c+16,"top IDU_io_pc", false,-1, 63,0);
@@ -143,15 +146,15 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+9,"top Register io_wdata", false,-1, 63,0);
         {int i; for (i=0; i<32; i++) {
                 tracep->declQuad(c+54+i*2,"top Register Reg", true,(i+0), 63,0);}}
-        tracep->declBit(c+197,"top Register Reg_io_rdata1_MPORT_en", false,-1);
+        tracep->declBit(c+199,"top Register Reg_io_rdata1_MPORT_en", false,-1);
         tracep->declBus(c+1,"top Register Reg_io_rdata1_MPORT_addr", false,-1, 4,0);
         tracep->declQuad(c+118,"top Register Reg_io_rdata1_MPORT_data", false,-1, 63,0);
-        tracep->declBit(c+197,"top Register Reg_io_rdata2_MPORT_en", false,-1);
+        tracep->declBit(c+199,"top Register Reg_io_rdata2_MPORT_en", false,-1);
         tracep->declBus(c+2,"top Register Reg_io_rdata2_MPORT_addr", false,-1, 4,0);
         tracep->declQuad(c+120,"top Register Reg_io_rdata2_MPORT_data", false,-1, 63,0);
         tracep->declQuad(c+9,"top Register Reg_MPORT_data", false,-1, 63,0);
         tracep->declBus(c+8,"top Register Reg_MPORT_addr", false,-1, 4,0);
-        tracep->declBit(c+197,"top Register Reg_MPORT_mask", false,-1);
+        tracep->declBit(c+199,"top Register Reg_MPORT_mask", false,-1);
         tracep->declBit(c+7,"top Register Reg_MPORT_en", false,-1);
         tracep->declBit(c+192,"top IFU clock", false,-1);
         tracep->declBit(c+193,"top IFU reset", false,-1);
@@ -161,24 +164,25 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+15,"top IFU io_br_taken_cancel", false,-1);
         tracep->declQuad(c+16,"top IFU io_to_ds_pc", false,-1, 63,0);
         tracep->declBit(c+18,"top IFU io_fs_to_ds_valid", false,-1);
+        tracep->declBus(c+198,"top IFU io_inst", false,-1, 31,0);
         tracep->declQuad(c+16,"top IFU inst_read_Raddr", false,-1, 63,0);
-        tracep->declQuad(c+198,"top IFU inst_read_Rdata", false,-1, 63,0);
-        tracep->declQuad(c+200,"top IFU inst_read_Waddr", false,-1, 63,0);
-        tracep->declQuad(c+200,"top IFU inst_read_Wdata", false,-1, 63,0);
-        tracep->declBus(c+202,"top IFU inst_read_Wmask", false,-1, 7,0);
-        tracep->declBit(c+203,"top IFU inst_read_Write_en", false,-1);
-        tracep->declBit(c+203,"top IFU inst_read_Read_en", false,-1);
+        tracep->declQuad(c+200,"top IFU inst_read_Rdata", false,-1, 63,0);
+        tracep->declQuad(c+202,"top IFU inst_read_Waddr", false,-1, 63,0);
+        tracep->declQuad(c+202,"top IFU inst_read_Wdata", false,-1, 63,0);
+        tracep->declBus(c+204,"top IFU inst_read_Wmask", false,-1, 7,0);
+        tracep->declBit(c+205,"top IFU inst_read_Write_en", false,-1);
+        tracep->declBit(c+205,"top IFU inst_read_Read_en", false,-1);
         tracep->declBit(c+18,"top IFU fs_valid", false,-1);
         tracep->declQuad(c+16,"top IFU fs_pc", false,-1, 63,0);
         tracep->declQuad(c+122,"top IFU seq_pc", false,-1, 63,0);
         tracep->declBit(c+124,"top IFU fs_allowin", false,-1);
         tracep->declQuad(c+16,"top IFU inst_read Raddr", false,-1, 63,0);
-        tracep->declQuad(c+200,"top IFU inst_read Waddr", false,-1, 63,0);
-        tracep->declQuad(c+200,"top IFU inst_read Wdata", false,-1, 63,0);
-        tracep->declBus(c+202,"top IFU inst_read Wmask", false,-1, 7,0);
-        tracep->declBit(c+203,"top IFU inst_read Write_en", false,-1);
-        tracep->declBit(c+203,"top IFU inst_read Read_en", false,-1);
-        tracep->declQuad(c+198,"top IFU inst_read Rdata", false,-1, 63,0);
+        tracep->declQuad(c+202,"top IFU inst_read Waddr", false,-1, 63,0);
+        tracep->declQuad(c+202,"top IFU inst_read Wdata", false,-1, 63,0);
+        tracep->declBus(c+204,"top IFU inst_read Wmask", false,-1, 7,0);
+        tracep->declBit(c+205,"top IFU inst_read Write_en", false,-1);
+        tracep->declBit(c+205,"top IFU inst_read Read_en", false,-1);
+        tracep->declQuad(c+200,"top IFU inst_read Rdata", false,-1, 63,0);
         tracep->declBit(c+192,"top IDU clock", false,-1);
         tracep->declBit(c+193,"top IDU reset", false,-1);
         tracep->declQuad(c+16,"top IDU io_pc", false,-1, 63,0);
@@ -830,12 +834,14 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullQData(oldp+190,(vlSelf->top__DOT__LSU__DOT__ms_res),64);
         tracep->fullBit(oldp+192,(vlSelf->clock));
         tracep->fullBit(oldp+193,(vlSelf->reset));
-        tracep->fullQData(oldp+194,(vlSelf->io_pc),64);
-        tracep->fullBit(oldp+196,(vlSelf->io_step));
-        tracep->fullBit(oldp+197,(1U));
-        tracep->fullQData(oldp+198,(vlSelf->top__DOT__IFU__DOT__inst_read_Rdata),64);
-        tracep->fullQData(oldp+200,(0ULL),64);
-        tracep->fullCData(oldp+202,(0U),8);
-        tracep->fullBit(oldp+203,(0U));
+        tracep->fullIData(oldp+194,(vlSelf->io_inst),32);
+        tracep->fullQData(oldp+195,(vlSelf->io_pc),64);
+        tracep->fullBit(oldp+197,(vlSelf->io_step));
+        tracep->fullIData(oldp+198,((IData)(vlSelf->top__DOT__IFU__DOT__inst_read_Rdata)),32);
+        tracep->fullBit(oldp+199,(1U));
+        tracep->fullQData(oldp+200,(vlSelf->top__DOT__IFU__DOT__inst_read_Rdata),64);
+        tracep->fullQData(oldp+202,(0ULL),64);
+        tracep->fullCData(oldp+204,(0U),8);
+        tracep->fullBit(oldp+205,(0U));
     }
 }
