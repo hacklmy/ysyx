@@ -29,6 +29,8 @@ Vtop___024root::~Vtop___024root() {
 
 void Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit(QData/*63:0*/ Raddr, QData/*63:0*/ &Rdata);
 void Vtop___024unit____Vdpiimwrap_pmem_write_TOP____024unit(QData/*63:0*/ Waddr, QData/*63:0*/ Wdata, CData/*7:0*/ Wmask);
+void Vtop___024unit____Vdpiimwrap_ebreak_handle_TOP____024unit(IData/*31:0*/ flag);
+void Vtop___024unit____Vdpiimwrap_ecall_handle_TOP____024unit(IData/*31:0*/ flag);
 
 void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -922,6 +924,12 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                 ? 0x42U : ((0x37U == (0x7fU & vlSelf->top__DOT__IDU__DOT__inst))
                             ? 0x42U : (IData)(top__DOT__IDU__DOT___inst_type_T_185)));
     }
+    Vtop___024unit____Vdpiimwrap_ebreak_handle_TOP____024unit(
+                                                              (2U 
+                                                               == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194)));
+    Vtop___024unit____Vdpiimwrap_ecall_handle_TOP____024unit(
+                                                             (0x3dU 
+                                                              == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194)));
     vlSelf->top__DOT__IDU__DOT___br_taken_T_35 = ((0x3cU 
                                                    == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194))
                                                    ? 

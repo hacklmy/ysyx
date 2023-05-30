@@ -5,6 +5,7 @@ module IDU(
   input  [63:0] io_pc,
   input         io_fs_to_ds_valid,
   output        io_ds_to_es_valid,
+  input  [31:0] io_from_fs_inst,
   output        io_br_taken,
   output [63:0] io_br_target,
   output        io_br_taken_cancel,
@@ -345,7 +346,7 @@ module IDU(
     if (reset) begin // @[IDU.scala 83:23]
       inst <= 32'h0; // @[IDU.scala 83:23]
     end else if (io_fs_to_ds_valid & ds_allowin) begin // @[IDU.scala 98:40]
-      inst <= io_inst_now; // @[IDU.scala 100:14]
+      inst <= io_from_fs_inst; // @[IDU.scala 100:14]
     end
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND

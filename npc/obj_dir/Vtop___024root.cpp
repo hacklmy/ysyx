@@ -11,6 +11,8 @@
 
 void Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit(QData/*63:0*/ Raddr, QData/*63:0*/ &Rdata);
 void Vtop___024unit____Vdpiimwrap_pmem_write_TOP____024unit(QData/*63:0*/ Waddr, QData/*63:0*/ Wdata, CData/*7:0*/ Wmask);
+void Vtop___024unit____Vdpiimwrap_ebreak_handle_TOP____024unit(IData/*31:0*/ flag);
+void Vtop___024unit____Vdpiimwrap_ecall_handle_TOP____024unit(IData/*31:0*/ flag);
 
 VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -66,6 +68,14 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     QData/*63:0*/ top__DOT__EXU__DOT___alu_res_T_118;
     QData/*63:0*/ __Vdlyvval__top__DOT__Register__DOT__Reg__v0;
     // Body
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"fs_pc:%x \n",64,vlSelf->top__DOT__IFU__DOT__fs_pc);
+    }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"ds_pc:%x br_taken:%1#\n",
+                   64,vlSelf->top__DOT__IDU__DOT__ds_pc,
+                   1,(IData)(vlSelf->top__DOT__IDU__DOT__br_taken));
+    }
     __Vdlyvset__top__DOT__Register__DOT__Reg__v0 = 0U;
     if (vlSelf->reset) {
         vlSelf->top__DOT__IDU__DOT__ds_valid = 0U;
@@ -1344,6 +1354,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                 ? 0x42U : ((0x37U == (0x7fU & vlSelf->top__DOT__IDU__DOT__inst))
                             ? 0x42U : (IData)(top__DOT__IDU__DOT___inst_type_T_185)));
     }
+    Vtop___024unit____Vdpiimwrap_ebreak_handle_TOP____024unit(
+                                                              (2U 
+                                                               == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194)));
+    Vtop___024unit____Vdpiimwrap_ecall_handle_TOP____024unit(
+                                                             (0x3dU 
+                                                              == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194)));
     vlSelf->top__DOT__IDU__DOT___br_taken_T_35 = ((0x3cU 
                                                    == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194))
                                                    ? 

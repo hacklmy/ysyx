@@ -27,6 +27,7 @@ module top(
   wire [63:0] IDU_io_pc; // @[top.scala 17:21]
   wire  IDU_io_fs_to_ds_valid; // @[top.scala 17:21]
   wire  IDU_io_ds_to_es_valid; // @[top.scala 17:21]
+  wire [31:0] IDU_io_from_fs_inst; // @[top.scala 17:21]
   wire  IDU_io_br_taken; // @[top.scala 17:21]
   wire [63:0] IDU_io_br_target; // @[top.scala 17:21]
   wire  IDU_io_br_taken_cancel; // @[top.scala 17:21]
@@ -138,6 +139,7 @@ module top(
     .io_pc(IDU_io_pc),
     .io_fs_to_ds_valid(IDU_io_fs_to_ds_valid),
     .io_ds_to_es_valid(IDU_io_ds_to_es_valid),
+    .io_from_fs_inst(IDU_io_from_fs_inst),
     .io_br_taken(IDU_io_br_taken),
     .io_br_target(IDU_io_br_target),
     .io_br_taken_cancel(IDU_io_br_taken_cancel),
@@ -250,6 +252,7 @@ module top(
   assign IDU_reset = reset;
   assign IDU_io_pc = IFU_io_to_ds_pc; // @[top.scala 29:12]
   assign IDU_io_fs_to_ds_valid = IFU_io_fs_to_ds_valid; // @[top.scala 30:24]
+  assign IDU_io_from_fs_inst = IFU_io_inst; // @[top.scala 32:22]
   assign IDU_io_rdata1 = Register_io_rdata1; // @[top.scala 35:16]
   assign IDU_io_rdata2 = Register_io_rdata2; // @[top.scala 36:16]
   assign IDU_io_es_rf_we = EXU_io_es_rf_we; // @[top.scala 39:18]
