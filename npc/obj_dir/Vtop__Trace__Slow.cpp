@@ -443,7 +443,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullQData(oldp+21,(vlSelf->top__DOT__IDU__DOT__ds_pc),64);
         tracep->fullIData(oldp+23,(vlSelf->top__DOT__IDU__DOT___inst_now_T_194),32);
         tracep->fullQData(oldp+24,(((IData)(vlSelf->top__DOT__IDU__DOT__src1_is_pc)
-                                     ? vlSelf->top__DOT__IFU__DOT__fs_pc
+                                     ? vlSelf->top__DOT__IDU__DOT__ds_pc
                                      : vlSelf->top__DOT__Register_io_rdata1)),64);
         tracep->fullQData(oldp+26,(((IData)(vlSelf->top__DOT__IDU__DOT__src2_is_imm)
                                      ? vlSelf->top__DOT__IDU__DOT__imm
@@ -554,7 +554,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullCData(oldp+41,(vlSelf->top__DOT__LSU__DOT__ms_rf_dst),5);
         tracep->fullCData(oldp+42,((0x1fU & (IData)(
                                                     ((IData)(vlSelf->top__DOT__IDU__DOT__src1_is_pc)
-                                                      ? vlSelf->top__DOT__IFU__DOT__fs_pc
+                                                      ? vlSelf->top__DOT__IDU__DOT__ds_pc
                                                       : vlSelf->top__DOT__Register_io_rdata1)))),5);
         tracep->fullCData(oldp+43,((0x1fU & (IData)(
                                                     ((IData)(vlSelf->top__DOT__IDU__DOT__src2_is_imm)

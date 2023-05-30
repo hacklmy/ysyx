@@ -75,7 +75,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgQData(oldp+20,(vlSelf->top__DOT__IDU__DOT__ds_pc),64);
             tracep->chgIData(oldp+22,(vlSelf->top__DOT__IDU__DOT___inst_now_T_194),32);
             tracep->chgQData(oldp+23,(((IData)(vlSelf->top__DOT__IDU__DOT__src1_is_pc)
-                                        ? vlSelf->top__DOT__IFU__DOT__fs_pc
+                                        ? vlSelf->top__DOT__IDU__DOT__ds_pc
                                         : vlSelf->top__DOT__Register_io_rdata1)),64);
             tracep->chgQData(oldp+25,(((IData)(vlSelf->top__DOT__IDU__DOT__src2_is_imm)
                                         ? vlSelf->top__DOT__IDU__DOT__imm
@@ -192,7 +192,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgCData(oldp+40,(vlSelf->top__DOT__LSU__DOT__ms_rf_dst),5);
             tracep->chgCData(oldp+41,((0x1fU & (IData)(
                                                        ((IData)(vlSelf->top__DOT__IDU__DOT__src1_is_pc)
-                                                         ? vlSelf->top__DOT__IFU__DOT__fs_pc
+                                                         ? vlSelf->top__DOT__IDU__DOT__ds_pc
                                                          : vlSelf->top__DOT__Register_io_rdata1)))),5);
             tracep->chgCData(oldp+42,((0x1fU & (IData)(
                                                        ((IData)(vlSelf->top__DOT__IDU__DOT__src2_is_imm)

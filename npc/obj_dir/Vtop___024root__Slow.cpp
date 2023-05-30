@@ -126,8 +126,6 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                            & vlSelf->top__DOT__EXU__DOT__src2_value);
     vlSelf->top__DOT__EXU_io_to_ms_maddr = (vlSelf->top__DOT__EXU__DOT__src1_value 
                                             + vlSelf->top__DOT__EXU__DOT__src2_value);
-    vlSelf->io_pc = vlSelf->top__DOT__IFU__DOT__fs_pc;
-    vlSelf->top__DOT__IFU__DOT__seq_pc = (4ULL + vlSelf->top__DOT__IFU__DOT__fs_pc);
     vlSelf->top__DOT__Register_io_rdata1 = ((0U == 
                                              (0x1fU 
                                               & (vlSelf->top__DOT__IDU__DOT__inst 
@@ -347,6 +345,8 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                & vlSelf->top__DOT__IDU__DOT__inst))
                                                               ? 0x40U
                                                               : 0U)))))))))))))));
+    vlSelf->io_pc = vlSelf->top__DOT__IFU__DOT__fs_pc;
+    vlSelf->top__DOT__IFU__DOT__seq_pc = (4ULL + vlSelf->top__DOT__IFU__DOT__fs_pc);
     if (vlSelf->top__DOT__IFU__DOT__fs_valid) {
         Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->top__DOT__IFU__DOT__fs_pc, vlSelf->__Vtask_pmem_read__0__Rdata);
         vlSelf->top__DOT__IFU__DOT__inst_read_Rdata 
@@ -1326,7 +1326,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                       __Vtemp92[3U])))))))));
     }
     vlSelf->top__DOT__IDU__DOT___br_target_T_1 = (((IData)(vlSelf->top__DOT__IDU__DOT__src1_is_pc)
-                                                    ? vlSelf->top__DOT__IFU__DOT__fs_pc
+                                                    ? vlSelf->top__DOT__IDU__DOT__ds_pc
                                                     : vlSelf->top__DOT__Register_io_rdata1) 
                                                   + 
                                                   ((IData)(vlSelf->top__DOT__IDU__DOT__src2_is_imm)
