@@ -11,7 +11,8 @@ module WBU(
   output [63:0] io_wdata,
   output        io_ws_valid,
   output        io_ws_rf_we,
-  output [4:0]  io_ws_rf_dst
+  output [4:0]  io_ws_rf_dst,
+  output [63:0] io_ws_pc
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -20,49 +21,51 @@ module WBU(
   reg [31:0] _RAND_3;
   reg [63:0] _RAND_4;
 `endif // RANDOMIZE_REG_INIT
-  reg  ws_valid; // @[WBU.scala 22:27]
-  reg [63:0] ws_pc; // @[WBU.scala 23:24]
-  reg  ws_rf_we; // @[WBU.scala 27:27]
-  reg [4:0] ws_rf_dst; // @[WBU.scala 28:28]
-  reg [63:0] ws_res; // @[WBU.scala 29:25]
-  assign io_we = ws_rf_we & ws_valid; // @[WBU.scala 58:22]
-  assign io_waddr = ws_rf_dst; // @[WBU.scala 59:14]
-  assign io_wdata = ws_res; // @[WBU.scala 60:14]
-  assign io_ws_valid = ws_valid; // @[WBU.scala 61:17]
-  assign io_ws_rf_we = ws_rf_we; // @[WBU.scala 63:17]
-  assign io_ws_rf_dst = ws_rf_dst; // @[WBU.scala 62:18]
+  reg  ws_valid; // @[WBU.scala 23:27]
+  reg [63:0] ws_pc; // @[WBU.scala 24:24]
+  reg  ws_rf_we; // @[WBU.scala 28:27]
+  reg [4:0] ws_rf_dst; // @[WBU.scala 29:28]
+  reg [63:0] ws_res; // @[WBU.scala 30:25]
+  assign io_we = ws_rf_we & ws_valid; // @[WBU.scala 59:22]
+  assign io_waddr = ws_rf_dst; // @[WBU.scala 60:14]
+  assign io_wdata = ws_res; // @[WBU.scala 61:14]
+  assign io_ws_valid = ws_valid; // @[WBU.scala 62:17]
+  assign io_ws_rf_we = ws_rf_we; // @[WBU.scala 64:17]
+  assign io_ws_rf_dst = ws_rf_dst; // @[WBU.scala 63:18]
+  assign io_ws_pc = ws_pc; // @[WBU.scala 65:14]
   always @(posedge clock) begin
-    if (reset) begin // @[WBU.scala 22:27]
-      ws_valid <= 1'h0; // @[WBU.scala 22:27]
+    if (reset) begin // @[WBU.scala 23:27]
+      ws_valid <= 1'h0; // @[WBU.scala 23:27]
     end else begin
       ws_valid <= io_ms_to_ws_valid;
     end
-    if (reset) begin // @[WBU.scala 23:24]
-      ws_pc <= 64'h0; // @[WBU.scala 23:24]
-    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 40:40]
-      ws_pc <= io_pc; // @[WBU.scala 41:15]
+    if (reset) begin // @[WBU.scala 24:24]
+      ws_pc <= 64'h0; // @[WBU.scala 24:24]
+    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 41:40]
+      ws_pc <= io_pc; // @[WBU.scala 42:15]
     end
-    if (reset) begin // @[WBU.scala 27:27]
-      ws_rf_we <= 1'h0; // @[WBU.scala 27:27]
-    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 40:40]
-      ws_rf_we <= io_rf_we; // @[WBU.scala 42:18]
+    if (reset) begin // @[WBU.scala 28:27]
+      ws_rf_we <= 1'h0; // @[WBU.scala 28:27]
+    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 41:40]
+      ws_rf_we <= io_rf_we; // @[WBU.scala 43:18]
     end
-    if (reset) begin // @[WBU.scala 28:28]
-      ws_rf_dst <= 5'h0; // @[WBU.scala 28:28]
-    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 40:40]
-      ws_rf_dst <= io_rf_dst; // @[WBU.scala 43:19]
+    if (reset) begin // @[WBU.scala 29:28]
+      ws_rf_dst <= 5'h0; // @[WBU.scala 29:28]
+    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 41:40]
+      ws_rf_dst <= io_rf_dst; // @[WBU.scala 44:19]
     end
-    if (reset) begin // @[WBU.scala 29:25]
-      ws_res <= 64'h0; // @[WBU.scala 29:25]
-    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 40:40]
-      ws_res <= io_ms_final_res; // @[WBU.scala 44:16]
+    if (reset) begin // @[WBU.scala 30:25]
+      ws_res <= 64'h0; // @[WBU.scala 30:25]
+    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 41:40]
+      ws_res <= io_ms_final_res; // @[WBU.scala 45:16]
     end
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ws_pc:%x rf_dst:%d rf_we:%d wdata:%x\n",ws_pc,ws_rf_dst,io_we,ws_res); // @[WBU.scala 64:11]
+          $fwrite(32'h80000002,"ws_pc:%x ws_valid:%d rf_dst:%d rf_we:%d wdata:%x\n",ws_pc,ws_valid,ws_rf_dst,io_we,
+            ws_res); // @[WBU.scala 66:11]
         end
     `ifdef PRINTF_COND
       end

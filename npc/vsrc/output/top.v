@@ -18,22 +18,312 @@ module Register(
   wire  Reg_io_rdata2_MPORT_en; // @[register.scala 18:18]
   wire [4:0] Reg_io_rdata2_MPORT_addr; // @[register.scala 18:18]
   wire [63:0] Reg_io_rdata2_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_0_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_0_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_0_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_1_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_1_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_1_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_2_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_2_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_2_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_3_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_3_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_3_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_4_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_4_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_4_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_5_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_5_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_5_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_6_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_6_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_6_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_7_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_7_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_7_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_8_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_8_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_8_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_9_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_9_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_9_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_10_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_10_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_10_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_11_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_11_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_11_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_12_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_12_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_12_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_13_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_13_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_13_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_14_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_14_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_14_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_15_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_15_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_15_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_16_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_16_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_16_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_17_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_17_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_17_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_18_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_18_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_18_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_19_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_19_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_19_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_20_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_20_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_20_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_21_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_21_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_21_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_22_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_22_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_22_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_23_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_23_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_23_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_24_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_24_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_24_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_25_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_25_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_25_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_26_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_26_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_26_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_27_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_27_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_27_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_28_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_28_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_28_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_29_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_29_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_29_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_30_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_30_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_30_MPORT_data; // @[register.scala 18:18]
+  wire  Reg_reg_trace_io_input_reg_31_MPORT_en; // @[register.scala 18:18]
+  wire [4:0] Reg_reg_trace_io_input_reg_31_MPORT_addr; // @[register.scala 18:18]
+  wire [63:0] Reg_reg_trace_io_input_reg_31_MPORT_data; // @[register.scala 18:18]
   wire [63:0] Reg_MPORT_data; // @[register.scala 18:18]
   wire [4:0] Reg_MPORT_addr; // @[register.scala 18:18]
   wire  Reg_MPORT_mask; // @[register.scala 18:18]
   wire  Reg_MPORT_en; // @[register.scala 18:18]
+  wire [63:0] reg_trace_input_reg_0; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_1; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_2; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_3; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_4; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_5; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_6; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_7; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_8; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_9; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_10; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_11; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_12; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_13; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_14; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_15; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_16; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_17; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_18; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_19; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_20; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_21; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_22; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_23; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_24; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_25; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_26; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_27; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_28; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_29; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_30; // @[register.scala 24:27]
+  wire [63:0] reg_trace_input_reg_31; // @[register.scala 24:27]
+  traceregs reg_trace ( // @[register.scala 24:27]
+    .input_reg_0(reg_trace_input_reg_0),
+    .input_reg_1(reg_trace_input_reg_1),
+    .input_reg_2(reg_trace_input_reg_2),
+    .input_reg_3(reg_trace_input_reg_3),
+    .input_reg_4(reg_trace_input_reg_4),
+    .input_reg_5(reg_trace_input_reg_5),
+    .input_reg_6(reg_trace_input_reg_6),
+    .input_reg_7(reg_trace_input_reg_7),
+    .input_reg_8(reg_trace_input_reg_8),
+    .input_reg_9(reg_trace_input_reg_9),
+    .input_reg_10(reg_trace_input_reg_10),
+    .input_reg_11(reg_trace_input_reg_11),
+    .input_reg_12(reg_trace_input_reg_12),
+    .input_reg_13(reg_trace_input_reg_13),
+    .input_reg_14(reg_trace_input_reg_14),
+    .input_reg_15(reg_trace_input_reg_15),
+    .input_reg_16(reg_trace_input_reg_16),
+    .input_reg_17(reg_trace_input_reg_17),
+    .input_reg_18(reg_trace_input_reg_18),
+    .input_reg_19(reg_trace_input_reg_19),
+    .input_reg_20(reg_trace_input_reg_20),
+    .input_reg_21(reg_trace_input_reg_21),
+    .input_reg_22(reg_trace_input_reg_22),
+    .input_reg_23(reg_trace_input_reg_23),
+    .input_reg_24(reg_trace_input_reg_24),
+    .input_reg_25(reg_trace_input_reg_25),
+    .input_reg_26(reg_trace_input_reg_26),
+    .input_reg_27(reg_trace_input_reg_27),
+    .input_reg_28(reg_trace_input_reg_28),
+    .input_reg_29(reg_trace_input_reg_29),
+    .input_reg_30(reg_trace_input_reg_30),
+    .input_reg_31(reg_trace_input_reg_31)
+  );
   assign Reg_io_rdata1_MPORT_en = 1'h1;
   assign Reg_io_rdata1_MPORT_addr = io_raddr1;
   assign Reg_io_rdata1_MPORT_data = Reg[Reg_io_rdata1_MPORT_addr]; // @[register.scala 18:18]
   assign Reg_io_rdata2_MPORT_en = 1'h1;
   assign Reg_io_rdata2_MPORT_addr = io_raddr2;
   assign Reg_io_rdata2_MPORT_data = Reg[Reg_io_rdata2_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_0_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_0_MPORT_addr = 5'h0;
+  assign Reg_reg_trace_io_input_reg_0_MPORT_data = Reg[Reg_reg_trace_io_input_reg_0_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_1_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_1_MPORT_addr = 5'h1;
+  assign Reg_reg_trace_io_input_reg_1_MPORT_data = Reg[Reg_reg_trace_io_input_reg_1_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_2_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_2_MPORT_addr = 5'h2;
+  assign Reg_reg_trace_io_input_reg_2_MPORT_data = Reg[Reg_reg_trace_io_input_reg_2_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_3_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_3_MPORT_addr = 5'h3;
+  assign Reg_reg_trace_io_input_reg_3_MPORT_data = Reg[Reg_reg_trace_io_input_reg_3_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_4_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_4_MPORT_addr = 5'h4;
+  assign Reg_reg_trace_io_input_reg_4_MPORT_data = Reg[Reg_reg_trace_io_input_reg_4_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_5_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_5_MPORT_addr = 5'h5;
+  assign Reg_reg_trace_io_input_reg_5_MPORT_data = Reg[Reg_reg_trace_io_input_reg_5_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_6_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_6_MPORT_addr = 5'h6;
+  assign Reg_reg_trace_io_input_reg_6_MPORT_data = Reg[Reg_reg_trace_io_input_reg_6_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_7_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_7_MPORT_addr = 5'h7;
+  assign Reg_reg_trace_io_input_reg_7_MPORT_data = Reg[Reg_reg_trace_io_input_reg_7_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_8_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_8_MPORT_addr = 5'h8;
+  assign Reg_reg_trace_io_input_reg_8_MPORT_data = Reg[Reg_reg_trace_io_input_reg_8_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_9_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_9_MPORT_addr = 5'h9;
+  assign Reg_reg_trace_io_input_reg_9_MPORT_data = Reg[Reg_reg_trace_io_input_reg_9_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_10_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_10_MPORT_addr = 5'ha;
+  assign Reg_reg_trace_io_input_reg_10_MPORT_data = Reg[Reg_reg_trace_io_input_reg_10_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_11_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_11_MPORT_addr = 5'hb;
+  assign Reg_reg_trace_io_input_reg_11_MPORT_data = Reg[Reg_reg_trace_io_input_reg_11_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_12_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_12_MPORT_addr = 5'hc;
+  assign Reg_reg_trace_io_input_reg_12_MPORT_data = Reg[Reg_reg_trace_io_input_reg_12_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_13_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_13_MPORT_addr = 5'hd;
+  assign Reg_reg_trace_io_input_reg_13_MPORT_data = Reg[Reg_reg_trace_io_input_reg_13_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_14_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_14_MPORT_addr = 5'he;
+  assign Reg_reg_trace_io_input_reg_14_MPORT_data = Reg[Reg_reg_trace_io_input_reg_14_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_15_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_15_MPORT_addr = 5'hf;
+  assign Reg_reg_trace_io_input_reg_15_MPORT_data = Reg[Reg_reg_trace_io_input_reg_15_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_16_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_16_MPORT_addr = 5'h10;
+  assign Reg_reg_trace_io_input_reg_16_MPORT_data = Reg[Reg_reg_trace_io_input_reg_16_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_17_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_17_MPORT_addr = 5'h11;
+  assign Reg_reg_trace_io_input_reg_17_MPORT_data = Reg[Reg_reg_trace_io_input_reg_17_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_18_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_18_MPORT_addr = 5'h12;
+  assign Reg_reg_trace_io_input_reg_18_MPORT_data = Reg[Reg_reg_trace_io_input_reg_18_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_19_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_19_MPORT_addr = 5'h13;
+  assign Reg_reg_trace_io_input_reg_19_MPORT_data = Reg[Reg_reg_trace_io_input_reg_19_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_20_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_20_MPORT_addr = 5'h14;
+  assign Reg_reg_trace_io_input_reg_20_MPORT_data = Reg[Reg_reg_trace_io_input_reg_20_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_21_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_21_MPORT_addr = 5'h15;
+  assign Reg_reg_trace_io_input_reg_21_MPORT_data = Reg[Reg_reg_trace_io_input_reg_21_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_22_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_22_MPORT_addr = 5'h16;
+  assign Reg_reg_trace_io_input_reg_22_MPORT_data = Reg[Reg_reg_trace_io_input_reg_22_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_23_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_23_MPORT_addr = 5'h17;
+  assign Reg_reg_trace_io_input_reg_23_MPORT_data = Reg[Reg_reg_trace_io_input_reg_23_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_24_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_24_MPORT_addr = 5'h18;
+  assign Reg_reg_trace_io_input_reg_24_MPORT_data = Reg[Reg_reg_trace_io_input_reg_24_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_25_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_25_MPORT_addr = 5'h19;
+  assign Reg_reg_trace_io_input_reg_25_MPORT_data = Reg[Reg_reg_trace_io_input_reg_25_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_26_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_26_MPORT_addr = 5'h1a;
+  assign Reg_reg_trace_io_input_reg_26_MPORT_data = Reg[Reg_reg_trace_io_input_reg_26_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_27_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_27_MPORT_addr = 5'h1b;
+  assign Reg_reg_trace_io_input_reg_27_MPORT_data = Reg[Reg_reg_trace_io_input_reg_27_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_28_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_28_MPORT_addr = 5'h1c;
+  assign Reg_reg_trace_io_input_reg_28_MPORT_data = Reg[Reg_reg_trace_io_input_reg_28_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_29_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_29_MPORT_addr = 5'h1d;
+  assign Reg_reg_trace_io_input_reg_29_MPORT_data = Reg[Reg_reg_trace_io_input_reg_29_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_30_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_30_MPORT_addr = 5'h1e;
+  assign Reg_reg_trace_io_input_reg_30_MPORT_data = Reg[Reg_reg_trace_io_input_reg_30_MPORT_addr]; // @[register.scala 18:18]
+  assign Reg_reg_trace_io_input_reg_31_MPORT_en = 1'h1;
+  assign Reg_reg_trace_io_input_reg_31_MPORT_addr = 5'h1f;
+  assign Reg_reg_trace_io_input_reg_31_MPORT_data = Reg[Reg_reg_trace_io_input_reg_31_MPORT_addr]; // @[register.scala 18:18]
   assign Reg_MPORT_data = io_wdata;
   assign Reg_MPORT_addr = io_waddr;
   assign Reg_MPORT_mask = 1'h1;
   assign Reg_MPORT_en = io_we;
   assign io_rdata1 = io_raddr1 == 5'h0 ? 64'h0 : Reg_io_rdata1_MPORT_data; // @[register.scala 22:21]
   assign io_rdata2 = io_raddr2 == 5'h0 ? 64'h0 : Reg_io_rdata2_MPORT_data; // @[register.scala 23:21]
+  assign reg_trace_input_reg_0 = Reg_reg_trace_io_input_reg_0_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_1 = Reg_reg_trace_io_input_reg_1_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_2 = Reg_reg_trace_io_input_reg_2_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_3 = Reg_reg_trace_io_input_reg_3_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_4 = Reg_reg_trace_io_input_reg_4_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_5 = Reg_reg_trace_io_input_reg_5_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_6 = Reg_reg_trace_io_input_reg_6_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_7 = Reg_reg_trace_io_input_reg_7_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_8 = Reg_reg_trace_io_input_reg_8_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_9 = Reg_reg_trace_io_input_reg_9_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_10 = Reg_reg_trace_io_input_reg_10_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_11 = Reg_reg_trace_io_input_reg_11_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_12 = Reg_reg_trace_io_input_reg_12_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_13 = Reg_reg_trace_io_input_reg_13_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_14 = Reg_reg_trace_io_input_reg_14_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_15 = Reg_reg_trace_io_input_reg_15_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_16 = Reg_reg_trace_io_input_reg_16_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_17 = Reg_reg_trace_io_input_reg_17_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_18 = Reg_reg_trace_io_input_reg_18_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_19 = Reg_reg_trace_io_input_reg_19_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_20 = Reg_reg_trace_io_input_reg_20_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_21 = Reg_reg_trace_io_input_reg_21_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_22 = Reg_reg_trace_io_input_reg_22_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_23 = Reg_reg_trace_io_input_reg_23_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_24 = Reg_reg_trace_io_input_reg_24_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_25 = Reg_reg_trace_io_input_reg_25_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_26 = Reg_reg_trace_io_input_reg_26_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_27 = Reg_reg_trace_io_input_reg_27_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_28 = Reg_reg_trace_io_input_reg_28_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_29 = Reg_reg_trace_io_input_reg_29_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_30 = Reg_reg_trace_io_input_reg_30_MPORT_data; // @[register.scala 26:57]
+  assign reg_trace_input_reg_31 = Reg_reg_trace_io_input_reg_31_MPORT_data; // @[register.scala 26:57]
   always @(posedge clock) begin
     if (Reg_MPORT_en & Reg_MPORT_mask) begin
       Reg[Reg_MPORT_addr] <= Reg_MPORT_data; // @[register.scala 18:18]
@@ -1126,7 +1416,8 @@ module WBU(
   output [63:0] io_wdata,
   output        io_ws_valid,
   output        io_ws_rf_we,
-  output [4:0]  io_ws_rf_dst
+  output [4:0]  io_ws_rf_dst,
+  output [63:0] io_ws_pc
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -1135,49 +1426,51 @@ module WBU(
   reg [31:0] _RAND_3;
   reg [63:0] _RAND_4;
 `endif // RANDOMIZE_REG_INIT
-  reg  ws_valid; // @[WBU.scala 22:27]
-  reg [63:0] ws_pc; // @[WBU.scala 23:24]
-  reg  ws_rf_we; // @[WBU.scala 27:27]
-  reg [4:0] ws_rf_dst; // @[WBU.scala 28:28]
-  reg [63:0] ws_res; // @[WBU.scala 29:25]
-  assign io_we = ws_rf_we & ws_valid; // @[WBU.scala 58:22]
-  assign io_waddr = ws_rf_dst; // @[WBU.scala 59:14]
-  assign io_wdata = ws_res; // @[WBU.scala 60:14]
-  assign io_ws_valid = ws_valid; // @[WBU.scala 61:17]
-  assign io_ws_rf_we = ws_rf_we; // @[WBU.scala 63:17]
-  assign io_ws_rf_dst = ws_rf_dst; // @[WBU.scala 62:18]
+  reg  ws_valid; // @[WBU.scala 23:27]
+  reg [63:0] ws_pc; // @[WBU.scala 24:24]
+  reg  ws_rf_we; // @[WBU.scala 28:27]
+  reg [4:0] ws_rf_dst; // @[WBU.scala 29:28]
+  reg [63:0] ws_res; // @[WBU.scala 30:25]
+  assign io_we = ws_rf_we & ws_valid; // @[WBU.scala 59:22]
+  assign io_waddr = ws_rf_dst; // @[WBU.scala 60:14]
+  assign io_wdata = ws_res; // @[WBU.scala 61:14]
+  assign io_ws_valid = ws_valid; // @[WBU.scala 62:17]
+  assign io_ws_rf_we = ws_rf_we; // @[WBU.scala 64:17]
+  assign io_ws_rf_dst = ws_rf_dst; // @[WBU.scala 63:18]
+  assign io_ws_pc = ws_pc; // @[WBU.scala 65:14]
   always @(posedge clock) begin
-    if (reset) begin // @[WBU.scala 22:27]
-      ws_valid <= 1'h0; // @[WBU.scala 22:27]
+    if (reset) begin // @[WBU.scala 23:27]
+      ws_valid <= 1'h0; // @[WBU.scala 23:27]
     end else begin
       ws_valid <= io_ms_to_ws_valid;
     end
-    if (reset) begin // @[WBU.scala 23:24]
-      ws_pc <= 64'h0; // @[WBU.scala 23:24]
-    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 40:40]
-      ws_pc <= io_pc; // @[WBU.scala 41:15]
+    if (reset) begin // @[WBU.scala 24:24]
+      ws_pc <= 64'h0; // @[WBU.scala 24:24]
+    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 41:40]
+      ws_pc <= io_pc; // @[WBU.scala 42:15]
     end
-    if (reset) begin // @[WBU.scala 27:27]
-      ws_rf_we <= 1'h0; // @[WBU.scala 27:27]
-    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 40:40]
-      ws_rf_we <= io_rf_we; // @[WBU.scala 42:18]
+    if (reset) begin // @[WBU.scala 28:27]
+      ws_rf_we <= 1'h0; // @[WBU.scala 28:27]
+    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 41:40]
+      ws_rf_we <= io_rf_we; // @[WBU.scala 43:18]
     end
-    if (reset) begin // @[WBU.scala 28:28]
-      ws_rf_dst <= 5'h0; // @[WBU.scala 28:28]
-    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 40:40]
-      ws_rf_dst <= io_rf_dst; // @[WBU.scala 43:19]
+    if (reset) begin // @[WBU.scala 29:28]
+      ws_rf_dst <= 5'h0; // @[WBU.scala 29:28]
+    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 41:40]
+      ws_rf_dst <= io_rf_dst; // @[WBU.scala 44:19]
     end
-    if (reset) begin // @[WBU.scala 29:25]
-      ws_res <= 64'h0; // @[WBU.scala 29:25]
-    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 40:40]
-      ws_res <= io_ms_final_res; // @[WBU.scala 44:16]
+    if (reset) begin // @[WBU.scala 30:25]
+      ws_res <= 64'h0; // @[WBU.scala 30:25]
+    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 41:40]
+      ws_res <= io_ms_final_res; // @[WBU.scala 45:16]
     end
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ws_pc:%x rf_dst:%d rf_we:%d wdata:%x\n",ws_pc,ws_rf_dst,io_we,ws_res); // @[WBU.scala 64:11]
+          $fwrite(32'h80000002,"ws_pc:%x ws_valid:%d rf_dst:%d rf_we:%d wdata:%x\n",ws_pc,ws_valid,ws_rf_dst,io_we,
+            ws_res); // @[WBU.scala 66:11]
         end
     `ifdef PRINTF_COND
       end
@@ -1354,8 +1647,10 @@ module top(
   wire  WBU_io_ws_valid; // @[top.scala 20:21]
   wire  WBU_io_ws_rf_we; // @[top.scala 20:21]
   wire [4:0] WBU_io_ws_rf_dst; // @[top.scala 20:21]
-  wire [31:0] dpi_flag; // @[top.scala 81:21]
-  wire [31:0] dpi_ecall_flag; // @[top.scala 81:21]
+  wire [63:0] WBU_io_ws_pc; // @[top.scala 20:21]
+  wire [31:0] dpi_flag; // @[top.scala 82:21]
+  wire [31:0] dpi_ecall_flag; // @[top.scala 82:21]
+  wire [63:0] dpi_pc; // @[top.scala 82:21]
   Register Register ( // @[top.scala 15:25]
     .clock(Register_clock),
     .io_raddr1(Register_io_raddr1),
@@ -1475,75 +1770,78 @@ module top(
     .io_wdata(WBU_io_wdata),
     .io_ws_valid(WBU_io_ws_valid),
     .io_ws_rf_we(WBU_io_ws_rf_we),
-    .io_ws_rf_dst(WBU_io_ws_rf_dst)
+    .io_ws_rf_dst(WBU_io_ws_rf_dst),
+    .io_ws_pc(WBU_io_ws_pc)
   );
-  DPI dpi ( // @[top.scala 81:21]
+  DPI dpi ( // @[top.scala 82:21]
     .flag(dpi_flag),
-    .ecall_flag(dpi_ecall_flag)
+    .ecall_flag(dpi_ecall_flag),
+    .pc(dpi_pc)
   );
-  assign io_inst = IFU_io_inst; // @[top.scala 80:13]
-  assign io_pc = IFU_io_to_ds_pc; // @[top.scala 78:11]
-  assign io_step = WBU_io_ws_valid; // @[top.scala 79:13]
+  assign io_inst = IFU_io_inst; // @[top.scala 81:13]
+  assign io_pc = IFU_io_to_ds_pc; // @[top.scala 79:11]
+  assign io_step = WBU_io_ws_valid; // @[top.scala 80:13]
   assign Register_clock = clock;
-  assign Register_io_raddr1 = IDU_io_raddr1; // @[top.scala 33:20]
-  assign Register_io_raddr2 = IDU_io_raddr2; // @[top.scala 34:20]
-  assign Register_io_we = WBU_io_we; // @[top.scala 74:16]
-  assign Register_io_waddr = WBU_io_waddr; // @[top.scala 75:19]
-  assign Register_io_wdata = WBU_io_wdata; // @[top.scala 76:19]
+  assign Register_io_raddr1 = IDU_io_raddr1; // @[top.scala 34:20]
+  assign Register_io_raddr2 = IDU_io_raddr2; // @[top.scala 35:20]
+  assign Register_io_we = WBU_io_we; // @[top.scala 75:16]
+  assign Register_io_waddr = WBU_io_waddr; // @[top.scala 76:19]
+  assign Register_io_wdata = WBU_io_wdata; // @[top.scala 77:19]
   assign IFU_clock = clock;
   assign IFU_reset = reset;
-  assign IFU_io_ds_allowin = IDU_io_ds_allowin; // @[top.scala 24:20]
-  assign IFU_io_br_taken = IDU_io_br_taken; // @[top.scala 25:18]
-  assign IFU_io_br_target = IDU_io_br_target; // @[top.scala 26:19]
-  assign IFU_io_br_taken_cancel = IDU_io_br_taken_cancel; // @[top.scala 27:25]
+  assign IFU_io_ds_allowin = IDU_io_ds_allowin; // @[top.scala 25:20]
+  assign IFU_io_br_taken = IDU_io_br_taken; // @[top.scala 26:18]
+  assign IFU_io_br_target = IDU_io_br_target; // @[top.scala 27:19]
+  assign IFU_io_br_taken_cancel = IDU_io_br_taken_cancel; // @[top.scala 28:25]
   assign IDU_clock = clock;
   assign IDU_reset = reset;
-  assign IDU_io_pc = IFU_io_to_ds_pc; // @[top.scala 29:12]
-  assign IDU_io_fs_to_ds_valid = IFU_io_fs_to_ds_valid; // @[top.scala 30:24]
-  assign IDU_io_from_fs_inst = IFU_io_inst; // @[top.scala 32:22]
-  assign IDU_io_rdata1 = Register_io_rdata1; // @[top.scala 35:16]
-  assign IDU_io_rdata2 = Register_io_rdata2; // @[top.scala 36:16]
-  assign IDU_io_es_rf_we = EXU_io_es_rf_we; // @[top.scala 39:18]
-  assign IDU_io_ms_rf_we = LSU_io_ms_rf_we; // @[top.scala 42:18]
-  assign IDU_io_ws_rf_we = WBU_io_ws_rf_we; // @[top.scala 45:18]
-  assign IDU_io_es_valid = EXU_io_es_valid; // @[top.scala 37:18]
-  assign IDU_io_ms_valid = LSU_io_ms_valid; // @[top.scala 40:18]
-  assign IDU_io_ws_valid = WBU_io_ws_valid; // @[top.scala 43:18]
-  assign IDU_io_es_rf_dst = EXU_io_es_rf_dst; // @[top.scala 38:19]
-  assign IDU_io_ms_rf_dst = LSU_io_ms_rf_dst; // @[top.scala 41:19]
-  assign IDU_io_ws_rf_dst = WBU_io_ws_rf_dst; // @[top.scala 44:19]
+  assign IDU_io_pc = IFU_io_to_ds_pc; // @[top.scala 30:12]
+  assign IDU_io_fs_to_ds_valid = IFU_io_fs_to_ds_valid; // @[top.scala 31:24]
+  assign IDU_io_from_fs_inst = IFU_io_inst; // @[top.scala 33:22]
+  assign IDU_io_rdata1 = Register_io_rdata1; // @[top.scala 36:16]
+  assign IDU_io_rdata2 = Register_io_rdata2; // @[top.scala 37:16]
+  assign IDU_io_es_rf_we = EXU_io_es_rf_we; // @[top.scala 40:18]
+  assign IDU_io_ms_rf_we = LSU_io_ms_rf_we; // @[top.scala 43:18]
+  assign IDU_io_ws_rf_we = WBU_io_ws_rf_we; // @[top.scala 46:18]
+  assign IDU_io_es_valid = EXU_io_es_valid; // @[top.scala 38:18]
+  assign IDU_io_ms_valid = LSU_io_ms_valid; // @[top.scala 41:18]
+  assign IDU_io_ws_valid = WBU_io_ws_valid; // @[top.scala 44:18]
+  assign IDU_io_es_rf_dst = EXU_io_es_rf_dst; // @[top.scala 39:19]
+  assign IDU_io_ms_rf_dst = LSU_io_ms_rf_dst; // @[top.scala 42:19]
+  assign IDU_io_ws_rf_dst = WBU_io_ws_rf_dst; // @[top.scala 45:19]
   assign EXU_clock = clock;
   assign EXU_reset = reset;
-  assign EXU_io_pc = IDU_io_to_es_pc; // @[top.scala 47:12]
-  assign EXU_io_ds_to_es_valid = IDU_io_ds_to_es_valid; // @[top.scala 48:24]
-  assign EXU_io_inst_now = IDU_io_inst_now; // @[top.scala 50:18]
-  assign EXU_io_src1_value = IDU_io_src1[4:0]; // @[top.scala 51:20]
-  assign EXU_io_src2_value = IDU_io_src2[4:0]; // @[top.scala 52:20]
-  assign EXU_io_rf_dst = IDU_io_rf_dst; // @[top.scala 53:16]
-  assign EXU_io_store_data = IDU_io_store_data; // @[top.scala 54:20]
-  assign EXU_io_ctrl_sign_reg_write = IDU_io_ctrl_sign_reg_write; // @[top.scala 55:19]
-  assign EXU_io_ctrl_sign_Writemem_en = IDU_io_ctrl_sign_Writemem_en; // @[top.scala 55:19]
-  assign EXU_io_ctrl_sign_Readmem_en = IDU_io_ctrl_sign_Readmem_en; // @[top.scala 55:19]
-  assign EXU_io_ctrl_sign_Wmask = IDU_io_ctrl_sign_Wmask; // @[top.scala 55:19]
+  assign EXU_io_pc = IDU_io_to_es_pc; // @[top.scala 48:12]
+  assign EXU_io_ds_to_es_valid = IDU_io_ds_to_es_valid; // @[top.scala 49:24]
+  assign EXU_io_inst_now = IDU_io_inst_now; // @[top.scala 51:18]
+  assign EXU_io_src1_value = IDU_io_src1[4:0]; // @[top.scala 52:20]
+  assign EXU_io_src2_value = IDU_io_src2[4:0]; // @[top.scala 53:20]
+  assign EXU_io_rf_dst = IDU_io_rf_dst; // @[top.scala 54:16]
+  assign EXU_io_store_data = IDU_io_store_data; // @[top.scala 55:20]
+  assign EXU_io_ctrl_sign_reg_write = IDU_io_ctrl_sign_reg_write; // @[top.scala 56:19]
+  assign EXU_io_ctrl_sign_Writemem_en = IDU_io_ctrl_sign_Writemem_en; // @[top.scala 56:19]
+  assign EXU_io_ctrl_sign_Readmem_en = IDU_io_ctrl_sign_Readmem_en; // @[top.scala 56:19]
+  assign EXU_io_ctrl_sign_Wmask = IDU_io_ctrl_sign_Wmask; // @[top.scala 56:19]
   assign LSU_clock = clock;
   assign LSU_reset = reset;
-  assign LSU_io_pc = EXU_io_to_ms_pc; // @[top.scala 57:12]
-  assign LSU_io_es_to_ms_valid = EXU_io_es_to_ms_valid; // @[top.scala 58:24]
-  assign LSU_io_rf_we = EXU_io_to_ms_rf_we; // @[top.scala 60:15]
-  assign LSU_io_rf_dst = EXU_io_to_ms_rf_dst; // @[top.scala 61:16]
-  assign LSU_io_alu_res = EXU_io_to_ms_alures; // @[top.scala 62:17]
-  assign LSU_io_store_data = EXU_io_to_ms_store_data; // @[top.scala 63:20]
-  assign LSU_io_wen = EXU_io_to_ms_wen; // @[top.scala 64:13]
-  assign LSU_io_wstrb = EXU_io_to_ms_wstrb; // @[top.scala 65:15]
-  assign LSU_io_ren = EXU_io_to_ms_ren; // @[top.scala 66:13]
-  assign LSU_io_maddr = EXU_io_to_ms_maddr; // @[top.scala 67:15]
+  assign LSU_io_pc = EXU_io_to_ms_pc; // @[top.scala 58:12]
+  assign LSU_io_es_to_ms_valid = EXU_io_es_to_ms_valid; // @[top.scala 59:24]
+  assign LSU_io_rf_we = EXU_io_to_ms_rf_we; // @[top.scala 61:15]
+  assign LSU_io_rf_dst = EXU_io_to_ms_rf_dst; // @[top.scala 62:16]
+  assign LSU_io_alu_res = EXU_io_to_ms_alures; // @[top.scala 63:17]
+  assign LSU_io_store_data = EXU_io_to_ms_store_data; // @[top.scala 64:20]
+  assign LSU_io_wen = EXU_io_to_ms_wen; // @[top.scala 65:13]
+  assign LSU_io_wstrb = EXU_io_to_ms_wstrb; // @[top.scala 66:15]
+  assign LSU_io_ren = EXU_io_to_ms_ren; // @[top.scala 67:13]
+  assign LSU_io_maddr = EXU_io_to_ms_maddr; // @[top.scala 68:15]
   assign WBU_clock = clock;
   assign WBU_reset = reset;
-  assign WBU_io_pc = LSU_io_to_ws_pc; // @[top.scala 69:12]
-  assign WBU_io_ms_to_ws_valid = LSU_io_ms_to_ws_valid; // @[top.scala 70:24]
-  assign WBU_io_ms_final_res = LSU_io_ms_final_res; // @[top.scala 71:22]
-  assign WBU_io_rf_we = LSU_io_to_ws_rf_we; // @[top.scala 72:15]
-  assign WBU_io_rf_dst = LSU_io_to_ws_rf_dst; // @[top.scala 73:16]
-  assign dpi_flag = {{31'd0}, IDU_io_inst_now == 32'h2}; // @[top.scala 82:17]
-  assign dpi_ecall_flag = {{31'd0}, IDU_io_inst_now == 32'h3d}; // @[top.scala 83:23]
+  assign WBU_io_pc = LSU_io_to_ws_pc; // @[top.scala 70:12]
+  assign WBU_io_ms_to_ws_valid = LSU_io_ms_to_ws_valid; // @[top.scala 71:24]
+  assign WBU_io_ms_final_res = LSU_io_ms_final_res; // @[top.scala 72:22]
+  assign WBU_io_rf_we = LSU_io_to_ws_rf_we; // @[top.scala 73:15]
+  assign WBU_io_rf_dst = LSU_io_to_ws_rf_dst; // @[top.scala 74:16]
+  assign dpi_flag = {{31'd0}, IDU_io_inst_now == 32'h2}; // @[top.scala 83:17]
+  assign dpi_ecall_flag = {{31'd0}, IDU_io_inst_now == 32'h3d}; // @[top.scala 84:23]
+  assign dpi_pc = WBU_io_ws_pc; // @[top.scala 85:15]
 endmodule
