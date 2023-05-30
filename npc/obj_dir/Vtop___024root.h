@@ -70,6 +70,11 @@ VL_MODULE(Vtop___024root) {
         VlWide<4>/*126:0*/ top__DOT__EXU__DOT___alu_res_T_144;
         QData/*63:0*/ top__DOT__Register_io_rdata1;
         QData/*63:0*/ top__DOT__Register_io_rdata2;
+        QData/*63:0*/ top__DOT__Register__DOT__reg_trace__DOT__csr_reg_0;
+        QData/*63:0*/ top__DOT__Register__DOT__reg_trace__DOT__csr_reg_1;
+        QData/*63:0*/ top__DOT__Register__DOT__reg_trace__DOT__csr_reg_2;
+        QData/*63:0*/ top__DOT__Register__DOT__reg_trace__DOT__csr_reg_3;
+        QData/*63:0*/ top__DOT__Register__DOT__reg_trace__DOT__pc;
         QData/*63:0*/ top__DOT__IFU__DOT__inst_read_Rdata;
         QData/*63:0*/ top__DOT__IFU__DOT__fs_pc;
         QData/*63:0*/ top__DOT__IFU__DOT__seq_pc;
@@ -90,22 +95,23 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__EXU__DOT__and_res;
         QData/*63:0*/ top__DOT__EXU__DOT___mluw_res_T_2;
         QData/*32:0*/ top__DOT__EXU__DOT___divw_res_T_4;
+    };
+    struct {
         QData/*63:0*/ top__DOT__LSU__DOT__Mem_modle_Rdata;
         QData/*63:0*/ top__DOT__LSU__DOT__ms_pc;
         QData/*63:0*/ top__DOT__LSU__DOT__ms_res;
         QData/*63:0*/ top__DOT__LSU__DOT__store_data;
         QData/*63:0*/ top__DOT__LSU__DOT__maddr;
-    };
-    struct {
         QData/*63:0*/ top__DOT__WBU__DOT__ws_pc;
         QData/*63:0*/ top__DOT__WBU__DOT__ws_res;
         VlUnpacked<QData/*63:0*/, 32> top__DOT__Register__DOT__Reg;
+        VlUnpacked<QData/*63:0*/, 32> top__DOT__Register__DOT__reg_trace__DOT__traceregs;
     };
 
     // LOCAL VARIABLES
     CData/*0:0*/ __Vclklast__TOP__clock;
-    QData/*63:0*/ __Vtask_pmem_read__0__Rdata;
     QData/*63:0*/ __Vtask_pmem_read__1__Rdata;
+    QData/*63:0*/ __Vtask_pmem_read__2__Rdata;
     VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
 
     // INTERNAL VARIABLES
