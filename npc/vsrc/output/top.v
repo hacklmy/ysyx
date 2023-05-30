@@ -123,15 +123,15 @@ module IFU(
     .Write_en(inst_read_Write_en),
     .Read_en(inst_read_Read_en)
   );
-  assign io_to_ds_pc = fs_pc; // @[IFU.scala 47:17]
+  assign io_to_ds_pc = fs_pc; // @[IFU.scala 48:17]
   assign io_fs_to_ds_valid = fs_valid; // @[IFU.scala 34:33]
-  assign io_inst = inst_read_Rdata[31:0]; // @[IFU.scala 46:34]
+  assign io_inst = inst_read_Rdata[31:0]; // @[IFU.scala 47:34]
   assign inst_read_Raddr = fs_pc; // @[IFU.scala 44:24]
   assign inst_read_Waddr = 64'h0;
   assign inst_read_Wdata = 64'h0;
   assign inst_read_Wmask = 8'h0;
   assign inst_read_Write_en = 1'h0;
-  assign inst_read_Read_en = 1'h0;
+  assign inst_read_Read_en = fs_valid; // @[IFU.scala 45:26]
   always @(posedge clock) begin
     if (reset) begin // @[IFU.scala 18:27]
       fs_valid <= 1'h0; // @[IFU.scala 18:27]
