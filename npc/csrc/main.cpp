@@ -387,6 +387,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
 
 //==========================sdb============================
 CPU_state cpu_gpr;
+cpu_gpr.pc = 0x80000000;
 extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
   uint64_t *gpr = NULL;
   gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
@@ -730,11 +731,8 @@ void cpu_exec(int n){
   if(n<0)flag=1;
   while (!cpu_stop && (flag==1||n--) && !SDL_quite) {
       top->reset = 0;
-      //top->io_inst = pmem_read(top->io_pc);
-      //printf("%lx %x\n",pc_now , top->io_inst);
       top->clock ^= 1;
       top->eval();
-      //printf("%lx %x\n",top->io_pc , top->io_inst);
       top->clock ^= 1;
       top->eval();
       //printf("%lx %x\n",top->io_pc , top->io_inst);
