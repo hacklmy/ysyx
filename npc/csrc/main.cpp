@@ -735,10 +735,10 @@ void cpu_exec(int n){
       top->clock ^= 1;
       top->eval();
       //printf("%lx %x\n",top->io_pc , top->io_inst);
-      printf("pc_now:%lx\n",pc_now);
+      printf("pc_now:%lx step:%d\n",pc_now,top->io_step);
       top->clock ^= 1;
       top->eval();
-      printf("pc_now:%lx\n",pc_now);
+      printf("pc_now:%lx top:%d\n",pc_now,top->io_step);
       //printf("%lx %x\n",top->io_pc , top->io_inst);
       //printf("%d\n",sim_time);
       #ifdef CONFIG_ITRACE
