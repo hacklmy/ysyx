@@ -7,7 +7,8 @@ module IFU(
   input  [63:0] io_br_target,
   input         io_br_taken_cancel,
   output [63:0] io_to_ds_pc,
-  output        io_fs_to_ds_valid
+  output        io_fs_to_ds_valid,
+  output [31:0] io_inst
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -37,6 +38,7 @@ module IFU(
   );
   assign io_to_ds_pc = fs_pc; // @[IFU.scala 47:17]
   assign io_fs_to_ds_valid = fs_valid; // @[IFU.scala 34:33]
+  assign io_inst = inst_read_Rdata[31:0]; // @[IFU.scala 46:34]
   assign inst_read_Raddr = fs_pc; // @[IFU.scala 44:24]
   assign inst_read_Waddr = 64'h0;
   assign inst_read_Wdata = 64'h0;

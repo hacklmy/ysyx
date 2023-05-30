@@ -94,7 +94,8 @@ module IFU(
   input  [63:0] io_br_target,
   input         io_br_taken_cancel,
   output [63:0] io_to_ds_pc,
-  output        io_fs_to_ds_valid
+  output        io_fs_to_ds_valid,
+  output [31:0] io_inst
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -124,6 +125,7 @@ module IFU(
   );
   assign io_to_ds_pc = fs_pc; // @[IFU.scala 47:17]
   assign io_fs_to_ds_valid = fs_valid; // @[IFU.scala 34:33]
+  assign io_inst = inst_read_Rdata[31:0]; // @[IFU.scala 46:34]
   assign inst_read_Raddr = fs_pc; // @[IFU.scala 44:24]
   assign inst_read_Waddr = 64'h0;
   assign inst_read_Wdata = 64'h0;
@@ -1140,6 +1142,7 @@ endmodule
 module top(
   input         clock,
   input         reset,
+  output [31:0] io_inst,
   output [63:0] io_pc,
   output        io_step
 );
@@ -1159,6 +1162,7 @@ module top(
   wire  IFU_io_br_taken_cancel; // @[top.scala 16:21]
   wire [63:0] IFU_io_to_ds_pc; // @[top.scala 16:21]
   wire  IFU_io_fs_to_ds_valid; // @[top.scala 16:21]
+  wire [31:0] IFU_io_inst; // @[top.scala 16:21]
   wire  IDU_clock; // @[top.scala 17:21]
   wire  IDU_reset; // @[top.scala 17:21]
   wire [63:0] IDU_io_pc; // @[top.scala 17:21]
@@ -1264,7 +1268,8 @@ module top(
     .io_br_target(IFU_io_br_target),
     .io_br_taken_cancel(IFU_io_br_taken_cancel),
     .io_to_ds_pc(IFU_io_to_ds_pc),
-    .io_fs_to_ds_valid(IFU_io_fs_to_ds_valid)
+    .io_fs_to_ds_valid(IFU_io_fs_to_ds_valid),
+    .io_inst(IFU_io_inst)
   );
   IDU IDU ( // @[top.scala 17:21]
     .clock(IDU_clock),
@@ -1361,6 +1366,7 @@ module top(
     .io_ws_rf_we(WBU_io_ws_rf_we),
     .io_ws_rf_dst(WBU_io_ws_rf_dst)
   );
+  assign io_inst = IFU_io_inst; // @[top.scala 80:13]
   assign io_pc = IFU_io_to_ds_pc; // @[top.scala 78:11]
   assign io_step = WBU_io_ws_valid; // @[top.scala 79:13]
   assign Register_clock = clock;
