@@ -237,9 +237,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
         VL_FWRITEF(0x80000002U,"ms_pc:%x\n",64,vlSelf->top__DOT__LSU__DOT__ms_pc);
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"ws_pc:%x rf_we:%1# wdata:%x\n",
+        VL_FWRITEF(0x80000002U,"ws_pc:%x rf_dst:%2# rf_we:%1# wdata:%x\n",
                    64,vlSelf->top__DOT__WBU__DOT__ws_pc,
-                   1,(IData)(vlSelf->top__DOT__WBU__DOT__ws_rf_we),
+                   5,(IData)(vlSelf->top__DOT__WBU__DOT__ws_rf_dst),
+                   1,((IData)(vlSelf->top__DOT__WBU__DOT__ws_rf_we) 
+                      & (IData)(vlSelf->top__DOT__WBU__DOT__ws_valid)),
                    64,vlSelf->top__DOT__WBU__DOT__ws_res);
     }
     if (vlSelf->reset) {

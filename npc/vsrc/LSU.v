@@ -30,14 +30,15 @@ module LSU(
   reg [31:0] _RAND_6;
   reg [31:0] _RAND_7;
   reg [31:0] _RAND_8;
+  reg [63:0] _RAND_9;
 `endif // RANDOMIZE_REG_INIT
-  wire [63:0] Mem_modle_Raddr; // @[LSU.scala 65:27]
-  wire [63:0] Mem_modle_Rdata; // @[LSU.scala 65:27]
-  wire [63:0] Mem_modle_Waddr; // @[LSU.scala 65:27]
-  wire [63:0] Mem_modle_Wdata; // @[LSU.scala 65:27]
-  wire [7:0] Mem_modle_Wmask; // @[LSU.scala 65:27]
-  wire  Mem_modle_Write_en; // @[LSU.scala 65:27]
-  wire  Mem_modle_Read_en; // @[LSU.scala 65:27]
+  wire [63:0] Mem_modle_Raddr; // @[LSU.scala 67:27]
+  wire [63:0] Mem_modle_Rdata; // @[LSU.scala 67:27]
+  wire [63:0] Mem_modle_Waddr; // @[LSU.scala 67:27]
+  wire [63:0] Mem_modle_Wdata; // @[LSU.scala 67:27]
+  wire [7:0] Mem_modle_Wmask; // @[LSU.scala 67:27]
+  wire  Mem_modle_Write_en; // @[LSU.scala 67:27]
+  wire  Mem_modle_Read_en; // @[LSU.scala 67:27]
   reg  ms_valid; // @[LSU.scala 30:27]
   reg [63:0] ms_pc; // @[LSU.scala 31:24]
   reg  ms_rf_we; // @[LSU.scala 35:27]
@@ -47,7 +48,8 @@ module LSU(
   reg  wen; // @[LSU.scala 40:22]
   reg [7:0] wstrb; // @[LSU.scala 41:24]
   reg  ren; // @[LSU.scala 42:22]
-  MEM Mem_modle ( // @[LSU.scala 65:27]
+  reg [63:0] maddr; // @[LSU.scala 43:24]
+  MEM Mem_modle ( // @[LSU.scala 67:27]
     .Raddr(Mem_modle_Raddr),
     .Rdata(Mem_modle_Rdata),
     .Waddr(Mem_modle_Waddr),
@@ -56,20 +58,20 @@ module LSU(
     .Write_en(Mem_modle_Write_en),
     .Read_en(Mem_modle_Read_en)
   );
-  assign io_to_ws_pc = ms_pc; // @[LSU.scala 77:17]
-  assign io_ms_final_res = ren ? Mem_modle_Rdata : ms_res; // @[LSU.scala 73:27]
-  assign io_ms_to_ws_valid = ms_valid; // @[LSU.scala 62:32]
-  assign io_to_ws_rf_we = ms_rf_we; // @[LSU.scala 76:20]
-  assign io_to_ws_rf_dst = ms_rf_dst; // @[LSU.scala 75:21]
-  assign io_ms_valid = ms_valid; // @[LSU.scala 79:17]
-  assign io_ms_rf_we = ms_rf_we & ms_valid; // @[LSU.scala 81:28]
-  assign io_ms_rf_dst = ms_rf_dst; // @[LSU.scala 80:18]
-  assign Mem_modle_Raddr = io_maddr; // @[LSU.scala 66:24]
-  assign Mem_modle_Waddr = io_maddr; // @[LSU.scala 67:24]
-  assign Mem_modle_Wdata = store_data; // @[LSU.scala 68:24]
-  assign Mem_modle_Wmask = wstrb; // @[LSU.scala 69:24]
-  assign Mem_modle_Write_en = wen; // @[LSU.scala 70:27]
-  assign Mem_modle_Read_en = ren; // @[LSU.scala 71:26]
+  assign io_to_ws_pc = ms_pc; // @[LSU.scala 79:17]
+  assign io_ms_final_res = ren ? Mem_modle_Rdata : ms_res; // @[LSU.scala 75:27]
+  assign io_ms_to_ws_valid = ms_valid; // @[LSU.scala 64:32]
+  assign io_to_ws_rf_we = ms_rf_we; // @[LSU.scala 78:20]
+  assign io_to_ws_rf_dst = ms_rf_dst; // @[LSU.scala 77:21]
+  assign io_ms_valid = ms_valid; // @[LSU.scala 81:17]
+  assign io_ms_rf_we = ms_rf_we & ms_valid; // @[LSU.scala 83:28]
+  assign io_ms_rf_dst = ms_rf_dst; // @[LSU.scala 82:18]
+  assign Mem_modle_Raddr = maddr; // @[LSU.scala 68:24]
+  assign Mem_modle_Waddr = maddr; // @[LSU.scala 69:24]
+  assign Mem_modle_Wdata = store_data; // @[LSU.scala 70:24]
+  assign Mem_modle_Wmask = wstrb; // @[LSU.scala 71:24]
+  assign Mem_modle_Write_en = wen; // @[LSU.scala 72:27]
+  assign Mem_modle_Read_en = ren; // @[LSU.scala 73:26]
   always @(posedge clock) begin
     if (reset) begin // @[LSU.scala 30:27]
       ms_valid <= 1'h0; // @[LSU.scala 30:27]
@@ -78,50 +80,55 @@ module LSU(
     end
     if (reset) begin // @[LSU.scala 31:24]
       ms_pc <= 64'h0; // @[LSU.scala 31:24]
-    end else if (io_es_to_ms_valid) begin // @[LSU.scala 48:40]
-      ms_pc <= io_pc; // @[LSU.scala 49:15]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 49:40]
+      ms_pc <= io_pc; // @[LSU.scala 50:15]
     end
     if (reset) begin // @[LSU.scala 35:27]
       ms_rf_we <= 1'h0; // @[LSU.scala 35:27]
-    end else if (io_es_to_ms_valid) begin // @[LSU.scala 48:40]
-      ms_rf_we <= io_rf_we; // @[LSU.scala 50:18]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 49:40]
+      ms_rf_we <= io_rf_we; // @[LSU.scala 51:18]
     end
     if (reset) begin // @[LSU.scala 36:28]
       ms_rf_dst <= 5'h0; // @[LSU.scala 36:28]
-    end else if (io_es_to_ms_valid) begin // @[LSU.scala 48:40]
-      ms_rf_dst <= io_rf_dst; // @[LSU.scala 51:19]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 49:40]
+      ms_rf_dst <= io_rf_dst; // @[LSU.scala 52:19]
     end
     if (reset) begin // @[LSU.scala 37:25]
       ms_res <= 64'h0; // @[LSU.scala 37:25]
-    end else if (io_es_to_ms_valid) begin // @[LSU.scala 48:40]
-      ms_res <= io_alu_res; // @[LSU.scala 52:16]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 49:40]
+      ms_res <= io_alu_res; // @[LSU.scala 53:16]
     end
     if (reset) begin // @[LSU.scala 39:29]
       store_data <= 64'h0; // @[LSU.scala 39:29]
-    end else if (io_es_to_ms_valid) begin // @[LSU.scala 48:40]
-      store_data <= io_store_data; // @[LSU.scala 54:20]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 49:40]
+      store_data <= io_store_data; // @[LSU.scala 55:20]
     end
     if (reset) begin // @[LSU.scala 40:22]
       wen <= 1'h0; // @[LSU.scala 40:22]
-    end else if (io_es_to_ms_valid) begin // @[LSU.scala 48:40]
-      wen <= io_wen; // @[LSU.scala 55:13]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 49:40]
+      wen <= io_wen; // @[LSU.scala 56:13]
     end
     if (reset) begin // @[LSU.scala 41:24]
       wstrb <= 8'h0; // @[LSU.scala 41:24]
-    end else if (io_es_to_ms_valid) begin // @[LSU.scala 48:40]
-      wstrb <= io_wstrb; // @[LSU.scala 56:15]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 49:40]
+      wstrb <= io_wstrb; // @[LSU.scala 57:15]
     end
     if (reset) begin // @[LSU.scala 42:22]
       ren <= 1'h0; // @[LSU.scala 42:22]
-    end else if (io_es_to_ms_valid) begin // @[LSU.scala 48:40]
-      ren <= io_ren; // @[LSU.scala 57:13]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 49:40]
+      ren <= io_ren; // @[LSU.scala 58:13]
+    end
+    if (reset) begin // @[LSU.scala 43:24]
+      maddr <= 64'h0; // @[LSU.scala 43:24]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 49:40]
+      maddr <= io_maddr; // @[LSU.scala 59:15]
     end
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ms_pc:%x\n",ms_pc); // @[LSU.scala 82:11]
+          $fwrite(32'h80000002,"ms_pc:%x\n",ms_pc); // @[LSU.scala 84:11]
         end
     `ifdef PRINTF_COND
       end
@@ -182,6 +189,8 @@ initial begin
   wstrb = _RAND_7[7:0];
   _RAND_8 = {1{`RANDOM}};
   ren = _RAND_8[0:0];
+  _RAND_9 = {2{`RANDOM}};
+  maddr = _RAND_9[63:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
