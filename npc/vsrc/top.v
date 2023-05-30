@@ -246,7 +246,7 @@ module top(
     .pc(dpi_pc)
   );
   assign io_inst = IFU_io_inst; // @[top.scala 81:13]
-  assign io_pc = IFU_io_to_ds_pc; // @[top.scala 79:11]
+  assign io_pc = WBU_io_ws_pc; // @[top.scala 79:11]
   assign io_step = WBU_io_ws_valid; // @[top.scala 80:13]
   assign Register_clock = clock;
   assign Register_io_raddr1 = IDU_io_raddr1; // @[top.scala 34:20]
@@ -311,17 +311,4 @@ module top(
   assign dpi_flag = {{31'd0}, IDU_io_inst_now == 32'h2}; // @[top.scala 83:17]
   assign dpi_ecall_flag = {{31'd0}, IDU_io_inst_now == 32'h3d}; // @[top.scala 84:23]
   assign dpi_pc = WBU_io_ws_pc; // @[top.scala 85:15]
-  always @(posedge clock) begin
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"dpi_pc:%x\n\n",dpi_pc); // @[top.scala 86:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-  end
 endmodule
