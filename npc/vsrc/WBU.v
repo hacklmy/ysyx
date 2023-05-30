@@ -49,6 +49,17 @@ module WBU(
     end else if (io_ms_to_ws_valid) begin // @[WBU.scala 40:40]
       ws_res <= io_ms_final_res; // @[WBU.scala 44:16]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"rf_we:%d wdata:%d\n",ws_rf_we,ws_res); // @[WBU.scala 64:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
