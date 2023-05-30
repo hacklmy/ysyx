@@ -735,6 +735,7 @@ void cpu_exec(int n){
       top->clock ^= 1;
       top->eval();
       //printf("%lx %x\n",top->io_pc , top->io_inst);
+      printf("pc_now:%lx\n",pc_now);
       top->clock ^= 1;
       top->eval();
       printf("pc_now:%lx\n",pc_now);
