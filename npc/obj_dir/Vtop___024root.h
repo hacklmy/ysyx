@@ -61,6 +61,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__WBU__DOT__ws_rf_we;
         CData/*4:0*/ top__DOT__WBU__DOT__ws_rf_dst;
         IData/*31:0*/ top__DOT__IDU__DOT__inst;
+        IData/*31:0*/ top__DOT__EXU__DOT__inst_now;
         VlWide<4>/*126:0*/ top__DOT__EXU__DOT__sll_res;
         IData/*31:0*/ top__DOT__EXU__DOT__srlw_res;
         IData/*31:0*/ top__DOT__EXU__DOT__divuw_res;
@@ -69,7 +70,6 @@ VL_MODULE(Vtop___024root) {
         VlWide<4>/*126:0*/ top__DOT__EXU__DOT___alu_res_T_144;
         QData/*63:0*/ top__DOT__Register_io_rdata1;
         QData/*63:0*/ top__DOT__Register_io_rdata2;
-        QData/*63:0*/ top__DOT__EXU_io_to_ms_maddr;
         QData/*63:0*/ top__DOT__IFU__DOT__inst_read_Rdata;
         QData/*63:0*/ top__DOT__IFU__DOT__fs_pc;
         QData/*63:0*/ top__DOT__IFU__DOT__seq_pc;
@@ -80,6 +80,7 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__EXU__DOT__src1_value;
         QData/*63:0*/ top__DOT__EXU__DOT__src2_value;
         QData/*63:0*/ top__DOT__EXU__DOT__store_data;
+        QData/*63:0*/ top__DOT__EXU__DOT__add_res;
         QData/*63:0*/ top__DOT__EXU__DOT__sub_res;
         QData/*63:0*/ top__DOT__EXU__DOT__sra_res;
         QData/*63:0*/ top__DOT__EXU__DOT__srl_res;
@@ -93,10 +94,11 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__LSU__DOT__ms_pc;
         QData/*63:0*/ top__DOT__LSU__DOT__ms_res;
         QData/*63:0*/ top__DOT__LSU__DOT__store_data;
-        QData/*63:0*/ top__DOT__WBU__DOT__ws_pc;
-        QData/*63:0*/ top__DOT__WBU__DOT__ws_res;
+        QData/*63:0*/ top__DOT__LSU__DOT__maddr;
     };
     struct {
+        QData/*63:0*/ top__DOT__WBU__DOT__ws_pc;
+        QData/*63:0*/ top__DOT__WBU__DOT__ws_res;
         VlUnpacked<QData/*63:0*/, 32> top__DOT__Register__DOT__Reg;
     };
 
