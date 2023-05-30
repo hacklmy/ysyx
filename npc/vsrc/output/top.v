@@ -147,6 +147,17 @@ module IFU(
         fs_pc <= seq_pc;
       end
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"fs_pc:%x \n",fs_pc); // @[IFU.scala 50:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -544,6 +555,17 @@ module IDU(
     end else if (io_fs_to_ds_valid & ds_allowin) begin // @[IDU.scala 98:40]
       inst <= io_inst_now; // @[IDU.scala 100:14]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"ds_pc:%x br_taken:%d\n",ds_pc,br_taken); // @[IDU.scala 459:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -1250,6 +1272,8 @@ module top(
   wire  WBU_io_ws_valid; // @[top.scala 20:21]
   wire  WBU_io_ws_rf_we; // @[top.scala 20:21]
   wire [4:0] WBU_io_ws_rf_dst; // @[top.scala 20:21]
+  wire [31:0] dpi_flag; // @[top.scala 81:21]
+  wire [31:0] dpi_ecall_flag; // @[top.scala 81:21]
   Register Register ( // @[top.scala 15:25]
     .clock(Register_clock),
     .io_raddr1(Register_io_raddr1),
@@ -1366,6 +1390,10 @@ module top(
     .io_ws_rf_we(WBU_io_ws_rf_we),
     .io_ws_rf_dst(WBU_io_ws_rf_dst)
   );
+  DPI dpi ( // @[top.scala 81:21]
+    .flag(dpi_flag),
+    .ecall_flag(dpi_ecall_flag)
+  );
   assign io_inst = IFU_io_inst; // @[top.scala 80:13]
   assign io_pc = IFU_io_to_ds_pc; // @[top.scala 78:11]
   assign io_step = WBU_io_ws_valid; // @[top.scala 79:13]
@@ -1426,4 +1454,6 @@ module top(
   assign WBU_io_ms_final_res = LSU_io_ms_final_res; // @[top.scala 71:22]
   assign WBU_io_rf_we = LSU_io_to_ws_rf_we; // @[top.scala 72:15]
   assign WBU_io_rf_dst = LSU_io_to_ws_rf_dst; // @[top.scala 73:16]
+  assign dpi_flag = {{31'd0}, IDU_io_inst_now == 32'h2}; // @[top.scala 82:17]
+  assign dpi_ecall_flag = {{31'd0}, IDU_io_inst_now == 32'h3d}; // @[top.scala 83:23]
 endmodule
