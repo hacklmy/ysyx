@@ -734,6 +734,7 @@ void cpu_exec(int n){
       //printf("%lx %x\n",pc_now , top->io_inst);
       top->clock ^= 1;
       top->eval();
+      printf("pc_now:%lx step:%d\n",pc_now,top->io_step);
       #ifdef CONFIG_DIFFTEST
 #ifdef HAS_AXI
     if(top->io_step){
@@ -744,7 +745,7 @@ void cpu_exec(int n){
 #endif
 #endif
       //printf("%lx %x\n",top->io_pc , top->io_inst);
-      printf("pc_now:%lx step:%d\n",pc_now,top->io_step);
+      
       top->clock ^= 1;
       top->eval();
       printf("pc_now:%lx top:%d\n",pc_now,top->io_step);
