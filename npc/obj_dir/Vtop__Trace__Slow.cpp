@@ -54,6 +54,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+16,"top IDU_io_pc", false,-1, 63,0);
         tracep->declBit(c+18,"top IDU_io_fs_to_ds_valid", false,-1);
         tracep->declBit(c+20,"top IDU_io_ds_to_es_valid", false,-1);
+        tracep->declBus(c+19,"top IDU_io_from_fs_inst", false,-1, 31,0);
         tracep->declBit(c+12,"top IDU_io_br_taken", false,-1);
         tracep->declQuad(c+13,"top IDU_io_br_target", false,-1, 63,0);
         tracep->declBit(c+15,"top IDU_io_br_taken_cancel", false,-1);
@@ -190,6 +191,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+16,"top IDU io_pc", false,-1, 63,0);
         tracep->declBit(c+18,"top IDU io_fs_to_ds_valid", false,-1);
         tracep->declBit(c+20,"top IDU io_ds_to_es_valid", false,-1);
+        tracep->declBus(c+19,"top IDU io_from_fs_inst", false,-1, 31,0);
         tracep->declBit(c+12,"top IDU io_br_taken", false,-1);
         tracep->declQuad(c+13,"top IDU io_br_target", false,-1, 63,0);
         tracep->declBit(c+15,"top IDU io_br_taken_cancel", false,-1);

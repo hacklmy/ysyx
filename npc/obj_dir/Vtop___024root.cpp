@@ -552,7 +552,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__IDU__DOT__inst = 0U;
     } else if (((IData)(vlSelf->top__DOT__IFU__DOT__fs_valid) 
                 & (IData)(vlSelf->top__DOT__IDU__DOT__ds_allowin))) {
-        vlSelf->top__DOT__IDU__DOT__inst = vlSelf->top__DOT__IDU__DOT___inst_now_T_194;
+        vlSelf->top__DOT__IDU__DOT__inst = (IData)(vlSelf->top__DOT__IFU__DOT__inst_read_Rdata);
     }
     top__DOT__EXU__DOT___alu_res_T_50 = (((QData)((IData)(
                                                           ((vlSelf->top__DOT__EXU__DOT__srlw_res 
