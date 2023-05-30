@@ -11,6 +11,7 @@ module EXU(
   input  [4:0]  io_rf_dst,
   input  [63:0] io_store_data,
   output        io_es_to_ms_valid,
+  output [63:0] io_to_ms_pc,
   output [63:0] io_to_ms_alures,
   output [63:0] io_to_ms_store_data,
   output        io_to_ms_wen,
@@ -144,6 +145,7 @@ module EXU(
   wire [126:0] _alu_res_T_162 = 32'h39 == io_inst_now ? {{63'd0}, sra_res} : _alu_res_T_160; // @[Mux.scala 81:58]
   wire [126:0] _alu_res_T_164 = 32'h38 == io_inst_now ? {{63'd0}, srl_res} : _alu_res_T_162; // @[Mux.scala 81:58]
   assign io_es_to_ms_valid = es_valid; // @[EXU.scala 67:32]
+  assign io_to_ms_pc = es_pc; // @[EXU.scala 204:17]
   assign io_to_ms_alures = _alu_res_T_164[63:0]; // @[EXU.scala 109:13 49:23]
   assign io_to_ms_store_data = store_data; // @[EXU.scala 207:25]
   assign io_to_ms_wen = st_we; // @[EXU.scala 208:18]

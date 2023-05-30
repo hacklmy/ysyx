@@ -629,6 +629,7 @@ module EXU(
   input  [4:0]  io_rf_dst,
   input  [63:0] io_store_data,
   output        io_es_to_ms_valid,
+  output [63:0] io_to_ms_pc,
   output [63:0] io_to_ms_alures,
   output [63:0] io_to_ms_store_data,
   output        io_to_ms_wen,
@@ -762,6 +763,7 @@ module EXU(
   wire [126:0] _alu_res_T_162 = 32'h39 == io_inst_now ? {{63'd0}, sra_res} : _alu_res_T_160; // @[Mux.scala 81:58]
   wire [126:0] _alu_res_T_164 = 32'h38 == io_inst_now ? {{63'd0}, srl_res} : _alu_res_T_162; // @[Mux.scala 81:58]
   assign io_es_to_ms_valid = es_valid; // @[EXU.scala 67:32]
+  assign io_to_ms_pc = es_pc; // @[EXU.scala 204:17]
   assign io_to_ms_alures = _alu_res_T_164[63:0]; // @[EXU.scala 109:13 49:23]
   assign io_to_ms_store_data = store_data; // @[EXU.scala 207:25]
   assign io_to_ms_wen = st_we; // @[EXU.scala 208:18]
@@ -892,6 +894,7 @@ endmodule
 module LSU(
   input         clock,
   input         reset,
+  input  [63:0] io_pc,
   input         io_es_to_ms_valid,
   input         io_rf_we,
   input  [4:0]  io_rf_dst,
@@ -901,6 +904,7 @@ module LSU(
   input  [7:0]  io_wstrb,
   input         io_ren,
   input  [63:0] io_maddr,
+  output [63:0] io_to_ws_pc,
   output [63:0] io_ms_final_res,
   output        io_ms_to_ws_valid,
   output        io_to_ws_rf_we,
@@ -911,13 +915,14 @@ module LSU(
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
-  reg [31:0] _RAND_1;
+  reg [63:0] _RAND_1;
   reg [31:0] _RAND_2;
-  reg [63:0] _RAND_3;
+  reg [31:0] _RAND_3;
   reg [63:0] _RAND_4;
-  reg [31:0] _RAND_5;
+  reg [63:0] _RAND_5;
   reg [31:0] _RAND_6;
   reg [31:0] _RAND_7;
+  reg [31:0] _RAND_8;
 `endif // RANDOMIZE_REG_INIT
   wire [63:0] Mem_modle_Raddr; // @[LSU.scala 65:27]
   wire [63:0] Mem_modle_Rdata; // @[LSU.scala 65:27]
@@ -927,6 +932,7 @@ module LSU(
   wire  Mem_modle_Write_en; // @[LSU.scala 65:27]
   wire  Mem_modle_Read_en; // @[LSU.scala 65:27]
   reg  ms_valid; // @[LSU.scala 30:27]
+  reg [63:0] ms_pc; // @[LSU.scala 31:24]
   reg  ms_rf_we; // @[LSU.scala 35:27]
   reg [4:0] ms_rf_dst; // @[LSU.scala 36:28]
   reg [63:0] ms_res; // @[LSU.scala 37:25]
@@ -943,6 +949,7 @@ module LSU(
     .Write_en(Mem_modle_Write_en),
     .Read_en(Mem_modle_Read_en)
   );
+  assign io_to_ws_pc = ms_pc; // @[LSU.scala 77:17]
   assign io_ms_final_res = ren ? Mem_modle_Rdata : ms_res; // @[LSU.scala 73:27]
   assign io_ms_to_ws_valid = ms_valid; // @[LSU.scala 62:32]
   assign io_to_ws_rf_we = ms_rf_we; // @[LSU.scala 76:20]
@@ -961,6 +968,11 @@ module LSU(
       ms_valid <= 1'h0; // @[LSU.scala 30:27]
     end else begin
       ms_valid <= io_es_to_ms_valid;
+    end
+    if (reset) begin // @[LSU.scala 31:24]
+      ms_pc <= 64'h0; // @[LSU.scala 31:24]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 48:40]
+      ms_pc <= io_pc; // @[LSU.scala 49:15]
     end
     if (reset) begin // @[LSU.scala 35:27]
       ms_rf_we <= 1'h0; // @[LSU.scala 35:27]
@@ -1036,20 +1048,22 @@ initial begin
 `ifdef RANDOMIZE_REG_INIT
   _RAND_0 = {1{`RANDOM}};
   ms_valid = _RAND_0[0:0];
-  _RAND_1 = {1{`RANDOM}};
-  ms_rf_we = _RAND_1[0:0];
+  _RAND_1 = {2{`RANDOM}};
+  ms_pc = _RAND_1[63:0];
   _RAND_2 = {1{`RANDOM}};
-  ms_rf_dst = _RAND_2[4:0];
-  _RAND_3 = {2{`RANDOM}};
-  ms_res = _RAND_3[63:0];
+  ms_rf_we = _RAND_2[0:0];
+  _RAND_3 = {1{`RANDOM}};
+  ms_rf_dst = _RAND_3[4:0];
   _RAND_4 = {2{`RANDOM}};
-  store_data = _RAND_4[63:0];
-  _RAND_5 = {1{`RANDOM}};
-  wen = _RAND_5[0:0];
+  ms_res = _RAND_4[63:0];
+  _RAND_5 = {2{`RANDOM}};
+  store_data = _RAND_5[63:0];
   _RAND_6 = {1{`RANDOM}};
-  wstrb = _RAND_6[7:0];
+  wen = _RAND_6[0:0];
   _RAND_7 = {1{`RANDOM}};
-  ren = _RAND_7[0:0];
+  wstrb = _RAND_7[7:0];
+  _RAND_8 = {1{`RANDOM}};
+  ren = _RAND_8[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
@@ -1061,6 +1075,7 @@ endmodule
 module WBU(
   input         clock,
   input         reset,
+  input  [63:0] io_pc,
   input         io_ms_to_ws_valid,
   input  [63:0] io_ms_final_res,
   input         io_rf_we,
@@ -1074,11 +1089,13 @@ module WBU(
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
-  reg [31:0] _RAND_1;
+  reg [63:0] _RAND_1;
   reg [31:0] _RAND_2;
-  reg [63:0] _RAND_3;
+  reg [31:0] _RAND_3;
+  reg [63:0] _RAND_4;
 `endif // RANDOMIZE_REG_INIT
   reg  ws_valid; // @[WBU.scala 22:27]
+  reg [63:0] ws_pc; // @[WBU.scala 23:24]
   reg  ws_rf_we; // @[WBU.scala 27:27]
   reg [4:0] ws_rf_dst; // @[WBU.scala 28:28]
   reg [63:0] ws_res; // @[WBU.scala 29:25]
@@ -1093,6 +1110,11 @@ module WBU(
       ws_valid <= 1'h0; // @[WBU.scala 22:27]
     end else begin
       ws_valid <= io_ms_to_ws_valid;
+    end
+    if (reset) begin // @[WBU.scala 23:24]
+      ws_pc <= 64'h0; // @[WBU.scala 23:24]
+    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 40:40]
+      ws_pc <= io_pc; // @[WBU.scala 41:15]
     end
     if (reset) begin // @[WBU.scala 27:27]
       ws_rf_we <= 1'h0; // @[WBU.scala 27:27]
@@ -1114,7 +1136,7 @@ module WBU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"rf_we:%d wdata:%d\n",ws_rf_we,ws_res); // @[WBU.scala 64:11]
+          $fwrite(32'h80000002,"ws_pc:%x rf_we:%d wdata:%d\n",ws_pc,ws_rf_we,ws_res); // @[WBU.scala 64:11]
         end
     `ifdef PRINTF_COND
       end
@@ -1159,12 +1181,14 @@ initial begin
 `ifdef RANDOMIZE_REG_INIT
   _RAND_0 = {1{`RANDOM}};
   ws_valid = _RAND_0[0:0];
-  _RAND_1 = {1{`RANDOM}};
-  ws_rf_we = _RAND_1[0:0];
+  _RAND_1 = {2{`RANDOM}};
+  ws_pc = _RAND_1[63:0];
   _RAND_2 = {1{`RANDOM}};
-  ws_rf_dst = _RAND_2[4:0];
-  _RAND_3 = {2{`RANDOM}};
-  ws_res = _RAND_3[63:0];
+  ws_rf_we = _RAND_2[0:0];
+  _RAND_3 = {1{`RANDOM}};
+  ws_rf_dst = _RAND_3[4:0];
+  _RAND_4 = {2{`RANDOM}};
+  ws_res = _RAND_4[63:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
@@ -1240,6 +1264,7 @@ module top(
   wire [4:0] EXU_io_rf_dst; // @[top.scala 18:21]
   wire [63:0] EXU_io_store_data; // @[top.scala 18:21]
   wire  EXU_io_es_to_ms_valid; // @[top.scala 18:21]
+  wire [63:0] EXU_io_to_ms_pc; // @[top.scala 18:21]
   wire [63:0] EXU_io_to_ms_alures; // @[top.scala 18:21]
   wire [63:0] EXU_io_to_ms_store_data; // @[top.scala 18:21]
   wire  EXU_io_to_ms_wen; // @[top.scala 18:21]
@@ -1257,6 +1282,7 @@ module top(
   wire [4:0] EXU_io_es_rf_dst; // @[top.scala 18:21]
   wire  LSU_clock; // @[top.scala 19:21]
   wire  LSU_reset; // @[top.scala 19:21]
+  wire [63:0] LSU_io_pc; // @[top.scala 19:21]
   wire  LSU_io_es_to_ms_valid; // @[top.scala 19:21]
   wire  LSU_io_rf_we; // @[top.scala 19:21]
   wire [4:0] LSU_io_rf_dst; // @[top.scala 19:21]
@@ -1266,6 +1292,7 @@ module top(
   wire [7:0] LSU_io_wstrb; // @[top.scala 19:21]
   wire  LSU_io_ren; // @[top.scala 19:21]
   wire [63:0] LSU_io_maddr; // @[top.scala 19:21]
+  wire [63:0] LSU_io_to_ws_pc; // @[top.scala 19:21]
   wire [63:0] LSU_io_ms_final_res; // @[top.scala 19:21]
   wire  LSU_io_ms_to_ws_valid; // @[top.scala 19:21]
   wire  LSU_io_to_ws_rf_we; // @[top.scala 19:21]
@@ -1275,6 +1302,7 @@ module top(
   wire [4:0] LSU_io_ms_rf_dst; // @[top.scala 19:21]
   wire  WBU_clock; // @[top.scala 20:21]
   wire  WBU_reset; // @[top.scala 20:21]
+  wire [63:0] WBU_io_pc; // @[top.scala 20:21]
   wire  WBU_io_ms_to_ws_valid; // @[top.scala 20:21]
   wire [63:0] WBU_io_ms_final_res; // @[top.scala 20:21]
   wire  WBU_io_rf_we; // @[top.scala 20:21]
@@ -1354,6 +1382,7 @@ module top(
     .io_rf_dst(EXU_io_rf_dst),
     .io_store_data(EXU_io_store_data),
     .io_es_to_ms_valid(EXU_io_es_to_ms_valid),
+    .io_to_ms_pc(EXU_io_to_ms_pc),
     .io_to_ms_alures(EXU_io_to_ms_alures),
     .io_to_ms_store_data(EXU_io_to_ms_store_data),
     .io_to_ms_wen(EXU_io_to_ms_wen),
@@ -1373,6 +1402,7 @@ module top(
   LSU LSU ( // @[top.scala 19:21]
     .clock(LSU_clock),
     .reset(LSU_reset),
+    .io_pc(LSU_io_pc),
     .io_es_to_ms_valid(LSU_io_es_to_ms_valid),
     .io_rf_we(LSU_io_rf_we),
     .io_rf_dst(LSU_io_rf_dst),
@@ -1382,6 +1412,7 @@ module top(
     .io_wstrb(LSU_io_wstrb),
     .io_ren(LSU_io_ren),
     .io_maddr(LSU_io_maddr),
+    .io_to_ws_pc(LSU_io_to_ws_pc),
     .io_ms_final_res(LSU_io_ms_final_res),
     .io_ms_to_ws_valid(LSU_io_ms_to_ws_valid),
     .io_to_ws_rf_we(LSU_io_to_ws_rf_we),
@@ -1393,6 +1424,7 @@ module top(
   WBU WBU ( // @[top.scala 20:21]
     .clock(WBU_clock),
     .reset(WBU_reset),
+    .io_pc(WBU_io_pc),
     .io_ms_to_ws_valid(WBU_io_ms_to_ws_valid),
     .io_ms_final_res(WBU_io_ms_final_res),
     .io_rf_we(WBU_io_rf_we),
@@ -1454,6 +1486,7 @@ module top(
   assign EXU_io_ctrl_sign_Wmask = IDU_io_ctrl_sign_Wmask; // @[top.scala 55:19]
   assign LSU_clock = clock;
   assign LSU_reset = reset;
+  assign LSU_io_pc = EXU_io_to_ms_pc; // @[top.scala 57:12]
   assign LSU_io_es_to_ms_valid = EXU_io_es_to_ms_valid; // @[top.scala 58:24]
   assign LSU_io_rf_we = EXU_io_to_ms_rf_we; // @[top.scala 60:15]
   assign LSU_io_rf_dst = EXU_io_to_ms_rf_dst; // @[top.scala 61:16]
@@ -1465,6 +1498,7 @@ module top(
   assign LSU_io_maddr = EXU_io_to_ms_maddr; // @[top.scala 67:15]
   assign WBU_clock = clock;
   assign WBU_reset = reset;
+  assign WBU_io_pc = LSU_io_to_ws_pc; // @[top.scala 69:12]
   assign WBU_io_ms_to_ws_valid = LSU_io_ms_to_ws_valid; // @[top.scala 70:24]
   assign WBU_io_ms_final_res = LSU_io_ms_final_res; // @[top.scala 71:22]
   assign WBU_io_rf_we = LSU_io_to_ws_rf_we; // @[top.scala 72:15]

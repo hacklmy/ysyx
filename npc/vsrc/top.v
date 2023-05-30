@@ -65,6 +65,7 @@ module top(
   wire [4:0] EXU_io_rf_dst; // @[top.scala 18:21]
   wire [63:0] EXU_io_store_data; // @[top.scala 18:21]
   wire  EXU_io_es_to_ms_valid; // @[top.scala 18:21]
+  wire [63:0] EXU_io_to_ms_pc; // @[top.scala 18:21]
   wire [63:0] EXU_io_to_ms_alures; // @[top.scala 18:21]
   wire [63:0] EXU_io_to_ms_store_data; // @[top.scala 18:21]
   wire  EXU_io_to_ms_wen; // @[top.scala 18:21]
@@ -82,6 +83,7 @@ module top(
   wire [4:0] EXU_io_es_rf_dst; // @[top.scala 18:21]
   wire  LSU_clock; // @[top.scala 19:21]
   wire  LSU_reset; // @[top.scala 19:21]
+  wire [63:0] LSU_io_pc; // @[top.scala 19:21]
   wire  LSU_io_es_to_ms_valid; // @[top.scala 19:21]
   wire  LSU_io_rf_we; // @[top.scala 19:21]
   wire [4:0] LSU_io_rf_dst; // @[top.scala 19:21]
@@ -91,6 +93,7 @@ module top(
   wire [7:0] LSU_io_wstrb; // @[top.scala 19:21]
   wire  LSU_io_ren; // @[top.scala 19:21]
   wire [63:0] LSU_io_maddr; // @[top.scala 19:21]
+  wire [63:0] LSU_io_to_ws_pc; // @[top.scala 19:21]
   wire [63:0] LSU_io_ms_final_res; // @[top.scala 19:21]
   wire  LSU_io_ms_to_ws_valid; // @[top.scala 19:21]
   wire  LSU_io_to_ws_rf_we; // @[top.scala 19:21]
@@ -100,6 +103,7 @@ module top(
   wire [4:0] LSU_io_ms_rf_dst; // @[top.scala 19:21]
   wire  WBU_clock; // @[top.scala 20:21]
   wire  WBU_reset; // @[top.scala 20:21]
+  wire [63:0] WBU_io_pc; // @[top.scala 20:21]
   wire  WBU_io_ms_to_ws_valid; // @[top.scala 20:21]
   wire [63:0] WBU_io_ms_final_res; // @[top.scala 20:21]
   wire  WBU_io_rf_we; // @[top.scala 20:21]
@@ -179,6 +183,7 @@ module top(
     .io_rf_dst(EXU_io_rf_dst),
     .io_store_data(EXU_io_store_data),
     .io_es_to_ms_valid(EXU_io_es_to_ms_valid),
+    .io_to_ms_pc(EXU_io_to_ms_pc),
     .io_to_ms_alures(EXU_io_to_ms_alures),
     .io_to_ms_store_data(EXU_io_to_ms_store_data),
     .io_to_ms_wen(EXU_io_to_ms_wen),
@@ -198,6 +203,7 @@ module top(
   LSU LSU ( // @[top.scala 19:21]
     .clock(LSU_clock),
     .reset(LSU_reset),
+    .io_pc(LSU_io_pc),
     .io_es_to_ms_valid(LSU_io_es_to_ms_valid),
     .io_rf_we(LSU_io_rf_we),
     .io_rf_dst(LSU_io_rf_dst),
@@ -207,6 +213,7 @@ module top(
     .io_wstrb(LSU_io_wstrb),
     .io_ren(LSU_io_ren),
     .io_maddr(LSU_io_maddr),
+    .io_to_ws_pc(LSU_io_to_ws_pc),
     .io_ms_final_res(LSU_io_ms_final_res),
     .io_ms_to_ws_valid(LSU_io_ms_to_ws_valid),
     .io_to_ws_rf_we(LSU_io_to_ws_rf_we),
@@ -218,6 +225,7 @@ module top(
   WBU WBU ( // @[top.scala 20:21]
     .clock(WBU_clock),
     .reset(WBU_reset),
+    .io_pc(WBU_io_pc),
     .io_ms_to_ws_valid(WBU_io_ms_to_ws_valid),
     .io_ms_final_res(WBU_io_ms_final_res),
     .io_rf_we(WBU_io_rf_we),
@@ -279,6 +287,7 @@ module top(
   assign EXU_io_ctrl_sign_Wmask = IDU_io_ctrl_sign_Wmask; // @[top.scala 55:19]
   assign LSU_clock = clock;
   assign LSU_reset = reset;
+  assign LSU_io_pc = EXU_io_to_ms_pc; // @[top.scala 57:12]
   assign LSU_io_es_to_ms_valid = EXU_io_es_to_ms_valid; // @[top.scala 58:24]
   assign LSU_io_rf_we = EXU_io_to_ms_rf_we; // @[top.scala 60:15]
   assign LSU_io_rf_dst = EXU_io_to_ms_rf_dst; // @[top.scala 61:16]
@@ -290,6 +299,7 @@ module top(
   assign LSU_io_maddr = EXU_io_to_ms_maddr; // @[top.scala 67:15]
   assign WBU_clock = clock;
   assign WBU_reset = reset;
+  assign WBU_io_pc = LSU_io_to_ws_pc; // @[top.scala 69:12]
   assign WBU_io_ms_to_ws_valid = LSU_io_ms_to_ws_valid; // @[top.scala 70:24]
   assign WBU_io_ms_final_res = LSU_io_ms_final_res; // @[top.scala 71:22]
   assign WBU_io_rf_we = LSU_io_to_ws_rf_we; // @[top.scala 72:15]

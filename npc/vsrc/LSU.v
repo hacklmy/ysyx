@@ -1,6 +1,7 @@
 module LSU(
   input         clock,
   input         reset,
+  input  [63:0] io_pc,
   input         io_es_to_ms_valid,
   input         io_rf_we,
   input  [4:0]  io_rf_dst,
@@ -10,6 +11,7 @@ module LSU(
   input  [7:0]  io_wstrb,
   input         io_ren,
   input  [63:0] io_maddr,
+  output [63:0] io_to_ws_pc,
   output [63:0] io_ms_final_res,
   output        io_ms_to_ws_valid,
   output        io_to_ws_rf_we,
@@ -20,13 +22,14 @@ module LSU(
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
-  reg [31:0] _RAND_1;
+  reg [63:0] _RAND_1;
   reg [31:0] _RAND_2;
-  reg [63:0] _RAND_3;
+  reg [31:0] _RAND_3;
   reg [63:0] _RAND_4;
-  reg [31:0] _RAND_5;
+  reg [63:0] _RAND_5;
   reg [31:0] _RAND_6;
   reg [31:0] _RAND_7;
+  reg [31:0] _RAND_8;
 `endif // RANDOMIZE_REG_INIT
   wire [63:0] Mem_modle_Raddr; // @[LSU.scala 65:27]
   wire [63:0] Mem_modle_Rdata; // @[LSU.scala 65:27]
@@ -36,6 +39,7 @@ module LSU(
   wire  Mem_modle_Write_en; // @[LSU.scala 65:27]
   wire  Mem_modle_Read_en; // @[LSU.scala 65:27]
   reg  ms_valid; // @[LSU.scala 30:27]
+  reg [63:0] ms_pc; // @[LSU.scala 31:24]
   reg  ms_rf_we; // @[LSU.scala 35:27]
   reg [4:0] ms_rf_dst; // @[LSU.scala 36:28]
   reg [63:0] ms_res; // @[LSU.scala 37:25]
@@ -52,6 +56,7 @@ module LSU(
     .Write_en(Mem_modle_Write_en),
     .Read_en(Mem_modle_Read_en)
   );
+  assign io_to_ws_pc = ms_pc; // @[LSU.scala 77:17]
   assign io_ms_final_res = ren ? Mem_modle_Rdata : ms_res; // @[LSU.scala 73:27]
   assign io_ms_to_ws_valid = ms_valid; // @[LSU.scala 62:32]
   assign io_to_ws_rf_we = ms_rf_we; // @[LSU.scala 76:20]
@@ -70,6 +75,11 @@ module LSU(
       ms_valid <= 1'h0; // @[LSU.scala 30:27]
     end else begin
       ms_valid <= io_es_to_ms_valid;
+    end
+    if (reset) begin // @[LSU.scala 31:24]
+      ms_pc <= 64'h0; // @[LSU.scala 31:24]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 48:40]
+      ms_pc <= io_pc; // @[LSU.scala 49:15]
     end
     if (reset) begin // @[LSU.scala 35:27]
       ms_rf_we <= 1'h0; // @[LSU.scala 35:27]
@@ -145,20 +155,22 @@ initial begin
 `ifdef RANDOMIZE_REG_INIT
   _RAND_0 = {1{`RANDOM}};
   ms_valid = _RAND_0[0:0];
-  _RAND_1 = {1{`RANDOM}};
-  ms_rf_we = _RAND_1[0:0];
+  _RAND_1 = {2{`RANDOM}};
+  ms_pc = _RAND_1[63:0];
   _RAND_2 = {1{`RANDOM}};
-  ms_rf_dst = _RAND_2[4:0];
-  _RAND_3 = {2{`RANDOM}};
-  ms_res = _RAND_3[63:0];
+  ms_rf_we = _RAND_2[0:0];
+  _RAND_3 = {1{`RANDOM}};
+  ms_rf_dst = _RAND_3[4:0];
   _RAND_4 = {2{`RANDOM}};
-  store_data = _RAND_4[63:0];
-  _RAND_5 = {1{`RANDOM}};
-  wen = _RAND_5[0:0];
+  ms_res = _RAND_4[63:0];
+  _RAND_5 = {2{`RANDOM}};
+  store_data = _RAND_5[63:0];
   _RAND_6 = {1{`RANDOM}};
-  wstrb = _RAND_6[7:0];
+  wen = _RAND_6[0:0];
   _RAND_7 = {1{`RANDOM}};
-  ren = _RAND_7[0:0];
+  wstrb = _RAND_7[7:0];
+  _RAND_8 = {1{`RANDOM}};
+  ren = _RAND_8[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
