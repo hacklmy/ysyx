@@ -17,6 +17,7 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , io_pc{vlSymsp->TOP.io_pc}
     , io_pc_next{vlSymsp->TOP.io_pc_next}
     , io_outval{vlSymsp->TOP.io_outval}
+    , io_step{vlSymsp->TOP.io_step}
     , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}
     , rootp{&(vlSymsp->TOP)}
 {

@@ -14,16 +14,24 @@ sim:
 copy_top:
 	sed -n '/module top/,/endmodule/p' vsrc/output/top.v > vsrc/top.v
 	echo "/* verilator lint_off UNUSED */" > vsrc/IFU.v
-	sed -n '/module IFU/,/endmodule/p' vsrc/output/top.v >> vsrc/IFU.v
+	sed -n '/module IFU_AXI/,/endmodule/p' vsrc/output/top.v >> vsrc/IFU.v
 	echo "/* verilator lint_on UNUSED */" >> vsrc/IFU.v
 	echo "/* verilator lint_off UNUSED */" > vsrc/IDU.v
 	sed -n '/module IDU/,/endmodule/p' vsrc/output/top.v >> vsrc/IDU.v
 	echo "/* verilator lint_on UNUSED */" >> vsrc/IDU.v
 	echo "/* verilator lint_off UNUSED */" > vsrc/EXU.v
 	echo "/* verilator lint_off WIDTH */" >> vsrc/EXU.v
-	sed -n '/module EXU/,/endmodule/p' vsrc/output/top.v >> vsrc/EXU.v
+	sed -n '/module EXU_AXI/,/endmodule/p' vsrc/output/top.v >> vsrc/EXU.v
 	echo "/* verilator lint_on WIDTH */" >> vsrc/EXU.v
 	echo "/* verilator lint_on UNUSED */" >> vsrc/EXU.v
-	sed -n '/module AXI/,/endmodule/p' vsrc/output/top.v > vsrc/AXI_IFU.v
+	sed -n '/module AXI_IFU/,/endmodule/p' vsrc/output/top.v > vsrc/AXI_IFU.v
+	sed -n '/module AXI_EXU/,/endmodule/p' vsrc/output/top.v > vsrc/AXI_EXU.v
+	sed -n '/module AXI_ARBITER/,/endmodule/p' vsrc/output/top.v > vsrc/AXI_ARBITER.v
+	echo "/* verilator lint_off UNOPTFLAT */" > vsrc/AXI.v	
+	sed -n '/module AXI(/,/endmodule/p' vsrc/output/top.v >> vsrc/AXI.v
+	echo "/* verilator lint_on UNOPTFLAT */" >> vsrc/AXI.v
+	sed -n '/module LSU/,/endmodule/p' vsrc/output/top.v > vsrc/LSU.v
+	sed -n '/module I_CACHE/,/endmodule/p' vsrc/output/top.v > vsrc/I_CACHE.v
+	sed -n '/module D_CACHE/,/endmodule/p' vsrc/output/top.v > vsrc/D_CACHE.v
 
 include ../Makefile

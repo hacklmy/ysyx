@@ -40,6 +40,7 @@ const char *regs[] = {
 //#define CONFIG_DIFFTEST
 //#define VerilatedVCD
 //#define HAS_VGA
+#define HAS_AXI
 
 void difftest_skip_ref();
 
@@ -206,12 +207,12 @@ static void init_screen() {
 }
 
  void update_screen() {
-  printf("update\n");
+  //printf("update\n");
   SDL_UpdateTexture(texture, NULL, vmem, SCREEN_W * sizeof(uint32_t));
   SDL_RenderClear(renderer);
   SDL_RenderCopy(renderer, texture, NULL, NULL);
   SDL_RenderPresent(renderer);
-  printf("update success\n");
+  //printf("update success\n");
 }
 
 
@@ -290,9 +291,12 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     //printf("time : %lld\n",*rdata);
     if(raddr == RTC_ADDR){
       *rdata = time_now & 0xffffffff;
+      //*rdata = time_now;
+      //printf("read time :%lld\n",*rdata);
     }
     else if(raddr == RTC_ADDR + 4){
       *rdata = (time_now >> 32) & 0xffffffff;
+      //printf("read time :%lld\n",*rdata);
     }
     return;
   }
@@ -300,17 +304,19 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     //printf("base: %d\n",vgactl_port_base[0] );
     if(raddr==VGACTL_ADDR){
       printf("read gpu size\n");
-      *rdata = vgactl_port_base[0] & 0xffff;
-      //printf("%lld\n", *rdata);
+      //*rdata = vgactl_port_base[0] & 0xffff;
+      *rdata = vgactl_port_base[0];
+      printf("%lld\n", *rdata);
     }else if(raddr == VGACTL_ADDR+2){
       printf("read gpu size\n");
       *rdata = (vgactl_port_base[0]>>16);
-      //printf("%lld\n", *rdata);
-    }else if(raddr == VGACTL_ADDR+4){
-      printf("read gpu syn\n");
-      *rdata = vgactl_port_base[1];
       printf("%lld\n", *rdata);
+    }else if(raddr == VGACTL_ADDR+4){
+      //printf("read gpu syn\n");
+      *rdata = vgactl_port_base[1];
+      //printf("%lld\n", *rdata);
     }
+    //vga_update_screen();
     return;
   }
   if(raddr==KBD_ADDR){
@@ -324,6 +330,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     return;
   }
   *rdata = *((long long *)guest_to_host(raddr));
+  //printf("read memory at %llx, value = %llx\n",raddr,*rdata);
   #ifdef CONFIG_MTRACE
     printf("read memory at %llx, value = %llx\n",raddr,*rdata);
   #endif
@@ -368,6 +375,7 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   #ifdef CONFIG_MTRACE
     printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
   #endif
+  //printf("write memory at %llx, mask = %x, value = %llx\n",waddr,wmask,wdata);
   uint8_t* p = guest_to_host(waddr);
   for (int i = 0; i < 8; i++) {
     if (wmask & 0x1) *p = (wdata & 0xff);
@@ -726,9 +734,11 @@ void cpu_exec(int n){
       //printf("%lx %x\n",pc_now , top->io_inst);
       top->clock ^= 1;
       top->eval();
+      //printf("%lx %x\n",top->io_pc , top->io_inst);
       top->clock ^= 1;
       top->eval();
-      printf("%lx %x\n",top->io_pc , top->io_inst);
+      //printf("%lx %x\n",top->io_pc , top->io_inst);
+      //printf("%d\n",sim_time);
       #ifdef CONFIG_ITRACE
     char p[1024];
     char *s = p;
@@ -751,10 +761,16 @@ void cpu_exec(int n){
     }
 #endif
 #ifdef CONFIG_DIFFTEST
+#ifdef HAS_AXI
+    if(top->io_step){
+      difftest_step(pc_now);
+    }
+#else
     difftest_step(pc_now);
 #endif
+#endif
     #ifdef VerilatedVCD
-    tfp->dump(contextp->time()); //dump wave
+    tfp->dump(sim_time); //dump wave
     #endif
     #ifdef HAS_VGA
     vga_update_screen();
@@ -803,6 +819,8 @@ int main(int argc, char** argv) {
   init_difftest(difftest_file,CONFIG_MSIZE);
   #endif
   while(sdb_mainloop() && !cpu_stop && !SDL_quite);
+  //printf("%llx\n",*((long long *)(0x8204de98 - CONFIG_MBASE + pmem)));
+  //printf("%lld %x\n",write_data,write_mask);
   if(stop_status==0)printf("\33[1;32mHIT GOOD TRAP\n\33[0m");
   else printf("\33[1;31mHIT BAD TRAP\n\33[0m");
   delete top;
