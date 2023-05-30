@@ -737,6 +737,7 @@ void cpu_exec(int n){
       //printf("%lx %x\n",top->io_pc , top->io_inst);
       top->clock ^= 1;
       top->eval();
+      printf("pc_now:%lx\n",pc_now);
       //printf("%lx %x\n",top->io_pc , top->io_inst);
       //printf("%d\n",sim_time);
       #ifdef CONFIG_ITRACE

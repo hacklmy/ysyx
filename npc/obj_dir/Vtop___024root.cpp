@@ -89,6 +89,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
         VL_FWRITEF(0x80000002U,"fs_pc:%x \n",64,vlSelf->top__DOT__IFU__DOT__fs_pc);
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"dpi_pc:%x\n\n",64,vlSelf->top__DOT__WBU__DOT__ws_pc);
+    }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
         VL_FWRITEF(0x80000002U,"ds_pc:%x br_taken:%1#\n",
                    64,vlSelf->top__DOT__IDU__DOT__ds_pc,
                    1,(IData)(vlSelf->top__DOT__IDU__DOT__br_taken));
