@@ -134,7 +134,6 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__Register__DOT__Reg[0x1eU];
     vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x1fU] 
         = vlSelf->top__DOT__Register__DOT__Reg[0x1fU];
-    vlSelf->io_pc = vlSelf->top__DOT__WBU__DOT__ws_pc;
     vlSelf->io_step = vlSelf->top__DOT__WBU__DOT__ws_valid;
     if (vlSelf->top__DOT__LSU__DOT__ren) {
         Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->top__DOT__LSU__DOT__maddr, vlSelf->__Vtask_pmem_read__2__Rdata);
@@ -422,6 +421,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                & vlSelf->top__DOT__IDU__DOT__inst))
                                                               ? 0x40U
                                                               : 0U)))))))))))))));
+    vlSelf->io_pc = vlSelf->top__DOT__IFU__DOT__fs_pc;
     vlSelf->top__DOT__IFU__DOT__seq_pc = (4ULL + vlSelf->top__DOT__IFU__DOT__fs_pc);
     if (vlSelf->top__DOT__IFU__DOT__fs_valid) {
         Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->top__DOT__IFU__DOT__fs_pc, vlSelf->__Vtask_pmem_read__1__Rdata);
@@ -1271,7 +1271,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     Vtop___024unit____Vdpiimwrap_ecall_handle_TOP____024unit(
                                                              (0x3dU 
                                                               == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194)));
-    Vtop___024unit____Vdpiimwrap_get_pc_TOP____024unit(vlSelf->top__DOT__WBU__DOT__ws_pc);
+    Vtop___024unit____Vdpiimwrap_get_pc_TOP____024unit(vlSelf->top__DOT__LSU__DOT__ms_pc);
     vlSelf->top__DOT__IDU__DOT___br_taken_T_35 = ((0x3cU 
                                                    == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194))
                                                    ? 
