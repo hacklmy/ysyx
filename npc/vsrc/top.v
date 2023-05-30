@@ -101,6 +101,7 @@ module top(
   wire  LSU_io_ms_valid; // @[top.scala 19:21]
   wire  LSU_io_ms_rf_we; // @[top.scala 19:21]
   wire [4:0] LSU_io_ms_rf_dst; // @[top.scala 19:21]
+  wire [63:0] LSU_io_ms_pc; // @[top.scala 19:21]
   wire  WBU_clock; // @[top.scala 20:21]
   wire  WBU_reset; // @[top.scala 20:21]
   wire [63:0] WBU_io_pc; // @[top.scala 20:21]
@@ -114,7 +115,6 @@ module top(
   wire  WBU_io_ws_valid; // @[top.scala 20:21]
   wire  WBU_io_ws_rf_we; // @[top.scala 20:21]
   wire [4:0] WBU_io_ws_rf_dst; // @[top.scala 20:21]
-  wire [63:0] WBU_io_ws_pc; // @[top.scala 20:21]
   wire [31:0] dpi_flag; // @[top.scala 82:21]
   wire [31:0] dpi_ecall_flag; // @[top.scala 82:21]
   wire [63:0] dpi_pc; // @[top.scala 82:21]
@@ -222,7 +222,8 @@ module top(
     .io_to_ws_rf_dst(LSU_io_to_ws_rf_dst),
     .io_ms_valid(LSU_io_ms_valid),
     .io_ms_rf_we(LSU_io_ms_rf_we),
-    .io_ms_rf_dst(LSU_io_ms_rf_dst)
+    .io_ms_rf_dst(LSU_io_ms_rf_dst),
+    .io_ms_pc(LSU_io_ms_pc)
   );
   WBU WBU ( // @[top.scala 20:21]
     .clock(WBU_clock),
@@ -237,8 +238,7 @@ module top(
     .io_wdata(WBU_io_wdata),
     .io_ws_valid(WBU_io_ws_valid),
     .io_ws_rf_we(WBU_io_ws_rf_we),
-    .io_ws_rf_dst(WBU_io_ws_rf_dst),
-    .io_ws_pc(WBU_io_ws_pc)
+    .io_ws_rf_dst(WBU_io_ws_rf_dst)
   );
   DPI dpi ( // @[top.scala 82:21]
     .flag(dpi_flag),
@@ -246,7 +246,7 @@ module top(
     .pc(dpi_pc)
   );
   assign io_inst = IFU_io_inst; // @[top.scala 81:13]
-  assign io_pc = WBU_io_ws_pc; // @[top.scala 79:11]
+  assign io_pc = IFU_io_to_ds_pc; // @[top.scala 79:11]
   assign io_step = WBU_io_ws_valid; // @[top.scala 80:13]
   assign Register_clock = clock;
   assign Register_io_raddr1 = IDU_io_raddr1; // @[top.scala 34:20]
@@ -310,5 +310,5 @@ module top(
   assign WBU_io_rf_dst = LSU_io_to_ws_rf_dst; // @[top.scala 74:16]
   assign dpi_flag = {{31'd0}, IDU_io_inst_now == 32'h2}; // @[top.scala 83:17]
   assign dpi_ecall_flag = {{31'd0}, IDU_io_inst_now == 32'h3d}; // @[top.scala 84:23]
-  assign dpi_pc = WBU_io_ws_pc; // @[top.scala 85:15]
+  assign dpi_pc = LSU_io_ms_pc; // @[top.scala 85:15]
 endmodule

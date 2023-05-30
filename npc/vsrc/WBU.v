@@ -11,8 +11,7 @@ module WBU(
   output [63:0] io_wdata,
   output        io_ws_valid,
   output        io_ws_rf_we,
-  output [4:0]  io_ws_rf_dst,
-  output [63:0] io_ws_pc
+  output [4:0]  io_ws_rf_dst
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -32,7 +31,6 @@ module WBU(
   assign io_ws_valid = ws_valid; // @[WBU.scala 62:17]
   assign io_ws_rf_we = ws_rf_we; // @[WBU.scala 64:17]
   assign io_ws_rf_dst = ws_rf_dst; // @[WBU.scala 63:18]
-  assign io_ws_pc = ws_pc; // @[WBU.scala 65:14]
   always @(posedge clock) begin
     if (reset) begin // @[WBU.scala 23:27]
       ws_valid <= 1'h0; // @[WBU.scala 23:27]
