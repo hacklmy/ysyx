@@ -399,8 +399,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+23,"top IDU inst_now", false,-1, 31,0);
         tracep->declBit(c+270,"top IDU br_taken", false,-1);
         tracep->declBit(c+271,"top IDU src1_is_pc", false,-1);
-        tracep->declBus(c+272,"top IDU inst_type", false,-1, 31,0);
         tracep->declBus(c+1,"top IDU rs1", false,-1, 4,0);
+        tracep->declBus(c+272,"top IDU inst_type", false,-1, 31,0);
         tracep->declBit(c+273,"top IDU src2_is_imm", false,-1);
         tracep->declBus(c+2,"top IDU rs2", false,-1, 4,0);
         tracep->declBit(c+274,"top IDU conflict", false,-1);

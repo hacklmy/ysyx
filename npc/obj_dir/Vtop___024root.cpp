@@ -2138,9 +2138,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                   ((IData)(vlSelf->top__DOT__IDU__DOT__src2_is_imm)
                                                     ? vlSelf->top__DOT__IDU__DOT__imm
                                                     : vlSelf->top__DOT__Register_io_rdata2));
-    vlSelf->top__DOT__IDU__DOT__conflict = ((((~ (IData)(vlSelf->top__DOT__IDU__DOT__src1_is_pc)) 
-                                              | (0x45U 
-                                                 == (IData)(vlSelf->top__DOT__IDU__DOT___inst_type_T_188))) 
+    vlSelf->top__DOT__IDU__DOT__conflict = (((~ (IData)(vlSelf->top__DOT__IDU__DOT__src1_is_pc)) 
                                              & (((((((0x1fU 
                                                       & (vlSelf->top__DOT__IDU__DOT__inst 
                                                          >> 0xfU)) 
