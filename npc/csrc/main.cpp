@@ -37,7 +37,7 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-//#define CONFIG_DIFFTEST
+#define CONFIG_DIFFTEST
 //#define VerilatedVCD
 //#define HAS_VGA
 #define HAS_AXI
@@ -735,7 +735,6 @@ void cpu_exec(int n){
       top->eval();
       top->clock ^= 1;
       top->eval();
-      print_reg();
       //printf("%lx %x\n",top->io_pc , top->io_inst);
       //printf("%d\n",sim_time);
       #ifdef CONFIG_ITRACE
