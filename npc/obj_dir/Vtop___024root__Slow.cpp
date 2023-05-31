@@ -140,7 +140,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__LSU__DOT__Mem_modle_Rdata 
             = vlSelf->__Vtask_pmem_read__2__Rdata;
     }
-    if (vlSelf->top__DOT__LSU__DOT__wen) {
+    if (((IData)(vlSelf->top__DOT__LSU__DOT__wen) & (IData)(vlSelf->top__DOT__LSU__DOT__ms_valid))) {
         Vtop___024unit____Vdpiimwrap_pmem_write_TOP____024unit(vlSelf->top__DOT__LSU__DOT__maddr, vlSelf->top__DOT__LSU__DOT__store_data, (IData)(vlSelf->top__DOT__LSU__DOT__wstrb));
     }
     vlSelf->top__DOT__LSU_io_ms_rf_we = ((IData)(vlSelf->top__DOT__LSU__DOT__ms_rf_we) 
@@ -1272,7 +1272,11 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                              (0x3dU 
                                                               == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194)));
     Vtop___024unit____Vdpiimwrap_get_pc_TOP____024unit(vlSelf->top__DOT__WBU__DOT__ws_pc);
-    vlSelf->top__DOT__IDU__DOT___br_taken_T_35 = ((0x3cU 
+    vlSelf->top__DOT__IDU__DOT__br_taken = ((0x3eU 
+                                             == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194)) 
+                                            | ((0x3dU 
+                                                == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194)) 
+                                               | ((0x3cU 
                                                    == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194))
                                                    ? 
                                                   (vlSelf->top__DOT__Register_io_rdata1 
@@ -1309,7 +1313,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                        ((6U 
                                                          == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194)) 
                                                         | (5U 
-                                                           == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194)))))))));
+                                                           == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194)))))))))));
     vlSelf->top__DOT__IDU__DOT__imm = ((0x45U == (IData)(vlSelf->top__DOT__IDU__DOT___inst_type_T_188))
                                         ? ((((vlSelf->top__DOT__IDU__DOT__inst 
                                               >> 0x1fU)
@@ -1398,11 +1402,6 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                          == (IData)(vlSelf->top__DOT__IDU__DOT___inst_type_T_188)) 
                                                         | (0x40U 
                                                            == (IData)(vlSelf->top__DOT__IDU__DOT___inst_type_T_188))))));
-    vlSelf->top__DOT__IDU__DOT__br_taken = ((0x3eU 
-                                             == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194)) 
-                                            | ((0x3dU 
-                                                == (IData)(vlSelf->top__DOT__IDU__DOT___inst_now_T_194)) 
-                                               | (IData)(vlSelf->top__DOT__IDU__DOT___br_taken_T_35)));
     vlSelf->top__DOT__IDU__DOT___br_target_T_1 = (((IData)(vlSelf->top__DOT__IDU__DOT__src1_is_pc)
                                                     ? vlSelf->top__DOT__IDU__DOT__ds_pc
                                                     : vlSelf->top__DOT__Register_io_rdata1) 
@@ -1552,7 +1551,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__IDU__DOT__ds_pc = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__IDU__DOT__inst = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__IDU__DOT___inst_now_T_194 = VL_RAND_RESET_I(7);
-    vlSelf->top__DOT__IDU__DOT___br_taken_T_35 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT__br_taken = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT__src1_is_pc = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT___inst_type_T_188 = VL_RAND_RESET_I(7);
