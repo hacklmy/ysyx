@@ -690,7 +690,6 @@ module IDU(
   wire  br_taken = 32'h3e == inst_now | (32'h3d == inst_now | _br_taken_T_35); // @[Mux.scala 81:58]
   wire  src1_is_pc = _inst_now_T_9 | (_inst_now_T_5 | (_inst_now_T_23 | (_inst_now_T_25 | (_inst_now_T_71 | (
     _inst_now_T_73 | (_inst_now_T_75 | _inst_now_T_119)))))); // @[Lookup.scala 34:39]
-  wire [4:0] rs1 = inst[19:15]; // @[IDU.scala 202:16]
   wire [6:0] _inst_type_T_126 = _inst_now_T_129 ? 7'h40 : 7'h0; // @[Lookup.scala 34:39]
   wire [6:0] _inst_type_T_127 = _inst_now_T_127 ? 7'h40 : _inst_type_T_126; // @[Lookup.scala 34:39]
   wire [6:0] _inst_type_T_128 = _inst_now_T_125 ? 7'h40 : _inst_type_T_127; // @[Lookup.scala 34:39]
@@ -755,15 +754,16 @@ module IDU(
   wire [6:0] _inst_type_T_187 = _inst_now_T_5 ? 7'h42 : _inst_type_T_186; // @[Lookup.scala 34:39]
   wire [6:0] _inst_type_T_188 = _inst_now_T_1 ? 7'h40 : _inst_type_T_187; // @[Lookup.scala 34:39]
   wire [31:0] inst_type = {{25'd0}, _inst_type_T_188}; // @[IDU.scala 182:25 207:15]
+  wire [4:0] rs1 = inst[19:15]; // @[IDU.scala 202:16]
   wire  src2_is_imm = 32'h45 == inst_type | (32'h43 == inst_type | (32'h44 == inst_type | (32'h42 == inst_type | 32'h40
      == inst_type))); // @[Mux.scala 81:58]
   wire [4:0] rs2 = inst[24:20]; // @[IDU.scala 201:16]
-  wire  _conflict_T_39 = (~src2_is_imm | inst_type != 32'h45) & (rs2 == io_es_rf_dst & rs2 != 5'h0 & io_es_rf_we &
+  wire  _conflict_T_41 = (~src2_is_imm | inst_type == 32'h45) & (rs2 == io_es_rf_dst & rs2 != 5'h0 & io_es_rf_we &
     io_es_valid | rs2 == io_ms_rf_dst & rs2 != 5'h0 & io_ms_rf_we & io_ms_valid | rs2 == io_ws_rf_dst & rs2 != 5'h0 &
-    io_ws_rf_we & io_ws_valid); // @[IDU.scala 433:263]
-  wire  conflict = ~src1_is_pc & (rs1 == io_es_rf_dst & rs1 != 5'h0 & io_es_rf_we & io_es_valid | rs1 == io_ms_rf_dst &
-    rs1 != 5'h0 & io_ms_rf_we & io_ms_valid | rs1 == io_ws_rf_dst & rs1 != 5'h0 & io_ws_rf_we & io_ws_valid) |
-    _conflict_T_39; // @[IDU.scala 433:223]
+    io_ws_rf_we & io_ws_valid); // @[IDU.scala 433:287]
+  wire  conflict = (~src1_is_pc | inst_type == 32'h45) & (rs1 == io_es_rf_dst & rs1 != 5'h0 & io_es_rf_we & io_es_valid
+     | rs1 == io_ms_rf_dst & rs1 != 5'h0 & io_ms_rf_we & io_ms_valid | rs1 == io_ws_rf_dst & rs1 != 5'h0 & io_ws_rf_we
+     & io_ws_valid) | _conflict_T_41; // @[IDU.scala 433:247]
   wire  ds_ready_go = ~conflict; // @[IDU.scala 102:20]
   wire  br_taken_cancel = br_taken & ds_ready_go; // @[IDU.scala 91:33]
   wire  ds_allowin = ~ds_valid | ds_ready_go; // @[IDU.scala 104:29]
@@ -1222,8 +1222,7 @@ module LSU(
   output [4:0]  io_to_ws_rf_dst,
   output        io_ms_valid,
   output        io_ms_rf_we,
-  output [4:0]  io_ms_rf_dst,
-  output [63:0] io_ms_pc
+  output [4:0]  io_ms_rf_dst
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -1271,7 +1270,6 @@ module LSU(
   assign io_ms_valid = ms_valid; // @[LSU.scala 82:17]
   assign io_ms_rf_we = ms_rf_we & ms_valid; // @[LSU.scala 84:28]
   assign io_ms_rf_dst = ms_rf_dst; // @[LSU.scala 83:18]
-  assign io_ms_pc = ms_pc; // @[LSU.scala 85:14]
   assign Mem_modle_Raddr = maddr; // @[LSU.scala 69:24]
   assign Mem_modle_Waddr = maddr; // @[LSU.scala 70:24]
   assign Mem_modle_Wdata = store_data; // @[LSU.scala 71:24]
@@ -1418,7 +1416,8 @@ module WBU(
   output [63:0] io_wdata,
   output        io_ws_valid,
   output        io_ws_rf_we,
-  output [4:0]  io_ws_rf_dst
+  output [4:0]  io_ws_rf_dst,
+  output [63:0] io_ws_pc
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -1438,6 +1437,7 @@ module WBU(
   assign io_ws_valid = ws_valid; // @[WBU.scala 62:17]
   assign io_ws_rf_we = ws_rf_we; // @[WBU.scala 64:17]
   assign io_ws_rf_dst = ws_rf_dst; // @[WBU.scala 63:18]
+  assign io_ws_pc = ws_pc; // @[WBU.scala 65:14]
   always @(posedge clock) begin
     if (reset) begin // @[WBU.scala 23:27]
       ws_valid <= 1'h0; // @[WBU.scala 23:27]
@@ -1538,6 +1538,9 @@ module top(
   output [63:0] io_pc,
   output        io_step
 );
+`ifdef RANDOMIZE_REG_INIT
+  reg [31:0] _RAND_0;
+`endif // RANDOMIZE_REG_INIT
   wire  Register_clock; // @[top.scala 15:25]
   wire [4:0] Register_io_raddr1; // @[top.scala 15:25]
   wire [4:0] Register_io_raddr2; // @[top.scala 15:25]
@@ -1634,7 +1637,6 @@ module top(
   wire  LSU_io_ms_valid; // @[top.scala 19:21]
   wire  LSU_io_ms_rf_we; // @[top.scala 19:21]
   wire [4:0] LSU_io_ms_rf_dst; // @[top.scala 19:21]
-  wire [63:0] LSU_io_ms_pc; // @[top.scala 19:21]
   wire  WBU_clock; // @[top.scala 20:21]
   wire  WBU_reset; // @[top.scala 20:21]
   wire [63:0] WBU_io_pc; // @[top.scala 20:21]
@@ -1648,9 +1650,11 @@ module top(
   wire  WBU_io_ws_valid; // @[top.scala 20:21]
   wire  WBU_io_ws_rf_we; // @[top.scala 20:21]
   wire [4:0] WBU_io_ws_rf_dst; // @[top.scala 20:21]
-  wire [31:0] dpi_flag; // @[top.scala 82:21]
-  wire [31:0] dpi_ecall_flag; // @[top.scala 82:21]
-  wire [63:0] dpi_pc; // @[top.scala 82:21]
+  wire [63:0] WBU_io_ws_pc; // @[top.scala 20:21]
+  wire [31:0] dpi_flag; // @[top.scala 85:21]
+  wire [31:0] dpi_ecall_flag; // @[top.scala 85:21]
+  wire [63:0] dpi_pc; // @[top.scala 85:21]
+  reg  diff_step; // @[top.scala 82:28]
   Register Register ( // @[top.scala 15:25]
     .clock(Register_clock),
     .io_raddr1(Register_io_raddr1),
@@ -1755,8 +1759,7 @@ module top(
     .io_to_ws_rf_dst(LSU_io_to_ws_rf_dst),
     .io_ms_valid(LSU_io_ms_valid),
     .io_ms_rf_we(LSU_io_ms_rf_we),
-    .io_ms_rf_dst(LSU_io_ms_rf_dst),
-    .io_ms_pc(LSU_io_ms_pc)
+    .io_ms_rf_dst(LSU_io_ms_rf_dst)
   );
   WBU WBU ( // @[top.scala 20:21]
     .clock(WBU_clock),
@@ -1771,16 +1774,17 @@ module top(
     .io_wdata(WBU_io_wdata),
     .io_ws_valid(WBU_io_ws_valid),
     .io_ws_rf_we(WBU_io_ws_rf_we),
-    .io_ws_rf_dst(WBU_io_ws_rf_dst)
+    .io_ws_rf_dst(WBU_io_ws_rf_dst),
+    .io_ws_pc(WBU_io_ws_pc)
   );
-  DPI dpi ( // @[top.scala 82:21]
+  DPI dpi ( // @[top.scala 85:21]
     .flag(dpi_flag),
     .ecall_flag(dpi_ecall_flag),
     .pc(dpi_pc)
   );
   assign io_inst = IFU_io_inst; // @[top.scala 81:13]
   assign io_pc = IFU_io_to_ds_pc; // @[top.scala 79:11]
-  assign io_step = WBU_io_ws_valid; // @[top.scala 80:13]
+  assign io_step = diff_step; // @[top.scala 84:13]
   assign Register_clock = clock;
   assign Register_io_raddr1 = IDU_io_raddr1; // @[top.scala 34:20]
   assign Register_io_raddr2 = IDU_io_raddr2; // @[top.scala 35:20]
@@ -1841,7 +1845,59 @@ module top(
   assign WBU_io_ms_final_res = LSU_io_ms_final_res; // @[top.scala 72:22]
   assign WBU_io_rf_we = LSU_io_to_ws_rf_we; // @[top.scala 73:15]
   assign WBU_io_rf_dst = LSU_io_to_ws_rf_dst; // @[top.scala 74:16]
-  assign dpi_flag = {{31'd0}, IDU_io_inst_now == 32'h2}; // @[top.scala 83:17]
-  assign dpi_ecall_flag = {{31'd0}, IDU_io_inst_now == 32'h3d}; // @[top.scala 84:23]
-  assign dpi_pc = LSU_io_ms_pc; // @[top.scala 85:15]
+  assign dpi_flag = {{31'd0}, IDU_io_inst_now == 32'h2}; // @[top.scala 86:17]
+  assign dpi_ecall_flag = {{31'd0}, IDU_io_inst_now == 32'h3d}; // @[top.scala 87:23]
+  assign dpi_pc = WBU_io_ws_pc; // @[top.scala 88:15]
+  always @(posedge clock) begin
+    if (reset) begin // @[top.scala 82:28]
+      diff_step <= 1'h0; // @[top.scala 82:28]
+    end else begin
+      diff_step <= WBU_io_ws_valid; // @[top.scala 83:15]
+    end
+  end
+// Register and memory initialization
+`ifdef RANDOMIZE_GARBAGE_ASSIGN
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_INVALID_ASSIGN
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_REG_INIT
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_MEM_INIT
+`define RANDOMIZE
+`endif
+`ifndef RANDOM
+`define RANDOM $random
+`endif
+`ifdef RANDOMIZE_MEM_INIT
+  integer initvar;
+`endif
+`ifndef SYNTHESIS
+`ifdef FIRRTL_BEFORE_INITIAL
+`FIRRTL_BEFORE_INITIAL
+`endif
+initial begin
+  `ifdef RANDOMIZE
+    `ifdef INIT_RANDOM
+      `INIT_RANDOM
+    `endif
+    `ifndef VERILATOR
+      `ifdef RANDOMIZE_DELAY
+        #`RANDOMIZE_DELAY begin end
+      `else
+        #0.002 begin end
+      `endif
+    `endif
+`ifdef RANDOMIZE_REG_INIT
+  _RAND_0 = {1{`RANDOM}};
+  diff_step = _RAND_0[0:0];
+`endif // RANDOMIZE_REG_INIT
+  `endif // RANDOMIZE
+end // initial
+`ifdef FIRRTL_AFTER_INITIAL
+`FIRRTL_AFTER_INITIAL
+`endif
+`endif // SYNTHESIS
 endmodule

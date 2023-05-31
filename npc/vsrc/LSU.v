@@ -18,8 +18,7 @@ module LSU(
   output [4:0]  io_to_ws_rf_dst,
   output        io_ms_valid,
   output        io_ms_rf_we,
-  output [4:0]  io_ms_rf_dst,
-  output [63:0] io_ms_pc
+  output [4:0]  io_ms_rf_dst
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -67,7 +66,6 @@ module LSU(
   assign io_ms_valid = ms_valid; // @[LSU.scala 82:17]
   assign io_ms_rf_we = ms_rf_we & ms_valid; // @[LSU.scala 84:28]
   assign io_ms_rf_dst = ms_rf_dst; // @[LSU.scala 83:18]
-  assign io_ms_pc = ms_pc; // @[LSU.scala 85:14]
   assign Mem_modle_Raddr = maddr; // @[LSU.scala 69:24]
   assign Mem_modle_Waddr = maddr; // @[LSU.scala 70:24]
   assign Mem_modle_Wdata = store_data; // @[LSU.scala 71:24]
