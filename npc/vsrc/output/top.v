@@ -757,6 +757,7 @@ module IDU(
   wire [6:0] _inst_type_T_187 = _inst_now_T_5 ? 7'h42 : _inst_type_T_186; // @[Lookup.scala 34:39]
   wire [6:0] _inst_type_T_188 = _inst_now_T_1 ? 7'h40 : _inst_type_T_187; // @[Lookup.scala 34:39]
   wire [31:0] inst_type = {{25'd0}, _inst_type_T_188}; // @[IDU.scala 183:25 209:15]
+  wire  _src2_is_imm_T_4 = 32'h44 == inst_type; // @[Mux.scala 81:61]
   wire  src2_is_imm = 32'h45 == inst_type | (32'h43 == inst_type | (32'h44 == inst_type | (32'h42 == inst_type | 32'h40
      == inst_type))); // @[Mux.scala 81:58]
   wire [4:0] rs2 = inst[24:20]; // @[IDU.scala 203:16]
@@ -811,6 +812,7 @@ module IDU(
   wire [3:0] _Wmask_T_8 = _inst_now_T_77 ? 4'hf : 4'h0; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_9 = _inst_now_T_39 ? 4'h1 : _Wmask_T_8; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_10 = _inst_now_T_37 ? 4'h3 : _Wmask_T_9; // @[Lookup.scala 34:39]
+  wire [7:0] Wmask = _inst_now_T_13 ? 8'hff : {{4'd0}, _Wmask_T_10}; // @[Lookup.scala 34:39]
   wire [63:0] src1 = src1_is_pc ? ds_pc : io_rdata1; // @[IDU.scala 421:16]
   wire [63:0] src2 = src2_is_imm ? imm : io_rdata2; // @[IDU.scala 422:16]
   wire [63:0] _br_target_T_1 = src1 + src2; // @[IDU.scala 425:42]
@@ -860,8 +862,8 @@ module IDU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ds_pc:%x ds_valid:%d br_taken:%d src1:%x src2:%x\n",ds_pc,ds_valid,br_taken,io_src1,
-            io_src2); // @[IDU.scala 470:11]
+          $fwrite(32'h80000002,"ds_pc:%x ds_valid:%d br_taken:%d src1:%x src2:%x  wen:%d wmask:%x\n",ds_pc,ds_valid,
+            br_taken,io_src1,io_src2,_src2_is_imm_T_4,Wmask); // @[IDU.scala 470:11]
         end
     `ifdef PRINTF_COND
       end
@@ -1379,7 +1381,7 @@ module LSU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d\n",ms_pc,ms_valid); // @[LSU.scala 98:11]
+          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d wstrb:%x wdata:%x\n",ms_pc,ms_valid,wstrb,store_data); // @[LSU.scala 98:11]
         end
     `ifdef PRINTF_COND
       end
