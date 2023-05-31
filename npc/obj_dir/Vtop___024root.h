@@ -46,6 +46,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__IDU__DOT__conflict;
         CData/*0:0*/ top__DOT__IDU__DOT__br_taken_cancel;
         CData/*0:0*/ top__DOT__IDU__DOT__ds_allowin;
+        CData/*3:0*/ top__DOT__IDU__DOT___Wmask_T_10;
         CData/*0:0*/ top__DOT__EXU__DOT__es_valid;
         CData/*4:0*/ top__DOT__EXU__DOT__es_rd;
         CData/*0:0*/ top__DOT__EXU__DOT__es_rf_we;
@@ -94,9 +95,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__EXU__DOT___mluw_res_T_2;
         QData/*32:0*/ top__DOT__EXU__DOT___divw_res_T_4;
         QData/*63:0*/ top__DOT__LSU__DOT__Mem_modle_Rdata;
-        QData/*63:0*/ top__DOT__LSU__DOT__ms_pc;
     };
     struct {
+        QData/*63:0*/ top__DOT__LSU__DOT__ms_pc;
         QData/*63:0*/ top__DOT__LSU__DOT__ms_res;
         QData/*63:0*/ top__DOT__LSU__DOT__store_data;
         QData/*63:0*/ top__DOT__LSU__DOT__maddr;

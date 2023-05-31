@@ -202,6 +202,24 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                            & vlSelf->top__DOT__EXU__DOT__src2_value);
     vlSelf->top__DOT__EXU__DOT__add_res = (vlSelf->top__DOT__EXU__DOT__src1_value 
                                            + vlSelf->top__DOT__EXU__DOT__src2_value);
+    vlSelf->top__DOT__IDU__DOT___Wmask_T_10 = ((0x1023U 
+                                                == 
+                                                (0x707fU 
+                                                 & vlSelf->top__DOT__IDU__DOT__inst))
+                                                ? 3U
+                                                : (
+                                                   (0x23U 
+                                                    == 
+                                                    (0x707fU 
+                                                     & vlSelf->top__DOT__IDU__DOT__inst))
+                                                    ? 1U
+                                                    : 
+                                                   ((0x2023U 
+                                                     == 
+                                                     (0x707fU 
+                                                      & vlSelf->top__DOT__IDU__DOT__inst))
+                                                     ? 0xfU
+                                                     : 0U)));
     vlSelf->top__DOT__Register_io_rdata1 = ((0U == 
                                              (0x1fU 
                                               & (vlSelf->top__DOT__IDU__DOT__inst 
@@ -1561,6 +1579,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__IDU__DOT__br_taken_cancel = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT__ds_allowin = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT__imm = VL_RAND_RESET_Q(64);
+    vlSelf->top__DOT__IDU__DOT___Wmask_T_10 = VL_RAND_RESET_I(4);
     vlSelf->top__DOT__IDU__DOT___br_target_T_1 = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__EXU__DOT__es_pc = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__EXU__DOT__es_valid = VL_RAND_RESET_I(1);
