@@ -321,6 +321,7 @@ module IDU(
   wire [63:0] _io_store_data_T_4 = 32'h7 == io_inst_now ? io_rdata2 : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _io_store_data_T_6 = 32'h26 == io_inst_now ? {{48'd0}, io_rdata2[15:0]} : _io_store_data_T_4; // @[Mux.scala 81:58]
   wire [63:0] _io_store_data_T_8 = 32'h28 == io_inst_now ? {{56'd0}, io_rdata2[7:0]} : _io_store_data_T_6; // @[Mux.scala 81:58]
+  wire  _T_2 = ~reset; // @[IDU.scala 470:11]
   assign io_ds_to_es_valid = ds_valid & ds_ready_go; // @[IDU.scala 104:32]
   assign io_br_taken = br_taken & ds_valid; // @[IDU.scala 445:29]
   assign io_br_target = 32'h6 == inst_now ? _br_target_T_4 : _br_target_T_1; // @[Mux.scala 81:58]
@@ -365,6 +366,17 @@ module IDU(
         if (~reset) begin
           $fwrite(32'h80000002,"ds_pc:%x ds_valid:%d br_taken:%d src1:%x src2:%x  wen:%d wmask:%x\n",ds_pc,ds_valid,
             br_taken,io_src1,io_src2,_src2_is_imm_T_4,Wmask); // @[IDU.scala 470:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (_T_2) begin
+          $fwrite(32'h80000002,"conflict:%d es_rf_we:%d rs2:%x es_rf_dst:%d\n",conflict,io_es_rf_we,rs2,io_es_rf_dst); // @[IDU.scala 471:11]
         end
     `ifdef PRINTF_COND
       end
