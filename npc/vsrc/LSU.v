@@ -70,7 +70,7 @@ module LSU(
   assign Mem_modle_Waddr = maddr; // @[LSU.scala 70:24]
   assign Mem_modle_Wdata = store_data; // @[LSU.scala 71:24]
   assign Mem_modle_Wmask = wstrb; // @[LSU.scala 72:24]
-  assign Mem_modle_Write_en = wen; // @[LSU.scala 73:27]
+  assign Mem_modle_Write_en = wen & ms_valid; // @[LSU.scala 73:34]
   assign Mem_modle_Read_en = ren; // @[LSU.scala 74:26]
   always @(posedge clock) begin
     if (reset) begin // @[LSU.scala 31:27]

@@ -313,7 +313,7 @@ module IDU(
   wire [63:0] _io_store_data_T_6 = 32'h26 == io_inst_now ? {{48'd0}, io_rdata2[15:0]} : _io_store_data_T_4; // @[Mux.scala 81:58]
   wire [63:0] _io_store_data_T_8 = 32'h28 == io_inst_now ? {{56'd0}, io_rdata2[7:0]} : _io_store_data_T_6; // @[Mux.scala 81:58]
   assign io_ds_to_es_valid = ds_valid & ds_ready_go; // @[IDU.scala 103:32]
-  assign io_br_taken = 32'h3e == inst_now | (32'h3d == inst_now | _br_taken_T_35); // @[Mux.scala 81:58]
+  assign io_br_taken = br_taken & ds_valid; // @[IDU.scala 435:29]
   assign io_br_target = 32'h6 == inst_now ? _br_target_T_4 : _br_target_T_1; // @[Mux.scala 81:58]
   assign io_br_taken_cancel = br_taken & ds_ready_go; // @[IDU.scala 91:33]
   assign io_ds_allowin = ~ds_valid | ds_ready_go; // @[IDU.scala 104:29]
