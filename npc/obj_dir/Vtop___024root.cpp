@@ -106,7 +106,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                        ? 0xffU : (IData)(vlSelf->top__DOT__IDU__DOT___Wmask_T_10)));
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"conflict:%1# es_rf_we:%1# rs2:%x es_rf_dst:%2#\n",
+        VL_FWRITEF(0x80000002U,"conflict:%1# es_rf_we:%1# rs2:%2# es_rf_dst:%2#\n",
                    1,vlSelf->top__DOT__IDU__DOT__conflict,
                    1,(IData)(vlSelf->top__DOT__EXU__DOT__es_rf_we),
                    5,(0x1fU & (vlSelf->top__DOT__IDU__DOT__inst 
@@ -2150,7 +2150,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                   ((IData)(vlSelf->top__DOT__IDU__DOT__src2_is_imm)
                                                     ? vlSelf->top__DOT__IDU__DOT__imm
                                                     : vlSelf->top__DOT__Register_io_rdata2));
-    vlSelf->top__DOT__IDU__DOT__conflict = (((~ (IData)(vlSelf->top__DOT__IDU__DOT__src1_is_pc)) 
+    vlSelf->top__DOT__IDU__DOT__conflict = ((((~ (IData)(vlSelf->top__DOT__IDU__DOT__src1_is_pc)) 
+                                              | (0x45U 
+                                                 == (IData)(vlSelf->top__DOT__IDU__DOT___inst_type_T_188))) 
                                              & (((((((0x1fU 
                                                       & (vlSelf->top__DOT__IDU__DOT__inst 
                                                          >> 0xfU)) 
@@ -2184,7 +2186,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                             >> 0xfU)))) 
                                                     & (IData)(vlSelf->top__DOT__WBU__DOT__ws_rf_we)) 
                                                    & (IData)(vlSelf->top__DOT__WBU__DOT__ws_valid)))) 
-                                            | (((~ (IData)(vlSelf->top__DOT__IDU__DOT__src2_is_imm)) 
+                                            | ((((~ (IData)(vlSelf->top__DOT__IDU__DOT__src2_is_imm)) 
+                                                 | (0x44U 
+                                                    == (IData)(vlSelf->top__DOT__IDU__DOT___inst_type_T_188))) 
                                                 | (0x45U 
                                                    == (IData)(vlSelf->top__DOT__IDU__DOT___inst_type_T_188))) 
                                                & (((((((0x1fU 
