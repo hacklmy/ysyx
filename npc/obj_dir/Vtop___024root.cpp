@@ -1508,8 +1508,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__IFU__DOT__seq_pc = (4ULL + vlSelf->top__DOT__IFU__DOT__fs_pc);
     if (vlSelf->reset) {
         vlSelf->top__DOT__IDU__DOT__ds_valid = 0U;
-    } else if (((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
-                & (~ (IData)(vlSelf->top__DOT__IDU__DOT__conflict)))) {
+    } else if (vlSelf->top__DOT__IDU__DOT__br_taken_cancel) {
         vlSelf->top__DOT__IDU__DOT__ds_valid = 0U;
     } else if (vlSelf->top__DOT__IDU__DOT__ds_allowin) {
         vlSelf->top__DOT__IDU__DOT__ds_valid = vlSelf->top__DOT__IFU__DOT__fs_valid;
@@ -2109,9 +2108,13 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                               ((~ (IData)(vlSelf->top__DOT__IFU__DOT__fs_valid)) 
                                                | ((~ (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid)) 
                                                   | (~ (IData)(vlSelf->top__DOT__IDU__DOT__conflict)))));
+    vlSelf->top__DOT__IDU__DOT__br_taken_cancel = (
+                                                   ((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
+                                                    & (~ (IData)(vlSelf->top__DOT__IDU__DOT__conflict))) 
+                                                   & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid));
     vlSelf->top__DOT__IFU__DOT___GEN_1 = ((IData)(vlSelf->top__DOT__IFU__DOT__fs_allowin) 
-                                          | ((~ ((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
-                                                 & (~ (IData)(vlSelf->top__DOT__IDU__DOT__conflict)))) 
+                                          | ((~ ((IData)(vlSelf->top__DOT__IDU__DOT__br_taken_cancel) 
+                                                 & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid))) 
                                              & (IData)(vlSelf->top__DOT__IFU__DOT__fs_valid)));
 }
 

@@ -1490,9 +1490,13 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                               ((~ (IData)(vlSelf->top__DOT__IFU__DOT__fs_valid)) 
                                                | ((~ (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid)) 
                                                   | (~ (IData)(vlSelf->top__DOT__IDU__DOT__conflict)))));
+    vlSelf->top__DOT__IDU__DOT__br_taken_cancel = (
+                                                   ((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
+                                                    & (~ (IData)(vlSelf->top__DOT__IDU__DOT__conflict))) 
+                                                   & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid));
     vlSelf->top__DOT__IFU__DOT___GEN_1 = ((IData)(vlSelf->top__DOT__IFU__DOT__fs_allowin) 
-                                          | ((~ ((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
-                                                 & (~ (IData)(vlSelf->top__DOT__IDU__DOT__conflict)))) 
+                                          | ((~ ((IData)(vlSelf->top__DOT__IDU__DOT__br_taken_cancel) 
+                                                 & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid))) 
                                              & (IData)(vlSelf->top__DOT__IFU__DOT__fs_valid)));
 }
 
@@ -1556,6 +1560,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__IDU__DOT___inst_type_T_188 = VL_RAND_RESET_I(7);
     vlSelf->top__DOT__IDU__DOT__src2_is_imm = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT__conflict = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__IDU__DOT__br_taken_cancel = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT__ds_allowin = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT__imm = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__IDU__DOT___br_target_T_1 = VL_RAND_RESET_Q(64);
