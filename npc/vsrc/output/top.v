@@ -442,7 +442,7 @@ module IFU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"fs_pc:%x \n",fs_pc); // @[IFU.scala 50:11]
+          $fwrite(32'h80000002,"fs_pc:%x fa_valid:%d\n",fs_pc,fs_valid); // @[IFU.scala 50:11]
         end
     `ifdef PRINTF_COND
       end
@@ -851,7 +851,8 @@ module IDU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ds_pc:%x br_taken:%d src1:%x src2:%x\n",ds_pc,br_taken,io_src1,io_src2); // @[IDU.scala 459:11]
+          $fwrite(32'h80000002,"ds_pc:%x ds_valid:%d br_taken:%d src1:%x src2:%x\n",ds_pc,ds_valid,br_taken,io_src1,
+            io_src2); // @[IDU.scala 459:11]
         end
     `ifdef PRINTF_COND
       end
@@ -1129,8 +1130,8 @@ module EXU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"es_pc:%x alu_res:%x src1_value:%x  src2_value:%x\n",es_pc,alu_res,src1_value,src2_value
-            ); // @[EXU.scala 219:11]
+          $fwrite(32'h80000002,"es_pc:%x es_valid:%d alu_res:%x src1_value:%x  src2_value:%x\n",es_pc,es_valid,alu_res,
+            src1_value,src2_value); // @[EXU.scala 219:11]
         end
     `ifdef PRINTF_COND
       end
@@ -1333,7 +1334,7 @@ module LSU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ms_pc:%x\n",ms_pc); // @[LSU.scala 86:11]
+          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d\n",ms_pc,ms_valid); // @[LSU.scala 86:11]
         end
     `ifdef PRINTF_COND
       end

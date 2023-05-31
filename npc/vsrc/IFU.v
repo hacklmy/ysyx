@@ -65,7 +65,7 @@ module IFU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"fs_pc:%x \n",fs_pc); // @[IFU.scala 50:11]
+          $fwrite(32'h80000002,"fs_pc:%x fa_valid:%d\n",fs_pc,fs_valid); // @[IFU.scala 50:11]
         end
     `ifdef PRINTF_COND
       end

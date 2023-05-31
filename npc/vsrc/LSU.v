@@ -128,7 +128,7 @@ module LSU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ms_pc:%x\n",ms_pc); // @[LSU.scala 86:11]
+          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d\n",ms_pc,ms_valid); // @[LSU.scala 86:11]
         end
     `ifdef PRINTF_COND
       end
