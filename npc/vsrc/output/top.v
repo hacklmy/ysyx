@@ -851,7 +851,7 @@ module IDU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ds_pc:%x br_taken:%d src1:%x src2:%x\n",ds_pc,br_taken,src1,src2); // @[IDU.scala 459:11]
+          $fwrite(32'h80000002,"ds_pc:%x br_taken:%d src1:%x src2:%x\n",ds_pc,br_taken,io_src1,io_src2); // @[IDU.scala 459:11]
         end
     `ifdef PRINTF_COND
       end
@@ -1129,7 +1129,8 @@ module EXU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"es_pc:%x alu_res:%x\n",es_pc,alu_res); // @[EXU.scala 219:11]
+          $fwrite(32'h80000002,"es_pc:%x alu_res:%x src1_value:%x  src2_value:%x\n",es_pc,alu_res,src1_value,src2_value
+            ); // @[EXU.scala 219:11]
         end
     `ifdef PRINTF_COND
       end
@@ -1469,7 +1470,7 @@ module WBU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ws_pc:%x ws_valid:%d rf_dst:%d rf_we:%d wdata:%x\n",ws_pc,ws_valid,ws_rf_dst,io_we,
+          $fwrite(32'h80000002,"ws_pc:%x ws_valid:%d rf_dst:%d rf_we:%d wdata:%x\n\n",ws_pc,ws_valid,ws_rf_dst,io_we,
             ws_res); // @[WBU.scala 66:11]
         end
     `ifdef PRINTF_COND
@@ -1854,17 +1855,6 @@ module top(
     end else begin
       diff_step <= WBU_io_ws_valid; // @[top.scala 83:15]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"\n"); // @[top.scala 90:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN

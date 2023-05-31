@@ -353,7 +353,7 @@ module IDU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ds_pc:%x br_taken:%d src1:%x src2:%x\n",ds_pc,br_taken,src1,src2); // @[IDU.scala 459:11]
+          $fwrite(32'h80000002,"ds_pc:%x br_taken:%d src1:%x src2:%x\n",ds_pc,br_taken,io_src1,io_src2); // @[IDU.scala 459:11]
         end
     `ifdef PRINTF_COND
       end
