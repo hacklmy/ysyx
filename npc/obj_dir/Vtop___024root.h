@@ -33,6 +33,7 @@ VL_MODULE(Vtop___024root) {
     struct {
         CData/*0:0*/ top__DOT__IDU_io_ds_to_es_valid;
         CData/*0:0*/ top__DOT__LSU_io_ms_rf_we;
+        CData/*0:0*/ top__DOT__diff_step;
         CData/*0:0*/ top__DOT__IFU__DOT__fs_valid;
         CData/*0:0*/ top__DOT__IFU__DOT__fs_allowin;
         CData/*0:0*/ top__DOT__IFU__DOT___GEN_1;
@@ -94,9 +95,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__LSU__DOT__ms_pc;
         QData/*63:0*/ top__DOT__LSU__DOT__ms_res;
         QData/*63:0*/ top__DOT__LSU__DOT__store_data;
-        QData/*63:0*/ top__DOT__LSU__DOT__maddr;
     };
     struct {
+        QData/*63:0*/ top__DOT__LSU__DOT__maddr;
         QData/*63:0*/ top__DOT__WBU__DOT__ws_pc;
         QData/*63:0*/ top__DOT__WBU__DOT__ws_res;
         VlUnpacked<QData/*63:0*/, 32> top__DOT__Register__DOT__Reg;
