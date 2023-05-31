@@ -105,6 +105,13 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                    8,((0x3023U == (0x707fU & vlSelf->top__DOT__IDU__DOT__inst))
                        ? 0xffU : (IData)(vlSelf->top__DOT__IDU__DOT___Wmask_T_10)));
     }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"conflict:%1# es_rf_we:%1# rs2:%x es_rf_dst:%2#\n",
+                   1,vlSelf->top__DOT__IDU__DOT__conflict,
+                   1,(IData)(vlSelf->top__DOT__EXU__DOT__es_rf_we),
+                   5,(0x1fU & (vlSelf->top__DOT__IDU__DOT__inst 
+                               >> 0x14U)),5,(IData)(vlSelf->top__DOT__EXU__DOT__es_rd));
+    }
     __Vdlyvset__top__DOT__Register__DOT__Reg__v0 = 0U;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
         VL_EXTEND_WQ(127,64, __Vtemp1, vlSelf->top__DOT__EXU__DOT__srl_res);
