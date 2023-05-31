@@ -692,7 +692,6 @@ module IDU(
   wire  br_taken = 32'h3e == inst_now | (32'h3d == inst_now | _br_taken_T_35); // @[Mux.scala 81:58]
   wire  src1_is_pc = _inst_now_T_9 | (_inst_now_T_5 | (_inst_now_T_23 | (_inst_now_T_25 | (_inst_now_T_71 | (
     _inst_now_T_73 | (_inst_now_T_75 | _inst_now_T_119)))))); // @[Lookup.scala 34:39]
-  wire [4:0] rs1 = inst[19:15]; // @[IDU.scala 204:16]
   wire [6:0] _inst_type_T_126 = _inst_now_T_129 ? 7'h40 : 7'h0; // @[Lookup.scala 34:39]
   wire [6:0] _inst_type_T_127 = _inst_now_T_127 ? 7'h40 : _inst_type_T_126; // @[Lookup.scala 34:39]
   wire [6:0] _inst_type_T_128 = _inst_now_T_125 ? 7'h40 : _inst_type_T_127; // @[Lookup.scala 34:39]
@@ -757,16 +756,17 @@ module IDU(
   wire [6:0] _inst_type_T_187 = _inst_now_T_5 ? 7'h42 : _inst_type_T_186; // @[Lookup.scala 34:39]
   wire [6:0] _inst_type_T_188 = _inst_now_T_1 ? 7'h40 : _inst_type_T_187; // @[Lookup.scala 34:39]
   wire [31:0] inst_type = {{25'd0}, _inst_type_T_188}; // @[IDU.scala 183:25 209:15]
+  wire [4:0] rs1 = inst[19:15]; // @[IDU.scala 204:16]
   wire  _src2_is_imm_T_4 = 32'h44 == inst_type; // @[Mux.scala 81:61]
   wire  src2_is_imm = 32'h45 == inst_type | (32'h43 == inst_type | (32'h44 == inst_type | (32'h42 == inst_type | 32'h40
      == inst_type))); // @[Mux.scala 81:58]
   wire [4:0] rs2 = inst[24:20]; // @[IDU.scala 203:16]
-  wire  _conflict_T_39 = (~src2_is_imm | inst_type == 32'h45) & (rs2 == io_es_rf_dst & rs2 != 5'h0 & io_es_rf_we &
-    io_es_valid | rs2 == io_ms_rf_dst & rs2 != 5'h0 & io_ms_rf_we & io_ms_valid | rs2 == io_ws_rf_dst & rs2 != 5'h0 &
-    io_ws_rf_we & io_ws_valid); // @[IDU.scala 443:265]
-  wire  conflict = ~src1_is_pc & (rs1 == io_es_rf_dst & rs1 != 5'h0 & io_es_rf_we & io_es_valid | rs1 == io_ms_rf_dst &
-    rs1 != 5'h0 & io_ms_rf_we & io_ms_valid | rs1 == io_ws_rf_dst & rs1 != 5'h0 & io_ws_rf_we & io_ws_valid) |
-    _conflict_T_39; // @[IDU.scala 443:225]
+  wire  _conflict_T_43 = (~src2_is_imm | inst_type == 32'h44 | inst_type == 32'h45) & (rs2 == io_es_rf_dst & rs2 != 5'h0
+     & io_es_rf_we & io_es_valid | rs2 == io_ms_rf_dst & rs2 != 5'h0 & io_ms_rf_we & io_ms_valid | rs2 == io_ws_rf_dst
+     & rs2 != 5'h0 & io_ws_rf_we & io_ws_valid); // @[IDU.scala 443:309]
+  wire  conflict = (~src1_is_pc | inst_type == 32'h45) & (rs1 == io_es_rf_dst & rs1 != 5'h0 & io_es_rf_we & io_es_valid
+     | rs1 == io_ms_rf_dst & rs1 != 5'h0 & io_ms_rf_we & io_ms_valid | rs1 == io_ws_rf_dst & rs1 != 5'h0 & io_ws_rf_we
+     & io_ws_valid) | _conflict_T_43; // @[IDU.scala 443:247]
   wire  ds_ready_go = ~conflict; // @[IDU.scala 103:20]
   wire  br_taken_cancel = br_taken & ds_ready_go & ds_valid; // @[IDU.scala 92:48]
   wire  ds_allowin = ~ds_valid | ds_ready_go; // @[IDU.scala 105:29]
@@ -875,7 +875,7 @@ module IDU(
       if (`PRINTF_COND) begin
     `endif
         if (_T_2) begin
-          $fwrite(32'h80000002,"conflict:%d es_rf_we:%d rs2:%x es_rf_dst:%d\n",conflict,io_es_rf_we,rs2,io_es_rf_dst); // @[IDU.scala 471:11]
+          $fwrite(32'h80000002,"conflict:%d es_rf_we:%d rs2:%d es_rf_dst:%d\n",conflict,io_es_rf_we,rs2,io_es_rf_dst); // @[IDU.scala 471:11]
         end
     `ifdef PRINTF_COND
       end
