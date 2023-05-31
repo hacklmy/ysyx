@@ -284,8 +284,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     } else if (vlSelf->top__DOT__EXU__DOT__es_valid) {
         vlSelf->top__DOT__LSU__DOT__wstrb = vlSelf->top__DOT__EXU__DOT__st_wstrb;
     }
-    if (((IData)(vlSelf->top__DOT__WBU__DOT__ws_rf_we) 
-         & (IData)(vlSelf->top__DOT__WBU__DOT__ws_valid))) {
+    if ((((IData)(vlSelf->top__DOT__WBU__DOT__ws_rf_we) 
+          & (IData)(vlSelf->top__DOT__WBU__DOT__ws_valid)) 
+         & (0U != (IData)(vlSelf->top__DOT__WBU__DOT__ws_rf_dst)))) {
         __Vdlyvval__top__DOT__Register__DOT__Reg__v0 
             = vlSelf->top__DOT__WBU__DOT__ws_res;
         __Vdlyvset__top__DOT__Register__DOT__Reg__v0 = 1U;
