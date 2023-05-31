@@ -6,8 +6,8 @@ module EXU(
   input  [63:0] io_pc,
   input         io_ds_to_es_valid,
   input  [31:0] io_inst_now,
-  input  [4:0]  io_src1_value,
-  input  [4:0]  io_src2_value,
+  input  [63:0] io_src1_value,
+  input  [63:0] io_src2_value,
   input  [4:0]  io_rf_dst,
   input  [63:0] io_store_data,
   output        io_es_to_ms_valid,
@@ -184,12 +184,12 @@ module EXU(
     if (reset) begin // @[EXU.scala 43:29]
       src1_value <= 64'h0; // @[EXU.scala 43:29]
     end else if (io_ds_to_es_valid) begin // @[EXU.scala 55:42]
-      src1_value <= {{59'd0}, io_src1_value}; // @[EXU.scala 59:20]
+      src1_value <= io_src1_value; // @[EXU.scala 59:20]
     end
     if (reset) begin // @[EXU.scala 44:29]
       src2_value <= 64'h0; // @[EXU.scala 44:29]
     end else if (io_ds_to_es_valid) begin // @[EXU.scala 55:42]
-      src2_value <= {{59'd0}, io_src2_value}; // @[EXU.scala 60:20]
+      src2_value <= io_src2_value; // @[EXU.scala 60:20]
     end
     if (reset) begin // @[EXU.scala 45:29]
       store_data <= 64'h0; // @[EXU.scala 45:29]

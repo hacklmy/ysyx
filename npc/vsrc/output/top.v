@@ -914,8 +914,8 @@ module EXU(
   input  [63:0] io_pc,
   input         io_ds_to_es_valid,
   input  [31:0] io_inst_now,
-  input  [4:0]  io_src1_value,
-  input  [4:0]  io_src2_value,
+  input  [63:0] io_src1_value,
+  input  [63:0] io_src2_value,
   input  [4:0]  io_rf_dst,
   input  [63:0] io_store_data,
   output        io_es_to_ms_valid,
@@ -1092,12 +1092,12 @@ module EXU(
     if (reset) begin // @[EXU.scala 43:29]
       src1_value <= 64'h0; // @[EXU.scala 43:29]
     end else if (io_ds_to_es_valid) begin // @[EXU.scala 55:42]
-      src1_value <= {{59'd0}, io_src1_value}; // @[EXU.scala 59:20]
+      src1_value <= io_src1_value; // @[EXU.scala 59:20]
     end
     if (reset) begin // @[EXU.scala 44:29]
       src2_value <= 64'h0; // @[EXU.scala 44:29]
     end else if (io_ds_to_es_valid) begin // @[EXU.scala 55:42]
-      src2_value <= {{59'd0}, io_src2_value}; // @[EXU.scala 60:20]
+      src2_value <= io_src2_value; // @[EXU.scala 60:20]
     end
     if (reset) begin // @[EXU.scala 45:29]
       store_data <= 64'h0; // @[EXU.scala 45:29]
@@ -1597,8 +1597,8 @@ module top(
   wire [63:0] EXU_io_pc; // @[top.scala 18:21]
   wire  EXU_io_ds_to_es_valid; // @[top.scala 18:21]
   wire [31:0] EXU_io_inst_now; // @[top.scala 18:21]
-  wire [4:0] EXU_io_src1_value; // @[top.scala 18:21]
-  wire [4:0] EXU_io_src2_value; // @[top.scala 18:21]
+  wire [63:0] EXU_io_src1_value; // @[top.scala 18:21]
+  wire [63:0] EXU_io_src2_value; // @[top.scala 18:21]
   wire [4:0] EXU_io_rf_dst; // @[top.scala 18:21]
   wire [63:0] EXU_io_store_data; // @[top.scala 18:21]
   wire  EXU_io_es_to_ms_valid; // @[top.scala 18:21]
@@ -1819,8 +1819,8 @@ module top(
   assign EXU_io_pc = IDU_io_to_es_pc; // @[top.scala 48:12]
   assign EXU_io_ds_to_es_valid = IDU_io_ds_to_es_valid; // @[top.scala 49:24]
   assign EXU_io_inst_now = IDU_io_inst_now; // @[top.scala 51:18]
-  assign EXU_io_src1_value = IDU_io_src1[4:0]; // @[top.scala 52:20]
-  assign EXU_io_src2_value = IDU_io_src2[4:0]; // @[top.scala 53:20]
+  assign EXU_io_src1_value = IDU_io_src1; // @[top.scala 52:20]
+  assign EXU_io_src2_value = IDU_io_src2; // @[top.scala 53:20]
   assign EXU_io_rf_dst = IDU_io_rf_dst; // @[top.scala 54:16]
   assign EXU_io_store_data = IDU_io_store_data; // @[top.scala 55:20]
   assign EXU_io_ctrl_sign_reg_write = IDU_io_ctrl_sign_reg_write; // @[top.scala 56:19]
