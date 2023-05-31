@@ -86,12 +86,15 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     QData/*63:0*/ __Vdlyvval__top__DOT__Register__DOT__Reg__v0;
     // Body
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"fs_pc:%x \n",64,vlSelf->top__DOT__IFU__DOT__fs_pc);
+        VL_FWRITEF(0x80000002U,"fs_pc:%x fa_valid:%1#\n",
+                   64,vlSelf->top__DOT__IFU__DOT__fs_pc,
+                   1,(IData)(vlSelf->top__DOT__IFU__DOT__fs_valid));
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"ds_pc:%x br_taken:%1# src1:%x src2:%x\n",
+        VL_FWRITEF(0x80000002U,"ds_pc:%x ds_valid:%1# br_taken:%1# src1:%x src2:%x\n",
                    64,vlSelf->top__DOT__IDU__DOT__ds_pc,
-                   1,(IData)(vlSelf->top__DOT__IDU__DOT__br_taken),
+                   1,(IData)(vlSelf->top__DOT__IDU__DOT__ds_valid),
+                   1,vlSelf->top__DOT__IDU__DOT__br_taken,
                    64,((IData)(vlSelf->top__DOT__IDU__DOT__src1_is_pc)
                         ? vlSelf->top__DOT__IDU__DOT__ds_pc
                         : vlSelf->top__DOT__Register_io_rdata1),
@@ -140,8 +143,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
         __Vtemp16[2U] = (1U & __Vtemp15[2U]);
         VL_EXTEND_WW(127,65, __Vtemp17, __Vtemp16);
         VL_EXTEND_WQ(127,64, __Vtemp18, VL_DIV_QQQ(64, vlSelf->top__DOT__EXU__DOT__src1_value, vlSelf->top__DOT__EXU__DOT__src2_value));
-        VL_FWRITEF(0x80000002U,"es_pc:%x alu_res:%x src1_value:%x  src2_value:%x\n",
+        VL_FWRITEF(0x80000002U,"es_pc:%x es_valid:%1# alu_res:%x src1_value:%x  src2_value:%x\n",
                    64,vlSelf->top__DOT__EXU__DOT__es_pc,
+                   1,(IData)(vlSelf->top__DOT__EXU__DOT__es_valid),
                    64,(((QData)((IData)(((0x38U == vlSelf->top__DOT__EXU__DOT__inst_now)
                                           ? __Vtemp1[1U]
                                           : ((0x39U 
@@ -244,7 +248,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                    64,vlSelf->top__DOT__EXU__DOT__src2_value);
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"ms_pc:%x\n",64,vlSelf->top__DOT__LSU__DOT__ms_pc);
+        VL_FWRITEF(0x80000002U,"ms_pc:%x ms_valid:%1#\n",
+                   64,vlSelf->top__DOT__LSU__DOT__ms_pc,
+                   1,(IData)(vlSelf->top__DOT__LSU__DOT__ms_valid));
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
         VL_FWRITEF(0x80000002U,"ws_pc:%x ws_valid:%1# rf_dst:%2# rf_we:%1# wdata:%x\n\n",
