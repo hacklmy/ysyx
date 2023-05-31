@@ -688,22 +688,16 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     if (vlSelf->reset) {
         vlSelf->top__DOT__EXU__DOT__src2_value = 0ULL;
     } else if (vlSelf->top__DOT__IDU_io_ds_to_es_valid) {
-        vlSelf->top__DOT__EXU__DOT__src2_value = (QData)((IData)(
-                                                                 (0x1fU 
-                                                                  & (IData)(
-                                                                            ((IData)(vlSelf->top__DOT__IDU__DOT__src2_is_imm)
-                                                                              ? vlSelf->top__DOT__IDU__DOT__imm
-                                                                              : vlSelf->top__DOT__Register_io_rdata2)))));
+        vlSelf->top__DOT__EXU__DOT__src2_value = ((IData)(vlSelf->top__DOT__IDU__DOT__src2_is_imm)
+                                                   ? vlSelf->top__DOT__IDU__DOT__imm
+                                                   : vlSelf->top__DOT__Register_io_rdata2);
     }
     if (vlSelf->reset) {
         vlSelf->top__DOT__EXU__DOT__src1_value = 0ULL;
     } else if (vlSelf->top__DOT__IDU_io_ds_to_es_valid) {
-        vlSelf->top__DOT__EXU__DOT__src1_value = (QData)((IData)(
-                                                                 (0x1fU 
-                                                                  & (IData)(
-                                                                            ((IData)(vlSelf->top__DOT__IDU__DOT__src1_is_pc)
-                                                                              ? vlSelf->top__DOT__IDU__DOT__ds_pc
-                                                                              : vlSelf->top__DOT__Register_io_rdata1)))));
+        vlSelf->top__DOT__EXU__DOT__src1_value = ((IData)(vlSelf->top__DOT__IDU__DOT__src1_is_pc)
+                                                   ? vlSelf->top__DOT__IDU__DOT__ds_pc
+                                                   : vlSelf->top__DOT__Register_io_rdata1);
     }
     if (vlSelf->top__DOT__LSU__DOT__ren) {
         Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->top__DOT__LSU__DOT__maddr, vlSelf->__Vtask_pmem_read__2__Rdata);
