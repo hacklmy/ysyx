@@ -52,12 +52,14 @@ VL_MODULE(Vtop___024root) {
         CData/*7:0*/ top__DOT__EXU__DOT__st_wstrb;
         CData/*0:0*/ top__DOT__EXU__DOT__st_we;
         CData/*0:0*/ top__DOT__EXU__DOT__ld_we;
+        CData/*2:0*/ top__DOT__EXU__DOT__load_type;
         CData/*0:0*/ top__DOT__LSU__DOT__ms_valid;
         CData/*0:0*/ top__DOT__LSU__DOT__ms_rf_we;
         CData/*4:0*/ top__DOT__LSU__DOT__ms_rf_dst;
         CData/*0:0*/ top__DOT__LSU__DOT__wen;
         CData/*7:0*/ top__DOT__LSU__DOT__wstrb;
         CData/*0:0*/ top__DOT__LSU__DOT__ren;
+        CData/*2:0*/ top__DOT__LSU__DOT__load_type;
         CData/*0:0*/ top__DOT__WBU__DOT__ws_valid;
         CData/*0:0*/ top__DOT__WBU__DOT__ws_rf_we;
         CData/*4:0*/ top__DOT__WBU__DOT__ws_rf_dst;
@@ -93,10 +95,10 @@ VL_MODULE(Vtop___024root) {
         QData/*32:0*/ top__DOT__EXU__DOT___divw_res_T_4;
         QData/*63:0*/ top__DOT__LSU__DOT__Mem_modle_Rdata;
         QData/*63:0*/ top__DOT__LSU__DOT__ms_pc;
-        QData/*63:0*/ top__DOT__LSU__DOT__ms_res;
-        QData/*63:0*/ top__DOT__LSU__DOT__store_data;
     };
     struct {
+        QData/*63:0*/ top__DOT__LSU__DOT__ms_res;
+        QData/*63:0*/ top__DOT__LSU__DOT__store_data;
         QData/*63:0*/ top__DOT__LSU__DOT__maddr;
         QData/*63:0*/ top__DOT__WBU__DOT__ws_pc;
         QData/*63:0*/ top__DOT__WBU__DOT__ws_res;
