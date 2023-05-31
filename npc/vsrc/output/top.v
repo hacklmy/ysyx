@@ -150,6 +150,7 @@ module Register(
   wire [63:0] reg_trace_input_reg_29; // @[register.scala 24:27]
   wire [63:0] reg_trace_input_reg_30; // @[register.scala 24:27]
   wire [63:0] reg_trace_input_reg_31; // @[register.scala 24:27]
+  wire  _T = io_waddr != 5'h0; // @[register.scala 19:25]
   traceregs reg_trace ( // @[register.scala 24:27]
     .input_reg_0(reg_trace_input_reg_0),
     .input_reg_1(reg_trace_input_reg_1),
@@ -289,7 +290,7 @@ module Register(
   assign Reg_MPORT_data = io_wdata;
   assign Reg_MPORT_addr = io_waddr;
   assign Reg_MPORT_mask = 1'h1;
-  assign Reg_MPORT_en = io_we;
+  assign Reg_MPORT_en = io_we & _T;
   assign io_rdata1 = io_raddr1 == 5'h0 ? 64'h0 : Reg_io_rdata1_MPORT_data; // @[register.scala 22:21]
   assign io_rdata2 = io_raddr2 == 5'h0 ? 64'h0 : Reg_io_rdata2_MPORT_data; // @[register.scala 23:21]
   assign reg_trace_input_reg_0 = Reg_reg_trace_io_input_reg_0_MPORT_data; // @[register.scala 26:57]
