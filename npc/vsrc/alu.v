@@ -1,3 +1,4 @@
+/* verilator lint_off WIDTH */
 module ALU(
   input  [63:0] io_src1_value,
   input  [63:0] io_src2_value,
@@ -111,3 +112,4 @@ module ALU(
   wire [126:0] alu_res = 32'h38 == io_ALUop ? {{63'd0}, srl_res} : _alu_res_T_184; // @[Mux.scala 81:58]
   assign io_alu_res = alu_res[63:0]; // @[ALU.scala 108:16]
 endmodule
+/* verilator lint_on WIDTH */
