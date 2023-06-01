@@ -80,6 +80,7 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__IDU__DOT__ds_pc;
         QData/*63:0*/ top__DOT__IDU__DOT__imm;
         QData/*63:0*/ top__DOT__IDU__DOT___br_target_T_1;
+        QData/*63:0*/ top__DOT__EXU__DOT__ALU_io_src1_value;
         QData/*63:0*/ top__DOT__EXU__DOT__es_pc;
         QData/*63:0*/ top__DOT__EXU__DOT__src1_value;
         QData/*63:0*/ top__DOT__EXU__DOT__src2_value;
@@ -94,9 +95,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__and_res;
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT___mluw_res_T_2;
         QData/*32:0*/ top__DOT__EXU__DOT__ALU__DOT___divw_res_T_4;
-        QData/*63:0*/ top__DOT__LSU__DOT__Mem_modle_Rdata;
     };
     struct {
+        QData/*63:0*/ top__DOT__LSU__DOT__Mem_modle_Rdata;
         QData/*63:0*/ top__DOT__LSU__DOT__ms_pc;
         QData/*63:0*/ top__DOT__LSU__DOT__ms_res;
         QData/*63:0*/ top__DOT__LSU__DOT__store_data;
