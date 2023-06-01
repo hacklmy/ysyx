@@ -81,7 +81,7 @@ module EXU(
   assign io_es_valid = es_valid; // @[EXU.scala 118:17]
   assign io_es_rf_we = es_rf_we; // @[EXU.scala 120:17]
   assign io_es_rf_dst = es_rd; // @[EXU.scala 119:18]
-  assign ALU_io_src1_value = src1_value; // @[EXU.scala 91:20]
+  assign ALU_io_src1_value = ALUop == 32'h6 ? es_pc : src1_value; // @[EXU.scala 91:26]
   assign ALU_io_src2_value = src2_value; // @[EXU.scala 92:20]
   assign ALU_io_ALUop = ALUop; // @[EXU.scala 93:15]
   always @(posedge clock) begin
