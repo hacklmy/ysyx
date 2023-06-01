@@ -501,6 +501,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+306,"top EXU ALU Div_io_remainder", false,-1, 63,0);
         tracep->declBit(c+308,"top EXU ALU mul_valid", false,-1);
         tracep->declBit(c+309,"top EXU ALU div_valid", false,-1);
+        tracep->declBit(c+296,"top EXU ALU mul_w", false,-1);
         tracep->declQuad(c+310,"top EXU ALU add_res", false,-1, 63,0);
         tracep->declQuad(c+312,"top EXU ALU sub_res", false,-1, 63,0);
         tracep->declQuad(c+314,"top EXU ALU sra_res", false,-1, 63,0);
