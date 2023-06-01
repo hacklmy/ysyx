@@ -11,6 +11,7 @@ module ALU(
 );
   wire  Mul_clock; // @[ALU.scala 60:28]
   wire  Mul_reset; // @[ALU.scala 60:28]
+  wire  Mul_io_mul_valid; // @[ALU.scala 60:28]
   wire  Mul_io_mulw; // @[ALU.scala 60:28]
   wire [63:0] Mul_io_multiplicand; // @[ALU.scala 60:28]
   wire [63:0] Mul_io_multiplier; // @[ALU.scala 60:28]
@@ -100,6 +101,7 @@ module ALU(
   Mul Mul ( // @[ALU.scala 60:28]
     .clock(Mul_clock),
     .reset(Mul_reset),
+    .io_mul_valid(Mul_io_mul_valid),
     .io_mulw(Mul_io_mulw),
     .io_multiplicand(Mul_io_multiplicand),
     .io_multiplier(Mul_io_multiplier),
@@ -123,6 +125,7 @@ module ALU(
   assign io_alu_res = alu_res[63:0]; // @[ALU.scala 162:16]
   assign Mul_clock = clock;
   assign Mul_reset = reset;
+  assign Mul_io_mul_valid = mul_valid & io_src_valid; // @[ALU.scala 62:39]
   assign Mul_io_mulw = io_ALUop == 32'h12; // @[ALU.scala 45:22]
   assign Mul_io_multiplicand = io_src1_value; // @[ALU.scala 66:29]
   assign Mul_io_multiplier = io_src2_value; // @[ALU.scala 67:27]

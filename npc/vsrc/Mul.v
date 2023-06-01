@@ -1,6 +1,7 @@
 module Mul(
   input         clock,
   input         reset,
+  input         io_mul_valid,
   input         io_mulw,
   input  [63:0] io_multiplicand,
   input  [63:0] io_multiplier,
@@ -30,8 +31,8 @@ module Mul(
   wire [63:0] src2_32 = io_mulw ? _src2_32_T_4 : io_multiplier; // @[Mul.scala 64:19]
   wire [127:0] real_cand = {{64'd0}, src1_32}; // @[Mul.scala 66:21]
   wire [64:0] _real_er_T = {src2_32,1'h0}; // @[Cat.scala 31:58]
+  wire [127:0] _GEN_1 = io_mul_valid ? real_cand : src1; // @[Mul.scala 75:44 77:22 55:23]
   wire [63:0] real_er = _real_er_T[63:0]; // @[Mul.scala 59:23 67:13]
-  wire [64:0] _GEN_2 = {{1'd0}, real_er}; // @[Mul.scala 75:28 78:22 56:23]
   wire [63:0] _res_T_1 = res + booth_partial_io_p; // @[Mul.scala 93:32]
   wire [63:0] _GEN_25 = {{63'd0}, booth_partial_io_c}; // @[Mul.scala 93:53]
   wire [63:0] _res_T_3 = _res_T_1 + _GEN_25; // @[Mul.scala 93:53]
@@ -40,12 +41,12 @@ module Mul(
   wire [129:0] _GEN_5 = src2 != 65'h0 ? _src1_T : {{2'd0}, src1}; // @[Mul.scala 55:23 92:33 95:26]
   wire [63:0] _GEN_14 = 2'h1 == state ? _GEN_3 : res; // @[Mul.scala 69:18 51:22]
   wire [129:0] _GEN_16 = 2'h1 == state ? _GEN_5 : {{2'd0}, src1}; // @[Mul.scala 69:18 55:23]
-  wire [129:0] _GEN_18 = 2'h0 == state ? {{2'd0}, real_cand} : _GEN_16; // @[Mul.scala 69:18]
+  wire [129:0] _GEN_18 = 2'h0 == state ? {{2'd0}, _GEN_1} : _GEN_16; // @[Mul.scala 69:18]
   wire [63:0] _GEN_20 = 2'h0 == state ? res : _GEN_14; // @[Mul.scala 69:18 51:22]
-  wire  _T_7 = state == 2'h2; // @[Mul.scala 130:21]
+  wire  _T_8 = state == 2'h2; // @[Mul.scala 130:21]
   wire [31:0] _GEN_27 = state == 2'h2 ? res[63:32] : 32'h0; // @[Mul.scala 130:35 147:22]
   wire [31:0] _GEN_28 = state == 2'h2 ? res[31:0] : 32'h0; // @[Mul.scala 130:35 148:22]
-  wire  _GEN_31 = state == 2'h1 ? 1'h0 : _T_7; // @[Mul.scala 125:33 127:22]
+  wire  _GEN_31 = state == 2'h1 ? 1'h0 : _T_8; // @[Mul.scala 125:33 127:22]
   wire [31:0] _GEN_32 = state == 2'h1 ? 32'h0 : _GEN_27; // @[Mul.scala 125:33 128:22]
   wire [31:0] _GEN_33 = state == 2'h1 ? 32'h0 : _GEN_28; // @[Mul.scala 125:33 129:22]
   wire [129:0] _GEN_30 = reset ? 130'h0 : _GEN_18; // @[Mul.scala 55:{23,23}]
@@ -75,7 +76,9 @@ module Mul(
     if (reset) begin // @[Mul.scala 53:24]
       state <= 2'h0; // @[Mul.scala 53:24]
     end else if (2'h0 == state) begin // @[Mul.scala 69:18]
-      state <= 2'h1;
+      if (io_mul_valid) begin // @[Mul.scala 75:44]
+        state <= 2'h1; // @[Mul.scala 76:23]
+      end
     end else if (2'h1 == state) begin // @[Mul.scala 69:18]
       if (!(src2 != 65'h0)) begin // @[Mul.scala 92:33]
         state <= 2'h2; // @[Mul.scala 97:27]
@@ -87,7 +90,9 @@ module Mul(
     if (reset) begin // @[Mul.scala 56:23]
       src2 <= 65'h0; // @[Mul.scala 56:23]
     end else if (2'h0 == state) begin // @[Mul.scala 69:18]
-      src2 <= _GEN_2;
+      if (io_mul_valid) begin // @[Mul.scala 75:44]
+        src2 <= {{1'd0}, real_er}; // @[Mul.scala 78:22]
+      end
     end else if (2'h1 == state) begin // @[Mul.scala 69:18]
       if (src2 != 65'h0) begin // @[Mul.scala 92:33]
         src2 <= {{2'd0}, src2[64:2]}; // @[Mul.scala 94:26]
