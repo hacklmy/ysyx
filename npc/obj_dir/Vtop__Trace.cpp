@@ -19,15 +19,18 @@ void Vtop___024root__traceChgTop0(void* voidSelf, VerilatedVcd* tracep) {
 void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) {
     if (false && vlSelf) {}  // Prevent unused
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VlWide<4>/*127:0*/ __Vtemp163;
-    VlWide<4>/*127:0*/ __Vtemp164;
-    VlWide<4>/*127:0*/ __Vtemp165;
-    VlWide<3>/*95:0*/ __Vtemp168;
-    VlWide<3>/*95:0*/ __Vtemp169;
-    VlWide<3>/*95:0*/ __Vtemp171;
-    VlWide<3>/*95:0*/ __Vtemp172;
-    VlWide<3>/*95:0*/ __Vtemp173;
-    VlWide<3>/*95:0*/ __Vtemp174;
+    VlWide<4>/*127:0*/ __Vtemp104;
+    VlWide<4>/*127:0*/ __Vtemp105;
+    VlWide<4>/*127:0*/ __Vtemp106;
+    VlWide<4>/*127:0*/ __Vtemp107;
+    VlWide<4>/*127:0*/ __Vtemp108;
+    VlWide<4>/*127:0*/ __Vtemp109;
+    VlWide<3>/*95:0*/ __Vtemp112;
+    VlWide<3>/*95:0*/ __Vtemp113;
+    VlWide<3>/*95:0*/ __Vtemp115;
+    VlWide<3>/*95:0*/ __Vtemp116;
+    VlWide<3>/*95:0*/ __Vtemp117;
+    VlWide<3>/*95:0*/ __Vtemp118;
     vluint32_t* const oldp = tracep->oldp(vlSymsp->__Vm_baseCode + 1);
     if (false && oldp) {}  // Prevent unused
     // Body
@@ -61,28 +64,82 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgQData(oldp+20,(vlSelf->top__DOT__IDU__DOT__ds_pc),64);
             tracep->chgIData(oldp+22,(((0x13U == (0x707fU 
                                                   & vlSelf->top__DOT__IDU__DOT__inst))
-                                        ? 1U : ((0x100073U 
-                                                 == vlSelf->top__DOT__IDU__DOT__inst)
-                                                 ? 2U
-                                                 : 
-                                                ((0x17U 
-                                                  == 
-                                                  (0x7fU 
-                                                   & vlSelf->top__DOT__IDU__DOT__inst))
-                                                  ? 3U
-                                                  : 
-                                                 ((0x37U 
-                                                   == 
-                                                   (0x7fU 
-                                                    & vlSelf->top__DOT__IDU__DOT__inst))
-                                                   ? 4U
+                                        ? 0xfU : ((0x100073U 
+                                                   == vlSelf->top__DOT__IDU__DOT__inst)
+                                                   ? 2U
                                                    : 
-                                                  ((0x6fU 
+                                                  ((0x17U 
                                                     == 
                                                     (0x7fU 
                                                      & vlSelf->top__DOT__IDU__DOT__inst))
-                                                    ? 5U
-                                                    : (IData)(vlSelf->top__DOT__IDU__DOT___ALUop_T_189))))))),32);
+                                                    ? 0xfU
+                                                    : 
+                                                   ((0x37U 
+                                                     == 
+                                                     (0x7fU 
+                                                      & vlSelf->top__DOT__IDU__DOT__inst))
+                                                     ? 4U
+                                                     : 
+                                                    ((0x6fU 
+                                                      == 
+                                                      (0x7fU 
+                                                       & vlSelf->top__DOT__IDU__DOT__inst))
+                                                      ? 5U
+                                                      : 
+                                                     ((0x67U 
+                                                       == 
+                                                       (0x707fU 
+                                                        & vlSelf->top__DOT__IDU__DOT__inst))
+                                                       ? 6U
+                                                       : 
+                                                      ((0x3023U 
+                                                        == 
+                                                        (0x707fU 
+                                                         & vlSelf->top__DOT__IDU__DOT__inst))
+                                                        ? 0xfU
+                                                        : 
+                                                       ((0x3013U 
+                                                         == 
+                                                         (0x707fU 
+                                                          & vlSelf->top__DOT__IDU__DOT__inst))
+                                                         ? 0x1eU
+                                                         : 
+                                                        ((0x2003U 
+                                                          == 
+                                                          (0x707fU 
+                                                           & vlSelf->top__DOT__IDU__DOT__inst))
+                                                          ? 0xfU
+                                                          : 
+                                                         ((0x3bU 
+                                                           == 
+                                                           (0xfe00707fU 
+                                                            & vlSelf->top__DOT__IDU__DOT__inst))
+                                                           ? 0xcU
+                                                           : 
+                                                          ((0x40000033U 
+                                                            == 
+                                                            (0xfe00707fU 
+                                                             & vlSelf->top__DOT__IDU__DOT__inst))
+                                                            ? 0xeU
+                                                            : 
+                                                           ((0x3003U 
+                                                             == 
+                                                             (0x707fU 
+                                                              & vlSelf->top__DOT__IDU__DOT__inst))
+                                                             ? 0xfU
+                                                             : 
+                                                            ((0x1bU 
+                                                              == 
+                                                              (0x707fU 
+                                                               & vlSelf->top__DOT__IDU__DOT__inst))
+                                                              ? 0xcU
+                                                              : 
+                                                             ((0x33U 
+                                                               == 
+                                                               (0xfe00707fU 
+                                                                & vlSelf->top__DOT__IDU__DOT__inst))
+                                                               ? 0xfU
+                                                               : (IData)(vlSelf->top__DOT__IDU__DOT___ALUop_T_162)))))))))))))))),32);
             tracep->chgQData(oldp+23,(((IData)(vlSelf->top__DOT__IDU__DOT__src1_is_pc)
                                         ? vlSelf->top__DOT__IDU__DOT__ds_pc
                                         : vlSelf->top__DOT__Register_io_rdata1)),64);
@@ -307,7 +364,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgIData(oldp+60,((2U == ((0x13U 
                                                == (0x707fU 
                                                    & vlSelf->top__DOT__IDU__DOT__inst))
-                                               ? 1U
+                                               ? 0xfU
                                                : ((0x100073U 
                                                    == vlSelf->top__DOT__IDU__DOT__inst)
                                                    ? 2U
@@ -316,7 +373,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                     == 
                                                     (0x7fU 
                                                      & vlSelf->top__DOT__IDU__DOT__inst))
-                                                    ? 3U
+                                                    ? 0xfU
                                                     : 
                                                    ((0x37U 
                                                      == 
@@ -329,12 +386,66 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                       (0x7fU 
                                                        & vlSelf->top__DOT__IDU__DOT__inst))
                                                       ? 5U
-                                                      : (IData)(vlSelf->top__DOT__IDU__DOT___ALUop_T_189)))))))),32);
+                                                      : 
+                                                     ((0x67U 
+                                                       == 
+                                                       (0x707fU 
+                                                        & vlSelf->top__DOT__IDU__DOT__inst))
+                                                       ? 6U
+                                                       : 
+                                                      ((0x3023U 
+                                                        == 
+                                                        (0x707fU 
+                                                         & vlSelf->top__DOT__IDU__DOT__inst))
+                                                        ? 0xfU
+                                                        : 
+                                                       ((0x3013U 
+                                                         == 
+                                                         (0x707fU 
+                                                          & vlSelf->top__DOT__IDU__DOT__inst))
+                                                         ? 0x1eU
+                                                         : 
+                                                        ((0x2003U 
+                                                          == 
+                                                          (0x707fU 
+                                                           & vlSelf->top__DOT__IDU__DOT__inst))
+                                                          ? 0xfU
+                                                          : 
+                                                         ((0x3bU 
+                                                           == 
+                                                           (0xfe00707fU 
+                                                            & vlSelf->top__DOT__IDU__DOT__inst))
+                                                           ? 0xcU
+                                                           : 
+                                                          ((0x40000033U 
+                                                            == 
+                                                            (0xfe00707fU 
+                                                             & vlSelf->top__DOT__IDU__DOT__inst))
+                                                            ? 0xeU
+                                                            : 
+                                                           ((0x3003U 
+                                                             == 
+                                                             (0x707fU 
+                                                              & vlSelf->top__DOT__IDU__DOT__inst))
+                                                             ? 0xfU
+                                                             : 
+                                                            ((0x1bU 
+                                                              == 
+                                                              (0x707fU 
+                                                               & vlSelf->top__DOT__IDU__DOT__inst))
+                                                              ? 0xcU
+                                                              : 
+                                                             ((0x33U 
+                                                               == 
+                                                               (0xfe00707fU 
+                                                                & vlSelf->top__DOT__IDU__DOT__inst))
+                                                               ? 0xfU
+                                                               : (IData)(vlSelf->top__DOT__IDU__DOT___ALUop_T_162))))))))))))))))),32);
             tracep->chgIData(oldp+61,((0x3dU == ((0x13U 
                                                   == 
                                                   (0x707fU 
                                                    & vlSelf->top__DOT__IDU__DOT__inst))
-                                                  ? 1U
+                                                  ? 0xfU
                                                   : 
                                                  ((0x100073U 
                                                    == vlSelf->top__DOT__IDU__DOT__inst)
@@ -344,7 +455,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                     == 
                                                     (0x7fU 
                                                      & vlSelf->top__DOT__IDU__DOT__inst))
-                                                    ? 3U
+                                                    ? 0xfU
                                                     : 
                                                    ((0x37U 
                                                      == 
@@ -357,7 +468,61 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                       (0x7fU 
                                                        & vlSelf->top__DOT__IDU__DOT__inst))
                                                       ? 5U
-                                                      : (IData)(vlSelf->top__DOT__IDU__DOT___ALUop_T_189)))))))),32);
+                                                      : 
+                                                     ((0x67U 
+                                                       == 
+                                                       (0x707fU 
+                                                        & vlSelf->top__DOT__IDU__DOT__inst))
+                                                       ? 6U
+                                                       : 
+                                                      ((0x3023U 
+                                                        == 
+                                                        (0x707fU 
+                                                         & vlSelf->top__DOT__IDU__DOT__inst))
+                                                        ? 0xfU
+                                                        : 
+                                                       ((0x3013U 
+                                                         == 
+                                                         (0x707fU 
+                                                          & vlSelf->top__DOT__IDU__DOT__inst))
+                                                         ? 0x1eU
+                                                         : 
+                                                        ((0x2003U 
+                                                          == 
+                                                          (0x707fU 
+                                                           & vlSelf->top__DOT__IDU__DOT__inst))
+                                                          ? 0xfU
+                                                          : 
+                                                         ((0x3bU 
+                                                           == 
+                                                           (0xfe00707fU 
+                                                            & vlSelf->top__DOT__IDU__DOT__inst))
+                                                           ? 0xcU
+                                                           : 
+                                                          ((0x40000033U 
+                                                            == 
+                                                            (0xfe00707fU 
+                                                             & vlSelf->top__DOT__IDU__DOT__inst))
+                                                            ? 0xeU
+                                                            : 
+                                                           ((0x3003U 
+                                                             == 
+                                                             (0x707fU 
+                                                              & vlSelf->top__DOT__IDU__DOT__inst))
+                                                             ? 0xfU
+                                                             : 
+                                                            ((0x1bU 
+                                                              == 
+                                                              (0x707fU 
+                                                               & vlSelf->top__DOT__IDU__DOT__inst))
+                                                              ? 0xcU
+                                                              : 
+                                                             ((0x33U 
+                                                               == 
+                                                               (0xfe00707fU 
+                                                                & vlSelf->top__DOT__IDU__DOT__inst))
+                                                               ? 0xfU
+                                                               : (IData)(vlSelf->top__DOT__IDU__DOT___ALUop_T_162))))))))))))))))),32);
             tracep->chgBit(oldp+62,(vlSelf->top__DOT__diff_step));
             tracep->chgQData(oldp+63,(vlSelf->top__DOT__Register__DOT__Reg[0]),64);
             tracep->chgQData(oldp+65,(vlSelf->top__DOT__Register__DOT__Reg[1]),64);
@@ -549,42 +714,53 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgQData(oldp+289,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__add_res),64);
             tracep->chgQData(oldp+291,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__sub_res),64);
             tracep->chgQData(oldp+293,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__sra_res),64);
-            tracep->chgQData(oldp+295,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__srl_res),64);
-            tracep->chgWData(oldp+297,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__sll_res),127);
+            tracep->chgQData(oldp+295,((vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value 
+                                        >> (0x3fU & (IData)(vlSelf->top__DOT__EXU__DOT__src2_value)))),64);
+            VL_EXTEND_WQ(127,64, __Vtemp104, vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value);
+            VL_SHIFTL_WWI(127,127,6, __Vtemp105, __Vtemp104, 
+                          (0x3fU & (IData)(vlSelf->top__DOT__EXU__DOT__src2_value)));
+            __Vtemp106[0U] = __Vtemp105[0U];
+            __Vtemp106[1U] = __Vtemp105[1U];
+            __Vtemp106[2U] = __Vtemp105[2U];
+            __Vtemp106[3U] = (0x7fffffffU & __Vtemp105[3U]);
+            tracep->chgWData(oldp+297,(__Vtemp106),127);
             tracep->chgIData(oldp+301,(VL_SHIFTRS_III(32,32,5, (IData)(vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value), 
                                                       (0x1fU 
                                                        & (IData)(vlSelf->top__DOT__EXU__DOT__src2_value)))),32);
             tracep->chgIData(oldp+302,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__srlw_res),32);
             tracep->chgQData(oldp+303,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__sllw_res),63);
-            tracep->chgQData(oldp+305,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__or_res),64);
-            tracep->chgQData(oldp+307,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__xor_res),64);
-            tracep->chgQData(oldp+309,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__and_res),64);
-            VL_EXTEND_WQ(128,64, __Vtemp163, vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value);
-            VL_EXTEND_WQ(128,64, __Vtemp164, vlSelf->top__DOT__EXU__DOT__src2_value);
-            VL_MUL_W(4, __Vtemp165, __Vtemp163, __Vtemp164);
+            tracep->chgQData(oldp+305,((vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value 
+                                        | vlSelf->top__DOT__EXU__DOT__src2_value)),64);
+            tracep->chgQData(oldp+307,((vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value 
+                                        ^ vlSelf->top__DOT__EXU__DOT__src2_value)),64);
+            tracep->chgQData(oldp+309,((vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value 
+                                        & vlSelf->top__DOT__EXU__DOT__src2_value)),64);
+            VL_EXTEND_WQ(128,64, __Vtemp107, vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value);
+            VL_EXTEND_WQ(128,64, __Vtemp108, vlSelf->top__DOT__EXU__DOT__src2_value);
+            VL_MUL_W(4, __Vtemp109, __Vtemp107, __Vtemp108);
             tracep->chgQData(oldp+311,((((QData)((IData)(
-                                                         __Vtemp165[1U])) 
+                                                         __Vtemp109[1U])) 
                                          << 0x20U) 
                                         | (QData)((IData)(
-                                                          __Vtemp165[0U])))),64);
+                                                          __Vtemp109[0U])))),64);
             tracep->chgIData(oldp+313,((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT___mluw_res_T_2)),32);
             tracep->chgIData(oldp+314,((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT___divw_res_T_4)),32);
             tracep->chgIData(oldp+315,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__divuw_res),32);
             tracep->chgIData(oldp+316,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__remw_res),32);
             tracep->chgIData(oldp+317,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__remuw_res),32);
-            VL_EXTENDS_WQ(65,64, __Vtemp168, vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value);
-            __Vtemp169[0U] = __Vtemp168[0U];
-            __Vtemp169[1U] = __Vtemp168[1U];
-            __Vtemp169[2U] = (1U & __Vtemp168[2U]);
-            VL_EXTENDS_WQ(65,64, __Vtemp171, vlSelf->top__DOT__EXU__DOT__src2_value);
-            __Vtemp172[0U] = __Vtemp171[0U];
-            __Vtemp172[1U] = __Vtemp171[1U];
-            __Vtemp172[2U] = (1U & __Vtemp171[2U]);
-            VL_DIVS_WWW(65, __Vtemp173, __Vtemp169, __Vtemp172);
-            __Vtemp174[0U] = __Vtemp173[0U];
-            __Vtemp174[1U] = __Vtemp173[1U];
-            __Vtemp174[2U] = (1U & __Vtemp173[2U]);
-            tracep->chgWData(oldp+318,(__Vtemp174),65);
+            VL_EXTENDS_WQ(65,64, __Vtemp112, vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value);
+            __Vtemp113[0U] = __Vtemp112[0U];
+            __Vtemp113[1U] = __Vtemp112[1U];
+            __Vtemp113[2U] = (1U & __Vtemp112[2U]);
+            VL_EXTENDS_WQ(65,64, __Vtemp115, vlSelf->top__DOT__EXU__DOT__src2_value);
+            __Vtemp116[0U] = __Vtemp115[0U];
+            __Vtemp116[1U] = __Vtemp115[1U];
+            __Vtemp116[2U] = (1U & __Vtemp115[2U]);
+            VL_DIVS_WWW(65, __Vtemp117, __Vtemp113, __Vtemp116);
+            __Vtemp118[0U] = __Vtemp117[0U];
+            __Vtemp118[1U] = __Vtemp117[1U];
+            __Vtemp118[2U] = (1U & __Vtemp117[2U]);
+            tracep->chgWData(oldp+318,(__Vtemp118),65);
             tracep->chgQData(oldp+321,(VL_DIV_QQQ(64, vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value, vlSelf->top__DOT__EXU__DOT__src2_value)),64);
             tracep->chgQData(oldp+323,(VL_MODDIVS_QQQ(64, vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value, vlSelf->top__DOT__EXU__DOT__src2_value)),64);
             tracep->chgQData(oldp+325,(VL_MODDIV_QQQ(64, vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value, vlSelf->top__DOT__EXU__DOT__src2_value)),64);

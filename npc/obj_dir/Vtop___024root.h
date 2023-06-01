@@ -45,7 +45,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__IDU__DOT__conflict;
         CData/*0:0*/ top__DOT__IDU__DOT__br_taken_cancel;
         CData/*0:0*/ top__DOT__IDU__DOT__ds_allowin;
-        CData/*6:0*/ top__DOT__IDU__DOT___ALUop_T_189;
+        CData/*6:0*/ top__DOT__IDU__DOT___ALUop_T_162;
         CData/*3:0*/ top__DOT__IDU__DOT___Wmask_T_10;
         CData/*0:0*/ top__DOT__EXU__DOT__es_valid;
         CData/*4:0*/ top__DOT__EXU__DOT__es_rd;
@@ -66,7 +66,6 @@ VL_MODULE(Vtop___024root) {
         CData/*4:0*/ top__DOT__WBU__DOT__ws_rf_dst;
         IData/*31:0*/ top__DOT__IDU__DOT__inst;
         IData/*31:0*/ top__DOT__EXU__DOT__ALUop;
-        VlWide<4>/*126:0*/ top__DOT__EXU__DOT__ALU__DOT__sll_res;
         IData/*31:0*/ top__DOT__EXU__DOT__ALU__DOT__srlw_res;
         IData/*31:0*/ top__DOT__EXU__DOT__ALU__DOT__divuw_res;
         IData/*31:0*/ top__DOT__EXU__DOT__ALU__DOT__remw_res;
@@ -88,20 +87,16 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__add_res;
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__sub_res;
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__sra_res;
-        QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__srl_res;
         QData/*62:0*/ top__DOT__EXU__DOT__ALU__DOT__sllw_res;
-        QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__or_res;
-        QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__xor_res;
-        QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__and_res;
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT___mluw_res_T_2;
         QData/*32:0*/ top__DOT__EXU__DOT__ALU__DOT___divw_res_T_4;
-    };
-    struct {
         QData/*63:0*/ top__DOT__LSU__DOT__Mem_modle_Rdata;
         QData/*63:0*/ top__DOT__LSU__DOT__ms_pc;
         QData/*63:0*/ top__DOT__LSU__DOT__ms_res;
         QData/*63:0*/ top__DOT__LSU__DOT__store_data;
         QData/*63:0*/ top__DOT__LSU__DOT__maddr;
+    };
+    struct {
         QData/*63:0*/ top__DOT__WBU__DOT__ws_pc;
         QData/*63:0*/ top__DOT__WBU__DOT__ws_res;
         VlUnpacked<QData/*63:0*/, 32> top__DOT__Register__DOT__Reg;
