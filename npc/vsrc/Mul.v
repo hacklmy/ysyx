@@ -98,7 +98,7 @@ module Mul(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"src1:%x  src2:%x\n",src1,src2); // @[Mul.scala 150:11]
+          $fwrite(32'h80000002,"state:%d  src1_32:%x  src2_32:%x src1:%x  src2:%x\n",state,src1_32,src2_32,src1,src2); // @[Mul.scala 150:11]
         end
     `ifdef PRINTF_COND
       end
