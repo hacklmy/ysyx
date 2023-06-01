@@ -40,7 +40,7 @@ module top(
   wire [63:0] IDU_io_rdata1; // @[top.scala 17:21]
   wire [63:0] IDU_io_rdata2; // @[top.scala 17:21]
   wire [63:0] IDU_io_to_es_pc; // @[top.scala 17:21]
-  wire [31:0] IDU_io_inst_now; // @[top.scala 17:21]
+  wire [31:0] IDU_io_ALUop; // @[top.scala 17:21]
   wire [63:0] IDU_io_src1; // @[top.scala 17:21]
   wire [63:0] IDU_io_src2; // @[top.scala 17:21]
   wire [4:0] IDU_io_rf_dst; // @[top.scala 17:21]
@@ -63,7 +63,7 @@ module top(
   wire  EXU_reset; // @[top.scala 18:21]
   wire [63:0] EXU_io_pc; // @[top.scala 18:21]
   wire  EXU_io_ds_to_es_valid; // @[top.scala 18:21]
-  wire [31:0] EXU_io_inst_now; // @[top.scala 18:21]
+  wire [31:0] EXU_io_ALUop; // @[top.scala 18:21]
   wire [63:0] EXU_io_src1_value; // @[top.scala 18:21]
   wire [63:0] EXU_io_src2_value; // @[top.scala 18:21]
   wire [4:0] EXU_io_rf_dst; // @[top.scala 18:21]
@@ -163,7 +163,7 @@ module top(
     .io_rdata1(IDU_io_rdata1),
     .io_rdata2(IDU_io_rdata2),
     .io_to_es_pc(IDU_io_to_es_pc),
-    .io_inst_now(IDU_io_inst_now),
+    .io_ALUop(IDU_io_ALUop),
     .io_src1(IDU_io_src1),
     .io_src2(IDU_io_src2),
     .io_rf_dst(IDU_io_rf_dst),
@@ -188,7 +188,7 @@ module top(
     .reset(EXU_reset),
     .io_pc(EXU_io_pc),
     .io_ds_to_es_valid(EXU_io_ds_to_es_valid),
-    .io_inst_now(EXU_io_inst_now),
+    .io_ALUop(EXU_io_ALUop),
     .io_src1_value(EXU_io_src1_value),
     .io_src2_value(EXU_io_src2_value),
     .io_rf_dst(EXU_io_rf_dst),
@@ -292,7 +292,7 @@ module top(
   assign EXU_reset = reset;
   assign EXU_io_pc = IDU_io_to_es_pc; // @[top.scala 48:12]
   assign EXU_io_ds_to_es_valid = IDU_io_ds_to_es_valid; // @[top.scala 49:24]
-  assign EXU_io_inst_now = IDU_io_inst_now; // @[top.scala 51:18]
+  assign EXU_io_ALUop = IDU_io_ALUop; // @[top.scala 51:15]
   assign EXU_io_src1_value = IDU_io_src1; // @[top.scala 52:20]
   assign EXU_io_src2_value = IDU_io_src2; // @[top.scala 53:20]
   assign EXU_io_rf_dst = IDU_io_rf_dst; // @[top.scala 54:16]
@@ -322,8 +322,8 @@ module top(
   assign WBU_io_ms_final_res = LSU_io_ms_final_res; // @[top.scala 74:22]
   assign WBU_io_rf_we = LSU_io_to_ws_rf_we; // @[top.scala 75:15]
   assign WBU_io_rf_dst = LSU_io_to_ws_rf_dst; // @[top.scala 76:16]
-  assign dpi_flag = {{31'd0}, IDU_io_inst_now == 32'h2}; // @[top.scala 88:17]
-  assign dpi_ecall_flag = {{31'd0}, IDU_io_inst_now == 32'h3d}; // @[top.scala 89:23]
+  assign dpi_flag = {{31'd0}, IDU_io_ALUop == 32'h2}; // @[top.scala 88:17]
+  assign dpi_ecall_flag = {{31'd0}, IDU_io_ALUop == 32'h3d}; // @[top.scala 89:23]
   assign dpi_pc = WBU_io_ws_pc; // @[top.scala 90:15]
   always @(posedge clock) begin
     if (reset) begin // @[top.scala 84:28]
