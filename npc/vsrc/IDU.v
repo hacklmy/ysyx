@@ -5,6 +5,7 @@ module IDU(
   input  [63:0] io_pc,
   input         io_fs_to_ds_valid,
   output        io_ds_to_es_valid,
+  input         io_es_allowin,
   input  [31:0] io_from_fs_inst,
   output        io_br_taken,
   output [63:0] io_br_target,
@@ -204,7 +205,7 @@ module IDU(
      & io_ws_valid) | _conflict_T_43; // @[IDU.scala 442:247]
   wire  ds_ready_go = ~conflict; // @[IDU.scala 104:20]
   wire  br_taken_cancel = br_taken & ds_ready_go & ds_valid; // @[IDU.scala 93:48]
-  wire  ds_allowin = ~ds_valid | ds_ready_go; // @[IDU.scala 106:29]
+  wire  ds_allowin = ~ds_valid | ds_ready_go & io_es_allowin; // @[IDU.scala 106:29]
   wire [4:0] rd = inst[11:7]; // @[IDU.scala 206:15]
   wire [11:0] imm_imm = inst[31:20]; // @[IDU.scala 50:23]
   wire [51:0] _imm_T_2 = imm_imm[11] ? 52'hfffffffffffff : 52'h0; // @[Bitwise.scala 74:12]
@@ -320,7 +321,7 @@ module IDU(
   assign io_br_taken = br_taken & ds_valid; // @[IDU.scala 444:29]
   assign io_br_target = _br_taken_T_23 ? _br_target_T_4 : _br_target_T_1; // @[Lookup.scala 34:39]
   assign io_br_taken_cancel = br_taken_cancel & ds_valid; // @[IDU.scala 445:43]
-  assign io_ds_allowin = ~ds_valid | ds_ready_go; // @[IDU.scala 106:29]
+  assign io_ds_allowin = ~ds_valid | ds_ready_go & io_es_allowin; // @[IDU.scala 106:29]
   assign io_raddr1 = inst[19:15]; // @[IDU.scala 205:16]
   assign io_raddr2 = inst[24:20]; // @[IDU.scala 204:16]
   assign io_to_es_pc = ds_pc; // @[IDU.scala 467:17]

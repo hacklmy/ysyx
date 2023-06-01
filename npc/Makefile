@@ -55,6 +55,8 @@ copy_top_pipeline:
 	echo "/* verilator lint_off WIDTH */" > vsrc/alu.v
 	sed -n '/module ALU/,/endmodule/p' vsrc/output/top.v >> vsrc/alu.v	
 	echo "/* verilator lint_on WIDTH */" >> vsrc/alu.v
+	sed -n '/module Mul/,/endmodule/p' vsrc/output/top.v > vsrc/Mul.v
+	sed -n '/module Div/,/endmodule/p' vsrc/output/top.v > vsrc/Div.v
 
 
 include ../Makefile
