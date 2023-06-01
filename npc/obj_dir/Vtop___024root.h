@@ -82,8 +82,9 @@ VL_MODULE(Vtop___024root) {
         IData/*31:0*/ top__DOT__EXU__DOT__ALU__DOT__Mul_io_result_lo;
         IData/*31:0*/ top__DOT__EXU__DOT__ALU__DOT__srlw_res;
         VlWide<4>/*126:0*/ top__DOT__EXU__DOT__ALU__DOT__alu_res;
+        VlWide<4>/*127:0*/ top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1;
         VlWide<3>/*64:0*/ top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2;
-        VlWide<4>/*127:0*/ top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_30;
+        VlWide<5>/*129:0*/ top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_30;
         VlWide<4>/*127:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_cand;
         IData/*31:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT__step_num;
         VlWide<4>/*127:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_1;
@@ -94,9 +95,9 @@ VL_MODULE(Vtop___024root) {
         VlWide<3>/*64:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_19;
         QData/*63:0*/ top__DOT__Register_io_rdata1;
         QData/*63:0*/ top__DOT__Register_io_rdata2;
-        QData/*63:0*/ top__DOT__IFU__DOT__inst_read_Rdata;
     };
     struct {
+        QData/*63:0*/ top__DOT__IFU__DOT__inst_read_Rdata;
         QData/*63:0*/ top__DOT__IFU__DOT__fs_pc;
         QData/*63:0*/ top__DOT__IFU__DOT__seq_pc;
         QData/*63:0*/ top__DOT__IDU__DOT__ds_pc;
@@ -114,7 +115,6 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__sra_res;
         QData/*62:0*/ top__DOT__EXU__DOT__ALU__DOT__sllw_res;
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__res;
-        QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1;
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_20;
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT__src1_32_s;
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT__src2_32_s;
