@@ -33,8 +33,7 @@ module IDU(
   input         io_ws_valid,
   input  [4:0]  io_es_rf_dst,
   input  [4:0]  io_ms_rf_dst,
-  input  [4:0]  io_ws_rf_dst,
-  output        io_ds_valid
+  input  [4:0]  io_ws_rf_dst
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -335,7 +334,6 @@ module IDU(
     _inst_type_T_79 | (_inst_type_T_115 | _inst_type_T_33))))); // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Wmask = _inst_type_T_11 ? 8'hff : {{4'd0}, _Wmask_T_10}; // @[Lookup.scala 34:39]
   assign io_load_type = _inst_type_T_15 ? 3'h0 : _load_type_T_19; // @[Lookup.scala 34:39]
-  assign io_ds_valid = ds_valid; // @[IDU.scala 469:17]
   always @(posedge clock) begin
     if (reset) begin // @[IDU.scala 79:27]
       ds_valid <= 1'h0; // @[IDU.scala 79:27]

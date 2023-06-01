@@ -89,7 +89,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                    64,vlSelf->top__DOT__LSU__DOT__store_data);
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"ws_pc:%x ws_valid:%1# rf_dst:%2# rf_we:%1# wdata:%x\n\n",
+        VL_FWRITEF(0x80000002U,"ws_pc:%x ws_valid:%1# rf_dst:%2# rf_we:%1# wdata:%x\n",
                    64,vlSelf->top__DOT__WBU__DOT__ws_pc,
                    1,(IData)(vlSelf->top__DOT__WBU__DOT__ws_valid),
                    5,vlSelf->top__DOT__WBU__DOT__ws_rf_dst,
@@ -98,7 +98,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                    64,vlSelf->top__DOT__WBU__DOT__ws_res);
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"es_pc:%x es_valid:%1# alu_res:%x src1_value:%x  src2_value:%x\n",
+        VL_FWRITEF(0x80000002U,"es_pc:%x es_valid:%1# alu_res:%x src1_value:%x  src2_value:%x\n\n",
                    64,vlSelf->top__DOT__EXU__DOT__es_pc,
                    1,(IData)(vlSelf->top__DOT__EXU__DOT__es_valid),
                    64,(((QData)((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__alu_res[1U])) 
