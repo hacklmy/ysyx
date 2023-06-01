@@ -30,6 +30,7 @@ module ALU(
   wire  mul_valid = 32'h12 == io_ALUop | 32'h11 == io_ALUop; // @[Mux.scala 81:58]
   wire  div_valid = 32'h32 == io_ALUop | (32'h14 == io_ALUop | (32'h33 == io_ALUop | (32'h34 == io_ALUop | (32'h35 ==
     io_ALUop | (32'h13 == io_ALUop | (32'h30 == io_ALUop | 32'h31 == io_ALUop)))))); // @[Mux.scala 81:58]
+  wire  mul_w = io_ALUop == 32'h12; // @[ALU.scala 45:22]
   wire [63:0] add_res = io_src1_value + io_src2_value; // @[ALU.scala 77:30]
   wire [63:0] sub_res = io_src1_value - io_src2_value; // @[ALU.scala 78:30]
   wire [63:0] sra_res = $signed(io_src1_value) >>> io_src2_value[5:0]; // @[ALU.scala 79:60]
@@ -118,8 +119,8 @@ module ALU(
     .io_quotient(Div_io_quotient),
     .io_remainder(Div_io_remainder)
   );
-  assign io_alu_busy = mul_valid ? ~Mul_io_out_valid : div_valid & ~Div_io_out_valid; // @[ALU.scala 160:23]
-  assign io_alu_res = alu_res[63:0]; // @[ALU.scala 161:16]
+  assign io_alu_busy = mul_valid ? ~Mul_io_out_valid : div_valid & ~Div_io_out_valid; // @[ALU.scala 161:23]
+  assign io_alu_res = alu_res[63:0]; // @[ALU.scala 162:16]
   assign Mul_clock = clock;
   assign Mul_reset = reset;
   assign Mul_io_mulw = io_ALUop == 32'h12; // @[ALU.scala 45:22]
@@ -132,5 +133,18 @@ module ALU(
   assign Div_io_div_valid = div_valid & io_src_valid; // @[ALU.scala 71:39]
   assign Div_io_divw = 32'h32 == io_ALUop | (32'h14 == io_ALUop | (32'h35 == io_ALUop | 32'h13 == io_ALUop)); // @[Mux.scala 81:58]
   assign Div_io_div_signed = 32'h14 == io_ALUop | (32'h34 == io_ALUop | (32'h13 == io_ALUop | 32'h31 == io_ALUop)); // @[Mux.scala 81:58]
+  always @(posedge clock) begin
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"mul_valid:%d mul_w:%d mlu_res:%x\n",mul_valid,mul_w,mlu_res); // @[ALU.scala 158:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
+  end
 endmodule
 /* verilator lint_on WIDTH */
