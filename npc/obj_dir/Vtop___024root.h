@@ -38,7 +38,6 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__IFU__DOT__fs_allowin;
         CData/*0:0*/ top__DOT__IFU__DOT___GEN_1;
         CData/*0:0*/ top__DOT__IDU__DOT__ds_valid;
-        CData/*6:0*/ top__DOT__IDU__DOT___inst_now_T_194;
         CData/*0:0*/ top__DOT__IDU__DOT__br_taken;
         CData/*0:0*/ top__DOT__IDU__DOT__src1_is_pc;
         CData/*6:0*/ top__DOT__IDU__DOT___inst_type_T_188;
@@ -46,6 +45,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__IDU__DOT__conflict;
         CData/*0:0*/ top__DOT__IDU__DOT__br_taken_cancel;
         CData/*0:0*/ top__DOT__IDU__DOT__ds_allowin;
+        CData/*6:0*/ top__DOT__IDU__DOT___ALUop_T_189;
         CData/*3:0*/ top__DOT__IDU__DOT___Wmask_T_10;
         CData/*0:0*/ top__DOT__EXU__DOT__es_valid;
         CData/*4:0*/ top__DOT__EXU__DOT__es_rd;
@@ -65,7 +65,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__WBU__DOT__ws_rf_we;
         CData/*4:0*/ top__DOT__WBU__DOT__ws_rf_dst;
         IData/*31:0*/ top__DOT__IDU__DOT__inst;
-        IData/*31:0*/ top__DOT__EXU__DOT__inst_now;
+        IData/*31:0*/ top__DOT__EXU__DOT__ALUop;
         VlWide<4>/*126:0*/ top__DOT__EXU__DOT__sll_res;
         IData/*31:0*/ top__DOT__EXU__DOT__srlw_res;
         IData/*31:0*/ top__DOT__EXU__DOT__divuw_res;

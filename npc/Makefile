@@ -52,5 +52,6 @@ copy_top_pipeline:
 	sed -n '/module LSU/,/endmodule/p' vsrc/output/top.v > vsrc/LSU.v
 	sed -n '/module WBU/,/endmodule/p' vsrc/output/top.v > vsrc/WBU.v
 	sed -n '/module Register/,/endmodule/p' vsrc/output/top.v > vsrc/Register.v	
+	sed -n '/module ALU/,/endmodule/p' vsrc/output/top.v > vsrc/alu.v	
 
 include ../Makefile
