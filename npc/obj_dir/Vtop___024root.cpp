@@ -63,6 +63,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     __Vdly__top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state 
         = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"src1:%x  src2:%x\n",
+                   64,vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value,
+                   64,vlSelf->top__DOT__EXU__DOT__src2_value);
+    }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
         VL_FWRITEF(0x80000002U,"fs_pc:%x fa_valid:%1#\n",
                    64,vlSelf->top__DOT__IFU__DOT__fs_pc,
                    1,(IData)(vlSelf->top__DOT__IFU__DOT__fs_valid));
