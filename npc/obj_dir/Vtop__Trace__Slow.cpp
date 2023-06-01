@@ -1602,51 +1602,11 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullCData(oldp+348,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state),2);
         tracep->fullWData(oldp+349,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1),128);
         tracep->fullWData(oldp+353,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2),65);
-        tracep->fullQData(oldp+356,(((0x12U == vlSelf->top__DOT__EXU__DOT__ALUop)
-                                      ? (((QData)((IData)(
-                                                          ((1U 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value 
-                                                                       >> 0x1fU)))
-                                                            ? 0xffffffffU
-                                                            : 0U))) 
-                                          << 0x20U) 
-                                         | (QData)((IData)(vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value)))
-                                      : vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value)),64);
-        tracep->fullQData(oldp+358,(((0x12U == vlSelf->top__DOT__EXU__DOT__ALUop)
-                                      ? (((QData)((IData)(
-                                                          ((1U 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__EXU__DOT__src2_value 
-                                                                       >> 0x1fU)))
-                                                            ? 0xffffffffU
-                                                            : 0U))) 
-                                          << 0x20U) 
-                                         | (QData)((IData)(vlSelf->top__DOT__EXU__DOT__src2_value)))
-                                      : vlSelf->top__DOT__EXU__DOT__src2_value)),64);
-        VL_EXTEND_WQ(128,64, __Vtemp191, ((0x12U == vlSelf->top__DOT__EXU__DOT__ALUop)
-                                           ? (((QData)((IData)(
-                                                               ((1U 
-                                                                 & (IData)(
-                                                                           (vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value 
-                                                                            >> 0x1fU)))
-                                                                 ? 0xffffffffU
-                                                                 : 0U))) 
-                                               << 0x20U) 
-                                              | (QData)((IData)(vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value)))
-                                           : vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value));
+        tracep->fullQData(oldp+356,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32),64);
+        tracep->fullQData(oldp+358,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2_32),64);
+        VL_EXTEND_WQ(128,64, __Vtemp191, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32);
         tracep->fullWData(oldp+360,(__Vtemp191),128);
-        tracep->fullQData(oldp+364,((((0x12U == vlSelf->top__DOT__EXU__DOT__ALUop)
-                                       ? (((QData)((IData)(
-                                                           ((1U 
-                                                             & (IData)(
-                                                                       (vlSelf->top__DOT__EXU__DOT__src2_value 
-                                                                        >> 0x1fU)))
-                                                             ? 0xffffffffU
-                                                             : 0U))) 
-                                           << 0x20U) 
-                                          | (QData)((IData)(vlSelf->top__DOT__EXU__DOT__src2_value)))
-                                       : vlSelf->top__DOT__EXU__DOT__src2_value) 
+        tracep->fullQData(oldp+364,((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2_32 
                                      << 1U)),64);
         tracep->fullBit(oldp+366,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__dend_neg));
         tracep->fullBit(oldp+367,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sor_neg));
