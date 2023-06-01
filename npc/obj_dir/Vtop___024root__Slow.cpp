@@ -1153,7 +1153,16 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                               & vlSelf->top__DOT__IDU__DOT__inst))
                                                                              ? 0xfU
                                                                              : (IData)(vlSelf->top__DOT__IDU__DOT___ALUop_T_162)))))))))))))))));
-    Vtop___024unit____Vdpiimwrap_get_pc_TOP____024unit(vlSelf->top__DOT__WBU__DOT__ws_pc);
+    Vtop___024unit____Vdpiimwrap_get_pc_TOP____024unit(
+                                                       ((IData)(vlSelf->top__DOT__LSU__DOT__ms_valid)
+                                                         ? vlSelf->top__DOT__LSU__DOT__ms_pc
+                                                         : 
+                                                        ((IData)(vlSelf->top__DOT__EXU__DOT__es_valid)
+                                                          ? vlSelf->top__DOT__EXU__DOT__es_pc
+                                                          : 
+                                                         ((IData)(vlSelf->top__DOT__IDU__DOT__ds_valid)
+                                                           ? vlSelf->top__DOT__IDU__DOT__ds_pc
+                                                           : vlSelf->top__DOT__IFU__DOT__fs_pc))));
     top__DOT__IDU__DOT___inst_type_T_185 = ((0x6fU 
                                              == (0x7fU 
                                                  & vlSelf->top__DOT__IDU__DOT__inst))
