@@ -493,6 +493,7 @@ module csr_reg(
   input         io_wen2,
   input  [1:0]  io_waddr1,
   input  [63:0] io_wdata1,
+  input  [63:0] io_wdata2,
   input  [1:0]  io_raddr,
   output [63:0] io_rdata
 );
@@ -518,7 +519,7 @@ module csr_reg(
   assign CSR_Reg_MPORT_addr = io_waddr1;
   assign CSR_Reg_MPORT_mask = 1'h1;
   assign CSR_Reg_MPORT_en = io_wen1;
-  assign CSR_Reg_MPORT_1_data = 64'h9;
+  assign CSR_Reg_MPORT_1_data = io_wdata2;
   assign CSR_Reg_MPORT_1_addr = 2'h3;
   assign CSR_Reg_MPORT_1_mask = 1'h1;
   assign CSR_Reg_MPORT_1_en = io_wen2;
@@ -626,6 +627,7 @@ module IDU(
   wire  csr_reg_io_wen2; // @[IDU.scala 422:21]
   wire [1:0] csr_reg_io_waddr1; // @[IDU.scala 422:21]
   wire [63:0] csr_reg_io_wdata1; // @[IDU.scala 422:21]
+  wire [63:0] csr_reg_io_wdata2; // @[IDU.scala 422:21]
   wire [1:0] csr_reg_io_raddr; // @[IDU.scala 422:21]
   wire [63:0] csr_reg_io_rdata; // @[IDU.scala 422:21]
   reg  ds_valid; // @[IDU.scala 80:27]
@@ -778,22 +780,24 @@ module IDU(
   wire [6:0] _inst_type_T_187 = _src1_is_pc_T_3 ? 7'h42 : _inst_type_T_186; // @[Lookup.scala 34:39]
   wire [6:0] _inst_type_T_188 = _inst_type_T_1 ? 7'h40 : _inst_type_T_187; // @[Lookup.scala 34:39]
   wire [31:0] inst_type = {{25'd0}, _inst_type_T_188}; // @[IDU.scala 185:25 211:15]
+  wire  _csr_write_T_10 = _inst_type_T_121 | (_inst_type_T_123 | _inst_type_T_125); // @[Lookup.scala 34:39]
+  wire [1:0] csr_write = _br_taken_T_37 ? 2'h3 : {{1'd0}, _csr_write_T_10}; // @[Lookup.scala 34:39]
+  wire  _conflict_T_3 = csr_write == 2'h1; // @[IDU.scala 466:66]
   wire [4:0] rs1 = inst[19:15]; // @[IDU.scala 206:16]
   wire  src2_is_imm = 32'h45 == inst_type | (32'h43 == inst_type | (32'h44 == inst_type | (32'h42 == inst_type | 32'h40
      == inst_type))); // @[Mux.scala 81:58]
-  wire [4:0] rs2 = inst[24:20]; // @[IDU.scala 205:16]
-  wire  _conflict_T_43 = (~src2_is_imm | inst_type == 32'h44 | inst_type == 32'h45) & (rs2 == io_es_rf_dst & rs2 != 5'h0
-     & io_es_rf_we & io_es_valid | rs2 == io_ms_rf_dst & rs2 != 5'h0 & io_ms_rf_we & io_ms_valid | rs2 == io_ws_rf_dst
-     & rs2 != 5'h0 & io_ws_rf_we & io_ws_valid); // @[IDU.scala 466:309]
-  wire  conflict = (~src1_is_pc | inst_type == 32'h45) & (rs1 == io_es_rf_dst & rs1 != 5'h0 & io_es_rf_we & io_es_valid
-     | rs1 == io_ms_rf_dst & rs1 != 5'h0 & io_ms_rf_we & io_ms_valid | rs1 == io_ws_rf_dst & rs1 != 5'h0 & io_ws_rf_we
-     & io_ws_valid) | _conflict_T_43; // @[IDU.scala 466:247]
+  wire  _conflict_T_28 = csr_write == 2'h3; // @[IDU.scala 466:339]
+  wire [4:0] rs2 = csr_write[0] ? 5'h11 : inst[24:20]; // @[IDU.scala 205:15]
+  wire  _conflict_T_47 = (~src2_is_imm | inst_type == 32'h44 | inst_type == 32'h45 | csr_write == 2'h3) & (rs2 ==
+    io_es_rf_dst & rs2 != 5'h0 & io_es_rf_we & io_es_valid | rs2 == io_ms_rf_dst & rs2 != 5'h0 & io_ms_rf_we &
+    io_ms_valid | rs2 == io_ws_rf_dst & rs2 != 5'h0 & io_ws_rf_we & io_ws_valid); // @[IDU.scala 466:347]
+  wire  conflict = (~src1_is_pc | inst_type == 32'h45 | csr_write == 2'h1) & (rs1 == io_es_rf_dst & rs1 != 5'h0 &
+    io_es_rf_we & io_es_valid | rs1 == io_ms_rf_dst & rs1 != 5'h0 & io_ms_rf_we & io_ms_valid | rs1 == io_ws_rf_dst &
+    rs1 != 5'h0 & io_ws_rf_we & io_ws_valid) | _conflict_T_47; // @[IDU.scala 466:268]
   wire  ds_ready_go = ~conflict; // @[IDU.scala 105:20]
   wire  br_taken_cancel = br_taken & ds_ready_go & ds_valid; // @[IDU.scala 94:48]
   wire  ds_allowin = ~ds_valid | ds_ready_go & io_es_allowin; // @[IDU.scala 107:29]
   wire [4:0] rd = inst[11:7]; // @[IDU.scala 207:15]
-  wire  _csr_write_T_10 = _inst_type_T_121 | (_inst_type_T_123 | _inst_type_T_125); // @[Lookup.scala 34:39]
-  wire [1:0] csr_write = _br_taken_T_37 ? 2'h3 : {{1'd0}, _csr_write_T_10}; // @[Lookup.scala 34:39]
   wire [11:0] imm_imm = inst[31:20]; // @[IDU.scala 51:23]
   wire [51:0] _imm_T_2 = imm_imm[11] ? 52'hfffffffffffff : 52'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _imm_T_3 = {_imm_T_2,imm_imm}; // @[Cat.scala 31:58]
@@ -905,10 +909,8 @@ module IDU(
   wire [63:0] csr_wdata = _inst_type_T_121 ? io_rdata1 : _csr_wdata_T_10; // @[Lookup.scala 34:39]
   wire [31:0] ALUop = {{25'd0}, _ALUop_T_176}; // @[IDU.scala 184:21 285:11]
   wire [1:0] _T_5 = ALUop == 32'h3e ? 2'h1 : csr_index; // @[IDU.scala 435:48]
-  wire  _T_10 = csr_write == 2'h3; // @[IDU.scala 437:32]
-  wire  _T_11 = csr_write == 2'h1; // @[IDU.scala 437:56]
-  wire [1:0] _T_12 = csr_write == 2'h1 ? csr_index : 2'h0; // @[IDU.scala 437:46]
-  wire [63:0] _T_16 = _T_11 ? csr_wdata : 64'h0; // @[IDU.scala 438:48]
+  wire [1:0] _T_12 = _conflict_T_3 ? csr_index : 2'h0; // @[IDU.scala 437:46]
+  wire [63:0] _T_16 = _conflict_T_3 ? csr_wdata : 64'h0; // @[IDU.scala 438:48]
   wire [63:0] src1 = src1_is_pc ? ds_pc : io_rdata1; // @[IDU.scala 444:16]
   wire [63:0] src2 = src2_is_imm ? imm : io_rdata2; // @[IDU.scala 445:16]
   wire [63:0] _br_target_T_1 = src1 + src2; // @[IDU.scala 448:35]
@@ -925,6 +927,7 @@ module IDU(
     .io_wen2(csr_reg_io_wen2),
     .io_waddr1(csr_reg_io_waddr1),
     .io_wdata1(csr_reg_io_wdata1),
+    .io_wdata2(csr_reg_io_wdata2),
     .io_raddr(csr_reg_io_raddr),
     .io_rdata(csr_reg_io_rdata)
   );
@@ -934,7 +937,7 @@ module IDU(
   assign io_br_taken_cancel = br_taken_cancel & ds_valid; // @[IDU.scala 469:43]
   assign io_ds_allowin = ~ds_valid | ds_ready_go & io_es_allowin; // @[IDU.scala 107:29]
   assign io_raddr1 = inst[19:15]; // @[IDU.scala 206:16]
-  assign io_raddr2 = csr_write[0] ? 5'h11 : rs2; // @[IDU.scala 209:21]
+  assign io_raddr2 = csr_write[0] ? 5'h11 : inst[24:20]; // @[IDU.scala 205:15]
   assign io_to_es_pc = ds_pc; // @[IDU.scala 491:17]
   assign io_ALUop = {{25'd0}, _ALUop_T_176}; // @[IDU.scala 184:21 285:11]
   assign io_src1 = csr_write[0] ? csr_reg_io_rdata : src1; // @[IDU.scala 480:19]
@@ -951,8 +954,9 @@ module IDU(
   assign csr_reg_clock = clock;
   assign csr_reg_io_wen1 = csr_write[0] & ds_valid; // @[IDU.scala 436:38]
   assign csr_reg_io_wen2 = csr_write[1] & ds_valid; // @[IDU.scala 439:38]
-  assign csr_reg_io_waddr1 = csr_write == 2'h3 ? 2'h1 : _T_12; // @[IDU.scala 437:22]
-  assign csr_reg_io_wdata1 = _T_10 ? ds_pc : _T_16; // @[IDU.scala 438:22]
+  assign csr_reg_io_waddr1 = _conflict_T_28 ? 2'h1 : _T_12; // @[IDU.scala 437:22]
+  assign csr_reg_io_wdata1 = _conflict_T_28 ? ds_pc : _T_16; // @[IDU.scala 438:22]
+  assign csr_reg_io_wdata2 = io_rdata2; // @[IDU.scala 441:16]
   assign csr_reg_io_raddr = csr_write[1] ? 2'h0 : _T_5; // @[IDU.scala 435:21]
   always @(posedge clock) begin
     if (reset) begin // @[IDU.scala 80:27]

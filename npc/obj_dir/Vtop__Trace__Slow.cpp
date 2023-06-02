@@ -403,7 +403,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+272,"top IDU csr_reg_io_wen2", false,-1);
         tracep->declBus(c+273,"top IDU csr_reg_io_waddr1", false,-1, 1,0);
         tracep->declQuad(c+274,"top IDU csr_reg_io_wdata1", false,-1, 63,0);
-        tracep->declQuad(c+5,"top IDU csr_reg_io_wdata2", false,-1, 63,0);
         tracep->declBus(c+276,"top IDU csr_reg_io_raddr", false,-1, 1,0);
         tracep->declQuad(c+277,"top IDU csr_reg_io_rdata", false,-1, 63,0);
         tracep->declBit(c+45,"top IDU ds_valid", false,-1);
@@ -437,7 +436,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+272,"top IDU csr_reg io_wen2", false,-1);
         tracep->declBus(c+273,"top IDU csr_reg io_waddr1", false,-1, 1,0);
         tracep->declQuad(c+274,"top IDU csr_reg io_wdata1", false,-1, 63,0);
-        tracep->declQuad(c+5,"top IDU csr_reg io_wdata2", false,-1, 63,0);
         tracep->declBus(c+276,"top IDU csr_reg io_raddr", false,-1, 1,0);
         tracep->declQuad(c+277,"top IDU csr_reg io_rdata", false,-1, 63,0);
         {int i; for (i=0; i<4; i++) {
@@ -449,8 +447,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+273,"top IDU csr_reg CSR_Reg_MPORT_addr", false,-1, 1,0);
         tracep->declBit(c+453,"top IDU csr_reg CSR_Reg_MPORT_mask", false,-1);
         tracep->declBit(c+271,"top IDU csr_reg CSR_Reg_MPORT_en", false,-1);
-        tracep->declQuad(c+5,"top IDU csr_reg CSR_Reg_MPORT_1_data", false,-1, 63,0);
-        tracep->declBus(c+490,"top IDU csr_reg CSR_Reg_MPORT_1_addr", false,-1, 1,0);
+        tracep->declQuad(c+490,"top IDU csr_reg CSR_Reg_MPORT_1_data", false,-1, 63,0);
+        tracep->declBus(c+492,"top IDU csr_reg CSR_Reg_MPORT_1_addr", false,-1, 1,0);
         tracep->declBit(c+453,"top IDU csr_reg CSR_Reg_MPORT_1_mask", false,-1);
         tracep->declBit(c+272,"top IDU csr_reg CSR_Reg_MPORT_1_en", false,-1);
         tracep->declBit(c+447,"top EXU clock", false,-1);
@@ -1732,6 +1730,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullQData(oldp+486,(0ULL),64);
         tracep->fullCData(oldp+488,(0U),8);
         tracep->fullBit(oldp+489,(0U));
-        tracep->fullCData(oldp+490,(3U),2);
+        tracep->fullQData(oldp+490,(9ULL),64);
+        tracep->fullCData(oldp+492,(3U),2);
     }
 }

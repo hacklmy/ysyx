@@ -4,6 +4,7 @@ module csr_reg(
   input         io_wen2,
   input  [1:0]  io_waddr1,
   input  [63:0] io_wdata1,
+  input  [63:0] io_wdata2,
   input  [1:0]  io_raddr,
   output [63:0] io_rdata
 );
@@ -29,7 +30,7 @@ module csr_reg(
   assign CSR_Reg_MPORT_addr = io_waddr1;
   assign CSR_Reg_MPORT_mask = 1'h1;
   assign CSR_Reg_MPORT_en = io_wen1;
-  assign CSR_Reg_MPORT_1_data = 64'h9;
+  assign CSR_Reg_MPORT_1_data = io_wdata2;
   assign CSR_Reg_MPORT_1_addr = 2'h3;
   assign CSR_Reg_MPORT_1_mask = 1'h1;
   assign CSR_Reg_MPORT_1_en = io_wen2;
