@@ -427,7 +427,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+293,"top IDU imm_imm_3", false,-1, 11,0);
         tracep->declBus(c+294,"top IDU imm_imm_4", false,-1, 11,0);
         tracep->declQuad(c+295,"top IDU imm", false,-1, 63,0);
-        tracep->declBus(c+35,"top IDU Wmask", false,-1, 7,0);
         tracep->declBus(c+276,"top IDU csr_index", false,-1, 1,0);
         tracep->declQuad(c+297,"top IDU csr_wdata", false,-1, 63,0);
         tracep->declQuad(c+299,"top IDU src1", false,-1, 63,0);
@@ -504,7 +503,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+56,"top EXU load_type", false,-1, 2,0);
         tracep->declBit(c+317,"top EXU es_ready_go", false,-1);
         tracep->declBit(c+21,"top EXU es_allowin", false,-1);
-        tracep->declQuad(c+49,"top EXU alu_res", false,-1, 63,0);
         tracep->declBit(c+446,"top EXU ALU clock", false,-1);
         tracep->declBit(c+447,"top EXU ALU reset", false,-1);
         tracep->declQuad(c+309,"top EXU ALU io_src1_value", false,-1, 63,0);
@@ -922,7 +920,24 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                      & vlSelf->top__DOT__IDU__DOT__inst))))))))));
         tracep->fullCData(oldp+35,(((0x3023U == (0x707fU 
                                                  & vlSelf->top__DOT__IDU__DOT__inst))
-                                     ? 0xffU : (IData)(vlSelf->top__DOT__IDU__DOT___Wmask_T_10))),8);
+                                     ? 0xffU : ((0x1023U 
+                                                 == 
+                                                 (0x707fU 
+                                                  & vlSelf->top__DOT__IDU__DOT__inst))
+                                                 ? 3U
+                                                 : 
+                                                ((0x23U 
+                                                  == 
+                                                  (0x707fU 
+                                                   & vlSelf->top__DOT__IDU__DOT__inst))
+                                                  ? 1U
+                                                  : 
+                                                 ((0x2023U 
+                                                   == 
+                                                   (0x707fU 
+                                                    & vlSelf->top__DOT__IDU__DOT__inst))
+                                                   ? 0xfU
+                                                   : 0U))))),8);
         tracep->fullCData(oldp+36,(((0x2003U == (0x707fU 
                                                  & vlSelf->top__DOT__IDU__DOT__inst))
                                      ? 0U : ((0x3003U 
