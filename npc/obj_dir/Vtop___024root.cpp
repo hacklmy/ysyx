@@ -73,6 +73,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[2U];
     __Vdly__top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state 
         = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state;
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"csr_index:%1# csr_rdata:%x rs1:%x\n\n",
+                   2,vlSelf->top__DOT__IDU__DOT__csr_index,
+                   64,vlSelf->top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg_io_rdata_MPORT_data,
+                   64,vlSelf->top__DOT__Register_io_rdata1);
+    }
     __Vdlyvset__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v0 = 0U;
     __Vdlyvset__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v1 = 0U;
     __Vdlyvset__top__DOT__Register__DOT__Reg__v0 = 0U;

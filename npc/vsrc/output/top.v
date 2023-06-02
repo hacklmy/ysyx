@@ -981,7 +981,8 @@ module IDU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"csr_index:%d csr_rdata:%x rs1:%x\n\n",csr_index,csr_reg_io_rdata,io_rdata1); // @[IDU.scala 497:11]
+          $fwrite(32'h80000002,"ds_pc:%x csr_index:%d csr_rdata:%x rs1:%x\n\n",ds_pc,csr_index,csr_reg_io_rdata,
+            io_rdata1); // @[IDU.scala 497:11]
         end
     `ifdef PRINTF_COND
       end
