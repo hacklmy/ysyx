@@ -976,6 +976,17 @@ module IDU(
     end else if (io_fs_to_ds_valid & ds_allowin) begin // @[IDU.scala 101:40]
       inst <= io_from_fs_inst; // @[IDU.scala 103:14]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"csr_index:%d csr_rdata:%x rs1:%x\n\n",csr_index,csr_reg_io_rdata,io_rdata1); // @[IDU.scala 497:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
