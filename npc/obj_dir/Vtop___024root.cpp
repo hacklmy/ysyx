@@ -231,7 +231,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     } else if (vlSelf->top__DOT__LSU__DOT__ms_valid) {
         vlSelf->top__DOT__WBU__DOT__ws_pc = vlSelf->top__DOT__LSU__DOT__ms_pc;
     }
-    if ((1U & (IData)(vlSelf->top__DOT__IDU__DOT__csr_write))) {
+    if (((IData)(vlSelf->top__DOT__IDU__DOT__csr_write) 
+         & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid))) {
         __Vdlyvval__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v0 
             = ((3U == (IData)(vlSelf->top__DOT__IDU__DOT__csr_write))
                 ? vlSelf->top__DOT__IDU__DOT__ds_pc
@@ -253,7 +254,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                          ? (IData)(vlSelf->top__DOT__IDU__DOT__csr_index)
                          : 0U));
     }
-    if ((2U & (IData)(vlSelf->top__DOT__IDU__DOT__csr_write))) {
+    if ((((IData)(vlSelf->top__DOT__IDU__DOT__csr_write) 
+          >> 1U) & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid))) {
         __Vdlyvval__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v1 
             = vlSelf->top__DOT__Register_io_rdata2;
         __Vdlyvset__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v1 = 1U;

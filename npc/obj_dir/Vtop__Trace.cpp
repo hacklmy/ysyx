@@ -463,9 +463,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgQData(oldp+265,(vlSelf->top__DOT__IFU__DOT__inst_read_Rdata),64);
             tracep->chgQData(oldp+267,((4ULL + vlSelf->top__DOT__IFU__DOT__fs_pc)),64);
             tracep->chgBit(oldp+269,(vlSelf->top__DOT__IFU__DOT__fs_allowin));
-            tracep->chgBit(oldp+270,((1U & (IData)(vlSelf->top__DOT__IDU__DOT__csr_write))));
-            tracep->chgBit(oldp+271,((1U & ((IData)(vlSelf->top__DOT__IDU__DOT__csr_write) 
-                                            >> 1U))));
+            tracep->chgBit(oldp+270,(((IData)(vlSelf->top__DOT__IDU__DOT__csr_write) 
+                                      & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid))));
+            tracep->chgBit(oldp+271,((((IData)(vlSelf->top__DOT__IDU__DOT__csr_write) 
+                                       >> 1U) & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid))));
             tracep->chgCData(oldp+272,(((3U == (IData)(vlSelf->top__DOT__IDU__DOT__csr_write))
                                          ? 1U : ((1U 
                                                   == (IData)(vlSelf->top__DOT__IDU__DOT__csr_write))
