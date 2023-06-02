@@ -165,7 +165,7 @@ module EXU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"es_pc:%x es_valid:%d es_allowin:%d  alu_res:%x src1_value:%x  src2_value:%x\n\n",es_pc,
+          $fwrite(32'h80000002,"es_pc:%x es_valid:%d es_allowin:%d  alu_res:%x src1_value:%x  src2_value:%x\n",es_pc,
             es_valid,es_allowin,alu_res,src1_value,src2_value); // @[EXU.scala 122:11]
         end
     `ifdef PRINTF_COND
