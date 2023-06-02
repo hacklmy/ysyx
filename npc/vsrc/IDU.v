@@ -316,7 +316,7 @@ module IDU(
   wire [31:0] _io_store_data_T_11 = _inst_type_T_75 ? io_rdata2[31:0] : 32'h0; // @[Lookup.scala 34:39]
   wire [31:0] _io_store_data_T_12 = _inst_type_T_37 ? {{24'd0}, io_rdata2[7:0]} : _io_store_data_T_11; // @[Lookup.scala 34:39]
   wire [31:0] _io_store_data_T_13 = _inst_type_T_35 ? {{16'd0}, io_rdata2[15:0]} : _io_store_data_T_12; // @[Lookup.scala 34:39]
-  wire  _T_2 = ~reset; // @[IDU.scala 470:11]
+  wire  _T_3 = ~reset; // @[IDU.scala 470:11]
   assign io_ds_to_es_valid = ds_valid & ds_ready_go; // @[IDU.scala 105:32]
   assign io_br_taken = br_taken & ds_valid; // @[IDU.scala 444:29]
   assign io_br_target = _br_taken_T_23 ? _br_target_T_4 : _br_target_T_1; // @[Lookup.scala 34:39]
@@ -340,7 +340,7 @@ module IDU(
   always @(posedge clock) begin
     if (reset) begin // @[IDU.scala 79:27]
       ds_valid <= 1'h0; // @[IDU.scala 79:27]
-    end else if (br_taken_cancel) begin // @[IDU.scala 95:26]
+    end else if (br_taken_cancel & ds_allowin) begin // @[IDU.scala 95:40]
       ds_valid <= 1'h0; // @[IDU.scala 96:18]
     end else if (ds_allowin) begin // @[IDU.scala 97:27]
       ds_valid <= io_fs_to_ds_valid; // @[IDU.scala 98:18]
@@ -371,7 +371,7 @@ module IDU(
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
-        if (_T_2) begin
+        if (_T_3) begin
           $fwrite(32'h80000002,"conflict:%d es_rf_we:%d rs2:%d es_rf_dst:%d\n",conflict,io_es_rf_we,rs2,io_es_rf_dst); // @[IDU.scala 471:11]
         end
     `ifdef PRINTF_COND
