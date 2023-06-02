@@ -126,9 +126,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                    64,vlSelf->top__DOT__WBU__DOT__ws_res);
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"es_pc:%x es_valid:%1# alu_res:%x src1_value:%x  src2_value:%x\n\n",
+        VL_FWRITEF(0x80000002U,"es_pc:%x es_valid:%1# es_allowin:%1#  alu_res:%x src1_value:%x  src2_value:%x\n\n",
                    64,vlSelf->top__DOT__EXU__DOT__es_pc,
                    1,(IData)(vlSelf->top__DOT__EXU__DOT__es_valid),
+                   1,vlSelf->top__DOT__EXU__DOT__es_allowin,
                    64,(((QData)((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__alu_res[1U])) 
                         << 0x20U) | (QData)((IData)(
                                                     vlSelf->top__DOT__EXU__DOT__ALU__DOT__alu_res[0U]))),
