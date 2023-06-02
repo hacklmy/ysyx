@@ -47,7 +47,6 @@ module IDU(
   wire  csr_reg_io_wen2; // @[IDU.scala 422:21]
   wire [1:0] csr_reg_io_waddr1; // @[IDU.scala 422:21]
   wire [63:0] csr_reg_io_wdata1; // @[IDU.scala 422:21]
-  wire [63:0] csr_reg_io_wdata2; // @[IDU.scala 422:21]
   wire [1:0] csr_reg_io_raddr; // @[IDU.scala 422:21]
   wire [63:0] csr_reg_io_rdata; // @[IDU.scala 422:21]
   reg  ds_valid; // @[IDU.scala 80:27]
@@ -347,7 +346,6 @@ module IDU(
     .io_wen2(csr_reg_io_wen2),
     .io_waddr1(csr_reg_io_waddr1),
     .io_wdata1(csr_reg_io_wdata1),
-    .io_wdata2(csr_reg_io_wdata2),
     .io_raddr(csr_reg_io_raddr),
     .io_rdata(csr_reg_io_rdata)
   );
@@ -376,7 +374,6 @@ module IDU(
   assign csr_reg_io_wen2 = csr_write[1] & ds_valid; // @[IDU.scala 439:38]
   assign csr_reg_io_waddr1 = csr_write == 2'h3 ? 2'h1 : _T_12; // @[IDU.scala 437:22]
   assign csr_reg_io_wdata1 = _T_10 ? ds_pc : _T_16; // @[IDU.scala 438:22]
-  assign csr_reg_io_wdata2 = io_rdata2; // @[IDU.scala 441:16]
   assign csr_reg_io_raddr = csr_write[1] ? 2'h0 : _T_5; // @[IDU.scala 435:21]
   always @(posedge clock) begin
     if (reset) begin // @[IDU.scala 80:27]
@@ -396,18 +393,6 @@ module IDU(
     end else if (io_fs_to_ds_valid & ds_allowin) begin // @[IDU.scala 101:40]
       inst <= io_from_fs_inst; // @[IDU.scala 103:14]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"ds_pc:%x csr_index:%d csr_rdata:%x rs1:%x\n\n",ds_pc,csr_index,csr_reg_io_rdata,
-            io_rdata1); // @[IDU.scala 497:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
