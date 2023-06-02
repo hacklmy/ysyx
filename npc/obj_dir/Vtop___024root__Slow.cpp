@@ -79,105 +79,6 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___step_num_T_1 
         = (vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__step_num 
            - (IData)(1U));
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[1U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[1U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[2U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[2U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[3U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[3U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[4U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[4U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[5U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[5U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[6U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[6U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[7U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[7U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[8U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[8U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[9U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[9U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0xaU] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0xaU];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0xbU] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0xbU];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0xcU] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0xcU];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0xdU] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0xdU];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0xeU] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0xeU];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0xfU] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0xfU];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x10U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x10U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x11U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x11U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x12U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x12U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x13U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x13U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x14U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x14U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x15U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x15U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x16U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x16U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x17U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x17U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x18U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x18U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x19U] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x19U];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x1aU] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x1aU];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x1bU] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x1bU];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x1cU] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x1cU];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x1dU] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x1dU];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x1eU] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x1eU];
-    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x1fU] 
-        = vlSelf->top__DOT__Register__DOT__Reg[0x1fU];
-    vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2_32 
-        = ((0x12U == vlSelf->top__DOT__EXU__DOT__ALUop)
-            ? (((QData)((IData)(((1U & (IData)((vlSelf->top__DOT__EXU__DOT__src2_value 
-                                                >> 0x1fU)))
-                                  ? 0xffffffffU : 0U))) 
-                << 0x20U) | (QData)((IData)(vlSelf->top__DOT__EXU__DOT__src2_value)))
-            : vlSelf->top__DOT__EXU__DOT__src2_value);
-    vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul_io_result_lo 
-        = ((0U == (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state))
-            ? 0U : ((1U == (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state))
-                     ? 0U : ((2U == (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state))
-                              ? (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__res)
-                              : 0U)));
-    vlSelf->top__DOT__EXU__DOT__ALU__DOT__mul_valid 
-        = ((0x12U == vlSelf->top__DOT__EXU__DOT__ALUop) 
-           | (0x11U == vlSelf->top__DOT__EXU__DOT__ALUop));
-    vlSelf->top__DOT__EXU__DOT__ALU__DOT__div_valid 
-        = ((0x32U == vlSelf->top__DOT__EXU__DOT__ALUop) 
-           | ((0x14U == vlSelf->top__DOT__EXU__DOT__ALUop) 
-              | ((0x33U == vlSelf->top__DOT__EXU__DOT__ALUop) 
-                 | ((0x34U == vlSelf->top__DOT__EXU__DOT__ALUop) 
-                    | ((0x35U == vlSelf->top__DOT__EXU__DOT__ALUop) 
-                       | ((0x13U == vlSelf->top__DOT__EXU__DOT__ALUop) 
-                          | ((0x30U == vlSelf->top__DOT__EXU__DOT__ALUop) 
-                             | (0x31U == vlSelf->top__DOT__EXU__DOT__ALUop))))))));
-    vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div_io_div_signed 
-        = ((0x14U == vlSelf->top__DOT__EXU__DOT__ALUop) 
-           | ((0x34U == vlSelf->top__DOT__EXU__DOT__ALUop) 
-              | ((0x13U == vlSelf->top__DOT__EXU__DOT__ALUop) 
-                 | (0x31U == vlSelf->top__DOT__EXU__DOT__ALUop))));
-    vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div_io_divw 
-        = ((0x32U == vlSelf->top__DOT__EXU__DOT__ALUop) 
-           | ((0x14U == vlSelf->top__DOT__EXU__DOT__ALUop) 
-              | ((0x35U == vlSelf->top__DOT__EXU__DOT__ALUop) 
-                 | (0x13U == vlSelf->top__DOT__EXU__DOT__ALUop))));
     VL_EXTEND_WQ(65,64, __Vtemp60, (~ (((QData)((IData)(
                                                         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1[1U])) 
                                         << 0x20U) | (QData)((IData)(
@@ -341,6 +242,98 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                  & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[0U])))))))
                     : vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__res)
                 : vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__res));
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[1U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[1U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[2U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[2U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[3U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[3U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[4U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[4U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[5U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[5U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[6U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[6U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[7U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[7U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[8U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[8U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[9U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[9U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0xaU] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0xaU];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0xbU] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0xbU];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0xcU] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0xcU];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0xdU] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0xdU];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0xeU] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0xeU];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0xfU] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0xfU];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x10U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x10U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x11U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x11U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x12U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x12U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x13U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x13U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x14U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x14U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x15U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x15U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x16U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x16U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x17U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x17U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x18U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x18U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x19U] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x19U];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x1aU] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x1aU];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x1bU] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x1bU];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x1cU] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x1cU];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x1dU] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x1dU];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x1eU] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x1eU];
+    vlSelf->top__DOT__Register__DOT__reg_trace__DOT__traceregs[0x1fU] 
+        = vlSelf->top__DOT__Register__DOT__Reg[0x1fU];
+    vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul_io_result_lo 
+        = ((0U == (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state))
+            ? 0U : ((1U == (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state))
+                     ? 0U : ((2U == (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state))
+                              ? (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__res)
+                              : 0U)));
+    vlSelf->top__DOT__EXU__DOT__ALU__DOT__mul_valid 
+        = ((0x12U == vlSelf->top__DOT__EXU__DOT__ALUop) 
+           | (0x11U == vlSelf->top__DOT__EXU__DOT__ALUop));
+    vlSelf->top__DOT__EXU__DOT__ALU__DOT__div_valid 
+        = ((0x32U == vlSelf->top__DOT__EXU__DOT__ALUop) 
+           | ((0x14U == vlSelf->top__DOT__EXU__DOT__ALUop) 
+              | ((0x33U == vlSelf->top__DOT__EXU__DOT__ALUop) 
+                 | ((0x34U == vlSelf->top__DOT__EXU__DOT__ALUop) 
+                    | ((0x35U == vlSelf->top__DOT__EXU__DOT__ALUop) 
+                       | ((0x13U == vlSelf->top__DOT__EXU__DOT__ALUop) 
+                          | ((0x30U == vlSelf->top__DOT__EXU__DOT__ALUop) 
+                             | (0x31U == vlSelf->top__DOT__EXU__DOT__ALUop))))))));
+    vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div_io_div_signed 
+        = ((0x14U == vlSelf->top__DOT__EXU__DOT__ALUop) 
+           | ((0x34U == vlSelf->top__DOT__EXU__DOT__ALUop) 
+              | ((0x13U == vlSelf->top__DOT__EXU__DOT__ALUop) 
+                 | (0x31U == vlSelf->top__DOT__EXU__DOT__ALUop))));
+    vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div_io_divw 
+        = ((0x32U == vlSelf->top__DOT__EXU__DOT__ALUop) 
+           | ((0x14U == vlSelf->top__DOT__EXU__DOT__ALUop) 
+              | ((0x35U == vlSelf->top__DOT__EXU__DOT__ALUop) 
+                 | (0x13U == vlSelf->top__DOT__EXU__DOT__ALUop))));
     if (vlSelf->top__DOT__LSU__DOT__ren) {
         Vtop___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->top__DOT__LSU__DOT__maddr, vlSelf->__Vtask_pmem_read__2__Rdata);
         vlSelf->top__DOT__LSU__DOT__Mem_modle_Rdata 
@@ -2249,7 +2242,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     VL_RAND_RESET_W(128, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1);
     VL_RAND_RESET_W(65, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2);
     vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32 = VL_RAND_RESET_Q(64);
-    vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2_32 = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_20 = VL_RAND_RESET_Q(64);
     VL_RAND_RESET_W(130, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_30);
     vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__dend_neg = VL_RAND_RESET_I(1);
