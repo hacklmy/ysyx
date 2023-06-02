@@ -37,7 +37,7 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-#define CONFIG_DIFFTEST
+//#define CONFIG_DIFFTEST
 //#define VerilatedVCD
 //#define HAS_VGA
 #define HAS_AXI
@@ -304,8 +304,8 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     //printf("base: %d\n",vgactl_port_base[0] );
     if(raddr==VGACTL_ADDR){
       printf("read gpu size\n");
-      //*rdata = vgactl_port_base[0] & 0xffff;
-      *rdata = vgactl_port_base[0];
+      *rdata = vgactl_port_base[0] & 0xffff;
+      //*rdata = vgactl_port_base[0];
       printf("%lld\n", *rdata);
     }else if(raddr == VGACTL_ADDR+2){
       printf("read gpu size\n");
