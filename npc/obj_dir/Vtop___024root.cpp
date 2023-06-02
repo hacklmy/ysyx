@@ -2553,7 +2553,6 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__3(Vtop___024root* vlSelf) {
     // Variables
     VlWide<3>/*95:0*/ __Vtemp137;
     VlWide<3>/*95:0*/ __Vtemp140;
-    VlWide<4>/*127:0*/ __Vtemp144;
     VlWide<4>/*127:0*/ __Vtemp145;
     VlWide<5>/*159:0*/ __Vtemp146;
     VlWide<5>/*159:0*/ __Vtemp149;
@@ -2599,12 +2598,18 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__3(Vtop___024root* vlSelf) {
                                     >> 0x20U)) >> 0x1fU))
                     : __Vtemp137[2U]) : __Vtemp140[2U]);
     }
-    VL_EXTEND_WQ(128,64, __Vtemp144, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32);
     if (vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul_io_mul_valid) {
-        __Vtemp145[0U] = __Vtemp144[0U];
-        __Vtemp145[1U] = __Vtemp144[1U];
-        __Vtemp145[2U] = __Vtemp144[2U];
-        __Vtemp145[3U] = __Vtemp144[3U];
+        __Vtemp145[0U] = (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32);
+        __Vtemp145[1U] = (IData)((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32 
+                                  >> 0x20U));
+        __Vtemp145[2U] = (IData)(((1U & (IData)((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32 
+                                                 >> 0x3fU)))
+                                   ? 0xffffffffffffffffULL
+                                   : 0ULL));
+        __Vtemp145[3U] = (IData)((((1U & (IData)((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32 
+                                                  >> 0x3fU)))
+                                    ? 0xffffffffffffffffULL
+                                    : 0ULL) >> 0x20U));
     } else {
         __Vtemp145[0U] = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1[0U];
         __Vtemp145[1U] = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1[1U];

@@ -985,7 +985,19 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgWData(oldp+353,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2),65);
             tracep->chgQData(oldp+356,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32),64);
             tracep->chgQData(oldp+358,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2_32),64);
-            VL_EXTEND_WQ(128,64, __Vtemp228, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32);
+            __Vtemp228[0U] = (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32);
+            __Vtemp228[1U] = (IData)((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32 
+                                      >> 0x20U));
+            __Vtemp228[2U] = (IData)(((1U & (IData)(
+                                                    (vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32 
+                                                     >> 0x3fU)))
+                                       ? 0xffffffffffffffffULL
+                                       : 0ULL));
+            __Vtemp228[3U] = (IData)((((1U & (IData)(
+                                                     (vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32 
+                                                      >> 0x3fU)))
+                                        ? 0xffffffffffffffffULL
+                                        : 0ULL) >> 0x20U));
             tracep->chgWData(oldp+360,(__Vtemp228),128);
             tracep->chgQData(oldp+364,((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2_32 
                                         << 1U)),64);
