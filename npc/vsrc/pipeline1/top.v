@@ -30,7 +30,6 @@ module top(
   wire [63:0] IDU_io_pc; // @[top.scala 17:21]
   wire  IDU_io_fs_to_ds_valid; // @[top.scala 17:21]
   wire  IDU_io_ds_to_es_valid; // @[top.scala 17:21]
-  wire  IDU_io_es_allowin; // @[top.scala 17:21]
   wire [31:0] IDU_io_from_fs_inst; // @[top.scala 17:21]
   wire  IDU_io_br_taken; // @[top.scala 17:21]
   wire [63:0] IDU_io_br_target; // @[top.scala 17:21]
@@ -41,7 +40,7 @@ module top(
   wire [63:0] IDU_io_rdata1; // @[top.scala 17:21]
   wire [63:0] IDU_io_rdata2; // @[top.scala 17:21]
   wire [63:0] IDU_io_to_es_pc; // @[top.scala 17:21]
-  wire [31:0] IDU_io_ALUop; // @[top.scala 17:21]
+  wire [31:0] IDU_io_inst_now; // @[top.scala 17:21]
   wire [63:0] IDU_io_src1; // @[top.scala 17:21]
   wire [63:0] IDU_io_src2; // @[top.scala 17:21]
   wire [4:0] IDU_io_rf_dst; // @[top.scala 17:21]
@@ -60,13 +59,11 @@ module top(
   wire [4:0] IDU_io_es_rf_dst; // @[top.scala 17:21]
   wire [4:0] IDU_io_ms_rf_dst; // @[top.scala 17:21]
   wire [4:0] IDU_io_ws_rf_dst; // @[top.scala 17:21]
-  wire  IDU_io_ds_valid; // @[top.scala 17:21]
   wire  EXU_clock; // @[top.scala 18:21]
   wire  EXU_reset; // @[top.scala 18:21]
   wire [63:0] EXU_io_pc; // @[top.scala 18:21]
   wire  EXU_io_ds_to_es_valid; // @[top.scala 18:21]
-  wire  EXU_io_es_allowin; // @[top.scala 18:21]
-  wire [31:0] EXU_io_ALUop; // @[top.scala 18:21]
+  wire [31:0] EXU_io_inst_now; // @[top.scala 18:21]
   wire [63:0] EXU_io_src1_value; // @[top.scala 18:21]
   wire [63:0] EXU_io_src2_value; // @[top.scala 18:21]
   wire [4:0] EXU_io_rf_dst; // @[top.scala 18:21]
@@ -129,9 +126,6 @@ module top(
   wire [31:0] dpi_ecall_flag; // @[top.scala 87:21]
   wire [63:0] dpi_pc; // @[top.scala 87:21]
   reg  diff_step; // @[top.scala 84:28]
-  wire [63:0] _dpi_io_pc_T = IDU_io_ds_valid ? EXU_io_pc : IDU_io_pc; // @[top.scala 90:96]
-  wire [63:0] _dpi_io_pc_T_1 = EXU_io_es_valid ? LSU_io_pc : _dpi_io_pc_T; // @[top.scala 90:72]
-  wire [63:0] _dpi_io_pc_T_2 = LSU_io_ms_valid ? WBU_io_pc : _dpi_io_pc_T_1; // @[top.scala 90:48]
   Register Register ( // @[top.scala 15:25]
     .clock(Register_clock),
     .io_raddr1(Register_io_raddr1),
@@ -159,7 +153,6 @@ module top(
     .io_pc(IDU_io_pc),
     .io_fs_to_ds_valid(IDU_io_fs_to_ds_valid),
     .io_ds_to_es_valid(IDU_io_ds_to_es_valid),
-    .io_es_allowin(IDU_io_es_allowin),
     .io_from_fs_inst(IDU_io_from_fs_inst),
     .io_br_taken(IDU_io_br_taken),
     .io_br_target(IDU_io_br_target),
@@ -170,7 +163,7 @@ module top(
     .io_rdata1(IDU_io_rdata1),
     .io_rdata2(IDU_io_rdata2),
     .io_to_es_pc(IDU_io_to_es_pc),
-    .io_ALUop(IDU_io_ALUop),
+    .io_inst_now(IDU_io_inst_now),
     .io_src1(IDU_io_src1),
     .io_src2(IDU_io_src2),
     .io_rf_dst(IDU_io_rf_dst),
@@ -188,16 +181,14 @@ module top(
     .io_ws_valid(IDU_io_ws_valid),
     .io_es_rf_dst(IDU_io_es_rf_dst),
     .io_ms_rf_dst(IDU_io_ms_rf_dst),
-    .io_ws_rf_dst(IDU_io_ws_rf_dst),
-    .io_ds_valid(IDU_io_ds_valid)
+    .io_ws_rf_dst(IDU_io_ws_rf_dst)
   );
   EXU EXU ( // @[top.scala 18:21]
     .clock(EXU_clock),
     .reset(EXU_reset),
     .io_pc(EXU_io_pc),
     .io_ds_to_es_valid(EXU_io_ds_to_es_valid),
-    .io_es_allowin(EXU_io_es_allowin),
-    .io_ALUop(EXU_io_ALUop),
+    .io_inst_now(EXU_io_inst_now),
     .io_src1_value(EXU_io_src1_value),
     .io_src2_value(EXU_io_src2_value),
     .io_rf_dst(EXU_io_rf_dst),
@@ -285,7 +276,6 @@ module top(
   assign IDU_reset = reset;
   assign IDU_io_pc = IFU_io_to_ds_pc; // @[top.scala 30:12]
   assign IDU_io_fs_to_ds_valid = IFU_io_fs_to_ds_valid; // @[top.scala 31:24]
-  assign IDU_io_es_allowin = EXU_io_es_allowin; // @[top.scala 32:20]
   assign IDU_io_from_fs_inst = IFU_io_inst; // @[top.scala 33:22]
   assign IDU_io_rdata1 = Register_io_rdata1; // @[top.scala 36:16]
   assign IDU_io_rdata2 = Register_io_rdata2; // @[top.scala 37:16]
@@ -302,7 +292,7 @@ module top(
   assign EXU_reset = reset;
   assign EXU_io_pc = IDU_io_to_es_pc; // @[top.scala 48:12]
   assign EXU_io_ds_to_es_valid = IDU_io_ds_to_es_valid; // @[top.scala 49:24]
-  assign EXU_io_ALUop = IDU_io_ALUop; // @[top.scala 51:15]
+  assign EXU_io_inst_now = IDU_io_inst_now; // @[top.scala 51:18]
   assign EXU_io_src1_value = IDU_io_src1; // @[top.scala 52:20]
   assign EXU_io_src2_value = IDU_io_src2; // @[top.scala 53:20]
   assign EXU_io_rf_dst = IDU_io_rf_dst; // @[top.scala 54:16]
@@ -332,9 +322,9 @@ module top(
   assign WBU_io_ms_final_res = LSU_io_ms_final_res; // @[top.scala 74:22]
   assign WBU_io_rf_we = LSU_io_to_ws_rf_we; // @[top.scala 75:15]
   assign WBU_io_rf_dst = LSU_io_to_ws_rf_dst; // @[top.scala 76:16]
-  assign dpi_flag = {{31'd0}, IDU_io_ALUop == 32'h2}; // @[top.scala 88:17]
-  assign dpi_ecall_flag = {{31'd0}, IDU_io_ALUop == 32'h3d}; // @[top.scala 89:23]
-  assign dpi_pc = WBU_io_ws_valid ? WBU_io_ws_pc : _dpi_io_pc_T_2; // @[top.scala 90:21]
+  assign dpi_flag = {{31'd0}, IDU_io_inst_now == 32'h2}; // @[top.scala 88:17]
+  assign dpi_ecall_flag = {{31'd0}, IDU_io_inst_now == 32'h3d}; // @[top.scala 89:23]
+  assign dpi_pc = WBU_io_ws_pc; // @[top.scala 90:15]
   always @(posedge clock) begin
     if (reset) begin // @[top.scala 84:28]
       diff_step <= 1'h0; // @[top.scala 84:28]

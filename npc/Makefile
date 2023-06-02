@@ -52,5 +52,12 @@ copy_top_pipeline:
 	sed -n '/module LSU/,/endmodule/p' vsrc/output/top.v > vsrc/LSU.v
 	sed -n '/module WBU/,/endmodule/p' vsrc/output/top.v > vsrc/WBU.v
 	sed -n '/module Register/,/endmodule/p' vsrc/output/top.v > vsrc/Register.v	
+	echo "/* verilator lint_off WIDTH */" > vsrc/alu.v
+	sed -n '/module ALU/,/endmodule/p' vsrc/output/top.v >> vsrc/alu.v	
+	echo "/* verilator lint_on WIDTH */" >> vsrc/alu.v
+	sed -n '/module Mul/,/endmodule/p' vsrc/output/top.v > vsrc/Mul.v
+	sed -n '/module Div/,/endmodule/p' vsrc/output/top.v > vsrc/Div.v
+	sed -n '/module partial_product/,/endmodule/p' vsrc/output/top.v > vsrc/partial_product.v
+
 
 include ../Makefile
