@@ -316,7 +316,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
       *rdata = vgactl_port_base[1];
       //printf("%lld\n", *rdata);
     }
-    //vga_update_screen();
+    vga_update_screen();
     return;
   }
   if(raddr==KBD_ADDR){
@@ -773,7 +773,7 @@ void cpu_exec(int n){
     tfp->dump(sim_time); //dump wave
     #endif
     #ifdef HAS_VGA
-    vga_update_screen();
+    //vga_update_screen();
     #endif
     sim_time++;
   }
