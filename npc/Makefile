@@ -58,6 +58,7 @@ copy_top_pipeline:
 	sed -n '/module Mul/,/endmodule/p' vsrc/output/top.v > vsrc/Mul.v
 	sed -n '/module Div/,/endmodule/p' vsrc/output/top.v > vsrc/Div.v
 	sed -n '/module partial_product/,/endmodule/p' vsrc/output/top.v > vsrc/partial_product.v
+	sed -n '/module csr_reg/,/endmodule/p' vsrc/output/top.v > vsrc/csr_reg.v
 
 
 include ../Makefile

@@ -1,76 +1,40 @@
 /* verilator lint_off UNUSED */
-module IFU(
+module IFU_AXI(
   input         clock,
   input         reset,
-  input         io_ds_allowin,
-  input         io_br_taken,
-  input  [63:0] io_br_target,
-  input         io_br_taken_cancel,
-  output [63:0] io_to_ds_pc,
-  output        io_fs_to_ds_valid,
-  output [31:0] io_inst
+  input  [63:0] io_pc,
+  input         io_pc_valid,
+  output        io_inst_valid,
+  output [31:0] io_inst,
+  output [31:0] io_inst_reg,
+  input  [63:0] io_axi_in_rdata,
+  input         io_axi_in_rvalid,
+  output [31:0] io_axi_out_araddr,
+  output        io_axi_out_arvalid,
+  output        io_axi_out_rready
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
-  reg [63:0] _RAND_1;
+  reg [31:0] _RAND_1;
 `endif // RANDOMIZE_REG_INIT
-  wire [63:0] inst_read_Raddr; // @[IFU.scala 28:27]
-  wire [63:0] inst_read_Rdata; // @[IFU.scala 28:27]
-  wire [63:0] inst_read_Waddr; // @[IFU.scala 28:27]
-  wire [63:0] inst_read_Wdata; // @[IFU.scala 28:27]
-  wire [7:0] inst_read_Wmask; // @[IFU.scala 28:27]
-  wire  inst_read_Write_en; // @[IFU.scala 28:27]
-  wire  inst_read_Read_en; // @[IFU.scala 28:27]
-  reg  fs_valid; // @[IFU.scala 18:27]
-  reg [63:0] fs_pc; // @[IFU.scala 25:24]
-  wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 30:24]
-  wire  fs_allowin = ~fs_valid | io_ds_allowin; // @[IFU.scala 35:29]
-  wire  _GEN_0 = io_br_taken_cancel ? 1'h0 : fs_valid; // @[IFU.scala 40:35 41:18 18:27]
-  wire  _GEN_1 = fs_allowin | _GEN_0; // @[IFU.scala 37:36 38:18]
-  MEM inst_read ( // @[IFU.scala 28:27]
-    .Raddr(inst_read_Raddr),
-    .Rdata(inst_read_Rdata),
-    .Waddr(inst_read_Waddr),
-    .Wdata(inst_read_Wdata),
-    .Wmask(inst_read_Wmask),
-    .Write_en(inst_read_Write_en),
-    .Read_en(inst_read_Read_en)
-  );
-  assign io_to_ds_pc = fs_pc; // @[IFU.scala 48:17]
-  assign io_fs_to_ds_valid = fs_valid; // @[IFU.scala 34:33]
-  assign io_inst = inst_read_Rdata[31:0]; // @[IFU.scala 47:34]
-  assign inst_read_Raddr = fs_pc; // @[IFU.scala 44:24]
-  assign inst_read_Waddr = 64'h0;
-  assign inst_read_Wdata = 64'h0;
-  assign inst_read_Wmask = 8'h0;
-  assign inst_read_Write_en = 1'h0;
-  assign inst_read_Read_en = fs_valid; // @[IFU.scala 45:26]
+  reg  inst_ready; // @[IFU_AXI.scala 19:29]
+  wire  _GEN_0 = io_axi_in_rvalid & inst_ready ? 1'h0 : 1'h1; // @[IFU_AXI.scala 20:41 21:20 23:20]
+  reg [31:0] inst_reg; // @[IFU_AXI.scala 25:27]
+  assign io_inst_valid = io_axi_in_rvalid; // @[IFU_AXI.scala 43:19]
+  assign io_inst = io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 41:31]
+  assign io_inst_reg = inst_reg; // @[IFU_AXI.scala 42:17]
+  assign io_axi_out_araddr = io_pc[31:0]; // @[IFU_AXI.scala 31:31]
+  assign io_axi_out_arvalid = io_pc_valid; // @[IFU_AXI.scala 32:24]
+  assign io_axi_out_rready = inst_ready; // @[IFU_AXI.scala 33:23]
   always @(posedge clock) begin
-    if (reset) begin // @[IFU.scala 18:27]
-      fs_valid <= 1'h0; // @[IFU.scala 18:27]
-    end else begin
-      fs_valid <= _GEN_1;
+    inst_ready <= reset | _GEN_0; // @[IFU_AXI.scala 19:{29,29}]
+    if (reset) begin // @[IFU_AXI.scala 25:27]
+      inst_reg <= 32'h0; // @[IFU_AXI.scala 25:27]
+    end else if (io_axi_in_rvalid) begin // @[IFU_AXI.scala 26:27]
+      inst_reg <= io_axi_in_rdata[31:0]; // @[IFU_AXI.scala 27:18]
+    end else if (io_pc_valid) begin // @[IFU_AXI.scala 28:28]
+      inst_reg <= 32'h0; // @[IFU_AXI.scala 29:18]
     end
-    if (reset) begin // @[IFU.scala 25:24]
-      fs_pc <= 64'h7ffffffc; // @[IFU.scala 25:24]
-    end else if (fs_allowin) begin // @[IFU.scala 37:36]
-      if (io_br_taken) begin // @[IFU.scala 31:19]
-        fs_pc <= io_br_target;
-      end else begin
-        fs_pc <= seq_pc;
-      end
-    end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"fs_pc:%x fa_valid:%d\n",fs_pc,fs_valid); // @[IFU.scala 50:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -109,9 +73,9 @@ initial begin
     `endif
 `ifdef RANDOMIZE_REG_INIT
   _RAND_0 = {1{`RANDOM}};
-  fs_valid = _RAND_0[0:0];
-  _RAND_1 = {2{`RANDOM}};
-  fs_pc = _RAND_1[63:0];
+  inst_ready = _RAND_0[0:0];
+  _RAND_1 = {1{`RANDOM}};
+  inst_reg = _RAND_1[31:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial

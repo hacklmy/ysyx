@@ -37,7 +37,7 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-#define CONFIG_DIFFTEST
+//#define CONFIG_DIFFTEST
 //#define VerilatedVCD
 //#define HAS_VGA
 #define HAS_AXI
@@ -290,8 +290,8 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     }
     //printf("time : %lld\n",*rdata);
     if(raddr == RTC_ADDR){
-      *rdata = time_now & 0xffffffff;
-      //*rdata = time_now;
+      //*rdata = time_now & 0xffffffff;
+      *rdata = time_now;
       //printf("read time :%lld\n",*rdata);
     }
     else if(raddr == RTC_ADDR + 4){
@@ -304,8 +304,8 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
     //printf("base: %d\n",vgactl_port_base[0] );
     if(raddr==VGACTL_ADDR){
       printf("read gpu size\n");
-      //*rdata = vgactl_port_base[0] & 0xffff;
-      *rdata = vgactl_port_base[0];
+      *rdata = vgactl_port_base[0] & 0xffff;
+      //*rdata = vgactl_port_base[0];
       printf("%lld\n", *rdata);
     }else if(raddr == VGACTL_ADDR+2){
       printf("read gpu size\n");
@@ -316,7 +316,9 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
       *rdata = vgactl_port_base[1];
       //printf("%lld\n", *rdata);
     }
+    #ifdef HAS_VGA
     //vga_update_screen();
+    #endif
     return;
   }
   if(raddr==KBD_ADDR){
@@ -651,7 +653,7 @@ void difftest_skip_ref() {
 }
 
 bool isa_difftest_checkregs(CPU_state *ref_r, uint64_t pc) {
-  printf("check\n");
+  //printf("check pc:%lx\n",pc);
   if(cpu_stop)return true;
   if(ref_r->pc != pc){
     printf("wrong pc %lx: npc = %lx   ref = %lx\n",pc, pc, ref_r->pc);
@@ -687,6 +689,7 @@ void difftest_step(uint64_t pc) {
   }
   if(is_skip_ref_s){
     ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
+    //ref_difftest_exec(1);
     is_skip_ref_s = is_skip_ref;
     return;
   }
@@ -772,7 +775,7 @@ void cpu_exec(int n){
     tfp->dump(sim_time); //dump wave
     #endif
     #ifdef HAS_VGA
-    vga_update_screen();
+    //vga_update_screen();
     #endif
     sim_time++;
   }

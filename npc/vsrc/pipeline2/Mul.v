@@ -101,17 +101,6 @@ module Mul(
         src2 <= {{2'd0}, src2[64:2]}; // @[Mul.scala 96:26]
       end
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"state:%d  src1_32:%x  src2_32:%x src1:%x  src2:%x\n",state,src1_32,src2_32,src1,src2); // @[Mul.scala 152:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
