@@ -10140,14 +10140,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__10(Vtop___024root* vlSelf) {
                                                    : 
                                                   ((2U 
                                                     == (IData)(vlSelf->top__DOT__i_cache__DOT__state))
-                                                    ? (QData)((IData)(vlSelf->top__DOT__pc_now))
-                                                    : 
-                                                   ((3U 
-                                                     == (IData)(vlSelf->top__DOT__i_cache__DOT__state))
-                                                     ? 
-                                                    (0xfffffffffffffff8ULL 
-                                                     & (QData)((IData)(vlSelf->top__DOT__pc_now)))
-                                                     : (QData)((IData)(vlSelf->top__DOT__pc_now))))));
+                                                    ? 
+                                                   (0xfffffffffffffff8ULL 
+                                                    & (QData)((IData)(vlSelf->top__DOT__pc_now)))
+                                                    : (QData)((IData)(vlSelf->top__DOT__pc_now)))));
     if ((0xdU == (0x7fU & (IData)((vlSelf->top__DOT__pc_now 
                                    >> 3U))))) {
         vlSelf->top__DOT__i_cache__DOT___GEN_13 = vlSelf->top__DOT__i_cache__DOT__tag_0_13;

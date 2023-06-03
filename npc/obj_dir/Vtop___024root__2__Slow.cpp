@@ -12,13 +12,6 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___settle__TOP__3\n"); );
     // Body
-    vlSelf->top__DOT__d_cache__DOT___GEN_2318 = ((0U 
-                                                  == 
-                                                  (0x7fU 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__exu_step__DOT__add_res 
-                                                              >> 3U)))) 
-                                                 | (IData)(vlSelf->top__DOT__d_cache__DOT__valid_0_0));
     vlSelf->top__DOT__d_cache__DOT___GEN_2319 = ((1U 
                                                   == 
                                                   (0x7fU 
