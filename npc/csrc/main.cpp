@@ -39,7 +39,7 @@ const char *regs[] = {
 //#define CONFIG_FTRACE
 //#define CONFIG_DIFFTEST
 //#define VerilatedVCD
-#define HAS_VGA
+//#define HAS_VGA
 #define HAS_AXI
 
 void difftest_skip_ref();
@@ -316,7 +316,9 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
       *rdata = vgactl_port_base[1];
       //printf("%lld\n", *rdata);
     }
-    vga_update_screen();
+    #ifdef HAS_VGA
+    //vga_update_screen();
+    #endif
     return;
   }
   if(raddr==KBD_ADDR){
@@ -687,7 +689,7 @@ void difftest_step(uint64_t pc) {
   }
   if(is_skip_ref_s){
     ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
-    ref_difftest_exec(1);
+    //ref_difftest_exec(1);
     is_skip_ref_s = is_skip_ref;
     return;
   }
