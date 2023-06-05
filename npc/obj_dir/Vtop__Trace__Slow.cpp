@@ -39,10 +39,10 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+2285,"top axi_clock", false,-1);
         tracep->declBit(c+2286,"top axi_reset", false,-1);
         tracep->declBus(c+1,"top axi_io_axi_in_araddr", false,-1, 31,0);
-        tracep->declBit(c+2,"top axi_io_axi_in_arvalid", false,-1);
-        tracep->declBit(c+3,"top axi_io_axi_in_rready", false,-1);
-        tracep->declBus(c+4,"top axi_io_axi_in_awaddr", false,-1, 31,0);
-        tracep->declBus(c+5,"top axi_io_axi_in_awlen", false,-1, 7,0);
+        tracep->declBus(c+2,"top axi_io_axi_in_arlen", false,-1, 7,0);
+        tracep->declBit(c+3,"top axi_io_axi_in_arvalid", false,-1);
+        tracep->declBit(c+4,"top axi_io_axi_in_rready", false,-1);
+        tracep->declBus(c+5,"top axi_io_axi_in_awaddr", false,-1, 31,0);
         tracep->declBit(c+6,"top axi_io_axi_in_awvalid", false,-1);
         tracep->declQuad(c+7,"top axi_io_axi_in_wdata", false,-1, 63,0);
         tracep->declBus(c+9,"top axi_io_axi_in_wstrb", false,-1, 7,0);
@@ -80,9 +80,9 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+2285,"top arbiter_clock", false,-1);
         tracep->declBit(c+2286,"top arbiter_reset", false,-1);
         tracep->declBus(c+37,"top arbiter_io_ifu_axi_in_araddr", false,-1, 31,0);
-        tracep->declBit(c+38,"top arbiter_io_ifu_axi_in_arvalid", false,-1);
-        tracep->declBit(c+39,"top arbiter_io_ifu_axi_in_rready", false,-1);
-        tracep->declBus(c+40,"top arbiter_io_ifu_axi_in_awlen", false,-1, 7,0);
+        tracep->declBus(c+38,"top arbiter_io_ifu_axi_in_arlen", false,-1, 7,0);
+        tracep->declBit(c+39,"top arbiter_io_ifu_axi_in_arvalid", false,-1);
+        tracep->declBit(c+40,"top arbiter_io_ifu_axi_in_rready", false,-1);
         tracep->declQuad(c+41,"top arbiter_io_ifu_axi_out_rdata", false,-1, 63,0);
         tracep->declBit(c+43,"top arbiter_io_ifu_axi_out_rlast", false,-1);
         tracep->declBit(c+44,"top arbiter_io_ifu_axi_out_rvalid", false,-1);
@@ -108,10 +108,10 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+17,"top arbiter_io_axi_in_wready", false,-1);
         tracep->declBit(c+18,"top arbiter_io_axi_in_bvalid", false,-1);
         tracep->declBus(c+1,"top arbiter_io_axi_out_araddr", false,-1, 31,0);
-        tracep->declBit(c+2,"top arbiter_io_axi_out_arvalid", false,-1);
-        tracep->declBit(c+3,"top arbiter_io_axi_out_rready", false,-1);
-        tracep->declBus(c+4,"top arbiter_io_axi_out_awaddr", false,-1, 31,0);
-        tracep->declBus(c+5,"top arbiter_io_axi_out_awlen", false,-1, 7,0);
+        tracep->declBus(c+2,"top arbiter_io_axi_out_arlen", false,-1, 7,0);
+        tracep->declBit(c+3,"top arbiter_io_axi_out_arvalid", false,-1);
+        tracep->declBit(c+4,"top arbiter_io_axi_out_rready", false,-1);
+        tracep->declBus(c+5,"top arbiter_io_axi_out_awaddr", false,-1, 31,0);
         tracep->declBit(c+6,"top arbiter_io_axi_out_awvalid", false,-1);
         tracep->declQuad(c+7,"top arbiter_io_axi_out_wdata", false,-1, 63,0);
         tracep->declBus(c+9,"top arbiter_io_axi_out_wstrb", false,-1, 7,0);
@@ -139,9 +139,9 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+70,"top i_cache_io_to_ifu_rlast", false,-1);
         tracep->declBit(c+65,"top i_cache_io_to_ifu_rvalid", false,-1);
         tracep->declBus(c+37,"top i_cache_io_to_axi_araddr", false,-1, 31,0);
-        tracep->declBit(c+38,"top i_cache_io_to_axi_arvalid", false,-1);
-        tracep->declBit(c+39,"top i_cache_io_to_axi_rready", false,-1);
-        tracep->declBus(c+40,"top i_cache_io_to_axi_awlen", false,-1, 7,0);
+        tracep->declBus(c+38,"top i_cache_io_to_axi_arlen", false,-1, 7,0);
+        tracep->declBit(c+39,"top i_cache_io_to_axi_arvalid", false,-1);
+        tracep->declBit(c+40,"top i_cache_io_to_axi_rready", false,-1);
         tracep->declQuad(c+41,"top i_cache_io_from_axi_rdata", false,-1, 63,0);
         tracep->declBit(c+43,"top i_cache_io_from_axi_rlast", false,-1);
         tracep->declBit(c+44,"top i_cache_io_from_axi_rvalid", false,-1);
@@ -224,10 +224,10 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+2285,"top axi clock", false,-1);
         tracep->declBit(c+2286,"top axi reset", false,-1);
         tracep->declBus(c+1,"top axi io_axi_in_araddr", false,-1, 31,0);
-        tracep->declBit(c+2,"top axi io_axi_in_arvalid", false,-1);
-        tracep->declBit(c+3,"top axi io_axi_in_rready", false,-1);
-        tracep->declBus(c+4,"top axi io_axi_in_awaddr", false,-1, 31,0);
-        tracep->declBus(c+5,"top axi io_axi_in_awlen", false,-1, 7,0);
+        tracep->declBus(c+2,"top axi io_axi_in_arlen", false,-1, 7,0);
+        tracep->declBit(c+3,"top axi io_axi_in_arvalid", false,-1);
+        tracep->declBit(c+4,"top axi io_axi_in_rready", false,-1);
+        tracep->declBus(c+5,"top axi io_axi_in_awaddr", false,-1, 31,0);
         tracep->declBit(c+6,"top axi io_axi_in_awvalid", false,-1);
         tracep->declQuad(c+7,"top axi io_axi_in_wdata", false,-1, 63,0);
         tracep->declBus(c+9,"top axi io_axi_in_wstrb", false,-1, 7,0);
@@ -294,9 +294,9 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+2285,"top arbiter clock", false,-1);
         tracep->declBit(c+2286,"top arbiter reset", false,-1);
         tracep->declBus(c+37,"top arbiter io_ifu_axi_in_araddr", false,-1, 31,0);
-        tracep->declBit(c+38,"top arbiter io_ifu_axi_in_arvalid", false,-1);
-        tracep->declBit(c+39,"top arbiter io_ifu_axi_in_rready", false,-1);
-        tracep->declBus(c+40,"top arbiter io_ifu_axi_in_awlen", false,-1, 7,0);
+        tracep->declBus(c+38,"top arbiter io_ifu_axi_in_arlen", false,-1, 7,0);
+        tracep->declBit(c+39,"top arbiter io_ifu_axi_in_arvalid", false,-1);
+        tracep->declBit(c+40,"top arbiter io_ifu_axi_in_rready", false,-1);
         tracep->declQuad(c+41,"top arbiter io_ifu_axi_out_rdata", false,-1, 63,0);
         tracep->declBit(c+43,"top arbiter io_ifu_axi_out_rlast", false,-1);
         tracep->declBit(c+44,"top arbiter io_ifu_axi_out_rvalid", false,-1);
@@ -322,10 +322,10 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+17,"top arbiter io_axi_in_wready", false,-1);
         tracep->declBit(c+18,"top arbiter io_axi_in_bvalid", false,-1);
         tracep->declBus(c+1,"top arbiter io_axi_out_araddr", false,-1, 31,0);
-        tracep->declBit(c+2,"top arbiter io_axi_out_arvalid", false,-1);
-        tracep->declBit(c+3,"top arbiter io_axi_out_rready", false,-1);
-        tracep->declBus(c+4,"top arbiter io_axi_out_awaddr", false,-1, 31,0);
-        tracep->declBus(c+5,"top arbiter io_axi_out_awlen", false,-1, 7,0);
+        tracep->declBus(c+2,"top arbiter io_axi_out_arlen", false,-1, 7,0);
+        tracep->declBit(c+3,"top arbiter io_axi_out_arvalid", false,-1);
+        tracep->declBit(c+4,"top arbiter io_axi_out_rready", false,-1);
+        tracep->declBus(c+5,"top arbiter io_axi_out_awaddr", false,-1, 31,0);
         tracep->declBit(c+6,"top arbiter io_axi_out_awvalid", false,-1);
         tracep->declQuad(c+7,"top arbiter io_axi_out_wdata", false,-1, 63,0);
         tracep->declBus(c+9,"top arbiter io_axi_out_wstrb", false,-1, 7,0);
@@ -356,9 +356,9 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+70,"top i_cache io_to_ifu_rlast", false,-1);
         tracep->declBit(c+65,"top i_cache io_to_ifu_rvalid", false,-1);
         tracep->declBus(c+37,"top i_cache io_to_axi_araddr", false,-1, 31,0);
-        tracep->declBit(c+38,"top i_cache io_to_axi_arvalid", false,-1);
-        tracep->declBit(c+39,"top i_cache io_to_axi_rready", false,-1);
-        tracep->declBus(c+40,"top i_cache io_to_axi_awlen", false,-1, 7,0);
+        tracep->declBus(c+38,"top i_cache io_to_axi_arlen", false,-1, 7,0);
+        tracep->declBit(c+39,"top i_cache io_to_axi_arvalid", false,-1);
+        tracep->declBit(c+40,"top i_cache io_to_axi_rready", false,-1);
         tracep->declQuad(c+41,"top i_cache io_from_axi_rdata", false,-1, 63,0);
         tracep->declBit(c+43,"top i_cache io_from_axi_rlast", false,-1);
         tracep->declBit(c+44,"top i_cache io_from_axi_rvalid", false,-1);
@@ -1973,9 +1973,20 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
                                                 ? (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_15246)
                                                 : 0U))))),32);
-        tracep->fullBit(oldp+2,(vlSelf->top__DOT__arbiter_io_axi_out_arvalid));
-        tracep->fullBit(oldp+3,(vlSelf->top__DOT__arbiter_io_axi_out_rready));
-        tracep->fullIData(oldp+4,(((0U == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
+        tracep->fullCData(oldp+2,(((0U == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
+                                    ? ((IData)(vlSelf->top__DOT__d_cache_io_to_axi_awvalid)
+                                        ? 0U : ((IData)(vlSelf->top__DOT__d_cache_io_to_axi_arvalid)
+                                                 ? 0U
+                                                 : 
+                                                ((IData)(vlSelf->top__DOT__i_cache_io_to_axi_arvalid)
+                                                  ? (IData)(vlSelf->top__DOT__i_cache__DOT___GEN_1044)
+                                                  : 0U)))
+                                    : ((1U == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
+                                        ? (IData)(vlSelf->top__DOT__i_cache__DOT___GEN_1044)
+                                        : 0U))),8);
+        tracep->fullBit(oldp+3,(vlSelf->top__DOT__arbiter_io_axi_out_arvalid));
+        tracep->fullBit(oldp+4,(vlSelf->top__DOT__arbiter_io_axi_out_rready));
+        tracep->fullIData(oldp+5,(((0U == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
                                     ? ((IData)(vlSelf->top__DOT__d_cache_io_to_axi_awvalid)
                                         ? vlSelf->top__DOT__d_cache_io_to_axi_awaddr
                                         : ((IData)(vlSelf->top__DOT__d_cache_io_to_axi_arvalid)
@@ -1988,17 +1999,6 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                   == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
                                                   ? vlSelf->top__DOT__d_cache_io_to_axi_awaddr
                                                   : 0U))))),32);
-        tracep->fullCData(oldp+5,(((0U == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
-                                    ? ((IData)(vlSelf->top__DOT__d_cache_io_to_axi_awvalid)
-                                        ? 0U : ((IData)(vlSelf->top__DOT__d_cache_io_to_axi_arvalid)
-                                                 ? 0U
-                                                 : 
-                                                ((IData)(vlSelf->top__DOT__i_cache_io_to_axi_arvalid)
-                                                  ? (IData)(vlSelf->top__DOT__i_cache__DOT___GEN_1047)
-                                                  : 0U)))
-                                    : ((1U == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
-                                        ? (IData)(vlSelf->top__DOT__i_cache__DOT___GEN_1047)
-                                        : 0U))),8);
         tracep->fullBit(oldp+6,(vlSelf->top__DOT__arbiter_io_axi_out_awvalid));
         tracep->fullQData(oldp+7,(((0U == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
                                     ? ((IData)(vlSelf->top__DOT__d_cache_io_to_axi_awvalid)
@@ -2104,9 +2104,9 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+35,(vlSelf->top__DOT__lsu_step__DOT__axi_wvalid));
         tracep->fullBit(oldp+36,(vlSelf->top__DOT__lsu_step__DOT__axi_bready));
         tracep->fullIData(oldp+37,((IData)(vlSelf->top__DOT__i_cache__DOT___GEN_1043)),32);
-        tracep->fullBit(oldp+38,(vlSelf->top__DOT__i_cache_io_to_axi_arvalid));
-        tracep->fullBit(oldp+39,(vlSelf->top__DOT__i_cache_io_to_axi_rready));
-        tracep->fullCData(oldp+40,(vlSelf->top__DOT__i_cache__DOT___GEN_1047),8);
+        tracep->fullCData(oldp+38,(vlSelf->top__DOT__i_cache__DOT___GEN_1044),8);
+        tracep->fullBit(oldp+39,(vlSelf->top__DOT__i_cache_io_to_axi_arvalid));
+        tracep->fullBit(oldp+40,(vlSelf->top__DOT__i_cache_io_to_axi_rready));
         tracep->fullQData(oldp+41,(vlSelf->top__DOT__arbiter_io_ifu_axi_out_rdata),64);
         tracep->fullBit(oldp+43,(vlSelf->top__DOT__arbiter_io_ifu_axi_out_rlast));
         tracep->fullBit(oldp+44,(vlSelf->top__DOT__arbiter_io_ifu_axi_out_rvalid));

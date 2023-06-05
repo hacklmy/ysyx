@@ -181,7 +181,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__i_cache__DOT___GEN_672;
         CData/*0:0*/ top__DOT__i_cache__DOT___GEN_673;
         CData/*0:0*/ top__DOT__i_cache__DOT___GEN_674;
-        CData/*2:0*/ top__DOT__i_cache__DOT___GEN_1047;
+        CData/*2:0*/ top__DOT__i_cache__DOT___GEN_1044;
         CData/*0:0*/ top__DOT__d_cache__DOT__valid_0_0;
         CData/*0:0*/ top__DOT__d_cache__DOT__valid_0_1;
         CData/*0:0*/ top__DOT__d_cache__DOT__valid_0_2;

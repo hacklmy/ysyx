@@ -361,7 +361,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                       >> 0x20U));
     top__DOT__i_cache__DOT___GEN_1034 = ((IData)(vlSelf->top__DOT__i_cache__DOT__way0_hit) 
                                          | (IData)(vlSelf->top__DOT__i_cache__DOT__way1_hit));
-    vlSelf->top__DOT__i_cache__DOT___GEN_1047 = ((1U 
+    vlSelf->top__DOT__i_cache__DOT___GEN_1044 = ((1U 
                                                   == (IData)(vlSelf->top__DOT__i_cache__DOT__state))
                                                   ? 0U
                                                   : 
