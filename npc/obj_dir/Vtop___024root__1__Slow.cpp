@@ -3573,7 +3573,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                (~ (
                                                    ((IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rvalid) 
                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_ready)) 
-                                                   & (IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rvalid))));
+                                                   & (IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rlast))));
     vlSelf->top__DOT__axi__DOT___GEN_4 = ((IData)(vlSelf->top__DOT__arbiter_io_axi_out_arvalid) 
                                           | (IData)(vlSelf->top__DOT__axi__DOT__axi_rvalid));
     if ((3U == (IData)(vlSelf->top__DOT__axi__DOT__state))) {

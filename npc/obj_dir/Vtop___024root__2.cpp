@@ -55,6 +55,14 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__11(Vtop___024root* vlSelf) {
     QData/*63:0*/ top__DOT__i_cache__DOT___GEN_7668;
     // Body
     if ((3U == (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
+        vlSelf->top__DOT__i_cache__DOT___GEN_4531 = 
+            ((1U == (IData)(vlSelf->top__DOT__i_cache__DOT__unuse_way))
+              ? vlSelf->top__DOT__i_cache__DOT___GEN_686
+              : ((2U == (IData)(vlSelf->top__DOT__i_cache__DOT__unuse_way))
+                  ? vlSelf->top__DOT__i_cache__DOT__tag_0_36
+                  : ((IData)(vlSelf->top__DOT__i_cache__DOT__quene)
+                      ? vlSelf->top__DOT__i_cache__DOT__tag_0_36
+                      : vlSelf->top__DOT__i_cache__DOT___GEN_686)));
         vlSelf->top__DOT__i_cache__DOT___GEN_4532 = 
             ((1U == (IData)(vlSelf->top__DOT__i_cache__DOT__unuse_way))
               ? vlSelf->top__DOT__i_cache__DOT___GEN_687
@@ -5904,6 +5912,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__11(Vtop___024root* vlSelf) {
                       ? vlSelf->top__DOT__i_cache__DOT___GEN_1033
                       : vlSelf->top__DOT__i_cache__DOT__ram_1_127)));
     } else {
+        vlSelf->top__DOT__i_cache__DOT___GEN_4531 = vlSelf->top__DOT__i_cache__DOT__tag_0_36;
         vlSelf->top__DOT__i_cache__DOT___GEN_4532 = vlSelf->top__DOT__i_cache__DOT__tag_0_37;
         vlSelf->top__DOT__i_cache__DOT___GEN_4533 = vlSelf->top__DOT__i_cache__DOT__tag_0_38;
         vlSelf->top__DOT__i_cache__DOT___GEN_4534 = vlSelf->top__DOT__i_cache__DOT__tag_0_39;
@@ -7233,7 +7242,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__11(Vtop___024root* vlSelf) {
                                                (~ (
                                                    ((IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rvalid) 
                                                     & (IData)(vlSelf->top__DOT__ifu_step__DOT__inst_ready)) 
-                                                   & (IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rvalid))));
+                                                   & (IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rlast))));
     if ((0x27U == (0x7fU & (IData)((vlSelf->top__DOT__pc_now 
                                     >> 3U))))) {
         top__DOT__i_cache__DOT___GEN_39 = vlSelf->top__DOT__i_cache__DOT__tag_0_39;
