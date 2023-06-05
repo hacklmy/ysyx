@@ -20,6 +20,7 @@ module top(
   wire  axi_io_axi_in_arvalid; // @[top.scala 18:21]
   wire  axi_io_axi_in_rready; // @[top.scala 18:21]
   wire [31:0] axi_io_axi_in_awaddr; // @[top.scala 18:21]
+  wire [7:0] axi_io_axi_in_awlen; // @[top.scala 18:21]
   wire  axi_io_axi_in_awvalid; // @[top.scala 18:21]
   wire [63:0] axi_io_axi_in_wdata; // @[top.scala 18:21]
   wire [7:0] axi_io_axi_in_wstrb; // @[top.scala 18:21]
@@ -64,9 +65,11 @@ module top(
   wire  arbiter_io_ifu_axi_out_rlast; // @[top.scala 20:25]
   wire  arbiter_io_ifu_axi_out_rvalid; // @[top.scala 20:25]
   wire [31:0] arbiter_io_lsu_axi_in_araddr; // @[top.scala 20:25]
+  wire [7:0] arbiter_io_lsu_axi_in_arlen; // @[top.scala 20:25]
   wire  arbiter_io_lsu_axi_in_arvalid; // @[top.scala 20:25]
   wire  arbiter_io_lsu_axi_in_rready; // @[top.scala 20:25]
   wire [31:0] arbiter_io_lsu_axi_in_awaddr; // @[top.scala 20:25]
+  wire [7:0] arbiter_io_lsu_axi_in_awlen; // @[top.scala 20:25]
   wire  arbiter_io_lsu_axi_in_awvalid; // @[top.scala 20:25]
   wire [63:0] arbiter_io_lsu_axi_in_wdata; // @[top.scala 20:25]
   wire [7:0] arbiter_io_lsu_axi_in_wstrb; // @[top.scala 20:25]
@@ -89,6 +92,7 @@ module top(
   wire  arbiter_io_axi_out_arvalid; // @[top.scala 20:25]
   wire  arbiter_io_axi_out_rready; // @[top.scala 20:25]
   wire [31:0] arbiter_io_axi_out_awaddr; // @[top.scala 20:25]
+  wire [7:0] arbiter_io_axi_out_awlen; // @[top.scala 20:25]
   wire  arbiter_io_axi_out_awvalid; // @[top.scala 20:25]
   wire [63:0] arbiter_io_axi_out_wdata; // @[top.scala 20:25]
   wire [7:0] arbiter_io_axi_out_wstrb; // @[top.scala 20:25]
@@ -140,9 +144,11 @@ module top(
   wire  d_cache_io_to_lsu_wready; // @[top.scala 23:25]
   wire  d_cache_io_to_lsu_bvalid; // @[top.scala 23:25]
   wire [31:0] d_cache_io_to_axi_araddr; // @[top.scala 23:25]
+  wire [7:0] d_cache_io_to_axi_arlen; // @[top.scala 23:25]
   wire  d_cache_io_to_axi_arvalid; // @[top.scala 23:25]
   wire  d_cache_io_to_axi_rready; // @[top.scala 23:25]
   wire [31:0] d_cache_io_to_axi_awaddr; // @[top.scala 23:25]
+  wire [7:0] d_cache_io_to_axi_awlen; // @[top.scala 23:25]
   wire  d_cache_io_to_axi_awvalid; // @[top.scala 23:25]
   wire [63:0] d_cache_io_to_axi_wdata; // @[top.scala 23:25]
   wire [7:0] d_cache_io_to_axi_wstrb; // @[top.scala 23:25]
@@ -207,6 +213,7 @@ module top(
     .io_axi_in_arvalid(axi_io_axi_in_arvalid),
     .io_axi_in_rready(axi_io_axi_in_rready),
     .io_axi_in_awaddr(axi_io_axi_in_awaddr),
+    .io_axi_in_awlen(axi_io_axi_in_awlen),
     .io_axi_in_awvalid(axi_io_axi_in_awvalid),
     .io_axi_in_wdata(axi_io_axi_in_wdata),
     .io_axi_in_wstrb(axi_io_axi_in_wstrb),
@@ -255,9 +262,11 @@ module top(
     .io_ifu_axi_out_rlast(arbiter_io_ifu_axi_out_rlast),
     .io_ifu_axi_out_rvalid(arbiter_io_ifu_axi_out_rvalid),
     .io_lsu_axi_in_araddr(arbiter_io_lsu_axi_in_araddr),
+    .io_lsu_axi_in_arlen(arbiter_io_lsu_axi_in_arlen),
     .io_lsu_axi_in_arvalid(arbiter_io_lsu_axi_in_arvalid),
     .io_lsu_axi_in_rready(arbiter_io_lsu_axi_in_rready),
     .io_lsu_axi_in_awaddr(arbiter_io_lsu_axi_in_awaddr),
+    .io_lsu_axi_in_awlen(arbiter_io_lsu_axi_in_awlen),
     .io_lsu_axi_in_awvalid(arbiter_io_lsu_axi_in_awvalid),
     .io_lsu_axi_in_wdata(arbiter_io_lsu_axi_in_wdata),
     .io_lsu_axi_in_wstrb(arbiter_io_lsu_axi_in_wstrb),
@@ -280,6 +289,7 @@ module top(
     .io_axi_out_arvalid(arbiter_io_axi_out_arvalid),
     .io_axi_out_rready(arbiter_io_axi_out_rready),
     .io_axi_out_awaddr(arbiter_io_axi_out_awaddr),
+    .io_axi_out_awlen(arbiter_io_axi_out_awlen),
     .io_axi_out_awvalid(arbiter_io_axi_out_awvalid),
     .io_axi_out_wdata(arbiter_io_axi_out_wdata),
     .io_axi_out_wstrb(arbiter_io_axi_out_wstrb),
@@ -337,9 +347,11 @@ module top(
     .io_to_lsu_wready(d_cache_io_to_lsu_wready),
     .io_to_lsu_bvalid(d_cache_io_to_lsu_bvalid),
     .io_to_axi_araddr(d_cache_io_to_axi_araddr),
+    .io_to_axi_arlen(d_cache_io_to_axi_arlen),
     .io_to_axi_arvalid(d_cache_io_to_axi_arvalid),
     .io_to_axi_rready(d_cache_io_to_axi_rready),
     .io_to_axi_awaddr(d_cache_io_to_axi_awaddr),
+    .io_to_axi_awlen(d_cache_io_to_axi_awlen),
     .io_to_axi_awvalid(d_cache_io_to_axi_awvalid),
     .io_to_axi_wdata(d_cache_io_to_axi_wdata),
     .io_to_axi_wstrb(d_cache_io_to_axi_wstrb),
@@ -410,6 +422,7 @@ module top(
   assign axi_io_axi_in_arvalid = arbiter_io_axi_out_arvalid; // @[top.scala 43:19]
   assign axi_io_axi_in_rready = arbiter_io_axi_out_rready; // @[top.scala 43:19]
   assign axi_io_axi_in_awaddr = arbiter_io_axi_out_awaddr; // @[top.scala 43:19]
+  assign axi_io_axi_in_awlen = arbiter_io_axi_out_awlen; // @[top.scala 43:19]
   assign axi_io_axi_in_awvalid = arbiter_io_axi_out_awvalid; // @[top.scala 43:19]
   assign axi_io_axi_in_wdata = arbiter_io_axi_out_wdata; // @[top.scala 43:19]
   assign axi_io_axi_in_wstrb = arbiter_io_axi_out_wstrb; // @[top.scala 43:19]
@@ -435,9 +448,11 @@ module top(
   assign arbiter_io_ifu_axi_in_arvalid = i_cache_io_to_axi_arvalid; // @[top.scala 26:27]
   assign arbiter_io_ifu_axi_in_rready = i_cache_io_to_axi_rready; // @[top.scala 26:27]
   assign arbiter_io_lsu_axi_in_araddr = d_cache_io_to_axi_araddr; // @[top.scala 34:27]
+  assign arbiter_io_lsu_axi_in_arlen = d_cache_io_to_axi_arlen; // @[top.scala 34:27]
   assign arbiter_io_lsu_axi_in_arvalid = d_cache_io_to_axi_arvalid; // @[top.scala 34:27]
   assign arbiter_io_lsu_axi_in_rready = d_cache_io_to_axi_rready; // @[top.scala 34:27]
   assign arbiter_io_lsu_axi_in_awaddr = d_cache_io_to_axi_awaddr; // @[top.scala 34:27]
+  assign arbiter_io_lsu_axi_in_awlen = d_cache_io_to_axi_awlen; // @[top.scala 34:27]
   assign arbiter_io_lsu_axi_in_awvalid = d_cache_io_to_axi_awvalid; // @[top.scala 34:27]
   assign arbiter_io_lsu_axi_in_wdata = d_cache_io_to_axi_wdata; // @[top.scala 34:27]
   assign arbiter_io_lsu_axi_in_wstrb = d_cache_io_to_axi_wstrb; // @[top.scala 34:27]
