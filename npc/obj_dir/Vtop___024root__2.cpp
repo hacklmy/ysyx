@@ -12,7 +12,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__4(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___combo__TOP__4\n"); );
     // Body
-    vlSelf->top__DOT__d_cache__DOT___GEN_2352 = ((IData)(vlSelf->reset)
+    vlSelf->top__DOT__d_cache__DOT___GEN_2222 = ((IData)(vlSelf->reset)
                                                   ? 0ULL
                                                   : 
                                                  ((0U 
@@ -48,27 +48,27 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__4(Vtop___024root* vlSelf) {
                                                           : 
                                                          ((IData)(vlSelf->top__DOT__d_cache__DOT__quene)
                                                            ? 
-                                                          ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_660)
+                                                          ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_596)
                                                             ? 
                                                            (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_48)) 
-                                                             << 0xdU) 
+                                                             << 0xaU) 
                                                             | (QData)((IData)(
-                                                                              (0x1fc0U 
+                                                                              (0x3c0U 
                                                                                & ((IData)(
                                                                                 (vlSelf->top__DOT__exu_step__DOT__add_res 
-                                                                                >> 3U)) 
+                                                                                >> 6U)) 
                                                                                 << 6U)))))
                                                             : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr)))
                                                            : 
-                                                          ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_432)
+                                                          ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_400)
                                                             ? 
                                                            (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_15)) 
-                                                             << 0xdU) 
+                                                             << 0xaU) 
                                                             | (QData)((IData)(
-                                                                              (0x1fc0U 
+                                                                              (0x3c0U 
                                                                                & ((IData)(
                                                                                 (vlSelf->top__DOT__exu_step__DOT__add_res 
-                                                                                >> 3U)) 
+                                                                                >> 6U)) 
                                                                                 << 6U)))))
                                                             : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))))))
                                                         : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr)))))))));
