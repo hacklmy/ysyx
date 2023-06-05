@@ -2,10 +2,10 @@ module AXI(
   input         clock,
   input         reset,
   input  [31:0] io_axi_in_araddr,
+  input  [7:0]  io_axi_in_arlen,
   input         io_axi_in_arvalid,
   input         io_axi_in_rready,
   input  [31:0] io_axi_in_awaddr,
-  input  [7:0]  io_axi_in_awlen,
   input         io_axi_in_awvalid,
   input  [63:0] io_axi_in_wdata,
   input  [7:0]  io_axi_in_wstrb,
@@ -131,7 +131,7 @@ module AXI(
     end else if (3'h0 == state) begin // @[AXI.scala 41:18]
       if (!(io_axi_in_awvalid & io_axi_in_wvalid)) begin // @[AXI.scala 43:56]
         if (io_axi_in_arvalid) begin // @[AXI.scala 55:42]
-          arlen <= 8'h0; // @[AXI.scala 57:23]
+          arlen <= io_axi_in_arlen; // @[AXI.scala 57:23]
         end
       end
     end else if (!(3'h2 == state)) begin // @[AXI.scala 41:18]
@@ -143,7 +143,7 @@ module AXI(
       awlen <= 8'h0; // @[AXI.scala 23:24]
     end else if (3'h0 == state) begin // @[AXI.scala 41:18]
       if (io_axi_in_awvalid & io_axi_in_wvalid) begin // @[AXI.scala 43:56]
-        awlen <= io_axi_in_awlen; // @[AXI.scala 48:23]
+        awlen <= 8'h0; // @[AXI.scala 48:23]
       end
     end else if (3'h2 == state) begin // @[AXI.scala 41:18]
       if (!(awlen == 8'h0)) begin // @[AXI.scala 64:30]
@@ -428,9 +428,9 @@ module AXI_ARBITER(
   input         clock,
   input         reset,
   input  [31:0] io_ifu_axi_in_araddr,
+  input  [7:0]  io_ifu_axi_in_arlen,
   input         io_ifu_axi_in_arvalid,
   input         io_ifu_axi_in_rready,
-  input  [7:0]  io_ifu_axi_in_awlen,
   output [63:0] io_ifu_axi_out_rdata,
   output        io_ifu_axi_out_rlast,
   output        io_ifu_axi_out_rvalid,
@@ -456,10 +456,10 @@ module AXI_ARBITER(
   input         io_axi_in_wready,
   input         io_axi_in_bvalid,
   output [31:0] io_axi_out_araddr,
+  output [7:0]  io_axi_out_arlen,
   output        io_axi_out_arvalid,
   output        io_axi_out_rready,
   output [31:0] io_axi_out_awaddr,
-  output [7:0]  io_axi_out_awlen,
   output        io_axi_out_awvalid,
   output [63:0] io_axi_out_wdata,
   output [7:0]  io_axi_out_wstrb,
@@ -472,16 +472,16 @@ module AXI_ARBITER(
   reg [1:0] state; // @[axi_arbiter.scala 18:24]
   wire [1:0] _GEN_0 = io_ifu_axi_in_arvalid ? 2'h1 : state; // @[axi_arbiter.scala 59:46 60:23 18:24]
   wire [31:0] _GEN_1 = io_ifu_axi_in_arvalid ? io_ifu_axi_in_araddr : 32'h0; // @[axi_arbiter.scala 59:46 61:28 65:28]
+  wire [7:0] _GEN_2 = io_ifu_axi_in_arvalid ? io_ifu_axi_in_arlen : 8'h0; // @[axi_arbiter.scala 59:46 61:28 65:28]
   wire  _GEN_6 = io_ifu_axi_in_arvalid & io_ifu_axi_in_rready; // @[axi_arbiter.scala 59:46 61:28 65:28]
-  wire [7:0] _GEN_8 = io_ifu_axi_in_arvalid ? io_ifu_axi_in_awlen : 8'h0; // @[axi_arbiter.scala 59:46 61:28 65:28]
   wire [63:0] _GEN_18 = io_ifu_axi_in_arvalid ? io_axi_in_rdata : 64'h0; // @[axi_arbiter.scala 59:46 62:32 67:32]
   wire  _GEN_19 = io_ifu_axi_in_arvalid & io_axi_in_rlast; // @[axi_arbiter.scala 59:46 62:32 67:32]
   wire  _GEN_20 = io_ifu_axi_in_arvalid & io_axi_in_rvalid; // @[axi_arbiter.scala 59:46 62:32 67:32]
   wire [31:0] _GEN_32 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_araddr : _GEN_1; // @[axi_arbiter.scala 54:46 56:28]
+  wire [7:0] _GEN_33 = io_lsu_axi_in_arvalid ? 8'h0 : _GEN_2; // @[axi_arbiter.scala 54:46 56:28]
   wire  _GEN_36 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_arvalid : io_ifu_axi_in_arvalid; // @[axi_arbiter.scala 54:46 56:28]
   wire  _GEN_37 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_rready : _GEN_6; // @[axi_arbiter.scala 54:46 56:28]
   wire [31:0] _GEN_38 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_awaddr : 32'h0; // @[axi_arbiter.scala 54:46 56:28]
-  wire [7:0] _GEN_39 = io_lsu_axi_in_arvalid ? 8'h0 : _GEN_8; // @[axi_arbiter.scala 54:46 56:28]
   wire  _GEN_42 = io_lsu_axi_in_arvalid & io_lsu_axi_in_awvalid; // @[axi_arbiter.scala 54:46 56:28]
   wire [63:0] _GEN_43 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_wdata : 64'h0; // @[axi_arbiter.scala 54:46 56:28]
   wire [7:0] _GEN_44 = io_lsu_axi_in_arvalid ? io_lsu_axi_in_wstrb : 8'h0; // @[axi_arbiter.scala 54:46 56:28]
@@ -497,10 +497,10 @@ module AXI_ARBITER(
   wire  _GEN_57 = io_lsu_axi_in_arvalid ? 1'h0 : _GEN_19; // @[axi_arbiter.scala 54:46 58:32]
   wire  _GEN_58 = io_lsu_axi_in_arvalid ? 1'h0 : _GEN_20; // @[axi_arbiter.scala 54:46 58:32]
   wire [31:0] _GEN_63 = io_lsu_axi_in_awvalid ? io_lsu_axi_in_araddr : _GEN_32; // @[axi_arbiter.scala 49:40 51:28]
+  wire [7:0] _GEN_64 = io_lsu_axi_in_awvalid ? 8'h0 : _GEN_33; // @[axi_arbiter.scala 49:40 51:28]
   wire  _GEN_67 = io_lsu_axi_in_awvalid ? io_lsu_axi_in_arvalid : _GEN_36; // @[axi_arbiter.scala 49:40 51:28]
   wire  _GEN_68 = io_lsu_axi_in_awvalid ? io_lsu_axi_in_rready : _GEN_37; // @[axi_arbiter.scala 49:40 51:28]
   wire [31:0] _GEN_69 = io_lsu_axi_in_awvalid ? io_lsu_axi_in_awaddr : _GEN_38; // @[axi_arbiter.scala 49:40 51:28]
-  wire [7:0] _GEN_70 = io_lsu_axi_in_awvalid ? 8'h0 : _GEN_39; // @[axi_arbiter.scala 49:40 51:28]
   wire  _GEN_73 = io_lsu_axi_in_awvalid ? io_lsu_axi_in_awvalid : _GEN_42; // @[axi_arbiter.scala 49:40 51:28]
   wire [63:0] _GEN_74 = io_lsu_axi_in_awvalid ? io_lsu_axi_in_wdata : _GEN_43; // @[axi_arbiter.scala 49:40 51:28]
   wire [7:0] _GEN_75 = io_lsu_axi_in_awvalid ? io_lsu_axi_in_wstrb : _GEN_44; // @[axi_arbiter.scala 49:40 51:28]
@@ -549,10 +549,10 @@ module AXI_ARBITER(
   wire  _GEN_148 = state == 2'h2 ? io_axi_in_wready : _GEN_117; // @[axi_arbiter.scala 78:39 80:28]
   wire  _GEN_149 = state == 2'h2 ? io_axi_in_bvalid : _GEN_118; // @[axi_arbiter.scala 78:39 80:28]
   wire [31:0] _GEN_158 = state == 2'h1 ? io_ifu_axi_in_araddr : _GEN_127; // @[axi_arbiter.scala 70:39 71:24]
+  wire [7:0] _GEN_159 = state == 2'h1 ? io_ifu_axi_in_arlen : 8'h0; // @[axi_arbiter.scala 70:39 71:24]
   wire  _GEN_162 = state == 2'h1 ? io_ifu_axi_in_arvalid : _GEN_131; // @[axi_arbiter.scala 70:39 71:24]
   wire  _GEN_163 = state == 2'h1 ? io_ifu_axi_in_rready : _GEN_132; // @[axi_arbiter.scala 70:39 71:24]
   wire [31:0] _GEN_164 = state == 2'h1 ? 32'h0 : _GEN_133; // @[axi_arbiter.scala 70:39 71:24]
-  wire [7:0] _GEN_165 = state == 2'h1 ? io_ifu_axi_in_awlen : 8'h0; // @[axi_arbiter.scala 70:39 71:24]
   wire  _GEN_168 = state == 2'h1 ? 1'h0 : _GEN_137; // @[axi_arbiter.scala 70:39 71:24]
   wire [63:0] _GEN_169 = state == 2'h1 ? 64'h0 : _GEN_138; // @[axi_arbiter.scala 70:39 71:24]
   wire [7:0] _GEN_170 = state == 2'h1 ? 8'h0 : _GEN_139; // @[axi_arbiter.scala 70:39 71:24]
@@ -577,10 +577,10 @@ module AXI_ARBITER(
   assign io_lsu_axi_out_wready = state == 2'h0 ? _GEN_84 : _GEN_186; // @[axi_arbiter.scala 48:27]
   assign io_lsu_axi_out_bvalid = state == 2'h0 ? _GEN_85 : _GEN_187; // @[axi_arbiter.scala 48:27]
   assign io_axi_out_araddr = state == 2'h0 ? _GEN_63 : _GEN_158; // @[axi_arbiter.scala 48:27]
+  assign io_axi_out_arlen = state == 2'h0 ? _GEN_64 : _GEN_159; // @[axi_arbiter.scala 48:27]
   assign io_axi_out_arvalid = state == 2'h0 ? _GEN_67 : _GEN_162; // @[axi_arbiter.scala 48:27]
   assign io_axi_out_rready = state == 2'h0 ? _GEN_68 : _GEN_163; // @[axi_arbiter.scala 48:27]
   assign io_axi_out_awaddr = state == 2'h0 ? _GEN_69 : _GEN_164; // @[axi_arbiter.scala 48:27]
-  assign io_axi_out_awlen = state == 2'h0 ? _GEN_70 : _GEN_165; // @[axi_arbiter.scala 48:27]
   assign io_axi_out_awvalid = state == 2'h0 ? _GEN_73 : _GEN_168; // @[axi_arbiter.scala 48:27]
   assign io_axi_out_wdata = state == 2'h0 ? _GEN_74 : _GEN_169; // @[axi_arbiter.scala 48:27]
   assign io_axi_out_wstrb = state == 2'h0 ? _GEN_75 : _GEN_170; // @[axi_arbiter.scala 48:27]
@@ -760,9 +760,9 @@ module I_CACHE(
   output        io_to_ifu_rlast,
   output        io_to_ifu_rvalid,
   output [31:0] io_to_axi_araddr,
+  output [7:0]  io_to_axi_arlen,
   output        io_to_axi_arvalid,
   output        io_to_axi_rready,
-  output [7:0]  io_to_axi_awlen,
   input  [63:0] io_from_axi_rdata,
   input         io_from_axi_rlast,
   input         io_from_axi_rvalid
@@ -1117,7 +1117,7 @@ module I_CACHE(
   wire  _GEN_125 = 4'h0 == index | valid_0_0; // @[i_cache.scala 21:26 94:{32,32}]
   wire  _GEN_1035 = 4'h1 == index; // @[i_cache.scala 21:26 94:{32,32}]
   wire  _GEN_126 = 4'h1 == index | valid_0_1; // @[i_cache.scala 21:26 94:{32,32}]
-  wire  _GEN_1039 = 4'h2 == index; // @[i_cache.scala 21:26 94:{32,32}]
+  wire  _GEN_1040 = 4'h2 == index; // @[i_cache.scala 21:26 94:{32,32}]
   wire  _GEN_127 = 4'h2 == index | valid_0_2; // @[i_cache.scala 21:26 94:{32,32}]
   wire  _GEN_1045 = 4'h3 == index; // @[i_cache.scala 21:26 94:{32,32}]
   wire  _GEN_128 = 4'h3 == index | valid_0_3; // @[i_cache.scala 21:26 94:{32,32}]
@@ -1179,7 +1179,7 @@ module I_CACHE(
   wire [31:0] _GEN_172 = 4'hf == index ? _GEN_1029 : tag_1_15; // @[i_cache.scala 20:24 98:{30,30}]
   wire  _GEN_173 = _GEN_1033 | valid_1_0; // @[i_cache.scala 22:26 99:{32,32}]
   wire  _GEN_174 = _GEN_1035 | valid_1_1; // @[i_cache.scala 22:26 99:{32,32}]
-  wire  _GEN_175 = _GEN_1039 | valid_1_2; // @[i_cache.scala 22:26 99:{32,32}]
+  wire  _GEN_175 = _GEN_1040 | valid_1_2; // @[i_cache.scala 22:26 99:{32,32}]
   wire  _GEN_176 = _GEN_1045 | valid_1_3; // @[i_cache.scala 22:26 99:{32,32}]
   wire  _GEN_177 = _GEN_1049 | valid_1_4; // @[i_cache.scala 22:26 99:{32,32}]
   wire  _GEN_178 = _GEN_1051 | valid_1_5; // @[i_cache.scala 22:26 99:{32,32}]
@@ -1622,17 +1622,17 @@ module I_CACHE(
   wire [63:0] _GEN_1110 = {{32'd0}, io_from_ifu_araddr}; // @[i_cache.scala 195:49]
   wire [63:0] _io_to_axi_araddr_T = _GEN_1110 & 64'hffffffffffffffc0; // @[i_cache.scala 195:49]
   wire [63:0] _GEN_1038 = state == 3'h2 ? _io_to_axi_araddr_T : {{32'd0}, io_from_ifu_araddr}; // @[i_cache.scala 186:29 195:26 235:26]
-  wire [2:0] _GEN_1041 = state == 3'h2 ? 3'h7 : 3'h0; // @[i_cache.scala 186:29 202:25 242:25]
+  wire [2:0] _GEN_1039 = state == 3'h2 ? 3'h7 : 3'h0; // @[i_cache.scala 186:29 196:25 237:25]
   wire [63:0] _GEN_1043 = state == 3'h1 ? {{32'd0}, io_from_ifu_araddr} : _GEN_1038; // @[i_cache.scala 143:25 145:26]
-  wire [2:0] _GEN_1047 = state == 3'h1 ? 3'h0 : _GEN_1041; // @[i_cache.scala 143:25 152:25]
+  wire [2:0] _GEN_1044 = state == 3'h1 ? 3'h0 : _GEN_1039; // @[i_cache.scala 143:25 146:25]
   wire [511:0] _GEN_1048 = state == 3'h1 ? _GEN_1032 : 512'h0; // @[i_cache.scala 143:25]
   assign io_to_ifu_rdata = _GEN_1048[63:0];
   assign io_to_ifu_rlast = state == 3'h1 & _GEN_1034; // @[i_cache.scala 143:25]
   assign io_to_ifu_rvalid = state == 3'h1 & _GEN_1034; // @[i_cache.scala 143:25]
   assign io_to_axi_araddr = _GEN_1043[31:0];
+  assign io_to_axi_arlen = {{5'd0}, _GEN_1044};
   assign io_to_axi_arvalid = state == 3'h1 ? 1'h0 : _T_17; // @[i_cache.scala 143:25 144:27]
   assign io_to_axi_rready = state == 3'h1 ? 1'h0 : io_from_ifu_rready; // @[i_cache.scala 143:25 149:26]
-  assign io_to_axi_awlen = {{5'd0}, _GEN_1047};
   always @(posedge clock) begin
     if (reset) begin // @[i_cache.scala 17:24]
       ram_0_0 <= 512'h0; // @[i_cache.scala 17:24]
@@ -29270,10 +29270,10 @@ module top(
   wire  axi_clock; // @[top.scala 18:21]
   wire  axi_reset; // @[top.scala 18:21]
   wire [31:0] axi_io_axi_in_araddr; // @[top.scala 18:21]
+  wire [7:0] axi_io_axi_in_arlen; // @[top.scala 18:21]
   wire  axi_io_axi_in_arvalid; // @[top.scala 18:21]
   wire  axi_io_axi_in_rready; // @[top.scala 18:21]
   wire [31:0] axi_io_axi_in_awaddr; // @[top.scala 18:21]
-  wire [7:0] axi_io_axi_in_awlen; // @[top.scala 18:21]
   wire  axi_io_axi_in_awvalid; // @[top.scala 18:21]
   wire [63:0] axi_io_axi_in_wdata; // @[top.scala 18:21]
   wire [7:0] axi_io_axi_in_wstrb; // @[top.scala 18:21]
@@ -29311,9 +29311,9 @@ module top(
   wire  arbiter_clock; // @[top.scala 20:25]
   wire  arbiter_reset; // @[top.scala 20:25]
   wire [31:0] arbiter_io_ifu_axi_in_araddr; // @[top.scala 20:25]
+  wire [7:0] arbiter_io_ifu_axi_in_arlen; // @[top.scala 20:25]
   wire  arbiter_io_ifu_axi_in_arvalid; // @[top.scala 20:25]
   wire  arbiter_io_ifu_axi_in_rready; // @[top.scala 20:25]
-  wire [7:0] arbiter_io_ifu_axi_in_awlen; // @[top.scala 20:25]
   wire [63:0] arbiter_io_ifu_axi_out_rdata; // @[top.scala 20:25]
   wire  arbiter_io_ifu_axi_out_rlast; // @[top.scala 20:25]
   wire  arbiter_io_ifu_axi_out_rvalid; // @[top.scala 20:25]
@@ -29339,10 +29339,10 @@ module top(
   wire  arbiter_io_axi_in_wready; // @[top.scala 20:25]
   wire  arbiter_io_axi_in_bvalid; // @[top.scala 20:25]
   wire [31:0] arbiter_io_axi_out_araddr; // @[top.scala 20:25]
+  wire [7:0] arbiter_io_axi_out_arlen; // @[top.scala 20:25]
   wire  arbiter_io_axi_out_arvalid; // @[top.scala 20:25]
   wire  arbiter_io_axi_out_rready; // @[top.scala 20:25]
   wire [31:0] arbiter_io_axi_out_awaddr; // @[top.scala 20:25]
-  wire [7:0] arbiter_io_axi_out_awlen; // @[top.scala 20:25]
   wire  arbiter_io_axi_out_awvalid; // @[top.scala 20:25]
   wire [63:0] arbiter_io_axi_out_wdata; // @[top.scala 20:25]
   wire [7:0] arbiter_io_axi_out_wstrb; // @[top.scala 20:25]
@@ -29370,9 +29370,9 @@ module top(
   wire  i_cache_io_to_ifu_rlast; // @[top.scala 22:25]
   wire  i_cache_io_to_ifu_rvalid; // @[top.scala 22:25]
   wire [31:0] i_cache_io_to_axi_araddr; // @[top.scala 22:25]
+  wire [7:0] i_cache_io_to_axi_arlen; // @[top.scala 22:25]
   wire  i_cache_io_to_axi_arvalid; // @[top.scala 22:25]
   wire  i_cache_io_to_axi_rready; // @[top.scala 22:25]
-  wire [7:0] i_cache_io_to_axi_awlen; // @[top.scala 22:25]
   wire [63:0] i_cache_io_from_axi_rdata; // @[top.scala 22:25]
   wire  i_cache_io_from_axi_rlast; // @[top.scala 22:25]
   wire  i_cache_io_from_axi_rvalid; // @[top.scala 22:25]
@@ -29457,10 +29457,10 @@ module top(
     .clock(axi_clock),
     .reset(axi_reset),
     .io_axi_in_araddr(axi_io_axi_in_araddr),
+    .io_axi_in_arlen(axi_io_axi_in_arlen),
     .io_axi_in_arvalid(axi_io_axi_in_arvalid),
     .io_axi_in_rready(axi_io_axi_in_rready),
     .io_axi_in_awaddr(axi_io_axi_in_awaddr),
-    .io_axi_in_awlen(axi_io_axi_in_awlen),
     .io_axi_in_awvalid(axi_io_axi_in_awvalid),
     .io_axi_in_wdata(axi_io_axi_in_wdata),
     .io_axi_in_wstrb(axi_io_axi_in_wstrb),
@@ -29502,9 +29502,9 @@ module top(
     .clock(arbiter_clock),
     .reset(arbiter_reset),
     .io_ifu_axi_in_araddr(arbiter_io_ifu_axi_in_araddr),
+    .io_ifu_axi_in_arlen(arbiter_io_ifu_axi_in_arlen),
     .io_ifu_axi_in_arvalid(arbiter_io_ifu_axi_in_arvalid),
     .io_ifu_axi_in_rready(arbiter_io_ifu_axi_in_rready),
-    .io_ifu_axi_in_awlen(arbiter_io_ifu_axi_in_awlen),
     .io_ifu_axi_out_rdata(arbiter_io_ifu_axi_out_rdata),
     .io_ifu_axi_out_rlast(arbiter_io_ifu_axi_out_rlast),
     .io_ifu_axi_out_rvalid(arbiter_io_ifu_axi_out_rvalid),
@@ -29530,10 +29530,10 @@ module top(
     .io_axi_in_wready(arbiter_io_axi_in_wready),
     .io_axi_in_bvalid(arbiter_io_axi_in_bvalid),
     .io_axi_out_araddr(arbiter_io_axi_out_araddr),
+    .io_axi_out_arlen(arbiter_io_axi_out_arlen),
     .io_axi_out_arvalid(arbiter_io_axi_out_arvalid),
     .io_axi_out_rready(arbiter_io_axi_out_rready),
     .io_axi_out_awaddr(arbiter_io_axi_out_awaddr),
-    .io_axi_out_awlen(arbiter_io_axi_out_awlen),
     .io_axi_out_awvalid(arbiter_io_axi_out_awvalid),
     .io_axi_out_wdata(arbiter_io_axi_out_wdata),
     .io_axi_out_wstrb(arbiter_io_axi_out_wstrb),
@@ -29565,9 +29565,9 @@ module top(
     .io_to_ifu_rlast(i_cache_io_to_ifu_rlast),
     .io_to_ifu_rvalid(i_cache_io_to_ifu_rvalid),
     .io_to_axi_araddr(i_cache_io_to_axi_araddr),
+    .io_to_axi_arlen(i_cache_io_to_axi_arlen),
     .io_to_axi_arvalid(i_cache_io_to_axi_arvalid),
     .io_to_axi_rready(i_cache_io_to_axi_rready),
-    .io_to_axi_awlen(i_cache_io_to_axi_awlen),
     .io_from_axi_rdata(i_cache_io_from_axi_rdata),
     .io_from_axi_rlast(i_cache_io_from_axi_rlast),
     .io_from_axi_rvalid(i_cache_io_from_axi_rvalid)
@@ -29660,10 +29660,10 @@ module top(
   assign axi_clock = clock;
   assign axi_reset = reset;
   assign axi_io_axi_in_araddr = arbiter_io_axi_out_araddr; // @[top.scala 43:19]
+  assign axi_io_axi_in_arlen = arbiter_io_axi_out_arlen; // @[top.scala 43:19]
   assign axi_io_axi_in_arvalid = arbiter_io_axi_out_arvalid; // @[top.scala 43:19]
   assign axi_io_axi_in_rready = arbiter_io_axi_out_rready; // @[top.scala 43:19]
   assign axi_io_axi_in_awaddr = arbiter_io_axi_out_awaddr; // @[top.scala 43:19]
-  assign axi_io_axi_in_awlen = arbiter_io_axi_out_awlen; // @[top.scala 43:19]
   assign axi_io_axi_in_awvalid = arbiter_io_axi_out_awvalid; // @[top.scala 43:19]
   assign axi_io_axi_in_wdata = arbiter_io_axi_out_wdata; // @[top.scala 43:19]
   assign axi_io_axi_in_wstrb = arbiter_io_axi_out_wstrb; // @[top.scala 43:19]
@@ -29685,9 +29685,9 @@ module top(
   assign arbiter_clock = clock;
   assign arbiter_reset = reset;
   assign arbiter_io_ifu_axi_in_araddr = i_cache_io_to_axi_araddr; // @[top.scala 26:27]
+  assign arbiter_io_ifu_axi_in_arlen = i_cache_io_to_axi_arlen; // @[top.scala 26:27]
   assign arbiter_io_ifu_axi_in_arvalid = i_cache_io_to_axi_arvalid; // @[top.scala 26:27]
   assign arbiter_io_ifu_axi_in_rready = i_cache_io_to_axi_rready; // @[top.scala 26:27]
-  assign arbiter_io_ifu_axi_in_awlen = i_cache_io_to_axi_awlen; // @[top.scala 26:27]
   assign arbiter_io_lsu_axi_in_araddr = d_cache_io_to_axi_araddr; // @[top.scala 34:27]
   assign arbiter_io_lsu_axi_in_arvalid = d_cache_io_to_axi_arvalid; // @[top.scala 34:27]
   assign arbiter_io_lsu_axi_in_rready = d_cache_io_to_axi_rready; // @[top.scala 34:27]

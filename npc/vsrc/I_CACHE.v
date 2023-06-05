@@ -8,9 +8,9 @@ module I_CACHE(
   output        io_to_ifu_rlast,
   output        io_to_ifu_rvalid,
   output [31:0] io_to_axi_araddr,
+  output [7:0]  io_to_axi_arlen,
   output        io_to_axi_arvalid,
   output        io_to_axi_rready,
-  output [7:0]  io_to_axi_awlen,
   input  [63:0] io_from_axi_rdata,
   input         io_from_axi_rlast,
   input         io_from_axi_rvalid
@@ -365,7 +365,7 @@ module I_CACHE(
   wire  _GEN_125 = 4'h0 == index | valid_0_0; // @[i_cache.scala 21:26 94:{32,32}]
   wire  _GEN_1035 = 4'h1 == index; // @[i_cache.scala 21:26 94:{32,32}]
   wire  _GEN_126 = 4'h1 == index | valid_0_1; // @[i_cache.scala 21:26 94:{32,32}]
-  wire  _GEN_1039 = 4'h2 == index; // @[i_cache.scala 21:26 94:{32,32}]
+  wire  _GEN_1040 = 4'h2 == index; // @[i_cache.scala 21:26 94:{32,32}]
   wire  _GEN_127 = 4'h2 == index | valid_0_2; // @[i_cache.scala 21:26 94:{32,32}]
   wire  _GEN_1045 = 4'h3 == index; // @[i_cache.scala 21:26 94:{32,32}]
   wire  _GEN_128 = 4'h3 == index | valid_0_3; // @[i_cache.scala 21:26 94:{32,32}]
@@ -427,7 +427,7 @@ module I_CACHE(
   wire [31:0] _GEN_172 = 4'hf == index ? _GEN_1029 : tag_1_15; // @[i_cache.scala 20:24 98:{30,30}]
   wire  _GEN_173 = _GEN_1033 | valid_1_0; // @[i_cache.scala 22:26 99:{32,32}]
   wire  _GEN_174 = _GEN_1035 | valid_1_1; // @[i_cache.scala 22:26 99:{32,32}]
-  wire  _GEN_175 = _GEN_1039 | valid_1_2; // @[i_cache.scala 22:26 99:{32,32}]
+  wire  _GEN_175 = _GEN_1040 | valid_1_2; // @[i_cache.scala 22:26 99:{32,32}]
   wire  _GEN_176 = _GEN_1045 | valid_1_3; // @[i_cache.scala 22:26 99:{32,32}]
   wire  _GEN_177 = _GEN_1049 | valid_1_4; // @[i_cache.scala 22:26 99:{32,32}]
   wire  _GEN_178 = _GEN_1051 | valid_1_5; // @[i_cache.scala 22:26 99:{32,32}]
@@ -870,17 +870,17 @@ module I_CACHE(
   wire [63:0] _GEN_1110 = {{32'd0}, io_from_ifu_araddr}; // @[i_cache.scala 195:49]
   wire [63:0] _io_to_axi_araddr_T = _GEN_1110 & 64'hffffffffffffffc0; // @[i_cache.scala 195:49]
   wire [63:0] _GEN_1038 = state == 3'h2 ? _io_to_axi_araddr_T : {{32'd0}, io_from_ifu_araddr}; // @[i_cache.scala 186:29 195:26 235:26]
-  wire [2:0] _GEN_1041 = state == 3'h2 ? 3'h7 : 3'h0; // @[i_cache.scala 186:29 202:25 242:25]
+  wire [2:0] _GEN_1039 = state == 3'h2 ? 3'h7 : 3'h0; // @[i_cache.scala 186:29 196:25 237:25]
   wire [63:0] _GEN_1043 = state == 3'h1 ? {{32'd0}, io_from_ifu_araddr} : _GEN_1038; // @[i_cache.scala 143:25 145:26]
-  wire [2:0] _GEN_1047 = state == 3'h1 ? 3'h0 : _GEN_1041; // @[i_cache.scala 143:25 152:25]
+  wire [2:0] _GEN_1044 = state == 3'h1 ? 3'h0 : _GEN_1039; // @[i_cache.scala 143:25 146:25]
   wire [511:0] _GEN_1048 = state == 3'h1 ? _GEN_1032 : 512'h0; // @[i_cache.scala 143:25]
   assign io_to_ifu_rdata = _GEN_1048[63:0];
   assign io_to_ifu_rlast = state == 3'h1 & _GEN_1034; // @[i_cache.scala 143:25]
   assign io_to_ifu_rvalid = state == 3'h1 & _GEN_1034; // @[i_cache.scala 143:25]
   assign io_to_axi_araddr = _GEN_1043[31:0];
+  assign io_to_axi_arlen = {{5'd0}, _GEN_1044};
   assign io_to_axi_arvalid = state == 3'h1 ? 1'h0 : _T_17; // @[i_cache.scala 143:25 144:27]
   assign io_to_axi_rready = state == 3'h1 ? 1'h0 : io_from_ifu_rready; // @[i_cache.scala 143:25 149:26]
-  assign io_to_axi_awlen = {{5'd0}, _GEN_1047};
   always @(posedge clock) begin
     if (reset) begin // @[i_cache.scala 17:24]
       ram_0_0 <= 512'h0; // @[i_cache.scala 17:24]

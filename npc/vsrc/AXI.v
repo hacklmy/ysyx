@@ -3,10 +3,10 @@ module AXI(
   input         clock,
   input         reset,
   input  [31:0] io_axi_in_araddr,
+  input  [7:0]  io_axi_in_arlen,
   input         io_axi_in_arvalid,
   input         io_axi_in_rready,
   input  [31:0] io_axi_in_awaddr,
-  input  [7:0]  io_axi_in_awlen,
   input         io_axi_in_awvalid,
   input  [63:0] io_axi_in_wdata,
   input  [7:0]  io_axi_in_wstrb,
@@ -132,7 +132,7 @@ module AXI(
     end else if (3'h0 == state) begin // @[AXI.scala 41:18]
       if (!(io_axi_in_awvalid & io_axi_in_wvalid)) begin // @[AXI.scala 43:56]
         if (io_axi_in_arvalid) begin // @[AXI.scala 55:42]
-          arlen <= 8'h0; // @[AXI.scala 57:23]
+          arlen <= io_axi_in_arlen; // @[AXI.scala 57:23]
         end
       end
     end else if (!(3'h2 == state)) begin // @[AXI.scala 41:18]
@@ -144,7 +144,7 @@ module AXI(
       awlen <= 8'h0; // @[AXI.scala 23:24]
     end else if (3'h0 == state) begin // @[AXI.scala 41:18]
       if (io_axi_in_awvalid & io_axi_in_wvalid) begin // @[AXI.scala 43:56]
-        awlen <= io_axi_in_awlen; // @[AXI.scala 48:23]
+        awlen <= 8'h0; // @[AXI.scala 48:23]
       end
     end else if (3'h2 == state) begin // @[AXI.scala 41:18]
       if (!(awlen == 8'h0)) begin // @[AXI.scala 64:30]
