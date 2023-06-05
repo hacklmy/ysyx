@@ -19,6 +19,7 @@ module top(
   wire  axi_io_axi_in_arvalid; // @[top.scala 18:21]
   wire  axi_io_axi_in_rready; // @[top.scala 18:21]
   wire [31:0] axi_io_axi_in_awaddr; // @[top.scala 18:21]
+  wire [7:0] axi_io_axi_in_awlen; // @[top.scala 18:21]
   wire  axi_io_axi_in_awvalid; // @[top.scala 18:21]
   wire [63:0] axi_io_axi_in_wdata; // @[top.scala 18:21]
   wire [7:0] axi_io_axi_in_wstrb; // @[top.scala 18:21]
@@ -58,6 +59,7 @@ module top(
   wire [31:0] arbiter_io_ifu_axi_in_araddr; // @[top.scala 20:25]
   wire  arbiter_io_ifu_axi_in_arvalid; // @[top.scala 20:25]
   wire  arbiter_io_ifu_axi_in_rready; // @[top.scala 20:25]
+  wire [7:0] arbiter_io_ifu_axi_in_awlen; // @[top.scala 20:25]
   wire [63:0] arbiter_io_ifu_axi_out_rdata; // @[top.scala 20:25]
   wire  arbiter_io_ifu_axi_out_rlast; // @[top.scala 20:25]
   wire  arbiter_io_ifu_axi_out_rvalid; // @[top.scala 20:25]
@@ -86,6 +88,7 @@ module top(
   wire  arbiter_io_axi_out_arvalid; // @[top.scala 20:25]
   wire  arbiter_io_axi_out_rready; // @[top.scala 20:25]
   wire [31:0] arbiter_io_axi_out_awaddr; // @[top.scala 20:25]
+  wire [7:0] arbiter_io_axi_out_awlen; // @[top.scala 20:25]
   wire  arbiter_io_axi_out_awvalid; // @[top.scala 20:25]
   wire [63:0] arbiter_io_axi_out_wdata; // @[top.scala 20:25]
   wire [7:0] arbiter_io_axi_out_wstrb; // @[top.scala 20:25]
@@ -115,6 +118,7 @@ module top(
   wire [31:0] i_cache_io_to_axi_araddr; // @[top.scala 22:25]
   wire  i_cache_io_to_axi_arvalid; // @[top.scala 22:25]
   wire  i_cache_io_to_axi_rready; // @[top.scala 22:25]
+  wire [7:0] i_cache_io_to_axi_awlen; // @[top.scala 22:25]
   wire [63:0] i_cache_io_from_axi_rdata; // @[top.scala 22:25]
   wire  i_cache_io_from_axi_rlast; // @[top.scala 22:25]
   wire  i_cache_io_from_axi_rvalid; // @[top.scala 22:25]
@@ -202,6 +206,7 @@ module top(
     .io_axi_in_arvalid(axi_io_axi_in_arvalid),
     .io_axi_in_rready(axi_io_axi_in_rready),
     .io_axi_in_awaddr(axi_io_axi_in_awaddr),
+    .io_axi_in_awlen(axi_io_axi_in_awlen),
     .io_axi_in_awvalid(axi_io_axi_in_awvalid),
     .io_axi_in_wdata(axi_io_axi_in_wdata),
     .io_axi_in_wstrb(axi_io_axi_in_wstrb),
@@ -245,6 +250,7 @@ module top(
     .io_ifu_axi_in_araddr(arbiter_io_ifu_axi_in_araddr),
     .io_ifu_axi_in_arvalid(arbiter_io_ifu_axi_in_arvalid),
     .io_ifu_axi_in_rready(arbiter_io_ifu_axi_in_rready),
+    .io_ifu_axi_in_awlen(arbiter_io_ifu_axi_in_awlen),
     .io_ifu_axi_out_rdata(arbiter_io_ifu_axi_out_rdata),
     .io_ifu_axi_out_rlast(arbiter_io_ifu_axi_out_rlast),
     .io_ifu_axi_out_rvalid(arbiter_io_ifu_axi_out_rvalid),
@@ -273,6 +279,7 @@ module top(
     .io_axi_out_arvalid(arbiter_io_axi_out_arvalid),
     .io_axi_out_rready(arbiter_io_axi_out_rready),
     .io_axi_out_awaddr(arbiter_io_axi_out_awaddr),
+    .io_axi_out_awlen(arbiter_io_axi_out_awlen),
     .io_axi_out_awvalid(arbiter_io_axi_out_awvalid),
     .io_axi_out_wdata(arbiter_io_axi_out_wdata),
     .io_axi_out_wstrb(arbiter_io_axi_out_wstrb),
@@ -306,6 +313,7 @@ module top(
     .io_to_axi_araddr(i_cache_io_to_axi_araddr),
     .io_to_axi_arvalid(i_cache_io_to_axi_arvalid),
     .io_to_axi_rready(i_cache_io_to_axi_rready),
+    .io_to_axi_awlen(i_cache_io_to_axi_awlen),
     .io_from_axi_rdata(i_cache_io_from_axi_rdata),
     .io_from_axi_rlast(i_cache_io_from_axi_rlast),
     .io_from_axi_rvalid(i_cache_io_from_axi_rvalid)
@@ -401,6 +409,7 @@ module top(
   assign axi_io_axi_in_arvalid = arbiter_io_axi_out_arvalid; // @[top.scala 43:19]
   assign axi_io_axi_in_rready = arbiter_io_axi_out_rready; // @[top.scala 43:19]
   assign axi_io_axi_in_awaddr = arbiter_io_axi_out_awaddr; // @[top.scala 43:19]
+  assign axi_io_axi_in_awlen = arbiter_io_axi_out_awlen; // @[top.scala 43:19]
   assign axi_io_axi_in_awvalid = arbiter_io_axi_out_awvalid; // @[top.scala 43:19]
   assign axi_io_axi_in_wdata = arbiter_io_axi_out_wdata; // @[top.scala 43:19]
   assign axi_io_axi_in_wstrb = arbiter_io_axi_out_wstrb; // @[top.scala 43:19]
@@ -424,6 +433,7 @@ module top(
   assign arbiter_io_ifu_axi_in_araddr = i_cache_io_to_axi_araddr; // @[top.scala 26:27]
   assign arbiter_io_ifu_axi_in_arvalid = i_cache_io_to_axi_arvalid; // @[top.scala 26:27]
   assign arbiter_io_ifu_axi_in_rready = i_cache_io_to_axi_rready; // @[top.scala 26:27]
+  assign arbiter_io_ifu_axi_in_awlen = i_cache_io_to_axi_awlen; // @[top.scala 26:27]
   assign arbiter_io_lsu_axi_in_araddr = d_cache_io_to_axi_araddr; // @[top.scala 34:27]
   assign arbiter_io_lsu_axi_in_arvalid = d_cache_io_to_axi_arvalid; // @[top.scala 34:27]
   assign arbiter_io_lsu_axi_in_rready = d_cache_io_to_axi_rready; // @[top.scala 34:27]
