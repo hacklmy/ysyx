@@ -59,6 +59,12 @@ copy_top_pipeline:
 	sed -n '/module Div/,/endmodule/p' vsrc/output/top.v > vsrc/Div.v
 	sed -n '/module partial_product/,/endmodule/p' vsrc/output/top.v > vsrc/partial_product.v
 	sed -n '/module csr_reg/,/endmodule/p' vsrc/output/top.v > vsrc/csr_reg.v
+	sed -n '/module AXI_ARBITER/,/endmodule/p' vsrc/output/top.v > vsrc/AXI_ARBITER.v
+	echo "/* verilator lint_off UNOPTFLAT */" > vsrc/AXI.v	
+	sed -n '/module AXI(/,/endmodule/p' vsrc/output/top.v >> vsrc/AXI.v
+	echo "/* verilator lint_on UNOPTFLAT */" >> vsrc/AXI.v
+	sed -n '/module I_CACHE/,/endmodule/p' vsrc/output/top.v > vsrc/I_CACHE.v
+	sed -n '/module D_CACHE/,/endmodule/p' vsrc/output/top.v > vsrc/D_CACHE.v
 
 
 include ../Makefile

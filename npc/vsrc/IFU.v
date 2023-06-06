@@ -2,70 +2,57 @@
 module IFU(
   input         clock,
   input         reset,
-  input         io_ds_allowin,
-  input         io_br_taken,
-  input  [63:0] io_br_target,
-  input         io_br_taken_cancel,
   output [63:0] io_to_ds_pc,
-  output        io_fs_to_ds_valid,
-  output [31:0] io_inst
+  output [31:0] io_inst,
+  input  [63:0] io_axi_in_rdata,
+  input         io_axi_in_rlast,
+  input         io_axi_in_rvalid,
+  output [31:0] io_axi_out_araddr,
+  output        io_axi_out_arvalid,
+  output        io_axi_out_rready
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
   reg [63:0] _RAND_1;
+  reg [31:0] _RAND_2;
+  reg [31:0] _RAND_3;
 `endif // RANDOMIZE_REG_INIT
-  wire [63:0] inst_read_Raddr; // @[IFU.scala 28:27]
-  wire [63:0] inst_read_Rdata; // @[IFU.scala 28:27]
-  wire [63:0] inst_read_Waddr; // @[IFU.scala 28:27]
-  wire [63:0] inst_read_Wdata; // @[IFU.scala 28:27]
-  wire [7:0] inst_read_Wmask; // @[IFU.scala 28:27]
-  wire  inst_read_Write_en; // @[IFU.scala 28:27]
-  wire  inst_read_Read_en; // @[IFU.scala 28:27]
-  reg  fs_valid; // @[IFU.scala 18:27]
-  reg [63:0] fs_pc; // @[IFU.scala 25:24]
-  wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 30:24]
-  wire  fs_allowin = ~fs_valid | io_ds_allowin; // @[IFU.scala 35:29]
-  wire  _GEN_0 = io_br_taken_cancel ? 1'h0 : fs_valid; // @[IFU.scala 40:35 41:18 18:27]
-  wire  _GEN_1 = fs_allowin | _GEN_0; // @[IFU.scala 37:36 38:18]
-  MEM inst_read ( // @[IFU.scala 28:27]
-    .Raddr(inst_read_Raddr),
-    .Rdata(inst_read_Rdata),
-    .Waddr(inst_read_Waddr),
-    .Wdata(inst_read_Wdata),
-    .Wmask(inst_read_Wmask),
-    .Write_en(inst_read_Write_en),
-    .Read_en(inst_read_Read_en)
-  );
-  assign io_to_ds_pc = fs_pc; // @[IFU.scala 48:17]
-  assign io_fs_to_ds_valid = fs_valid; // @[IFU.scala 34:33]
-  assign io_inst = inst_read_Rdata[31:0]; // @[IFU.scala 47:34]
-  assign inst_read_Raddr = fs_pc; // @[IFU.scala 44:24]
-  assign inst_read_Waddr = 64'h0;
-  assign inst_read_Wdata = 64'h0;
-  assign inst_read_Wmask = 8'h0;
-  assign inst_read_Write_en = 1'h0;
-  assign inst_read_Read_en = fs_valid; // @[IFU.scala 45:26]
+  reg  fs_valid; // @[IFU.scala 20:27]
+  reg [63:0] fs_pc; // @[IFU.scala 27:24]
+  reg [31:0] fs_inst; // @[IFU.scala 28:26]
+  wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 41:24]
+  wire  fs_allowin = ~fs_valid; // @[IFU.scala 46:19]
+  wire  _GEN_3 = fs_allowin | fs_valid; // @[IFU.scala 48:36 49:18]
+  reg  inst_ready; // @[IFU.scala 61:29]
+  wire  _GEN_5 = io_axi_in_rvalid & inst_ready & io_axi_in_rlast ? 1'h0 : 1'h1; // @[IFU.scala 62:60 63:20 65:20]
+  assign io_to_ds_pc = fs_pc; // @[IFU.scala 58:17]
+  assign io_inst = fs_inst; // @[IFU.scala 84:13]
+  assign io_axi_out_araddr = fs_pc[31:0]; // @[IFU.scala 68:31]
+  assign io_axi_out_arvalid = fs_valid; // @[IFU.scala 69:24]
+  assign io_axi_out_rready = inst_ready; // @[IFU.scala 73:23]
   always @(posedge clock) begin
-    if (reset) begin // @[IFU.scala 18:27]
-      fs_valid <= 1'h0; // @[IFU.scala 18:27]
+    if (reset) begin // @[IFU.scala 20:27]
+      fs_valid <= 1'h0; // @[IFU.scala 20:27]
     end else begin
-      fs_valid <= _GEN_1;
+      fs_valid <= _GEN_3;
     end
-    if (reset) begin // @[IFU.scala 25:24]
-      fs_pc <= 64'h7ffffffc; // @[IFU.scala 25:24]
-    end else if (fs_allowin) begin // @[IFU.scala 37:36]
-      if (io_br_taken) begin // @[IFU.scala 31:19]
-        fs_pc <= io_br_target;
-      end else begin
-        fs_pc <= seq_pc;
-      end
+    if (reset) begin // @[IFU.scala 27:24]
+      fs_pc <= 64'h7ffffffc; // @[IFU.scala 27:24]
+    end else if (fs_allowin) begin // @[IFU.scala 48:36]
+      fs_pc <= seq_pc; // @[IFU.scala 50:15]
     end
+    if (reset) begin // @[IFU.scala 28:26]
+      fs_inst <= 32'h0; // @[IFU.scala 28:26]
+    end else if (io_axi_in_rvalid) begin // @[IFU.scala 30:27]
+      fs_inst <= io_axi_in_rdata[31:0]; // @[IFU.scala 31:17]
+    end
+    inst_ready <= reset | _GEN_5; // @[IFU.scala 61:{29,29}]
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"fs_pc:%x fa_valid:%d\n",fs_pc,fs_valid); // @[IFU.scala 50:11]
+          $fwrite(32'h80000002,"fs_pc:%x fa_valid:%d\n",fs_pc,fs_valid); // @[IFU.scala 86:11]
         end
     `ifdef PRINTF_COND
       end
@@ -112,6 +99,10 @@ initial begin
   fs_valid = _RAND_0[0:0];
   _RAND_1 = {2{`RANDOM}};
   fs_pc = _RAND_1[63:0];
+  _RAND_2 = {1{`RANDOM}};
+  fs_inst = _RAND_2[31:0];
+  _RAND_3 = {1{`RANDOM}};
+  inst_ready = _RAND_3[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
