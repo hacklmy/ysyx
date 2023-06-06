@@ -452,7 +452,8 @@ module IFU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"fs_pc:%x fs_valid:%d fs_inst:%x\n",fs_pc,fs_valid,fs_inst); // @[IFU.scala 86:11]
+          $fwrite(32'h80000002,"fs_pc:%x fs_valid:%d fs_inst:%x rvalid:%d \n\n",fs_pc,fs_valid,fs_inst,io_axi_in_rvalid
+            ); // @[IFU.scala 86:11]
         end
     `ifdef PRINTF_COND
       end
@@ -1009,7 +1010,7 @@ module IDU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ds_pc:%x ds_valid:%d br_taken:%d src1:%x src2:%x  wen:%d wmask:%x\n\n",ds_pc,ds_valid,
+          $fwrite(32'h80000002,"ds_pc:%x ds_valid:%d br_taken:%d src1:%x src2:%x  wen:%d wmask:%x\n",ds_pc,ds_valid,
             br_taken,io_src1,io_src2,_src2_is_imm_T_4,Wmask); // @[IDU.scala 493:11]
         end
     `ifdef PRINTF_COND
