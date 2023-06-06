@@ -112,6 +112,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     VlWide<16>/*511:0*/ top__DOT__i_cache__DOT___GEN_154;
     VlWide<16>/*511:0*/ top__DOT__i_cache__DOT___GEN_155;
     VlWide<16>/*511:0*/ top__DOT__i_cache__DOT___GEN_156;
+    IData/*31:0*/ top__DOT__i_cache__DOT___GEN_161;
     IData/*31:0*/ top__DOT__i_cache__DOT___GEN_162;
     IData/*31:0*/ top__DOT__i_cache__DOT___GEN_163;
     IData/*31:0*/ top__DOT__i_cache__DOT___GEN_164;
@@ -214,6 +215,15 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     VlWide<16>/*511:0*/ __Vtemp990;
     VlWide<18>/*575:0*/ __Vtemp1000;
     // Body
+    top__DOT__i_cache__DOT___GEN_161 = ((4U == (0xfU 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__IFU__DOT__fs_pc 
+                                                           >> 6U))))
+                                         ? (0x3fffffU 
+                                            & (IData)(
+                                                      (vlSelf->top__DOT__IFU__DOT__fs_pc 
+                                                       >> 0xaU)))
+                                         : vlSelf->top__DOT__i_cache__DOT__tag_1_4);
     top__DOT__i_cache__DOT___GEN_162 = ((5U == (0xfU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__IFU__DOT__fs_pc 
@@ -7287,9 +7297,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
             ((1U == (IData)(vlSelf->top__DOT__i_cache__DOT__unuse_way))
               ? vlSelf->top__DOT__i_cache__DOT__tag_1_4
               : ((2U == (IData)(vlSelf->top__DOT__i_cache__DOT__unuse_way))
-                  ? vlSelf->top__DOT__i_cache__DOT___GEN_161
+                  ? top__DOT__i_cache__DOT___GEN_161
                   : ((IData)(vlSelf->top__DOT__i_cache__DOT__quene)
-                      ? vlSelf->top__DOT__i_cache__DOT___GEN_161
+                      ? top__DOT__i_cache__DOT___GEN_161
                       : vlSelf->top__DOT__i_cache__DOT__tag_1_4)));
         vlSelf->top__DOT__i_cache__DOT___GEN_648 = 
             ((1U == (IData)(vlSelf->top__DOT__i_cache__DOT__unuse_way))

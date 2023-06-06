@@ -527,7 +527,6 @@ VL_MODULE(Vtop___024root) {
         IData/*31:0*/ top__DOT__i_cache__DOT___GEN_158;
         IData/*31:0*/ top__DOT__i_cache__DOT___GEN_159;
         IData/*31:0*/ top__DOT__i_cache__DOT___GEN_160;
-        IData/*31:0*/ top__DOT__i_cache__DOT___GEN_161;
         VlWide<16>/*511:0*/ top__DOT__i_cache__DOT___GEN_578;
         VlWide<16>/*511:0*/ top__DOT__i_cache__DOT___GEN_579;
         VlWide<16>/*511:0*/ top__DOT__i_cache__DOT___GEN_580;
@@ -557,9 +556,9 @@ VL_MODULE(Vtop___024root) {
         IData/*31:0*/ top__DOT__i_cache__DOT___GEN_604;
         IData/*31:0*/ top__DOT__i_cache__DOT___GEN_605;
         IData/*31:0*/ top__DOT__i_cache__DOT___GEN_606;
+        IData/*31:0*/ top__DOT__i_cache__DOT___GEN_607;
     };
     struct {
-        IData/*31:0*/ top__DOT__i_cache__DOT___GEN_607;
         IData/*31:0*/ top__DOT__i_cache__DOT___GEN_608;
         IData/*31:0*/ top__DOT__i_cache__DOT___GEN_609;
         VlWide<16>/*511:0*/ top__DOT__i_cache__DOT___GEN_627;
@@ -623,9 +622,9 @@ VL_MODULE(Vtop___024root) {
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT__ram_1_8;
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT__ram_1_9;
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT__ram_1_10;
+        VlWide<16>/*511:0*/ top__DOT__d_cache__DOT__ram_1_11;
     };
     struct {
-        VlWide<16>/*511:0*/ top__DOT__d_cache__DOT__ram_1_11;
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT__ram_1_12;
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT__ram_1_13;
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT__ram_1_14;
@@ -689,9 +688,9 @@ VL_MODULE(Vtop___024root) {
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT___GEN_239;
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT___GEN_240;
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT___GEN_241;
+        VlWide<16>/*511:0*/ top__DOT__d_cache__DOT___GEN_242;
     };
     struct {
-        VlWide<16>/*511:0*/ top__DOT__d_cache__DOT___GEN_242;
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT___GEN_243;
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT___GEN_244;
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT___GEN_245;
@@ -755,9 +754,9 @@ VL_MODULE(Vtop___024root) {
         IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1518;
         IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1519;
         IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1520;
+        IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1521;
     };
     struct {
-        IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1521;
         IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1522;
         IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1523;
         IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1524;
@@ -821,9 +820,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__i_cache__DOT___GEN_84;
         QData/*63:0*/ top__DOT__i_cache__DOT___GEN_85;
         QData/*63:0*/ top__DOT__i_cache__DOT___GEN_86;
+        QData/*63:0*/ top__DOT__i_cache__DOT___GEN_87;
     };
     struct {
-        QData/*63:0*/ top__DOT__i_cache__DOT___GEN_87;
         QData/*63:0*/ top__DOT__i_cache__DOT___GEN_88;
         QData/*63:0*/ top__DOT__i_cache__DOT___GEN_89;
         QData/*63:0*/ top__DOT__i_cache__DOT___GEN_90;

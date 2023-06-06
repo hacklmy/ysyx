@@ -30,6 +30,7 @@ module IFU(
   wire  _GEN_1 = io_axi_in_rvalid | fs_ready_go; // @[IFU.scala 30:27 32:21 21:29]
   wire  fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 45:33]
   wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 41:24]
+  wire [63:0] pc_next = io_br_taken ? io_br_target : seq_pc; // @[IFU.scala 42:19]
   wire  fs_allowin = ~fs_valid | fs_ready_go & io_ds_allowin; // @[IFU.scala 46:29]
   wire  _GEN_3 = io_br_taken_cancel ? 1'h0 : fs_valid; // @[IFU.scala 51:35 52:18 20:27]
   wire  _GEN_4 = fs_allowin | _GEN_3; // @[IFU.scala 48:36 49:18]
@@ -74,8 +75,8 @@ module IFU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"fs_pc:%x fs_valid:%d fs_inst:%x rvalid:%d \n\n",fs_pc,fs_valid,fs_inst,io_axi_in_rvalid
-            ); // @[IFU.scala 86:11]
+          $fwrite(32'h80000002,"fs_pc:%x fs_valid:%d fs_inst:%x rvalid:%d next_pc:%x\n\n",fs_pc,fs_valid,fs_inst,
+            io_axi_in_rvalid,pc_next); // @[IFU.scala 86:11]
         end
     `ifdef PRINTF_COND
       end
