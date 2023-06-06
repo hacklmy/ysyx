@@ -28,6 +28,7 @@ VM_CLASSES_FAST += \
 	Vtop \
 	Vtop___024root \
 	Vtop___024root__1 \
+	Vtop___024root__2 \
 	Vtop___024unit \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
