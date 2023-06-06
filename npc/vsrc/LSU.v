@@ -1,115 +1,151 @@
 module LSU(
   input         clock,
   input         reset,
-  input         io_inst_store,
-  input         io_inst_load,
-  input  [31:0] io_mem_addr,
-  input  [63:0] io_mem_wdata,
-  input  [7:0]  io_mem_wstrb,
-  output [63:0] io_mem_rdata,
-  input         io_axi_in_arready,
-  input  [63:0] io_axi_in_rdata,
-  input         io_axi_in_rvalid,
-  input         io_axi_in_awready,
-  input         io_axi_in_wready,
-  input         io_axi_in_bvalid,
-  output [31:0] io_axi_out_araddr,
-  output        io_axi_out_arvalid,
-  output        io_axi_out_rready,
-  output [31:0] io_axi_out_awaddr,
-  output        io_axi_out_awvalid,
-  output [63:0] io_axi_out_wdata,
-  output [7:0]  io_axi_out_wstrb,
-  output        io_axi_out_wvalid,
-  output        io_axi_out_bready
+  input  [63:0] io_pc,
+  input         io_es_to_ms_valid,
+  input         io_rf_we,
+  input  [4:0]  io_rf_dst,
+  input  [63:0] io_alu_res,
+  input  [63:0] io_store_data,
+  input  [2:0]  io_load_type,
+  input         io_wen,
+  input  [7:0]  io_wstrb,
+  input         io_ren,
+  input  [63:0] io_maddr,
+  output [63:0] io_to_ws_pc,
+  output [63:0] io_ms_final_res,
+  output        io_ms_to_ws_valid,
+  output        io_to_ws_rf_we,
+  output [4:0]  io_to_ws_rf_dst,
+  output        io_ms_valid,
+  output        io_ms_rf_we,
+  output [4:0]  io_ms_rf_dst
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
-  reg [31:0] _RAND_1;
+  reg [63:0] _RAND_1;
   reg [31:0] _RAND_2;
   reg [31:0] _RAND_3;
-  reg [31:0] _RAND_4;
-  reg [31:0] _RAND_5;
+  reg [63:0] _RAND_4;
+  reg [63:0] _RAND_5;
+  reg [31:0] _RAND_6;
+  reg [31:0] _RAND_7;
+  reg [31:0] _RAND_8;
+  reg [63:0] _RAND_9;
+  reg [31:0] _RAND_10;
 `endif // RANDOMIZE_REG_INIT
-  reg  axi_arvalid; // @[LSU.scala 19:30]
-  reg  axi_rready; // @[LSU.scala 22:29]
-  reg  axi_awvalid; // @[LSU.scala 23:30]
-  reg  axi_wvalid; // @[LSU.scala 24:29]
-  reg  axi_bready; // @[LSU.scala 25:29]
-  reg [1:0] state; // @[LSU.scala 28:24]
-  wire  _GEN_1 = io_inst_store | axi_awvalid; // @[LSU.scala 36:38 38:29 23:30]
-  wire  _GEN_2 = io_inst_store | axi_wvalid; // @[LSU.scala 36:38 39:28 24:29]
-  wire  _GEN_3 = io_inst_store | axi_bready; // @[LSU.scala 36:38 40:28 25:29]
-  wire  _GEN_5 = io_inst_load | axi_arvalid; // @[LSU.scala 32:31 34:29 19:30]
-  wire  _GEN_6 = io_inst_load | axi_rready; // @[LSU.scala 32:31 35:28 22:29]
-  wire  _GEN_9 = io_inst_load ? axi_bready : _GEN_3; // @[LSU.scala 25:29 32:31]
-  wire  _GEN_11 = io_axi_in_bvalid ? 1'h0 : axi_bready; // @[LSU.scala 44:35 46:28 25:29]
-  wire  _GEN_14 = io_axi_in_arready ? 1'h0 : axi_arvalid; // @[LSU.scala 56:36 57:29 19:30]
-  wire [1:0] _GEN_15 = io_axi_in_rvalid ? 2'h0 : state; // @[LSU.scala 59:35 60:23 28:24]
-  wire  _GEN_16 = io_axi_in_rvalid ? 1'h0 : axi_rready; // @[LSU.scala 59:35 61:28 22:29]
-  wire  _GEN_19 = 2'h2 == state ? _GEN_16 : axi_rready; // @[LSU.scala 30:18 22:29]
-  wire  _GEN_21 = 2'h1 == state ? _GEN_11 : axi_bready; // @[LSU.scala 30:18 25:29]
-  wire  _GEN_25 = 2'h1 == state ? axi_rready : _GEN_19; // @[LSU.scala 30:18 22:29]
-  wire  _GEN_28 = 2'h0 == state ? _GEN_6 : _GEN_25; // @[LSU.scala 30:18]
-  wire  _GEN_31 = 2'h0 == state ? _GEN_9 : _GEN_21; // @[LSU.scala 30:18]
-  assign io_mem_rdata = io_axi_in_rdata; // @[LSU.scala 72:18]
-  assign io_axi_out_araddr = io_mem_addr; // @[LSU.scala 73:23]
-  assign io_axi_out_arvalid = axi_arvalid; // @[LSU.scala 74:24]
-  assign io_axi_out_rready = axi_rready; // @[LSU.scala 78:23]
-  assign io_axi_out_awaddr = io_mem_addr; // @[LSU.scala 79:23]
-  assign io_axi_out_awvalid = axi_awvalid; // @[LSU.scala 80:24]
-  assign io_axi_out_wdata = io_mem_wdata; // @[LSU.scala 84:22]
-  assign io_axi_out_wstrb = io_mem_wstrb; // @[LSU.scala 85:22]
-  assign io_axi_out_wvalid = axi_wvalid; // @[LSU.scala 87:23]
-  assign io_axi_out_bready = axi_bready; // @[LSU.scala 88:23]
+  wire [63:0] Mem_modle_Raddr; // @[LSU.scala 71:27]
+  wire [63:0] Mem_modle_Rdata; // @[LSU.scala 71:27]
+  wire [63:0] Mem_modle_Waddr; // @[LSU.scala 71:27]
+  wire [63:0] Mem_modle_Wdata; // @[LSU.scala 71:27]
+  wire [7:0] Mem_modle_Wmask; // @[LSU.scala 71:27]
+  wire  Mem_modle_Write_en; // @[LSU.scala 71:27]
+  wire  Mem_modle_Read_en; // @[LSU.scala 71:27]
+  reg  ms_valid; // @[LSU.scala 32:27]
+  reg [63:0] ms_pc; // @[LSU.scala 33:24]
+  reg  ms_rf_we; // @[LSU.scala 37:27]
+  reg [4:0] ms_rf_dst; // @[LSU.scala 38:28]
+  reg [63:0] ms_res; // @[LSU.scala 39:25]
+  reg [63:0] store_data; // @[LSU.scala 41:29]
+  reg  wen; // @[LSU.scala 42:22]
+  reg [7:0] wstrb; // @[LSU.scala 43:24]
+  reg  ren; // @[LSU.scala 44:22]
+  reg [63:0] maddr; // @[LSU.scala 45:24]
+  reg [2:0] load_type; // @[LSU.scala 46:28]
+  wire [31:0] _rdata_T_2 = Mem_modle_Rdata[31] ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
+  wire [63:0] _rdata_T_4 = {_rdata_T_2,Mem_modle_Rdata[31:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _rdata_T_7 = {56'h0,Mem_modle_Rdata[7:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _rdata_T_10 = {32'h0,Mem_modle_Rdata[31:0]}; // @[Cat.scala 31:58]
+  wire [47:0] _rdata_T_13 = Mem_modle_Rdata[15] ? 48'hffffffffffff : 48'h0; // @[Bitwise.scala 74:12]
+  wire [63:0] _rdata_T_15 = {_rdata_T_13,Mem_modle_Rdata[15:0]}; // @[Cat.scala 31:58]
+  wire [55:0] _rdata_T_18 = Mem_modle_Rdata[7] ? 56'hffffffffffffff : 56'h0; // @[Bitwise.scala 74:12]
+  wire [63:0] _rdata_T_20 = {_rdata_T_18,Mem_modle_Rdata[7:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _rdata_T_23 = {48'h0,Mem_modle_Rdata[15:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _rdata_T_25 = 3'h0 == load_type ? _rdata_T_4 : Mem_modle_Rdata; // @[Mux.scala 81:58]
+  wire [63:0] _rdata_T_27 = 3'h1 == load_type ? Mem_modle_Rdata : _rdata_T_25; // @[Mux.scala 81:58]
+  wire [63:0] _rdata_T_29 = 3'h2 == load_type ? _rdata_T_7 : _rdata_T_27; // @[Mux.scala 81:58]
+  wire [63:0] _rdata_T_31 = 3'h3 == load_type ? _rdata_T_10 : _rdata_T_29; // @[Mux.scala 81:58]
+  wire [63:0] _rdata_T_33 = 3'h4 == load_type ? _rdata_T_15 : _rdata_T_31; // @[Mux.scala 81:58]
+  wire [63:0] _rdata_T_35 = 3'h5 == load_type ? _rdata_T_20 : _rdata_T_33; // @[Mux.scala 81:58]
+  wire [63:0] rdata = 3'h6 == load_type ? _rdata_T_23 : _rdata_T_35; // @[Mux.scala 81:58]
+  MEM Mem_modle ( // @[LSU.scala 71:27]
+    .Raddr(Mem_modle_Raddr),
+    .Rdata(Mem_modle_Rdata),
+    .Waddr(Mem_modle_Waddr),
+    .Wdata(Mem_modle_Wdata),
+    .Wmask(Mem_modle_Wmask),
+    .Write_en(Mem_modle_Write_en),
+    .Read_en(Mem_modle_Read_en)
+  );
+  assign io_to_ws_pc = ms_pc; // @[LSU.scala 92:17]
+  assign io_ms_final_res = ren ? rdata : ms_res; // @[LSU.scala 88:27]
+  assign io_ms_to_ws_valid = ms_valid; // @[LSU.scala 68:32]
+  assign io_to_ws_rf_we = ms_rf_we; // @[LSU.scala 91:20]
+  assign io_to_ws_rf_dst = ms_rf_dst; // @[LSU.scala 90:21]
+  assign io_ms_valid = ms_valid; // @[LSU.scala 94:17]
+  assign io_ms_rf_we = ms_rf_we & ms_valid; // @[LSU.scala 96:28]
+  assign io_ms_rf_dst = ms_rf_dst; // @[LSU.scala 95:18]
+  assign Mem_modle_Raddr = maddr; // @[LSU.scala 72:24]
+  assign Mem_modle_Waddr = maddr; // @[LSU.scala 73:24]
+  assign Mem_modle_Wdata = store_data; // @[LSU.scala 74:24]
+  assign Mem_modle_Wmask = wstrb; // @[LSU.scala 75:24]
+  assign Mem_modle_Write_en = wen & ms_valid; // @[LSU.scala 76:34]
+  assign Mem_modle_Read_en = ren; // @[LSU.scala 77:26]
   always @(posedge clock) begin
-    if (reset) begin // @[LSU.scala 19:30]
-      axi_arvalid <= 1'h0; // @[LSU.scala 19:30]
-    end else if (2'h0 == state) begin // @[LSU.scala 30:18]
-      axi_arvalid <= _GEN_5;
-    end else if (!(2'h1 == state)) begin // @[LSU.scala 30:18]
-      if (2'h2 == state) begin // @[LSU.scala 30:18]
-        axi_arvalid <= _GEN_14;
-      end
+    if (reset) begin // @[LSU.scala 32:27]
+      ms_valid <= 1'h0; // @[LSU.scala 32:27]
+    end else begin
+      ms_valid <= io_es_to_ms_valid;
     end
-    axi_rready <= reset | _GEN_28; // @[LSU.scala 22:{29,29}]
-    if (reset) begin // @[LSU.scala 23:30]
-      axi_awvalid <= 1'h0; // @[LSU.scala 23:30]
-    end else if (2'h0 == state) begin // @[LSU.scala 30:18]
-      if (!(io_inst_load)) begin // @[LSU.scala 32:31]
-        axi_awvalid <= _GEN_1;
-      end
-    end else if (2'h1 == state) begin // @[LSU.scala 30:18]
-      if (io_axi_in_awready) begin // @[LSU.scala 51:36]
-        axi_awvalid <= 1'h0; // @[LSU.scala 52:29]
-      end
+    if (reset) begin // @[LSU.scala 33:24]
+      ms_pc <= 64'h0; // @[LSU.scala 33:24]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 52:40]
+      ms_pc <= io_pc; // @[LSU.scala 53:15]
     end
-    if (reset) begin // @[LSU.scala 24:29]
-      axi_wvalid <= 1'h0; // @[LSU.scala 24:29]
-    end else if (2'h0 == state) begin // @[LSU.scala 30:18]
-      if (!(io_inst_load)) begin // @[LSU.scala 32:31]
-        axi_wvalid <= _GEN_2;
-      end
-    end else if (2'h1 == state) begin // @[LSU.scala 30:18]
-      if (io_axi_in_wready) begin // @[LSU.scala 48:35]
-        axi_wvalid <= 1'h0; // @[LSU.scala 49:28]
-      end
+    if (reset) begin // @[LSU.scala 37:27]
+      ms_rf_we <= 1'h0; // @[LSU.scala 37:27]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 52:40]
+      ms_rf_we <= io_rf_we; // @[LSU.scala 54:18]
     end
-    axi_bready <= reset | _GEN_31; // @[LSU.scala 25:{29,29}]
-    if (reset) begin // @[LSU.scala 28:24]
-      state <= 2'h0; // @[LSU.scala 28:24]
-    end else if (2'h0 == state) begin // @[LSU.scala 30:18]
-      if (io_inst_load) begin // @[LSU.scala 32:31]
-        state <= 2'h2; // @[LSU.scala 33:23]
-      end else if (io_inst_store) begin // @[LSU.scala 36:38]
-        state <= 2'h1; // @[LSU.scala 37:23]
-      end
-    end else if (2'h1 == state) begin // @[LSU.scala 30:18]
-      if (io_axi_in_bvalid) begin // @[LSU.scala 44:35]
-        state <= 2'h0; // @[LSU.scala 45:23]
-      end
-    end else if (2'h2 == state) begin // @[LSU.scala 30:18]
-      state <= _GEN_15;
+    if (reset) begin // @[LSU.scala 38:28]
+      ms_rf_dst <= 5'h0; // @[LSU.scala 38:28]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 52:40]
+      ms_rf_dst <= io_rf_dst; // @[LSU.scala 55:19]
+    end
+    if (reset) begin // @[LSU.scala 39:25]
+      ms_res <= 64'h0; // @[LSU.scala 39:25]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 52:40]
+      ms_res <= io_alu_res; // @[LSU.scala 56:16]
+    end
+    if (reset) begin // @[LSU.scala 41:29]
+      store_data <= 64'h0; // @[LSU.scala 41:29]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 52:40]
+      store_data <= io_store_data; // @[LSU.scala 58:20]
+    end
+    if (reset) begin // @[LSU.scala 42:22]
+      wen <= 1'h0; // @[LSU.scala 42:22]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 52:40]
+      wen <= io_wen; // @[LSU.scala 59:13]
+    end
+    if (reset) begin // @[LSU.scala 43:24]
+      wstrb <= 8'h0; // @[LSU.scala 43:24]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 52:40]
+      wstrb <= io_wstrb; // @[LSU.scala 60:15]
+    end
+    if (reset) begin // @[LSU.scala 44:22]
+      ren <= 1'h0; // @[LSU.scala 44:22]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 52:40]
+      ren <= io_ren; // @[LSU.scala 61:13]
+    end
+    if (reset) begin // @[LSU.scala 45:24]
+      maddr <= 64'h0; // @[LSU.scala 45:24]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 52:40]
+      maddr <= io_maddr; // @[LSU.scala 62:15]
+    end
+    if (reset) begin // @[LSU.scala 46:28]
+      load_type <= 3'h0; // @[LSU.scala 46:28]
+    end else if (io_es_to_ms_valid) begin // @[LSU.scala 52:40]
+      load_type <= io_load_type; // @[LSU.scala 63:19]
     end
   end
 // Register and memory initialization
@@ -149,17 +185,27 @@ initial begin
     `endif
 `ifdef RANDOMIZE_REG_INIT
   _RAND_0 = {1{`RANDOM}};
-  axi_arvalid = _RAND_0[0:0];
-  _RAND_1 = {1{`RANDOM}};
-  axi_rready = _RAND_1[0:0];
+  ms_valid = _RAND_0[0:0];
+  _RAND_1 = {2{`RANDOM}};
+  ms_pc = _RAND_1[63:0];
   _RAND_2 = {1{`RANDOM}};
-  axi_awvalid = _RAND_2[0:0];
+  ms_rf_we = _RAND_2[0:0];
   _RAND_3 = {1{`RANDOM}};
-  axi_wvalid = _RAND_3[0:0];
-  _RAND_4 = {1{`RANDOM}};
-  axi_bready = _RAND_4[0:0];
-  _RAND_5 = {1{`RANDOM}};
-  state = _RAND_5[1:0];
+  ms_rf_dst = _RAND_3[4:0];
+  _RAND_4 = {2{`RANDOM}};
+  ms_res = _RAND_4[63:0];
+  _RAND_5 = {2{`RANDOM}};
+  store_data = _RAND_5[63:0];
+  _RAND_6 = {1{`RANDOM}};
+  wen = _RAND_6[0:0];
+  _RAND_7 = {1{`RANDOM}};
+  wstrb = _RAND_7[7:0];
+  _RAND_8 = {1{`RANDOM}};
+  ren = _RAND_8[0:0];
+  _RAND_9 = {2{`RANDOM}};
+  maddr = _RAND_9[63:0];
+  _RAND_10 = {1{`RANDOM}};
+  load_type = _RAND_10[2:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
