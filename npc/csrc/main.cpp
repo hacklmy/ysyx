@@ -689,7 +689,7 @@ void difftest_step(uint64_t pc) {
   }
   if(is_skip_ref_s){
     ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
-    //ref_difftest_exec(1);
+    ref_difftest_exec(1);
     is_skip_ref_s = is_skip_ref;
     return;
   }
