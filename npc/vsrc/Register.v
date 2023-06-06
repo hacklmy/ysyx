@@ -1,5 +1,12 @@
 module Register(
-  input   clock
+  input         clock,
+  input  [4:0]  io_raddr1,
+  input  [4:0]  io_raddr2,
+  output [63:0] io_rdata1,
+  output [63:0] io_rdata2,
+  input         io_we,
+  input  [4:0]  io_waddr,
+  input  [63:0] io_wdata
 );
 `ifdef RANDOMIZE_MEM_INIT
   reg [63:0] _RAND_0;
@@ -143,6 +150,7 @@ module Register(
   wire [63:0] reg_trace_input_reg_29; // @[register.scala 24:27]
   wire [63:0] reg_trace_input_reg_30; // @[register.scala 24:27]
   wire [63:0] reg_trace_input_reg_31; // @[register.scala 24:27]
+  wire  _T = io_waddr != 5'h0; // @[register.scala 19:25]
   traceregs reg_trace ( // @[register.scala 24:27]
     .input_reg_0(reg_trace_input_reg_0),
     .input_reg_1(reg_trace_input_reg_1),
@@ -178,10 +186,10 @@ module Register(
     .input_reg_31(reg_trace_input_reg_31)
   );
   assign Reg_io_rdata1_MPORT_en = 1'h1;
-  assign Reg_io_rdata1_MPORT_addr = 5'h0;
+  assign Reg_io_rdata1_MPORT_addr = io_raddr1;
   assign Reg_io_rdata1_MPORT_data = Reg[Reg_io_rdata1_MPORT_addr]; // @[register.scala 18:18]
   assign Reg_io_rdata2_MPORT_en = 1'h1;
-  assign Reg_io_rdata2_MPORT_addr = 5'h0;
+  assign Reg_io_rdata2_MPORT_addr = io_raddr2;
   assign Reg_io_rdata2_MPORT_data = Reg[Reg_io_rdata2_MPORT_addr]; // @[register.scala 18:18]
   assign Reg_reg_trace_io_input_reg_0_MPORT_en = 1'h1;
   assign Reg_reg_trace_io_input_reg_0_MPORT_addr = 5'h0;
@@ -279,10 +287,12 @@ module Register(
   assign Reg_reg_trace_io_input_reg_31_MPORT_en = 1'h1;
   assign Reg_reg_trace_io_input_reg_31_MPORT_addr = 5'h1f;
   assign Reg_reg_trace_io_input_reg_31_MPORT_data = Reg[Reg_reg_trace_io_input_reg_31_MPORT_addr]; // @[register.scala 18:18]
-  assign Reg_MPORT_data = 64'h0;
-  assign Reg_MPORT_addr = 5'h0;
+  assign Reg_MPORT_data = io_wdata;
+  assign Reg_MPORT_addr = io_waddr;
   assign Reg_MPORT_mask = 1'h1;
-  assign Reg_MPORT_en = 1'h0;
+  assign Reg_MPORT_en = io_we & _T;
+  assign io_rdata1 = io_raddr1 == 5'h0 ? 64'h0 : Reg_io_rdata1_MPORT_data; // @[register.scala 22:21]
+  assign io_rdata2 = io_raddr2 == 5'h0 ? 64'h0 : Reg_io_rdata2_MPORT_data; // @[register.scala 23:21]
   assign reg_trace_input_reg_0 = Reg_reg_trace_io_input_reg_0_MPORT_data; // @[register.scala 26:57]
   assign reg_trace_input_reg_1 = Reg_reg_trace_io_input_reg_1_MPORT_data; // @[register.scala 26:57]
   assign reg_trace_input_reg_2 = Reg_reg_trace_io_input_reg_2_MPORT_data; // @[register.scala 26:57]
