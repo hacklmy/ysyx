@@ -453,7 +453,7 @@ module IFU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"fs_pc:%x fs_valid:%d fs_inst:%x rvalid:%d next_pc:%x\n\n",fs_pc,fs_valid,fs_inst,
+          $fwrite(32'h80000002,"fs_pc:%x fs_valid:%d fs_inst:%x rvalid:%d next_pc:%x\n",fs_pc,fs_valid,fs_inst,
             io_axi_in_rvalid,pc_next); // @[IFU.scala 86:11]
         end
     `ifdef PRINTF_COND
@@ -1953,7 +1953,7 @@ module LSU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d wstrb:%x wdata:%x\n",ms_pc,ms_valid,wstrb,store_data); // @[LSU.scala 137:11]
+          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d wstrb:%x wdata:%x\n\n",ms_pc,ms_valid,wstrb,store_data); // @[LSU.scala 137:11]
         end
     `ifdef PRINTF_COND
       end
@@ -2096,7 +2096,7 @@ module WBU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ws_pc:%x ws_valid:%d rf_dst:%d rf_we:%d wdata:%x\n\n",ws_pc,ws_valid,ws_rf_dst,io_we,
+          $fwrite(32'h80000002,"ws_pc:%x ws_valid:%d rf_dst:%d rf_we:%d wdata:%x\n",ws_pc,ws_valid,ws_rf_dst,io_we,
             ws_res); // @[WBU.scala 66:11]
         end
     `ifdef PRINTF_COND

@@ -64,7 +64,7 @@ module WBU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ws_pc:%x ws_valid:%d rf_dst:%d rf_we:%d wdata:%x\n\n",ws_pc,ws_valid,ws_rf_dst,io_we,
+          $fwrite(32'h80000002,"ws_pc:%x ws_valid:%d rf_dst:%d rf_we:%d wdata:%x\n",ws_pc,ws_valid,ws_rf_dst,io_we,
             ws_res); // @[WBU.scala 66:11]
         end
     `ifdef PRINTF_COND
