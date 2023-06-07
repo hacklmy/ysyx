@@ -1971,8 +1971,8 @@ module LSU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d maddr:%x wstrb:%x wdata:%x\n\n",ms_pc,ms_valid,maddr,wstrb,
-            store_data); // @[LSU.scala 137:11]
+          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d rdata:%x maddr:%x wstrb:%x wdata:%x\n\n",ms_pc,ms_valid,
+            io_axi_in_rdata,maddr,wstrb,store_data); // @[LSU.scala 137:11]
         end
     `ifdef PRINTF_COND
       end

@@ -5046,10 +5046,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                   & (IData)(vlSelf->top__DOT__d_cache_io_to_lsu_rvalid))) 
                                               & (IData)(vlSelf->top__DOT__LSU__DOT___GEN_8))));
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"ms_pc:%x ms_valid:%1# wstrb:%x wdata:%x\n\n",
+        VL_FWRITEF(0x80000002U,"ms_pc:%x ms_valid:%1# maddr:%x wstrb:%x wdata:%x\n\n",
                    64,vlSelf->top__DOT__LSU__DOT__ms_pc,
                    1,(IData)(vlSelf->top__DOT__LSU__DOT__ms_valid),
-                   8,vlSelf->top__DOT__LSU__DOT__wstrb,
+                   64,vlSelf->top__DOT__LSU__DOT__maddr,
+                   8,(IData)(vlSelf->top__DOT__LSU__DOT__wstrb),
                    64,vlSelf->top__DOT__LSU__DOT__store_data);
     }
     if (vlSelf->reset) {
