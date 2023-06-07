@@ -42,7 +42,7 @@ module IFU(
   assign io_fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 59:33]
   assign io_inst = fs_inst; // @[IFU.scala 96:13]
   assign io_axi_out_araddr = fs_pc[31:0]; // @[IFU.scala 80:31]
-  assign io_axi_out_arvalid = fs_valid; // @[IFU.scala 81:24]
+  assign io_axi_out_arvalid = fs_valid & ~fs_ready_go; // @[IFU.scala 81:36]
   assign io_axi_out_rready = inst_ready; // @[IFU.scala 85:23]
   always @(posedge clock) begin
     if (reset) begin // @[IFU.scala 22:27]
