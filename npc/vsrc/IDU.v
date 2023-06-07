@@ -7,6 +7,7 @@ module IDU(
   output        io_ds_to_es_valid,
   input         io_es_allowin,
   input  [31:0] io_from_fs_inst,
+  output        io_br_taken,
   output [63:0] io_br_target,
   output        io_br_taken_cancel,
   output        io_ds_allowin,
@@ -353,6 +354,7 @@ module IDU(
     .io_rdata(csr_reg_io_rdata)
   );
   assign io_ds_to_es_valid = ds_valid & ds_ready_go; // @[IDU.scala 104:32]
+  assign io_br_taken = br_taken & ds_valid; // @[IDU.scala 466:29]
   assign io_br_target = _br_taken_T_23 ? _br_target_T_4 : _br_target_T_14; // @[Lookup.scala 34:39]
   assign io_br_taken_cancel = br_taken_cancel & ds_valid; // @[IDU.scala 467:43]
   assign io_ds_allowin = ~ds_valid | ds_ready_go & io_es_allowin; // @[IDU.scala 105:29]
