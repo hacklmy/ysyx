@@ -21,7 +21,6 @@ module top(
   wire  IFU_io_ds_allowin; // @[top.scala 16:21]
   wire  IFU_io_br_taken; // @[top.scala 16:21]
   wire [63:0] IFU_io_br_target; // @[top.scala 16:21]
-  wire  IFU_io_br_taken_cancel; // @[top.scala 16:21]
   wire [63:0] IFU_io_to_ds_pc; // @[top.scala 16:21]
   wire  IFU_io_fs_to_ds_valid; // @[top.scala 16:21]
   wire [31:0] IFU_io_inst; // @[top.scala 16:21]
@@ -40,7 +39,6 @@ module top(
   wire [31:0] IDU_io_from_fs_inst; // @[top.scala 17:21]
   wire  IDU_io_br_taken; // @[top.scala 17:21]
   wire [63:0] IDU_io_br_target; // @[top.scala 17:21]
-  wire  IDU_io_br_taken_cancel; // @[top.scala 17:21]
   wire  IDU_io_ds_allowin; // @[top.scala 17:21]
   wire [4:0] IDU_io_raddr1; // @[top.scala 17:21]
   wire [4:0] IDU_io_raddr2; // @[top.scala 17:21]
@@ -186,7 +184,6 @@ module top(
   wire  arbiter_io_axi_out_bready; // @[top.scala 21:25]
   wire  i_cache_clock; // @[top.scala 22:25]
   wire  i_cache_reset; // @[top.scala 22:25]
-  wire  i_cache_io_br_taken; // @[top.scala 22:25]
   wire [31:0] i_cache_io_from_ifu_araddr; // @[top.scala 22:25]
   wire  i_cache_io_from_ifu_arvalid; // @[top.scala 22:25]
   wire  i_cache_io_from_ifu_rready; // @[top.scala 22:25]
@@ -269,7 +266,6 @@ module top(
     .io_ds_allowin(IFU_io_ds_allowin),
     .io_br_taken(IFU_io_br_taken),
     .io_br_target(IFU_io_br_target),
-    .io_br_taken_cancel(IFU_io_br_taken_cancel),
     .io_to_ds_pc(IFU_io_to_ds_pc),
     .io_fs_to_ds_valid(IFU_io_fs_to_ds_valid),
     .io_inst(IFU_io_inst),
@@ -290,7 +286,6 @@ module top(
     .io_from_fs_inst(IDU_io_from_fs_inst),
     .io_br_taken(IDU_io_br_taken),
     .io_br_target(IDU_io_br_target),
-    .io_br_taken_cancel(IDU_io_br_taken_cancel),
     .io_ds_allowin(IDU_io_ds_allowin),
     .io_raddr1(IDU_io_raddr1),
     .io_raddr2(IDU_io_raddr2),
@@ -446,7 +441,6 @@ module top(
   I_CACHE i_cache ( // @[top.scala 22:25]
     .clock(i_cache_clock),
     .reset(i_cache_reset),
-    .io_br_taken(i_cache_io_br_taken),
     .io_from_ifu_araddr(i_cache_io_from_ifu_araddr),
     .io_from_ifu_arvalid(i_cache_io_from_ifu_arvalid),
     .io_from_ifu_rready(i_cache_io_from_ifu_rready),
@@ -530,7 +524,6 @@ module top(
   assign IFU_io_ds_allowin = IDU_io_ds_allowin; // @[top.scala 42:20]
   assign IFU_io_br_taken = IDU_io_br_taken; // @[top.scala 43:18]
   assign IFU_io_br_target = IDU_io_br_target; // @[top.scala 44:19]
-  assign IFU_io_br_taken_cancel = IDU_io_br_taken_cancel; // @[top.scala 45:25]
   assign IFU_io_axi_in_rdata = i_cache_io_to_ifu_rdata; // @[top.scala 29:16]
   assign IFU_io_axi_in_rlast = i_cache_io_to_ifu_rlast; // @[top.scala 29:16]
   assign IFU_io_axi_in_rvalid = i_cache_io_to_ifu_rvalid; // @[top.scala 29:16]
@@ -613,7 +606,6 @@ module top(
   assign arbiter_io_axi_in_bvalid = axi_io_axi_out_bvalid; // @[top.scala 37:23]
   assign i_cache_clock = clock;
   assign i_cache_reset = reset;
-  assign i_cache_io_br_taken = IDU_io_br_taken_cancel; // @[top.scala 26:25]
   assign i_cache_io_from_ifu_araddr = IFU_io_axi_out_araddr; // @[top.scala 30:25]
   assign i_cache_io_from_ifu_arvalid = IFU_io_axi_out_arvalid; // @[top.scala 30:25]
   assign i_cache_io_from_ifu_rready = IFU_io_axi_out_rready; // @[top.scala 30:25]

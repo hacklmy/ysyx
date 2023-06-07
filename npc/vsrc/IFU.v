@@ -5,7 +5,6 @@ module IFU(
   input         io_ds_allowin,
   input         io_br_taken,
   input  [63:0] io_br_target,
-  input         io_br_taken_cancel,
   output [63:0] io_to_ds_pc,
   output        io_fs_to_ds_valid,
   output [31:0] io_inst,
@@ -26,26 +25,25 @@ module IFU(
 `endif // RANDOMIZE_REG_INIT
   reg  br_taken; // @[IFU.scala 22:27]
   reg  fs_valid; // @[IFU.scala 24:27]
-  reg  fs_ready_go; // @[IFU.scala 25:29]
+  reg  fs_ready_go; // @[IFU.scala 25:30]
   reg [63:0] fs_pc; // @[IFU.scala 31:24]
   reg [31:0] fs_inst; // @[IFU.scala 32:26]
   wire  fs_allowin = ~fs_valid | fs_ready_go & io_ds_allowin; // @[IFU.scala 60:29]
   wire  _GEN_0 = fs_allowin ? 1'h0 : br_taken; // @[IFU.scala 40:42 41:18 22:27]
   wire  _GEN_1 = io_br_taken | _GEN_0; // @[IFU.scala 38:22 39:18]
-  wire  _GEN_3 = io_axi_in_rvalid & ~br_taken | fs_ready_go; // @[IFU.scala 44:40 46:21 25:29]
+  wire  _GEN_3 = io_axi_in_rvalid | fs_ready_go; // @[IFU.scala 44:27 46:21 25:30]
   wire  fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 59:33]
   wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 55:24]
   wire [63:0] pc_next = br_taken ? io_br_target : seq_pc; // @[IFU.scala 56:19]
-  wire  _GEN_5 = io_br_taken_cancel ? 1'h0 : fs_valid; // @[IFU.scala 65:36 66:18 24:27]
-  wire  _GEN_6 = fs_allowin | _GEN_5; // @[IFU.scala 62:36 63:18]
-  reg  inst_ready; // @[IFU.scala 75:29]
-  wire  _GEN_8 = io_axi_in_rvalid & inst_ready & io_axi_in_rlast ? 1'h0 : 1'h1; // @[IFU.scala 76:60 77:20 79:20]
-  assign io_to_ds_pc = fs_pc; // @[IFU.scala 72:17]
+  wire  _GEN_5 = fs_allowin | fs_valid; // @[IFU.scala 62:36 63:18 24:27]
+  reg  inst_ready; // @[IFU.scala 73:29]
+  wire  _GEN_7 = io_axi_in_rvalid & inst_ready & io_axi_in_rlast ? 1'h0 : 1'h1; // @[IFU.scala 74:60 75:20 77:20]
+  assign io_to_ds_pc = fs_pc; // @[IFU.scala 70:17]
   assign io_fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 59:33]
-  assign io_inst = fs_inst; // @[IFU.scala 98:13]
-  assign io_axi_out_araddr = fs_pc[31:0]; // @[IFU.scala 82:31]
-  assign io_axi_out_arvalid = fs_valid; // @[IFU.scala 83:24]
-  assign io_axi_out_rready = inst_ready; // @[IFU.scala 87:23]
+  assign io_inst = fs_inst; // @[IFU.scala 96:13]
+  assign io_axi_out_araddr = fs_pc[31:0]; // @[IFU.scala 80:31]
+  assign io_axi_out_arvalid = fs_valid; // @[IFU.scala 81:24]
+  assign io_axi_out_rready = inst_ready; // @[IFU.scala 85:23]
   always @(posedge clock) begin
     if (reset) begin // @[IFU.scala 22:27]
       br_taken <= 1'h0; // @[IFU.scala 22:27]
@@ -55,11 +53,11 @@ module IFU(
     if (reset) begin // @[IFU.scala 24:27]
       fs_valid <= 1'h0; // @[IFU.scala 24:27]
     end else begin
-      fs_valid <= _GEN_6;
+      fs_valid <= _GEN_5;
     end
-    if (reset) begin // @[IFU.scala 25:29]
-      fs_ready_go <= 1'h0; // @[IFU.scala 25:29]
-    end else if (io_ds_allowin & fs_to_ds_valid) begin // @[IFU.scala 48:42]
+    if (reset) begin // @[IFU.scala 25:30]
+      fs_ready_go <= 1'h0; // @[IFU.scala 25:30]
+    end else if (fs_to_ds_valid & io_ds_allowin) begin // @[IFU.scala 48:42]
       fs_ready_go <= 1'h0; // @[IFU.scala 49:21]
     end else begin
       fs_ready_go <= _GEN_3;
@@ -75,17 +73,17 @@ module IFU(
     end
     if (reset) begin // @[IFU.scala 32:26]
       fs_inst <= 32'h0; // @[IFU.scala 32:26]
-    end else if (io_axi_in_rvalid & ~br_taken) begin // @[IFU.scala 44:40]
+    end else if (io_axi_in_rvalid) begin // @[IFU.scala 44:27]
       fs_inst <= io_axi_in_rdata[31:0]; // @[IFU.scala 45:17]
     end
-    inst_ready <= reset | _GEN_8; // @[IFU.scala 75:{29,29}]
+    inst_ready <= reset | _GEN_7; // @[IFU.scala 73:{29,29}]
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
           $fwrite(32'h80000002,"fs_pc:%x fs_valid:%d fs_inst:%x rvalid:%d next_pc:%x\n",fs_pc,fs_valid,fs_inst,
-            io_axi_in_rvalid,pc_next); // @[IFU.scala 100:11]
+            io_axi_in_rvalid,pc_next); // @[IFU.scala 98:11]
         end
     `ifdef PRINTF_COND
       end
