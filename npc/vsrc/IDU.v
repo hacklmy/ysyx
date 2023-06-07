@@ -191,7 +191,6 @@ module IDU(
   wire [1:0] csr_write = _inst_type_T_119 ? 2'h3 : {{1'd0}, _csr_write_T_10}; // @[Lookup.scala 34:39]
   wire  _conflict_T_3 = csr_write == 2'h1; // @[IDU.scala 470:66]
   wire [4:0] rs1 = inst[19:15]; // @[IDU.scala 210:16]
-  wire  _src2_is_imm_T_4 = 32'h44 == inst_type; // @[Mux.scala 81:61]
   wire  src2_is_imm = 32'h45 == inst_type | (32'h43 == inst_type | (32'h44 == inst_type | (32'h42 == inst_type | 32'h40
      == inst_type))); // @[Mux.scala 81:58]
   wire  _conflict_T_28 = csr_write == 2'h3; // @[IDU.scala 470:339]
@@ -322,7 +321,6 @@ module IDU(
   wire [3:0] _Wmask_T_8 = _inst_type_T_75 ? 4'hf : 4'h0; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_9 = _inst_type_T_37 ? 4'h1 : _Wmask_T_8; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_10 = _inst_type_T_35 ? 4'h3 : _Wmask_T_9; // @[Lookup.scala 34:39]
-  wire [7:0] Wmask = _inst_type_T_11 ? 8'hff : {{4'd0}, _Wmask_T_10}; // @[Lookup.scala 34:39]
   wire [1:0] _csr_index_T_6 = 12'h300 == imm[11:0] ? 2'h2 : {{1'd0}, 12'h341 == imm[11:0]}; // @[Mux.scala 81:58]
   wire [1:0] csr_index = 12'h342 == imm[11:0] ? 2'h3 : _csr_index_T_6; // @[Mux.scala 81:58]
   wire [63:0] _csr_wdata_T = io_rdata1 | csr_reg_io_rdata; // @[IDU.scala 435:29]
@@ -404,18 +402,6 @@ module IDU(
     end else if (ds_allowin & io_fs_to_ds_valid) begin // @[IDU.scala 91:42]
       br_taken_cancel <= _T_2;
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"ds_pc:%x ds_valid:%d inst:%x br_taken:%d src1:%x src2:%x  wen:%d wmask:%x\n",ds_pc,
-            ds_valid,inst,br_taken,io_src1,io_src2,_src2_is_imm_T_4,Wmask); // @[IDU.scala 499:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
