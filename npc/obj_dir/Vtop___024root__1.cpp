@@ -27661,10 +27661,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
            ? 0U : ((0x3eU == (IData)(vlSelf->top__DOT__IDU__DOT___ALUop_T_176))
                     ? 1U : (IData)(vlSelf->top__DOT__IDU__DOT__csr_index)))];
     vlSelf->top__DOT__IDU__DOT__ds_ready_go = ((~ (IData)(vlSelf->top__DOT__IDU__DOT__conflict)) 
-                                               & (((6U 
-                                                    == (IData)(vlSelf->top__DOT__IDU__DOT___ALUop_T_176)) 
-                                                   & (IData)(vlSelf->top__DOT__IFU_io_fs_to_ds_valid)) 
-                                                  & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid)));
+                                               & ((((6U 
+                                                     == (IData)(vlSelf->top__DOT__IDU__DOT___ALUop_T_176)) 
+                                                    & (IData)(vlSelf->top__DOT__IFU_io_fs_to_ds_valid)) 
+                                                   & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid)) 
+                                                  | (6U 
+                                                     != (IData)(vlSelf->top__DOT__IDU__DOT___ALUop_T_176))));
     vlSelf->top__DOT__IDU_io_ds_to_es_valid = ((IData)(vlSelf->top__DOT__IDU__DOT__ds_valid) 
                                                & (IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go));
     vlSelf->top__DOT__IDU__DOT__ds_allowin = (1U & 
