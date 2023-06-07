@@ -431,7 +431,25 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                         & vlSelf->top__DOT__IDU__DOT__inst))))))))));
             tracep->chgCData(oldp+40,(((0x3023U == 
                                         (0x707fU & vlSelf->top__DOT__IDU__DOT__inst))
-                                        ? 0xffU : (IData)(vlSelf->top__DOT__IDU__DOT___Wmask_T_10))),8);
+                                        ? 0xffU : (
+                                                   (0x1023U 
+                                                    == 
+                                                    (0x707fU 
+                                                     & vlSelf->top__DOT__IDU__DOT__inst))
+                                                    ? 3U
+                                                    : 
+                                                   ((0x23U 
+                                                     == 
+                                                     (0x707fU 
+                                                      & vlSelf->top__DOT__IDU__DOT__inst))
+                                                     ? 1U
+                                                     : 
+                                                    ((0x2023U 
+                                                      == 
+                                                      (0x707fU 
+                                                       & vlSelf->top__DOT__IDU__DOT__inst))
+                                                      ? 0xfU
+                                                      : 0U))))),8);
             tracep->chgCData(oldp+41,(((0x2003U == 
                                         (0x707fU & vlSelf->top__DOT__IDU__DOT__inst))
                                         ? 1U : ((0x3003U 
