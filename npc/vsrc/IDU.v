@@ -215,7 +215,6 @@ module IDU(
     io_es_rf_we & io_es_valid | rs1 == io_ms_rf_dst & rs1 != 5'h0 & io_ms_rf_we & io_ms_valid | rs1 == io_ws_rf_dst &
     rs1 != 5'h0 & io_ws_rf_we & io_ws_valid) | _conflict_T_47; // @[IDU.scala 464:268]
   wire  ds_ready_go = ~conflict; // @[IDU.scala 103:20]
-  wire  br_taken_cancel = br_taken & ds_ready_go & ds_valid; // @[IDU.scala 92:48]
   wire  ds_allowin = ~ds_valid | ds_ready_go & io_es_allowin; // @[IDU.scala 105:29]
   wire [4:0] rd = inst[11:7]; // @[IDU.scala 205:15]
   wire [11:0] imm_imm = inst[31:20]; // @[IDU.scala 49:23]
@@ -381,7 +380,7 @@ module IDU(
   always @(posedge clock) begin
     if (reset) begin // @[IDU.scala 78:27]
       ds_valid <= 1'h0; // @[IDU.scala 78:27]
-    end else if (br_taken_cancel & ds_allowin & io_fs_to_ds_valid) begin // @[IDU.scala 94:61]
+    end else if (br_taken & ds_allowin & io_fs_to_ds_valid) begin // @[IDU.scala 94:61]
       ds_valid <= 1'h0; // @[IDU.scala 95:18]
     end else if (ds_allowin) begin // @[IDU.scala 96:27]
       ds_valid <= io_fs_to_ds_valid; // @[IDU.scala 97:18]

@@ -671,6 +671,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     VL_RAND_RESET_W(512, vlSelf->top__DOT__d_cache__DOT___GEN_302);
     VL_RAND_RESET_W(512, vlSelf->top__DOT__d_cache__DOT___GEN_303);
     VL_RAND_RESET_W(512, vlSelf->top__DOT__d_cache__DOT___GEN_304);
+    vlSelf->top__DOT__d_cache__DOT___GEN_335 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__d_cache__DOT___GEN_336 = VL_RAND_RESET_I(1);
     VL_RAND_RESET_W(512, vlSelf->top__DOT__d_cache__DOT___GEN_337);
     VL_RAND_RESET_W(512, vlSelf->top__DOT__d_cache__DOT___GEN_338);
