@@ -4911,14 +4911,14 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     if (vlSelf->reset) {
         vlSelf->top__DOT__WBU__DOT__ws_res = 0ULL;
     } else if (vlSelf->top__DOT__LSU_io_ms_to_ws_valid) {
-        vlSelf->top__DOT__WBU__DOT__ws_res = ((IData)(vlSelf->top__DOT__LSU__DOT__ren)
-                                               ? ((6U 
+        vlSelf->top__DOT__WBU__DOT__ws_res = ((0U != (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
+                                               ? ((7U 
                                                    == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                    ? (QData)((IData)(
                                                                      (0xffffU 
                                                                       & (IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata))))
                                                    : 
-                                                  ((5U 
+                                                  ((6U 
                                                     == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                     ? 
                                                    ((((1U 
@@ -4932,7 +4932,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                                       (0xffU 
                                                                        & (IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata)))))
                                                     : 
-                                                   ((4U 
+                                                   ((5U 
                                                      == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                      ? 
                                                     ((((1U 
@@ -4946,21 +4946,21 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                                        (0xffffU 
                                                                         & (IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata)))))
                                                      : 
-                                                    ((3U 
+                                                    ((4U 
                                                       == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                       ? (QData)((IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata))
                                                       : 
-                                                     ((2U 
+                                                     ((3U 
                                                        == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                        ? (QData)((IData)(
                                                                          (0xffU 
                                                                           & (IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata))))
                                                        : 
-                                                      ((1U 
+                                                      ((2U 
                                                         == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                         ? vlSelf->top__DOT__LSU__DOT__mem_rdata
                                                         : 
-                                                       ((0U 
+                                                       ((1U 
                                                          == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                          ? 
                                                         (((QData)((IData)(
@@ -5258,43 +5258,43 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                   == 
                                                   (0x707fU 
                                                    & vlSelf->top__DOT__IDU__DOT__inst))
-                                                  ? 0U
+                                                  ? 1U
                                                   : 
                                                  ((0x3003U 
                                                    == 
                                                    (0x707fU 
                                                     & vlSelf->top__DOT__IDU__DOT__inst))
-                                                   ? 1U
+                                                   ? 2U
                                                    : 
                                                   ((0x4003U 
                                                     == 
                                                     (0x707fU 
                                                      & vlSelf->top__DOT__IDU__DOT__inst))
-                                                    ? 2U
+                                                    ? 3U
                                                     : 
                                                    ((0x6003U 
                                                      == 
                                                      (0x707fU 
                                                       & vlSelf->top__DOT__IDU__DOT__inst))
-                                                     ? 3U
+                                                     ? 4U
                                                      : 
                                                     ((0x1003U 
                                                       == 
                                                       (0x707fU 
                                                        & vlSelf->top__DOT__IDU__DOT__inst))
-                                                      ? 4U
+                                                      ? 5U
                                                       : 
                                                      ((3U 
                                                        == 
                                                        (0x707fU 
                                                         & vlSelf->top__DOT__IDU__DOT__inst))
-                                                       ? 5U
+                                                       ? 6U
                                                        : 
                                                       ((0x5003U 
                                                         == 
                                                         (0x707fU 
                                                          & vlSelf->top__DOT__IDU__DOT__inst))
-                                                        ? 6U
+                                                        ? 7U
                                                         : 0U)))))));
     }
     if (vlSelf->reset) {

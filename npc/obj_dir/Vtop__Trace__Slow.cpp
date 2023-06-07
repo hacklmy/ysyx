@@ -1595,37 +1595,37 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                      ? 0xffU : (IData)(vlSelf->top__DOT__IDU__DOT___Wmask_T_10))),8);
         tracep->fullCData(oldp+42,(((0x2003U == (0x707fU 
                                                  & vlSelf->top__DOT__IDU__DOT__inst))
-                                     ? 0U : ((0x3003U 
+                                     ? 1U : ((0x3003U 
                                               == (0x707fU 
                                                   & vlSelf->top__DOT__IDU__DOT__inst))
-                                              ? 1U : 
+                                              ? 2U : 
                                              ((0x4003U 
                                                == (0x707fU 
                                                    & vlSelf->top__DOT__IDU__DOT__inst))
-                                               ? 2U
+                                               ? 3U
                                                : ((0x6003U 
                                                    == 
                                                    (0x707fU 
                                                     & vlSelf->top__DOT__IDU__DOT__inst))
-                                                   ? 3U
+                                                   ? 4U
                                                    : 
                                                   ((0x1003U 
                                                     == 
                                                     (0x707fU 
                                                      & vlSelf->top__DOT__IDU__DOT__inst))
-                                                    ? 4U
+                                                    ? 5U
                                                     : 
                                                    ((3U 
                                                      == 
                                                      (0x707fU 
                                                       & vlSelf->top__DOT__IDU__DOT__inst))
-                                                     ? 5U
+                                                     ? 6U
                                                      : 
                                                     ((0x5003U 
                                                       == 
                                                       (0x707fU 
                                                        & vlSelf->top__DOT__IDU__DOT__inst))
-                                                      ? 6U
+                                                      ? 7U
                                                       : 0U)))))))),3);
         tracep->fullBit(oldp+43,(vlSelf->top__DOT__EXU__DOT__es_rf_we));
         tracep->fullBit(oldp+44,(vlSelf->top__DOT__LSU_io_ms_rf_we));
@@ -1649,12 +1649,12 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+62,(vlSelf->top__DOT__EXU__DOT__ld_we));
         tracep->fullCData(oldp+63,(vlSelf->top__DOT__EXU__DOT__load_type),3);
         tracep->fullQData(oldp+64,(vlSelf->top__DOT__LSU__DOT__ms_pc),64);
-        tracep->fullQData(oldp+66,(((IData)(vlSelf->top__DOT__LSU__DOT__ren)
-                                     ? ((6U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
+        tracep->fullQData(oldp+66,(((0U != (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
+                                     ? ((7U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                          ? (QData)((IData)(
                                                            (0xffffU 
                                                             & (IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata))))
-                                         : ((5U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
+                                         : ((6U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                              ? ((((1U 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__LSU__DOT__mem_rdata 
@@ -1665,7 +1665,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 | (QData)((IData)(
                                                                   (0xffU 
                                                                    & (IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata)))))
-                                             : ((4U 
+                                             : ((5U 
                                                  == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                  ? 
                                                 ((((1U 
@@ -1679,21 +1679,21 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                                    (0xffffU 
                                                                     & (IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata)))))
                                                  : 
-                                                ((3U 
+                                                ((4U 
                                                   == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                   ? (QData)((IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata))
                                                   : 
-                                                 ((2U 
+                                                 ((3U 
                                                    == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                    ? (QData)((IData)(
                                                                      (0xffU 
                                                                       & (IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata))))
                                                    : 
-                                                  ((1U 
+                                                  ((2U 
                                                     == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                     ? vlSelf->top__DOT__LSU__DOT__mem_rdata
                                                     : 
-                                                   ((0U 
+                                                   ((1U 
                                                      == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                      ? 
                                                     (((QData)((IData)(
@@ -2534,11 +2534,11 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullQData(oldp+503,(vlSelf->top__DOT__LSU__DOT__maddr),64);
         tracep->fullCData(oldp+505,(vlSelf->top__DOT__LSU__DOT__load_type),3);
         tracep->fullQData(oldp+506,(vlSelf->top__DOT__LSU__DOT__mem_rdata),64);
-        tracep->fullQData(oldp+508,(((6U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
+        tracep->fullQData(oldp+508,(((7U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                       ? (QData)((IData)(
                                                         (0xffffU 
                                                          & (IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata))))
-                                      : ((5U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
+                                      : ((6U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                           ? ((((1U 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__LSU__DOT__mem_rdata 
@@ -2549,7 +2549,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                              | (QData)((IData)(
                                                                (0xffU 
                                                                 & (IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata)))))
-                                          : ((4U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
+                                          : ((5U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                               ? (((
                                                    (1U 
                                                     & (IData)(
@@ -2561,21 +2561,21 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                  | (QData)((IData)(
                                                                    (0xffffU 
                                                                     & (IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata)))))
-                                              : ((3U 
+                                              : ((4U 
                                                   == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                   ? (QData)((IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata))
                                                   : 
-                                                 ((2U 
+                                                 ((3U 
                                                    == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                    ? (QData)((IData)(
                                                                      (0xffU 
                                                                       & (IData)(vlSelf->top__DOT__LSU__DOT__mem_rdata))))
                                                    : 
-                                                  ((1U 
+                                                  ((2U 
                                                     == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                     ? vlSelf->top__DOT__LSU__DOT__mem_rdata
                                                     : 
-                                                   ((0U 
+                                                   ((1U 
                                                      == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                      ? 
                                                     (((QData)((IData)(
