@@ -29,6 +29,7 @@ module IFU(
   wire  _GEN_1 = io_axi_in_rvalid | fs_ready_go; // @[IFU.scala 45:27 47:21 26:30]
   wire  fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 60:33]
   wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 56:24]
+  wire [63:0] pc_next = io_br_taken ? io_br_target : seq_pc; // @[IFU.scala 57:19]
   wire  fs_allowin = ~fs_valid | fs_ready_go & io_ds_allowin; // @[IFU.scala 61:29]
   wire  _GEN_3 = fs_allowin | fs_valid; // @[IFU.scala 63:36 64:18 25:27]
   reg  inst_ready; // @[IFU.scala 74:29]
@@ -67,6 +68,18 @@ module IFU(
       fs_inst <= io_axi_in_rdata[31:0]; // @[IFU.scala 46:17]
     end
     inst_ready <= reset | _GEN_5; // @[IFU.scala 74:{29,29}]
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"fs_pc:%x fs_valid:%d fs_inst:%x rvalid:%d next_pc:%x\n",fs_pc,fs_valid,fs_inst,
+            io_axi_in_rvalid,pc_next); // @[IFU.scala 100:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
