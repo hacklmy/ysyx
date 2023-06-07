@@ -410,8 +410,8 @@ module IDU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ds_pc:%x ds_valid:%d br_taken:%d src1:%x src2:%x  wen:%d wmask:%x\n",ds_pc,ds_valid,
-            br_taken,io_src1,io_src2,_src2_is_imm_T_4,Wmask); // @[IDU.scala 497:11]
+          $fwrite(32'h80000002,"ds_pc:%x ds_valid:%d inst:%x br_taken:%d src1:%x src2:%x  wen:%d wmask:%x\n",ds_pc,
+            ds_valid,inst,br_taken,io_src1,io_src2,_src2_is_imm_T_4,Wmask); // @[IDU.scala 497:11]
         end
     `ifdef PRINTF_COND
       end
