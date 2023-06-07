@@ -15,7 +15,7 @@
 #include <dlfcn.h>
 #include <time.h>
 
-# define DEVICE_BASE 0xa0000000
+#define DEVICE_BASE 0xa0000000
 #define MMIO_BASE 0xa0000000
 
 #define SERIAL_PORT     (DEVICE_BASE + 0x00003f8)
