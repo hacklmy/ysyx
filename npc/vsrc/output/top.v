@@ -2715,6 +2715,7 @@ module I_CACHE(
   wire  _GEN_64 = 4'hf == index ? valid_1_15 : _GEN_63; // @[i_cache.scala 41:{50,50}]
   wire  _T_5 = _GEN_48 == _GEN_1029 & _GEN_64; // @[i_cache.scala 41:33]
   reg [2:0] state; // @[i_cache.scala 55:24]
+  wire  _T_9 = ~reset; // @[i_cache.scala 56:11]
   wire [2:0] _GEN_69 = io_from_ifu_rready ? 3'h0 : state; // @[i_cache.scala 55:24 66:41 67:27]
   wire [2:0] _GEN_70 = way1_hit ? _GEN_69 : 3'h2; // @[i_cache.scala 70:33 75:23]
   wire [2:0] _GEN_71 = way1_hit ? receive_num : 3'h0; // @[i_cache.scala 28:30 70:33 77:29]
@@ -2852,7 +2853,7 @@ module I_CACHE(
   wire  _GEN_186 = _GEN_1059 | valid_1_13; // @[i_cache.scala 22:26 99:{32,32}]
   wire  _GEN_187 = _GEN_1060 | valid_1_14; // @[i_cache.scala 22:26 99:{32,32}]
   wire  _GEN_188 = _GEN_1061 | valid_1_15; // @[i_cache.scala 22:26 99:{32,32}]
-  wire  _T_14 = ~quene; // @[i_cache.scala 102:27]
+  wire  _T_16 = ~quene; // @[i_cache.scala 102:27]
   wire [511:0] _GEN_285 = ~quene ? _GEN_93 : ram_0_0; // @[i_cache.scala 102:34 17:24]
   wire [511:0] _GEN_286 = ~quene ? _GEN_94 : ram_0_1; // @[i_cache.scala 102:34 17:24]
   wire [511:0] _GEN_287 = ~quene ? _GEN_95 : ram_0_2; // @[i_cache.scala 102:34 17:24]
@@ -2997,7 +2998,7 @@ module I_CACHE(
   wire  _GEN_427 = unuse_way == 2'h2 ? _GEN_186 : _GEN_379; // @[i_cache.scala 96:40]
   wire  _GEN_428 = unuse_way == 2'h2 ? _GEN_187 : _GEN_380; // @[i_cache.scala 96:40]
   wire  _GEN_429 = unuse_way == 2'h2 ? _GEN_188 : _GEN_381; // @[i_cache.scala 96:40]
-  wire  _GEN_430 = unuse_way == 2'h2 ? 1'h0 : _T_14; // @[i_cache.scala 100:23 96:40]
+  wire  _GEN_430 = unuse_way == 2'h2 ? 1'h0 : _T_16; // @[i_cache.scala 100:23 96:40]
   wire [511:0] _GEN_431 = unuse_way == 2'h2 ? ram_0_0 : _GEN_285; // @[i_cache.scala 17:24 96:40]
   wire [511:0] _GEN_432 = unuse_way == 2'h2 ? ram_0_1 : _GEN_286; // @[i_cache.scala 17:24 96:40]
   wire [511:0] _GEN_433 = unuse_way == 2'h2 ? ram_0_2 : _GEN_287; // @[i_cache.scala 17:24 96:40]
@@ -3277,7 +3278,7 @@ module I_CACHE(
   wire [511:0] _GEN_1028 = way1_hit ? _io_to_ifu_rdata_T_1 : 512'h0; // @[i_cache.scala 169:33 170:33 178:33]
   wire [511:0] _GEN_1032 = way0_hit ? _io_to_ifu_rdata_T : _GEN_1028; // @[i_cache.scala 160:23 161:33]
   wire  _GEN_1034 = way0_hit | way1_hit; // @[i_cache.scala 160:23 163:34]
-  wire  _T_17 = state == 3'h2; // @[i_cache.scala 186:21]
+  wire  _T_19 = state == 3'h2; // @[i_cache.scala 186:21]
   wire [63:0] _GEN_1110 = {{32'd0}, io_from_ifu_araddr}; // @[i_cache.scala 195:49]
   wire [63:0] _io_to_axi_araddr_T = _GEN_1110 & 64'hffffffffffffffc0; // @[i_cache.scala 195:49]
   wire [63:0] _GEN_1038 = state == 3'h2 ? _io_to_axi_araddr_T : {{32'd0}, io_from_ifu_araddr}; // @[i_cache.scala 186:29 195:26 235:26]
@@ -3290,7 +3291,7 @@ module I_CACHE(
   assign io_to_ifu_rvalid = state == 3'h1 & _GEN_1034; // @[i_cache.scala 143:25]
   assign io_to_axi_araddr = _GEN_1043[31:0];
   assign io_to_axi_arlen = {{5'd0}, _GEN_1044};
-  assign io_to_axi_arvalid = state == 3'h1 ? 1'h0 : _T_17; // @[i_cache.scala 143:25 144:27]
+  assign io_to_axi_arvalid = state == 3'h1 ? 1'h0 : _T_19; // @[i_cache.scala 143:25 144:27]
   assign io_to_axi_rready = state == 3'h1 ? 1'h0 : io_from_ifu_rready; // @[i_cache.scala 143:25 149:26]
   always @(posedge clock) begin
     if (reset) begin // @[i_cache.scala 17:24]
@@ -4285,6 +4286,28 @@ module I_CACHE(
     end else begin
       state <= _GEN_577;
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"i_cache state:%d\n",state); // @[i_cache.scala 56:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (_T_9) begin
+          $fwrite(32'h80000002,"to ifu rdata:%x\n",io_to_ifu_rdata); // @[i_cache.scala 251:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
