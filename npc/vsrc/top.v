@@ -19,7 +19,6 @@ module top(
   wire  IFU_clock; // @[top.scala 16:21]
   wire  IFU_reset; // @[top.scala 16:21]
   wire  IFU_io_ds_allowin; // @[top.scala 16:21]
-  wire  IFU_io_br_taken; // @[top.scala 16:21]
   wire [63:0] IFU_io_br_target; // @[top.scala 16:21]
   wire  IFU_io_br_taken_cancel; // @[top.scala 16:21]
   wire [63:0] IFU_io_to_ds_pc; // @[top.scala 16:21]
@@ -38,7 +37,6 @@ module top(
   wire  IDU_io_ds_to_es_valid; // @[top.scala 17:21]
   wire  IDU_io_es_allowin; // @[top.scala 17:21]
   wire [31:0] IDU_io_from_fs_inst; // @[top.scala 17:21]
-  wire  IDU_io_br_taken; // @[top.scala 17:21]
   wire [63:0] IDU_io_br_target; // @[top.scala 17:21]
   wire  IDU_io_br_taken_cancel; // @[top.scala 17:21]
   wire  IDU_io_ds_allowin; // @[top.scala 17:21]
@@ -266,7 +264,6 @@ module top(
     .clock(IFU_clock),
     .reset(IFU_reset),
     .io_ds_allowin(IFU_io_ds_allowin),
-    .io_br_taken(IFU_io_br_taken),
     .io_br_target(IFU_io_br_target),
     .io_br_taken_cancel(IFU_io_br_taken_cancel),
     .io_to_ds_pc(IFU_io_to_ds_pc),
@@ -287,7 +284,6 @@ module top(
     .io_ds_to_es_valid(IDU_io_ds_to_es_valid),
     .io_es_allowin(IDU_io_es_allowin),
     .io_from_fs_inst(IDU_io_from_fs_inst),
-    .io_br_taken(IDU_io_br_taken),
     .io_br_target(IDU_io_br_target),
     .io_br_taken_cancel(IDU_io_br_taken_cancel),
     .io_ds_allowin(IDU_io_ds_allowin),
@@ -526,7 +522,6 @@ module top(
   assign IFU_clock = clock;
   assign IFU_reset = reset;
   assign IFU_io_ds_allowin = IDU_io_ds_allowin; // @[top.scala 42:20]
-  assign IFU_io_br_taken = IDU_io_br_taken; // @[top.scala 43:18]
   assign IFU_io_br_target = IDU_io_br_target; // @[top.scala 44:19]
   assign IFU_io_br_taken_cancel = IDU_io_br_taken_cancel; // @[top.scala 45:25]
   assign IFU_io_axi_in_rdata = i_cache_io_to_ifu_rdata; // @[top.scala 29:16]
