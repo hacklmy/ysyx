@@ -4302,7 +4302,8 @@ module I_CACHE(
       if (`PRINTF_COND) begin
     `endif
         if (_T_9) begin
-          $fwrite(32'h80000002,"to ifu rdata:%x\n",io_to_ifu_rdata); // @[i_cache.scala 251:11]
+          $fwrite(32'h80000002,"to ifu rdata:%x araddr:%x ram0:%x ram1:%x\n",io_to_ifu_rdata,io_from_ifu_araddr,
+            _GEN_1011,_GEN_1027); // @[i_cache.scala 251:11]
         end
     `ifdef PRINTF_COND
       end
