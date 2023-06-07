@@ -263,7 +263,7 @@ module IDU(
   wire [6:0] _ALUop_T_175 = _ALUop_T_3 ? 7'h2 : _ALUop_T_174; // @[Lookup.scala 34:39]
   wire [6:0] _ALUop_T_176 = _inst_type_T_1 ? 7'hf : _ALUop_T_175; // @[Lookup.scala 34:39]
   wire [31:0] ALUop = {{25'd0}, _ALUop_T_176}; // @[IDU.scala 286:11 55:21]
-  wire  ds_ready_go = ~conflict & (ALUop == 32'h6 & io_fs_to_ds_valid); // @[IDU.scala 132:30]
+  wire  ds_ready_go = ~conflict & (ALUop == 32'h6 & io_fs_to_ds_valid & ds_valid); // @[IDU.scala 132:30]
   wire  ds_allowin = ~ds_valid | ds_ready_go & io_es_allowin; // @[IDU.scala 134:29]
   wire  _T_1 = ~br_taken_cancel; // @[IDU.scala 115:26]
   wire  _br_taken_T_2 = $signed(io_rdata1) != $signed(io_rdata2); // @[IDU.scala 457:37]
