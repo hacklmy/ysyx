@@ -108,7 +108,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     vlSelf->__Vdly__top__DOT__i_cache__DOT__way1_hit 
         = vlSelf->top__DOT__i_cache__DOT__way1_hit;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"fs_pc:%x fs_valid:%1# fs_inst:%x rvalid:%1# next_pc:%x\n\n",
+        VL_FWRITEF(0x80000002U,"fs_pc:%x fs_valid:%1# fs_inst:%x rvalid:%1# next_pc:%x\n",
                    64,vlSelf->top__DOT__IFU__DOT__fs_pc,
                    1,(IData)(vlSelf->top__DOT__IFU__DOT__fs_valid),
                    32,vlSelf->top__DOT__IFU__DOT__fs_inst,
@@ -150,7 +150,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                    64,vlSelf->top__DOT__EXU__DOT__src2_value);
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"ws_pc:%x ws_valid:%1# rf_dst:%2# rf_we:%1# wdata:%x\n\n",
+        VL_FWRITEF(0x80000002U,"ws_pc:%x ws_valid:%1# rf_dst:%2# rf_we:%1# wdata:%x\n",
                    64,vlSelf->top__DOT__WBU__DOT__ws_pc,
                    1,(IData)(vlSelf->top__DOT__WBU__DOT__ws_valid),
                    5,vlSelf->top__DOT__WBU__DOT__ws_rf_dst,
@@ -5056,7 +5056,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                   & (IData)(vlSelf->top__DOT__d_cache_io_to_lsu_rvalid))) 
                                               & (IData)(vlSelf->top__DOT__LSU__DOT___GEN_8))));
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"ms_pc:%x ms_valid:%1# wstrb:%x wdata:%x\n",
+        VL_FWRITEF(0x80000002U,"ms_pc:%x ms_valid:%1# wstrb:%x wdata:%x\n\n",
                    64,vlSelf->top__DOT__LSU__DOT__ms_pc,
                    1,(IData)(vlSelf->top__DOT__LSU__DOT__ms_valid),
                    8,vlSelf->top__DOT__LSU__DOT__wstrb,
