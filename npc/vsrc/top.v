@@ -30,6 +30,7 @@ module top(
   wire [31:0] IFU_io_axi_out_araddr; // @[top.scala 16:21]
   wire  IFU_io_axi_out_arvalid; // @[top.scala 16:21]
   wire  IFU_io_axi_out_rready; // @[top.scala 16:21]
+  wire [63:0] IFU_io_pc_next; // @[top.scala 16:21]
   wire  IDU_clock; // @[top.scala 17:21]
   wire  IDU_reset; // @[top.scala 17:21]
   wire [63:0] IDU_io_pc; // @[top.scala 17:21]
@@ -247,7 +248,7 @@ module top(
   wire [31:0] dpi_ecall_flag; // @[top.scala 104:21]
   wire [63:0] dpi_pc; // @[top.scala 104:21]
   reg  diff_step; // @[top.scala 101:28]
-  wire [63:0] _dpi_io_pc_T = IDU_io_ds_valid ? EXU_io_pc : IDU_io_pc; // @[top.scala 107:96]
+  wire [63:0] _dpi_io_pc_T = IDU_io_ds_valid ? EXU_io_pc : IFU_io_pc_next; // @[top.scala 107:96]
   wire [63:0] _dpi_io_pc_T_1 = EXU_io_es_valid ? LSU_io_pc : _dpi_io_pc_T; // @[top.scala 107:72]
   wire [63:0] _dpi_io_pc_T_2 = LSU_io_ms_valid ? WBU_io_pc : _dpi_io_pc_T_1; // @[top.scala 107:48]
   Register Register ( // @[top.scala 15:25]
@@ -274,7 +275,8 @@ module top(
     .io_axi_in_rvalid(IFU_io_axi_in_rvalid),
     .io_axi_out_araddr(IFU_io_axi_out_araddr),
     .io_axi_out_arvalid(IFU_io_axi_out_arvalid),
-    .io_axi_out_rready(IFU_io_axi_out_rready)
+    .io_axi_out_rready(IFU_io_axi_out_rready),
+    .io_pc_next(IFU_io_pc_next)
   );
   IDU IDU ( // @[top.scala 17:21]
     .clock(IDU_clock),

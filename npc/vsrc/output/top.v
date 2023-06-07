@@ -391,7 +391,8 @@ module IFU(
   input         io_axi_in_rvalid,
   output [31:0] io_axi_out_araddr,
   output        io_axi_out_arvalid,
-  output        io_axi_out_rready
+  output        io_axi_out_rready,
+  output [63:0] io_pc_next
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -400,59 +401,60 @@ module IFU(
   reg [31:0] _RAND_3;
   reg [31:0] _RAND_4;
 `endif // RANDOMIZE_REG_INIT
-  reg  fs_valid; // @[IFU.scala 24:27]
-  reg  fs_ready_go; // @[IFU.scala 25:30]
-  reg [63:0] fs_pc; // @[IFU.scala 31:24]
-  reg [31:0] fs_inst; // @[IFU.scala 32:26]
-  wire  _GEN_1 = io_axi_in_rvalid | fs_ready_go; // @[IFU.scala 44:27 46:21 25:30]
-  wire  fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 59:33]
-  wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 55:24]
-  wire [63:0] pc_next = io_br_taken ? io_br_target : seq_pc; // @[IFU.scala 56:19]
-  wire  fs_allowin = ~fs_valid | fs_ready_go & io_ds_allowin; // @[IFU.scala 60:29]
-  wire  _GEN_3 = fs_allowin | fs_valid; // @[IFU.scala 62:36 63:18 24:27]
-  reg  inst_ready; // @[IFU.scala 73:29]
-  wire  _GEN_5 = io_axi_in_rvalid & inst_ready & io_axi_in_rlast ? 1'h0 : 1'h1; // @[IFU.scala 74:60 75:20 77:20]
-  assign io_to_ds_pc = fs_pc; // @[IFU.scala 70:17]
-  assign io_fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 59:33]
-  assign io_inst = fs_inst; // @[IFU.scala 96:13]
-  assign io_axi_out_araddr = fs_pc[31:0]; // @[IFU.scala 80:31]
-  assign io_axi_out_arvalid = fs_valid & ~fs_ready_go; // @[IFU.scala 81:36]
-  assign io_axi_out_rready = inst_ready; // @[IFU.scala 85:23]
+  reg  fs_valid; // @[IFU.scala 25:27]
+  reg  fs_ready_go; // @[IFU.scala 26:30]
+  reg [63:0] fs_pc; // @[IFU.scala 32:24]
+  reg [31:0] fs_inst; // @[IFU.scala 33:26]
+  wire  _GEN_1 = io_axi_in_rvalid | fs_ready_go; // @[IFU.scala 45:27 47:21 26:30]
+  wire  fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 60:33]
+  wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 56:24]
+  wire [63:0] pc_next = io_br_taken ? io_br_target : seq_pc; // @[IFU.scala 57:19]
+  wire  fs_allowin = ~fs_valid | fs_ready_go & io_ds_allowin; // @[IFU.scala 61:29]
+  wire  _GEN_3 = fs_allowin | fs_valid; // @[IFU.scala 63:36 64:18 25:27]
+  reg  inst_ready; // @[IFU.scala 74:29]
+  wire  _GEN_5 = io_axi_in_rvalid & inst_ready & io_axi_in_rlast ? 1'h0 : 1'h1; // @[IFU.scala 75:60 76:20 78:20]
+  assign io_to_ds_pc = fs_pc; // @[IFU.scala 71:17]
+  assign io_fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 60:33]
+  assign io_inst = fs_inst; // @[IFU.scala 97:13]
+  assign io_axi_out_araddr = fs_pc[31:0]; // @[IFU.scala 81:31]
+  assign io_axi_out_arvalid = fs_valid & ~fs_ready_go; // @[IFU.scala 82:36]
+  assign io_axi_out_rready = inst_ready; // @[IFU.scala 86:23]
+  assign io_pc_next = io_br_taken ? io_br_target : seq_pc; // @[IFU.scala 57:19]
   always @(posedge clock) begin
-    if (reset) begin // @[IFU.scala 24:27]
-      fs_valid <= 1'h0; // @[IFU.scala 24:27]
+    if (reset) begin // @[IFU.scala 25:27]
+      fs_valid <= 1'h0; // @[IFU.scala 25:27]
     end else begin
       fs_valid <= _GEN_3;
     end
-    if (reset) begin // @[IFU.scala 25:30]
-      fs_ready_go <= 1'h0; // @[IFU.scala 25:30]
-    end else if (fs_to_ds_valid & io_ds_allowin) begin // @[IFU.scala 48:42]
-      fs_ready_go <= 1'h0; // @[IFU.scala 49:21]
+    if (reset) begin // @[IFU.scala 26:30]
+      fs_ready_go <= 1'h0; // @[IFU.scala 26:30]
+    end else if (fs_to_ds_valid & io_ds_allowin) begin // @[IFU.scala 49:42]
+      fs_ready_go <= 1'h0; // @[IFU.scala 50:21]
     end else begin
       fs_ready_go <= _GEN_1;
     end
-    if (reset) begin // @[IFU.scala 31:24]
-      fs_pc <= 64'h7ffffffc; // @[IFU.scala 31:24]
-    end else if (fs_allowin) begin // @[IFU.scala 62:36]
-      if (io_br_taken) begin // @[IFU.scala 56:19]
+    if (reset) begin // @[IFU.scala 32:24]
+      fs_pc <= 64'h7ffffffc; // @[IFU.scala 32:24]
+    end else if (fs_allowin) begin // @[IFU.scala 63:36]
+      if (io_br_taken) begin // @[IFU.scala 57:19]
         fs_pc <= io_br_target;
       end else begin
         fs_pc <= seq_pc;
       end
     end
-    if (reset) begin // @[IFU.scala 32:26]
-      fs_inst <= 32'h0; // @[IFU.scala 32:26]
-    end else if (io_axi_in_rvalid) begin // @[IFU.scala 44:27]
-      fs_inst <= io_axi_in_rdata[31:0]; // @[IFU.scala 45:17]
+    if (reset) begin // @[IFU.scala 33:26]
+      fs_inst <= 32'h0; // @[IFU.scala 33:26]
+    end else if (io_axi_in_rvalid) begin // @[IFU.scala 45:27]
+      fs_inst <= io_axi_in_rdata[31:0]; // @[IFU.scala 46:17]
     end
-    inst_ready <= reset | _GEN_5; // @[IFU.scala 73:{29,29}]
+    inst_ready <= reset | _GEN_5; // @[IFU.scala 74:{29,29}]
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
           $fwrite(32'h80000002,"fs_pc:%x fs_valid:%d fs_inst:%x rvalid:%d next_pc:%x\n",fs_pc,fs_valid,fs_inst,
-            io_axi_in_rvalid,pc_next); // @[IFU.scala 98:11]
+            io_axi_in_rvalid,pc_next); // @[IFU.scala 100:11]
         end
     `ifdef PRINTF_COND
       end
@@ -8374,6 +8376,7 @@ module top(
   wire [31:0] IFU_io_axi_out_araddr; // @[top.scala 16:21]
   wire  IFU_io_axi_out_arvalid; // @[top.scala 16:21]
   wire  IFU_io_axi_out_rready; // @[top.scala 16:21]
+  wire [63:0] IFU_io_pc_next; // @[top.scala 16:21]
   wire  IDU_clock; // @[top.scala 17:21]
   wire  IDU_reset; // @[top.scala 17:21]
   wire [63:0] IDU_io_pc; // @[top.scala 17:21]
@@ -8591,7 +8594,7 @@ module top(
   wire [31:0] dpi_ecall_flag; // @[top.scala 104:21]
   wire [63:0] dpi_pc; // @[top.scala 104:21]
   reg  diff_step; // @[top.scala 101:28]
-  wire [63:0] _dpi_io_pc_T = IDU_io_ds_valid ? EXU_io_pc : IDU_io_pc; // @[top.scala 107:96]
+  wire [63:0] _dpi_io_pc_T = IDU_io_ds_valid ? EXU_io_pc : IFU_io_pc_next; // @[top.scala 107:96]
   wire [63:0] _dpi_io_pc_T_1 = EXU_io_es_valid ? LSU_io_pc : _dpi_io_pc_T; // @[top.scala 107:72]
   wire [63:0] _dpi_io_pc_T_2 = LSU_io_ms_valid ? WBU_io_pc : _dpi_io_pc_T_1; // @[top.scala 107:48]
   Register Register ( // @[top.scala 15:25]
@@ -8618,7 +8621,8 @@ module top(
     .io_axi_in_rvalid(IFU_io_axi_in_rvalid),
     .io_axi_out_araddr(IFU_io_axi_out_araddr),
     .io_axi_out_arvalid(IFU_io_axi_out_arvalid),
-    .io_axi_out_rready(IFU_io_axi_out_rready)
+    .io_axi_out_rready(IFU_io_axi_out_rready),
+    .io_pc_next(IFU_io_pc_next)
   );
   IDU IDU ( // @[top.scala 17:21]
     .clock(IDU_clock),
