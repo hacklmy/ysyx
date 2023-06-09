@@ -37,9 +37,9 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-//#define CONFIG_DIFFTEST
+#define CONFIG_DIFFTEST
 //#define VerilatedVCD
-#define HAS_VGA
+//#define HAS_VGA
 #define HAS_AXI
 
 void difftest_skip_ref();
