@@ -317,7 +317,7 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
       //printf("%lld\n", *rdata);
     }
     #ifdef HAS_VGA
-    //vga_update_screen();
+    vga_update_screen();
     #endif
     return;
   }
@@ -775,7 +775,7 @@ void cpu_exec(int n){
     tfp->dump(sim_time); //dump wave
     #endif
     #ifdef HAS_VGA
-    vga_update_screen();
+    //vga_update_screen();
     #endif
     sim_time++;
   }
