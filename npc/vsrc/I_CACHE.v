@@ -114,7 +114,7 @@ module I_CACHE(
   reg [31:0] _RAND_93;
   reg [31:0] _RAND_94;
   reg [31:0] _RAND_95;
-  reg [31:0] _RAND_96;
+  reg [63:0] _RAND_96;
   reg [63:0] _RAND_97;
   reg [63:0] _RAND_98;
   reg [63:0] _RAND_99;
@@ -122,7 +122,7 @@ module I_CACHE(
   reg [63:0] _RAND_101;
   reg [63:0] _RAND_102;
   reg [63:0] _RAND_103;
-  reg [63:0] _RAND_104;
+  reg [31:0] _RAND_104;
   reg [31:0] _RAND_105;
   reg [31:0] _RAND_106;
   reg [31:0] _RAND_107;
@@ -140,7 +140,6 @@ module I_CACHE(
   reg [31:0] _RAND_119;
   reg [31:0] _RAND_120;
   reg [31:0] _RAND_121;
-  reg [31:0] _RAND_122;
 `endif // RANDOMIZE_REG_INIT
   reg [511:0] ram_0_0; // @[i_cache.scala 19:24]
   reg [511:0] ram_0_1; // @[i_cache.scala 19:24]
@@ -238,7 +237,6 @@ module I_CACHE(
   reg  valid_1_13; // @[i_cache.scala 24:26]
   reg  valid_1_14; // @[i_cache.scala 24:26]
   reg  valid_1_15; // @[i_cache.scala 24:26]
-  reg [1:0] unuse_way; // @[i_cache.scala 28:28]
   reg [63:0] receive_data_0; // @[i_cache.scala 29:31]
   reg [63:0] receive_data_1; // @[i_cache.scala 29:31]
   reg [63:0] receive_data_2; // @[i_cache.scala 29:31]
@@ -331,6 +329,8 @@ module I_CACHE(
   wire  _GEN_62 = 4'he == index ? valid_1_14 : _GEN_61; // @[i_cache.scala 40:{57,57}]
   wire  _GEN_63 = 4'hf == index ? valid_1_15 : _GEN_62; // @[i_cache.scala 40:{57,57}]
   wire  way1_hit = _GEN_47 == _GEN_1243 & _GEN_63; // @[i_cache.scala 40:40]
+  wire [1:0] _unuse_way_T_2 = ~_GEN_63 ? 2'h2 : 2'h0; // @[i_cache.scala 43:50]
+  wire [1:0] unuse_way = ~_GEN_31 ? 2'h1 : _unuse_way_T_2; // @[i_cache.scala 43:21]
   reg [2:0] state; // @[i_cache.scala 45:24]
   wire [2:0] _GEN_66 = io_from_ifu_rready ? 3'h0 : state; // @[i_cache.scala 45:24 58:41 59:27]
   wire [2:0] _GEN_67 = way1_hit ? _GEN_66 : 3'h2; // @[i_cache.scala 62:33 67:23]
@@ -1916,15 +1916,6 @@ module I_CACHE(
         end
       end
     end
-    if (reset) begin // @[i_cache.scala 28:28]
-      unuse_way <= 2'h0; // @[i_cache.scala 28:28]
-    end else if (~_GEN_31) begin // @[i_cache.scala 43:21]
-      unuse_way <= 2'h1;
-    end else if (~_GEN_63) begin // @[i_cache.scala 43:50]
-      unuse_way <= 2'h2;
-    end else begin
-      unuse_way <= 2'h0;
-    end
     if (reset) begin // @[i_cache.scala 29:31]
       receive_data_0 <= 64'h0; // @[i_cache.scala 29:31]
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
@@ -2400,60 +2391,58 @@ initial begin
   valid_1_14 = _RAND_94[0:0];
   _RAND_95 = {1{`RANDOM}};
   valid_1_15 = _RAND_95[0:0];
-  _RAND_96 = {1{`RANDOM}};
-  unuse_way = _RAND_96[1:0];
+  _RAND_96 = {2{`RANDOM}};
+  receive_data_0 = _RAND_96[63:0];
   _RAND_97 = {2{`RANDOM}};
-  receive_data_0 = _RAND_97[63:0];
+  receive_data_1 = _RAND_97[63:0];
   _RAND_98 = {2{`RANDOM}};
-  receive_data_1 = _RAND_98[63:0];
+  receive_data_2 = _RAND_98[63:0];
   _RAND_99 = {2{`RANDOM}};
-  receive_data_2 = _RAND_99[63:0];
+  receive_data_3 = _RAND_99[63:0];
   _RAND_100 = {2{`RANDOM}};
-  receive_data_3 = _RAND_100[63:0];
+  receive_data_4 = _RAND_100[63:0];
   _RAND_101 = {2{`RANDOM}};
-  receive_data_4 = _RAND_101[63:0];
+  receive_data_5 = _RAND_101[63:0];
   _RAND_102 = {2{`RANDOM}};
-  receive_data_5 = _RAND_102[63:0];
+  receive_data_6 = _RAND_102[63:0];
   _RAND_103 = {2{`RANDOM}};
-  receive_data_6 = _RAND_103[63:0];
-  _RAND_104 = {2{`RANDOM}};
-  receive_data_7 = _RAND_104[63:0];
+  receive_data_7 = _RAND_103[63:0];
+  _RAND_104 = {1{`RANDOM}};
+  receive_num = _RAND_104[2:0];
   _RAND_105 = {1{`RANDOM}};
-  receive_num = _RAND_105[2:0];
+  quene_0 = _RAND_105[1:0];
   _RAND_106 = {1{`RANDOM}};
-  quene_0 = _RAND_106[1:0];
+  quene_1 = _RAND_106[1:0];
   _RAND_107 = {1{`RANDOM}};
-  quene_1 = _RAND_107[1:0];
+  quene_2 = _RAND_107[1:0];
   _RAND_108 = {1{`RANDOM}};
-  quene_2 = _RAND_108[1:0];
+  quene_3 = _RAND_108[1:0];
   _RAND_109 = {1{`RANDOM}};
-  quene_3 = _RAND_109[1:0];
+  quene_4 = _RAND_109[1:0];
   _RAND_110 = {1{`RANDOM}};
-  quene_4 = _RAND_110[1:0];
+  quene_5 = _RAND_110[1:0];
   _RAND_111 = {1{`RANDOM}};
-  quene_5 = _RAND_111[1:0];
+  quene_6 = _RAND_111[1:0];
   _RAND_112 = {1{`RANDOM}};
-  quene_6 = _RAND_112[1:0];
+  quene_7 = _RAND_112[1:0];
   _RAND_113 = {1{`RANDOM}};
-  quene_7 = _RAND_113[1:0];
+  quene_8 = _RAND_113[1:0];
   _RAND_114 = {1{`RANDOM}};
-  quene_8 = _RAND_114[1:0];
+  quene_9 = _RAND_114[1:0];
   _RAND_115 = {1{`RANDOM}};
-  quene_9 = _RAND_115[1:0];
+  quene_10 = _RAND_115[1:0];
   _RAND_116 = {1{`RANDOM}};
-  quene_10 = _RAND_116[1:0];
+  quene_11 = _RAND_116[1:0];
   _RAND_117 = {1{`RANDOM}};
-  quene_11 = _RAND_117[1:0];
+  quene_12 = _RAND_117[1:0];
   _RAND_118 = {1{`RANDOM}};
-  quene_12 = _RAND_118[1:0];
+  quene_13 = _RAND_118[1:0];
   _RAND_119 = {1{`RANDOM}};
-  quene_13 = _RAND_119[1:0];
+  quene_14 = _RAND_119[1:0];
   _RAND_120 = {1{`RANDOM}};
-  quene_14 = _RAND_120[1:0];
+  quene_15 = _RAND_120[1:0];
   _RAND_121 = {1{`RANDOM}};
-  quene_15 = _RAND_121[1:0];
-  _RAND_122 = {1{`RANDOM}};
-  state = _RAND_122[2:0];
+  state = _RAND_121[2:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
