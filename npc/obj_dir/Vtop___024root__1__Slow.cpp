@@ -129,6 +129,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     }
     vlSelf->top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg_io_rdata_MPORT_data = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value = VL_RAND_RESET_Q(64);
+    vlSelf->top__DOT__EXU__DOT__ALU_io_res_ready = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__EXU__DOT__ALU_io_alu_busy = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__EXU__DOT__es_pc = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__EXU__DOT__es_valid = VL_RAND_RESET_I(1);
@@ -162,6 +163,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     VL_RAND_RESET_W(128, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1);
     VL_RAND_RESET_W(65, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2);
     vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32 = VL_RAND_RESET_Q(64);
+    vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_11 = VL_RAND_RESET_I(2);
     vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_20 = VL_RAND_RESET_Q(64);
     VL_RAND_RESET_W(130, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_30);
     vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__dend_neg = VL_RAND_RESET_I(1);
@@ -178,9 +180,8 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_3 = VL_RAND_RESET_I(32);
     VL_RAND_RESET_W(65, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res);
     vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___step_num_T_1 = VL_RAND_RESET_I(32);
-    vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_14 = VL_RAND_RESET_I(1);
-    VL_RAND_RESET_W(129, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_22);
-    VL_RAND_RESET_W(65, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_23);
+    VL_RAND_RESET_W(129, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_23);
+    VL_RAND_RESET_W(65, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_24);
     vlSelf->top__DOT__LSU__DOT__ms_valid = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__LSU__DOT__ms_pc = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__LSU__DOT__ms_ready_go = VL_RAND_RESET_I(1);
