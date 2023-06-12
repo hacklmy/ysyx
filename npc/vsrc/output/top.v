@@ -2656,7 +2656,7 @@ module I_CACHE(
   wire [31:0] _GEN_13 = 4'hd == index ? tag_0_13 : _GEN_12; // @[i_cache.scala 38:{31,31}]
   wire [31:0] _GEN_14 = 4'he == index ? tag_0_14 : _GEN_13; // @[i_cache.scala 38:{31,31}]
   wire [31:0] _GEN_15 = 4'hf == index ? tag_0_15 : _GEN_14; // @[i_cache.scala 38:{31,31}]
-  wire [31:0] _GEN_1276 = {{10'd0}, tag}; // @[i_cache.scala 38:31]
+  wire [31:0] _GEN_1243 = {{10'd0}, tag}; // @[i_cache.scala 38:31]
   wire  _GEN_17 = 4'h1 == index ? valid_0_1 : valid_0_0; // @[i_cache.scala 38:{57,57}]
   wire  _GEN_18 = 4'h2 == index ? valid_0_2 : _GEN_17; // @[i_cache.scala 38:{57,57}]
   wire  _GEN_19 = 4'h3 == index ? valid_0_3 : _GEN_18; // @[i_cache.scala 38:{57,57}]
@@ -2672,7 +2672,7 @@ module I_CACHE(
   wire  _GEN_29 = 4'hd == index ? valid_0_13 : _GEN_28; // @[i_cache.scala 38:{57,57}]
   wire  _GEN_30 = 4'he == index ? valid_0_14 : _GEN_29; // @[i_cache.scala 38:{57,57}]
   wire  _GEN_31 = 4'hf == index ? valid_0_15 : _GEN_30; // @[i_cache.scala 38:{57,57}]
-  wire  way0_hit = _GEN_15 == _GEN_1276 & _GEN_31; // @[i_cache.scala 38:40]
+  wire  way0_hit = _GEN_15 == _GEN_1243 & _GEN_31; // @[i_cache.scala 38:40]
   wire [31:0] _GEN_33 = 4'h1 == index ? tag_1_1 : tag_1_0; // @[i_cache.scala 40:{31,31}]
   wire [31:0] _GEN_34 = 4'h2 == index ? tag_1_2 : _GEN_33; // @[i_cache.scala 40:{31,31}]
   wire [31:0] _GEN_35 = 4'h3 == index ? tag_1_3 : _GEN_34; // @[i_cache.scala 40:{31,31}]
@@ -2703,7 +2703,7 @@ module I_CACHE(
   wire  _GEN_61 = 4'hd == index ? valid_1_13 : _GEN_60; // @[i_cache.scala 40:{57,57}]
   wire  _GEN_62 = 4'he == index ? valid_1_14 : _GEN_61; // @[i_cache.scala 40:{57,57}]
   wire  _GEN_63 = 4'hf == index ? valid_1_15 : _GEN_62; // @[i_cache.scala 40:{57,57}]
-  wire  way1_hit = _GEN_47 == _GEN_1276 & _GEN_63; // @[i_cache.scala 40:40]
+  wire  way1_hit = _GEN_47 == _GEN_1243 & _GEN_63; // @[i_cache.scala 40:40]
   reg [2:0] state; // @[i_cache.scala 45:24]
   wire [2:0] _GEN_66 = io_from_ifu_rready ? 3'h0 : state; // @[i_cache.scala 45:24 58:41 59:27]
   wire [2:0] _GEN_67 = way1_hit ? _GEN_66 : 3'h2; // @[i_cache.scala 62:33 67:23]
@@ -2746,53 +2746,53 @@ module I_CACHE(
   wire [511:0] _GEN_103 = 4'hd == index ? _ram_0_T : ram_0_13; // @[i_cache.scala 19:24 84:{30,30}]
   wire [511:0] _GEN_104 = 4'he == index ? _ram_0_T : ram_0_14; // @[i_cache.scala 19:24 84:{30,30}]
   wire [511:0] _GEN_105 = 4'hf == index ? _ram_0_T : ram_0_15; // @[i_cache.scala 19:24 84:{30,30}]
-  wire [31:0] _GEN_106 = 4'h0 == index ? _GEN_1276 : tag_0_0; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_107 = 4'h1 == index ? _GEN_1276 : tag_0_1; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_108 = 4'h2 == index ? _GEN_1276 : tag_0_2; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_109 = 4'h3 == index ? _GEN_1276 : tag_0_3; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_110 = 4'h4 == index ? _GEN_1276 : tag_0_4; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_111 = 4'h5 == index ? _GEN_1276 : tag_0_5; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_112 = 4'h6 == index ? _GEN_1276 : tag_0_6; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_113 = 4'h7 == index ? _GEN_1276 : tag_0_7; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_114 = 4'h8 == index ? _GEN_1276 : tag_0_8; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_115 = 4'h9 == index ? _GEN_1276 : tag_0_9; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_116 = 4'ha == index ? _GEN_1276 : tag_0_10; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_117 = 4'hb == index ? _GEN_1276 : tag_0_11; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_118 = 4'hc == index ? _GEN_1276 : tag_0_12; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_119 = 4'hd == index ? _GEN_1276 : tag_0_13; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_120 = 4'he == index ? _GEN_1276 : tag_0_14; // @[i_cache.scala 21:24 85:{30,30}]
-  wire [31:0] _GEN_121 = 4'hf == index ? _GEN_1276 : tag_0_15; // @[i_cache.scala 21:24 85:{30,30}]
-  wire  _GEN_1280 = 4'h0 == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire [31:0] _GEN_106 = 4'h0 == index ? _GEN_1243 : tag_0_0; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_107 = 4'h1 == index ? _GEN_1243 : tag_0_1; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_108 = 4'h2 == index ? _GEN_1243 : tag_0_2; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_109 = 4'h3 == index ? _GEN_1243 : tag_0_3; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_110 = 4'h4 == index ? _GEN_1243 : tag_0_4; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_111 = 4'h5 == index ? _GEN_1243 : tag_0_5; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_112 = 4'h6 == index ? _GEN_1243 : tag_0_6; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_113 = 4'h7 == index ? _GEN_1243 : tag_0_7; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_114 = 4'h8 == index ? _GEN_1243 : tag_0_8; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_115 = 4'h9 == index ? _GEN_1243 : tag_0_9; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_116 = 4'ha == index ? _GEN_1243 : tag_0_10; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_117 = 4'hb == index ? _GEN_1243 : tag_0_11; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_118 = 4'hc == index ? _GEN_1243 : tag_0_12; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_119 = 4'hd == index ? _GEN_1243 : tag_0_13; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_120 = 4'he == index ? _GEN_1243 : tag_0_14; // @[i_cache.scala 21:24 85:{30,30}]
+  wire [31:0] _GEN_121 = 4'hf == index ? _GEN_1243 : tag_0_15; // @[i_cache.scala 21:24 85:{30,30}]
+  wire  _GEN_1247 = 4'h0 == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_122 = 4'h0 == index | valid_0_0; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1282 = 4'h1 == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1249 = 4'h1 == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_123 = 4'h1 == index | valid_0_1; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1287 = 4'h2 == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1254 = 4'h2 == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_124 = 4'h2 == index | valid_0_2; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1292 = 4'h3 == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1259 = 4'h3 == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_125 = 4'h3 == index | valid_0_3; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1296 = 4'h4 == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1263 = 4'h4 == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_126 = 4'h4 == index | valid_0_4; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1298 = 4'h5 == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1265 = 4'h5 == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_127 = 4'h5 == index | valid_0_5; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1299 = 4'h6 == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1266 = 4'h6 == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_128 = 4'h6 == index | valid_0_6; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1300 = 4'h7 == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1267 = 4'h7 == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_129 = 4'h7 == index | valid_0_7; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1301 = 4'h8 == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1268 = 4'h8 == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_130 = 4'h8 == index | valid_0_8; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1302 = 4'h9 == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1269 = 4'h9 == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_131 = 4'h9 == index | valid_0_9; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1303 = 4'ha == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1270 = 4'ha == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_132 = 4'ha == index | valid_0_10; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1304 = 4'hb == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1271 = 4'hb == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_133 = 4'hb == index | valid_0_11; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1305 = 4'hc == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1272 = 4'hc == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_134 = 4'hc == index | valid_0_12; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1306 = 4'hd == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1273 = 4'hd == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_135 = 4'hd == index | valid_0_13; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1307 = 4'he == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1274 = 4'he == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_136 = 4'he == index | valid_0_14; // @[i_cache.scala 23:26 86:{32,32}]
-  wire  _GEN_1308 = 4'hf == index; // @[i_cache.scala 23:26 86:{32,32}]
+  wire  _GEN_1275 = 4'hf == index; // @[i_cache.scala 23:26 86:{32,32}]
   wire  _GEN_137 = 4'hf == index | valid_0_15; // @[i_cache.scala 23:26 86:{32,32}]
   wire [1:0] _GEN_139 = 4'h1 == index ? quene_1 : quene_0; // @[i_cache.scala 87:{46,46}]
   wire [1:0] _GEN_140 = 4'h2 == index ? quene_2 : _GEN_139; // @[i_cache.scala 87:{46,46}]
@@ -2842,38 +2842,38 @@ module I_CACHE(
   wire [511:0] _GEN_183 = 4'hd == index ? _ram_0_T : ram_1_13; // @[i_cache.scala 20:24 89:{30,30}]
   wire [511:0] _GEN_184 = 4'he == index ? _ram_0_T : ram_1_14; // @[i_cache.scala 20:24 89:{30,30}]
   wire [511:0] _GEN_185 = 4'hf == index ? _ram_0_T : ram_1_15; // @[i_cache.scala 20:24 89:{30,30}]
-  wire [31:0] _GEN_186 = 4'h0 == index ? _GEN_1276 : tag_1_0; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_187 = 4'h1 == index ? _GEN_1276 : tag_1_1; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_188 = 4'h2 == index ? _GEN_1276 : tag_1_2; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_189 = 4'h3 == index ? _GEN_1276 : tag_1_3; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_190 = 4'h4 == index ? _GEN_1276 : tag_1_4; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_191 = 4'h5 == index ? _GEN_1276 : tag_1_5; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_192 = 4'h6 == index ? _GEN_1276 : tag_1_6; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_193 = 4'h7 == index ? _GEN_1276 : tag_1_7; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_194 = 4'h8 == index ? _GEN_1276 : tag_1_8; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_195 = 4'h9 == index ? _GEN_1276 : tag_1_9; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_196 = 4'ha == index ? _GEN_1276 : tag_1_10; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_197 = 4'hb == index ? _GEN_1276 : tag_1_11; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_198 = 4'hc == index ? _GEN_1276 : tag_1_12; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_199 = 4'hd == index ? _GEN_1276 : tag_1_13; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_200 = 4'he == index ? _GEN_1276 : tag_1_14; // @[i_cache.scala 22:24 90:{30,30}]
-  wire [31:0] _GEN_201 = 4'hf == index ? _GEN_1276 : tag_1_15; // @[i_cache.scala 22:24 90:{30,30}]
-  wire  _GEN_202 = _GEN_1280 | valid_1_0; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_203 = _GEN_1282 | valid_1_1; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_204 = _GEN_1287 | valid_1_2; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_205 = _GEN_1292 | valid_1_3; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_206 = _GEN_1296 | valid_1_4; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_207 = _GEN_1298 | valid_1_5; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_208 = _GEN_1299 | valid_1_6; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_209 = _GEN_1300 | valid_1_7; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_210 = _GEN_1301 | valid_1_8; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_211 = _GEN_1302 | valid_1_9; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_212 = _GEN_1303 | valid_1_10; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_213 = _GEN_1304 | valid_1_11; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_214 = _GEN_1305 | valid_1_12; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_215 = _GEN_1306 | valid_1_13; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_216 = _GEN_1307 | valid_1_14; // @[i_cache.scala 24:26 91:{32,32}]
-  wire  _GEN_217 = _GEN_1308 | valid_1_15; // @[i_cache.scala 24:26 91:{32,32}]
+  wire [31:0] _GEN_186 = 4'h0 == index ? _GEN_1243 : tag_1_0; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_187 = 4'h1 == index ? _GEN_1243 : tag_1_1; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_188 = 4'h2 == index ? _GEN_1243 : tag_1_2; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_189 = 4'h3 == index ? _GEN_1243 : tag_1_3; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_190 = 4'h4 == index ? _GEN_1243 : tag_1_4; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_191 = 4'h5 == index ? _GEN_1243 : tag_1_5; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_192 = 4'h6 == index ? _GEN_1243 : tag_1_6; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_193 = 4'h7 == index ? _GEN_1243 : tag_1_7; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_194 = 4'h8 == index ? _GEN_1243 : tag_1_8; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_195 = 4'h9 == index ? _GEN_1243 : tag_1_9; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_196 = 4'ha == index ? _GEN_1243 : tag_1_10; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_197 = 4'hb == index ? _GEN_1243 : tag_1_11; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_198 = 4'hc == index ? _GEN_1243 : tag_1_12; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_199 = 4'hd == index ? _GEN_1243 : tag_1_13; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_200 = 4'he == index ? _GEN_1243 : tag_1_14; // @[i_cache.scala 22:24 90:{30,30}]
+  wire [31:0] _GEN_201 = 4'hf == index ? _GEN_1243 : tag_1_15; // @[i_cache.scala 22:24 90:{30,30}]
+  wire  _GEN_202 = _GEN_1247 | valid_1_0; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_203 = _GEN_1249 | valid_1_1; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_204 = _GEN_1254 | valid_1_2; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_205 = _GEN_1259 | valid_1_3; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_206 = _GEN_1263 | valid_1_4; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_207 = _GEN_1265 | valid_1_5; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_208 = _GEN_1266 | valid_1_6; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_209 = _GEN_1267 | valid_1_7; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_210 = _GEN_1268 | valid_1_8; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_211 = _GEN_1269 | valid_1_9; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_212 = _GEN_1270 | valid_1_10; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_213 = _GEN_1271 | valid_1_11; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_214 = _GEN_1272 | valid_1_12; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_215 = _GEN_1273 | valid_1_13; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_216 = _GEN_1274 | valid_1_14; // @[i_cache.scala 24:26 91:{32,32}]
+  wire  _GEN_217 = _GEN_1275 | valid_1_15; // @[i_cache.scala 24:26 91:{32,32}]
   wire [2:0] _quene_T_2 = _quene_T | 3'h1; // @[i_cache.scala 92:55]
   wire [1:0] _GEN_218 = 4'h0 == index ? _quene_T_2[1:0] : quene_0; // @[i_cache.scala 31:24 92:{30,30}]
   wire [1:0] _GEN_219 = 4'h1 == index ? _quene_T_2[1:0] : quene_1; // @[i_cache.scala 31:24 92:{30,30}]
@@ -3227,243 +3227,210 @@ module I_CACHE(
   wire  _GEN_695 = unuse_way == 2'h1 ? valid_1_13 : _GEN_519; // @[i_cache.scala 24:26 83:34]
   wire  _GEN_696 = unuse_way == 2'h1 ? valid_1_14 : _GEN_520; // @[i_cache.scala 24:26 83:34]
   wire  _GEN_697 = unuse_way == 2'h1 ? valid_1_15 : _GEN_521; // @[i_cache.scala 24:26 83:34]
-  wire  _GEN_698 = 3'h5 == state ? 1'h0 : valid_0_0; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_699 = 3'h5 == state ? 1'h0 : valid_0_1; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_700 = 3'h5 == state ? 1'h0 : valid_0_2; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_701 = 3'h5 == state ? 1'h0 : valid_0_3; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_702 = 3'h5 == state ? 1'h0 : valid_0_4; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_703 = 3'h5 == state ? 1'h0 : valid_0_5; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_704 = 3'h5 == state ? 1'h0 : valid_0_6; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_705 = 3'h5 == state ? 1'h0 : valid_0_7; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_706 = 3'h5 == state ? 1'h0 : valid_0_8; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_707 = 3'h5 == state ? 1'h0 : valid_0_9; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_708 = 3'h5 == state ? 1'h0 : valid_0_10; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_709 = 3'h5 == state ? 1'h0 : valid_0_11; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_710 = 3'h5 == state ? 1'h0 : valid_0_12; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_711 = 3'h5 == state ? 1'h0 : valid_0_13; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_712 = 3'h5 == state ? 1'h0 : valid_0_14; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_713 = 3'h5 == state ? 1'h0 : valid_0_15; // @[i_cache.scala 47:18 111:49 23:26]
-  wire  _GEN_714 = 3'h5 == state ? 1'h0 : valid_1_0; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_715 = 3'h5 == state ? 1'h0 : valid_1_1; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_716 = 3'h5 == state ? 1'h0 : valid_1_2; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_717 = 3'h5 == state ? 1'h0 : valid_1_3; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_718 = 3'h5 == state ? 1'h0 : valid_1_4; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_719 = 3'h5 == state ? 1'h0 : valid_1_5; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_720 = 3'h5 == state ? 1'h0 : valid_1_6; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_721 = 3'h5 == state ? 1'h0 : valid_1_7; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_722 = 3'h5 == state ? 1'h0 : valid_1_8; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_723 = 3'h5 == state ? 1'h0 : valid_1_9; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_724 = 3'h5 == state ? 1'h0 : valid_1_10; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_725 = 3'h5 == state ? 1'h0 : valid_1_11; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_726 = 3'h5 == state ? 1'h0 : valid_1_12; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_727 = 3'h5 == state ? 1'h0 : valid_1_13; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_728 = 3'h5 == state ? 1'h0 : valid_1_14; // @[i_cache.scala 47:18 112:49 24:26]
-  wire  _GEN_729 = 3'h5 == state ? 1'h0 : valid_1_15; // @[i_cache.scala 47:18 112:49 24:26]
-  wire [2:0] _GEN_730 = 3'h5 == state ? 3'h0 : state; // @[i_cache.scala 113:18 47:18 45:24]
-  wire [2:0] _GEN_731 = 3'h4 == state ? 3'h1 : _GEN_730; // @[i_cache.scala 47:18 108:19]
-  wire  _GEN_732 = 3'h4 == state ? valid_0_0 : _GEN_698; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_733 = 3'h4 == state ? valid_0_1 : _GEN_699; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_734 = 3'h4 == state ? valid_0_2 : _GEN_700; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_735 = 3'h4 == state ? valid_0_3 : _GEN_701; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_736 = 3'h4 == state ? valid_0_4 : _GEN_702; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_737 = 3'h4 == state ? valid_0_5 : _GEN_703; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_738 = 3'h4 == state ? valid_0_6 : _GEN_704; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_739 = 3'h4 == state ? valid_0_7 : _GEN_705; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_740 = 3'h4 == state ? valid_0_8 : _GEN_706; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_741 = 3'h4 == state ? valid_0_9 : _GEN_707; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_742 = 3'h4 == state ? valid_0_10 : _GEN_708; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_743 = 3'h4 == state ? valid_0_11 : _GEN_709; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_744 = 3'h4 == state ? valid_0_12 : _GEN_710; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_745 = 3'h4 == state ? valid_0_13 : _GEN_711; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_746 = 3'h4 == state ? valid_0_14 : _GEN_712; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_747 = 3'h4 == state ? valid_0_15 : _GEN_713; // @[i_cache.scala 47:18 23:26]
-  wire  _GEN_748 = 3'h4 == state ? valid_1_0 : _GEN_714; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_749 = 3'h4 == state ? valid_1_1 : _GEN_715; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_750 = 3'h4 == state ? valid_1_2 : _GEN_716; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_751 = 3'h4 == state ? valid_1_3 : _GEN_717; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_752 = 3'h4 == state ? valid_1_4 : _GEN_718; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_753 = 3'h4 == state ? valid_1_5 : _GEN_719; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_754 = 3'h4 == state ? valid_1_6 : _GEN_720; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_755 = 3'h4 == state ? valid_1_7 : _GEN_721; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_756 = 3'h4 == state ? valid_1_8 : _GEN_722; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_757 = 3'h4 == state ? valid_1_9 : _GEN_723; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_758 = 3'h4 == state ? valid_1_10 : _GEN_724; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_759 = 3'h4 == state ? valid_1_11 : _GEN_725; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_760 = 3'h4 == state ? valid_1_12 : _GEN_726; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_761 = 3'h4 == state ? valid_1_13 : _GEN_727; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_762 = 3'h4 == state ? valid_1_14 : _GEN_728; // @[i_cache.scala 47:18 24:26]
-  wire  _GEN_763 = 3'h4 == state ? valid_1_15 : _GEN_729; // @[i_cache.scala 47:18 24:26]
-  wire [2:0] _GEN_764 = 3'h3 == state ? 3'h1 : _GEN_731; // @[i_cache.scala 47:18 82:19]
-  wire [511:0] _GEN_765 = 3'h3 == state ? _GEN_586 : ram_0_0; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_766 = 3'h3 == state ? _GEN_587 : ram_0_1; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_767 = 3'h3 == state ? _GEN_588 : ram_0_2; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_768 = 3'h3 == state ? _GEN_589 : ram_0_3; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_769 = 3'h3 == state ? _GEN_590 : ram_0_4; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_770 = 3'h3 == state ? _GEN_591 : ram_0_5; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_771 = 3'h3 == state ? _GEN_592 : ram_0_6; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_772 = 3'h3 == state ? _GEN_593 : ram_0_7; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_773 = 3'h3 == state ? _GEN_594 : ram_0_8; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_774 = 3'h3 == state ? _GEN_595 : ram_0_9; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_775 = 3'h3 == state ? _GEN_596 : ram_0_10; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_776 = 3'h3 == state ? _GEN_597 : ram_0_11; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_777 = 3'h3 == state ? _GEN_598 : ram_0_12; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_778 = 3'h3 == state ? _GEN_599 : ram_0_13; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_779 = 3'h3 == state ? _GEN_600 : ram_0_14; // @[i_cache.scala 47:18 19:24]
-  wire [511:0] _GEN_780 = 3'h3 == state ? _GEN_601 : ram_0_15; // @[i_cache.scala 47:18 19:24]
-  wire [31:0] _GEN_781 = 3'h3 == state ? _GEN_602 : tag_0_0; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_782 = 3'h3 == state ? _GEN_603 : tag_0_1; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_783 = 3'h3 == state ? _GEN_604 : tag_0_2; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_784 = 3'h3 == state ? _GEN_605 : tag_0_3; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_785 = 3'h3 == state ? _GEN_606 : tag_0_4; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_786 = 3'h3 == state ? _GEN_607 : tag_0_5; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_787 = 3'h3 == state ? _GEN_608 : tag_0_6; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_788 = 3'h3 == state ? _GEN_609 : tag_0_7; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_789 = 3'h3 == state ? _GEN_610 : tag_0_8; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_790 = 3'h3 == state ? _GEN_611 : tag_0_9; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_791 = 3'h3 == state ? _GEN_612 : tag_0_10; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_792 = 3'h3 == state ? _GEN_613 : tag_0_11; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_793 = 3'h3 == state ? _GEN_614 : tag_0_12; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_794 = 3'h3 == state ? _GEN_615 : tag_0_13; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_795 = 3'h3 == state ? _GEN_616 : tag_0_14; // @[i_cache.scala 47:18 21:24]
-  wire [31:0] _GEN_796 = 3'h3 == state ? _GEN_617 : tag_0_15; // @[i_cache.scala 47:18 21:24]
-  wire  _GEN_797 = 3'h3 == state ? _GEN_618 : _GEN_732; // @[i_cache.scala 47:18]
-  wire  _GEN_798 = 3'h3 == state ? _GEN_619 : _GEN_733; // @[i_cache.scala 47:18]
-  wire  _GEN_799 = 3'h3 == state ? _GEN_620 : _GEN_734; // @[i_cache.scala 47:18]
-  wire  _GEN_800 = 3'h3 == state ? _GEN_621 : _GEN_735; // @[i_cache.scala 47:18]
-  wire  _GEN_801 = 3'h3 == state ? _GEN_622 : _GEN_736; // @[i_cache.scala 47:18]
-  wire  _GEN_802 = 3'h3 == state ? _GEN_623 : _GEN_737; // @[i_cache.scala 47:18]
-  wire  _GEN_803 = 3'h3 == state ? _GEN_624 : _GEN_738; // @[i_cache.scala 47:18]
-  wire  _GEN_804 = 3'h3 == state ? _GEN_625 : _GEN_739; // @[i_cache.scala 47:18]
-  wire  _GEN_805 = 3'h3 == state ? _GEN_626 : _GEN_740; // @[i_cache.scala 47:18]
-  wire  _GEN_806 = 3'h3 == state ? _GEN_627 : _GEN_741; // @[i_cache.scala 47:18]
-  wire  _GEN_807 = 3'h3 == state ? _GEN_628 : _GEN_742; // @[i_cache.scala 47:18]
-  wire  _GEN_808 = 3'h3 == state ? _GEN_629 : _GEN_743; // @[i_cache.scala 47:18]
-  wire  _GEN_809 = 3'h3 == state ? _GEN_630 : _GEN_744; // @[i_cache.scala 47:18]
-  wire  _GEN_810 = 3'h3 == state ? _GEN_631 : _GEN_745; // @[i_cache.scala 47:18]
-  wire  _GEN_811 = 3'h3 == state ? _GEN_632 : _GEN_746; // @[i_cache.scala 47:18]
-  wire  _GEN_812 = 3'h3 == state ? _GEN_633 : _GEN_747; // @[i_cache.scala 47:18]
-  wire [1:0] _GEN_813 = 3'h3 == state ? _GEN_634 : quene_0; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_814 = 3'h3 == state ? _GEN_635 : quene_1; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_815 = 3'h3 == state ? _GEN_636 : quene_2; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_816 = 3'h3 == state ? _GEN_637 : quene_3; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_817 = 3'h3 == state ? _GEN_638 : quene_4; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_818 = 3'h3 == state ? _GEN_639 : quene_5; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_819 = 3'h3 == state ? _GEN_640 : quene_6; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_820 = 3'h3 == state ? _GEN_641 : quene_7; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_821 = 3'h3 == state ? _GEN_642 : quene_8; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_822 = 3'h3 == state ? _GEN_643 : quene_9; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_823 = 3'h3 == state ? _GEN_644 : quene_10; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_824 = 3'h3 == state ? _GEN_645 : quene_11; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_825 = 3'h3 == state ? _GEN_646 : quene_12; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_826 = 3'h3 == state ? _GEN_647 : quene_13; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_827 = 3'h3 == state ? _GEN_648 : quene_14; // @[i_cache.scala 47:18 31:24]
-  wire [1:0] _GEN_828 = 3'h3 == state ? _GEN_649 : quene_15; // @[i_cache.scala 47:18 31:24]
-  wire [511:0] _GEN_829 = 3'h3 == state ? _GEN_650 : ram_1_0; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_830 = 3'h3 == state ? _GEN_651 : ram_1_1; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_831 = 3'h3 == state ? _GEN_652 : ram_1_2; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_832 = 3'h3 == state ? _GEN_653 : ram_1_3; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_833 = 3'h3 == state ? _GEN_654 : ram_1_4; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_834 = 3'h3 == state ? _GEN_655 : ram_1_5; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_835 = 3'h3 == state ? _GEN_656 : ram_1_6; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_836 = 3'h3 == state ? _GEN_657 : ram_1_7; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_837 = 3'h3 == state ? _GEN_658 : ram_1_8; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_838 = 3'h3 == state ? _GEN_659 : ram_1_9; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_839 = 3'h3 == state ? _GEN_660 : ram_1_10; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_840 = 3'h3 == state ? _GEN_661 : ram_1_11; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_841 = 3'h3 == state ? _GEN_662 : ram_1_12; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_842 = 3'h3 == state ? _GEN_663 : ram_1_13; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_843 = 3'h3 == state ? _GEN_664 : ram_1_14; // @[i_cache.scala 47:18 20:24]
-  wire [511:0] _GEN_844 = 3'h3 == state ? _GEN_665 : ram_1_15; // @[i_cache.scala 47:18 20:24]
-  wire [31:0] _GEN_845 = 3'h3 == state ? _GEN_666 : tag_1_0; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_846 = 3'h3 == state ? _GEN_667 : tag_1_1; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_847 = 3'h3 == state ? _GEN_668 : tag_1_2; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_848 = 3'h3 == state ? _GEN_669 : tag_1_3; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_849 = 3'h3 == state ? _GEN_670 : tag_1_4; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_850 = 3'h3 == state ? _GEN_671 : tag_1_5; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_851 = 3'h3 == state ? _GEN_672 : tag_1_6; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_852 = 3'h3 == state ? _GEN_673 : tag_1_7; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_853 = 3'h3 == state ? _GEN_674 : tag_1_8; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_854 = 3'h3 == state ? _GEN_675 : tag_1_9; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_855 = 3'h3 == state ? _GEN_676 : tag_1_10; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_856 = 3'h3 == state ? _GEN_677 : tag_1_11; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_857 = 3'h3 == state ? _GEN_678 : tag_1_12; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_858 = 3'h3 == state ? _GEN_679 : tag_1_13; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_859 = 3'h3 == state ? _GEN_680 : tag_1_14; // @[i_cache.scala 47:18 22:24]
-  wire [31:0] _GEN_860 = 3'h3 == state ? _GEN_681 : tag_1_15; // @[i_cache.scala 47:18 22:24]
-  wire  _GEN_861 = 3'h3 == state ? _GEN_682 : _GEN_748; // @[i_cache.scala 47:18]
-  wire  _GEN_862 = 3'h3 == state ? _GEN_683 : _GEN_749; // @[i_cache.scala 47:18]
-  wire  _GEN_863 = 3'h3 == state ? _GEN_684 : _GEN_750; // @[i_cache.scala 47:18]
-  wire  _GEN_864 = 3'h3 == state ? _GEN_685 : _GEN_751; // @[i_cache.scala 47:18]
-  wire  _GEN_865 = 3'h3 == state ? _GEN_686 : _GEN_752; // @[i_cache.scala 47:18]
-  wire  _GEN_866 = 3'h3 == state ? _GEN_687 : _GEN_753; // @[i_cache.scala 47:18]
-  wire  _GEN_867 = 3'h3 == state ? _GEN_688 : _GEN_754; // @[i_cache.scala 47:18]
-  wire  _GEN_868 = 3'h3 == state ? _GEN_689 : _GEN_755; // @[i_cache.scala 47:18]
-  wire  _GEN_869 = 3'h3 == state ? _GEN_690 : _GEN_756; // @[i_cache.scala 47:18]
-  wire  _GEN_870 = 3'h3 == state ? _GEN_691 : _GEN_757; // @[i_cache.scala 47:18]
-  wire  _GEN_871 = 3'h3 == state ? _GEN_692 : _GEN_758; // @[i_cache.scala 47:18]
-  wire  _GEN_872 = 3'h3 == state ? _GEN_693 : _GEN_759; // @[i_cache.scala 47:18]
-  wire  _GEN_873 = 3'h3 == state ? _GEN_694 : _GEN_760; // @[i_cache.scala 47:18]
-  wire  _GEN_874 = 3'h3 == state ? _GEN_695 : _GEN_761; // @[i_cache.scala 47:18]
-  wire  _GEN_875 = 3'h3 == state ? _GEN_696 : _GEN_762; // @[i_cache.scala 47:18]
-  wire  _GEN_876 = 3'h3 == state ? _GEN_697 : _GEN_763; // @[i_cache.scala 47:18]
-  wire [511:0] _GEN_1244 = 4'h1 == index ? ram_0_1 : ram_0_0; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _GEN_1245 = 4'h2 == index ? ram_0_2 : _GEN_1244; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _GEN_1246 = 4'h3 == index ? ram_0_3 : _GEN_1245; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _GEN_1247 = 4'h4 == index ? ram_0_4 : _GEN_1246; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _GEN_1248 = 4'h5 == index ? ram_0_5 : _GEN_1247; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _GEN_1249 = 4'h6 == index ? ram_0_6 : _GEN_1248; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _GEN_1250 = 4'h7 == index ? ram_0_7 : _GEN_1249; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _GEN_1251 = 4'h8 == index ? ram_0_8 : _GEN_1250; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _GEN_1252 = 4'h9 == index ? ram_0_9 : _GEN_1251; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _GEN_1253 = 4'ha == index ? ram_0_10 : _GEN_1252; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _GEN_1254 = 4'hb == index ? ram_0_11 : _GEN_1253; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _GEN_1255 = 4'hc == index ? ram_0_12 : _GEN_1254; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _GEN_1256 = 4'hd == index ? ram_0_13 : _GEN_1255; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _GEN_1257 = 4'he == index ? ram_0_14 : _GEN_1256; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _GEN_1258 = 4'hf == index ? ram_0_15 : _GEN_1257; // @[i_cache.scala 158:{49,49}]
-  wire [511:0] _io_to_ifu_rdata_T = _GEN_1258 >> shift_bit; // @[i_cache.scala 158:49]
-  wire [511:0] _GEN_1260 = 4'h1 == index ? ram_1_1 : ram_1_0; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _GEN_1261 = 4'h2 == index ? ram_1_2 : _GEN_1260; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _GEN_1262 = 4'h3 == index ? ram_1_3 : _GEN_1261; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _GEN_1263 = 4'h4 == index ? ram_1_4 : _GEN_1262; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _GEN_1264 = 4'h5 == index ? ram_1_5 : _GEN_1263; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _GEN_1265 = 4'h6 == index ? ram_1_6 : _GEN_1264; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _GEN_1266 = 4'h7 == index ? ram_1_7 : _GEN_1265; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _GEN_1267 = 4'h8 == index ? ram_1_8 : _GEN_1266; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _GEN_1268 = 4'h9 == index ? ram_1_9 : _GEN_1267; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _GEN_1269 = 4'ha == index ? ram_1_10 : _GEN_1268; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _GEN_1270 = 4'hb == index ? ram_1_11 : _GEN_1269; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _GEN_1271 = 4'hc == index ? ram_1_12 : _GEN_1270; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _GEN_1272 = 4'hd == index ? ram_1_13 : _GEN_1271; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _GEN_1273 = 4'he == index ? ram_1_14 : _GEN_1272; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _GEN_1274 = 4'hf == index ? ram_1_15 : _GEN_1273; // @[i_cache.scala 167:{49,49}]
-  wire [511:0] _io_to_ifu_rdata_T_1 = _GEN_1274 >> shift_bit; // @[i_cache.scala 167:49]
-  wire [511:0] _GEN_1275 = way1_hit ? _io_to_ifu_rdata_T_1 : 512'h0; // @[i_cache.scala 166:33 167:33 175:33]
-  wire [511:0] _GEN_1279 = way0_hit ? _io_to_ifu_rdata_T : _GEN_1275; // @[i_cache.scala 157:23 158:33]
-  wire  _GEN_1281 = way0_hit | way1_hit; // @[i_cache.scala 157:23 160:34]
-  wire  _T_10 = state == 3'h2; // @[i_cache.scala 183:21]
-  wire [63:0] _GEN_1357 = {{32'd0}, io_from_ifu_araddr}; // @[i_cache.scala 192:49]
-  wire [63:0] _io_to_axi_araddr_T = _GEN_1357 & 64'hffffffffffffffc0; // @[i_cache.scala 192:49]
-  wire [63:0] _GEN_1285 = state == 3'h2 ? _io_to_axi_araddr_T : {{32'd0}, io_from_ifu_araddr}; // @[i_cache.scala 183:29 192:26 232:26]
-  wire [2:0] _GEN_1286 = state == 3'h2 ? 3'h7 : 3'h0; // @[i_cache.scala 183:29 193:25 234:25]
-  wire [63:0] _GEN_1290 = state == 3'h1 ? {{32'd0}, io_from_ifu_araddr} : _GEN_1285; // @[i_cache.scala 140:25 142:26]
-  wire [2:0] _GEN_1291 = state == 3'h1 ? 3'h0 : _GEN_1286; // @[i_cache.scala 140:25 143:25]
-  wire [511:0] _GEN_1295 = state == 3'h1 ? _GEN_1279 : 512'h0; // @[i_cache.scala 140:25]
-  assign io_to_ifu_rdata = _GEN_1295[63:0];
-  assign io_to_ifu_rlast = state == 3'h1 & _GEN_1281; // @[i_cache.scala 140:25]
-  assign io_to_ifu_rvalid = state == 3'h1 & _GEN_1281; // @[i_cache.scala 140:25]
-  assign io_to_axi_araddr = _GEN_1290[31:0];
-  assign io_to_axi_arlen = {{5'd0}, _GEN_1291};
-  assign io_to_axi_arvalid = state == 3'h1 ? 1'h0 : _T_10; // @[i_cache.scala 140:25 141:27]
-  assign io_to_axi_rready = state == 3'h1 ? 1'h0 : io_from_ifu_rready; // @[i_cache.scala 140:25 146:26]
-  assign io_cache_init = state == 3'h5; // @[i_cache.scala 248:27]
+  wire  _GEN_698 = 3'h4 == state ? 1'h0 : valid_0_0; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_699 = 3'h4 == state ? 1'h0 : valid_0_1; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_700 = 3'h4 == state ? 1'h0 : valid_0_2; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_701 = 3'h4 == state ? 1'h0 : valid_0_3; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_702 = 3'h4 == state ? 1'h0 : valid_0_4; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_703 = 3'h4 == state ? 1'h0 : valid_0_5; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_704 = 3'h4 == state ? 1'h0 : valid_0_6; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_705 = 3'h4 == state ? 1'h0 : valid_0_7; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_706 = 3'h4 == state ? 1'h0 : valid_0_8; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_707 = 3'h4 == state ? 1'h0 : valid_0_9; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_708 = 3'h4 == state ? 1'h0 : valid_0_10; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_709 = 3'h4 == state ? 1'h0 : valid_0_11; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_710 = 3'h4 == state ? 1'h0 : valid_0_12; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_711 = 3'h4 == state ? 1'h0 : valid_0_13; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_712 = 3'h4 == state ? 1'h0 : valid_0_14; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_713 = 3'h4 == state ? 1'h0 : valid_0_15; // @[i_cache.scala 47:18 108:49 23:26]
+  wire  _GEN_714 = 3'h4 == state ? 1'h0 : valid_1_0; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_715 = 3'h4 == state ? 1'h0 : valid_1_1; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_716 = 3'h4 == state ? 1'h0 : valid_1_2; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_717 = 3'h4 == state ? 1'h0 : valid_1_3; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_718 = 3'h4 == state ? 1'h0 : valid_1_4; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_719 = 3'h4 == state ? 1'h0 : valid_1_5; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_720 = 3'h4 == state ? 1'h0 : valid_1_6; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_721 = 3'h4 == state ? 1'h0 : valid_1_7; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_722 = 3'h4 == state ? 1'h0 : valid_1_8; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_723 = 3'h4 == state ? 1'h0 : valid_1_9; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_724 = 3'h4 == state ? 1'h0 : valid_1_10; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_725 = 3'h4 == state ? 1'h0 : valid_1_11; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_726 = 3'h4 == state ? 1'h0 : valid_1_12; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_727 = 3'h4 == state ? 1'h0 : valid_1_13; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_728 = 3'h4 == state ? 1'h0 : valid_1_14; // @[i_cache.scala 47:18 109:49 24:26]
+  wire  _GEN_729 = 3'h4 == state ? 1'h0 : valid_1_15; // @[i_cache.scala 47:18 109:49 24:26]
+  wire [2:0] _GEN_730 = 3'h4 == state ? 3'h0 : state; // @[i_cache.scala 110:18 47:18 45:24]
+  wire [2:0] _GEN_731 = 3'h3 == state ? 3'h1 : _GEN_730; // @[i_cache.scala 47:18 82:19]
+  wire [511:0] _GEN_732 = 3'h3 == state ? _GEN_586 : ram_0_0; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_733 = 3'h3 == state ? _GEN_587 : ram_0_1; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_734 = 3'h3 == state ? _GEN_588 : ram_0_2; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_735 = 3'h3 == state ? _GEN_589 : ram_0_3; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_736 = 3'h3 == state ? _GEN_590 : ram_0_4; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_737 = 3'h3 == state ? _GEN_591 : ram_0_5; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_738 = 3'h3 == state ? _GEN_592 : ram_0_6; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_739 = 3'h3 == state ? _GEN_593 : ram_0_7; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_740 = 3'h3 == state ? _GEN_594 : ram_0_8; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_741 = 3'h3 == state ? _GEN_595 : ram_0_9; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_742 = 3'h3 == state ? _GEN_596 : ram_0_10; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_743 = 3'h3 == state ? _GEN_597 : ram_0_11; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_744 = 3'h3 == state ? _GEN_598 : ram_0_12; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_745 = 3'h3 == state ? _GEN_599 : ram_0_13; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_746 = 3'h3 == state ? _GEN_600 : ram_0_14; // @[i_cache.scala 47:18 19:24]
+  wire [511:0] _GEN_747 = 3'h3 == state ? _GEN_601 : ram_0_15; // @[i_cache.scala 47:18 19:24]
+  wire [31:0] _GEN_748 = 3'h3 == state ? _GEN_602 : tag_0_0; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_749 = 3'h3 == state ? _GEN_603 : tag_0_1; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_750 = 3'h3 == state ? _GEN_604 : tag_0_2; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_751 = 3'h3 == state ? _GEN_605 : tag_0_3; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_752 = 3'h3 == state ? _GEN_606 : tag_0_4; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_753 = 3'h3 == state ? _GEN_607 : tag_0_5; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_754 = 3'h3 == state ? _GEN_608 : tag_0_6; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_755 = 3'h3 == state ? _GEN_609 : tag_0_7; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_756 = 3'h3 == state ? _GEN_610 : tag_0_8; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_757 = 3'h3 == state ? _GEN_611 : tag_0_9; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_758 = 3'h3 == state ? _GEN_612 : tag_0_10; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_759 = 3'h3 == state ? _GEN_613 : tag_0_11; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_760 = 3'h3 == state ? _GEN_614 : tag_0_12; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_761 = 3'h3 == state ? _GEN_615 : tag_0_13; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_762 = 3'h3 == state ? _GEN_616 : tag_0_14; // @[i_cache.scala 47:18 21:24]
+  wire [31:0] _GEN_763 = 3'h3 == state ? _GEN_617 : tag_0_15; // @[i_cache.scala 47:18 21:24]
+  wire  _GEN_764 = 3'h3 == state ? _GEN_618 : _GEN_698; // @[i_cache.scala 47:18]
+  wire  _GEN_765 = 3'h3 == state ? _GEN_619 : _GEN_699; // @[i_cache.scala 47:18]
+  wire  _GEN_766 = 3'h3 == state ? _GEN_620 : _GEN_700; // @[i_cache.scala 47:18]
+  wire  _GEN_767 = 3'h3 == state ? _GEN_621 : _GEN_701; // @[i_cache.scala 47:18]
+  wire  _GEN_768 = 3'h3 == state ? _GEN_622 : _GEN_702; // @[i_cache.scala 47:18]
+  wire  _GEN_769 = 3'h3 == state ? _GEN_623 : _GEN_703; // @[i_cache.scala 47:18]
+  wire  _GEN_770 = 3'h3 == state ? _GEN_624 : _GEN_704; // @[i_cache.scala 47:18]
+  wire  _GEN_771 = 3'h3 == state ? _GEN_625 : _GEN_705; // @[i_cache.scala 47:18]
+  wire  _GEN_772 = 3'h3 == state ? _GEN_626 : _GEN_706; // @[i_cache.scala 47:18]
+  wire  _GEN_773 = 3'h3 == state ? _GEN_627 : _GEN_707; // @[i_cache.scala 47:18]
+  wire  _GEN_774 = 3'h3 == state ? _GEN_628 : _GEN_708; // @[i_cache.scala 47:18]
+  wire  _GEN_775 = 3'h3 == state ? _GEN_629 : _GEN_709; // @[i_cache.scala 47:18]
+  wire  _GEN_776 = 3'h3 == state ? _GEN_630 : _GEN_710; // @[i_cache.scala 47:18]
+  wire  _GEN_777 = 3'h3 == state ? _GEN_631 : _GEN_711; // @[i_cache.scala 47:18]
+  wire  _GEN_778 = 3'h3 == state ? _GEN_632 : _GEN_712; // @[i_cache.scala 47:18]
+  wire  _GEN_779 = 3'h3 == state ? _GEN_633 : _GEN_713; // @[i_cache.scala 47:18]
+  wire [1:0] _GEN_780 = 3'h3 == state ? _GEN_634 : quene_0; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_781 = 3'h3 == state ? _GEN_635 : quene_1; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_782 = 3'h3 == state ? _GEN_636 : quene_2; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_783 = 3'h3 == state ? _GEN_637 : quene_3; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_784 = 3'h3 == state ? _GEN_638 : quene_4; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_785 = 3'h3 == state ? _GEN_639 : quene_5; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_786 = 3'h3 == state ? _GEN_640 : quene_6; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_787 = 3'h3 == state ? _GEN_641 : quene_7; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_788 = 3'h3 == state ? _GEN_642 : quene_8; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_789 = 3'h3 == state ? _GEN_643 : quene_9; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_790 = 3'h3 == state ? _GEN_644 : quene_10; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_791 = 3'h3 == state ? _GEN_645 : quene_11; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_792 = 3'h3 == state ? _GEN_646 : quene_12; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_793 = 3'h3 == state ? _GEN_647 : quene_13; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_794 = 3'h3 == state ? _GEN_648 : quene_14; // @[i_cache.scala 47:18 31:24]
+  wire [1:0] _GEN_795 = 3'h3 == state ? _GEN_649 : quene_15; // @[i_cache.scala 47:18 31:24]
+  wire [511:0] _GEN_796 = 3'h3 == state ? _GEN_650 : ram_1_0; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_797 = 3'h3 == state ? _GEN_651 : ram_1_1; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_798 = 3'h3 == state ? _GEN_652 : ram_1_2; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_799 = 3'h3 == state ? _GEN_653 : ram_1_3; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_800 = 3'h3 == state ? _GEN_654 : ram_1_4; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_801 = 3'h3 == state ? _GEN_655 : ram_1_5; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_802 = 3'h3 == state ? _GEN_656 : ram_1_6; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_803 = 3'h3 == state ? _GEN_657 : ram_1_7; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_804 = 3'h3 == state ? _GEN_658 : ram_1_8; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_805 = 3'h3 == state ? _GEN_659 : ram_1_9; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_806 = 3'h3 == state ? _GEN_660 : ram_1_10; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_807 = 3'h3 == state ? _GEN_661 : ram_1_11; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_808 = 3'h3 == state ? _GEN_662 : ram_1_12; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_809 = 3'h3 == state ? _GEN_663 : ram_1_13; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_810 = 3'h3 == state ? _GEN_664 : ram_1_14; // @[i_cache.scala 47:18 20:24]
+  wire [511:0] _GEN_811 = 3'h3 == state ? _GEN_665 : ram_1_15; // @[i_cache.scala 47:18 20:24]
+  wire [31:0] _GEN_812 = 3'h3 == state ? _GEN_666 : tag_1_0; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_813 = 3'h3 == state ? _GEN_667 : tag_1_1; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_814 = 3'h3 == state ? _GEN_668 : tag_1_2; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_815 = 3'h3 == state ? _GEN_669 : tag_1_3; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_816 = 3'h3 == state ? _GEN_670 : tag_1_4; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_817 = 3'h3 == state ? _GEN_671 : tag_1_5; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_818 = 3'h3 == state ? _GEN_672 : tag_1_6; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_819 = 3'h3 == state ? _GEN_673 : tag_1_7; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_820 = 3'h3 == state ? _GEN_674 : tag_1_8; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_821 = 3'h3 == state ? _GEN_675 : tag_1_9; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_822 = 3'h3 == state ? _GEN_676 : tag_1_10; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_823 = 3'h3 == state ? _GEN_677 : tag_1_11; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_824 = 3'h3 == state ? _GEN_678 : tag_1_12; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_825 = 3'h3 == state ? _GEN_679 : tag_1_13; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_826 = 3'h3 == state ? _GEN_680 : tag_1_14; // @[i_cache.scala 47:18 22:24]
+  wire [31:0] _GEN_827 = 3'h3 == state ? _GEN_681 : tag_1_15; // @[i_cache.scala 47:18 22:24]
+  wire  _GEN_828 = 3'h3 == state ? _GEN_682 : _GEN_714; // @[i_cache.scala 47:18]
+  wire  _GEN_829 = 3'h3 == state ? _GEN_683 : _GEN_715; // @[i_cache.scala 47:18]
+  wire  _GEN_830 = 3'h3 == state ? _GEN_684 : _GEN_716; // @[i_cache.scala 47:18]
+  wire  _GEN_831 = 3'h3 == state ? _GEN_685 : _GEN_717; // @[i_cache.scala 47:18]
+  wire  _GEN_832 = 3'h3 == state ? _GEN_686 : _GEN_718; // @[i_cache.scala 47:18]
+  wire  _GEN_833 = 3'h3 == state ? _GEN_687 : _GEN_719; // @[i_cache.scala 47:18]
+  wire  _GEN_834 = 3'h3 == state ? _GEN_688 : _GEN_720; // @[i_cache.scala 47:18]
+  wire  _GEN_835 = 3'h3 == state ? _GEN_689 : _GEN_721; // @[i_cache.scala 47:18]
+  wire  _GEN_836 = 3'h3 == state ? _GEN_690 : _GEN_722; // @[i_cache.scala 47:18]
+  wire  _GEN_837 = 3'h3 == state ? _GEN_691 : _GEN_723; // @[i_cache.scala 47:18]
+  wire  _GEN_838 = 3'h3 == state ? _GEN_692 : _GEN_724; // @[i_cache.scala 47:18]
+  wire  _GEN_839 = 3'h3 == state ? _GEN_693 : _GEN_725; // @[i_cache.scala 47:18]
+  wire  _GEN_840 = 3'h3 == state ? _GEN_694 : _GEN_726; // @[i_cache.scala 47:18]
+  wire  _GEN_841 = 3'h3 == state ? _GEN_695 : _GEN_727; // @[i_cache.scala 47:18]
+  wire  _GEN_842 = 3'h3 == state ? _GEN_696 : _GEN_728; // @[i_cache.scala 47:18]
+  wire  _GEN_843 = 3'h3 == state ? _GEN_697 : _GEN_729; // @[i_cache.scala 47:18]
+  wire [511:0] _GEN_1211 = 4'h1 == index ? ram_0_1 : ram_0_0; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _GEN_1212 = 4'h2 == index ? ram_0_2 : _GEN_1211; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _GEN_1213 = 4'h3 == index ? ram_0_3 : _GEN_1212; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _GEN_1214 = 4'h4 == index ? ram_0_4 : _GEN_1213; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _GEN_1215 = 4'h5 == index ? ram_0_5 : _GEN_1214; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _GEN_1216 = 4'h6 == index ? ram_0_6 : _GEN_1215; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _GEN_1217 = 4'h7 == index ? ram_0_7 : _GEN_1216; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _GEN_1218 = 4'h8 == index ? ram_0_8 : _GEN_1217; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _GEN_1219 = 4'h9 == index ? ram_0_9 : _GEN_1218; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _GEN_1220 = 4'ha == index ? ram_0_10 : _GEN_1219; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _GEN_1221 = 4'hb == index ? ram_0_11 : _GEN_1220; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _GEN_1222 = 4'hc == index ? ram_0_12 : _GEN_1221; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _GEN_1223 = 4'hd == index ? ram_0_13 : _GEN_1222; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _GEN_1224 = 4'he == index ? ram_0_14 : _GEN_1223; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _GEN_1225 = 4'hf == index ? ram_0_15 : _GEN_1224; // @[i_cache.scala 155:{49,49}]
+  wire [511:0] _io_to_ifu_rdata_T = _GEN_1225 >> shift_bit; // @[i_cache.scala 155:49]
+  wire [511:0] _GEN_1227 = 4'h1 == index ? ram_1_1 : ram_1_0; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _GEN_1228 = 4'h2 == index ? ram_1_2 : _GEN_1227; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _GEN_1229 = 4'h3 == index ? ram_1_3 : _GEN_1228; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _GEN_1230 = 4'h4 == index ? ram_1_4 : _GEN_1229; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _GEN_1231 = 4'h5 == index ? ram_1_5 : _GEN_1230; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _GEN_1232 = 4'h6 == index ? ram_1_6 : _GEN_1231; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _GEN_1233 = 4'h7 == index ? ram_1_7 : _GEN_1232; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _GEN_1234 = 4'h8 == index ? ram_1_8 : _GEN_1233; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _GEN_1235 = 4'h9 == index ? ram_1_9 : _GEN_1234; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _GEN_1236 = 4'ha == index ? ram_1_10 : _GEN_1235; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _GEN_1237 = 4'hb == index ? ram_1_11 : _GEN_1236; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _GEN_1238 = 4'hc == index ? ram_1_12 : _GEN_1237; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _GEN_1239 = 4'hd == index ? ram_1_13 : _GEN_1238; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _GEN_1240 = 4'he == index ? ram_1_14 : _GEN_1239; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _GEN_1241 = 4'hf == index ? ram_1_15 : _GEN_1240; // @[i_cache.scala 164:{49,49}]
+  wire [511:0] _io_to_ifu_rdata_T_1 = _GEN_1241 >> shift_bit; // @[i_cache.scala 164:49]
+  wire [511:0] _GEN_1242 = way1_hit ? _io_to_ifu_rdata_T_1 : 512'h0; // @[i_cache.scala 163:33 164:33 172:33]
+  wire [511:0] _GEN_1246 = way0_hit ? _io_to_ifu_rdata_T : _GEN_1242; // @[i_cache.scala 154:23 155:33]
+  wire  _GEN_1248 = way0_hit | way1_hit; // @[i_cache.scala 154:23 157:34]
+  wire  _T_9 = state == 3'h2; // @[i_cache.scala 180:21]
+  wire [63:0] _GEN_1324 = {{32'd0}, io_from_ifu_araddr}; // @[i_cache.scala 189:49]
+  wire [63:0] _io_to_axi_araddr_T = _GEN_1324 & 64'hffffffffffffffc0; // @[i_cache.scala 189:49]
+  wire [63:0] _GEN_1252 = state == 3'h2 ? _io_to_axi_araddr_T : {{32'd0}, io_from_ifu_araddr}; // @[i_cache.scala 180:29 189:26 229:26]
+  wire [2:0] _GEN_1253 = state == 3'h2 ? 3'h7 : 3'h0; // @[i_cache.scala 180:29 190:25 231:25]
+  wire [63:0] _GEN_1257 = state == 3'h1 ? {{32'd0}, io_from_ifu_araddr} : _GEN_1252; // @[i_cache.scala 137:25 139:26]
+  wire [2:0] _GEN_1258 = state == 3'h1 ? 3'h0 : _GEN_1253; // @[i_cache.scala 137:25 140:25]
+  wire [511:0] _GEN_1262 = state == 3'h1 ? _GEN_1246 : 512'h0; // @[i_cache.scala 137:25]
+  assign io_to_ifu_rdata = _GEN_1262[63:0];
+  assign io_to_ifu_rlast = state == 3'h1 & _GEN_1248; // @[i_cache.scala 137:25]
+  assign io_to_ifu_rvalid = state == 3'h1 & _GEN_1248; // @[i_cache.scala 137:25]
+  assign io_to_axi_araddr = _GEN_1257[31:0];
+  assign io_to_axi_arlen = {{5'd0}, _GEN_1258};
+  assign io_to_axi_arvalid = state == 3'h1 ? 1'h0 : _T_9; // @[i_cache.scala 137:25 138:27]
+  assign io_to_axi_rready = state == 3'h1 ? 1'h0 : io_from_ifu_rready; // @[i_cache.scala 137:25 143:26]
+  assign io_cache_init = state == 3'h4; // @[i_cache.scala 245:27]
   always @(posedge clock) begin
     if (reset) begin // @[i_cache.scala 19:24]
       ram_0_0 <= 512'h0; // @[i_cache.scala 19:24]
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_0 <= _GEN_765;
+          ram_0_0 <= _GEN_732;
         end
       end
     end
@@ -3472,7 +3439,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_1 <= _GEN_766;
+          ram_0_1 <= _GEN_733;
         end
       end
     end
@@ -3481,7 +3448,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_2 <= _GEN_767;
+          ram_0_2 <= _GEN_734;
         end
       end
     end
@@ -3490,7 +3457,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_3 <= _GEN_768;
+          ram_0_3 <= _GEN_735;
         end
       end
     end
@@ -3499,7 +3466,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_4 <= _GEN_769;
+          ram_0_4 <= _GEN_736;
         end
       end
     end
@@ -3508,7 +3475,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_5 <= _GEN_770;
+          ram_0_5 <= _GEN_737;
         end
       end
     end
@@ -3517,7 +3484,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_6 <= _GEN_771;
+          ram_0_6 <= _GEN_738;
         end
       end
     end
@@ -3526,7 +3493,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_7 <= _GEN_772;
+          ram_0_7 <= _GEN_739;
         end
       end
     end
@@ -3535,7 +3502,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_8 <= _GEN_773;
+          ram_0_8 <= _GEN_740;
         end
       end
     end
@@ -3544,7 +3511,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_9 <= _GEN_774;
+          ram_0_9 <= _GEN_741;
         end
       end
     end
@@ -3553,7 +3520,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_10 <= _GEN_775;
+          ram_0_10 <= _GEN_742;
         end
       end
     end
@@ -3562,7 +3529,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_11 <= _GEN_776;
+          ram_0_11 <= _GEN_743;
         end
       end
     end
@@ -3571,7 +3538,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_12 <= _GEN_777;
+          ram_0_12 <= _GEN_744;
         end
       end
     end
@@ -3580,7 +3547,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_13 <= _GEN_778;
+          ram_0_13 <= _GEN_745;
         end
       end
     end
@@ -3589,7 +3556,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_14 <= _GEN_779;
+          ram_0_14 <= _GEN_746;
         end
       end
     end
@@ -3598,7 +3565,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_0_15 <= _GEN_780;
+          ram_0_15 <= _GEN_747;
         end
       end
     end
@@ -3607,7 +3574,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_0 <= _GEN_829;
+          ram_1_0 <= _GEN_796;
         end
       end
     end
@@ -3616,7 +3583,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_1 <= _GEN_830;
+          ram_1_1 <= _GEN_797;
         end
       end
     end
@@ -3625,7 +3592,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_2 <= _GEN_831;
+          ram_1_2 <= _GEN_798;
         end
       end
     end
@@ -3634,7 +3601,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_3 <= _GEN_832;
+          ram_1_3 <= _GEN_799;
         end
       end
     end
@@ -3643,7 +3610,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_4 <= _GEN_833;
+          ram_1_4 <= _GEN_800;
         end
       end
     end
@@ -3652,7 +3619,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_5 <= _GEN_834;
+          ram_1_5 <= _GEN_801;
         end
       end
     end
@@ -3661,7 +3628,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_6 <= _GEN_835;
+          ram_1_6 <= _GEN_802;
         end
       end
     end
@@ -3670,7 +3637,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_7 <= _GEN_836;
+          ram_1_7 <= _GEN_803;
         end
       end
     end
@@ -3679,7 +3646,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_8 <= _GEN_837;
+          ram_1_8 <= _GEN_804;
         end
       end
     end
@@ -3688,7 +3655,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_9 <= _GEN_838;
+          ram_1_9 <= _GEN_805;
         end
       end
     end
@@ -3697,7 +3664,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_10 <= _GEN_839;
+          ram_1_10 <= _GEN_806;
         end
       end
     end
@@ -3706,7 +3673,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_11 <= _GEN_840;
+          ram_1_11 <= _GEN_807;
         end
       end
     end
@@ -3715,7 +3682,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_12 <= _GEN_841;
+          ram_1_12 <= _GEN_808;
         end
       end
     end
@@ -3724,7 +3691,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_13 <= _GEN_842;
+          ram_1_13 <= _GEN_809;
         end
       end
     end
@@ -3733,7 +3700,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_14 <= _GEN_843;
+          ram_1_14 <= _GEN_810;
         end
       end
     end
@@ -3742,7 +3709,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          ram_1_15 <= _GEN_844;
+          ram_1_15 <= _GEN_811;
         end
       end
     end
@@ -3751,7 +3718,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_0 <= _GEN_781;
+          tag_0_0 <= _GEN_748;
         end
       end
     end
@@ -3760,7 +3727,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_1 <= _GEN_782;
+          tag_0_1 <= _GEN_749;
         end
       end
     end
@@ -3769,7 +3736,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_2 <= _GEN_783;
+          tag_0_2 <= _GEN_750;
         end
       end
     end
@@ -3778,7 +3745,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_3 <= _GEN_784;
+          tag_0_3 <= _GEN_751;
         end
       end
     end
@@ -3787,7 +3754,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_4 <= _GEN_785;
+          tag_0_4 <= _GEN_752;
         end
       end
     end
@@ -3796,7 +3763,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_5 <= _GEN_786;
+          tag_0_5 <= _GEN_753;
         end
       end
     end
@@ -3805,7 +3772,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_6 <= _GEN_787;
+          tag_0_6 <= _GEN_754;
         end
       end
     end
@@ -3814,7 +3781,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_7 <= _GEN_788;
+          tag_0_7 <= _GEN_755;
         end
       end
     end
@@ -3823,7 +3790,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_8 <= _GEN_789;
+          tag_0_8 <= _GEN_756;
         end
       end
     end
@@ -3832,7 +3799,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_9 <= _GEN_790;
+          tag_0_9 <= _GEN_757;
         end
       end
     end
@@ -3841,7 +3808,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_10 <= _GEN_791;
+          tag_0_10 <= _GEN_758;
         end
       end
     end
@@ -3850,7 +3817,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_11 <= _GEN_792;
+          tag_0_11 <= _GEN_759;
         end
       end
     end
@@ -3859,7 +3826,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_12 <= _GEN_793;
+          tag_0_12 <= _GEN_760;
         end
       end
     end
@@ -3868,7 +3835,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_13 <= _GEN_794;
+          tag_0_13 <= _GEN_761;
         end
       end
     end
@@ -3877,7 +3844,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_14 <= _GEN_795;
+          tag_0_14 <= _GEN_762;
         end
       end
     end
@@ -3886,7 +3853,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_0_15 <= _GEN_796;
+          tag_0_15 <= _GEN_763;
         end
       end
     end
@@ -3895,7 +3862,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_0 <= _GEN_845;
+          tag_1_0 <= _GEN_812;
         end
       end
     end
@@ -3904,7 +3871,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_1 <= _GEN_846;
+          tag_1_1 <= _GEN_813;
         end
       end
     end
@@ -3913,7 +3880,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_2 <= _GEN_847;
+          tag_1_2 <= _GEN_814;
         end
       end
     end
@@ -3922,7 +3889,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_3 <= _GEN_848;
+          tag_1_3 <= _GEN_815;
         end
       end
     end
@@ -3931,7 +3898,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_4 <= _GEN_849;
+          tag_1_4 <= _GEN_816;
         end
       end
     end
@@ -3940,7 +3907,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_5 <= _GEN_850;
+          tag_1_5 <= _GEN_817;
         end
       end
     end
@@ -3949,7 +3916,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_6 <= _GEN_851;
+          tag_1_6 <= _GEN_818;
         end
       end
     end
@@ -3958,7 +3925,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_7 <= _GEN_852;
+          tag_1_7 <= _GEN_819;
         end
       end
     end
@@ -3967,7 +3934,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_8 <= _GEN_853;
+          tag_1_8 <= _GEN_820;
         end
       end
     end
@@ -3976,7 +3943,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_9 <= _GEN_854;
+          tag_1_9 <= _GEN_821;
         end
       end
     end
@@ -3985,7 +3952,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_10 <= _GEN_855;
+          tag_1_10 <= _GEN_822;
         end
       end
     end
@@ -3994,7 +3961,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_11 <= _GEN_856;
+          tag_1_11 <= _GEN_823;
         end
       end
     end
@@ -4003,7 +3970,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_12 <= _GEN_857;
+          tag_1_12 <= _GEN_824;
         end
       end
     end
@@ -4012,7 +3979,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_13 <= _GEN_858;
+          tag_1_13 <= _GEN_825;
         end
       end
     end
@@ -4021,7 +3988,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_14 <= _GEN_859;
+          tag_1_14 <= _GEN_826;
         end
       end
     end
@@ -4030,7 +3997,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          tag_1_15 <= _GEN_860;
+          tag_1_15 <= _GEN_827;
         end
       end
     end
@@ -4039,7 +4006,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_0 <= _GEN_797;
+          valid_0_0 <= _GEN_764;
         end
       end
     end
@@ -4048,7 +4015,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_1 <= _GEN_798;
+          valid_0_1 <= _GEN_765;
         end
       end
     end
@@ -4057,7 +4024,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_2 <= _GEN_799;
+          valid_0_2 <= _GEN_766;
         end
       end
     end
@@ -4066,7 +4033,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_3 <= _GEN_800;
+          valid_0_3 <= _GEN_767;
         end
       end
     end
@@ -4075,7 +4042,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_4 <= _GEN_801;
+          valid_0_4 <= _GEN_768;
         end
       end
     end
@@ -4084,7 +4051,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_5 <= _GEN_802;
+          valid_0_5 <= _GEN_769;
         end
       end
     end
@@ -4093,7 +4060,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_6 <= _GEN_803;
+          valid_0_6 <= _GEN_770;
         end
       end
     end
@@ -4102,7 +4069,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_7 <= _GEN_804;
+          valid_0_7 <= _GEN_771;
         end
       end
     end
@@ -4111,7 +4078,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_8 <= _GEN_805;
+          valid_0_8 <= _GEN_772;
         end
       end
     end
@@ -4120,7 +4087,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_9 <= _GEN_806;
+          valid_0_9 <= _GEN_773;
         end
       end
     end
@@ -4129,7 +4096,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_10 <= _GEN_807;
+          valid_0_10 <= _GEN_774;
         end
       end
     end
@@ -4138,7 +4105,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_11 <= _GEN_808;
+          valid_0_11 <= _GEN_775;
         end
       end
     end
@@ -4147,7 +4114,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_12 <= _GEN_809;
+          valid_0_12 <= _GEN_776;
         end
       end
     end
@@ -4156,7 +4123,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_13 <= _GEN_810;
+          valid_0_13 <= _GEN_777;
         end
       end
     end
@@ -4165,7 +4132,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_14 <= _GEN_811;
+          valid_0_14 <= _GEN_778;
         end
       end
     end
@@ -4174,7 +4141,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_0_15 <= _GEN_812;
+          valid_0_15 <= _GEN_779;
         end
       end
     end
@@ -4183,7 +4150,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_0 <= _GEN_861;
+          valid_1_0 <= _GEN_828;
         end
       end
     end
@@ -4192,7 +4159,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_1 <= _GEN_862;
+          valid_1_1 <= _GEN_829;
         end
       end
     end
@@ -4201,7 +4168,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_2 <= _GEN_863;
+          valid_1_2 <= _GEN_830;
         end
       end
     end
@@ -4210,7 +4177,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_3 <= _GEN_864;
+          valid_1_3 <= _GEN_831;
         end
       end
     end
@@ -4219,7 +4186,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_4 <= _GEN_865;
+          valid_1_4 <= _GEN_832;
         end
       end
     end
@@ -4228,7 +4195,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_5 <= _GEN_866;
+          valid_1_5 <= _GEN_833;
         end
       end
     end
@@ -4237,7 +4204,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_6 <= _GEN_867;
+          valid_1_6 <= _GEN_834;
         end
       end
     end
@@ -4246,7 +4213,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_7 <= _GEN_868;
+          valid_1_7 <= _GEN_835;
         end
       end
     end
@@ -4255,7 +4222,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_8 <= _GEN_869;
+          valid_1_8 <= _GEN_836;
         end
       end
     end
@@ -4264,7 +4231,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_9 <= _GEN_870;
+          valid_1_9 <= _GEN_837;
         end
       end
     end
@@ -4273,7 +4240,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_10 <= _GEN_871;
+          valid_1_10 <= _GEN_838;
         end
       end
     end
@@ -4282,7 +4249,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_11 <= _GEN_872;
+          valid_1_11 <= _GEN_839;
         end
       end
     end
@@ -4291,7 +4258,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_12 <= _GEN_873;
+          valid_1_12 <= _GEN_840;
         end
       end
     end
@@ -4300,7 +4267,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_13 <= _GEN_874;
+          valid_1_13 <= _GEN_841;
         end
       end
     end
@@ -4309,7 +4276,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_14 <= _GEN_875;
+          valid_1_14 <= _GEN_842;
         end
       end
     end
@@ -4318,7 +4285,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          valid_1_15 <= _GEN_876;
+          valid_1_15 <= _GEN_843;
         end
       end
     end
@@ -4419,7 +4386,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_0 <= _GEN_813;
+          quene_0 <= _GEN_780;
         end
       end
     end
@@ -4428,7 +4395,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_1 <= _GEN_814;
+          quene_1 <= _GEN_781;
         end
       end
     end
@@ -4437,7 +4404,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_2 <= _GEN_815;
+          quene_2 <= _GEN_782;
         end
       end
     end
@@ -4446,7 +4413,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_3 <= _GEN_816;
+          quene_3 <= _GEN_783;
         end
       end
     end
@@ -4455,7 +4422,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_4 <= _GEN_817;
+          quene_4 <= _GEN_784;
         end
       end
     end
@@ -4464,7 +4431,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_5 <= _GEN_818;
+          quene_5 <= _GEN_785;
         end
       end
     end
@@ -4473,7 +4440,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_6 <= _GEN_819;
+          quene_6 <= _GEN_786;
         end
       end
     end
@@ -4482,7 +4449,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_7 <= _GEN_820;
+          quene_7 <= _GEN_787;
         end
       end
     end
@@ -4491,7 +4458,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_8 <= _GEN_821;
+          quene_8 <= _GEN_788;
         end
       end
     end
@@ -4500,7 +4467,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_9 <= _GEN_822;
+          quene_9 <= _GEN_789;
         end
       end
     end
@@ -4509,7 +4476,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_10 <= _GEN_823;
+          quene_10 <= _GEN_790;
         end
       end
     end
@@ -4518,7 +4485,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_11 <= _GEN_824;
+          quene_11 <= _GEN_791;
         end
       end
     end
@@ -4527,7 +4494,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_12 <= _GEN_825;
+          quene_12 <= _GEN_792;
         end
       end
     end
@@ -4536,7 +4503,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_13 <= _GEN_826;
+          quene_13 <= _GEN_793;
         end
       end
     end
@@ -4545,7 +4512,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_14 <= _GEN_827;
+          quene_14 <= _GEN_794;
         end
       end
     end
@@ -4554,7 +4521,7 @@ module I_CACHE(
     end else if (!(3'h0 == state)) begin // @[i_cache.scala 47:18]
       if (!(3'h1 == state)) begin // @[i_cache.scala 47:18]
         if (!(3'h2 == state)) begin // @[i_cache.scala 47:18]
-          quene_15 <= _GEN_828;
+          quene_15 <= _GEN_795;
         end
       end
     end
@@ -4562,7 +4529,7 @@ module I_CACHE(
       state <= 3'h0; // @[i_cache.scala 45:24]
     end else if (3'h0 == state) begin // @[i_cache.scala 47:18]
       if (io_clear_cache) begin // @[i_cache.scala 49:33]
-        state <= 3'h5; // @[i_cache.scala 50:23]
+        state <= 3'h4; // @[i_cache.scala 50:23]
       end else if (io_from_ifu_arvalid) begin // @[i_cache.scala 51:44]
         state <= 3'h1; // @[i_cache.scala 52:23]
       end
@@ -4575,7 +4542,7 @@ module I_CACHE(
     end else if (3'h2 == state) begin // @[i_cache.scala 47:18]
       state <= _GEN_89;
     end else begin
-      state <= _GEN_764;
+      state <= _GEN_731;
     end
   end
 // Register and memory initialization
