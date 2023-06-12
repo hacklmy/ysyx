@@ -152,7 +152,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__4(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_23[2U] = 0U;
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_23[3U] = 0U;
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_23[4U] = 0U;
-        vlSelf->top__DOT__d_cache__DOT___GEN_2507 = 0ULL;
+        vlSelf->top__DOT__d_cache__DOT___GEN_2512 = 0ULL;
     } else {
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_23[0U] 
             = ((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_start)
@@ -217,7 +217,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__4(Vtop___024root* vlSelf) {
                                        << 0x1fU))) 
                        >> 0x1fU) : __Vtemp2411[4U])
                 : __Vtemp2414[4U]);
-        vlSelf->top__DOT__d_cache__DOT___GEN_2507 = 
+        vlSelf->top__DOT__d_cache__DOT___GEN_2512 = 
             ((0U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
               ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
               : ((1U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
@@ -234,7 +234,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__4(Vtop___024root* vlSelf) {
                                       : ((2U == (IData)(vlSelf->top__DOT__d_cache__DOT__unuse_way))
                                           ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
                                           : ((0U == (IData)(vlSelf->top__DOT__d_cache__DOT__quene_1))
-                                              ? ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_446)
+                                              ? ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_450)
                                                   ? 
                                                  (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_15)) 
                                                    << 0xaU) 
@@ -245,9 +245,9 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__4(Vtop___024root* vlSelf) {
                                                                                 >> 6U)) 
                                                                         << 6U)))))
                                                   : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr)))
-                                              : ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_689)
+                                              : ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_693)
                                                   ? 
-                                                 (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_47)) 
+                                                 (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_48)) 
                                                    << 0xaU) 
                                                   | (QData)((IData)(
                                                                     (0x3c0U 
