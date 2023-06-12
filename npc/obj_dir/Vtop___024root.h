@@ -109,11 +109,11 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__EXU__DOT__ALU__DOT__mul_valid;
         CData/*0:0*/ top__DOT__EXU__DOT__ALU__DOT__div_valid;
         CData/*1:0*/ top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state;
+        CData/*1:0*/ top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_11;
         CData/*0:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT__dend_neg;
         CData/*0:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sor_neg;
         CData/*0:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_start;
         CData/*0:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_0;
-        CData/*0:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_14;
         CData/*0:0*/ top__DOT__LSU__DOT__ms_valid;
         CData/*0:0*/ top__DOT__LSU__DOT__ms_ready_go;
         CData/*0:0*/ top__DOT__LSU__DOT__ms_rf_we;
@@ -487,8 +487,8 @@ VL_MODULE(Vtop___024root) {
         IData/*31:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_3;
         VlWide<3>/*64:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res;
         IData/*31:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT___step_num_T_1;
-        VlWide<5>/*128:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_22;
-        VlWide<3>/*64:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_23;
+        VlWide<5>/*128:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_23;
+        VlWide<3>/*64:0*/ top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_24;
         VlWide<16>/*511:0*/ top__DOT__i_cache__DOT__ram_0_0;
         VlWide<16>/*511:0*/ top__DOT__i_cache__DOT__ram_0_1;
     };

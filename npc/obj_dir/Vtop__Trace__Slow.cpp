@@ -613,6 +613,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+380,"top EXU ALU_io_src2_value", false,-1, 63,0);
         tracep->declBus(c+382,"top EXU ALU_io_ALUop", false,-1, 31,0);
         tracep->declBit(c+49,"top EXU ALU_io_src_valid", false,-1);
+        tracep->declBit(c+55,"top EXU ALU_io_res_ready", false,-1);
         tracep->declBit(c+383,"top EXU ALU_io_alu_busy", false,-1);
         tracep->declQuad(c+59,"top EXU ALU_io_alu_res", false,-1, 63,0);
         tracep->declQuad(c+57,"top EXU es_pc", false,-1, 63,0);
@@ -635,6 +636,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+380,"top EXU ALU io_src2_value", false,-1, 63,0);
         tracep->declBus(c+382,"top EXU ALU io_ALUop", false,-1, 31,0);
         tracep->declBit(c+49,"top EXU ALU io_src_valid", false,-1);
+        tracep->declBit(c+55,"top EXU ALU io_res_ready", false,-1);
         tracep->declBit(c+383,"top EXU ALU io_alu_busy", false,-1);
         tracep->declQuad(c+59,"top EXU ALU io_alu_res", false,-1, 63,0);
         tracep->declBit(c+1804,"top EXU ALU Mul_clock", false,-1);
@@ -644,6 +646,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+378,"top EXU ALU Mul_io_multiplicand", false,-1, 63,0);
         tracep->declQuad(c+380,"top EXU ALU Mul_io_multiplier", false,-1, 63,0);
         tracep->declBit(c+389,"top EXU ALU Mul_io_out_valid", false,-1);
+        tracep->declBit(c+55,"top EXU ALU Mul_io_out_ready", false,-1);
         tracep->declBus(c+390,"top EXU ALU Mul_io_result_hi", false,-1, 31,0);
         tracep->declBus(c+391,"top EXU ALU Mul_io_result_lo", false,-1, 31,0);
         tracep->declBit(c+1804,"top EXU ALU Div_clock", false,-1);
@@ -654,6 +657,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+393,"top EXU ALU Div_io_divw", false,-1);
         tracep->declBit(c+394,"top EXU ALU Div_io_div_signed", false,-1);
         tracep->declBit(c+395,"top EXU ALU Div_io_out_valid", false,-1);
+        tracep->declBit(c+55,"top EXU ALU Div_io_out_ready", false,-1);
         tracep->declQuad(c+396,"top EXU ALU Div_io_quotient", false,-1, 63,0);
         tracep->declQuad(c+398,"top EXU ALU Div_io_remainder", false,-1, 63,0);
         tracep->declBit(c+400,"top EXU ALU mul_valid", false,-1);
@@ -680,6 +684,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+378,"top EXU ALU Mul io_multiplicand", false,-1, 63,0);
         tracep->declQuad(c+380,"top EXU ALU Mul io_multiplier", false,-1, 63,0);
         tracep->declBit(c+389,"top EXU ALU Mul io_out_valid", false,-1);
+        tracep->declBit(c+55,"top EXU ALU Mul io_out_ready", false,-1);
         tracep->declBus(c+390,"top EXU ALU Mul io_result_hi", false,-1, 31,0);
         tracep->declBus(c+391,"top EXU ALU Mul io_result_lo", false,-1, 31,0);
         tracep->declBus(c+432,"top EXU ALU Mul booth_partial_io_y", false,-1, 2,0);
@@ -707,6 +712,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+393,"top EXU ALU Div io_divw", false,-1);
         tracep->declBit(c+394,"top EXU ALU Div io_div_signed", false,-1);
         tracep->declBit(c+395,"top EXU ALU Div io_out_valid", false,-1);
+        tracep->declBit(c+55,"top EXU ALU Div io_out_ready", false,-1);
         tracep->declQuad(c+396,"top EXU ALU Div io_quotient", false,-1, 63,0);
         tracep->declQuad(c+398,"top EXU ALU Div io_remainder", false,-1, 63,0);
         tracep->declBit(c+459,"top EXU ALU Div dend_neg", false,-1);
