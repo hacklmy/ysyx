@@ -9,92 +9,86 @@ static char sprint_buf[2048];
 char* itoa(int num,char* str,int radix)
 {
     char index[]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";//索引表
-    unsigned unum;//存放要转换的整数的绝对值,转换的整数可能是负数
-    int i=0,j,k;//i用来指示设置字符串相应位，转换之后i其实就是字符串的长度；转换后顺序是逆序的，有正负的情况，k用来指示调整顺序的开始位置;j用来指示调整顺序时的交换。
+    unsigned unum;
+    int i=0,j,k;
  
-    //获取要转换的整数的绝对值
-    if(radix==10&&num<0)//要转换成十进制数并且是负数
+    if(radix==10&&num<0)
     {
-        unum=(unsigned)-num;//将num的绝对值赋给unum
-        str[i++]='-';//在字符串最前面设置为'-'号，并且索引加1
+        unum=(unsigned)-num;
+        str[i++]='-';
     }
-    else unum=(unsigned)num;//若是num为正，直接赋值给unum
- 
-    //转换部分，注意转换后是逆序的
+    else unum=(unsigned)num;
+    //转换后是逆序的
     do
     {
-        str[i++]=index[unum%(unsigned)radix];//取unum的最后一位，并设置为str对应位，指示索引加1
-        unum/=radix;//unum去掉最后一位
+        str[i++]=index[unum%(unsigned)radix];
+        unum/=radix;
  
-    }while(unum);//直至unum为0退出循环
+    }while(unum);
  
-    str[i]='\0';//在字符串最后添加'\0'字符，c语言字符串以'\0'结束。
+    str[i]='\0';
  
     //将顺序调整过来
-    if(str[0]=='-') k=1;//如果是负数，符号不用调整，从符号后面开始调整
-    else k=0;//不是负数，全部都要调整
+    if(str[0]=='-') k=1;
+    else k=0;
  
-    char temp;//临时变量，交换两个值时用到
-    for(j=k;j<=(i-1)/2;j++)//头尾一一对称交换，i其实就是字符串的长度，索引最大值比长度少1
+    char temp;
+    for(j=k;j<=(i-1)/2;j++)
     {
-        temp=str[j];//头部赋值给临时变量
-        str[j]=str[i-1+k-j];//尾部赋值给头部
-        str[i-1+k-j]=temp;//将临时变量的值(其实就是之前的头部值)赋给尾部
+        temp=str[j];
+        str[j]=str[i-1+k-j];
+        str[i-1+k-j]=temp;
     }
  
-    return str;//返回转换后的字符串
+    return str;
 }
 
 char* ltoa(long num,char* str,int radix)
 {
     char index[]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";//索引表
-    unsigned long unum;//存放要转换的整数的绝对值,转换的整数可能是负数
-    int i=0,j,k;//i用来指示设置字符串相应位，转换之后i其实就是字符串的长度；转换后顺序是逆序的，有正负的情况，k用来指示调整顺序的开始位置;j用来指示调整顺序时的交换。
+    unsigned long unum;
+    int i=0,j,k;
  
-    //获取要转换的整数的绝对值
-    if(radix==10&&num<0)//要转换成十进制数并且是负数
+    if(radix==10&&num<0)
     {
-        unum=(unsigned long)-num;//将num的绝对值赋给unum
-        str[i++]='-';//在字符串最前面设置为'-'号，并且索引加1
+        unum=(unsigned long)-num;
+        str[i++]='-';
     }
-    else unum=(unsigned long)num;//若是num为正，直接赋值给unum
- 
-    //转换部分，注意转换后是逆序的
+    else unum=(unsigned long)num;
+    //转换后是逆序的
     do
     {
-        str[i++]=index[unum%(unsigned long)radix];//取unum的最后一位，并设置为str对应位，指示索引加1
-        unum/=radix;//unum去掉最后一位
+        str[i++]=index[unum%(unsigned long)radix];
+        unum/=radix;
  
-    }while(unum);//直至unum为0退出循环
+    }while(unum);
  
     str[i]='\0';//在字符串最后添加'\0'字符，c语言字符串以'\0'结束。
  
     //将顺序调整过来
-    if(str[0]=='-') k=1;//如果是负数，符号不用调整，从符号后面开始调整
-    else k=0;//不是负数，全部都要调整
+    if(str[0]=='-') k=1;
+    else k=0;
  
-    char temp;//临时变量，交换两个值时用到
-    for(j=k;j<=(i-1)/2;j++)//头尾一一对称交换，i其实就是字符串的长度，索引最大值比长度少1
+    char temp;
+    for(j=k;j<=(i-1)/2;j++)
     {
-        temp=str[j];//头部赋值给临时变量
-        str[j]=str[i-1+k-j];//尾部赋值给头部
-        str[i-1+k-j]=temp;//将临时变量的值(其实就是之前的头部值)赋给尾部
+        temp=str[j];
+        str[j]=str[i-1+k-j];
+        str[i-1+k-j]=temp;
     }
- 
-    return str;//返回转换后的字符串
+    return str;
 }
 int printf(const char *fmt, ...) {
   va_list args; 
-  int n;
   va_start(args, fmt);
-  n = vsprintf(sprint_buf, fmt, args);
+  int size = vsprintf(sprint_buf, fmt, args);
   va_end(args);
   for (size_t i = 0; i < 2048 && sprint_buf[i] != '\0'; i++)
   {
     putch(sprint_buf[i]);
   }
   
-  return n;
+  return size;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
@@ -106,11 +100,8 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
   char c;
   char *s;
   char d2s[32];
-  bool align_left = false;
-  bool sign_disp = false;
   bool pad_zero = false;
   int  width = 0;
-  int  precision = 0;
   int  str_len = 0;
   int  spc_len = 0;
   int i;
@@ -122,26 +113,18 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
         case 's':              /* string */
           s = va_arg(ap, char *);
           str_len = strlen(s);//string length
-          spc_len = precision > 0 ? ((width > precision)?(width - precision):0) : (width > str_len ? width - str_len : 0);
-          str_len = (precision == 0 ? str_len : precision);//print length
-          if(align_left == false)// space' '
-            for(i = 0; i < spc_len; i++)
-            {
-              *out++ = ' ';
-              len++;
-            }
+          spc_len = width > str_len ? width - str_len : 0;
+          for(i = 0; i < spc_len; i++)
+          {
+            *out++ = ' ';
+            len++;
+          }
           for(i = 0; i < str_len && *s != '\0'; i++)// string
           {
             *out++ = *s;
             len++;
             s++;
           }
-          if(align_left == true)// space' '
-            for(i = 0; i < spc_len; i++)
-            {
-              *out++ = ' ';
-              len++;
-            }
           is_arg = false;
           fmt++;
           break;
@@ -176,8 +159,6 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
             case 'p':               /* unsigned int */
               d = va_arg(ap, unsigned int);
               itoa(d, d2s, 16);
-              // width = 16;
-              // pad_zero = false;
               break;
 
             case 'l':              /* long */
@@ -202,40 +183,23 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
           }
           str_len = strlen(d2s);//string length
           spc_len = width > str_len ? width - str_len : 0;
-          if (sign_disp && *d2s != '-')//sign +
-          {
-            spc_len -= 1;
-          }
           if (*fmt == 'p')
           {
               *out++ = '0';len++;
               *out++ = 'x';len++;
           }
           char padding = (pad_zero == true) ? '0' : ' ';
-          if(align_left == false) {// padding space' ' or zero'0'
-            for(i = 0; i < spc_len; i++)
-            {
-              *out++ = padding;
-              len++;
-            }
-          }
-          if (sign_disp && *d2s != '-')//sign +
+          // padding space' ' or zero'0'
+          for(i = 0; i < spc_len; i++)
           {
-            *out++ = '+';
+            *out++ = padding;
             len++;
-            width--;
           }
           for(i = 0; i < str_len; i++)
           {
             *out++ = d2s[i];
             len++;
           }
-          if(align_left == true)// padding space' '
-            for(i = 0; i < spc_len; i++)
-            {
-              *out++ = ' ';
-              len++;
-            }
           is_arg = false;
           fmt++;
           break;
@@ -254,14 +218,6 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
           is_arg = false;
           fmt++;
           break;
-        case '-':              /* align left */
-          align_left = true;
-          fmt++;
-          break;
-        case '+':              /* +- sign */
-          sign_disp = true;
-          fmt++;
-          break;
         case '0':              /* padding zero */
           pad_zero = true;
           fmt++;
@@ -270,35 +226,14 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
           width = atoi(fmt);   /* width */
           while (*fmt >= '0' && *fmt <= '9') fmt++;
           break;
-        case '*':
-          width = va_arg(ap, int);   /* width */
-          fmt++;
-          break;
-        case '.':              /* precision */
-          fmt++;
-          if (*fmt == '*')
-          {
-            precision = va_arg(ap, int);
-            fmt++;
-          }
-          else
-          {
-            precision = atoi(fmt);
-            while (*fmt >= '0' && *fmt <= '9') fmt++;
-          }
-          pad_zero = false;
-          break;
       }
     }
     else
     {
       if(*fmt == '%') {
         is_arg = true;
-        align_left = false;
-        sign_disp = false;
         pad_zero = false;
         width = 0;
-        precision = 0;
         str_len = 0;
         spc_len = 0;
       }
@@ -315,22 +250,18 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 int sprintf(char *out, const char *fmt, ...) {
 	va_list args;
-	int len;
-
 	va_start(args, fmt);
-	len = vsprintf(out,fmt,args);
+	int size = vsprintf(out,fmt,args);
 	va_end(args);
-	return len;
+	return size;
 }
 
 int snprintf(char *out, size_t n, const char *fmt, ...) {
 	va_list args;
-	int len;
-
 	va_start(args, fmt);
-	len = vsnprintf(out, n, fmt, args);
+	int size = vsnprintf(out, n, fmt, args);
 	va_end(args);
-	return len;
+	return size;
 }
 
 int vsnprintf(char *out, size_t n, const char *fmt, va_list ap) {
@@ -342,11 +273,8 @@ int vsnprintf(char *out, size_t n, const char *fmt, va_list ap) {
   char c;
   char *s;
   char d2s[32];
-  bool align_left = false;
-  bool sign_disp = false;
   bool pad_zero = false;
   int  width = 0;
-  int  precision = 0;
   int  str_len = 0;
   int  spc_len = 0;
   int i;
@@ -358,26 +286,18 @@ int vsnprintf(char *out, size_t n, const char *fmt, va_list ap) {
         case 's':              /* string */
           s = va_arg(ap, char *);
           str_len = strlen(s);//string length
-          spc_len = precision > 0 ? ((width > precision)?(width - precision):0) : (width > str_len ? width - str_len : 0);
-          str_len = (precision == 0 ? str_len : precision);//print length
-          if(align_left == false)// space' '
-            for(i = 0; i < spc_len; i++)
-            {
-              *out++ = ' ';
-              len++;if(len == n) return n;
-            }
+          spc_len = width - str_len;
+          for(i = 0; i < spc_len; i++)
+          {
+            *out++ = ' ';
+            len++;if(len == n) return n;
+          }
           for(i = 0; i < str_len && *s != '\0'; i++)// string
           {
             *out++ = *s;
             len++;if(len == n) return n;
             s++;
           }
-          if(align_left == true)// space' '
-            for(i = 0; i < spc_len; i++)
-            {
-              *out++ = ' ';
-              len++;if(len == n) return n;
-            }
           is_arg = false;
           fmt++;
           break;
@@ -412,8 +332,6 @@ int vsnprintf(char *out, size_t n, const char *fmt, va_list ap) {
             case 'p':               /* unsigned int */
               d = va_arg(ap, unsigned int);
               itoa(d, d2s, 16);
-              // width = 16;
-              // pad_zero = false;
               break;
 
             case 'l':              /* long */
@@ -438,40 +356,23 @@ int vsnprintf(char *out, size_t n, const char *fmt, va_list ap) {
           }
           str_len = strlen(d2s);//string length
           spc_len = width > str_len ? width - str_len : 0;
-          if (sign_disp && *d2s != '-')//sign +
-          {
-            spc_len -= 1;
-          }
           if (*fmt == 'p')
           {
               *out++ = '0';len++;if(len == n) return n;
               *out++ = 'x';len++;if(len == n) return n;
           }
           char padding = (pad_zero == true) ? '0' : ' ';
-          if(align_left == false) {// padding space' ' or zero'0'
-            for(i = 0; i < spc_len; i++)
-            {
-              *out++ = padding;
-              len++;if(len == n) return n;
-            }
-          }
-          if (sign_disp && *d2s != '-')//sign +
+          
+          for(i = 0; i < spc_len; i++)
           {
-            *out++ = '+';
+            *out++ = padding;
             len++;if(len == n) return n;
-            width--;
           }
           for(i = 0; i < str_len; i++)
           {
             *out++ = d2s[i];
             len++;if(len == n) return n;
           }
-          if(align_left == true)// padding space' '
-            for(i = 0; i < spc_len; i++)
-            {
-              *out++ = ' ';
-              len++;if(len == n) return n;
-            }
           is_arg = false;
           fmt++;
           break;
@@ -490,14 +391,6 @@ int vsnprintf(char *out, size_t n, const char *fmt, va_list ap) {
           is_arg = false;
           fmt++;
           break;
-        case '-':              /* align left */
-          align_left = true;
-          fmt++;
-          break;
-        case '+':              /* +- sign */
-          sign_disp = true;
-          fmt++;
-          break;
         case '0':              /* padding zero */
           pad_zero = true;
           fmt++;
@@ -506,35 +399,14 @@ int vsnprintf(char *out, size_t n, const char *fmt, va_list ap) {
           width = atoi(fmt);   /* width */
           while (*fmt >= '0' && *fmt <= '9') fmt++;
           break;
-        case '*':
-          width = va_arg(ap, int);   /* width */
-          fmt++;
-          break;
-        case '.':              /* precision */
-          fmt++;
-          if (*fmt == '*')
-          {
-            precision = va_arg(ap, int);
-            fmt++;
-          }
-          else
-          {
-            precision = atoi(fmt);
-            while (*fmt >= '0' && *fmt <= '9') fmt++;
-          }
-          pad_zero = false;
-          break;
       }
     }
     else
     {
       if(*fmt == '%') {
         is_arg = true;
-        align_left = false;
-        sign_disp = false;
         pad_zero = false;
         width = 0;
-        precision = 0;
         str_len = 0;
         spc_len = 0;
       }
