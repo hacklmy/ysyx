@@ -223,9 +223,6 @@ void vga_update_screen() {
     update_screen();
     vgactl_port_base[1] = 0;
   }
-}
-
-void device_update(){
   while (SDL_PollEvent(&event)) {
     switch (event.type) {
       case SDL_QUIT:
@@ -779,7 +776,6 @@ void cpu_exec(int n){
     #endif
     #ifdef HAS_VGA
     //vga_update_screen();
-    device_update();
     #endif
     sim_time++;
   }
