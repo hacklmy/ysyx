@@ -114,6 +114,11 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
           s = va_arg(ap, char *);
           str_len = strlen(s);//string length
           spc_len = width > str_len ? width - str_len : 0;
+          for(i = 0; i < spc_len; i++)
+          {
+            *out++ = ' ';
+            len++;
+          }
           for(i = 0; i < str_len && *s != '\0'; i++)// string
           {
             *out++ = *s;
