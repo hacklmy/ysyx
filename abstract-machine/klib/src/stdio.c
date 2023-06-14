@@ -83,7 +83,7 @@ int printf(const char *fmt, ...) {
   va_start(args, fmt);
   int size = vsprintf(sprint_buf, fmt, args);
   va_end(args);
-  for (size_t i = 0; i < 1024 && sprint_buf[i] != '\0'; i++)
+  for (size_t i = 0; i < 2048 && sprint_buf[i] != '\0'; i++)
   {
     putch(sprint_buf[i]);
   }
