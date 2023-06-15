@@ -890,10 +890,11 @@ module IDU(
   wire [6:0] _ALUop_T_175 = _ALUop_T_3 ? 7'h2 : _ALUop_T_174; // @[Lookup.scala 34:39]
   wire [6:0] _ALUop_T_176 = _inst_type_T_1 ? 7'hf : _ALUop_T_175; // @[Lookup.scala 34:39]
   wire [31:0] ALUop = {{25'd0}, _ALUop_T_176}; // @[IDU.scala 310:11 64:21]
-  wire  ds_ready_go = ((conflict_es_rs1 | conflict_es_rs2) & (io_es_fwd_ready & ~io_es_ld) | (conflict_ms_rs1 |
-    conflict_ms_rs2) & io_ms_fwd_ready | (conflict_ws_rs1 | conflict_ws_rs2) | ~(conflict_es_rs1 | conflict_es_rs2 |
-    conflict_ms_rs1 | conflict_ms_rs2 | conflict_ws_rs1 | conflict_ws_rs2)) & (ALUop == 32'h6 & io_fs_to_ds_valid &
-    ds_valid | ALUop != 32'h6); // @[IDU.scala 150:306]
+  wire  _ds_ready_go_T_30 = ALUop == 32'h6 & io_fs_to_ds_valid & ds_valid | ALUop != 32'h6; // @[IDU.scala 150:473]
+  wire  ds_ready_go = ((conflict_es_rs1 | conflict_es_rs2) & (io_es_fwd_ready & ~io_es_ld) | ~(conflict_es_rs1 |
+    conflict_es_rs2) & (conflict_ms_rs1 | conflict_ms_rs2) & io_ms_fwd_ready | ~(conflict_es_rs1 | conflict_es_rs2) & ~(
+    conflict_ms_rs1 | conflict_ms_rs2) & (conflict_ws_rs1 | conflict_ws_rs2) | ~(conflict_es_rs1 | conflict_es_rs2 |
+    conflict_ms_rs1 | conflict_ms_rs2 | conflict_ws_rs1 | conflict_ws_rs2)) & _ds_ready_go_T_30; // @[IDU.scala 150:419]
   wire  ds_allowin = ~ds_valid | ds_ready_go & io_es_allowin; // @[IDU.scala 152:29]
   wire  _T_1 = ~br_taken_cancel; // @[IDU.scala 133:26]
   wire [63:0] _rdata1_T = conflict_ws_rs1 ? io_ws_fwd_res : io_rdata1; // @[IDU.scala 497:86]
