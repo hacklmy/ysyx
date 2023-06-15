@@ -32269,8 +32269,9 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__IDU__DOT__ds_ready_go = (((((
                                                    ((IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs1) 
                                                     | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs2)) 
-                                                   & ((IData)(vlSelf->top__DOT__EXU__DOT__es_valid) 
-                                                      & (~ (IData)(vlSelf->top__DOT__EXU__DOT__ALU_io_alu_busy)))) 
+                                                   & (((IData)(vlSelf->top__DOT__EXU__DOT__es_valid) 
+                                                       & (~ (IData)(vlSelf->top__DOT__EXU__DOT__ALU_io_alu_busy))) 
+                                                      & (~ (IData)(vlSelf->top__DOT__EXU__DOT__ld_we)))) 
                                                   | (((IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs1) 
                                                       | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs2)) 
                                                      & ((IData)(vlSelf->top__DOT__LSU__DOT__ms_valid) 

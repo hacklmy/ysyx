@@ -483,31 +483,31 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                        & vlSelf->top__DOT__IDU__DOT__inst))
                                                       ? 7U
                                                       : 0U)))))))),3);
-            tracep->chgQData(oldp+45,((((QData)((IData)(
+            tracep->chgBit(oldp+45,(vlSelf->top__DOT__EXU__DOT__ld_we));
+            tracep->chgQData(oldp+46,((((QData)((IData)(
                                                         vlSelf->top__DOT__EXU__DOT__ALU__DOT__alu_res[1U])) 
                                         << 0x20U) | (QData)((IData)(
                                                                     vlSelf->top__DOT__EXU__DOT__ALU__DOT__alu_res[0U])))),64);
-            tracep->chgQData(oldp+47,(vlSelf->top__DOT__LSU_io_ms_fwd_res),64);
-            tracep->chgBit(oldp+49,(((IData)(vlSelf->top__DOT__EXU__DOT__es_valid) 
+            tracep->chgQData(oldp+48,(vlSelf->top__DOT__LSU_io_ms_fwd_res),64);
+            tracep->chgBit(oldp+50,(((IData)(vlSelf->top__DOT__EXU__DOT__es_valid) 
                                      & (~ (IData)(vlSelf->top__DOT__EXU__DOT__ALU_io_alu_busy)))));
-            tracep->chgBit(oldp+50,(((IData)(vlSelf->top__DOT__LSU__DOT__ms_valid) 
+            tracep->chgBit(oldp+51,(((IData)(vlSelf->top__DOT__LSU__DOT__ms_valid) 
                                      & (IData)(vlSelf->top__DOT__LSU__DOT__ms_ready_go))));
-            tracep->chgBit(oldp+51,(vlSelf->top__DOT__EXU__DOT__es_rf_we));
-            tracep->chgBit(oldp+52,(vlSelf->top__DOT__LSU_io_ms_rf_we));
-            tracep->chgBit(oldp+53,(vlSelf->top__DOT__WBU__DOT__ws_rf_we));
-            tracep->chgBit(oldp+54,(vlSelf->top__DOT__EXU__DOT__es_valid));
-            tracep->chgBit(oldp+55,(vlSelf->top__DOT__LSU__DOT__ms_valid));
-            tracep->chgBit(oldp+56,(vlSelf->top__DOT__WBU__DOT__ws_valid));
-            tracep->chgCData(oldp+57,(vlSelf->top__DOT__EXU__DOT__es_rd),5);
-            tracep->chgCData(oldp+58,(vlSelf->top__DOT__LSU__DOT__ms_rf_dst),5);
-            tracep->chgBit(oldp+59,(vlSelf->top__DOT__IDU__DOT__ds_valid));
-            tracep->chgBit(oldp+60,(vlSelf->top__DOT__LSU_io_ms_allowin));
-            tracep->chgBit(oldp+61,(vlSelf->top__DOT__EXU_io_es_to_ms_valid));
-            tracep->chgQData(oldp+62,(vlSelf->top__DOT__EXU__DOT__es_pc),64);
-            tracep->chgQData(oldp+64,(vlSelf->top__DOT__EXU__DOT__store_data),64);
-            tracep->chgBit(oldp+66,(vlSelf->top__DOT__EXU__DOT__st_we));
-            tracep->chgCData(oldp+67,(vlSelf->top__DOT__EXU__DOT__st_wstrb),8);
-            tracep->chgBit(oldp+68,(vlSelf->top__DOT__EXU__DOT__ld_we));
+            tracep->chgBit(oldp+52,(vlSelf->top__DOT__EXU__DOT__es_rf_we));
+            tracep->chgBit(oldp+53,(vlSelf->top__DOT__LSU_io_ms_rf_we));
+            tracep->chgBit(oldp+54,(vlSelf->top__DOT__WBU__DOT__ws_rf_we));
+            tracep->chgBit(oldp+55,(vlSelf->top__DOT__EXU__DOT__es_valid));
+            tracep->chgBit(oldp+56,(vlSelf->top__DOT__LSU__DOT__ms_valid));
+            tracep->chgBit(oldp+57,(vlSelf->top__DOT__WBU__DOT__ws_valid));
+            tracep->chgCData(oldp+58,(vlSelf->top__DOT__EXU__DOT__es_rd),5);
+            tracep->chgCData(oldp+59,(vlSelf->top__DOT__LSU__DOT__ms_rf_dst),5);
+            tracep->chgBit(oldp+60,(vlSelf->top__DOT__IDU__DOT__ds_valid));
+            tracep->chgBit(oldp+61,(vlSelf->top__DOT__LSU_io_ms_allowin));
+            tracep->chgBit(oldp+62,(vlSelf->top__DOT__EXU_io_es_to_ms_valid));
+            tracep->chgQData(oldp+63,(vlSelf->top__DOT__EXU__DOT__es_pc),64);
+            tracep->chgQData(oldp+65,(vlSelf->top__DOT__EXU__DOT__store_data),64);
+            tracep->chgBit(oldp+67,(vlSelf->top__DOT__EXU__DOT__st_we));
+            tracep->chgCData(oldp+68,(vlSelf->top__DOT__EXU__DOT__st_wstrb),8);
             tracep->chgCData(oldp+69,(vlSelf->top__DOT__EXU__DOT__load_type),3);
             tracep->chgQData(oldp+70,(vlSelf->top__DOT__LSU__DOT__ms_pc),64);
             tracep->chgQData(oldp+72,(((0U != (IData)(vlSelf->top__DOT__LSU__DOT__load_type))

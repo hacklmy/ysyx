@@ -99,7 +99,7 @@ module EXU(
   assign io_es_rf_dst = es_rd; // @[EXU.scala 122:18]
   assign io_es_fwd_ready = es_valid & es_ready_go; // @[EXU.scala 79:32]
   assign io_es_fwd_res = ALU_io_alu_res; // @[EXU.scala 56:23 98:13]
-  assign io_es_ld = ld_we; // @[EXU.scala 127:14]
+  assign io_es_ld = ld_we & es_valid; // @[EXU.scala 127:23]
   assign ALU_clock = clock;
   assign ALU_reset = reset;
   assign ALU_io_src1_value = ALUop == 32'h6 ? es_pc : src1_value; // @[EXU.scala 94:26]
@@ -172,8 +172,8 @@ module EXU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"es_pc:%x es_valid:%d es_allowin:%d  alu_res:%x src1_value:%x  src2_value:%x\n",es_pc,
-            es_valid,es_allowin,alu_res,src1_value,src2_value); // @[EXU.scala 128:11]
+          $fwrite(32'h80000002,"es_pc:%x es_valid:%d es_allowin:%d ld_we:%d alu_res:%x src1_value:%x  src2_value:%x\n",
+            es_pc,es_valid,es_allowin,ld_we,alu_res,src1_value,src2_value); // @[EXU.scala 128:11]
         end
     `ifdef PRINTF_COND
       end
