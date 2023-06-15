@@ -126,34 +126,27 @@ typedef	__uint128_t fixedptud;
 #define fixedpt_tofloat(T) ((float) ((T)*((float)(1)/(float)(1L << FIXEDPT_FBITS))))
 
 /* Multiplies a fixedpt number with an integer, returns the result. */
-	static inline fixedpt fixedpt_muli(fixedpt A, int B) {
-		return ((fixedptd)A * B);
-	}
+static inline fixedpt fixedpt_muli(fixedpt A, int B) {
+	return fixedpt_toint((A * fixedpt_fromint(B)));
+}
 
-	/* Divides a fixedpt number with an integer, returns the result. */
-	static inline fixedpt fixedpt_divi(fixedpt A, int B) {
-		if (B == 0) {
-			return 0;
-		}
+/* Divides a fixedpt number with an integer, returns the result. */
+static inline fixedpt fixedpt_divi(fixedpt A, int B) {
+	if(B==0)return 0;
+	return fixedpt_fromint(A / fixedpt_fromint(B));
+}
 
-		return ((fixedptd)A / B);
-	}
-
-	/* Multiplies two fixedpt numbers, returns the result. */
-	static inline fixedpt fixedpt_mul(fixedpt A, fixedpt B) {
-
-		return (((fixedptd)A * (fixedptd)B) >> FIXEDPT_FBITS);
-	}
+/* Multiplies two fixedpt numbers, returns the result. */
+static inline fixedpt fixedpt_mul(fixedpt A, fixedpt B) {
+	return fixedpt_toint((A * B));
+}
 
 
-	/* Divides two fixedpt numbers, returns the result. */
-	static inline fixedpt fixedpt_div(fixedpt A, fixedpt B) {
-		if (B == 0) {
-			return 0;
-		}
-
-		return (((fixedptd)A << FIXEDPT_FBITS) / (fixedptd)B);
-	}
+/* Divides two fixedpt numbers, returns the result. */
+static inline fixedpt fixedpt_div(fixedpt A, fixedpt B) {
+	if(B==0)return 0;
+	return fixedpt_fromint(A / B);
+}
 
 static inline fixedpt fixedpt_abs(fixedpt A) {
 	return ( A < 0 ? -A: A );
