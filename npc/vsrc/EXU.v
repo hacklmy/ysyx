@@ -70,6 +70,7 @@ module EXU(
   reg [2:0] load_type; // @[EXU.scala 57:28]
   wire  es_ready_go = ~ALU_io_alu_busy; // @[EXU.scala 77:20]
   wire  es_allowin = ~es_valid | es_ready_go & io_ms_allowin; // @[EXU.scala 79:29]
+  wire [63:0] alu_res = ALU_io_alu_res; // @[EXU.scala 55:23 97:13]
   ALU ALU ( // @[EXU.scala 39:21]
     .clock(ALU_clock),
     .reset(ALU_reset),
@@ -164,6 +165,18 @@ module EXU(
     end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 62:42]
       load_type <= io_load_type; // @[EXU.scala 74:19]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"es_pc:%x es_valid:%d es_allowin:%d  alu_res:%x src1_value:%x  src2_value:%x\n",es_pc,
+            es_valid,es_allowin,alu_res,src1_value,src2_value); // @[EXU.scala 126:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN

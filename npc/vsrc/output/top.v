@@ -811,6 +811,7 @@ module IDU(
   wire  _conflict_es_rs1_T_6 = rs1 != 5'h0; // @[IDU.scala 491:111]
   wire  conflict_es_rs1 = (~src1_is_pc | inst_type == 32'h45 | csr_write == 2'h1) & (rs1 == io_es_rf_dst & rs1 != 5'h0
      & io_es_rf_we & io_es_valid); // @[IDU.scala 491:81]
+  wire  _src2_is_imm_T_4 = 32'h44 == inst_type; // @[Mux.scala 81:61]
   wire  src2_is_imm = 32'h45 == inst_type | (32'h43 == inst_type | (32'h44 == inst_type | (32'h42 == inst_type | 32'h40
      == inst_type))); // @[Mux.scala 81:58]
   wire  _conflict_es_rs2_T_5 = csr_write == 2'h3; // @[IDU.scala 494:92]
@@ -961,6 +962,7 @@ module IDU(
   wire [3:0] _Wmask_T_8 = _inst_type_T_75 ? 4'hf : 4'h0; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_9 = _inst_type_T_37 ? 4'h1 : _Wmask_T_8; // @[Lookup.scala 34:39]
   wire [3:0] _Wmask_T_10 = _inst_type_T_35 ? 4'h3 : _Wmask_T_9; // @[Lookup.scala 34:39]
+  wire [7:0] Wmask = _inst_type_T_11 ? 8'hff : {{4'd0}, _Wmask_T_10}; // @[Lookup.scala 34:39]
   wire [1:0] _csr_index_T_6 = 12'h300 == imm[11:0] ? 2'h2 : {{1'd0}, 12'h341 == imm[11:0]}; // @[Mux.scala 81:58]
   wire [1:0] csr_index = 12'h342 == imm[11:0] ? 2'h3 : _csr_index_T_6; // @[Mux.scala 81:58]
   wire [63:0] _csr_wdata_T = rdata1 | csr_reg_io_rdata; // @[IDU.scala 457:26]
@@ -1042,6 +1044,18 @@ module IDU(
     end else if (ds_allowin & io_fs_to_ds_valid) begin // @[IDU.scala 132:42]
       br_taken_cancel <= _T_2;
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"ds_pc:%x ds_valid:%d inst:%x br_taken:%d src1:%x src2:%x  wen:%d wmask:%x\n",ds_pc,
+            ds_valid,inst,br_taken,io_src1,io_src2,_src2_is_imm_T_4,Wmask); // @[IDU.scala 529:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -1633,6 +1647,7 @@ module EXU(
   reg [2:0] load_type; // @[EXU.scala 57:28]
   wire  es_ready_go = ~ALU_io_alu_busy; // @[EXU.scala 77:20]
   wire  es_allowin = ~es_valid | es_ready_go & io_ms_allowin; // @[EXU.scala 79:29]
+  wire [63:0] alu_res = ALU_io_alu_res; // @[EXU.scala 55:23 97:13]
   ALU ALU ( // @[EXU.scala 39:21]
     .clock(ALU_clock),
     .reset(ALU_reset),
@@ -1727,6 +1742,18 @@ module EXU(
     end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 62:42]
       load_type <= io_load_type; // @[EXU.scala 74:19]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"es_pc:%x es_valid:%d es_allowin:%d  alu_res:%x src1_value:%x  src2_value:%x\n",es_pc,
+            es_valid,es_allowin,alu_res,src1_value,src2_value); // @[EXU.scala 126:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -1970,6 +1997,18 @@ module LSU(
         mem_rdata <= io_axi_in_rdata; // @[LSU.scala 81:19]
       end
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d rdata:%x maddr:%x wstrb:%x wdata:%x\n\n",ms_pc,ms_valid,
+            io_axi_in_rdata,maddr,wstrb,store_data); // @[LSU.scala 126:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -2104,6 +2143,18 @@ module WBU(
     end else if (io_ms_to_ws_valid) begin // @[WBU.scala 43:40]
       ws_res <= io_ms_final_res; // @[WBU.scala 47:16]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"ws_pc:%x ws_valid:%d rf_dst:%d rf_we:%d wdata:%x\n",ws_pc,ws_valid,ws_rf_dst,io_we,
+            ws_res); // @[WBU.scala 70:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
