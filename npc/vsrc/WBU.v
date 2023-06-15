@@ -12,6 +12,7 @@ module WBU(
   output        io_ws_valid,
   output        io_ws_rf_we,
   output [4:0]  io_ws_rf_dst,
+  output [63:0] io_ws_fwd_res,
   output [63:0] io_ws_pc
 );
 `ifdef RANDOMIZE_REG_INIT
@@ -21,43 +22,44 @@ module WBU(
   reg [31:0] _RAND_3;
   reg [63:0] _RAND_4;
 `endif // RANDOMIZE_REG_INIT
-  reg  ws_valid; // @[WBU.scala 23:27]
-  reg [63:0] ws_pc; // @[WBU.scala 24:24]
-  reg  ws_rf_we; // @[WBU.scala 28:27]
-  reg [4:0] ws_rf_dst; // @[WBU.scala 29:28]
-  reg [63:0] ws_res; // @[WBU.scala 30:25]
-  assign io_we = ws_rf_we & ws_valid; // @[WBU.scala 59:22]
-  assign io_waddr = ws_rf_dst; // @[WBU.scala 60:14]
-  assign io_wdata = ws_res; // @[WBU.scala 61:14]
-  assign io_ws_valid = ws_valid; // @[WBU.scala 62:17]
-  assign io_ws_rf_we = ws_rf_we; // @[WBU.scala 64:17]
-  assign io_ws_rf_dst = ws_rf_dst; // @[WBU.scala 63:18]
-  assign io_ws_pc = ws_pc; // @[WBU.scala 65:14]
+  reg  ws_valid; // @[WBU.scala 25:27]
+  reg [63:0] ws_pc; // @[WBU.scala 26:24]
+  reg  ws_rf_we; // @[WBU.scala 30:27]
+  reg [4:0] ws_rf_dst; // @[WBU.scala 31:28]
+  reg [63:0] ws_res; // @[WBU.scala 32:25]
+  assign io_we = ws_rf_we & ws_valid; // @[WBU.scala 61:22]
+  assign io_waddr = ws_rf_dst; // @[WBU.scala 62:14]
+  assign io_wdata = ws_res; // @[WBU.scala 63:14]
+  assign io_ws_valid = ws_valid; // @[WBU.scala 64:17]
+  assign io_ws_rf_we = ws_rf_we; // @[WBU.scala 66:17]
+  assign io_ws_rf_dst = ws_rf_dst; // @[WBU.scala 65:18]
+  assign io_ws_fwd_res = ws_res; // @[WBU.scala 68:19]
+  assign io_ws_pc = ws_pc; // @[WBU.scala 69:14]
   always @(posedge clock) begin
-    if (reset) begin // @[WBU.scala 23:27]
-      ws_valid <= 1'h0; // @[WBU.scala 23:27]
+    if (reset) begin // @[WBU.scala 25:27]
+      ws_valid <= 1'h0; // @[WBU.scala 25:27]
     end else begin
       ws_valid <= io_ms_to_ws_valid;
     end
-    if (reset) begin // @[WBU.scala 24:24]
-      ws_pc <= 64'h0; // @[WBU.scala 24:24]
-    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 41:40]
-      ws_pc <= io_pc; // @[WBU.scala 42:15]
+    if (reset) begin // @[WBU.scala 26:24]
+      ws_pc <= 64'h0; // @[WBU.scala 26:24]
+    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 43:40]
+      ws_pc <= io_pc; // @[WBU.scala 44:15]
     end
-    if (reset) begin // @[WBU.scala 28:27]
-      ws_rf_we <= 1'h0; // @[WBU.scala 28:27]
-    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 41:40]
-      ws_rf_we <= io_rf_we; // @[WBU.scala 43:18]
+    if (reset) begin // @[WBU.scala 30:27]
+      ws_rf_we <= 1'h0; // @[WBU.scala 30:27]
+    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 43:40]
+      ws_rf_we <= io_rf_we; // @[WBU.scala 45:18]
     end
-    if (reset) begin // @[WBU.scala 29:28]
-      ws_rf_dst <= 5'h0; // @[WBU.scala 29:28]
-    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 41:40]
-      ws_rf_dst <= io_rf_dst; // @[WBU.scala 44:19]
+    if (reset) begin // @[WBU.scala 31:28]
+      ws_rf_dst <= 5'h0; // @[WBU.scala 31:28]
+    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 43:40]
+      ws_rf_dst <= io_rf_dst; // @[WBU.scala 46:19]
     end
-    if (reset) begin // @[WBU.scala 30:25]
-      ws_res <= 64'h0; // @[WBU.scala 30:25]
-    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 41:40]
-      ws_res <= io_ms_final_res; // @[WBU.scala 45:16]
+    if (reset) begin // @[WBU.scala 32:25]
+      ws_res <= 64'h0; // @[WBU.scala 32:25]
+    end else if (io_ms_to_ws_valid) begin // @[WBU.scala 43:40]
+      ws_res <= io_ms_final_res; // @[WBU.scala 47:16]
     end
   end
 // Register and memory initialization
