@@ -635,6 +635,7 @@ module IDU(
   output        io_ctrl_sign_Readmem_en,
   output [7:0]  io_ctrl_sign_Wmask,
   output [2:0]  io_load_type,
+  input         io_es_ld,
   input  [63:0] io_es_fwd_res,
   input  [63:0] io_ms_fwd_res,
   input  [63:0] io_ws_fwd_res,
@@ -890,10 +891,10 @@ module IDU(
   wire [6:0] _ALUop_T_175 = _ALUop_T_3 ? 7'h2 : _ALUop_T_174; // @[Lookup.scala 34:39]
   wire [6:0] _ALUop_T_176 = _inst_type_T_1 ? 7'hf : _ALUop_T_175; // @[Lookup.scala 34:39]
   wire [31:0] ALUop = {{25'd0}, _ALUop_T_176}; // @[IDU.scala 310:11 64:21]
-  wire  ds_ready_go = ((conflict_es_rs1 | conflict_es_rs2) & io_es_fwd_ready | (conflict_ms_rs1 | conflict_ms_rs2) &
-    io_ms_fwd_ready | (conflict_ws_rs1 | conflict_ws_rs2) | ~(conflict_es_rs1 | conflict_es_rs2 | conflict_ms_rs1 |
-    conflict_ms_rs2 | conflict_ws_rs1 | conflict_ws_rs2)) & (ALUop == 32'h6 & io_fs_to_ds_valid & ds_valid | ALUop != 32'h6
-    ); // @[IDU.scala 150:292]
+  wire  ds_ready_go = ((conflict_es_rs1 | conflict_es_rs2) & (io_es_fwd_ready & ~io_es_ld) | (conflict_ms_rs1 |
+    conflict_ms_rs2) & io_ms_fwd_ready | (conflict_ws_rs1 | conflict_ws_rs2) | ~(conflict_es_rs1 | conflict_es_rs2 |
+    conflict_ms_rs1 | conflict_ms_rs2 | conflict_ws_rs1 | conflict_ws_rs2)) & (ALUop == 32'h6 & io_fs_to_ds_valid &
+    ds_valid | ALUop != 32'h6); // @[IDU.scala 150:306]
   wire  ds_allowin = ~ds_valid | ds_ready_go & io_es_allowin; // @[IDU.scala 152:29]
   wire  _T_1 = ~br_taken_cancel; // @[IDU.scala 133:26]
   wire [63:0] _rdata1_T = conflict_ws_rs1 ? io_ws_fwd_res : io_rdata1; // @[IDU.scala 497:86]
@@ -1609,7 +1610,8 @@ module EXU(
   output        io_es_rf_we,
   output [4:0]  io_es_rf_dst,
   output        io_es_fwd_ready,
-  output [63:0] io_es_fwd_res
+  output [63:0] io_es_fwd_res,
+  output        io_es_ld
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [63:0] _RAND_0;
@@ -1625,30 +1627,30 @@ module EXU(
   reg [31:0] _RAND_10;
   reg [31:0] _RAND_11;
 `endif // RANDOMIZE_REG_INIT
-  wire  ALU_clock; // @[EXU.scala 39:21]
-  wire  ALU_reset; // @[EXU.scala 39:21]
-  wire [63:0] ALU_io_src1_value; // @[EXU.scala 39:21]
-  wire [63:0] ALU_io_src2_value; // @[EXU.scala 39:21]
-  wire [31:0] ALU_io_ALUop; // @[EXU.scala 39:21]
-  wire  ALU_io_src_valid; // @[EXU.scala 39:21]
-  wire  ALU_io_alu_busy; // @[EXU.scala 39:21]
-  wire [63:0] ALU_io_alu_res; // @[EXU.scala 39:21]
-  reg [63:0] es_pc; // @[EXU.scala 41:24]
-  reg  es_valid; // @[EXU.scala 42:27]
-  reg [4:0] es_rd; // @[EXU.scala 46:24]
-  reg  es_rf_we; // @[EXU.scala 47:27]
-  reg [63:0] src1_value; // @[EXU.scala 49:29]
-  reg [63:0] src2_value; // @[EXU.scala 50:29]
-  reg [63:0] store_data; // @[EXU.scala 51:29]
-  reg [7:0] st_wstrb; // @[EXU.scala 52:27]
-  reg  st_we; // @[EXU.scala 53:24]
-  reg  ld_we; // @[EXU.scala 54:24]
-  reg [31:0] ALUop; // @[EXU.scala 56:24]
-  reg [2:0] load_type; // @[EXU.scala 57:28]
-  wire  es_ready_go = ~ALU_io_alu_busy; // @[EXU.scala 77:20]
-  wire  es_allowin = ~es_valid | es_ready_go & io_ms_allowin; // @[EXU.scala 79:29]
-  wire [63:0] alu_res = ALU_io_alu_res; // @[EXU.scala 55:23 97:13]
-  ALU ALU ( // @[EXU.scala 39:21]
+  wire  ALU_clock; // @[EXU.scala 40:21]
+  wire  ALU_reset; // @[EXU.scala 40:21]
+  wire [63:0] ALU_io_src1_value; // @[EXU.scala 40:21]
+  wire [63:0] ALU_io_src2_value; // @[EXU.scala 40:21]
+  wire [31:0] ALU_io_ALUop; // @[EXU.scala 40:21]
+  wire  ALU_io_src_valid; // @[EXU.scala 40:21]
+  wire  ALU_io_alu_busy; // @[EXU.scala 40:21]
+  wire [63:0] ALU_io_alu_res; // @[EXU.scala 40:21]
+  reg [63:0] es_pc; // @[EXU.scala 42:24]
+  reg  es_valid; // @[EXU.scala 43:27]
+  reg [4:0] es_rd; // @[EXU.scala 47:24]
+  reg  es_rf_we; // @[EXU.scala 48:27]
+  reg [63:0] src1_value; // @[EXU.scala 50:29]
+  reg [63:0] src2_value; // @[EXU.scala 51:29]
+  reg [63:0] store_data; // @[EXU.scala 52:29]
+  reg [7:0] st_wstrb; // @[EXU.scala 53:27]
+  reg  st_we; // @[EXU.scala 54:24]
+  reg  ld_we; // @[EXU.scala 55:24]
+  reg [31:0] ALUop; // @[EXU.scala 57:24]
+  reg [2:0] load_type; // @[EXU.scala 58:28]
+  wire  es_ready_go = ~ALU_io_alu_busy; // @[EXU.scala 78:20]
+  wire  es_allowin = ~es_valid | es_ready_go & io_ms_allowin; // @[EXU.scala 80:29]
+  wire [63:0] alu_res = ALU_io_alu_res; // @[EXU.scala 56:23 98:13]
+  ALU ALU ( // @[EXU.scala 40:21]
     .clock(ALU_clock),
     .reset(ALU_reset),
     .io_src1_value(ALU_io_src1_value),
@@ -1658,89 +1660,90 @@ module EXU(
     .io_alu_busy(ALU_io_alu_busy),
     .io_alu_res(ALU_io_alu_res)
   );
-  assign io_es_allowin = ~es_valid | es_ready_go & io_ms_allowin; // @[EXU.scala 79:29]
-  assign io_es_to_ms_valid = es_valid & es_ready_go; // @[EXU.scala 78:32]
-  assign io_to_ms_pc = es_pc; // @[EXU.scala 110:17]
-  assign io_to_ms_alures = ALU_io_alu_res; // @[EXU.scala 55:23 97:13]
-  assign io_to_ms_store_data = store_data; // @[EXU.scala 113:25]
-  assign io_to_ms_wen = st_we; // @[EXU.scala 114:18]
-  assign io_to_ms_wstrb = st_wstrb; // @[EXU.scala 115:20]
-  assign io_to_ms_ren = ld_we; // @[EXU.scala 116:18]
-  assign io_to_ms_maddr = ALU_io_alu_res; // @[EXU.scala 55:23 97:13]
-  assign io_to_ms_rf_dst = es_rd; // @[EXU.scala 118:21]
-  assign io_to_ms_rf_we = es_rf_we; // @[EXU.scala 119:20]
-  assign io_to_ms_load_type = load_type; // @[EXU.scala 123:24]
-  assign io_es_valid = es_valid; // @[EXU.scala 120:17]
-  assign io_es_rf_we = es_rf_we; // @[EXU.scala 122:17]
-  assign io_es_rf_dst = es_rd; // @[EXU.scala 121:18]
-  assign io_es_fwd_ready = es_valid & es_ready_go; // @[EXU.scala 78:32]
-  assign io_es_fwd_res = ALU_io_alu_res; // @[EXU.scala 55:23 97:13]
+  assign io_es_allowin = ~es_valid | es_ready_go & io_ms_allowin; // @[EXU.scala 80:29]
+  assign io_es_to_ms_valid = es_valid & es_ready_go; // @[EXU.scala 79:32]
+  assign io_to_ms_pc = es_pc; // @[EXU.scala 111:17]
+  assign io_to_ms_alures = ALU_io_alu_res; // @[EXU.scala 56:23 98:13]
+  assign io_to_ms_store_data = store_data; // @[EXU.scala 114:25]
+  assign io_to_ms_wen = st_we; // @[EXU.scala 115:18]
+  assign io_to_ms_wstrb = st_wstrb; // @[EXU.scala 116:20]
+  assign io_to_ms_ren = ld_we; // @[EXU.scala 117:18]
+  assign io_to_ms_maddr = ALU_io_alu_res; // @[EXU.scala 56:23 98:13]
+  assign io_to_ms_rf_dst = es_rd; // @[EXU.scala 119:21]
+  assign io_to_ms_rf_we = es_rf_we; // @[EXU.scala 120:20]
+  assign io_to_ms_load_type = load_type; // @[EXU.scala 124:24]
+  assign io_es_valid = es_valid; // @[EXU.scala 121:17]
+  assign io_es_rf_we = es_rf_we; // @[EXU.scala 123:17]
+  assign io_es_rf_dst = es_rd; // @[EXU.scala 122:18]
+  assign io_es_fwd_ready = es_valid & es_ready_go; // @[EXU.scala 79:32]
+  assign io_es_fwd_res = ALU_io_alu_res; // @[EXU.scala 56:23 98:13]
+  assign io_es_ld = ld_we; // @[EXU.scala 127:14]
   assign ALU_clock = clock;
   assign ALU_reset = reset;
-  assign ALU_io_src1_value = ALUop == 32'h6 ? es_pc : src1_value; // @[EXU.scala 93:26]
-  assign ALU_io_src2_value = src2_value; // @[EXU.scala 94:20]
-  assign ALU_io_ALUop = ALUop; // @[EXU.scala 95:15]
-  assign ALU_io_src_valid = es_valid; // @[EXU.scala 96:19]
+  assign ALU_io_src1_value = ALUop == 32'h6 ? es_pc : src1_value; // @[EXU.scala 94:26]
+  assign ALU_io_src2_value = src2_value; // @[EXU.scala 95:20]
+  assign ALU_io_ALUop = ALUop; // @[EXU.scala 96:15]
+  assign ALU_io_src_valid = es_valid; // @[EXU.scala 97:19]
   always @(posedge clock) begin
-    if (reset) begin // @[EXU.scala 41:24]
-      es_pc <= 64'h0; // @[EXU.scala 41:24]
-    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 62:42]
-      es_pc <= io_pc; // @[EXU.scala 63:15]
+    if (reset) begin // @[EXU.scala 42:24]
+      es_pc <= 64'h0; // @[EXU.scala 42:24]
+    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 63:42]
+      es_pc <= io_pc; // @[EXU.scala 64:15]
     end
-    if (reset) begin // @[EXU.scala 42:27]
-      es_valid <= 1'h0; // @[EXU.scala 42:27]
-    end else if (es_allowin) begin // @[EXU.scala 59:21]
-      es_valid <= io_ds_to_es_valid; // @[EXU.scala 60:18]
+    if (reset) begin // @[EXU.scala 43:27]
+      es_valid <= 1'h0; // @[EXU.scala 43:27]
+    end else if (es_allowin) begin // @[EXU.scala 60:21]
+      es_valid <= io_ds_to_es_valid; // @[EXU.scala 61:18]
     end
-    if (reset) begin // @[EXU.scala 46:24]
-      es_rd <= 5'h0; // @[EXU.scala 46:24]
-    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 62:42]
-      es_rd <= io_rf_dst; // @[EXU.scala 68:15]
+    if (reset) begin // @[EXU.scala 47:24]
+      es_rd <= 5'h0; // @[EXU.scala 47:24]
+    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 63:42]
+      es_rd <= io_rf_dst; // @[EXU.scala 69:15]
     end
-    if (reset) begin // @[EXU.scala 47:27]
-      es_rf_we <= 1'h0; // @[EXU.scala 47:27]
-    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 62:42]
-      es_rf_we <= io_ctrl_sign_reg_write; // @[EXU.scala 64:18]
-    end
-    if (reset) begin // @[EXU.scala 49:29]
-      src1_value <= 64'h0; // @[EXU.scala 49:29]
-    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 62:42]
-      src1_value <= io_src1_value; // @[EXU.scala 66:20]
+    if (reset) begin // @[EXU.scala 48:27]
+      es_rf_we <= 1'h0; // @[EXU.scala 48:27]
+    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 63:42]
+      es_rf_we <= io_ctrl_sign_reg_write; // @[EXU.scala 65:18]
     end
     if (reset) begin // @[EXU.scala 50:29]
-      src2_value <= 64'h0; // @[EXU.scala 50:29]
-    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 62:42]
-      src2_value <= io_src2_value; // @[EXU.scala 67:20]
+      src1_value <= 64'h0; // @[EXU.scala 50:29]
+    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 63:42]
+      src1_value <= io_src1_value; // @[EXU.scala 67:20]
     end
     if (reset) begin // @[EXU.scala 51:29]
-      store_data <= 64'h0; // @[EXU.scala 51:29]
-    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 62:42]
-      store_data <= io_store_data; // @[EXU.scala 69:20]
+      src2_value <= 64'h0; // @[EXU.scala 51:29]
+    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 63:42]
+      src2_value <= io_src2_value; // @[EXU.scala 68:20]
     end
-    if (reset) begin // @[EXU.scala 52:27]
-      st_wstrb <= 8'h0; // @[EXU.scala 52:27]
-    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 62:42]
-      st_wstrb <= io_ctrl_sign_Wmask; // @[EXU.scala 70:18]
+    if (reset) begin // @[EXU.scala 52:29]
+      store_data <= 64'h0; // @[EXU.scala 52:29]
+    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 63:42]
+      store_data <= io_store_data; // @[EXU.scala 70:20]
     end
-    if (reset) begin // @[EXU.scala 53:24]
-      st_we <= 1'h0; // @[EXU.scala 53:24]
-    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 62:42]
-      st_we <= io_ctrl_sign_Writemem_en; // @[EXU.scala 71:15]
+    if (reset) begin // @[EXU.scala 53:27]
+      st_wstrb <= 8'h0; // @[EXU.scala 53:27]
+    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 63:42]
+      st_wstrb <= io_ctrl_sign_Wmask; // @[EXU.scala 71:18]
     end
     if (reset) begin // @[EXU.scala 54:24]
-      ld_we <= 1'h0; // @[EXU.scala 54:24]
-    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 62:42]
-      ld_we <= io_ctrl_sign_Readmem_en; // @[EXU.scala 72:15]
+      st_we <= 1'h0; // @[EXU.scala 54:24]
+    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 63:42]
+      st_we <= io_ctrl_sign_Writemem_en; // @[EXU.scala 72:15]
     end
-    if (reset) begin // @[EXU.scala 56:24]
-      ALUop <= 32'h0; // @[EXU.scala 56:24]
-    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 62:42]
-      ALUop <= io_ALUop; // @[EXU.scala 73:15]
+    if (reset) begin // @[EXU.scala 55:24]
+      ld_we <= 1'h0; // @[EXU.scala 55:24]
+    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 63:42]
+      ld_we <= io_ctrl_sign_Readmem_en; // @[EXU.scala 73:15]
     end
-    if (reset) begin // @[EXU.scala 57:28]
-      load_type <= 3'h0; // @[EXU.scala 57:28]
-    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 62:42]
-      load_type <= io_load_type; // @[EXU.scala 74:19]
+    if (reset) begin // @[EXU.scala 57:24]
+      ALUop <= 32'h0; // @[EXU.scala 57:24]
+    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 63:42]
+      ALUop <= io_ALUop; // @[EXU.scala 74:15]
+    end
+    if (reset) begin // @[EXU.scala 58:28]
+      load_type <= 3'h0; // @[EXU.scala 58:28]
+    end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 63:42]
+      load_type <= io_load_type; // @[EXU.scala 75:19]
     end
     `ifndef SYNTHESIS
     `ifdef PRINTF_COND
@@ -1748,7 +1751,7 @@ module EXU(
     `endif
         if (~reset) begin
           $fwrite(32'h80000002,"es_pc:%x es_valid:%d es_allowin:%d  alu_res:%x src1_value:%x  src2_value:%x\n",es_pc,
-            es_valid,es_allowin,alu_res,src1_value,src2_value); // @[EXU.scala 126:11]
+            es_valid,es_allowin,alu_res,src1_value,src2_value); // @[EXU.scala 128:11]
         end
     `ifdef PRINTF_COND
       end
@@ -9126,6 +9129,7 @@ module top(
   wire  IDU_io_ctrl_sign_Readmem_en; // @[top.scala 17:21]
   wire [7:0] IDU_io_ctrl_sign_Wmask; // @[top.scala 17:21]
   wire [2:0] IDU_io_load_type; // @[top.scala 17:21]
+  wire  IDU_io_es_ld; // @[top.scala 17:21]
   wire [63:0] IDU_io_es_fwd_res; // @[top.scala 17:21]
   wire [63:0] IDU_io_ms_fwd_res; // @[top.scala 17:21]
   wire [63:0] IDU_io_ws_fwd_res; // @[top.scala 17:21]
@@ -9173,6 +9177,7 @@ module top(
   wire [4:0] EXU_io_es_rf_dst; // @[top.scala 18:21]
   wire  EXU_io_es_fwd_ready; // @[top.scala 18:21]
   wire [63:0] EXU_io_es_fwd_res; // @[top.scala 18:21]
+  wire  EXU_io_es_ld; // @[top.scala 18:21]
   wire  LSU_clock; // @[top.scala 19:21]
   wire  LSU_reset; // @[top.scala 19:21]
   wire [63:0] LSU_io_pc; // @[top.scala 19:21]
@@ -9326,13 +9331,13 @@ module top(
   wire  axi_io_axi_out_rvalid; // @[top.scala 24:21]
   wire  axi_io_axi_out_wready; // @[top.scala 24:21]
   wire  axi_io_axi_out_bvalid; // @[top.scala 24:21]
-  wire [31:0] dpi_flag; // @[top.scala 113:21]
-  wire [31:0] dpi_ecall_flag; // @[top.scala 113:21]
-  wire [63:0] dpi_pc; // @[top.scala 113:21]
-  reg  diff_step; // @[top.scala 110:28]
-  wire [63:0] _dpi_io_pc_T = IDU_io_ds_valid ? EXU_io_pc : IDU_io_pc; // @[top.scala 116:96]
-  wire [63:0] _dpi_io_pc_T_1 = EXU_io_es_valid ? LSU_io_pc : _dpi_io_pc_T; // @[top.scala 116:72]
-  wire [63:0] _dpi_io_pc_T_2 = LSU_io_ms_valid ? WBU_io_pc : _dpi_io_pc_T_1; // @[top.scala 116:48]
+  wire [31:0] dpi_flag; // @[top.scala 114:21]
+  wire [31:0] dpi_ecall_flag; // @[top.scala 114:21]
+  wire [63:0] dpi_pc; // @[top.scala 114:21]
+  reg  diff_step; // @[top.scala 111:28]
+  wire [63:0] _dpi_io_pc_T = IDU_io_ds_valid ? EXU_io_pc : IDU_io_pc; // @[top.scala 117:96]
+  wire [63:0] _dpi_io_pc_T_1 = EXU_io_es_valid ? LSU_io_pc : _dpi_io_pc_T; // @[top.scala 117:72]
+  wire [63:0] _dpi_io_pc_T_2 = LSU_io_ms_valid ? WBU_io_pc : _dpi_io_pc_T_1; // @[top.scala 117:48]
   Register Register ( // @[top.scala 15:25]
     .clock(Register_clock),
     .io_raddr1(Register_io_raddr1),
@@ -9389,6 +9394,7 @@ module top(
     .io_ctrl_sign_Readmem_en(IDU_io_ctrl_sign_Readmem_en),
     .io_ctrl_sign_Wmask(IDU_io_ctrl_sign_Wmask),
     .io_load_type(IDU_io_load_type),
+    .io_es_ld(IDU_io_es_ld),
     .io_es_fwd_res(IDU_io_es_fwd_res),
     .io_ms_fwd_res(IDU_io_ms_fwd_res),
     .io_ws_fwd_res(IDU_io_ws_fwd_res),
@@ -9437,7 +9443,8 @@ module top(
     .io_es_rf_we(EXU_io_es_rf_we),
     .io_es_rf_dst(EXU_io_es_rf_dst),
     .io_es_fwd_ready(EXU_io_es_fwd_ready),
-    .io_es_fwd_res(EXU_io_es_fwd_res)
+    .io_es_fwd_res(EXU_io_es_fwd_res),
+    .io_es_ld(EXU_io_es_ld)
   );
   LSU LSU ( // @[top.scala 19:21]
     .clock(LSU_clock),
@@ -9604,20 +9611,20 @@ module top(
     .io_axi_out_wready(axi_io_axi_out_wready),
     .io_axi_out_bvalid(axi_io_axi_out_bvalid)
   );
-  DPI dpi ( // @[top.scala 113:21]
+  DPI dpi ( // @[top.scala 114:21]
     .flag(dpi_flag),
     .ecall_flag(dpi_ecall_flag),
     .pc(dpi_pc)
   );
-  assign io_inst = IFU_io_inst; // @[top.scala 109:13]
-  assign io_pc = IFU_io_to_ds_pc; // @[top.scala 107:11]
-  assign io_step = diff_step; // @[top.scala 112:13]
+  assign io_inst = IFU_io_inst; // @[top.scala 110:13]
+  assign io_pc = IFU_io_to_ds_pc; // @[top.scala 108:11]
+  assign io_step = diff_step; // @[top.scala 113:13]
   assign Register_clock = clock;
   assign Register_io_raddr1 = IDU_io_raddr1; // @[top.scala 54:20]
   assign Register_io_raddr2 = IDU_io_raddr2; // @[top.scala 55:20]
-  assign Register_io_we = WBU_io_we; // @[top.scala 103:16]
-  assign Register_io_waddr = WBU_io_waddr; // @[top.scala 104:19]
-  assign Register_io_wdata = WBU_io_wdata; // @[top.scala 105:19]
+  assign Register_io_we = WBU_io_we; // @[top.scala 104:16]
+  assign Register_io_waddr = WBU_io_waddr; // @[top.scala 105:19]
+  assign Register_io_wdata = WBU_io_wdata; // @[top.scala 106:19]
   assign IFU_clock = clock;
   assign IFU_reset = reset;
   assign IFU_io_ds_allowin = IDU_io_ds_allowin; // @[top.scala 42:20]
@@ -9636,6 +9643,7 @@ module top(
   assign IDU_io_from_fs_inst = IFU_io_inst; // @[top.scala 53:22]
   assign IDU_io_rdata1 = Register_io_rdata1; // @[top.scala 56:16]
   assign IDU_io_rdata2 = Register_io_rdata2; // @[top.scala 57:16]
+  assign IDU_io_es_ld = EXU_io_es_ld; // @[top.scala 73:15]
   assign IDU_io_es_fwd_res = EXU_io_es_fwd_res; // @[top.scala 68:20]
   assign IDU_io_ms_fwd_res = LSU_io_ms_fwd_res; // @[top.scala 70:20]
   assign IDU_io_ws_fwd_res = WBU_io_ws_fwd_res; // @[top.scala 72:20]
@@ -9652,42 +9660,42 @@ module top(
   assign IDU_io_ws_rf_dst = WBU_io_ws_rf_dst; // @[top.scala 65:19]
   assign EXU_clock = clock;
   assign EXU_reset = reset;
-  assign EXU_io_pc = IDU_io_to_es_pc; // @[top.scala 74:12]
-  assign EXU_io_ds_to_es_valid = IDU_io_ds_to_es_valid; // @[top.scala 75:24]
-  assign EXU_io_ms_allowin = LSU_io_ms_allowin; // @[top.scala 76:20]
-  assign EXU_io_ALUop = IDU_io_ALUop; // @[top.scala 77:15]
-  assign EXU_io_src1_value = IDU_io_src1; // @[top.scala 78:20]
-  assign EXU_io_src2_value = IDU_io_src2; // @[top.scala 79:20]
-  assign EXU_io_rf_dst = IDU_io_rf_dst; // @[top.scala 80:16]
-  assign EXU_io_store_data = IDU_io_store_data; // @[top.scala 81:20]
-  assign EXU_io_load_type = IDU_io_load_type; // @[top.scala 83:19]
-  assign EXU_io_ctrl_sign_reg_write = IDU_io_ctrl_sign_reg_write; // @[top.scala 82:19]
-  assign EXU_io_ctrl_sign_Writemem_en = IDU_io_ctrl_sign_Writemem_en; // @[top.scala 82:19]
-  assign EXU_io_ctrl_sign_Readmem_en = IDU_io_ctrl_sign_Readmem_en; // @[top.scala 82:19]
-  assign EXU_io_ctrl_sign_Wmask = IDU_io_ctrl_sign_Wmask; // @[top.scala 82:19]
+  assign EXU_io_pc = IDU_io_to_es_pc; // @[top.scala 75:12]
+  assign EXU_io_ds_to_es_valid = IDU_io_ds_to_es_valid; // @[top.scala 76:24]
+  assign EXU_io_ms_allowin = LSU_io_ms_allowin; // @[top.scala 77:20]
+  assign EXU_io_ALUop = IDU_io_ALUop; // @[top.scala 78:15]
+  assign EXU_io_src1_value = IDU_io_src1; // @[top.scala 79:20]
+  assign EXU_io_src2_value = IDU_io_src2; // @[top.scala 80:20]
+  assign EXU_io_rf_dst = IDU_io_rf_dst; // @[top.scala 81:16]
+  assign EXU_io_store_data = IDU_io_store_data; // @[top.scala 82:20]
+  assign EXU_io_load_type = IDU_io_load_type; // @[top.scala 84:19]
+  assign EXU_io_ctrl_sign_reg_write = IDU_io_ctrl_sign_reg_write; // @[top.scala 83:19]
+  assign EXU_io_ctrl_sign_Writemem_en = IDU_io_ctrl_sign_Writemem_en; // @[top.scala 83:19]
+  assign EXU_io_ctrl_sign_Readmem_en = IDU_io_ctrl_sign_Readmem_en; // @[top.scala 83:19]
+  assign EXU_io_ctrl_sign_Wmask = IDU_io_ctrl_sign_Wmask; // @[top.scala 83:19]
   assign LSU_clock = clock;
   assign LSU_reset = reset;
-  assign LSU_io_pc = EXU_io_to_ms_pc; // @[top.scala 85:12]
-  assign LSU_io_es_to_ms_valid = EXU_io_es_to_ms_valid; // @[top.scala 86:24]
-  assign LSU_io_rf_we = EXU_io_to_ms_rf_we; // @[top.scala 88:15]
-  assign LSU_io_rf_dst = EXU_io_to_ms_rf_dst; // @[top.scala 89:16]
-  assign LSU_io_alu_res = EXU_io_to_ms_alures; // @[top.scala 90:17]
-  assign LSU_io_store_data = EXU_io_to_ms_store_data; // @[top.scala 91:20]
-  assign LSU_io_load_type = EXU_io_to_ms_load_type; // @[top.scala 96:19]
-  assign LSU_io_wen = EXU_io_to_ms_wen; // @[top.scala 92:13]
-  assign LSU_io_wstrb = EXU_io_to_ms_wstrb; // @[top.scala 93:15]
-  assign LSU_io_ren = EXU_io_to_ms_ren; // @[top.scala 94:13]
-  assign LSU_io_maddr = EXU_io_to_ms_maddr; // @[top.scala 95:15]
+  assign LSU_io_pc = EXU_io_to_ms_pc; // @[top.scala 86:12]
+  assign LSU_io_es_to_ms_valid = EXU_io_es_to_ms_valid; // @[top.scala 87:24]
+  assign LSU_io_rf_we = EXU_io_to_ms_rf_we; // @[top.scala 89:15]
+  assign LSU_io_rf_dst = EXU_io_to_ms_rf_dst; // @[top.scala 90:16]
+  assign LSU_io_alu_res = EXU_io_to_ms_alures; // @[top.scala 91:17]
+  assign LSU_io_store_data = EXU_io_to_ms_store_data; // @[top.scala 92:20]
+  assign LSU_io_load_type = EXU_io_to_ms_load_type; // @[top.scala 97:19]
+  assign LSU_io_wen = EXU_io_to_ms_wen; // @[top.scala 93:13]
+  assign LSU_io_wstrb = EXU_io_to_ms_wstrb; // @[top.scala 94:15]
+  assign LSU_io_ren = EXU_io_to_ms_ren; // @[top.scala 95:13]
+  assign LSU_io_maddr = EXU_io_to_ms_maddr; // @[top.scala 96:15]
   assign LSU_io_axi_in_rdata = d_cache_io_to_lsu_rdata; // @[top.scala 34:16]
   assign LSU_io_axi_in_rvalid = d_cache_io_to_lsu_rvalid; // @[top.scala 34:16]
   assign LSU_io_axi_in_wready = d_cache_io_to_lsu_wready; // @[top.scala 34:16]
   assign WBU_clock = clock;
   assign WBU_reset = reset;
-  assign WBU_io_pc = LSU_io_to_ws_pc; // @[top.scala 98:12]
-  assign WBU_io_ms_to_ws_valid = LSU_io_ms_to_ws_valid; // @[top.scala 99:24]
-  assign WBU_io_ms_final_res = LSU_io_ms_final_res; // @[top.scala 100:22]
-  assign WBU_io_rf_we = LSU_io_to_ws_rf_we; // @[top.scala 101:15]
-  assign WBU_io_rf_dst = LSU_io_to_ws_rf_dst; // @[top.scala 102:16]
+  assign WBU_io_pc = LSU_io_to_ws_pc; // @[top.scala 99:12]
+  assign WBU_io_ms_to_ws_valid = LSU_io_ms_to_ws_valid; // @[top.scala 100:24]
+  assign WBU_io_ms_final_res = LSU_io_ms_final_res; // @[top.scala 101:22]
+  assign WBU_io_rf_we = LSU_io_to_ws_rf_we; // @[top.scala 102:15]
+  assign WBU_io_rf_dst = LSU_io_to_ws_rf_dst; // @[top.scala 103:16]
   assign arbiter_clock = clock;
   assign arbiter_reset = reset;
   assign arbiter_io_ifu_axi_in_araddr = i_cache_io_to_axi_araddr; // @[top.scala 27:27]
@@ -9746,14 +9754,14 @@ module top(
   assign axi_io_axi_in_wstrb = arbiter_io_axi_out_wstrb; // @[top.scala 38:19]
   assign axi_io_axi_in_wvalid = arbiter_io_axi_out_wvalid; // @[top.scala 38:19]
   assign axi_io_axi_in_bready = arbiter_io_axi_out_bready; // @[top.scala 38:19]
-  assign dpi_flag = {{31'd0}, IDU_io_ALUop == 32'h2}; // @[top.scala 114:17]
-  assign dpi_ecall_flag = {{31'd0}, IDU_io_ALUop == 32'h3d}; // @[top.scala 115:23]
-  assign dpi_pc = WBU_io_ws_valid ? WBU_io_ws_pc : _dpi_io_pc_T_2; // @[top.scala 116:21]
+  assign dpi_flag = {{31'd0}, IDU_io_ALUop == 32'h2}; // @[top.scala 115:17]
+  assign dpi_ecall_flag = {{31'd0}, IDU_io_ALUop == 32'h3d}; // @[top.scala 116:23]
+  assign dpi_pc = WBU_io_ws_valid ? WBU_io_ws_pc : _dpi_io_pc_T_2; // @[top.scala 117:21]
   always @(posedge clock) begin
-    if (reset) begin // @[top.scala 110:28]
-      diff_step <= 1'h0; // @[top.scala 110:28]
+    if (reset) begin // @[top.scala 111:28]
+      diff_step <= 1'h0; // @[top.scala 111:28]
     end else begin
-      diff_step <= WBU_io_ws_valid; // @[top.scala 111:15]
+      diff_step <= WBU_io_ws_valid; // @[top.scala 112:15]
     end
   end
 // Register and memory initialization
