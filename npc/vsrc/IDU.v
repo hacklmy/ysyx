@@ -374,7 +374,6 @@ module IDU(
   wire [31:0] _io_store_data_T_11 = _inst_type_T_75 ? rdata2[31:0] : 32'h0; // @[Lookup.scala 34:39]
   wire [31:0] _io_store_data_T_12 = _inst_type_T_37 ? {{24'd0}, rdata2[7:0]} : _io_store_data_T_11; // @[Lookup.scala 34:39]
   wire [31:0] _io_store_data_T_13 = _inst_type_T_35 ? {{16'd0}, rdata2[15:0]} : _io_store_data_T_12; // @[Lookup.scala 34:39]
-  wire  _T_28 = ~reset; // @[IDU.scala 529:11]
   csr_reg csr_reg ( // @[IDU.scala 448:21]
     .clock(csr_reg_clock),
     .io_wen1(csr_reg_io_wen1),
@@ -441,19 +440,9 @@ module IDU(
     `endif
         if (~reset) begin
           $fwrite(32'h80000002,
-            "ds_pc:%x ds_valid:%d ds_allowin:%d ds_ready_go:%d inst:%x br_taken:%d src1:%x src2:%x conflict_es_rs1:%d conflict_es_rs2:%d\n"
-            ,ds_pc,ds_valid,ds_allowin,ds_ready_go,inst,br_taken,io_src1,io_src2,conflict_es_rs1,conflict_es_rs2); // @[IDU.scala 529:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (_T_28) begin
-          $fwrite(32'h80000002,"conflict_ms1:%d conflict_ms2:%d\n",conflict_ms_rs1,conflict_ms_rs2); // @[IDU.scala 530:11]
+            "ds_pc:%x ds_valid:%d ds_allowin:%d ds_ready_go:%d inst:%x br_taken:%d src1:%x src2:%x conflict_es_rs1:%d conflict_es_rs2:%d conflict_ms1:%d conflict_ms2:%d\n"
+            ,ds_pc,ds_valid,ds_allowin,ds_ready_go,inst,br_taken,io_src1,io_src2,conflict_es_rs1,conflict_es_rs2,
+            conflict_ms_rs1,conflict_ms_rs2); // @[IDU.scala 529:11]
         end
     `ifdef PRINTF_COND
       end
