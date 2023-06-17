@@ -223,7 +223,7 @@ void vga_update_screen() {
   // then zero out the sync register
   static uint64_t last = 0;
   uint64_t now = time(NULL);
-  if (now - last < 1000000 / TIMER_HZ) {
+  if (now - last < 1 / TIMER_HZ) {
     return;
   }
   last = now;
