@@ -222,11 +222,13 @@ void vga_update_screen() {
   // TODO: call `update_screen()` when the sync register is non-zero,
   // then zero out the sync register
   static uint64_t last = 0;
-  uint64_t now = time(NULL);
-  if (now - last < 1 / TIMER_HZ) {
+  struct timespec now;
+  clock_gettime(CLOCK_MONOTONIC_COARSE, &now);
+  uint64_t us = now.tv_sec * 1000000 + now.tv_nsec / 1000;
+  if (us - last < 1000000 / TIMER_HZ) {
     return;
   }
-  last = now;
+  last = us;
   if (vgactl_port_base[1]) {
     update_screen();
     vgactl_port_base[1] = 0;
