@@ -219,6 +219,12 @@ static void init_screen() {
 void vga_update_screen() {
   // TODO: call `update_screen()` when the sync register is non-zero,
   // then zero out the sync register
+  static uint64_t last = 0;
+  uint64_t now = time(NULL);
+  if (now - last < 1000000 / TIMER_HZ) {
+    return;
+  }
+  last = now;
   if (vgactl_port_base[1]) {
     update_screen();
     vgactl_port_base[1] = 0;
@@ -775,7 +781,7 @@ void cpu_exec(int n){
     tfp->dump(sim_time); //dump wave
     #endif
     #ifdef HAS_VGA
-    if(sim_time%100==0)vga_update_screen();
+    vga_update_screen();
     #endif
     sim_time++;
   }
