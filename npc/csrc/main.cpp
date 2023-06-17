@@ -15,6 +15,8 @@
 #include <dlfcn.h>
 #include <time.h>
 
+#define TIMER_HZ 60
+
 #define DEVICE_BASE 0xa0000000
 #define MMIO_BASE 0xa0000000
 
