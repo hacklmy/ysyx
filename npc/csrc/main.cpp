@@ -290,13 +290,14 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
   }
   if(raddr>=RTC_ADDR && raddr <= RTC_ADDR+8){
     uint64_t time_now = 0;
+    struct timespec now;
+    clock_gettime(CLOCK_MONOTONIC_COARSE, &now);
+    uint64_t us = now.tv_sec * 1000000 + now.tv_nsec / 1000;
     if(boot_time==0){
-      boot_time = time(NULL);
+      boot_time = us;
       time_now = 0;
     }else{
-      time_t tmpcal_ptr;
-      tmpcal_ptr = time(NULL);
-      time_now = (tmpcal_ptr - boot_time)*1000000;
+      time_now = us - boot_time;
     }
     //printf("time : %lld\n",*rdata);
     if(raddr == RTC_ADDR){
