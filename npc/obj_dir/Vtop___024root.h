@@ -1267,7 +1267,7 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__IDU__DOT__ds_pc;
         QData/*63:0*/ top__DOT__IDU__DOT__rdata1;
         QData/*63:0*/ top__DOT__IDU__DOT___rdata2_T_1;
-        QData/*63:0*/ top__DOT__IDU__DOT___br_taken_T_1;
+        QData/*63:0*/ top__DOT__IDU__DOT__rdata2;
         QData/*63:0*/ top__DOT__IDU__DOT__imm;
         QData/*63:0*/ top__DOT__IDU__DOT__src1;
         QData/*63:0*/ top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg_io_rdata_MPORT_data;

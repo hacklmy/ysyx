@@ -46,7 +46,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                         : vlSelf->top__DOT__IDU__DOT__src1),
                    64,((IData)(vlSelf->top__DOT__IDU__DOT__src2_is_imm)
                         ? vlSelf->top__DOT__IDU__DOT__imm
-                        : vlSelf->top__DOT__IDU__DOT___br_taken_T_1),
+                        : vlSelf->top__DOT__IDU__DOT__rdata2),
                    1,(IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs1),
                    1,vlSelf->top__DOT__IDU__DOT__conflict_es_rs2,
                    1,(IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs1),
