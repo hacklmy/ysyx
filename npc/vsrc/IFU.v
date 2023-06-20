@@ -37,6 +37,7 @@ module IFU(
   reg [31:0] fs_inst; // @[IFU.scala 43:26]
   wire  _GEN_3 = io_axi_in_rvalid | fs_ready_go; // @[IFU.scala 56:27 58:21 30:30]
   wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 67:24]
+  wire [63:0] pc_next = io_br_taken ? io_br_target : seq_pc; // @[IFU.scala 68:19]
   wire  fs_allowin = ~fs_valid | fs_ready_go & io_ds_allowin; // @[IFU.scala 72:29]
   wire  _GEN_5 = fs_allowin | fs_valid; // @[IFU.scala 74:36 75:18 29:27]
   reg  inst_ready; // @[IFU.scala 85:29]
@@ -44,8 +45,8 @@ module IFU(
   assign io_to_ds_pc = fs_pc; // @[IFU.scala 82:17]
   assign io_fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 71:33]
   assign io_inst = fs_inst; // @[IFU.scala 108:13]
-  assign io_axi_out_araddr = fs_pc[31:0]; // @[IFU.scala 92:31]
-  assign io_axi_out_arvalid = fs_valid & ~fs_ready_go; // @[IFU.scala 93:36]
+  assign io_axi_out_araddr = pc_next[31:0]; // @[IFU.scala 92:23]
+  assign io_axi_out_arvalid = ~fs_valid | fs_ready_go & io_ds_allowin; // @[IFU.scala 72:29]
   assign io_axi_out_rready = inst_ready; // @[IFU.scala 97:23]
   assign io_clear_cache = io_fence & ~cache_init; // @[IFU.scala 54:32]
   always @(posedge clock) begin
