@@ -172,6 +172,18 @@ module LSU(
         mem_rdata <= io_axi_in_rdata; // @[LSU.scala 81:19]
       end
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d rdata:%x maddr:%x wstrb:%x wdata:%x\n\n",ms_pc,ms_valid,
+            io_axi_in_rdata,maddr,wstrb,store_data); // @[LSU.scala 126:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
