@@ -1180,7 +1180,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                  == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
                                                  ? vlSelf->top__DOT__arbiter_io_lsu_axi_out_rdata
                                                  : 0ULL))))));
-        VL_FWRITEF(0x80000002U,"ms_pc:%x ms_valid:%1# rdata:%x maddr:%x wstrb:%x wdata:%x\n\n",
+        VL_FWRITEF(0x80000002U,"ms_pc:%x ms_valid:%1# rdata:%x rvalid:%1# maddr:%x wstrb:%x wdata:%x\n\n",
                    64,vlSelf->top__DOT__LSU__DOT__ms_pc,
                    1,(IData)(vlSelf->top__DOT__LSU__DOT__ms_valid),
                    64,(((QData)((IData)(((1U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
@@ -1207,6 +1207,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                        Vtop__ConstPool__CONST_93e1b771_0[0U]))
                                                       : 
                                                      __Vtemp76[0U])))),
+                   1,(IData)(vlSelf->top__DOT__d_cache_io_to_lsu_rvalid),
                    64,vlSelf->top__DOT__LSU__DOT__maddr,
                    8,(IData)(vlSelf->top__DOT__LSU__DOT__wstrb),
                    64,vlSelf->top__DOT__LSU__DOT__store_data);
