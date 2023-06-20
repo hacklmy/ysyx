@@ -27,6 +27,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__6(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_23[0U] = 0U;
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_23[1U] = 0U;
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_23[2U] = 0U;
+        vlSelf->top__DOT__d_cache__DOT___GEN_2507 = 0ULL;
     } else {
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_23[0U] 
             = ((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_start)
@@ -58,6 +59,46 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__6(Vtop___024root* vlSelf) {
                         : ((IData)((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__quotient 
                                     >> 0x20U)) >> 0x1fU))
                     : __Vtemp3992[2U]) : __Vtemp3995[2U]);
+        vlSelf->top__DOT__d_cache__DOT___GEN_2507 = 
+            ((0U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+              ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
+              : ((1U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+                  ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
+                  : ((2U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+                      ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
+                      : ((3U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+                          ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
+                          : ((4U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+                              ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
+                              : ((5U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+                                  ? ((1U == (IData)(vlSelf->top__DOT__d_cache__DOT__unuse_way))
+                                      ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
+                                      : ((2U == (IData)(vlSelf->top__DOT__d_cache__DOT__unuse_way))
+                                          ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
+                                          : ((0U == (IData)(vlSelf->top__DOT__d_cache__DOT__quene_1))
+                                              ? ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_446)
+                                                  ? 
+                                                 (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_15)) 
+                                                   << 0xaU) 
+                                                  | (QData)((IData)(
+                                                                    (0x3c0U 
+                                                                     & ((IData)(
+                                                                                (vlSelf->top__DOT__LSU__DOT__maddr 
+                                                                                >> 6U)) 
+                                                                        << 6U)))))
+                                                  : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr)))
+                                              : ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_689)
+                                                  ? 
+                                                 (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_47)) 
+                                                   << 0xaU) 
+                                                  | (QData)((IData)(
+                                                                    (0x3c0U 
+                                                                     & ((IData)(
+                                                                                (vlSelf->top__DOT__LSU__DOT__maddr 
+                                                                                >> 6U)) 
+                                                                        << 6U)))))
+                                                  : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))))))
+                                  : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))))))));
     }
     if (vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul_io_mul_valid) {
         __Vtemp4000[0U] = (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32);
@@ -152,7 +193,6 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__6(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_22[2U] = 0U;
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_22[3U] = 0U;
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_22[4U] = 0U;
-        vlSelf->top__DOT__d_cache__DOT___GEN_2507 = 0ULL;
     } else {
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_22[0U] 
             = ((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_start)
@@ -217,40 +257,6 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__6(Vtop___024root* vlSelf) {
                                        << 0x1fU))) 
                        >> 0x1fU) : __Vtemp4021[4U])
                 : __Vtemp4024[4U]);
-        vlSelf->top__DOT__d_cache__DOT___GEN_2507 = 
-            ((0U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
-              ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
-              : ((1U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
-                  ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
-                  : ((2U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
-                      ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
-                      : ((3U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
-                          ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
-                          : ((4U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
-                              ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
-                              : ((5U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
-                                  ? ((1U == (IData)(vlSelf->top__DOT__d_cache__DOT__unuse_way))
-                                      ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
-                                      : ((2U == (IData)(vlSelf->top__DOT__d_cache__DOT__unuse_way))
-                                          ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
-                                          : ((0U == (IData)(vlSelf->top__DOT__d_cache__DOT__quene_1))
-                                              ? ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_446)
-                                                  ? 
-                                                 (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_15)) 
-                                                   << 0xaU) 
-                                                  | (QData)((IData)(
-                                                                    (0x3c0U 
-                                                                     & vlSelf->top__DOT__EXU__DOT__ALU__DOT__alu_res[0U]))))
-                                                  : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr)))
-                                              : ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_689)
-                                                  ? 
-                                                 (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_47)) 
-                                                   << 0xaU) 
-                                                  | (QData)((IData)(
-                                                                    (0x3c0U 
-                                                                     & vlSelf->top__DOT__EXU__DOT__ALU__DOT__alu_res[0U]))))
-                                                  : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))))))
-                                  : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))))))));
     }
 }
 
