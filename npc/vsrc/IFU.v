@@ -41,7 +41,7 @@ module IFU(
   assign io_inst = fs_inst; // @[IFU.scala 99:13]
   assign io_axi_out_araddr = pc_next[31:0]; // @[IFU.scala 83:23]
   assign io_axi_out_arvalid = io_ds_ready_go; // @[IFU.scala 84:24]
-  assign io_axi_out_rready = io_axi_in_rvalid & fs_allowin; // @[IFU.scala 88:38]
+  assign io_axi_out_rready = ~fs_valid | fs_ready_go & io_ds_allowin; // @[IFU.scala 60:29]
   assign io_clear_cache = io_fence & ~cache_init; // @[IFU.scala 48:32]
   always @(posedge clock) begin
     if (reset) begin // @[IFU.scala 30:27]
@@ -78,8 +78,9 @@ module IFU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"fs_pc:%x fs_valid:%d fs_allowin:%d fs_inst:%x rvalid:%d rdata:%x next_pc:%x\n",fs_pc,
-            fs_valid,fs_allowin,fs_inst,io_axi_in_rvalid,io_axi_in_rdata[31:0],pc_next); // @[IFU.scala 102:11]
+          $fwrite(32'h80000002,
+            "fs_pc:%x fs_valid:%d fs_allowin:%d fs_inst:%x arvalid:%d rvalid:%d rdata:%x next_pc:%x\n",fs_pc,fs_valid,
+            fs_allowin,fs_inst,io_axi_out_arvalid,io_axi_in_rvalid,io_axi_in_rdata[31:0],pc_next); // @[IFU.scala 102:11]
         end
     `ifdef PRINTF_COND
       end
