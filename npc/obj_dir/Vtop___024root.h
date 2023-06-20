@@ -223,7 +223,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__i_cache__DOT__way3_hit;
         CData/*2:0*/ top__DOT__i_cache__DOT__unuse_way;
         CData/*2:0*/ top__DOT__i_cache__DOT__state;
-        CData/*0:0*/ top__DOT__i_cache__DOT___T_4;
+        CData/*0:0*/ top__DOT__i_cache__DOT___T_6;
         CData/*2:0*/ top__DOT__i_cache__DOT___GEN_130;
         CData/*2:0*/ top__DOT__i_cache__DOT___GEN_150;
         CData/*2:0*/ top__DOT__i_cache__DOT___GEN_151;
@@ -1087,8 +1087,6 @@ VL_MODULE(Vtop___024root) {
         VlWide<16>/*511:0*/ top__DOT__i_cache__DOT___GEN_2917;
     };
     struct {
-        VlWide<16>/*511:0*/ top__DOT__i_cache__DOT___GEN_2933;
-        VlWide<16>/*511:0*/ top__DOT__i_cache__DOT___GEN_2949;
         VlWide<16>/*511:0*/ top__DOT__i_cache__DOT___io_to_ifu_rdata_T_6;
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT__ram_0_0;
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT__ram_0_1;
@@ -1151,10 +1149,10 @@ VL_MODULE(Vtop___024root) {
         IData/*31:0*/ top__DOT__d_cache__DOT__tag_1_10;
         IData/*31:0*/ top__DOT__d_cache__DOT__tag_1_11;
         IData/*31:0*/ top__DOT__d_cache__DOT__tag_1_12;
-    };
-    struct {
         IData/*31:0*/ top__DOT__d_cache__DOT__tag_1_13;
         IData/*31:0*/ top__DOT__d_cache__DOT__tag_1_14;
+    };
+    struct {
         IData/*31:0*/ top__DOT__d_cache__DOT__tag_1_15;
         VlWide<16>/*511:0*/ top__DOT__d_cache__DOT__write_back_data;
         IData/*31:0*/ top__DOT__d_cache__DOT__write_back_addr;
@@ -1217,10 +1215,10 @@ VL_MODULE(Vtop___024root) {
         IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1689;
         IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1690;
         IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1691;
-    };
-    struct {
         IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1692;
         IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1693;
+    };
+    struct {
         IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1694;
         IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1695;
         IData/*31:0*/ top__DOT__d_cache__DOT___GEN_1696;
@@ -1283,10 +1281,10 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__EXU__DOT__store_data;
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__Div_io_quotient;
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__Div_io_remainder;
-    };
-    struct {
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__add_res;
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__sub_res;
+    };
+    struct {
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__sra_res;
         QData/*62:0*/ top__DOT__EXU__DOT__ALU__DOT__sllw_res;
         QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__res;
@@ -1357,7 +1355,6 @@ VL_MODULE(Vtop___024root) {
     CData/*1:0*/ __Vdly__top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state;
     CData/*0:0*/ __Vdly__top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_start;
     CData/*0:0*/ __Vdly__top__DOT__LSU__DOT__wen;
-    CData/*0:0*/ __Vdly__top__DOT__LSU__DOT__ren;
     CData/*1:0*/ __Vdly__top__DOT__arbiter__DOT__state;
     CData/*2:0*/ __Vdly__top__DOT__i_cache__DOT__state;
     CData/*3:0*/ __Vdly__top__DOT__d_cache__DOT__state;

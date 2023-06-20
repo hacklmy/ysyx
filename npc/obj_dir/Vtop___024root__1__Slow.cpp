@@ -18289,7 +18289,7 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
     }
     vlSelf->top__DOT__i_cache_io_to_ifu_rvalid = ((1U 
                                                    == (IData)(vlSelf->top__DOT__i_cache__DOT__state)) 
-                                                  & (IData)(vlSelf->top__DOT__i_cache__DOT___T_4));
+                                                  & (IData)(vlSelf->top__DOT__i_cache__DOT___T_6));
     vlSelf->top__DOT__IFU__DOT___GEN_3 = ((IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rvalid) 
                                           | (IData)(vlSelf->top__DOT__IFU__DOT__fs_ready_go));
     vlSelf->top__DOT__IFU__DOT___GEN_7 = (1U & (~ (
@@ -18297,5 +18297,5 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
                                                     & (IData)(vlSelf->top__DOT__IFU__DOT__inst_ready)) 
                                                    & ((1U 
                                                        == (IData)(vlSelf->top__DOT__i_cache__DOT__state)) 
-                                                      & (IData)(vlSelf->top__DOT__i_cache__DOT___T_4)))));
+                                                      & (IData)(vlSelf->top__DOT__i_cache__DOT___T_6)))));
 }
