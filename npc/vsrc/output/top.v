@@ -415,7 +415,6 @@ module IFU(
   reg [31:0] fs_inst; // @[IFU.scala 43:26]
   wire  _GEN_3 = io_axi_in_rvalid | fs_ready_go; // @[IFU.scala 56:27 58:21 30:30]
   wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 67:24]
-  wire [63:0] pc_next = io_br_taken ? io_br_target : seq_pc; // @[IFU.scala 68:19]
   wire  fs_allowin = ~fs_valid | fs_ready_go & io_ds_allowin; // @[IFU.scala 72:29]
   wire  _GEN_5 = fs_allowin | fs_valid; // @[IFU.scala 74:36 75:18 29:27]
   reg  inst_ready; // @[IFU.scala 85:29]
@@ -423,8 +422,8 @@ module IFU(
   assign io_to_ds_pc = fs_pc; // @[IFU.scala 82:17]
   assign io_fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 71:33]
   assign io_inst = fs_inst; // @[IFU.scala 108:13]
-  assign io_axi_out_araddr = pc_next[31:0]; // @[IFU.scala 92:23]
-  assign io_axi_out_arvalid = ~fs_valid | fs_ready_go & io_ds_allowin; // @[IFU.scala 72:29]
+  assign io_axi_out_araddr = fs_pc[31:0]; // @[IFU.scala 92:31]
+  assign io_axi_out_arvalid = fs_valid & ~fs_ready_go; // @[IFU.scala 93:36]
   assign io_axi_out_rready = inst_ready; // @[IFU.scala 97:23]
   assign io_clear_cache = io_fence & ~cache_init; // @[IFU.scala 54:32]
   always @(posedge clock) begin
@@ -1844,10 +1843,13 @@ module LSU(
   reg [31:0] _RAND_3;
   reg [31:0] _RAND_4;
   reg [63:0] _RAND_5;
-  reg [31:0] _RAND_6;
+  reg [63:0] _RAND_6;
   reg [31:0] _RAND_7;
   reg [31:0] _RAND_8;
-  reg [63:0] _RAND_9;
+  reg [31:0] _RAND_9;
+  reg [63:0] _RAND_10;
+  reg [31:0] _RAND_11;
+  reg [63:0] _RAND_12;
 `endif // RANDOMIZE_REG_INIT
   reg  ms_valid; // @[LSU.scala 36:27]
   reg [63:0] ms_pc; // @[LSU.scala 37:24]
@@ -1855,8 +1857,11 @@ module LSU(
   reg  ms_rf_we; // @[LSU.scala 41:27]
   reg [4:0] ms_rf_dst; // @[LSU.scala 42:28]
   reg [63:0] ms_res; // @[LSU.scala 43:25]
+  reg [63:0] store_data; // @[LSU.scala 45:29]
   reg  wen; // @[LSU.scala 46:22]
+  reg [7:0] wstrb; // @[LSU.scala 47:24]
   reg  ren; // @[LSU.scala 48:22]
+  reg [63:0] maddr; // @[LSU.scala 49:24]
   reg [2:0] load_type; // @[LSU.scala 50:28]
   wire  ms_allowin = ~ms_valid | ms_ready_go; // @[LSU.scala 71:29]
   wire  _GEN_8 = io_es_to_ms_valid & ms_allowin ? io_ren : ren; // @[LSU.scala 56:40 64:13 48:22]
@@ -1864,7 +1869,6 @@ module LSU(
   reg [63:0] mem_rdata; // @[LSU.scala 75:28]
   wire  _GEN_14 = ms_valid & ren & io_axi_in_rvalid | _GEN_11; // @[LSU.scala 80:52 83:21]
   wire  _GEN_16 = ms_valid & wen & io_axi_in_wready | _GEN_14; // @[LSU.scala 77:46 79:21]
-  wire  _io_axi_out_awvalid_T = io_wen & io_es_to_ms_valid; // @[LSU.scala 94:34]
   wire [31:0] _rdata_T_2 = mem_rdata[31] ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _rdata_T_4 = {_rdata_T_2,mem_rdata[31:0]}; // @[Cat.scala 31:58]
   wire [63:0] _rdata_T_7 = {56'h0,mem_rdata[7:0]}; // @[Cat.scala 31:58]
@@ -1893,13 +1897,13 @@ module LSU(
   assign io_ms_rf_dst = ms_rf_dst; // @[LSU.scala 121:18]
   assign io_ms_fwd_ready = ms_valid & ms_ready_go; // @[LSU.scala 72:32]
   assign io_ms_fwd_res = _io_ms_final_res_T ? rdata : ms_res; // @[LSU.scala 125:25]
-  assign io_axi_out_araddr = io_maddr[31:0]; // @[LSU.scala 87:23]
-  assign io_axi_out_arvalid = io_ren & io_es_to_ms_valid & ms_allowin; // @[LSU.scala 88:54]
-  assign io_axi_out_awaddr = io_maddr[31:0]; // @[LSU.scala 93:23]
-  assign io_axi_out_awvalid = io_wen & io_es_to_ms_valid & ms_allowin; // @[LSU.scala 94:54]
-  assign io_axi_out_wdata = io_store_data; // @[LSU.scala 98:22]
-  assign io_axi_out_wstrb = io_wstrb; // @[LSU.scala 99:22]
-  assign io_axi_out_wvalid = _io_axi_out_awvalid_T & ms_allowin; // @[LSU.scala 101:53]
+  assign io_axi_out_araddr = maddr[31:0]; // @[LSU.scala 87:23]
+  assign io_axi_out_arvalid = ren & ms_valid; // @[LSU.scala 88:31]
+  assign io_axi_out_awaddr = maddr[31:0]; // @[LSU.scala 93:23]
+  assign io_axi_out_awvalid = wen & ms_valid; // @[LSU.scala 94:31]
+  assign io_axi_out_wdata = store_data; // @[LSU.scala 98:22]
+  assign io_axi_out_wstrb = wstrb; // @[LSU.scala 99:22]
+  assign io_axi_out_wvalid = wen; // @[LSU.scala 101:23]
   always @(posedge clock) begin
     if (reset) begin // @[LSU.scala 36:27]
       ms_valid <= 1'h0; // @[LSU.scala 36:27]
@@ -1927,12 +1931,22 @@ module LSU(
     end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 56:40]
       ms_res <= io_alu_res; // @[LSU.scala 60:16]
     end
+    if (reset) begin // @[LSU.scala 45:29]
+      store_data <= 64'h0; // @[LSU.scala 45:29]
+    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 56:40]
+      store_data <= io_store_data; // @[LSU.scala 61:20]
+    end
     if (reset) begin // @[LSU.scala 46:22]
       wen <= 1'h0; // @[LSU.scala 46:22]
     end else if (ms_valid & wen & io_axi_in_wready) begin // @[LSU.scala 77:46]
       wen <= 1'h0; // @[LSU.scala 78:13]
     end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 56:40]
       wen <= io_wen; // @[LSU.scala 62:13]
+    end
+    if (reset) begin // @[LSU.scala 47:24]
+      wstrb <= 8'h0; // @[LSU.scala 47:24]
+    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 56:40]
+      wstrb <= io_wstrb; // @[LSU.scala 63:15]
     end
     if (reset) begin // @[LSU.scala 48:22]
       ren <= 1'h0; // @[LSU.scala 48:22]
@@ -1942,6 +1956,11 @@ module LSU(
       ren <= 1'h0; // @[LSU.scala 82:13]
     end else begin
       ren <= _GEN_8;
+    end
+    if (reset) begin // @[LSU.scala 49:24]
+      maddr <= 64'h0; // @[LSU.scala 49:24]
+    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 56:40]
+      maddr <= io_maddr; // @[LSU.scala 65:15]
     end
     if (reset) begin // @[LSU.scala 50:28]
       load_type <= 3'h0; // @[LSU.scala 50:28]
@@ -2004,14 +2023,20 @@ initial begin
   ms_rf_dst = _RAND_4[4:0];
   _RAND_5 = {2{`RANDOM}};
   ms_res = _RAND_5[63:0];
-  _RAND_6 = {1{`RANDOM}};
-  wen = _RAND_6[0:0];
+  _RAND_6 = {2{`RANDOM}};
+  store_data = _RAND_6[63:0];
   _RAND_7 = {1{`RANDOM}};
-  ren = _RAND_7[0:0];
+  wen = _RAND_7[0:0];
   _RAND_8 = {1{`RANDOM}};
-  load_type = _RAND_8[2:0];
-  _RAND_9 = {2{`RANDOM}};
-  mem_rdata = _RAND_9[63:0];
+  wstrb = _RAND_8[7:0];
+  _RAND_9 = {1{`RANDOM}};
+  ren = _RAND_9[0:0];
+  _RAND_10 = {2{`RANDOM}};
+  maddr = _RAND_10[63:0];
+  _RAND_11 = {1{`RANDOM}};
+  load_type = _RAND_11[2:0];
+  _RAND_12 = {2{`RANDOM}};
+  mem_rdata = _RAND_12[63:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
