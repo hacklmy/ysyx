@@ -1401,8 +1401,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                  == (IData)(vlSelf->top__DOT__axi__DOT__arlen)));
     if (vlSelf->reset) {
         vlSelf->top__DOT__IFU__DOT__fs_valid = 0U;
-    } else if (((IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rvalid) 
-                & (IData)(vlSelf->top__DOT__IFU__DOT__fs_allowin))) {
+    } else if (vlSelf->top__DOT__IFU__DOT__fs_allowin) {
         vlSelf->top__DOT__IFU__DOT__fs_valid = vlSelf->top__DOT__i_cache_io_to_ifu_rvalid;
     }
     top__DOT__d_cache__DOT___ram_0_T_6[0U] = (IData)(vlSelf->top__DOT__d_cache__DOT__receive_data_0);
@@ -21724,8 +21723,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                & (IData)(vlSelf->top__DOT__IFU__DOT__fs_ready_go));
     if (vlSelf->reset) {
         vlSelf->top__DOT__IFU__DOT__fs_pc = 0x7ffffffcULL;
-    } else if (((IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rvalid) 
-                & (IData)(vlSelf->top__DOT__IFU__DOT__fs_allowin))) {
+    } else if (vlSelf->top__DOT__IFU__DOT__fs_allowin) {
         vlSelf->top__DOT__IFU__DOT__fs_pc = ((IData)(vlSelf->top__DOT__IDU__DOT___T_2)
                                               ? vlSelf->top__DOT__IDU_io_br_target
                                               : vlSelf->top__DOT__IFU__DOT__seq_pc);
