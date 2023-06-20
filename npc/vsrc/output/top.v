@@ -424,7 +424,7 @@ module IFU(
   always @(posedge clock) begin
     if (reset) begin // @[IFU.scala 30:27]
       fs_valid <= 1'h0; // @[IFU.scala 30:27]
-    end else if (io_axi_in_rvalid & fs_allowin) begin // @[IFU.scala 65:33]
+    end else if (fs_allowin) begin // @[IFU.scala 65:21]
       fs_valid <= io_axi_in_rvalid; // @[IFU.scala 66:18]
     end
     if (reset) begin // @[IFU.scala 31:30]
@@ -439,7 +439,7 @@ module IFU(
     end
     if (reset) begin // @[IFU.scala 43:24]
       fs_pc <= 64'h7ffffffc; // @[IFU.scala 43:24]
-    end else if (io_axi_in_rvalid & fs_allowin) begin // @[IFU.scala 65:33]
+    end else if (fs_allowin) begin // @[IFU.scala 65:21]
       if (io_br_taken) begin // @[IFU.scala 58:19]
         fs_pc <= io_br_target;
       end else begin
