@@ -149,7 +149,11 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__8(Vtop___024root* vlSelf) {
               ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
               : ((1U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
                   ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
-                  : vlSelf->top__DOT__d_cache__DOT___GEN_4772));
+                  : ((2U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+                      ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
+                      : ((3U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
+                          ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
+                          : vlSelf->top__DOT__d_cache__DOT___GEN_4140))));
     }
     VL_EXTEND_WW(129,128, __Vtemp6388, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_1);
     VL_EXTEND_WW(129,128, __Vtemp6391, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_1);
