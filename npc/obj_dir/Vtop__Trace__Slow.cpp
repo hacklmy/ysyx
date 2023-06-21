@@ -566,7 +566,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+364,"top IDU conflict_ws_rs2", false,-1);
         tracep->declQuad(c+365,"top IDU rdata2", false,-1, 63,0);
         tracep->declBit(c+13,"top IDU br_taken", false,-1);
-        tracep->declBus(c+32,"top IDU ALUop", false,-1, 31,0);
         tracep->declBit(c+12,"top IDU ds_ready_go", false,-1);
         tracep->declBit(c+11,"top IDU ds_allowin", false,-1);
         tracep->declBus(c+37,"top IDU rd", false,-1, 4,0);
@@ -579,6 +578,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+372,"top IDU imm", false,-1, 63,0);
         tracep->declBus(c+374,"top IDU csr_index", false,-1, 1,0);
         tracep->declQuad(c+375,"top IDU csr_wdata", false,-1, 63,0);
+        tracep->declBus(c+32,"top IDU ALUop", false,-1, 31,0);
         tracep->declQuad(c+377,"top IDU src1", false,-1, 63,0);
         tracep->declQuad(c+379,"top IDU src2", false,-1, 63,0);
         tracep->declBit(c+2395,"top IDU csr_reg clock", false,-1);

@@ -125,11 +125,11 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__IDU__DOT___rdata2_T_1 = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__IDU__DOT___br_taken_T_1 = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__IDU__DOT__br_taken = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__IDU__DOT___ALUop_T_162 = VL_RAND_RESET_I(7);
-    vlSelf->top__DOT__IDU__DOT___ALUop_T_176 = VL_RAND_RESET_I(7);
     vlSelf->top__DOT__IDU__DOT__ds_ready_go = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT__ds_allowin = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT__imm = VL_RAND_RESET_Q(64);
+    vlSelf->top__DOT__IDU__DOT___ALUop_T_162 = VL_RAND_RESET_I(7);
+    vlSelf->top__DOT__IDU__DOT___ALUop_T_176 = VL_RAND_RESET_I(7);
     vlSelf->top__DOT__IDU__DOT__csr_index = VL_RAND_RESET_I(2);
     vlSelf->top__DOT__IDU__DOT__src1 = VL_RAND_RESET_Q(64);
     for (int __Vi0=0; __Vi0<4; ++__Vi0) {

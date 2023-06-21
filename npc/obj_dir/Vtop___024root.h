@@ -88,10 +88,10 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__IDU__DOT__conflict_ms_rs2;
         CData/*0:0*/ top__DOT__IDU__DOT__conflict_ws_rs2;
         CData/*0:0*/ top__DOT__IDU__DOT__br_taken;
-        CData/*6:0*/ top__DOT__IDU__DOT___ALUop_T_162;
-        CData/*6:0*/ top__DOT__IDU__DOT___ALUop_T_176;
         CData/*0:0*/ top__DOT__IDU__DOT__ds_ready_go;
         CData/*0:0*/ top__DOT__IDU__DOT__ds_allowin;
+        CData/*6:0*/ top__DOT__IDU__DOT___ALUop_T_162;
+        CData/*6:0*/ top__DOT__IDU__DOT___ALUop_T_176;
         CData/*1:0*/ top__DOT__IDU__DOT__csr_index;
         CData/*0:0*/ top__DOT__EXU__DOT__ALU_io_alu_busy;
         CData/*0:0*/ top__DOT__EXU__DOT__es_valid;
