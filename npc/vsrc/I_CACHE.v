@@ -589,8 +589,7 @@ module I_CACHE(
   wire [2:0] _unuse_way_T_6 = ~_GEN_63 ? 3'h2 : _unuse_way_T_5; // @[i_cache.scala 54:50]
   wire [2:0] unuse_way = ~_GEN_31 ? 3'h1 : _unuse_way_T_6; // @[i_cache.scala 54:21]
   reg [2:0] state; // @[i_cache.scala 56:24]
-  wire  _T_1 = ~reset; // @[i_cache.scala 57:11]
-  wire  _T_8 = way0_hit | way1_hit | way2_hit | way3_hit; // @[i_cache.scala 69:46]
+  wire  _T_4 = way0_hit | way1_hit | way2_hit | way3_hit; // @[i_cache.scala 69:46]
   wire [2:0] _GEN_132 = io_from_ifu_rready ? 3'h0 : state; // @[i_cache.scala 56:24 70:41 71:27]
   wire [63:0] _GEN_135 = 3'h0 == receive_num ? io_from_axi_rdata : receive_data_0; // @[i_cache.scala 40:31 80:{43,43}]
   wire [63:0] _GEN_136 = 3'h1 == receive_num ? io_from_axi_rdata : receive_data_1; // @[i_cache.scala 40:31 80:{43,43}]
@@ -2527,7 +2526,7 @@ module I_CACHE(
   wire [511:0] _io_to_ifu_rdata_T_4 = way2_hit ? _io_to_ifu_rdata_T_2 : _io_to_ifu_rdata_T_3; // @[i_cache.scala 157:112]
   wire [511:0] _io_to_ifu_rdata_T_5 = way1_hit ? _io_to_ifu_rdata_T_1 : _io_to_ifu_rdata_T_4; // @[i_cache.scala 157:72]
   wire [511:0] _io_to_ifu_rdata_T_6 = way0_hit ? _io_to_ifu_rdata_T : _io_to_ifu_rdata_T_5; // @[i_cache.scala 157:32]
-  wire  _T_23 = state == 3'h2; // @[i_cache.scala 164:21]
+  wire  _T_19 = state == 3'h2; // @[i_cache.scala 164:21]
   wire [63:0] _GEN_3107 = {{32'd0}, addr}; // @[i_cache.scala 173:35]
   wire [63:0] _io_to_axi_araddr_T = _GEN_3107 & 64'hffffffffffffffc0; // @[i_cache.scala 173:35]
   wire [63:0] _GEN_2957 = state == 3'h2 ? _io_to_axi_araddr_T : {{32'd0}, addr}; // @[i_cache.scala 164:29 173:26 197:26]
@@ -2537,10 +2536,10 @@ module I_CACHE(
   wire [2:0] _GEN_2963 = state == 3'h1 ? 3'h0 : _GEN_2958; // @[i_cache.scala 140:25 143:25]
   wire [511:0] _GEN_2967 = state == 3'h1 ? _io_to_ifu_rdata_T_6 : 512'h0; // @[i_cache.scala 140:25 157:25]
   assign io_to_ifu_rdata = _GEN_2967[63:0];
-  assign io_to_ifu_rvalid = state == 3'h1 & _T_8; // @[i_cache.scala 140:25 159:26]
+  assign io_to_ifu_rvalid = state == 3'h1 & _T_4; // @[i_cache.scala 140:25 159:26]
   assign io_to_axi_araddr = _GEN_2962[31:0];
   assign io_to_axi_arlen = {{5'd0}, _GEN_2963};
-  assign io_to_axi_arvalid = state == 3'h1 ? 1'h0 : _T_23; // @[i_cache.scala 140:25 141:27]
+  assign io_to_axi_arvalid = state == 3'h1 ? 1'h0 : _T_19; // @[i_cache.scala 140:25 141:27]
   assign io_to_axi_rready = state == 3'h1 ? 1'h0 : _GEN_2960; // @[i_cache.scala 140:25 146:26]
   assign io_cache_init = state == 3'h4; // @[i_cache.scala 213:27]
   always @(posedge clock) begin
@@ -4527,28 +4526,6 @@ module I_CACHE(
     end else begin
       state <= _GEN_2027;
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"i_cache state:%d\n",state); // @[i_cache.scala 57:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (_T_1) begin
-          $fwrite(32'h80000002,"rdata:%x addr:%x\n",io_from_axi_rdata,addr); // @[i_cache.scala 58:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN

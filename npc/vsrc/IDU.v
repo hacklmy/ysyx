@@ -430,20 +430,6 @@ module IDU(
     end else if (io_fs_to_ds_valid & ds_allowin) begin // @[IDU.scala 147:40]
       inst <= io_from_fs_inst; // @[IDU.scala 149:14]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,
-            "ds_pc:%x ds_valid:%d ds_allowin:%d ds_ready_go:%d inst:%x br_taken:%d src1:%x src2:%x conflict_es_rs1:%d conflict_es_rs2:%d conflict_ms1:%d conflict_ms2:%d\n"
-            ,ds_pc,ds_valid,ds_allowin,ds_ready_go,inst,br_taken,io_src1,io_src2,conflict_es_rs1,conflict_es_rs2,
-            conflict_ms_rs1,conflict_ms_rs2); // @[IDU.scala 531:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
