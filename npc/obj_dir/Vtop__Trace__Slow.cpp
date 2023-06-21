@@ -1421,7 +1421,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullCData(oldp+8,(vlSelf->top__DOT__WBU__DOT__ws_rf_dst),5);
         tracep->fullQData(oldp+9,(vlSelf->top__DOT__WBU__DOT__ws_res),64);
         tracep->fullBit(oldp+11,(vlSelf->top__DOT__IDU_io_ds_allowin));
-        tracep->fullBit(oldp+12,(vlSelf->top__DOT__IDU_io_ds_ready_go));
+        tracep->fullBit(oldp+12,(vlSelf->top__DOT__IDU__DOT__ds_ready_go));
         tracep->fullBit(oldp+13,(vlSelf->top__DOT__IDU__DOT__ds_valid));
         tracep->fullBit(oldp+14,(vlSelf->top__DOT__IDU__DOT__br_taken));
         tracep->fullQData(oldp+15,(vlSelf->top__DOT__IDU_io_br_target),64);
@@ -1605,7 +1605,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+58,(vlSelf->top__DOT__WBU__DOT__ws_valid));
         tracep->fullCData(oldp+59,(vlSelf->top__DOT__EXU__DOT__es_rd),5);
         tracep->fullCData(oldp+60,(vlSelf->top__DOT__LSU__DOT__ms_rf_dst),5);
-        tracep->fullBit(oldp+61,(vlSelf->top__DOT__LSU_io_ms_allowin));
+        tracep->fullBit(oldp+61,(vlSelf->top__DOT__LSU__DOT__ms_allowin));
         tracep->fullQData(oldp+62,(vlSelf->top__DOT__EXU__DOT__es_pc),64);
         tracep->fullQData(oldp+64,(vlSelf->top__DOT__EXU__DOT__store_data),64);
         tracep->fullBit(oldp+66,(vlSelf->top__DOT__EXU__DOT__st_we));

@@ -34,10 +34,8 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__IFU_io_axi_out_rready;
         CData/*0:0*/ top__DOT__IDU_io_ds_to_es_valid;
         CData/*0:0*/ top__DOT__IDU_io_ds_allowin;
-        CData/*0:0*/ top__DOT__IDU_io_ds_ready_go;
         CData/*0:0*/ top__DOT__EXU_io_es_to_ms_valid;
         CData/*0:0*/ top__DOT__EXU_io_es_ld;
-        CData/*0:0*/ top__DOT__LSU_io_ms_allowin;
         CData/*0:0*/ top__DOT__LSU_io_ms_to_ws_valid;
         CData/*0:0*/ top__DOT__LSU_io_ms_rf_we;
         CData/*0:0*/ top__DOT__LSU_io_axi_out_arvalid;
@@ -91,13 +89,14 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__IDU__DOT__conflict_ms_rs2;
         CData/*0:0*/ top__DOT__IDU__DOT__conflict_ws_rs2;
         CData/*0:0*/ top__DOT__IDU__DOT__br_taken;
+        CData/*0:0*/ top__DOT__IDU__DOT__ds_ready_go;
         CData/*6:0*/ top__DOT__IDU__DOT___ALUop_T_162;
         CData/*6:0*/ top__DOT__IDU__DOT___ALUop_T_176;
         CData/*1:0*/ top__DOT__IDU__DOT__csr_index;
         CData/*0:0*/ top__DOT__EXU__DOT__ALU_io_alu_busy;
+        CData/*0:0*/ top__DOT__EXU__DOT__es_valid;
     };
     struct {
-        CData/*0:0*/ top__DOT__EXU__DOT__es_valid;
         CData/*4:0*/ top__DOT__EXU__DOT__es_rd;
         CData/*0:0*/ top__DOT__EXU__DOT__es_rf_we;
         CData/*7:0*/ top__DOT__EXU__DOT__st_wstrb;
@@ -125,6 +124,7 @@ VL_MODULE(Vtop___024root) {
         CData/*7:0*/ top__DOT__LSU__DOT__wstrb;
         CData/*0:0*/ top__DOT__LSU__DOT__ren;
         CData/*2:0*/ top__DOT__LSU__DOT__load_type;
+        CData/*0:0*/ top__DOT__LSU__DOT__ms_allowin;
         CData/*0:0*/ top__DOT__LSU__DOT___GEN_8;
         CData/*0:0*/ top__DOT__LSU__DOT___GEN_16;
         CData/*0:0*/ top__DOT__WBU__DOT__ws_valid;

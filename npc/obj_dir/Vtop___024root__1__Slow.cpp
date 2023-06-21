@@ -322,7 +322,7 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
         = (VL_LTS_III(1,32,32, 0U, vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__step_num) 
            & (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_0));
     vlSelf->top__DOT__LSU__DOT___GEN_8 = (((IData)(vlSelf->top__DOT__EXU_io_es_to_ms_valid) 
-                                           & (IData)(vlSelf->top__DOT__LSU_io_ms_allowin))
+                                           & (IData)(vlSelf->top__DOT__LSU__DOT__ms_allowin))
                                            ? (IData)(vlSelf->top__DOT__EXU__DOT__ld_we)
                                            : (IData)(vlSelf->top__DOT__LSU__DOT__ren));
     if (vlSelf->top__DOT__d_cache__DOT__way0_hit) {
@@ -14506,7 +14506,7 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
                                                       & (IData)(vlSelf->top__DOT__LSU__DOT__ren)) 
                                                      & (IData)(vlSelf->top__DOT__d_cache_io_to_lsu_rvalid)) 
                                                     | (((IData)(vlSelf->top__DOT__EXU_io_es_to_ms_valid) 
-                                                        & (IData)(vlSelf->top__DOT__LSU_io_ms_allowin))
+                                                        & (IData)(vlSelf->top__DOT__LSU__DOT__ms_allowin))
                                                         ? 
                                                        (~ 
                                                         ((IData)(vlSelf->top__DOT__EXU__DOT__st_we) 
@@ -14810,32 +14810,32 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
                                               | (QData)((IData)(
                                                                 vlSelf->top__DOT__EXU__DOT__ALU__DOT__alu_res[0U])))
                                            : top__DOT__IDU__DOT___rdata1_T_1);
-    vlSelf->top__DOT__IDU_io_ds_ready_go = (1U & ((
-                                                   ((((IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs1) 
-                                                      | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs2)) 
-                                                     & ((IData)(vlSelf->top__DOT__EXU_io_es_to_ms_valid) 
-                                                        & (~ (IData)(vlSelf->top__DOT__EXU_io_es_ld)))) 
-                                                    | (((~ 
-                                                         ((IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs1) 
-                                                          | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs2))) 
-                                                        & ((IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs1) 
-                                                           | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs2))) 
-                                                       & (IData)(vlSelf->top__DOT__LSU_io_ms_to_ws_valid))) 
-                                                   | (((~ 
-                                                        ((IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs1) 
-                                                         | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs2))) 
-                                                       & (~ 
-                                                          ((IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs1) 
-                                                           | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs2)))) 
-                                                      & ((IData)(vlSelf->top__DOT__IDU__DOT__conflict_ws_rs1) 
-                                                         | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ws_rs2)))) 
-                                                  | (~ 
-                                                     ((((((IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs1) 
-                                                          | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs2)) 
-                                                         | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs1)) 
-                                                        | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs2)) 
-                                                       | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ws_rs1)) 
-                                                      | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ws_rs2)))));
+    vlSelf->top__DOT__IDU__DOT__ds_ready_go = (1U & 
+                                               ((((((IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs1) 
+                                                    | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs2)) 
+                                                   & ((IData)(vlSelf->top__DOT__EXU_io_es_to_ms_valid) 
+                                                      & (~ (IData)(vlSelf->top__DOT__EXU_io_es_ld)))) 
+                                                  | (((~ 
+                                                       ((IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs1) 
+                                                        | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs2))) 
+                                                      & ((IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs1) 
+                                                         | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs2))) 
+                                                     & (IData)(vlSelf->top__DOT__LSU_io_ms_to_ws_valid))) 
+                                                 | (((~ 
+                                                      ((IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs1) 
+                                                       | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs2))) 
+                                                     & (~ 
+                                                        ((IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs1) 
+                                                         | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs2)))) 
+                                                    & ((IData)(vlSelf->top__DOT__IDU__DOT__conflict_ws_rs1) 
+                                                       | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ws_rs2)))) 
+                                                | (~ 
+                                                   ((((((IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs1) 
+                                                        | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs2)) 
+                                                       | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs1)) 
+                                                      | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs2)) 
+                                                     | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ws_rs1)) 
+                                                    | (IData)(vlSelf->top__DOT__IDU__DOT__conflict_ws_rs2)))));
     vlSelf->top__DOT__IDU__DOT___rdata2_T_1 = ((IData)(vlSelf->top__DOT__IDU__DOT__conflict_ms_rs2)
                                                 ? vlSelf->top__DOT__LSU_io_ms_fwd_res
                                                 : ((IData)(vlSelf->top__DOT__IDU__DOT__conflict_ws_rs2)
@@ -14851,9 +14851,9 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
                                          ? vlSelf->top__DOT__IDU__DOT__ds_pc
                                          : vlSelf->top__DOT__IDU__DOT__rdata1);
     vlSelf->top__DOT__IDU_io_ds_to_es_valid = ((IData)(vlSelf->top__DOT__IDU__DOT__ds_valid) 
-                                               & (IData)(vlSelf->top__DOT__IDU_io_ds_ready_go));
+                                               & (IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go));
     vlSelf->top__DOT__IDU_io_ds_allowin = (1U & ((~ (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid)) 
-                                                 | ((IData)(vlSelf->top__DOT__IDU_io_ds_ready_go) 
+                                                 | ((IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go) 
                                                     & (IData)(vlSelf->top__DOT__EXU__DOT__es_allowin))));
     vlSelf->top__DOT__IDU__DOT__rdata2 = ((IData)(vlSelf->top__DOT__IDU__DOT__conflict_es_rs2)
                                            ? (((QData)((IData)(
@@ -14958,7 +14958,7 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
                                                  & (IData)(vlSelf->top__DOT__IFU__DOT__cache_init))) 
                                              & (IData)(vlSelf->top__DOT__IFU__DOT__cache_init)));
     vlSelf->top__DOT__IFU__DOT___GEN_3 = ((((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
-                                            & (IData)(vlSelf->top__DOT__IDU_io_ds_ready_go)) 
+                                            & (IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go)) 
                                            & (IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rvalid)) 
                                           | ((~ (((IData)(vlSelf->top__DOT__IFU__DOT__br_taken_cancel) 
                                                   & (IData)(vlSelf->top__DOT__IFU__DOT__fs_to_ds_valid)) 
@@ -14968,7 +14968,7 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
                                                  ? 0U
                                                  : (IData)(vlSelf->top__DOT__i_cache__DOT__state));
     vlSelf->top__DOT__IFU__DOT___GEN_5 = (((((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
-                                             & (IData)(vlSelf->top__DOT__IDU_io_ds_ready_go)) 
+                                             & (IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go)) 
                                             & (IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rvalid)) 
                                            & (~ (IData)(vlSelf->top__DOT__IFU__DOT__br_taken_cancel))) 
                                           | ((~ (((IData)(vlSelf->top__DOT__IFU__DOT__br_taken) 

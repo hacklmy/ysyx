@@ -9553,8 +9553,9 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
            | ((0x14U == vlSelf->top__DOT__EXU__DOT__ALUop) 
               | ((0x35U == vlSelf->top__DOT__EXU__DOT__ALUop) 
                  | (0x13U == vlSelf->top__DOT__EXU__DOT__ALUop))));
-    vlSelf->top__DOT__LSU_io_ms_allowin = (1U & ((~ (IData)(vlSelf->top__DOT__LSU__DOT__ms_valid)) 
-                                                 | (IData)(vlSelf->top__DOT__LSU__DOT__ms_ready_go)));
+    vlSelf->top__DOT__LSU__DOT__ms_allowin = (1U & 
+                                              ((~ (IData)(vlSelf->top__DOT__LSU__DOT__ms_valid)) 
+                                               | (IData)(vlSelf->top__DOT__LSU__DOT__ms_ready_go)));
     vlSelf->top__DOT__LSU__DOT__rdata = ((7U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                           ? (QData)((IData)(
                                                             (0xffffU 
@@ -16438,7 +16439,7 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__EXU__DOT__es_allowin = (1U & 
                                               ((~ (IData)(vlSelf->top__DOT__EXU__DOT__es_valid)) 
                                                | ((~ (IData)(vlSelf->top__DOT__EXU__DOT__ALU_io_alu_busy)) 
-                                                  & (IData)(vlSelf->top__DOT__LSU_io_ms_allowin))));
+                                                  & (IData)(vlSelf->top__DOT__LSU__DOT__ms_allowin))));
     vlSelf->top__DOT__d_cache__DOT__way0_hit = ((vlSelf->top__DOT__d_cache__DOT___GEN_15 
                                                  == 
                                                  (0x3fffffU 

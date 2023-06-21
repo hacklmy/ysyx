@@ -77,7 +77,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                    1,(IData)(vlSelf->top__DOT__IFU__DOT__fs_valid),
                    1,vlSelf->top__DOT__IFU_io_axi_out_rready,
                    32,vlSelf->top__DOT__IFU__DOT__fs_inst,
-                   1,(IData)(vlSelf->top__DOT__IDU_io_ds_ready_go),
+                   1,(IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go),
                    1,vlSelf->top__DOT__i_cache_io_to_ifu_rvalid,
                    32,vlSelf->top__DOT__i_cache__DOT___GEN_2967[0U],
                    64,vlSelf->top__DOT__IFU__DOT__pc_next,
@@ -4500,9 +4500,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     }
     if (vlSelf->reset) {
         vlSelf->__Vdly__top__DOT__IDU__DOT__ds_valid = 0U;
-    } else if ((((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
-                 & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid)) 
-                & (IData)(vlSelf->top__DOT__EXU__DOT__es_allowin))) {
+    } else if (((((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
+                  & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid)) 
+                 & (IData)(vlSelf->top__DOT__EXU__DOT__es_allowin)) 
+                & (IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go))) {
         vlSelf->__Vdly__top__DOT__IDU__DOT__ds_valid = 0U;
     } else if (vlSelf->top__DOT__IDU_io_ds_allowin) {
         vlSelf->__Vdly__top__DOT__IDU__DOT__ds_valid 
@@ -4513,7 +4514,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                    64,vlSelf->top__DOT__IDU__DOT__ds_pc,
                    1,(IData)(vlSelf->top__DOT__IDU__DOT__ds_valid),
                    1,vlSelf->top__DOT__IDU_io_ds_allowin,
-                   1,(IData)(vlSelf->top__DOT__IDU_io_ds_ready_go),
+                   1,(IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go),
                    32,vlSelf->top__DOT__IDU__DOT__inst,
                    1,(IData)(vlSelf->top__DOT__IDU__DOT__br_taken),
                    64,vlSelf->top__DOT__IDU_io_src1,
