@@ -2532,6 +2532,7 @@ module I_CACHE(
   wire [63:0] _io_to_axi_araddr_T = _GEN_3107 & 64'hffffffffffffffc0; // @[i_cache.scala 173:35]
   wire [63:0] _GEN_2957 = state == 3'h2 ? _io_to_axi_araddr_T : {{32'd0}, addr}; // @[i_cache.scala 164:29 173:26 197:26]
   wire [2:0] _GEN_2958 = state == 3'h2 ? 3'h7 : 3'h0; // @[i_cache.scala 164:29 174:25 199:25]
+  wire  _GEN_2960 = state == 3'h2 | io_from_ifu_rready; // @[i_cache.scala 164:29 177:26 198:26]
   wire [63:0] _GEN_2962 = state == 3'h1 ? {{32'd0}, addr} : _GEN_2957; // @[i_cache.scala 140:25 142:26]
   wire [2:0] _GEN_2963 = state == 3'h1 ? 3'h0 : _GEN_2958; // @[i_cache.scala 140:25 143:25]
   wire [511:0] _GEN_2967 = state == 3'h1 ? _io_to_ifu_rdata_T_6 : 512'h0; // @[i_cache.scala 140:25 157:25]
@@ -2540,7 +2541,7 @@ module I_CACHE(
   assign io_to_axi_araddr = _GEN_2962[31:0];
   assign io_to_axi_arlen = {{5'd0}, _GEN_2963};
   assign io_to_axi_arvalid = state == 3'h1 ? 1'h0 : _T_23; // @[i_cache.scala 140:25 141:27]
-  assign io_to_axi_rready = state == 3'h1 ? 1'h0 : io_from_ifu_rready; // @[i_cache.scala 140:25 146:26]
+  assign io_to_axi_rready = state == 3'h1 ? 1'h0 : _GEN_2960; // @[i_cache.scala 140:25 146:26]
   assign io_cache_init = state == 3'h4; // @[i_cache.scala 213:27]
   always @(posedge clock) begin
     if (reset) begin // @[i_cache.scala 19:24]
