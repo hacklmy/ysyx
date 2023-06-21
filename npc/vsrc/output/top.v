@@ -468,8 +468,9 @@ module IFU(
     `endif
         if (~reset) begin
           $fwrite(32'h80000002,
-            "fs_pc:%x fs_valid:%d fs_allowin:%d fs_inst:%x arvalid:%d rvalid:%d rdata:%x next_pc:%x\n",fs_pc,fs_valid,
-            fs_allowin,fs_inst,io_axi_out_arvalid,io_axi_in_rvalid,io_axi_in_rdata[31:0],pc_next); // @[IFU.scala 109:11]
+            "fs_pc:%x fs_valid:%d fs_allowin:%d fs_inst:%x arvalid:%d rvalid:%d rdata:%x next_pc:%x br_taken:%d fs_ds_valid:%d\n"
+            ,fs_pc,fs_valid,fs_allowin,fs_inst,io_axi_out_arvalid,io_axi_in_rvalid,io_axi_in_rdata[31:0],pc_next,
+            br_taken,fs_to_ds_valid); // @[IFU.scala 109:11]
         end
     `ifdef PRINTF_COND
       end
