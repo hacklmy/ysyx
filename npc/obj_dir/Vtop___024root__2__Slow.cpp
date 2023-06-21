@@ -45,7 +45,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->io_inst = VL_RAND_RESET_I(32);
     vlSelf->io_pc = VL_RAND_RESET_Q(64);
     vlSelf->io_step = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__IFU_io_fs_to_ds_valid = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IFU_io_axi_out_rready = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU_io_ds_to_es_valid = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU_io_br_target = VL_RAND_RESET_Q(64);
@@ -98,6 +97,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__IFU__DOT__fs_valid = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IFU__DOT__fs_ready_go = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IFU__DOT__cache_init = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__IFU__DOT__fs_to_ds_valid = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IFU__DOT___GEN_1 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IFU__DOT__br_taken = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IFU__DOT__fs_pc = VL_RAND_RESET_Q(64);
@@ -501,6 +501,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__i_cache__DOT___GEN_359 = VL_RAND_RESET_I(8);
     vlSelf->top__DOT__i_cache__DOT___GEN_360 = VL_RAND_RESET_I(8);
     vlSelf->top__DOT__i_cache__DOT___GEN_361 = VL_RAND_RESET_I(8);
+    vlSelf->top__DOT__i_cache__DOT___GEN_389 = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__i_cache__DOT___GEN_390 = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__i_cache__DOT___GEN_391 = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__i_cache__DOT___GEN_392 = VL_RAND_RESET_I(32);
@@ -1299,6 +1300,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__axi__DOT___GEN_36 = VL_RAND_RESET_I(1);
     vlSelf->__Vtask_pmem_read__1__Rdata = 0;
     vlSelf->__Vdlyvset__top__DOT__Register__DOT__Reg__v0 = 0;
+    vlSelf->__Vdly__top__DOT__IFU__DOT__fs_pc = VL_RAND_RESET_Q(64);
     vlSelf->__Vdly__top__DOT__IDU__DOT__ds_valid = VL_RAND_RESET_I(1);
     vlSelf->__Vdlyvset__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v0 = 0;
     vlSelf->__Vdlyvset__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v1 = 0;

@@ -14496,7 +14496,7 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
                                                             : vlSelf->top__DOT__IFU__DOT__fs_pc)))));
     top__DOT__IDU__DOT___ds_ready_go_T_30 = ((((6U 
                                                 == (IData)(vlSelf->top__DOT__IDU__DOT___ALUop_T_176)) 
-                                               & (IData)(vlSelf->top__DOT__IFU_io_fs_to_ds_valid)) 
+                                               & (IData)(vlSelf->top__DOT__IFU__DOT__fs_to_ds_valid)) 
                                               & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid)) 
                                              | (6U 
                                                 != (IData)(vlSelf->top__DOT__IDU__DOT___ALUop_T_176)));
@@ -14966,8 +14966,7 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
                                               ? vlSelf->top__DOT__IDU__DOT__imm
                                               : vlSelf->top__DOT__IDU__DOT___br_taken_T_1));
     vlSelf->top__DOT__IFU__DOT___GEN_1 = ((4U == (IData)(vlSelf->top__DOT__i_cache__DOT__state)) 
-                                          | ((~ ((((IData)(vlSelf->top__DOT__IFU__DOT__fs_valid) 
-                                                   & (IData)(vlSelf->top__DOT__IFU__DOT__fs_ready_go)) 
+                                          | ((~ (((IData)(vlSelf->top__DOT__IFU__DOT__fs_to_ds_valid) 
                                                   & (IData)(vlSelf->top__DOT__IDU__DOT__ds_allowin)) 
                                                  & (IData)(vlSelf->top__DOT__IFU__DOT__cache_init))) 
                                              & (IData)(vlSelf->top__DOT__IFU__DOT__cache_init)));
