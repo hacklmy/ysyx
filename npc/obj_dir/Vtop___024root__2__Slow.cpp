@@ -47,6 +47,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->io_step = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IFU_io_axi_out_rready = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU_io_ds_to_es_valid = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__IDU_io_br_taken = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU_io_br_target = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__IDU_io_ds_allowin = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU_io_src1 = VL_RAND_RESET_Q(64);
