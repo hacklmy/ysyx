@@ -17393,7 +17393,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                              & (IData)(vlSelf->top__DOT__IFU__DOT__br_taken)));
     vlSelf->top__DOT__i_cache_io_to_axi_rready = ((1U 
                                                    != (IData)(vlSelf->top__DOT__i_cache__DOT__state)) 
-                                                  & (IData)(vlSelf->top__DOT__IFU_io_axi_out_rready));
+                                                  & ((2U 
+                                                      == (IData)(vlSelf->top__DOT__i_cache__DOT__state)) 
+                                                     | (IData)(vlSelf->top__DOT__IFU_io_axi_out_rready)));
     vlSelf->top__DOT__arbiter_io_axi_out_rready = (
                                                    (0U 
                                                     == (IData)(vlSelf->top__DOT__arbiter__DOT__state))
