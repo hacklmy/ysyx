@@ -39,7 +39,7 @@ module IFU(
   wire  _GEN_2 = br_taken_cancel & fs_valid & io_ds_allowin ? 1'h0 : br_taken_cancel; // @[IFU.scala 52:67 53:25 27:34]
   wire  _GEN_3 = io_br_taken & io_ds_ready_go & io_axi_in_rvalid | _GEN_2; // @[IFU.scala 50:52 51:25]
   wire  fs_allowin = ~fs_valid | _T; // @[IFU.scala 72:29]
-  wire  _GEN_4 = br_taken_cancel & io_axi_in_rvalid & fs_allowin ? 1'h0 : br_taken; // @[IFU.scala 58:59 59:18 42:27]
+  wire  _GEN_4 = br_taken & io_axi_in_rvalid & fs_allowin ? 1'h0 : br_taken; // @[IFU.scala 58:52 59:18 42:27]
   wire  _GEN_5 = _T_2 | _GEN_4; // @[IFU.scala 56:38 57:18]
   wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 66:24]
   wire [63:0] pc_next = br_taken ? io_br_target : seq_pc; // @[IFU.scala 67:19]
