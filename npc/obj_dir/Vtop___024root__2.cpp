@@ -17384,8 +17384,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                                   & (IData)(vlSelf->top__DOT__IFU__DOT__fs_valid)) 
                                                  & (IData)(vlSelf->top__DOT__IDU__DOT__ds_allowin))) 
                                              & (IData)(vlSelf->top__DOT__IFU__DOT__br_taken_cancel)));
-    vlSelf->top__DOT__IFU__DOT___GEN_5 = (((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
-                                           & (IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go)) 
+    vlSelf->top__DOT__IFU__DOT___GEN_5 = ((((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
+                                            & (IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go)) 
+                                           & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid)) 
                                           | ((~ (((IData)(vlSelf->top__DOT__IFU__DOT__br_taken) 
                                                   & (IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rvalid)) 
                                                  & (IData)(vlSelf->top__DOT__IFU__DOT__fs_allowin))) 
