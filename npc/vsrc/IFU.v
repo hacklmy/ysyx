@@ -39,7 +39,7 @@ module IFU(
   wire  _GEN_2 = br_taken & io_axi_in_rvalid & fs_allowin ? 1'h0 : br_taken; // @[IFU.scala 52:52 53:18 42:27]
   wire  _GEN_3 = io_br_taken & io_ds_ready_go | _GEN_2; // @[IFU.scala 50:38 51:18]
   wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 60:24]
-  wire [63:0] pc_next = io_br_taken ? io_br_target : seq_pc; // @[IFU.scala 61:19]
+  wire [63:0] pc_next = br_taken ? io_br_target : seq_pc; // @[IFU.scala 61:19]
   assign io_to_ds_pc = fs_pc; // @[IFU.scala 80:17]
   assign io_fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 65:33]
   assign io_inst = fs_inst; // @[IFU.scala 106:13]
@@ -73,7 +73,7 @@ module IFU(
     if (reset) begin // @[IFU.scala 43:24]
       fs_pc <= 64'h7ffffffc; // @[IFU.scala 43:24]
     end else if (io_axi_in_rvalid & fs_allowin) begin // @[IFU.scala 72:36]
-      if (io_br_taken) begin // @[IFU.scala 61:19]
+      if (br_taken) begin // @[IFU.scala 61:19]
         fs_pc <= io_br_target;
       end else begin
         fs_pc <= seq_pc;
