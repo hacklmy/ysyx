@@ -4499,8 +4499,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     }
     if (vlSelf->reset) {
         vlSelf->__Vdly__top__DOT__IDU__DOT__ds_valid = 0U;
-    } else if (((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
-                & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid))) {
+    } else if ((((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
+                 & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid)) 
+                & (IData)(vlSelf->top__DOT__IDU__DOT__ds_allowin))) {
         vlSelf->__Vdly__top__DOT__IDU__DOT__ds_valid = 0U;
     } else if (vlSelf->top__DOT__IDU__DOT__ds_allowin) {
         vlSelf->__Vdly__top__DOT__IDU__DOT__ds_valid 
