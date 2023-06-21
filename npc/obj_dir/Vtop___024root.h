@@ -1334,6 +1334,7 @@ VL_MODULE(Vtop___024root) {
     CData/*2:0*/ __Vdly__top__DOT__axi__DOT__state;
     CData/*0:0*/ __Vclklast__TOP__clock;
     VlWide<3>/*64:0*/ __Vdly__top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2;
+    IData/*31:0*/ __Vdly__top__DOT__i_cache__DOT__addr;
     QData/*63:0*/ __Vtask_pmem_read__1__Rdata;
     QData/*63:0*/ __Vdly__top__DOT__IFU__DOT__fs_pc;
     VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
