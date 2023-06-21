@@ -97,6 +97,8 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__IFU__DOT__br_taken_cancel = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IFU__DOT__fs_valid = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IFU__DOT__cache_init = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__IFU__DOT__fs_ready_go = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__IFU__DOT__fs_to_ds_valid = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IFU__DOT___GEN_1 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IFU__DOT__br_taken = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IFU__DOT__fs_pc = VL_RAND_RESET_Q(64);
