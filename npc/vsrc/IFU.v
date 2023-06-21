@@ -29,26 +29,27 @@ module IFU(
   reg  br_taken_cancel; // @[IFU.scala 28:34]
   reg  fs_valid; // @[IFU.scala 31:27]
   reg  cache_init; // @[IFU.scala 37:29]
-  wire  _T = fs_valid & io_ds_allowin; // @[IFU.scala 40:31]
-  wire  _GEN_0 = fs_valid & io_ds_allowin & cache_init ? 1'h0 : cache_init; // @[IFU.scala 40:60 41:20 37:29]
+  wire  fs_ready_go = fs_valid & ~io_br_taken; // @[IFU.scala 71:29]
+  wire  fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 72:33]
+  wire  _GEN_0 = fs_to_ds_valid & io_ds_allowin & cache_init ? 1'h0 : cache_init; // @[IFU.scala 40:60 41:20 37:29]
   wire  _GEN_1 = io_cache_init | _GEN_0; // @[IFU.scala 38:24 39:20]
   reg  br_taken; // @[IFU.scala 43:27]
   reg [63:0] fs_pc; // @[IFU.scala 44:24]
   reg [31:0] fs_inst; // @[IFU.scala 45:26]
   wire  _T_3 = io_br_taken & io_ds_ready_go & io_axi_in_rvalid; // @[IFU.scala 51:37]
-  wire  _GEN_2 = br_taken_cancel & fs_valid & io_ds_allowin ? 1'h0 : br_taken_cancel; // @[IFU.scala 53:67 54:25 28:34]
+  wire  _GEN_2 = br_taken_cancel & fs_to_ds_valid & io_ds_allowin ? 1'h0 : br_taken_cancel; // @[IFU.scala 53:67 54:25 28:34]
   wire  _GEN_3 = io_br_taken & io_ds_ready_go & io_axi_in_rvalid | _GEN_2; // @[IFU.scala 51:52 52:25]
-  wire  fs_allowin = ~fs_valid | _T; // @[IFU.scala 73:29]
+  wire  fs_allowin = ~fs_valid | fs_ready_go & io_ds_allowin; // @[IFU.scala 73:29]
   wire  _GEN_4 = br_taken & io_axi_in_rvalid & fs_allowin ? 1'h0 : br_taken; // @[IFU.scala 59:52 60:18 43:27]
   wire  _GEN_5 = _T_3 & ~br_taken | _GEN_4; // @[IFU.scala 57:65 58:18]
   wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 67:24]
   wire [63:0] pc_next = br_taken ? io_br_target : seq_pc; // @[IFU.scala 68:19]
   assign io_to_ds_pc = fs_pc; // @[IFU.scala 87:17]
-  assign io_fs_to_ds_valid = fs_valid; // @[IFU.scala 72:33]
+  assign io_fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 72:33]
   assign io_inst = fs_inst; // @[IFU.scala 113:13]
   assign io_axi_out_araddr = pc_next[31:0]; // @[IFU.scala 97:23]
   assign io_axi_out_arvalid = io_ds_ready_go; // @[IFU.scala 98:24]
-  assign io_axi_out_rready = ~fs_valid | _T; // @[IFU.scala 73:29]
+  assign io_axi_out_rready = ~fs_valid | fs_ready_go & io_ds_allowin; // @[IFU.scala 73:29]
   assign io_clear_cache = io_fence & ~cache_init; // @[IFU.scala 49:32]
   always @(posedge clock) begin
     if (reset) begin // @[IFU.scala 28:34]
@@ -95,7 +96,7 @@ module IFU(
           $fwrite(32'h80000002,
             "fs_pc:%x fs_valid:%d fs_allowin:%d fs_inst:%x arvalid:%d rvalid:%d rdata:%x next_pc:%x br_taken:%d fs_ds_valid:%d\n"
             ,fs_pc,fs_valid,fs_allowin,fs_inst,io_axi_out_arvalid,io_axi_in_rvalid,io_axi_in_rdata[31:0],pc_next,
-            br_taken,fs_valid); // @[IFU.scala 116:11]
+            br_taken,fs_to_ds_valid); // @[IFU.scala 116:11]
         end
     `ifdef PRINTF_COND
       end

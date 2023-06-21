@@ -125,7 +125,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__IDU__DOT___rdata2_T_1 = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__IDU__DOT___br_taken_T_1 = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__IDU__DOT__br_taken = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__IDU__DOT___T = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT__ds_ready_go = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT__ds_allowin = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT__imm = VL_RAND_RESET_Q(64);

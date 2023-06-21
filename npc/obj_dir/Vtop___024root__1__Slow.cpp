@@ -14959,8 +14959,6 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
                                             ? vlSelf->top__DOT__IDU_io_br_target
                                             : (4ULL 
                                                + vlSelf->top__DOT__IFU__DOT__fs_pc));
-    vlSelf->top__DOT__IDU__DOT___T = ((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
-                                      & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid));
     vlSelf->top__DOT__IFU__DOT___GEN_3 = ((((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
                                             & (IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go)) 
                                            & (IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rvalid)) 

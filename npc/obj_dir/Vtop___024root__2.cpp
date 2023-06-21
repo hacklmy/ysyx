@@ -15603,9 +15603,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                                   & (IData)(vlSelf->top__DOT__LSU__DOT__ms_allowin))));
     if (vlSelf->reset) {
         vlSelf->top__DOT__IDU__DOT__ds_pc = 0ULL;
-    } else if ((((IData)(vlSelf->top__DOT__IFU__DOT__fs_valid) 
-                 & (IData)(vlSelf->top__DOT__IDU__DOT__ds_allowin)) 
-                & (~ (IData)(vlSelf->top__DOT__IDU__DOT___T)))) {
+    } else if (((IData)(vlSelf->top__DOT__IFU__DOT__fs_valid) 
+                & (IData)(vlSelf->top__DOT__IDU__DOT__ds_allowin))) {
         vlSelf->top__DOT__IDU__DOT__ds_pc = vlSelf->top__DOT__IFU__DOT__fs_pc;
     }
     vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value = 
@@ -15806,9 +15805,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                                              & (IData)(vlSelf->top__DOT__arbiter_io_lsu_axi_out_wready)))))));
     if (vlSelf->reset) {
         vlSelf->top__DOT__IDU__DOT__inst = 0U;
-    } else if ((((IData)(vlSelf->top__DOT__IFU__DOT__fs_valid) 
-                 & (IData)(vlSelf->top__DOT__IDU__DOT__ds_allowin)) 
-                & (~ (IData)(vlSelf->top__DOT__IDU__DOT___T)))) {
+    } else if (((IData)(vlSelf->top__DOT__IFU__DOT__fs_valid) 
+                & (IData)(vlSelf->top__DOT__IDU__DOT__ds_allowin))) {
         vlSelf->top__DOT__IDU__DOT__inst = vlSelf->top__DOT__IFU__DOT__fs_inst;
     }
     vlSelf->top__DOT__IFU__DOT__fs_pc = vlSelf->__Vdly__top__DOT__IFU__DOT__fs_pc;
@@ -17371,8 +17369,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                             ? vlSelf->top__DOT__IDU_io_br_target
                                             : (4ULL 
                                                + vlSelf->top__DOT__IFU__DOT__fs_pc));
-    vlSelf->top__DOT__IDU__DOT___T = ((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
-                                      & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid));
     vlSelf->top__DOT__IFU__DOT___GEN_3 = ((((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
                                             & (IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go)) 
                                            & (IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rvalid)) 
