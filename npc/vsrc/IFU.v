@@ -4,6 +4,7 @@ module IFU(
   input         reset,
   input         io_ds_allowin,
   input         io_ds_ready_go,
+  input         io_ds_valid,
   input         io_br_taken,
   input  [63:0] io_br_target,
   output [63:0] io_to_ds_pc,
@@ -29,7 +30,7 @@ module IFU(
   reg  br_taken_cancel; // @[IFU.scala 28:34]
   reg  fs_valid; // @[IFU.scala 31:27]
   reg  cache_init; // @[IFU.scala 37:29]
-  wire  fs_ready_go = fs_valid & ~io_br_taken; // @[IFU.scala 71:29]
+  wire  fs_ready_go = fs_valid & ~(io_br_taken & io_ds_valid); // @[IFU.scala 71:29]
   wire  fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 72:33]
   wire  _GEN_0 = fs_to_ds_valid & io_ds_allowin & cache_init ? 1'h0 : cache_init; // @[IFU.scala 40:60 41:20 37:29]
   wire  _GEN_1 = io_cache_init | _GEN_0; // @[IFU.scala 38:24 39:20]
