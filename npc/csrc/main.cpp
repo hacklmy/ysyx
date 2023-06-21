@@ -437,7 +437,7 @@ static int cmd_si(char *args){
 
 void print_reg(){
   int i;
-  printf("nemu_pc:%lx\n",ref_r.pc)
+  printf("nemu_pc:%lx\n",ref_r.pc);
   for (i = 0; i < 32; i++) {
     printf("gpr[%d] %s = 0x%lx\t nemu[%d] %s = 0x%lx\n", i, regs[i], cpu_gpr.gpr[i],i, regs[i], ref_r.gpr[i]);
   }
