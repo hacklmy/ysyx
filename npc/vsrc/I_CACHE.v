@@ -4542,7 +4542,7 @@ module I_CACHE(
       if (`PRINTF_COND) begin
     `endif
         if (_T_1) begin
-          $fwrite(32'h80000002,"rdata:%x\n",io_from_axi_rdata); // @[i_cache.scala 58:11]
+          $fwrite(32'h80000002,"rdata:%x addr:%x\n",io_from_axi_rdata,addr); // @[i_cache.scala 58:11]
         end
     `ifdef PRINTF_COND
       end
