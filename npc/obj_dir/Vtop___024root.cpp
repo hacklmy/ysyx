@@ -75,9 +75,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
         VL_FWRITEF(0x80000002U,"fs_pc:%x fs_valid:%1# fs_allowin:%1# fs_inst:%x arvalid:%1# rvalid:%1# rdata:%x next_pc:%x br_taken:%1# fs_ds_valid:%1#\n",
                    64,vlSelf->top__DOT__IFU__DOT__fs_pc,
                    1,(IData)(vlSelf->top__DOT__IFU__DOT__fs_valid),
-                   1,vlSelf->top__DOT__IFU__DOT__fs_allowin,
+                   1,vlSelf->top__DOT__IFU_io_axi_out_rready,
                    32,vlSelf->top__DOT__IFU__DOT__fs_inst,
-                   1,(IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go),
+                   1,(IData)(vlSelf->top__DOT__IDU_io_ds_ready_go),
                    1,vlSelf->top__DOT__i_cache_io_to_ifu_rvalid,
                    32,vlSelf->top__DOT__i_cache__DOT___GEN_2967[0U],
                    64,vlSelf->top__DOT__IFU__DOT__pc_next,
@@ -87,7 +87,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     if (vlSelf->reset) {
         vlSelf->__Vdly__top__DOT__IFU__DOT__fs_pc = 0x7ffffffcULL;
     } else if (((IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rvalid) 
-                & (IData)(vlSelf->top__DOT__IFU__DOT__fs_allowin))) {
+                & (IData)(vlSelf->top__DOT__IFU_io_axi_out_rready))) {
         vlSelf->__Vdly__top__DOT__IFU__DOT__fs_pc = 
             ((IData)(vlSelf->top__DOT__IFU__DOT__br_taken)
               ? vlSelf->top__DOT__IDU_io_br_target : vlSelf->top__DOT__IFU__DOT__seq_pc);
@@ -4502,9 +4502,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
         vlSelf->__Vdly__top__DOT__IDU__DOT__ds_valid = 0U;
     } else if ((((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
                  & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid)) 
-                & (IData)(vlSelf->top__DOT__EXU_io_es_allowin))) {
+                & (IData)(vlSelf->top__DOT__EXU__DOT__es_allowin))) {
         vlSelf->__Vdly__top__DOT__IDU__DOT__ds_valid = 0U;
-    } else if (vlSelf->top__DOT__IDU__DOT__ds_allowin) {
+    } else if (vlSelf->top__DOT__IDU_io_ds_allowin) {
         vlSelf->__Vdly__top__DOT__IDU__DOT__ds_valid 
             = vlSelf->top__DOT__IFU__DOT__fs_to_ds_valid;
     }
@@ -4512,8 +4512,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
         VL_FWRITEF(0x80000002U,"ds_pc:%x ds_valid:%1# ds_allowin:%1# ds_ready_go:%1# inst:%x br_taken:%1# src1:%x src2:%x conflict_es_rs1:%1# conflict_es_rs2:%1# conflict_ms1:%1# conflict_ms2:%1#\n",
                    64,vlSelf->top__DOT__IDU__DOT__ds_pc,
                    1,(IData)(vlSelf->top__DOT__IDU__DOT__ds_valid),
-                   1,vlSelf->top__DOT__IDU__DOT__ds_allowin,
-                   1,(IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go),
+                   1,vlSelf->top__DOT__IDU_io_ds_allowin,
+                   1,(IData)(vlSelf->top__DOT__IDU_io_ds_ready_go),
                    32,vlSelf->top__DOT__IDU__DOT__inst,
                    1,(IData)(vlSelf->top__DOT__IDU__DOT__br_taken),
                    64,vlSelf->top__DOT__IDU_io_src1,
