@@ -17345,7 +17345,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                             : (4ULL 
                                                + vlSelf->top__DOT__IFU__DOT__fs_pc));
     vlSelf->top__DOT__IFU__DOT__fs_ready_go = ((IData)(vlSelf->top__DOT__IFU__DOT__fs_valid) 
-                                               & (~ (IData)(vlSelf->top__DOT__IDU__DOT__br_taken)));
+                                               & (~ 
+                                                  ((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
+                                                   & (IData)(vlSelf->top__DOT__IDU__DOT__ds_valid))));
     vlSelf->top__DOT__IFU__DOT__fs_allowin = (1U & 
                                               ((~ (IData)(vlSelf->top__DOT__IFU__DOT__fs_valid)) 
                                                | ((IData)(vlSelf->top__DOT__IFU__DOT__fs_ready_go) 
