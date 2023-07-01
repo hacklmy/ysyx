@@ -137,7 +137,7 @@ module top(
   wire [63:0] LSU_io_ms_fwd_res; // @[top.scala 19:21]
   wire [63:0] LSU_io_axi_in_rdata; // @[top.scala 19:21]
   wire  LSU_io_axi_in_rvalid; // @[top.scala 19:21]
-  wire  LSU_io_axi_in_wready; // @[top.scala 19:21]
+  wire  LSU_io_axi_in_bvalid; // @[top.scala 19:21]
   wire [31:0] LSU_io_axi_out_araddr; // @[top.scala 19:21]
   wire  LSU_io_axi_out_arvalid; // @[top.scala 19:21]
   wire [31:0] LSU_io_axi_out_awaddr; // @[top.scala 19:21]
@@ -229,7 +229,7 @@ module top(
   wire  d_cache_io_from_lsu_wvalid; // @[top.scala 23:25]
   wire [63:0] d_cache_io_to_lsu_rdata; // @[top.scala 23:25]
   wire  d_cache_io_to_lsu_rvalid; // @[top.scala 23:25]
-  wire  d_cache_io_to_lsu_wready; // @[top.scala 23:25]
+  wire  d_cache_io_to_lsu_bvalid; // @[top.scala 23:25]
   wire [31:0] d_cache_io_to_axi_araddr; // @[top.scala 23:25]
   wire [7:0] d_cache_io_to_axi_arlen; // @[top.scala 23:25]
   wire  d_cache_io_to_axi_arvalid; // @[top.scala 23:25]
@@ -409,7 +409,7 @@ module top(
     .io_ms_fwd_res(LSU_io_ms_fwd_res),
     .io_axi_in_rdata(LSU_io_axi_in_rdata),
     .io_axi_in_rvalid(LSU_io_axi_in_rvalid),
-    .io_axi_in_wready(LSU_io_axi_in_wready),
+    .io_axi_in_bvalid(LSU_io_axi_in_bvalid),
     .io_axi_out_araddr(LSU_io_axi_out_araddr),
     .io_axi_out_arvalid(LSU_io_axi_out_arvalid),
     .io_axi_out_awaddr(LSU_io_axi_out_awaddr),
@@ -509,7 +509,7 @@ module top(
     .io_from_lsu_wvalid(d_cache_io_from_lsu_wvalid),
     .io_to_lsu_rdata(d_cache_io_to_lsu_rdata),
     .io_to_lsu_rvalid(d_cache_io_to_lsu_rvalid),
-    .io_to_lsu_wready(d_cache_io_to_lsu_wready),
+    .io_to_lsu_bvalid(d_cache_io_to_lsu_bvalid),
     .io_to_axi_araddr(d_cache_io_to_axi_araddr),
     .io_to_axi_arlen(d_cache_io_to_axi_arlen),
     .io_to_axi_arvalid(d_cache_io_to_axi_arvalid),
@@ -626,7 +626,7 @@ module top(
   assign LSU_io_maddr = EXU_io_to_ms_maddr; // @[top.scala 98:15]
   assign LSU_io_axi_in_rdata = d_cache_io_to_lsu_rdata; // @[top.scala 34:16]
   assign LSU_io_axi_in_rvalid = d_cache_io_to_lsu_rvalid; // @[top.scala 34:16]
-  assign LSU_io_axi_in_wready = d_cache_io_to_lsu_wready; // @[top.scala 34:16]
+  assign LSU_io_axi_in_bvalid = d_cache_io_to_lsu_bvalid; // @[top.scala 34:16]
   assign WBU_clock = clock;
   assign WBU_reset = reset;
   assign WBU_io_pc = LSU_io_to_ws_pc; // @[top.scala 101:12]
