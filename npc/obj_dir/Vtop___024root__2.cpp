@@ -47,8 +47,19 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     QData/*63:0*/ top__DOT__IDU__DOT___br_taken_T_1;
     QData/*63:0*/ top__DOT__IDU__DOT___br_target_T_1;
     QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT___alu_res_T_42;
+    QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT___alu_res_T_50;
     QData/*63:0*/ top__DOT__EXU__DOT__ALU__DOT___alu_res_T_98;
     // Body
+    top__DOT__EXU__DOT__ALU__DOT___alu_res_T_50 = (
+                                                   ((QData)((IData)(
+                                                                    ((1U 
+                                                                      & (IData)(
+                                                                                (vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div_io_remainder 
+                                                                                >> 0x1fU)))
+                                                                      ? 0xffffffffU
+                                                                      : 0U))) 
+                                                    << 0x20U) 
+                                                   | (QData)((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div_io_remainder)));
     top__DOT__EXU__DOT__ALU__DOT___alu_res_T_42 = (
                                                    ((QData)((IData)(
                                                                     ((1U 
@@ -408,11 +419,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                             ? vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div_io_remainder
                                             : ((0x32U 
                                                 == vlSelf->top__DOT__EXU__DOT__ALUop)
-                                                ? vlSelf->top__DOT__EXU__DOT__ALU__DOT___alu_res_T_50
+                                                ? top__DOT__EXU__DOT__ALU__DOT___alu_res_T_50
                                                 : (
                                                    (0x14U 
                                                     == vlSelf->top__DOT__EXU__DOT__ALUop)
-                                                    ? vlSelf->top__DOT__EXU__DOT__ALU__DOT___alu_res_T_50
+                                                    ? top__DOT__EXU__DOT__ALU__DOT___alu_res_T_50
                                                     : top__DOT__EXU__DOT__ALU__DOT___alu_res_T_98)))));
     if ((0x47U == vlSelf->top__DOT__EXU__DOT__ALUop)) {
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__alu_res[0U] 
