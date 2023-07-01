@@ -39,10 +39,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[2U];
     vlSelf->__Vdly__top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state 
         = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state;
+    vlSelf->__Vdly__top__DOT__IFU__DOT__fs_pc = vlSelf->top__DOT__IFU__DOT__fs_pc;
     vlSelf->__Vdly__top__DOT__i_cache__DOT__state = vlSelf->top__DOT__i_cache__DOT__state;
-    vlSelf->__Vdlyvset__top__DOT__Register__DOT__Reg__v0 = 0U;
+    vlSelf->__Vdly__top__DOT__i_cache__DOT__addr = vlSelf->top__DOT__i_cache__DOT__addr;
     vlSelf->__Vdlyvset__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v0 = 0U;
     vlSelf->__Vdlyvset__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v1 = 0U;
+    vlSelf->__Vdlyvset__top__DOT__Register__DOT__Reg__v0 = 0U;
     vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1[0U] 
         = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_30[0U];
     vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1[1U] 
@@ -53,14 +55,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_30[3U];
     vlSelf->top__DOT__d_cache__DOT__write_back_addr 
         = (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_2507);
-    if (vlSelf->reset) {
-        vlSelf->top__DOT__IFU__DOT__fs_valid = 0U;
-    } else if (((IData)(vlSelf->top__DOT__IDU_io_br_taken) 
-                & (~ (IData)(vlSelf->top__DOT__IFU__DOT__br_taken_cancel)))) {
-        vlSelf->top__DOT__IFU__DOT__fs_valid = 0U;
-    } else if (vlSelf->top__DOT__IFU__DOT__fs_allowin) {
-        vlSelf->top__DOT__IFU__DOT__fs_valid = vlSelf->top__DOT__i_cache_io_to_ifu_rvalid;
-    }
     if (vlSelf->reset) {
         vlSelf->__Vdly__top__DOT__IDU__DOT__ds_valid = 0U;
     } else if (((((IData)(vlSelf->top__DOT__IDU__DOT__br_taken) 
@@ -4486,6 +4480,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                : vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_3)
                                            : vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT___GEN_3));
     if (vlSelf->reset) {
+        vlSelf->top__DOT__WBU__DOT__ws_pc = 0ULL;
+    } else if (vlSelf->top__DOT__LSU_io_ms_to_ws_valid) {
+        vlSelf->top__DOT__WBU__DOT__ws_pc = vlSelf->top__DOT__LSU__DOT__ms_pc;
+    }
+    if (vlSelf->reset) {
         vlSelf->top__DOT__EXU__DOT__src1_value = 0ULL;
     } else if (((IData)(vlSelf->top__DOT__IDU_io_ds_to_es_valid) 
                 & (IData)(vlSelf->top__DOT__EXU__DOT__es_allowin))) {
@@ -4568,6 +4567,28 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                 = __Vtemp78[2U];
         }
     }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"fs_pc:%x fs_valid:%1# fs_allowin:%1# fs_inst:%x arvalid:%1# rvalid:%1# rdata:%x next_pc:%x br_taken:%1# fs_ds_valid:%1#\n",
+                   64,vlSelf->top__DOT__IFU__DOT__fs_pc,
+                   1,(IData)(vlSelf->top__DOT__IFU__DOT__fs_valid),
+                   1,vlSelf->top__DOT__IFU__DOT__fs_allowin,
+                   32,vlSelf->top__DOT__IFU__DOT__fs_inst,
+                   1,(IData)(vlSelf->top__DOT__IDU__DOT__ds_ready_go),
+                   1,vlSelf->top__DOT__i_cache_io_to_ifu_rvalid,
+                   32,vlSelf->top__DOT__i_cache__DOT___GEN_2967[0U],
+                   64,vlSelf->top__DOT__IFU__DOT__pc_next,
+                   1,(IData)(vlSelf->top__DOT__IFU__DOT__br_taken),
+                   1,vlSelf->top__DOT__IFU_io_fs_to_ds_valid);
+    }
+    if (vlSelf->reset) {
+        vlSelf->__Vdly__top__DOT__IFU__DOT__fs_pc = 0x7ffffffcULL;
+    } else if (((IData)(vlSelf->top__DOT__i_cache_io_to_ifu_rvalid) 
+                & (IData)(vlSelf->top__DOT__IFU__DOT__fs_allowin))) {
+        vlSelf->__Vdly__top__DOT__IFU__DOT__fs_pc = 
+            ((IData)(vlSelf->top__DOT__IFU__DOT__br_taken)
+              ? vlSelf->top__DOT__IFU__DOT__br_target
+              : vlSelf->top__DOT__IFU__DOT__seq_pc);
+    }
     if (vlSelf->reset) {
         vlSelf->top__DOT__LSU__DOT__store_data = 0ULL;
     } else if (((IData)(vlSelf->top__DOT__EXU_io_es_to_ms_valid) 
@@ -4611,11 +4632,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     } else if (((IData)(vlSelf->top__DOT__EXU_io_es_to_ms_valid) 
                 & (IData)(vlSelf->top__DOT__LSU__DOT__ms_allowin))) {
         vlSelf->top__DOT__LSU__DOT__wstrb = vlSelf->top__DOT__EXU__DOT__st_wstrb;
-    }
-    if (vlSelf->reset) {
-        vlSelf->top__DOT__WBU__DOT__ws_pc = 0ULL;
-    } else if (vlSelf->top__DOT__LSU_io_ms_to_ws_valid) {
-        vlSelf->top__DOT__WBU__DOT__ws_pc = vlSelf->top__DOT__LSU__DOT__ms_pc;
     }
     if (vlSelf->reset) {
         vlSelf->top__DOT__i_cache__DOT__ram_0_0[0U] = 0U;
@@ -8724,26 +8740,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
             if ((2U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
                 vlSelf->top__DOT__i_cache__DOT__tag_3_10 
                     = vlSelf->top__DOT__i_cache__DOT___GEN_2214;
-            }
-        }
-    }
-    if (vlSelf->reset) {
-        vlSelf->top__DOT__i_cache__DOT__tag_3_11 = 0U;
-    } else if ((0U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-        if ((1U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-            if ((2U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-                vlSelf->top__DOT__i_cache__DOT__tag_3_11 
-                    = vlSelf->top__DOT__i_cache__DOT___GEN_2215;
-            }
-        }
-    }
-    if (vlSelf->reset) {
-        vlSelf->top__DOT__i_cache__DOT__tag_3_12 = 0U;
-    } else if ((0U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-        if ((1U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-            if ((2U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-                vlSelf->top__DOT__i_cache__DOT__tag_3_12 
-                    = vlSelf->top__DOT__i_cache__DOT___GEN_2216;
             }
         }
     }
