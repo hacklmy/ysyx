@@ -1874,7 +1874,7 @@ module LSU(
   reg  ren; // @[LSU.scala 48:22]
   reg [63:0] maddr; // @[LSU.scala 49:24]
   reg [2:0] load_type; // @[LSU.scala 50:28]
-  wire  ms_ready_go = wen & io_axi_in_bvalid | ren & io_axi_in_rvalid; // @[LSU.scala 70:46]
+  wire  ms_ready_go = wen & io_axi_in_bvalid | ren & io_axi_in_rvalid | ~(wen | ren); // @[LSU.scala 70:75]
   wire  ms_allowin = ~ms_valid | ms_ready_go; // @[LSU.scala 71:29]
   wire [31:0] _rdata_T_2 = io_axi_in_rdata[31] ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _rdata_T_4 = {_rdata_T_2,io_axi_in_rdata[31:0]}; // @[Cat.scala 31:58]
