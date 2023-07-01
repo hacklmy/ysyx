@@ -26,6 +26,7 @@ module top(
   wire [63:0] IFU_io_to_ds_pc; // @[top.scala 16:21]
   wire  IFU_io_fs_to_ds_valid; // @[top.scala 16:21]
   wire [31:0] IFU_io_inst; // @[top.scala 16:21]
+  wire  IFU_io_axi_in_arready; // @[top.scala 16:21]
   wire [63:0] IFU_io_axi_in_rdata; // @[top.scala 16:21]
   wire  IFU_io_axi_in_rvalid; // @[top.scala 16:21]
   wire [31:0] IFU_io_axi_out_araddr; // @[top.scala 16:21]
@@ -205,6 +206,7 @@ module top(
   wire [31:0] i_cache_io_from_ifu_araddr; // @[top.scala 22:25]
   wire  i_cache_io_from_ifu_arvalid; // @[top.scala 22:25]
   wire  i_cache_io_from_ifu_rready; // @[top.scala 22:25]
+  wire  i_cache_io_to_ifu_arready; // @[top.scala 22:25]
   wire [63:0] i_cache_io_to_ifu_rdata; // @[top.scala 22:25]
   wire  i_cache_io_to_ifu_rvalid; // @[top.scala 22:25]
   wire [31:0] i_cache_io_to_axi_araddr; // @[top.scala 22:25]
@@ -290,6 +292,7 @@ module top(
     .io_to_ds_pc(IFU_io_to_ds_pc),
     .io_fs_to_ds_valid(IFU_io_fs_to_ds_valid),
     .io_inst(IFU_io_inst),
+    .io_axi_in_arready(IFU_io_axi_in_arready),
     .io_axi_in_rdata(IFU_io_axi_in_rdata),
     .io_axi_in_rvalid(IFU_io_axi_in_rvalid),
     .io_axi_out_araddr(IFU_io_axi_out_araddr),
@@ -481,6 +484,7 @@ module top(
     .io_from_ifu_araddr(i_cache_io_from_ifu_araddr),
     .io_from_ifu_arvalid(i_cache_io_from_ifu_arvalid),
     .io_from_ifu_rready(i_cache_io_from_ifu_rready),
+    .io_to_ifu_arready(i_cache_io_to_ifu_arready),
     .io_to_ifu_rdata(i_cache_io_to_ifu_rdata),
     .io_to_ifu_rvalid(i_cache_io_to_ifu_rvalid),
     .io_to_axi_araddr(i_cache_io_to_axi_araddr),
@@ -564,6 +568,7 @@ module top(
   assign IFU_io_ds_valid = IDU_io_ds_valid; // @[top.scala 42:18]
   assign IFU_io_br_taken = IDU_io_br_taken; // @[top.scala 45:18]
   assign IFU_io_br_target = IDU_io_br_target; // @[top.scala 46:19]
+  assign IFU_io_axi_in_arready = i_cache_io_to_ifu_arready; // @[top.scala 29:16]
   assign IFU_io_axi_in_rdata = i_cache_io_to_ifu_rdata; // @[top.scala 29:16]
   assign IFU_io_axi_in_rvalid = i_cache_io_to_ifu_rvalid; // @[top.scala 29:16]
   assign IFU_io_fence = IDU_io_fence; // @[top.scala 48:15]
