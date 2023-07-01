@@ -1497,7 +1497,6 @@ VL_MODULE(Vtop___024root) {
     CData/*1:0*/ __Vdly__top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state;
     CData/*0:0*/ __Vdly__top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_start;
     CData/*0:0*/ __Vdly__top__DOT__LSU__DOT__wen;
-    CData/*0:0*/ __Vdly__top__DOT__LSU__DOT__ren;
     CData/*1:0*/ __Vdly__top__DOT__arbiter__DOT__state;
     CData/*2:0*/ __Vdly__top__DOT__i_cache__DOT__state;
     CData/*3:0*/ __Vdly__top__DOT__d_cache__DOT__state;

@@ -389,7 +389,7 @@ module IDU(
     .io_rdata(csr_reg_io_rdata)
   );
   assign io_ds_to_es_valid = ds_valid & ds_ready_go; // @[IDU.scala 150:32]
-  assign io_br_taken = br_taken & ds_ready_go; // @[IDU.scala 502:29]
+  assign io_br_taken = br_taken & ds_ready_go & _T_2; // @[IDU.scala 502:44]
   assign io_br_target = _inst_type_T_9 ? _br_target_T_4 : _br_target_T_14; // @[Lookup.scala 34:39]
   assign io_ds_allowin = ~ds_valid | ds_ready_go & io_es_allowin; // @[IDU.scala 151:29]
   assign io_ds_ready_go = (conflict_es_rs1 | conflict_es_rs2) & (io_es_fwd_ready & ~io_es_ld) | ~(conflict_es_rs1 |
