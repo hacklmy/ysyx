@@ -9535,7 +9535,6 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                                               ? 0x40U
                                                               : 0U)))))))))))))));
     vlSelf->io_pc = vlSelf->top__DOT__IFU__DOT__fs_pc;
-    vlSelf->top__DOT__IFU__DOT__seq_pc = (4ULL + vlSelf->top__DOT__IFU__DOT__fs_pc);
     vlSelf->io_inst = vlSelf->top__DOT__IFU__DOT__fs_inst;
     vlSelf->top__DOT__i_cache__DOT___GEN_2027 = ((3U 
                                                   == (IData)(vlSelf->top__DOT__i_cache__DOT__state))
@@ -9546,13 +9545,13 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                                    ? 0U
                                                    : (IData)(vlSelf->top__DOT__i_cache__DOT__state)));
     if ((1U == (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-        vlSelf->top__DOT__i_cache__DOT___GEN_2963 = 0U;
-        vlSelf->top__DOT__i_cache__DOT___GEN_2962 = (QData)((IData)(vlSelf->top__DOT__i_cache__DOT__addr));
+        vlSelf->top__DOT__i_cache__DOT___GEN_2964 = 0U;
+        vlSelf->top__DOT__i_cache__DOT___GEN_2963 = (QData)((IData)(vlSelf->top__DOT__i_cache__DOT__addr));
     } else {
-        vlSelf->top__DOT__i_cache__DOT___GEN_2963 = 
+        vlSelf->top__DOT__i_cache__DOT___GEN_2964 = 
             ((2U == (IData)(vlSelf->top__DOT__i_cache__DOT__state))
               ? 7U : 0U);
-        vlSelf->top__DOT__i_cache__DOT___GEN_2962 = 
+        vlSelf->top__DOT__i_cache__DOT___GEN_2963 = 
             ((2U == (IData)(vlSelf->top__DOT__i_cache__DOT__state))
               ? (0xffffffffffffffc0ULL & (QData)((IData)(vlSelf->top__DOT__i_cache__DOT__addr)))
               : (QData)((IData)(vlSelf->top__DOT__i_cache__DOT__addr)));

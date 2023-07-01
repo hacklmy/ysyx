@@ -446,7 +446,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__i_cache__DOT___GEN_2233;
         CData/*0:0*/ top__DOT__i_cache__DOT___GEN_2234;
         CData/*0:0*/ top__DOT__i_cache__DOT___GEN_2235;
-        CData/*2:0*/ top__DOT__i_cache__DOT___GEN_2963;
+        CData/*2:0*/ top__DOT__i_cache__DOT___GEN_2964;
         CData/*0:0*/ top__DOT__d_cache__DOT__valid_0_0;
         CData/*0:0*/ top__DOT__d_cache__DOT__valid_0_1;
         CData/*0:0*/ top__DOT__d_cache__DOT__valid_0_2;
@@ -1404,8 +1404,8 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__arbiter_io_lsu_axi_out_rdata;
         QData/*63:0*/ top__DOT__d_cache_io_to_axi_wdata;
         QData/*63:0*/ top__DOT__IFU__DOT__br_target;
+        QData/*63:0*/ top__DOT__IFU__DOT__fs_pc_next;
         QData/*63:0*/ top__DOT__IFU__DOT__fs_pc;
-        QData/*63:0*/ top__DOT__IFU__DOT__seq_pc;
         QData/*63:0*/ top__DOT__IDU__DOT__ds_pc;
         QData/*63:0*/ top__DOT__IDU__DOT__rdata1;
         QData/*63:0*/ top__DOT__IDU__DOT___rdata2_T_1;
@@ -1458,7 +1458,7 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__i_cache__DOT___GEN_149;
         QData/*63:0*/ top__DOT__i_cache__DOT___GEN_150;
         QData/*63:0*/ top__DOT__i_cache__DOT___GEN_151;
-        QData/*63:0*/ top__DOT__i_cache__DOT___GEN_2962;
+        QData/*63:0*/ top__DOT__i_cache__DOT___GEN_2963;
         QData/*63:0*/ top__DOT__d_cache__DOT__receive_data_0;
         QData/*63:0*/ top__DOT__d_cache__DOT__receive_data_1;
         QData/*63:0*/ top__DOT__d_cache__DOT__receive_data_2;
@@ -1506,6 +1506,7 @@ VL_MODULE(Vtop___024root) {
     VlWide<3>/*64:0*/ __Vdly__top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2;
     IData/*31:0*/ __Vdly__top__DOT__i_cache__DOT__addr;
     QData/*63:0*/ __Vtask_pmem_read__1__Rdata;
+    QData/*63:0*/ __Vdly__top__DOT__IFU__DOT__fs_pc_next;
     VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
 
     // INTERNAL VARIABLES

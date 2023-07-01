@@ -97,11 +97,11 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     }
     vlSelf->top__DOT__IFU__DOT__br_target = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__IFU__DOT__fs_valid = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__IFU__DOT__fs_pc_next = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__IFU__DOT__cache_init = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IFU__DOT___GEN_2 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IFU__DOT__fs_pc = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__IFU__DOT__fs_inst = VL_RAND_RESET_I(32);
-    vlSelf->top__DOT__IFU__DOT__seq_pc = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__IFU__DOT__fs_allowin = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT__ds_valid = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__IDU__DOT__ds_pc = VL_RAND_RESET_Q(64);
@@ -923,8 +923,8 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     VL_RAND_RESET_W(512, vlSelf->top__DOT__i_cache__DOT___GEN_2936);
     VL_RAND_RESET_W(512, vlSelf->top__DOT__i_cache__DOT___GEN_2952);
     VL_RAND_RESET_W(512, vlSelf->top__DOT__i_cache__DOT___io_to_ifu_rdata_T_6);
-    vlSelf->top__DOT__i_cache__DOT___GEN_2962 = VL_RAND_RESET_Q(64);
-    vlSelf->top__DOT__i_cache__DOT___GEN_2963 = VL_RAND_RESET_I(3);
+    vlSelf->top__DOT__i_cache__DOT___GEN_2963 = VL_RAND_RESET_Q(64);
+    vlSelf->top__DOT__i_cache__DOT___GEN_2964 = VL_RAND_RESET_I(3);
     VL_RAND_RESET_W(512, vlSelf->top__DOT__d_cache__DOT__ram_0_0);
     VL_RAND_RESET_W(512, vlSelf->top__DOT__d_cache__DOT__ram_0_1);
     VL_RAND_RESET_W(512, vlSelf->top__DOT__d_cache__DOT__ram_0_2);
@@ -1466,6 +1466,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__axi__DOT___GEN_36 = VL_RAND_RESET_I(1);
     vlSelf->__Vtask_pmem_read__1__Rdata = 0;
     vlSelf->__Vdlyvset__top__DOT__Register__DOT__Reg__v0 = 0;
+    vlSelf->__Vdly__top__DOT__IFU__DOT__fs_pc_next = VL_RAND_RESET_Q(64);
     vlSelf->__Vdlyvset__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v0 = 0;
     vlSelf->__Vdlyvset__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v1 = 0;
     vlSelf->__Vdly__top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state = VL_RAND_RESET_I(2);
