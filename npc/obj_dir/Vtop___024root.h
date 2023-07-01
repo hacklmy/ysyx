@@ -80,12 +80,12 @@ VL_MODULE(Vtop___024root) {
         CData/*6:0*/ top__DOT__IDU__DOT___inst_type_T_188;
         CData/*1:0*/ top__DOT__IDU__DOT__csr_write;
         CData/*0:0*/ top__DOT__IDU__DOT__conflict_es_rs1;
+        CData/*0:0*/ top__DOT__IDU__DOT__conflict_ms_rs1;
+        CData/*0:0*/ top__DOT__IDU__DOT__conflict_ws_rs1;
         CData/*0:0*/ top__DOT__IDU__DOT__src2_is_imm;
         CData/*4:0*/ top__DOT__IDU__DOT__rs2;
         CData/*0:0*/ top__DOT__IDU__DOT__conflict_es_rs2;
-        CData/*0:0*/ top__DOT__IDU__DOT__conflict_ms_rs1;
         CData/*0:0*/ top__DOT__IDU__DOT__conflict_ms_rs2;
-        CData/*0:0*/ top__DOT__IDU__DOT__conflict_ws_rs1;
         CData/*0:0*/ top__DOT__IDU__DOT__conflict_ws_rs2;
         CData/*0:0*/ top__DOT__IDU__DOT__ds_ready_go;
         CData/*0:0*/ top__DOT__IDU__DOT__ds_allowin;
@@ -1497,6 +1497,7 @@ VL_MODULE(Vtop___024root) {
     CData/*1:0*/ __Vdly__top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state;
     CData/*0:0*/ __Vdly__top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_start;
     CData/*0:0*/ __Vdly__top__DOT__LSU__DOT__wen;
+    CData/*0:0*/ __Vdly__top__DOT__LSU__DOT__ren;
     CData/*1:0*/ __Vdly__top__DOT__arbiter__DOT__state;
     CData/*2:0*/ __Vdly__top__DOT__i_cache__DOT__state;
     CData/*3:0*/ __Vdly__top__DOT__d_cache__DOT__state;
