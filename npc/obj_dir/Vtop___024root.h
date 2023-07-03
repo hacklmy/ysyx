@@ -733,8 +733,8 @@ VL_MODULE(Vtop___024root) {
         CData/*7:0*/ top__DOT__d_cache__DOT___GEN_928;
         CData/*7:0*/ top__DOT__d_cache__DOT___GEN_929;
         CData/*7:0*/ top__DOT__d_cache__DOT___GEN_930;
-        CData/*0:0*/ top__DOT__d_cache__DOT___GEN_1010;
-        CData/*0:0*/ top__DOT__d_cache__DOT___GEN_1323;
+        CData/*0:0*/ top__DOT__d_cache__DOT___GEN_946;
+        CData/*0:0*/ top__DOT__d_cache__DOT___GEN_1259;
         CData/*2:0*/ top__DOT__d_cache__DOT___GEN_3652;
         CData/*3:0*/ top__DOT__d_cache__DOT___GEN_3653;
         CData/*0:0*/ top__DOT__d_cache__DOT___GEN_3686;
@@ -1823,7 +1823,7 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__d_cache__DOT___GEN_3650;
         QData/*63:0*/ top__DOT__d_cache__DOT___GEN_3651;
         QData/*63:0*/ top__DOT__d_cache__DOT___GEN_4901;
-        QData/*39:0*/ top__DOT__d_cache__DOT___GEN_1427;
+        QData/*39:0*/ top__DOT__d_cache__DOT___GEN_1363;
         QData/*63:0*/ top__DOT__axi__DOT__Mem_modle_Rdata;
         QData/*63:0*/ top__DOT__axi__DOT__araddr;
         QData/*63:0*/ top__DOT__axi__DOT__awaddr;

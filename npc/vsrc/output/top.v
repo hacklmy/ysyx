@@ -465,6 +465,20 @@ module IFU(
     end else if (io_axi_in_rvalid & fs_allowin) begin // @[IFU.scala 87:36]
       fs_inst <= io_axi_in_rdata[31:0]; // @[IFU.scala 89:17]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,
+            "fs_pc:%x fs_valid:%d fs_allowin:%d fs_inst:%x arvalid:%d rvalid:%d rdata:%x next_pc:%x br_taken:%d fs_ds_valid:%d\n"
+            ,fs_pc,fs_valid,fs_allowin,fs_inst,io_axi_out_arvalid,io_axi_in_rvalid,io_axi_in_rdata[31:0],pc_next,
+            io_br_taken,fs_valid); // @[IFU.scala 124:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -1058,6 +1072,20 @@ module IDU(
     end else begin
       br_taken_cancel <= _GEN_1;
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,
+            "ds_pc:%x ds_valid:%d ds_allowin:%d ds_ready_go:%d inst:%x br_taken:%d src1:%x src2:%x conflict_es_rs1:%d conflict_es_rs2:%d conflict_ms1:%d conflict_ms2:%d\n"
+            ,ds_pc,ds_valid,ds_allowin,ds_ready_go,inst,br_taken,io_src1,io_src2,conflict_es_rs1,conflict_es_rs2,
+            conflict_ms_rs1,conflict_ms_rs2); // @[IDU.scala 530:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -1650,6 +1678,7 @@ module EXU(
   reg [2:0] load_type; // @[EXU.scala 58:28]
   wire  es_ready_go = ~ALU_io_alu_busy; // @[EXU.scala 78:20]
   wire  es_allowin = ~es_valid | es_ready_go & io_ms_allowin; // @[EXU.scala 80:29]
+  wire [63:0] alu_res = ALU_io_alu_res; // @[EXU.scala 56:23 98:13]
   ALU ALU ( // @[EXU.scala 40:21]
     .clock(ALU_clock),
     .reset(ALU_reset),
@@ -1745,6 +1774,18 @@ module EXU(
     end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 63:42]
       load_type <= io_load_type; // @[EXU.scala 75:19]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"es_pc:%x es_valid:%d es_allowin:%d ld_we:%d alu_res:%x src1_value:%x  src2_value:%x\n",
+            es_pc,es_valid,es_allowin,ld_we,alu_res,src1_value,src2_value); // @[EXU.scala 128:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -1967,6 +2008,18 @@ module LSU(
     end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 56:40]
       load_type <= io_load_type; // @[LSU.scala 66:19]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d rdata:%x rvalid:%d maddr:%x wstrb:%x wdata:%x\n\n",ms_pc,ms_valid,
+            io_axi_in_rdata,io_axi_in_rvalid,maddr,wstrb,store_data); // @[LSU.scala 127:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -2097,6 +2150,18 @@ module WBU(
     end else if (io_ms_to_ws_valid) begin // @[WBU.scala 43:40]
       ws_res <= io_ms_final_res; // @[WBU.scala 47:16]
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"ws_pc:%x ws_valid:%d rf_dst:%d rf_we:%d wdata:%x\n",ws_pc,ws_valid,ws_rf_dst,io_we,
+            ws_res); // @[WBU.scala 70:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -7967,9 +8032,9 @@ module D_CACHE(
   wire [2:0] _unuse_way_T_6 = ~_GEN_63 ? 3'h2 : _unuse_way_T_5; // @[d_cache.scala 69:50]
   wire [2:0] unuse_way = ~_GEN_31 ? 3'h1 : _unuse_way_T_6; // @[d_cache.scala 69:21]
   reg [3:0] state; // @[d_cache.scala 71:24]
-  wire  _T_3 = (io_from_lsu_arvalid | io_from_lsu_awvalid) & io_from_lsu_araddr >= 32'ha0000000; // @[d_cache.scala 78:60]
+  wire  _T_5 = (io_from_lsu_arvalid | io_from_lsu_awvalid) & io_from_lsu_araddr >= 32'ha0000000; // @[d_cache.scala 78:60]
   wire [3:0] _GEN_128 = io_from_lsu_awvalid ? 4'h2 : state; // @[d_cache.scala 82:44 83:23 71:24]
-  wire  _T_7 = way0_hit | way1_hit | way2_hit | way3_hit; // @[d_cache.scala 87:46]
+  wire  _T_9 = way0_hit | way1_hit | way2_hit | way3_hit; // @[d_cache.scala 87:46]
   wire [63:0] _ram_0_T = io_from_lsu_wdata & wmask; // @[d_cache.scala 101:53]
   wire [190:0] _GEN_1364 = {{127'd0}, _ram_0_T}; // @[d_cache.scala 101:62]
   wire [190:0] _ram_0_T_1 = _GEN_1364 << shift_bit; // @[d_cache.scala 101:62]
@@ -11075,16 +11140,16 @@ module D_CACHE(
   wire [127:0] _io_to_lsu_rdata_T_6 = way0_hit ? _io_to_lsu_rdata_T : _io_to_lsu_rdata_T_5; // @[d_cache.scala 262:31]
   wire [63:0] _GEN_1362 = {{32'd0}, io_from_lsu_araddr}; // @[d_cache.scala 303:49]
   wire [63:0] _io_to_axi_araddr_T = _GEN_1362 & 64'hfffffffffffffff0; // @[d_cache.scala 303:49]
-  wire  _T_43 = state == 4'h0 & _T_3; // @[d_cache.scala 371:27]
-  wire [63:0] _GEN_4763 = state == 4'h0 & _T_3 ? io_from_axi_rdata : 64'h0; // @[d_cache.scala 371:117 372:23 375:29]
-  wire  _GEN_4765 = state == 4'h0 & _T_3 & io_from_axi_rvalid; // @[d_cache.scala 371:117 372:23 377:30]
-  wire  _GEN_4768 = state == 4'h0 & _T_3 & io_from_axi_bvalid; // @[d_cache.scala 371:117 372:23 380:30]
-  wire  _GEN_4773 = state == 4'h0 & _T_3 & io_from_lsu_arvalid; // @[d_cache.scala 371:117 373:23 382:31]
-  wire [31:0] _GEN_4775 = state == 4'h0 & _T_3 ? io_from_lsu_awaddr : 32'h0; // @[d_cache.scala 371:117 373:23 388:30]
-  wire  _GEN_4779 = state == 4'h0 & _T_3 & io_from_lsu_awvalid; // @[d_cache.scala 371:117 373:23 389:31]
-  wire [63:0] _GEN_4780 = state == 4'h0 & _T_3 ? io_from_lsu_wdata : 64'h0; // @[d_cache.scala 371:117 373:23 393:29]
-  wire [7:0] _GEN_4781 = state == 4'h0 & _T_3 ? io_from_lsu_wstrb : 8'h0; // @[d_cache.scala 371:117 373:23 394:29]
-  wire  _GEN_4783 = state == 4'h0 & _T_3 & io_from_lsu_wvalid; // @[d_cache.scala 371:117 373:23 396:30]
+  wire  _T_45 = state == 4'h0 & _T_5; // @[d_cache.scala 371:27]
+  wire [63:0] _GEN_4763 = state == 4'h0 & _T_5 ? io_from_axi_rdata : 64'h0; // @[d_cache.scala 371:117 372:23 375:29]
+  wire  _GEN_4765 = state == 4'h0 & _T_5 & io_from_axi_rvalid; // @[d_cache.scala 371:117 372:23 377:30]
+  wire  _GEN_4768 = state == 4'h0 & _T_5 & io_from_axi_bvalid; // @[d_cache.scala 371:117 372:23 380:30]
+  wire  _GEN_4773 = state == 4'h0 & _T_5 & io_from_lsu_arvalid; // @[d_cache.scala 371:117 373:23 382:31]
+  wire [31:0] _GEN_4775 = state == 4'h0 & _T_5 ? io_from_lsu_awaddr : 32'h0; // @[d_cache.scala 371:117 373:23 388:30]
+  wire  _GEN_4779 = state == 4'h0 & _T_5 & io_from_lsu_awvalid; // @[d_cache.scala 371:117 373:23 389:31]
+  wire [63:0] _GEN_4780 = state == 4'h0 & _T_5 ? io_from_lsu_wdata : 64'h0; // @[d_cache.scala 371:117 373:23 393:29]
+  wire [7:0] _GEN_4781 = state == 4'h0 & _T_5 ? io_from_lsu_wstrb : 8'h0; // @[d_cache.scala 371:117 373:23 394:29]
+  wire  _GEN_4783 = state == 4'h0 & _T_5 & io_from_lsu_wvalid; // @[d_cache.scala 371:117 373:23 396:30]
   wire [63:0] _GEN_4786 = state == 4'h7 ? io_from_axi_rdata : _GEN_4763; // @[d_cache.scala 367:30 368:19]
   wire  _GEN_4788 = state == 4'h7 ? io_from_axi_rvalid : _GEN_4765; // @[d_cache.scala 367:30 368:19]
   wire  _GEN_4791 = state == 4'h7 ? io_from_axi_bvalid : _GEN_4768; // @[d_cache.scala 367:30 368:19]
@@ -11094,7 +11159,7 @@ module D_CACHE(
   wire [63:0] _GEN_4803 = state == 4'h7 ? io_from_lsu_wdata : _GEN_4780; // @[d_cache.scala 367:30 369:19]
   wire [7:0] _GEN_4804 = state == 4'h7 ? io_from_lsu_wstrb : _GEN_4781; // @[d_cache.scala 367:30 369:19]
   wire  _GEN_4806 = state == 4'h7 ? io_from_lsu_wvalid : _GEN_4783; // @[d_cache.scala 367:30 369:19]
-  wire  _GEN_4807 = state == 4'h7 | _T_43; // @[d_cache.scala 367:30 369:19]
+  wire  _GEN_4807 = state == 4'h7 | _T_45; // @[d_cache.scala 367:30 369:19]
   wire [63:0] _GEN_4808 = state == 4'h6 ? 64'h0 : _GEN_4786; // @[d_cache.scala 343:35 344:25]
   wire  _GEN_4810 = state == 4'h6 ? 1'h0 : _GEN_4788; // @[d_cache.scala 343:35 346:26]
   wire  _GEN_4813 = state == 4'h6 ? 1'h0 : _GEN_4791; // @[d_cache.scala 343:35 349:26]
@@ -11148,12 +11213,12 @@ module D_CACHE(
   wire  _GEN_4892 = state == 4'h2 ? 1'h0 : _GEN_4876; // @[d_cache.scala 270:33 286:26]
   wire [63:0] _GEN_4893 = state == 4'h2 ? 64'h0 : _GEN_4854; // @[d_cache.scala 270:33 287:25]
   wire  _GEN_4895 = state == 4'h2 ? 1'h0 : _GEN_4856; // @[d_cache.scala 270:33 289:26]
-  wire  _GEN_4899 = state == 4'h2 ? _T_7 : _GEN_4859; // @[d_cache.scala 270:33 293:26]
+  wire  _GEN_4899 = state == 4'h2 ? _T_9 : _GEN_4859; // @[d_cache.scala 270:33 293:26]
   wire [63:0] _GEN_4901 = state == 4'h1 ? {{32'd0}, io_from_lsu_araddr} : _GEN_4878; // @[d_cache.scala 245:27 247:26]
   wire [127:0] _GEN_4916 = state == 4'h1 ? _io_to_lsu_rdata_T_6 : {{64'd0}, _GEN_4893}; // @[d_cache.scala 245:27 262:25]
   wire [39:0] _GEN_1363 = reset ? 40'h0 : _GEN_4761; // @[d_cache.scala 42:{34,34}]
   assign io_to_lsu_rdata = _GEN_4916[63:0];
-  assign io_to_lsu_rvalid = state == 4'h1 ? _T_7 : _GEN_4895; // @[d_cache.scala 245:27 264:26]
+  assign io_to_lsu_rvalid = state == 4'h1 ? _T_9 : _GEN_4895; // @[d_cache.scala 245:27 264:26]
   assign io_to_lsu_bvalid = state == 4'h1 ? 1'h0 : _GEN_4899; // @[d_cache.scala 245:27 268:26]
   assign io_to_axi_araddr = _GEN_4901[31:0];
   assign io_to_axi_arlen = state == 4'h1 ? 8'h0 : _GEN_4879; // @[d_cache.scala 245:27 248:25]
@@ -13579,6 +13644,17 @@ module D_CACHE(
     end else begin
       state <= _GEN_3653;
     end
+    `ifndef SYNTHESIS
+    `ifdef PRINTF_COND
+      if (`PRINTF_COND) begin
+    `endif
+        if (~reset) begin
+          $fwrite(32'h80000002,"d_cache state:%d\n",state); // @[d_cache.scala 72:11]
+        end
+    `ifdef PRINTF_COND
+      end
+    `endif
+    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
