@@ -151,18 +151,6 @@ module LSU(
     end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 56:40]
       load_type <= io_load_type; // @[LSU.scala 66:19]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d rdata:%x rvalid:%d maddr:%x wstrb:%x wdata:%x\n\n",ms_pc,ms_valid,
-            io_axi_in_rdata,io_axi_in_rvalid,maddr,wstrb,store_data); // @[LSU.scala 127:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN

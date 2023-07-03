@@ -465,20 +465,6 @@ module IFU(
     end else if (io_axi_in_rvalid & fs_allowin) begin // @[IFU.scala 87:36]
       fs_inst <= io_axi_in_rdata[31:0]; // @[IFU.scala 89:17]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,
-            "fs_pc:%x fs_valid:%d fs_allowin:%d fs_inst:%x arvalid:%d rvalid:%d rdata:%x next_pc:%x br_taken:%d fs_ds_valid:%d\n"
-            ,fs_pc,fs_valid,fs_allowin,fs_inst,io_axi_out_arvalid,io_axi_in_rvalid,io_axi_in_rdata[31:0],pc_next,
-            io_br_taken,fs_valid); // @[IFU.scala 124:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -1072,20 +1058,6 @@ module IDU(
     end else begin
       br_taken_cancel <= _GEN_1;
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,
-            "ds_pc:%x ds_valid:%d ds_allowin:%d ds_ready_go:%d inst:%x br_taken:%d src1:%x src2:%x conflict_es_rs1:%d conflict_es_rs2:%d conflict_ms1:%d conflict_ms2:%d\n"
-            ,ds_pc,ds_valid,ds_allowin,ds_ready_go,inst,br_taken,io_src1,io_src2,conflict_es_rs1,conflict_es_rs2,
-            conflict_ms_rs1,conflict_ms_rs2); // @[IDU.scala 530:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -1679,7 +1651,6 @@ module EXU(
   reg [2:0] load_type; // @[EXU.scala 58:28]
   wire  es_ready_go = ~ALU_io_alu_busy; // @[EXU.scala 78:20]
   wire  es_allowin = ~es_valid | es_ready_go & io_ms_allowin; // @[EXU.scala 80:29]
-  wire [63:0] alu_res = ALU_io_alu_res; // @[EXU.scala 56:23 98:13]
   ALU ALU ( // @[EXU.scala 40:21]
     .clock(ALU_clock),
     .reset(ALU_reset),
@@ -1777,18 +1748,6 @@ module EXU(
     end else if (io_ds_to_es_valid & es_allowin) begin // @[EXU.scala 63:42]
       load_type <= io_load_type; // @[EXU.scala 75:19]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"es_pc:%x es_valid:%d es_allowin:%d ld_we:%d alu_res:%x src1_value:%x  src2_value:%x\n",
-            es_pc,es_valid,es_allowin,ld_we,alu_res,src1_value,src2_value); // @[EXU.scala 129:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -2011,18 +1970,6 @@ module LSU(
     end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 56:40]
       load_type <= io_load_type; // @[LSU.scala 66:19]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d rdata:%x rvalid:%d maddr:%x wstrb:%x wdata:%x\n\n",ms_pc,ms_valid,
-            io_axi_in_rdata,io_axi_in_rvalid,maddr,wstrb,store_data); // @[LSU.scala 127:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -2153,18 +2100,6 @@ module WBU(
     end else if (io_ms_to_ws_valid) begin // @[WBU.scala 43:40]
       ws_res <= io_ms_final_res; // @[WBU.scala 47:16]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"ws_pc:%x ws_valid:%d rf_dst:%d rf_we:%d wdata:%x\n",ws_pc,ws_valid,ws_rf_dst,io_we,
-            ws_res); // @[WBU.scala 70:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
