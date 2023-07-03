@@ -663,6 +663,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+70,"top EXU load_type", false,-1, 2,0);
         tracep->declBit(c+402,"top EXU es_ready_go", false,-1);
         tracep->declBit(c+31,"top EXU es_allowin", false,-1);
+        tracep->declQuad(c+48,"top EXU alu_res", false,-1, 63,0);
         tracep->declBit(c+1403,"top EXU ALU clock", false,-1);
         tracep->declBit(c+1404,"top EXU ALU reset", false,-1);
         tracep->declQuad(c+394,"top EXU ALU io_src1_value", false,-1, 63,0);
@@ -1469,19 +1470,19 @@ void Vtop___024root__traceFullTop0(void* voidSelf, VerilatedVcd* tracep) {
 void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) {
     if (false && vlSelf) {}  // Prevent unused
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VlWide<4>/*127:0*/ __Vtemp6390;
-    VlWide<4>/*127:0*/ __Vtemp6391;
     VlWide<4>/*127:0*/ __Vtemp6392;
-    VlWide<3>/*95:0*/ __Vtemp6395;
-    VlWide<3>/*95:0*/ __Vtemp6396;
-    VlWide<3>/*95:0*/ __Vtemp6400;
-    VlWide<3>/*95:0*/ __Vtemp6404;
-    VlWide<3>/*95:0*/ __Vtemp6411;
-    VlWide<4>/*127:0*/ __Vtemp6412;
+    VlWide<4>/*127:0*/ __Vtemp6393;
+    VlWide<4>/*127:0*/ __Vtemp6394;
+    VlWide<3>/*95:0*/ __Vtemp6397;
+    VlWide<3>/*95:0*/ __Vtemp6398;
+    VlWide<3>/*95:0*/ __Vtemp6402;
+    VlWide<3>/*95:0*/ __Vtemp6406;
     VlWide<3>/*95:0*/ __Vtemp6413;
     VlWide<4>/*127:0*/ __Vtemp6414;
-    VlWide<4>/*127:0*/ __Vtemp6415;
-    VlWide<4>/*127:0*/ __Vtemp6421;
+    VlWide<3>/*95:0*/ __Vtemp6415;
+    VlWide<4>/*127:0*/ __Vtemp6416;
+    VlWide<4>/*127:0*/ __Vtemp6417;
+    VlWide<4>/*127:0*/ __Vtemp6423;
     vluint32_t* const oldp = tracep->oldp(vlSymsp->__Vm_baseCode);
     if (false && oldp) {}  // Prevent unused
     // Body
@@ -1724,7 +1725,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                      << 0x20U) | (QData)((IData)(
                                                                  vlSelf->top__DOT__d_cache__DOT___GEN_4916[0U])))),64);
         tracep->fullBit(oldp+78,(((1U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
-                                   ? (IData)(vlSelf->top__DOT__d_cache__DOT___T_7)
+                                   ? (IData)(vlSelf->top__DOT__d_cache__DOT___T_9)
                                    : ((2U != (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
                                       & ((3U != (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
                                          & ((~ ((4U 
@@ -1739,11 +1740,11 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                    : 
                                                   (((0U 
                                                      == (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
-                                                    & (IData)(vlSelf->top__DOT__d_cache__DOT___T_3)) 
+                                                    & (IData)(vlSelf->top__DOT__d_cache__DOT___T_5)) 
                                                    & (IData)(vlSelf->top__DOT__arbiter_io_lsu_axi_out_rvalid))))))))));
         tracep->fullBit(oldp+79,(((1U != (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
                                   & ((2U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
-                                      ? (IData)(vlSelf->top__DOT__d_cache__DOT___T_7)
+                                      ? (IData)(vlSelf->top__DOT__d_cache__DOT___T_9)
                                       : ((3U != (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
                                          & (((4U == (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
                                              | (8U 
@@ -1757,7 +1758,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                     : 
                                                    (((0U 
                                                       == (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
-                                                     & (IData)(vlSelf->top__DOT__d_cache__DOT___T_3)) 
+                                                     & (IData)(vlSelf->top__DOT__d_cache__DOT___T_5)) 
                                                     & (IData)(vlSelf->top__DOT__arbiter_io_lsu_axi_out_bvalid))))))))));
         tracep->fullIData(oldp+80,((IData)(vlSelf->top__DOT__LSU__DOT__maddr)),32);
         tracep->fullBit(oldp+81,(vlSelf->top__DOT__LSU_io_axi_out_arvalid));
@@ -2212,14 +2213,14 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullQData(oldp+422,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__sra_res),64);
         tracep->fullQData(oldp+424,((vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value 
                                      >> (0x3fU & (IData)(vlSelf->top__DOT__EXU__DOT__src2_value)))),64);
-        VL_EXTEND_WQ(127,64, __Vtemp6390, vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value);
-        VL_SHIFTL_WWI(127,127,6, __Vtemp6391, __Vtemp6390, 
+        VL_EXTEND_WQ(127,64, __Vtemp6392, vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value);
+        VL_SHIFTL_WWI(127,127,6, __Vtemp6393, __Vtemp6392, 
                       (0x3fU & (IData)(vlSelf->top__DOT__EXU__DOT__src2_value)));
-        __Vtemp6392[0U] = __Vtemp6391[0U];
-        __Vtemp6392[1U] = __Vtemp6391[1U];
-        __Vtemp6392[2U] = __Vtemp6391[2U];
-        __Vtemp6392[3U] = (0x7fffffffU & __Vtemp6391[3U]);
-        tracep->fullWData(oldp+426,(__Vtemp6392),127);
+        __Vtemp6394[0U] = __Vtemp6393[0U];
+        __Vtemp6394[1U] = __Vtemp6393[1U];
+        __Vtemp6394[2U] = __Vtemp6393[2U];
+        __Vtemp6394[3U] = (0x7fffffffU & __Vtemp6393[3U]);
+        tracep->fullWData(oldp+426,(__Vtemp6394),127);
         tracep->fullIData(oldp+430,(VL_SHIFTRS_III(32,32,5, (IData)(vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value), 
                                                    (0x1fU 
                                                     & (IData)(vlSelf->top__DOT__EXU__DOT__src2_value)))),32);
@@ -2269,17 +2270,17 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                               vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[0U])) 
                                       | (4U == (7U 
                                                 & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[0U]))))));
-        VL_EXTEND_WQ(65,64, __Vtemp6395, (~ (((QData)((IData)(
+        VL_EXTEND_WQ(65,64, __Vtemp6397, (~ (((QData)((IData)(
                                                               vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1[1U])) 
                                               << 0x20U) 
                                              | (QData)((IData)(
                                                                vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1[0U])))));
-        VL_EXTEND_WQ(65,64, __Vtemp6396, (~ (((QData)((IData)(
+        VL_EXTEND_WQ(65,64, __Vtemp6398, (~ (((QData)((IData)(
                                                               vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1[1U])) 
                                               << 0x20U) 
                                              | (QData)((IData)(
                                                                vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1[0U])))));
-        VL_EXTEND_WQ(65,64, __Vtemp6400, ((2U == (7U 
+        VL_EXTEND_WQ(65,64, __Vtemp6402, ((2U == (7U 
                                                   & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[0U]))
                                            ? (((QData)((IData)(
                                                                vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1[1U])) 
@@ -2295,7 +2296,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                   | (QData)((IData)(
                                                                     vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1[0U])))
                                                : 0ULL)));
-        __Vtemp6404[1U] = ((4U == (7U & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[0U]))
+        __Vtemp6406[1U] = ((4U == (7U & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[0U]))
                             ? (~ (((IData)((((QData)((IData)(
                                                              vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1[1U])) 
                                              << 0x20U) 
@@ -2323,15 +2324,15 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                                              vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1[0U]))) 
                                                           >> 0x20U)) 
                                                  << 1U))
-                                : __Vtemp6400[1U]));
-        __Vtemp6411[2U] = ((7U == (7U & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[0U]))
+                                : __Vtemp6402[1U]));
+        __Vtemp6413[2U] = ((7U == (7U & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[0U]))
                             ? 0U : (1U & ((6U == (7U 
                                                   & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[0U]))
-                                           ? __Vtemp6395[2U]
+                                           ? __Vtemp6397[2U]
                                            : ((5U == 
                                                (7U 
                                                 & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[0U]))
-                                               ? __Vtemp6396[2U]
+                                               ? __Vtemp6398[2U]
                                                : ((4U 
                                                    == 
                                                    (7U 
@@ -2361,7 +2362,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                              >> 0x20U)) 
                                                     >> 0x1fU)
                                                     : 
-                                                   __Vtemp6400[2U]))))));
+                                                   __Vtemp6402[2U]))))));
         tracep->fullQData(oldp+452,((((QData)((IData)(
                                                       ((7U 
                                                         == 
@@ -2374,16 +2375,16 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                          (7U 
                                                           & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[0U]))
                                                          ? 
-                                                        __Vtemp6395[1U]
+                                                        __Vtemp6397[1U]
                                                          : 
                                                         ((5U 
                                                           == 
                                                           (7U 
                                                            & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[0U]))
                                                           ? 
-                                                         __Vtemp6396[1U]
+                                                         __Vtemp6398[1U]
                                                           : 
-                                                         __Vtemp6404[1U]))))) 
+                                                         __Vtemp6406[1U]))))) 
                                       << 0x20U) | (QData)((IData)(
                                                                   ((7U 
                                                                     == 
@@ -2396,14 +2397,14 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                                      (7U 
                                                                       & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[0U]))
                                                                      ? 
-                                                                    __Vtemp6395[0U]
+                                                                    __Vtemp6397[0U]
                                                                      : 
                                                                     ((5U 
                                                                       == 
                                                                       (7U 
                                                                        & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src2[0U]))
                                                                       ? 
-                                                                     __Vtemp6396[0U]
+                                                                     __Vtemp6398[0U]
                                                                       : 
                                                                      ((4U 
                                                                        == 
@@ -2432,7 +2433,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                                                 vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1[0U])))) 
                                                                         << 1U)
                                                                         : 
-                                                                       __Vtemp6400[0U]))))))))),64);
+                                                                       __Vtemp6402[0U]))))))))),64);
         tracep->fullBit(oldp+454,((1U & ((IData)((vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value 
                                                   >> 0x3fU)) 
                                          ^ (IData)(
@@ -2454,18 +2455,18 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                           << 0x20U) 
                                          | (QData)((IData)(vlSelf->top__DOT__EXU__DOT__src2_value)))
                                       : vlSelf->top__DOT__EXU__DOT__src2_value)),64);
-        __Vtemp6412[0U] = (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32);
-        __Vtemp6412[1U] = (IData)((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32 
+        __Vtemp6414[0U] = (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32);
+        __Vtemp6414[1U] = (IData)((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32 
                                    >> 0x20U));
-        __Vtemp6412[2U] = (IData)(((1U & (IData)((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32 
+        __Vtemp6414[2U] = (IData)(((1U & (IData)((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32 
                                                   >> 0x3fU)))
                                     ? 0xffffffffffffffffULL
                                     : 0ULL));
-        __Vtemp6412[3U] = (IData)((((1U & (IData)((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32 
+        __Vtemp6414[3U] = (IData)((((1U & (IData)((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__src1_32 
                                                    >> 0x3fU)))
                                      ? 0xffffffffffffffffULL
                                      : 0ULL) >> 0x20U));
-        tracep->fullWData(oldp+469,(__Vtemp6412),128);
+        tracep->fullWData(oldp+469,(__Vtemp6414),128);
         tracep->fullQData(oldp+473,((((0x12U == vlSelf->top__DOT__EXU__DOT__ALUop)
                                        ? (((QData)((IData)(
                                                            ((1U 
@@ -2508,7 +2509,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                       : ((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div_io_divw)
                                           ? (QData)((IData)(vlSelf->top__DOT__EXU__DOT__src2_value))
                                           : vlSelf->top__DOT__EXU__DOT__src2_value))),64);
-        VL_EXTEND_WQ(65,64, __Vtemp6413, ((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div_io_div_signed)
+        VL_EXTEND_WQ(65,64, __Vtemp6415, ((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div_io_div_signed)
                                            ? ((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sor_neg)
                                                ? (1ULL 
                                                   + 
@@ -2517,12 +2518,12 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                            : ((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div_io_divw)
                                                ? (QData)((IData)(vlSelf->top__DOT__EXU__DOT__src2_value))
                                                : vlSelf->top__DOT__EXU__DOT__src2_value)));
-        tracep->fullWData(oldp+490,(__Vtemp6413),65);
+        tracep->fullWData(oldp+490,(__Vtemp6415),65);
         tracep->fullWData(oldp+493,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_cand),128);
         tracep->fullBit(oldp+497,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_start));
         tracep->fullQData(oldp+498,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__quotient),64);
         tracep->fullIData(oldp+500,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__step_num),32);
-        VL_EXTEND_WQ(128,64, __Vtemp6414, ((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div_io_div_signed)
+        VL_EXTEND_WQ(128,64, __Vtemp6416, ((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div_io_div_signed)
                                             ? ((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__dend_neg)
                                                 ? (1ULL 
                                                    + 
@@ -2531,36 +2532,36 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                             : ((IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div_io_divw)
                                                 ? (QData)((IData)(vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value))
                                                 : vlSelf->top__DOT__EXU__DOT__ALU_io_src1_value)));
-        tracep->fullWData(oldp+501,(__Vtemp6414),128);
+        tracep->fullWData(oldp+501,(__Vtemp6416),128);
         tracep->fullWData(oldp+505,(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res),65);
-        __Vtemp6415[0U] = 0U;
-        __Vtemp6415[1U] = (vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[0U] 
+        __Vtemp6417[0U] = 0U;
+        __Vtemp6417[1U] = (vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[0U] 
                            << 0x1fU);
-        __Vtemp6415[2U] = ((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[0U] 
+        __Vtemp6417[2U] = ((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[0U] 
                             >> 1U) | (vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[1U] 
                                       << 0x1fU));
-        __Vtemp6415[3U] = ((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[1U] 
+        __Vtemp6417[3U] = ((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[1U] 
                             >> 1U) | (vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[2U] 
                                       << 0x1fU));
-        tracep->fullWData(oldp+508,(__Vtemp6415),128);
+        tracep->fullWData(oldp+508,(__Vtemp6417),128);
         if ((1U & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[2U])) {
-            __Vtemp6421[0U] = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_cand[0U];
-            __Vtemp6421[1U] = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_cand[1U];
-            __Vtemp6421[2U] = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_cand[2U];
-            __Vtemp6421[3U] = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_cand[3U];
+            __Vtemp6423[0U] = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_cand[0U];
+            __Vtemp6423[1U] = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_cand[1U];
+            __Vtemp6423[2U] = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_cand[2U];
+            __Vtemp6423[3U] = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_cand[3U];
         } else {
-            __Vtemp6421[0U] = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_cand[0U];
-            __Vtemp6421[1U] = ((0x7fffffffU & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_cand[1U]) 
+            __Vtemp6423[0U] = vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_cand[0U];
+            __Vtemp6423[1U] = ((0x7fffffffU & vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_cand[1U]) 
                                | (vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[0U] 
                                   << 0x1fU));
-            __Vtemp6421[2U] = ((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[0U] 
+            __Vtemp6423[2U] = ((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[0U] 
                                 >> 1U) | (vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[1U] 
                                           << 0x1fU));
-            __Vtemp6421[3U] = ((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[1U] 
+            __Vtemp6423[3U] = ((vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[1U] 
                                 >> 1U) | (vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__sub_res[2U] 
                                           << 0x1fU));
         }
-        tracep->fullWData(oldp+512,(__Vtemp6421),128);
+        tracep->fullWData(oldp+512,(__Vtemp6423),128);
         tracep->fullQData(oldp+516,(vlSelf->top__DOT__LSU__DOT__ms_res),64);
         tracep->fullBit(oldp+518,(vlSelf->top__DOT__LSU__DOT__ren));
         tracep->fullQData(oldp+519,(vlSelf->top__DOT__LSU__DOT__maddr),64);

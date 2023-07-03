@@ -6276,7 +6276,8 @@ module D_CACHE(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"d_cache state:%d\n",state); // @[d_cache.scala 72:11]
+          $fwrite(32'h80000002,"d_cache state:%d tag0:%x tag1:%x tag2:%x tag3:%x\n\n",state,_GEN_15,_GEN_47,_GEN_79,
+            _GEN_111); // @[d_cache.scala 72:11]
         end
     `ifdef PRINTF_COND
       end

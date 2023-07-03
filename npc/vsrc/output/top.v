@@ -2013,7 +2013,7 @@ module LSU(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d rdata:%x rvalid:%d maddr:%x wstrb:%x wdata:%x\n\n",ms_pc,ms_valid,
+          $fwrite(32'h80000002,"ms_pc:%x ms_valid:%d rdata:%x rvalid:%d maddr:%x wstrb:%x wdata:%x\n",ms_pc,ms_valid,
             io_axi_in_rdata,io_axi_in_rvalid,maddr,wstrb,store_data); // @[LSU.scala 127:11]
         end
     `ifdef PRINTF_COND
@@ -13649,7 +13649,8 @@ module D_CACHE(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"d_cache state:%d\n",state); // @[d_cache.scala 72:11]
+          $fwrite(32'h80000002,"d_cache state:%d tag0:%x tag1:%x tag2:%x tag3:%x\n\n",state,_GEN_15,_GEN_47,_GEN_79,
+            _GEN_111); // @[d_cache.scala 72:11]
         end
     `ifdef PRINTF_COND
       end
