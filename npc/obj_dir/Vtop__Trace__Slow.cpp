@@ -1392,8 +1392,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+1391,"top d_cache way1_hit", false,-1);
         tracep->declBit(c+1392,"top d_cache way2_hit", false,-1);
         tracep->declBit(c+1393,"top d_cache way3_hit", false,-1);
-        tracep->declBus(c+1394,"top d_cache state", false,-1, 3,0);
-        tracep->declBus(c+1395,"top d_cache unuse_way", false,-1, 1,0);
+        tracep->declBus(c+1394,"top d_cache unuse_way", false,-1, 2,0);
+        tracep->declBus(c+1395,"top d_cache state", false,-1, 3,0);
         tracep->declBit(c+1403,"top axi clock", false,-1);
         tracep->declBit(c+1404,"top axi reset", false,-1);
         tracep->declBus(c+121,"top axi io_axi_in_araddr", false,-1, 31,0);
@@ -3052,8 +3052,8 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+1391,(vlSelf->top__DOT__d_cache__DOT__way1_hit));
         tracep->fullBit(oldp+1392,(vlSelf->top__DOT__d_cache__DOT__way2_hit));
         tracep->fullBit(oldp+1393,(vlSelf->top__DOT__d_cache__DOT__way3_hit));
-        tracep->fullCData(oldp+1394,(vlSelf->top__DOT__d_cache__DOT__state),4);
-        tracep->fullCData(oldp+1395,((3U & (IData)(vlSelf->top__DOT__d_cache__DOT___unuse_way_T_7))),2);
+        tracep->fullCData(oldp+1394,(vlSelf->top__DOT__d_cache__DOT__unuse_way),3);
+        tracep->fullCData(oldp+1395,(vlSelf->top__DOT__d_cache__DOT__state),4);
         tracep->fullQData(oldp+1396,(vlSelf->top__DOT__axi__DOT__araddr),64);
         tracep->fullQData(oldp+1398,(vlSelf->top__DOT__axi__DOT__awaddr),64);
         tracep->fullCData(oldp+1400,(vlSelf->top__DOT__axi__DOT__arlen),8);
