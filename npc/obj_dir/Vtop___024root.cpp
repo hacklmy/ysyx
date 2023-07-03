@@ -97,7 +97,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                    64,vlSelf->top__DOT__EXU__DOT__src2_value);
     }
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"ms_pc:%x ms_valid:%1# rdata:%x rvalid:%1# maddr:%x wstrb:%x wdata:%x\n\n",
+        VL_FWRITEF(0x80000002U,"ms_pc:%x ms_valid:%1# rdata:%x rvalid:%1# maddr:%x wstrb:%x wdata:%x\n",
                    64,vlSelf->top__DOT__LSU__DOT__ms_pc,
                    1,(IData)(vlSelf->top__DOT__LSU__DOT__ms_valid),
                    64,(((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_4916[1U])) 
@@ -2627,16 +2627,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
             }
         }
     }
-    if (vlSelf->reset) {
-        vlSelf->top__DOT__i_cache__DOT__valid_2_1 = 0U;
-    } else if ((0U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-        if ((1U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-            if ((2U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
-                vlSelf->top__DOT__i_cache__DOT__valid_2_1 
-                    = vlSelf->top__DOT__i_cache__DOT___GEN_2161;
-            }
-        }
-    }
 }
 
 void Vtop___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(const VlUnpacked<QData/*63:0*/, 32> &Regfile);
@@ -2704,6 +2694,16 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     QData/*63:0*/ __Vdlyvval__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v0;
     QData/*63:0*/ __Vdlyvval__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v1;
     // Body
+    if (vlSelf->reset) {
+        vlSelf->top__DOT__i_cache__DOT__valid_2_1 = 0U;
+    } else if ((0U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
+        if ((1U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
+            if ((2U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
+                vlSelf->top__DOT__i_cache__DOT__valid_2_1 
+                    = vlSelf->top__DOT__i_cache__DOT___GEN_2161;
+            }
+        }
+    }
     if (vlSelf->reset) {
         vlSelf->top__DOT__i_cache__DOT__valid_2_2 = 0U;
     } else if ((0U != (IData)(vlSelf->top__DOT__i_cache__DOT__state))) {
@@ -6928,8 +6928,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                         : 4U))))
                                                     : (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_3653)))));
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"d_cache state:%2#\n",
-                   4,vlSelf->top__DOT__d_cache__DOT__state);
+        VL_FWRITEF(0x80000002U,"d_cache state:%2# tag0:%x tag1:%x tag2:%x tag3:%x\n\n",
+                   4,vlSelf->top__DOT__d_cache__DOT__state,
+                   32,vlSelf->top__DOT__d_cache__DOT___GEN_15,
+                   32,vlSelf->top__DOT__d_cache__DOT___GEN_47,
+                   32,vlSelf->top__DOT__d_cache__DOT___GEN_79,
+                   32,vlSelf->top__DOT__d_cache__DOT___GEN_111);
     }
     vlSelf->top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_start 
         = vlSelf->__Vdly__top__DOT__EXU__DOT__ALU__DOT__Div__DOT__div_start;
@@ -18214,16 +18218,4 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                     | ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_722) 
                                                        << 2U))
                                                     : (IData)(vlSelf->top__DOT__d_cache__DOT__quene_13)));
-    vlSelf->top__DOT__d_cache__DOT___GEN_929 = (0xffU 
-                                                & ((0xeU 
-                                                    == 
-                                                    (0xfU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__LSU__DOT__maddr 
-                                                                >> 4U))))
-                                                    ? 
-                                                   (3U 
-                                                    | ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_722) 
-                                                       << 2U))
-                                                    : (IData)(vlSelf->top__DOT__d_cache__DOT__quene_14)));
 }
