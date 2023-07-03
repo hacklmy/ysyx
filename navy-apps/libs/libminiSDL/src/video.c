@@ -3,70 +3,165 @@
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
+//  printf("in SDL_BlitSurface>>>>>>>>>>>>>\n");
   assert(dst && src);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
-  int sx, sy, w, h, dx, dy;
-  if (srcrect == NULL){
-    sx = 0;
-    sy = 0;
+
+  SDL_Rect fulldst;
+  int srcx, srcy, w, h;
+
+  if( dstrect == NULL ) {
+    fulldst.x = fulldst.y = 0;
+    fulldst.w = dst->w;
+    fulldst.h = dst->h;
+    dstrect = &fulldst;
+  }
+
+  if( srcrect ) {
+    int maxw , maxh;
+
+    srcx = srcrect->x;
+    w = srcrect->w;
+    if( srcx < 0 ) {
+      w += srcx;
+      dstrect->x -= srcx;
+      srcx = 0;
+    }
+    maxw = src->w - srcx;
+    if(maxw < w)
+      w = maxw;
+
+    srcy = srcrect->y;
+    h = srcrect->h;
+    if(srcy < 0) {
+      h += srcy;
+      dstrect->y -= srcy;
+      srcy = 0;
+    }
+    maxh = src->h - srcy;
+    if(maxh < h)
+      h = maxh;
+  } else {
+    srcx = srcy = 0;
     w = src->w;
     h = src->h;
   }
-  else {
-    sx = srcrect->x; 
-    sy = srcrect->y;
-    w = srcrect->w; 
-    h = srcrect->h;
-  }
-  if (dstrect == NULL) {
-    dx = 0; 
-    dy = 0;
-  }
-  else dx = dstrect->x, dy = dstrect->y;
-  if(src->format->BitsPerPixel==32)
-  {
-    for(int i =0;i<h;i++){
-      for(int j =0;j<w;j++){
-        ((uint32_t*)(dst->pixels))[(dy+i)*dst->w + dx + j] = ((uint32_t*)(src->pixels))[(sy+i)*src->w + sx + j];
-      }
-    }
-  }else if(src->format->BitsPerPixel==8){
-    for(int i =0;i<h;i++){
-      for(int j =0;j<w;j++){
-        dst->pixels[(dy+i)*dst->w + dx + j] = src->pixels[(sy+i)*src->w + sx + j];
+
+  int i,j;
+  if( (src->format->BitsPerPixel==32) ) {
+    for( j = 0; j < h; j++) {
+      for( i = 0; i < w; i++) {
+        * ((uint32_t *)dst->pixels + (j+dstrect->y)*dst->w + i + dstrect->x )  = 
+        * ((uint32_t *)src->pixels + (j+srcy)*src->w + i + srcx )  ;
       }
     }
   }
+
+  else if (( src->format->BitsPerPixel == 8 ) ) {
+    for( j = 0; j < h; j++) {
+      for( i = 0; i < w; i++) {
+        * ((uint8_t *)dst->pixels + (j+dstrect->y)*dst->w + i + dstrect->x )  = 
+        * ((uint8_t *)src->pixels + (j+srcy)*src->w + i + srcx )  ;
+      }
+    }
+  }
+  
+  dstrect->w = w;
+  dstrect->h = h;
+//printf("end of SDL_BlitSurface\n");
+
 }
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
-  int x, y, w, h;
-  if (dstrect == NULL) x = 0, y = 0, w = dst->w, h = dst->h;
-  else x = dstrect->x, y = dstrect->y, w = dstrect->w, h = dstrect->h;
-  for(int i =0;i<h;i++){
-    for(int j =0;j<w;j++){
-      ((uint32_t*)dst->pixels)[(y+i)*dst->w + x + j] = color;
+// printf("in SDL_FillRect\n");
+   assert(dst);
+    int w = 0;
+    int h = 0;
+    int x = 0;
+    int y = 0;
+  if( dstrect == NULL ) {
+		w = dst->w;
+		h = dst->h;
+  }
+  else {
+    w = dstrect->w;
+    h = dstrect->h;
+    x = dstrect->x;
+    y = dstrect->y;
+  }
+
+  int i , j;
+  if( dst->format->BitsPerPixel == 32 ) {
+    for( j=0; j<h; j++ ) {
+      for( i=0; i<w; i++ ) {
+        *( (uint32_t *)dst->pixels + (y+j)*dst->w + x + i ) = color ;
+      }
     }
+  }
+  else {
+    printf("SDL_FillRect : BitsPerPixel = %d\n", dst->format->BitsPerPixel);
+    assert(0);
   }
 }
 
+
+uint32_t SDL_MapRGB( uint8_t r, uint8_t g, uint8_t b , uint8_t a) {
+  uint32_t rdata = r;
+  uint32_t gdata = g;
+  uint32_t bdata = b;
+  uint32_t adata = a;
+  uint32_t pixels =  ( rdata << 16 ) | ( gdata << 8 ) | ( bdata );
+  return pixels;
+}
+
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
-  if (!(x | y | w | h)) w = s->w, h = s->h;
-  if (s->format->BytesPerPixel == 4) {
-    NDL_DrawRect((uint32_t *)s->pixels, x, y, w, h);
-  }else if(s->format->BitsPerPixel==8){
-    uint32_t* new_pixels = malloc(w*h*(sizeof(uint32_t)));
-    for(int i  =0;i<h;i++){
-      for(int j = 0;j<w;j++){
-        SDL_Color color = s->format->palette->colors[s->pixels[(i+y)*s->w + x +j]];
-        new_pixels[i*w+j] = ((uint32_t)color.r << 16) | ((uint32_t)color.g << 8) | (uint32_t)color.b;
+
+//printf(">>>>>>>>>>>>>>>>in SDL_UpdateRect\n");
+  assert(s);
+
+  if( w==0 ) w = s->w;
+  if( h==0 ) h = s->h;
+  if( (int)(x+w) > s->w ) assert(0);
+  if( (int)(y+h) > s->h ) assert(0);
+
+  int i,j;
+  uint32_t *pixels = (uint32_t *)malloc( w * h * 4);
+
+  if( s->format->BitsPerPixel == 32 ) {
+    for( j = 0; j < h; j++) {
+      for( i = 0; i < w; i++) {
+        *(pixels + ( w * j + i)) = *( (uint32_t *)s->pixels + ( (y+j)*s->w + x + i ) );
       }
     }
-    NDL_DrawRect((uint32_t *)new_pixels, x , y , w, h);
-    free(new_pixels);  
   }
+  else if( s->format->BitsPerPixel == 8 ) {
+    for( j = 0; j < h; j++) {
+      for( i = 0; i < w; i++) {
+        uint8_t index =  *( s->pixels + ( (j+y)*s->w + x + i ) ) ;
+        /*
+        uint8_t r = *( (uint8_t *)(s->format->palette->colors + index + 0 )) ;
+        uint8_t g = *( (uint8_t *)(s->format->palette->colors + index + 1 )) ;
+        uint8_t b = *( (uint8_t *)(s->format->palette->colors + index + 2 )) ;
+        uint8_t a = *( (uint8_t *)(s->format->palette->colors + index + 3 )) ;
+        */
+        uint8_t r =  (s->format->palette->colors[index].r ) ;
+        uint8_t g =  (s->format->palette->colors[index].g ) ;
+        uint8_t b =  (s->format->palette->colors[index].b ) ;
+        uint8_t a =  (s->format->palette->colors[index].a ) ;
+        *( pixels + ( j*w + i ) ) = SDL_MapRGB(r, g, b, a);
+      }
+    }
+  }
+  int canvas_w = s->w;
+  int canvas_h = s->h;
+  NDL_OpenCanvas( &canvas_w, &canvas_h );
+  NDL_DrawRect( pixels, x, y, w, h );
+  free(pixels);
+
+//printf("end of SDL_UpdateRect\n");
 }
 
 // APIs below are already implemented.
@@ -173,6 +268,8 @@ void SDL_SoftStretch(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     SDL_BlitSurface(src, &rect, dst, dstrect);
   }
   else {
+    printf( "w = %d, h = %d\n", w, h );
+    printf( "dstrect->w = %d, dstrect->h = %d\n", dstrect->w, dstrect->h );
     assert(0);
   }
 }
@@ -247,8 +344,13 @@ uint32_t SDL_MapRGBA(SDL_PixelFormat *fmt, uint8_t r, uint8_t g, uint8_t b, uint
 }
 
 int SDL_LockSurface(SDL_Surface *s) {
+
+  printf("in SDL_LockSurface(SDL_Surface *s)\n");
+  assert(0);
   return 0;
 }
 
 void SDL_UnlockSurface(SDL_Surface *s) {
+  printf("in SDL_UnlockSurface(SDL_Surface *s)");
+  assert(0);
 }
