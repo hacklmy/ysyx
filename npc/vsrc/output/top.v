@@ -1321,7 +1321,6 @@ module Div(
   input         io_divw,
   input         io_div_signed,
   output        io_out_valid,
-  input         io_out_ready,
   output [63:0] io_quotient,
   output [63:0] io_remainder
 );
@@ -1356,7 +1355,7 @@ module Div(
   reg  div_start; // @[Div.scala 52:28]
   reg [63:0] quotient; // @[Div.scala 54:27]
   reg [31:0] step_num; // @[Div.scala 56:27]
-  wire  _GEN_0 = io_out_ready ? 1'h0 : div_start; // @[Div.scala 69:33 70:23 52:28]
+  wire  _GEN_0 = div_start & $signed(step_num) <= 32'sh0 ? 1'h0 : div_start; // @[Div.scala 69:56 70:23 52:28]
   wire  _GEN_1 = io_div_valid & ~div_start | _GEN_0; // @[Div.scala 63:41 64:23]
   wire [127:0] src1 = {{32'd0}, _src1_T_1}; // @[Div.scala 46:20 48:10]
   wire [127:0] _GEN_2 = io_div_valid & ~div_start ? src1 : div_cand; // @[Div.scala 63:41 65:22 51:27]
@@ -1493,7 +1492,6 @@ module ALU(
   wire  Div_io_divw; // @[ALU.scala 62:28]
   wire  Div_io_div_signed; // @[ALU.scala 62:28]
   wire  Div_io_out_valid; // @[ALU.scala 62:28]
-  wire  Div_io_out_ready; // @[ALU.scala 62:28]
   wire [63:0] Div_io_quotient; // @[ALU.scala 62:28]
   wire [63:0] Div_io_remainder; // @[ALU.scala 62:28]
   wire  mul_valid = 32'h12 == io_ALUop | 32'h11 == io_ALUop; // @[Mux.scala 81:58]
@@ -1589,7 +1587,6 @@ module ALU(
     .io_divw(Div_io_divw),
     .io_div_signed(Div_io_div_signed),
     .io_out_valid(Div_io_out_valid),
-    .io_out_ready(Div_io_out_ready),
     .io_quotient(Div_io_quotient),
     .io_remainder(Div_io_remainder)
   );
@@ -1609,7 +1606,6 @@ module ALU(
   assign Div_io_div_valid = div_valid & io_src_valid; // @[ALU.scala 73:39]
   assign Div_io_divw = 32'h32 == io_ALUop | (32'h14 == io_ALUop | (32'h35 == io_ALUop | 32'h13 == io_ALUop)); // @[Mux.scala 81:58]
   assign Div_io_div_signed = 32'h14 == io_ALUop | (32'h34 == io_ALUop | (32'h13 == io_ALUop | 32'h31 == io_ALUop)); // @[Mux.scala 81:58]
-  assign Div_io_out_ready = io_res_ready; // @[ALU.scala 77:26]
 endmodule
 module EXU(
   input         clock,

@@ -7,7 +7,6 @@ module Div(
   input         io_divw,
   input         io_div_signed,
   output        io_out_valid,
-  input         io_out_ready,
   output [63:0] io_quotient,
   output [63:0] io_remainder
 );
@@ -42,7 +41,7 @@ module Div(
   reg  div_start; // @[Div.scala 52:28]
   reg [63:0] quotient; // @[Div.scala 54:27]
   reg [31:0] step_num; // @[Div.scala 56:27]
-  wire  _GEN_0 = io_out_ready ? 1'h0 : div_start; // @[Div.scala 69:33 70:23 52:28]
+  wire  _GEN_0 = div_start & $signed(step_num) <= 32'sh0 ? 1'h0 : div_start; // @[Div.scala 69:56 70:23 52:28]
   wire  _GEN_1 = io_div_valid & ~div_start | _GEN_0; // @[Div.scala 63:41 64:23]
   wire [127:0] src1 = {{32'd0}, _src1_T_1}; // @[Div.scala 46:20 48:10]
   wire [127:0] _GEN_2 = io_div_valid & ~div_start ? src1 : div_cand; // @[Div.scala 63:41 65:22 51:27]
