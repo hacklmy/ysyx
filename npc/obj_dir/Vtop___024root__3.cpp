@@ -75,10 +75,10 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__6(Vtop___024root* vlSelf) {
                                       ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
                                       : ((2U == (IData)(vlSelf->top__DOT__d_cache__DOT__unuse_way))
                                           ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
-                                          : ((0U == (IData)(vlSelf->top__DOT__d_cache__DOT__quene_1))
-                                              ? ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_446)
+                                          : ((2U & (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_350))
+                                              ? ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_689)
                                                   ? 
-                                                 (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_15)) 
+                                                 (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_47)) 
                                                    << 0xaU) 
                                                   | (QData)((IData)(
                                                                     (0x3c0U 
@@ -87,9 +87,9 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__6(Vtop___024root* vlSelf) {
                                                                                 >> 6U)) 
                                                                         << 6U)))))
                                                   : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr)))
-                                              : ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_689)
+                                              : ((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_446)
                                                   ? 
-                                                 (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_47)) 
+                                                 (((QData)((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_15)) 
                                                    << 0xaU) 
                                                   | (QData)((IData)(
                                                                     (0x3c0U 
