@@ -49,13 +49,9 @@ module EXU(
   reg [31:0] _RAND_10;
   reg [31:0] _RAND_11;
 `endif // RANDOMIZE_REG_INIT
-  wire  ALU_clock; // @[EXU.scala 40:21]
-  wire  ALU_reset; // @[EXU.scala 40:21]
   wire [63:0] ALU_io_src1_value; // @[EXU.scala 40:21]
   wire [63:0] ALU_io_src2_value; // @[EXU.scala 40:21]
   wire [31:0] ALU_io_ALUop; // @[EXU.scala 40:21]
-  wire  ALU_io_src_valid; // @[EXU.scala 40:21]
-  wire  ALU_io_alu_busy; // @[EXU.scala 40:21]
   wire [63:0] ALU_io_alu_res; // @[EXU.scala 40:21]
   reg [63:0] es_pc; // @[EXU.scala 42:24]
   reg  es_valid; // @[EXU.scala 43:27]
@@ -69,20 +65,15 @@ module EXU(
   reg  ld_we; // @[EXU.scala 55:24]
   reg [31:0] ALUop; // @[EXU.scala 57:24]
   reg [2:0] load_type; // @[EXU.scala 58:28]
-  wire  es_ready_go = ~ALU_io_alu_busy; // @[EXU.scala 78:20]
-  wire  es_allowin = ~es_valid | es_ready_go & io_ms_allowin; // @[EXU.scala 80:29]
+  wire  es_allowin = ~es_valid | io_ms_allowin; // @[EXU.scala 80:29]
   ALU ALU ( // @[EXU.scala 40:21]
-    .clock(ALU_clock),
-    .reset(ALU_reset),
     .io_src1_value(ALU_io_src1_value),
     .io_src2_value(ALU_io_src2_value),
     .io_ALUop(ALU_io_ALUop),
-    .io_src_valid(ALU_io_src_valid),
-    .io_alu_busy(ALU_io_alu_busy),
     .io_alu_res(ALU_io_alu_res)
   );
-  assign io_es_allowin = ~es_valid | es_ready_go & io_ms_allowin; // @[EXU.scala 80:29]
-  assign io_es_to_ms_valid = es_valid & es_ready_go; // @[EXU.scala 79:32]
+  assign io_es_allowin = ~es_valid | io_ms_allowin; // @[EXU.scala 80:29]
+  assign io_es_to_ms_valid = es_valid; // @[EXU.scala 79:32]
   assign io_to_ms_pc = es_pc; // @[EXU.scala 111:17]
   assign io_to_ms_alures = ALU_io_alu_res; // @[EXU.scala 56:23 98:13]
   assign io_to_ms_store_data = store_data; // @[EXU.scala 114:25]
@@ -96,15 +87,12 @@ module EXU(
   assign io_es_valid = es_valid; // @[EXU.scala 121:17]
   assign io_es_rf_we = es_rf_we; // @[EXU.scala 123:17]
   assign io_es_rf_dst = es_rd; // @[EXU.scala 122:18]
-  assign io_es_fwd_ready = es_valid & es_ready_go; // @[EXU.scala 79:32]
+  assign io_es_fwd_ready = es_valid; // @[EXU.scala 79:32]
   assign io_es_fwd_res = ALU_io_alu_res; // @[EXU.scala 56:23 98:13]
   assign io_es_ld = ld_we & es_valid; // @[EXU.scala 127:23]
-  assign ALU_clock = clock;
-  assign ALU_reset = reset;
   assign ALU_io_src1_value = ALUop == 32'h6 ? es_pc : src1_value; // @[EXU.scala 94:26]
   assign ALU_io_src2_value = src2_value; // @[EXU.scala 95:20]
   assign ALU_io_ALUop = ALUop; // @[EXU.scala 96:15]
-  assign ALU_io_src_valid = es_valid; // @[EXU.scala 97:19]
   always @(posedge clock) begin
     if (reset) begin // @[EXU.scala 42:24]
       es_pc <= 64'h0; // @[EXU.scala 42:24]
