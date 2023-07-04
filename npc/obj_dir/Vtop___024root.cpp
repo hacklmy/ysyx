@@ -1506,6 +1506,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                    ? (IData)(vlSelf->top__DOT__i_cache__DOT___GEN_41)
                                                    : (IData)(vlSelf->top__DOT__i_cache__DOT___GEN_173)));
     }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"i_cache state:%1#\n",
+                   3,vlSelf->top__DOT__i_cache__DOT__state);
+    }
     if (vlSelf->reset) {
         vlSelf->top__DOT__LSU__DOT__wstrb = 0U;
     } else if (((IData)(vlSelf->top__DOT__EXU_io_es_to_ms_valid) 
