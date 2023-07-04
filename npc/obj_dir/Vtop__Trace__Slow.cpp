@@ -1614,7 +1614,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                    : 
                                                   (((0U 
                                                      == (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
-                                                    & (IData)(vlSelf->top__DOT__d_cache__DOT___T_5)) 
+                                                    & (IData)(vlSelf->top__DOT__d_cache__DOT___T_7)) 
                                                    & (IData)(vlSelf->top__DOT__arbiter_io_lsu_axi_out_rvalid))))))))));
         tracep->fullBit(oldp+79,(((1U != (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
                                   & ((2U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
@@ -1632,7 +1632,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                     : 
                                                    (((0U 
                                                       == (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
-                                                     & (IData)(vlSelf->top__DOT__d_cache__DOT___T_5)) 
+                                                     & (IData)(vlSelf->top__DOT__d_cache__DOT___T_7)) 
                                                     & (IData)(vlSelf->top__DOT__arbiter_io_lsu_axi_out_bvalid))))))))));
         tracep->fullIData(oldp+80,((IData)(vlSelf->top__DOT__LSU__DOT__maddr)),32);
         tracep->fullBit(oldp+81,(vlSelf->top__DOT__LSU_io_axi_out_arvalid));
@@ -2809,15 +2809,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+990,(vlSelf->top__DOT__d_cache__DOT__tagMatch_2));
         tracep->fullBit(oldp+991,(vlSelf->top__DOT__d_cache__DOT__tagMatch_3));
         tracep->fullBit(oldp+992,(vlSelf->top__DOT__d_cache__DOT__anyMatch));
-        tracep->fullCData(oldp+993,(((IData)(vlSelf->top__DOT__d_cache__DOT__tagMatch_0)
-                                      ? 0U : ((IData)(vlSelf->top__DOT__d_cache__DOT__tagMatch_1)
-                                               ? 1U
-                                               : ((IData)(vlSelf->top__DOT__d_cache__DOT__tagMatch_2)
-                                                   ? 2U
-                                                   : 
-                                                  ((IData)(vlSelf->top__DOT__d_cache__DOT__tagMatch_3)
-                                                    ? 3U
-                                                    : 0U))))),2);
+        tracep->fullCData(oldp+993,(vlSelf->top__DOT__d_cache__DOT__foundtagIndex),2);
         tracep->fullIData(oldp+994,(vlSelf->top__DOT__d_cache__DOT__tagIndex),17);
         tracep->fullWData(oldp+995,(vlSelf->top__DOT__d_cache__DOT__write_back_data),128);
         tracep->fullIData(oldp+999,(vlSelf->top__DOT__d_cache__DOT__write_back_addr),32);

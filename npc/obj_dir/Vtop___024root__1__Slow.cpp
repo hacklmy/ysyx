@@ -861,8 +861,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     VL_RAND_RESET_W(128, vlSelf->top__DOT__i_cache__DOT___GEN_224);
     VL_RAND_RESET_W(128, vlSelf->top__DOT__i_cache__DOT___GEN_225);
     VL_RAND_RESET_W(128, vlSelf->top__DOT__i_cache__DOT___GEN_226);
-    VL_RAND_RESET_W(128, vlSelf->top__DOT__i_cache__DOT___GEN_227);
-    VL_RAND_RESET_W(128, vlSelf->top__DOT__i_cache__DOT___GEN_228);
     vlSelf->top__DOT__i_cache__DOT___GEN_238 = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__i_cache__DOT___GEN_239 = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__i_cache__DOT___GEN_240 = VL_RAND_RESET_I(32);
@@ -1199,6 +1197,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__d_cache__DOT__tagMatch_2 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__d_cache__DOT__tagMatch_3 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__d_cache__DOT__anyMatch = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__d_cache__DOT__foundtagIndex = VL_RAND_RESET_I(2);
     vlSelf->top__DOT__d_cache__DOT__tagIndex = VL_RAND_RESET_I(17);
     VL_RAND_RESET_W(128, vlSelf->top__DOT__d_cache__DOT__write_back_data);
     vlSelf->top__DOT__d_cache__DOT__write_back_addr = VL_RAND_RESET_I(32);
@@ -1225,9 +1224,9 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2 = VL_RAND_RESET_I(17);
     vlSelf->top__DOT__d_cache__DOT__wmask = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__d_cache__DOT__state = VL_RAND_RESET_I(4);
-    vlSelf->top__DOT__d_cache__DOT___T_5 = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__d_cache__DOT___T_7 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__d_cache__DOT___GEN_16 = VL_RAND_RESET_I(4);
-    VL_RAND_RESET_W(191, vlSelf->top__DOT__d_cache__DOT___T_15);
+    VL_RAND_RESET_W(191, vlSelf->top__DOT__d_cache__DOT___T_17);
     vlSelf->top__DOT__d_cache__DOT___GEN_218 = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__d_cache__DOT___GEN_219 = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__d_cache__DOT___GEN_220 = VL_RAND_RESET_I(3);
