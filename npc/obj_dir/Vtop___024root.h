@@ -350,10 +350,10 @@ VL_MODULE(Vtop___024root) {
         VlUnpacked<VlWide<4>/*127:0*/, 128> top__DOT__i_cache__DOT__cacheLine;
         VlUnpacked<CData/*0:0*/, 128> top__DOT__i_cache__DOT__validMem;
         VlUnpacked<IData/*31:0*/, 128> top__DOT__i_cache__DOT__tagMem;
-        VlUnpacked<VlWide<4>/*127:0*/, 128> top__DOT__d_cache__DOT__cacheLine;
-        VlUnpacked<CData/*0:0*/, 128> top__DOT__d_cache__DOT__validMem;
-        VlUnpacked<IData/*31:0*/, 128> top__DOT__d_cache__DOT__tagMem;
-        VlUnpacked<CData/*0:0*/, 128> top__DOT__d_cache__DOT__dirtyMem;
+        VlUnpacked<VlWide<4>/*127:0*/, 256> top__DOT__d_cache__DOT__cacheLine;
+        VlUnpacked<CData/*0:0*/, 256> top__DOT__d_cache__DOT__validMem;
+        VlUnpacked<IData/*31:0*/, 256> top__DOT__d_cache__DOT__tagMem;
+        VlUnpacked<CData/*0:0*/, 256> top__DOT__d_cache__DOT__dirtyMem;
     };
 
     // LOCAL VARIABLES
