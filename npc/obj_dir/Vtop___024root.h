@@ -284,6 +284,7 @@ VL_MODULE(Vtop___024root) {
         IData/*31:0*/ top__DOT__d_cache__DOT__write_back_addr;
         VlWide<10>/*318:0*/ top__DOT__d_cache__DOT___T_13;
         VlWide<4>/*127:0*/ top__DOT__d_cache__DOT__lo;
+        VlWide<4>/*127:0*/ top__DOT__d_cache__DOT__hi;
         VlWide<8>/*255:0*/ top__DOT__d_cache__DOT___GEN_264;
         VlWide<8>/*255:0*/ top__DOT__d_cache__DOT___GEN_592;
         QData/*63:0*/ top__DOT__IDU_io_br_target;
@@ -292,9 +293,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__arbiter_io_lsu_axi_out_rdata;
         QData/*63:0*/ top__DOT__d_cache_io_to_axi_wdata;
         QData/*63:0*/ top__DOT__IFU__DOT__br_target;
-        QData/*63:0*/ top__DOT__IFU__DOT__fs_pc_next;
     };
     struct {
+        QData/*63:0*/ top__DOT__IFU__DOT__fs_pc_next;
         QData/*63:0*/ top__DOT__IFU__DOT__fs_pc;
         QData/*63:0*/ top__DOT__IDU__DOT__ds_pc;
         QData/*63:0*/ top__DOT__IDU__DOT__rdata1;
@@ -358,6 +359,8 @@ VL_MODULE(Vtop___024root) {
         VlUnpacked<VlWide<8>/*255:0*/, 64> top__DOT__d_cache__DOT__cacheLine;
         VlUnpacked<CData/*0:0*/, 64> top__DOT__d_cache__DOT__validMem;
         VlUnpacked<IData/*31:0*/, 64> top__DOT__d_cache__DOT__tagMem;
+    };
+    struct {
         VlUnpacked<CData/*0:0*/, 64> top__DOT__d_cache__DOT__dirtyMem;
     };
 
