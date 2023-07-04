@@ -5,75 +5,88 @@
 #include <stdlib.h>
 
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
-  /*printf("sdl ");printf("blitsurface\n");*/
   assert(dst && src);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
-	int x,y,w,h;
-	int dx,dy,dw,dh;
-	int w0=src->w;
-	int h0=src->h;
-	if(srcrect==NULL)
-	{
-		x=0;
-		y=0;
-		w=src->w;
-		h=src->h;
-	}
-	else
-	{
-		x=srcrect->x;
-		y=srcrect->y;
-		w=srcrect->w;
-		h=srcrect->h;
-	}
-	if(dstrect==NULL)
-	{
-		dx=0;
-		dy=0;
-		dw=w;
-		dh=h;
-	}
-	else
-	{
-		dx=dstrect->x;
-		dy=dstrect->y;
-		dw=dstrect->w;
-		dh=dstrect->h;
-	}
-	/*printf("x%d %d %d %d\n",x,y,w,h);*/
-	/*printf("dx%d %d %d %d\n",dx,dy,dw,dh);*/
-	int psize=src->format->BytesPerPixel;
-	int rectlsize=w*psize;
-	/*printf("formatp=%dBytes\n",psize);*/
-	for(int i=0;i<h;i++)
-	{
-	/*printf("x");*/
-		memcpy(dst->pixels+((dy+i)*dst->w+dx)*psize,
-					src->pixels+((y+i)*w0+x)*psize,
-					rectlsize
-				);
-		/*for(int a=0;a<100000;a++)printf("");*/
-	/*SDL_UpdateRect(dst,dx,dy,dw,dh);*/
-	}
-	/*SDL_UpdateRect(src,x,y,w,h);*/
-	/*SDL_UpdateRect(src,0,0,320,200);*/
-	/*printf("src\n");*/
-		/*if(x!=0)for(int a=0;a<10000000;a++)printf("");*/
-	/*SDL_UpdateRect(dst,dx,dy,dw,dh);*/
-	/*SDL_UpdateRect(dst,0,0,320,200);*/
-	/*printf("dst\n");*/
-		/*if(x!=0)for(int a=0;a<10000000;a++)printf("");*/
+  int sx, sy, w, h, dx, dy;
+  if (srcrect == NULL){
+    sx = 0;
+    sy = 0;
+    w = src->w;
+    h = src->h;
+  }
+  else {
+    sx = srcrect->x; 
+    sy = srcrect->y;
+    w = srcrect->w; 
+    h = srcrect->h;
+  }
+  if (dstrect == NULL) {
+    dx = 0; 
+    dy = 0;
+  }
+  else dx = dstrect->x, dy = dstrect->y;
+  if(src->format->BitsPerPixel==32)
+  {
+    for(int i =0;i<h;i++){
+      for(int j =0;j<w;j++){
+        ((uint32_t*)(dst->pixels))[(dy+i)*dst->w + dx + j] = ((uint32_t*)(src->pixels))[(sy+i)*src->w + sx + j];
+      }
+    }
+  }else if(src->format->BitsPerPixel==8){
+    for(int i =0;i<h;i++){
+      for(int j =0;j<w;j++){
+        dst->pixels[(dy+i)*dst->w + dx + j] = src->pixels[(sy+i)*src->w + sx + j];
+      }
+    }
+  }
 }
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
-  int x, y, w, h;
-  if (dstrect == NULL) x = 0, y = 0, w = dst->w, h = dst->h;
-  else x = dstrect->x, y = dstrect->y, w = dstrect->w, h = dstrect->h;
-  for(int i =0;i<h;i++){
-    for(int j =0;j<w;j++){
-      ((uint32_t*)dst->pixels)[(y+i)*dst->w + x + j] = color;
-    }
-  }
+  /*printf("sdl ");printf("fillRect\n");*/
+	/*printf("color=%x %d\n",color,color);*/
+	int w0=dst->w;
+	int h0=dst->h;
+	int x,y,w,h;
+	if(dstrect==NULL)
+	{
+		x=0;
+		y=0;
+		w=dst->w;
+		h=dst->h;
+	}
+	else
+	{
+		x=dstrect->x;
+		y=dstrect->y;
+		w=dstrect->w;
+		h=dstrect->h;
+	}
+	if(dst->format->BitsPerPixel==32)
+	{
+		/*printf("fmt 32\n");*/
+		if(color&DEFAULT_AMASK!=DEFAULT_AMASK)color=color&DEFAULT_AMASK;
+		for(int i=0;i<h;i++)
+		{
+			for(int j=0;j<w;j++)
+			{
+				*((uint32_t *)dst->pixels+(y+i)*w0+x+j)=color;
+			}
+		}
+	}
+	else if(dst->format->BitsPerPixel==8)
+	{
+		/*printf("fmt 8\n");*/
+		for(int i=0;i<h;i++)
+		{
+			for(int j=0;j<w;j++)
+			{
+				*(dst->pixels+(y+i)*w0+x+j)=color;
+			}
+		}
+	}
+	/*printf("%d %d %d %d\n",x,y,w,h);*/
+	/*uint32_t p[120000];*/
+	/*printf("%x",p);*/
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
