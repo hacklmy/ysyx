@@ -779,15 +779,15 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                   >> 4U))];
     vlSelf->top__DOT__i_cache__DOT__validMem_valid_1_MPORT_data 
         = vlSelf->top__DOT__i_cache__DOT__validMem[
-        (0x7fU & ((IData)(0x20U) + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
+        (0xffU & ((IData)(0x40U) + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
                                              >> 4U))))];
     vlSelf->top__DOT__i_cache__DOT__validMem_valid_2_MPORT_data 
         = vlSelf->top__DOT__i_cache__DOT__validMem[
-        (0x7fU & ((IData)(0x40U) + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
+        (0xffU & ((IData)(0x80U) + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
                                              >> 4U))))];
     vlSelf->top__DOT__i_cache__DOT__validMem_valid_3_MPORT_data 
         = vlSelf->top__DOT__i_cache__DOT__validMem[
-        (0x7fU & ((IData)(0x60U) + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
+        (0xffU & ((IData)(0xc0U) + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
                                              >> 4U))))];
     top__DOT__i_cache__DOT___GEN_13 = ((0xdU == (0xfU 
                                                  & (vlSelf->top__DOT__i_cache__DOT__addr 
@@ -1249,8 +1249,8 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__i_cache__DOT__tagMatch_1 = ((IData)(vlSelf->top__DOT__i_cache__DOT__validMem_valid_1_MPORT_data) 
                                                   & (vlSelf->top__DOT__i_cache__DOT__tagMem
                                                      [
-                                                     (0x7fU 
-                                                      & ((IData)(0x20U) 
+                                                     (0xffU 
+                                                      & ((IData)(0x40U) 
                                                          + 
                                                          (0x1fU 
                                                           & (vlSelf->top__DOT__i_cache__DOT__addr 
@@ -1261,8 +1261,8 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__i_cache__DOT__tagMatch_2 = ((IData)(vlSelf->top__DOT__i_cache__DOT__validMem_valid_2_MPORT_data) 
                                                   & (vlSelf->top__DOT__i_cache__DOT__tagMem
                                                      [
-                                                     (0x7fU 
-                                                      & ((IData)(0x40U) 
+                                                     (0xffU 
+                                                      & ((IData)(0x80U) 
                                                          + 
                                                          (0x1fU 
                                                           & (vlSelf->top__DOT__i_cache__DOT__addr 
@@ -1273,8 +1273,8 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__i_cache__DOT__tagMatch_3 = ((IData)(vlSelf->top__DOT__i_cache__DOT__validMem_valid_3_MPORT_data) 
                                                   & (vlSelf->top__DOT__i_cache__DOT__tagMem
                                                      [
-                                                     (0x7fU 
-                                                      & ((IData)(0x60U) 
+                                                     (0xffU 
+                                                      & ((IData)(0xc0U) 
                                                          + 
                                                          (0x1fU 
                                                           & (vlSelf->top__DOT__i_cache__DOT__addr 
@@ -1979,12 +1979,12 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                       & (IData)(vlSelf->top__DOT__i_cache__DOT__allvalid))));
     vlSelf->top__DOT__i_cache__DOT__unvalidIndex = 
         (0x1ffU & (((IData)(vlSelf->top__DOT__i_cache__DOT__foundUnvalidIndex) 
-                    << 5U) + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
+                    << 6U) + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
                                        >> 4U))));
     vlSelf->top__DOT__i_cache__DOT___replaceIndex_T_2 
-        = (0x1ffU & ((0x60U & ((IData)(vlSelf->top__DOT__i_cache__DOT___GEN_15) 
-                               >> 1U)) + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
-                                                   >> 4U))));
+        = (0x1ffU & ((0xc0U & (IData)(vlSelf->top__DOT__i_cache__DOT___GEN_15)) 
+                     + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
+                                 >> 4U))));
     top__DOT__i_cache__DOT___quene_T_5 = (((IData)(vlSelf->top__DOT__i_cache__DOT___GEN_15) 
                                            << 2U) | 
                                           (3U & ((IData)(vlSelf->top__DOT__i_cache__DOT___GEN_15) 
@@ -4339,17 +4339,17 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__arbiter__DOT___GEN_0 = VL_RAND_RESET_I(2);
     vlSelf->top__DOT__arbiter__DOT___GEN_94 = VL_RAND_RESET_I(2);
     vlSelf->top__DOT__arbiter__DOT___GEN_126 = VL_RAND_RESET_I(2);
-    for (int __Vi0=0; __Vi0<128; ++__Vi0) {
+    for (int __Vi0=0; __Vi0<256; ++__Vi0) {
         VL_RAND_RESET_W(128, vlSelf->top__DOT__i_cache__DOT__cacheLine[__Vi0]);
     }
-    for (int __Vi0=0; __Vi0<128; ++__Vi0) {
+    for (int __Vi0=0; __Vi0<256; ++__Vi0) {
         vlSelf->top__DOT__i_cache__DOT__validMem[__Vi0] = VL_RAND_RESET_I(1);
     }
     vlSelf->top__DOT__i_cache__DOT__validMem_valid_0_MPORT_data = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__i_cache__DOT__validMem_valid_1_MPORT_data = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__i_cache__DOT__validMem_valid_2_MPORT_data = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__i_cache__DOT__validMem_valid_3_MPORT_data = VL_RAND_RESET_I(1);
-    for (int __Vi0=0; __Vi0<128; ++__Vi0) {
+    for (int __Vi0=0; __Vi0<256; ++__Vi0) {
         vlSelf->top__DOT__i_cache__DOT__tagMem[__Vi0] = VL_RAND_RESET_I(32);
     }
     vlSelf->top__DOT__i_cache__DOT__addr = VL_RAND_RESET_I(32);

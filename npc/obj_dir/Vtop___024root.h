@@ -347,9 +347,9 @@ VL_MODULE(Vtop___024root) {
         VlUnpacked<QData/*63:0*/, 32> top__DOT__Register__DOT__Reg;
         VlUnpacked<QData/*63:0*/, 32> top__DOT__Register__DOT__reg_trace__DOT__traceregs;
         VlUnpacked<QData/*63:0*/, 4> top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg;
-        VlUnpacked<VlWide<4>/*127:0*/, 128> top__DOT__i_cache__DOT__cacheLine;
-        VlUnpacked<CData/*0:0*/, 128> top__DOT__i_cache__DOT__validMem;
-        VlUnpacked<IData/*31:0*/, 128> top__DOT__i_cache__DOT__tagMem;
+        VlUnpacked<VlWide<4>/*127:0*/, 256> top__DOT__i_cache__DOT__cacheLine;
+        VlUnpacked<CData/*0:0*/, 256> top__DOT__i_cache__DOT__validMem;
+        VlUnpacked<IData/*31:0*/, 256> top__DOT__i_cache__DOT__tagMem;
         VlUnpacked<VlWide<4>/*127:0*/, 256> top__DOT__d_cache__DOT__cacheLine;
         VlUnpacked<CData/*0:0*/, 256> top__DOT__d_cache__DOT__validMem;
         VlUnpacked<IData/*31:0*/, 256> top__DOT__d_cache__DOT__tagMem;

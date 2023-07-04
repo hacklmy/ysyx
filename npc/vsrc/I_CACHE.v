@@ -357,12 +357,12 @@ module I_CACHE(
   wire  tagMem_MPORT_4_en; // @[i_cache.scala 22:21]
   reg [31:0] addr; // @[i_cache.scala 37:23]
   wire [3:0] offset = addr[3:0]; // @[i_cache.scala 38:22]
-  wire [4:0] index = addr[8:4]; // @[i_cache.scala 39:21]
-  wire [22:0] tag = addr[31:9]; // @[i_cache.scala 40:19]
+  wire [5:0] index = addr[9:4]; // @[i_cache.scala 39:21]
+  wire [21:0] tag = addr[31:10]; // @[i_cache.scala 40:19]
   wire [6:0] shift_bit = {offset, 3'h0}; // @[i_cache.scala 41:28]
-  wire [7:0] _GEN_603 = {{3'd0}, index}; // @[i_cache.scala 45:48]
+  wire [7:0] _GEN_603 = {{2'd0}, index}; // @[i_cache.scala 45:48]
   wire [8:0] _valid_0_T_1 = {{1'd0}, _GEN_603}; // @[i_cache.scala 45:48]
-  wire [8:0] _GEN_616 = {{4'd0}, index}; // @[i_cache.scala 45:48]
+  wire [8:0] _GEN_616 = {{3'd0}, index}; // @[i_cache.scala 45:48]
   wire [8:0] _valid_2_T_2 = 9'h80 + _GEN_616; // @[i_cache.scala 45:48]
   wire [8:0] _valid_3_T_2 = 9'hc0 + _GEN_616; // @[i_cache.scala 45:48]
   wire  valid_0 = validMem_valid_0_MPORT_data; // @[i_cache.scala 43:21 45:18]
@@ -381,7 +381,7 @@ module I_CACHE(
   wire [7:0] _GEN_618 = {foundUnvalidIndex, 6'h0}; // @[i_cache.scala 54:43]
   wire [8:0] _unvalidIndex_T = {{1'd0}, _GEN_618}; // @[i_cache.scala 54:43]
   wire [8:0] unvalidIndex = _unvalidIndex_T + _GEN_616; // @[i_cache.scala 54:51]
-  wire [31:0] _GEN_621 = {{9'd0}, tag}; // @[i_cache.scala 59:71]
+  wire [31:0] _GEN_621 = {{10'd0}, tag}; // @[i_cache.scala 59:71]
   wire  tagMatch_0 = valid_0 & tagMem_tagMatch_0_MPORT_data == _GEN_621; // @[i_cache.scala 59:33]
   wire  tagMatch_1 = valid_1 & tagMem_tagMatch_1_MPORT_data == _GEN_621; // @[i_cache.scala 59:33]
   wire  tagMatch_2 = valid_2 & tagMem_tagMatch_2_MPORT_data == _GEN_621; // @[i_cache.scala 59:33]
@@ -834,11 +834,11 @@ module I_CACHE(
   assign tagMem_tagMatch_3_MPORT_en = 1'h1;
   assign tagMem_tagMatch_3_MPORT_addr = _valid_3_T_2[7:0];
   assign tagMem_tagMatch_3_MPORT_data = tagMem[tagMem_tagMatch_3_MPORT_addr]; // @[i_cache.scala 22:21]
-  assign tagMem_MPORT_1_data = {{9'd0}, tag};
+  assign tagMem_MPORT_1_data = {{10'd0}, tag};
   assign tagMem_MPORT_1_addr = unvalidIndex[7:0];
   assign tagMem_MPORT_1_mask = 1'h1;
   assign tagMem_MPORT_1_en = _T ? 1'h0 : _GEN_400;
-  assign tagMem_MPORT_4_data = {{9'd0}, tag};
+  assign tagMem_MPORT_4_data = {{10'd0}, tag};
   assign tagMem_MPORT_4_addr = replaceIndex[7:0];
   assign tagMem_MPORT_4_mask = 1'h1;
   assign tagMem_MPORT_4_en = _T ? 1'h0 : _GEN_424;
