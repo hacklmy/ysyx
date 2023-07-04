@@ -407,7 +407,7 @@ module D_CACHE(
   wire [39:0] _GEN_431 = 4'h0 == state ? {{8'd0}, write_back_addr} : _GEN_376; // @[d_cache.scala 101:18 71:34]
   wire [255:0] _io_to_lsu_rdata_T_1 = cacheLine_io_to_lsu_rdata_MPORT_data >> shift_bit; // @[d_cache.scala 211:48]
   wire [63:0] _GEN_497 = {{32'd0}, io_from_lsu_araddr}; // @[d_cache.scala 252:49]
-  wire [63:0] _io_to_axi_araddr_T = _GEN_497 & 64'hfffffffffffffff0; // @[d_cache.scala 252:49]
+  wire [63:0] _io_to_axi_araddr_T = _GEN_497 & 64'hffffffffffffffe0; // @[d_cache.scala 252:49]
   wire  _T_47 = state == 4'h0 & _T_3; // @[d_cache.scala 320:27]
   wire [63:0] _GEN_436 = state == 4'h0 & _T_3 ? io_from_axi_rdata : 64'h0; // @[d_cache.scala 320:117 321:23 324:29]
   wire  _GEN_438 = state == 4'h0 & _T_3 & io_from_axi_rvalid; // @[d_cache.scala 320:117 321:23 326:30]
