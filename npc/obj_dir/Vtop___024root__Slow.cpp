@@ -514,21 +514,21 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
           : vlSelf->top__DOT__EXU__DOT__src1_value);
     vlSelf->top__DOT__d_cache__DOT__validMem_valid_0_MPORT_data 
         = vlSelf->top__DOT__d_cache__DOT__validMem[
-        (0x1fU & (IData)((vlSelf->top__DOT__LSU__DOT__maddr 
+        (0x3fU & (IData)((vlSelf->top__DOT__LSU__DOT__maddr 
                           >> 4U)))];
     vlSelf->top__DOT__d_cache__DOT__validMem_valid_1_MPORT_data 
         = vlSelf->top__DOT__d_cache__DOT__validMem[
-        (0xffU & ((IData)(0x40U) + (0x1fU & (IData)(
+        (0xffU & ((IData)(0x40U) + (0x3fU & (IData)(
                                                     (vlSelf->top__DOT__LSU__DOT__maddr 
                                                      >> 4U)))))];
     vlSelf->top__DOT__d_cache__DOT__validMem_valid_2_MPORT_data 
         = vlSelf->top__DOT__d_cache__DOT__validMem[
-        (0xffU & ((IData)(0x80U) + (0x1fU & (IData)(
+        (0xffU & ((IData)(0x80U) + (0x3fU & (IData)(
                                                     (vlSelf->top__DOT__LSU__DOT__maddr 
                                                      >> 4U)))))];
     vlSelf->top__DOT__d_cache__DOT__validMem_valid_3_MPORT_data 
         = vlSelf->top__DOT__d_cache__DOT__validMem[
-        (0xffU & ((IData)(0xc0U) + (0x1fU & (IData)(
+        (0xffU & ((IData)(0xc0U) + (0x3fU & (IData)(
                                                     (vlSelf->top__DOT__LSU__DOT__maddr 
                                                      >> 4U)))))];
     vlSelf->io_pc = vlSelf->top__DOT__IFU__DOT__fs_pc;
@@ -775,19 +775,19 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                       == (IData)(vlSelf->top__DOT__i_cache__DOT__state)));
     vlSelf->top__DOT__i_cache__DOT__validMem_valid_0_MPORT_data 
         = vlSelf->top__DOT__i_cache__DOT__validMem[
-        (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
+        (0x3fU & (vlSelf->top__DOT__i_cache__DOT__addr 
                   >> 4U))];
     vlSelf->top__DOT__i_cache__DOT__validMem_valid_1_MPORT_data 
         = vlSelf->top__DOT__i_cache__DOT__validMem[
-        (0xffU & ((IData)(0x40U) + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
+        (0xffU & ((IData)(0x40U) + (0x3fU & (vlSelf->top__DOT__i_cache__DOT__addr 
                                              >> 4U))))];
     vlSelf->top__DOT__i_cache__DOT__validMem_valid_2_MPORT_data 
         = vlSelf->top__DOT__i_cache__DOT__validMem[
-        (0xffU & ((IData)(0x80U) + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
+        (0xffU & ((IData)(0x80U) + (0x3fU & (vlSelf->top__DOT__i_cache__DOT__addr 
                                              >> 4U))))];
     vlSelf->top__DOT__i_cache__DOT__validMem_valid_3_MPORT_data 
         = vlSelf->top__DOT__i_cache__DOT__validMem[
-        (0xffU & ((IData)(0xc0U) + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
+        (0xffU & ((IData)(0xc0U) + (0x3fU & (vlSelf->top__DOT__i_cache__DOT__addr 
                                              >> 4U))))];
     top__DOT__i_cache__DOT___GEN_13 = ((0xdU == (0xfU 
                                                  & (vlSelf->top__DOT__i_cache__DOT__addr 
@@ -989,45 +989,45 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__d_cache__DOT__tagMatch_0 = ((IData)(vlSelf->top__DOT__d_cache__DOT__validMem_valid_0_MPORT_data) 
                                                   & (vlSelf->top__DOT__d_cache__DOT__tagMem
                                                      [
-                                                     (0x1fU 
+                                                     (0x3fU 
                                                       & (IData)(
                                                                 (vlSelf->top__DOT__LSU__DOT__maddr 
                                                                  >> 4U)))] 
                                                      == 
-                                                     (0x7fffffU 
+                                                     (0x3fffffU 
                                                       & (IData)(
                                                                 (vlSelf->top__DOT__LSU__DOT__maddr 
-                                                                 >> 9U)))));
+                                                                 >> 0xaU)))));
     vlSelf->top__DOT__d_cache__DOT__tagMatch_1 = ((IData)(vlSelf->top__DOT__d_cache__DOT__validMem_valid_1_MPORT_data) 
                                                   & (vlSelf->top__DOT__d_cache__DOT__tagMem
                                                      [
                                                      (0xffU 
                                                       & ((IData)(0x40U) 
                                                          + 
-                                                         (0x1fU 
+                                                         (0x3fU 
                                                           & (IData)(
                                                                     (vlSelf->top__DOT__LSU__DOT__maddr 
                                                                      >> 4U)))))] 
                                                      == 
-                                                     (0x7fffffU 
+                                                     (0x3fffffU 
                                                       & (IData)(
                                                                 (vlSelf->top__DOT__LSU__DOT__maddr 
-                                                                 >> 9U)))));
+                                                                 >> 0xaU)))));
     vlSelf->top__DOT__d_cache__DOT__tagMatch_2 = ((IData)(vlSelf->top__DOT__d_cache__DOT__validMem_valid_2_MPORT_data) 
                                                   & (vlSelf->top__DOT__d_cache__DOT__tagMem
                                                      [
                                                      (0xffU 
                                                       & ((IData)(0x80U) 
                                                          + 
-                                                         (0x1fU 
+                                                         (0x3fU 
                                                           & (IData)(
                                                                     (vlSelf->top__DOT__LSU__DOT__maddr 
                                                                      >> 4U)))))] 
                                                      == 
-                                                     (0x7fffffU 
+                                                     (0x3fffffU 
                                                       & (IData)(
                                                                 (vlSelf->top__DOT__LSU__DOT__maddr 
-                                                                 >> 9U)))));
+                                                                 >> 0xaU)))));
     vlSelf->top__DOT__d_cache__DOT__allvalid = ((((IData)(vlSelf->top__DOT__d_cache__DOT__validMem_valid_0_MPORT_data) 
                                                   & (IData)(vlSelf->top__DOT__d_cache__DOT__validMem_valid_1_MPORT_data)) 
                                                  & (IData)(vlSelf->top__DOT__d_cache__DOT__validMem_valid_2_MPORT_data)) 
@@ -1044,15 +1044,15 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                      (0xffU 
                                                       & ((IData)(0xc0U) 
                                                          + 
-                                                         (0x1fU 
+                                                         (0x3fU 
                                                           & (IData)(
                                                                     (vlSelf->top__DOT__LSU__DOT__maddr 
                                                                      >> 4U)))))] 
                                                      == 
-                                                     (0x7fffffU 
+                                                     (0x3fffffU 
                                                       & (IData)(
                                                                 (vlSelf->top__DOT__LSU__DOT__maddr 
-                                                                 >> 9U)))));
+                                                                 >> 0xaU)))));
     top__DOT__IDU__DOT___ALUop_T_147 = ((0x4000503bU 
                                          == (0xfe00707fU 
                                              & vlSelf->top__DOT__IDU__DOT__inst))
@@ -1240,48 +1240,48 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__i_cache__DOT__tagMatch_0 = ((IData)(vlSelf->top__DOT__i_cache__DOT__validMem_valid_0_MPORT_data) 
                                                   & (vlSelf->top__DOT__i_cache__DOT__tagMem
                                                      [
-                                                     (0x1fU 
+                                                     (0x3fU 
                                                       & (vlSelf->top__DOT__i_cache__DOT__addr 
                                                          >> 4U))] 
                                                      == 
                                                      (vlSelf->top__DOT__i_cache__DOT__addr 
-                                                      >> 9U)));
+                                                      >> 0xaU)));
     vlSelf->top__DOT__i_cache__DOT__tagMatch_1 = ((IData)(vlSelf->top__DOT__i_cache__DOT__validMem_valid_1_MPORT_data) 
                                                   & (vlSelf->top__DOT__i_cache__DOT__tagMem
                                                      [
                                                      (0xffU 
                                                       & ((IData)(0x40U) 
                                                          + 
-                                                         (0x1fU 
+                                                         (0x3fU 
                                                           & (vlSelf->top__DOT__i_cache__DOT__addr 
                                                              >> 4U))))] 
                                                      == 
                                                      (vlSelf->top__DOT__i_cache__DOT__addr 
-                                                      >> 9U)));
+                                                      >> 0xaU)));
     vlSelf->top__DOT__i_cache__DOT__tagMatch_2 = ((IData)(vlSelf->top__DOT__i_cache__DOT__validMem_valid_2_MPORT_data) 
                                                   & (vlSelf->top__DOT__i_cache__DOT__tagMem
                                                      [
                                                      (0xffU 
                                                       & ((IData)(0x80U) 
                                                          + 
-                                                         (0x1fU 
+                                                         (0x3fU 
                                                           & (vlSelf->top__DOT__i_cache__DOT__addr 
                                                              >> 4U))))] 
                                                      == 
                                                      (vlSelf->top__DOT__i_cache__DOT__addr 
-                                                      >> 9U)));
+                                                      >> 0xaU)));
     vlSelf->top__DOT__i_cache__DOT__tagMatch_3 = ((IData)(vlSelf->top__DOT__i_cache__DOT__validMem_valid_3_MPORT_data) 
                                                   & (vlSelf->top__DOT__i_cache__DOT__tagMem
                                                      [
                                                      (0xffU 
                                                       & ((IData)(0xc0U) 
                                                          + 
-                                                         (0x1fU 
+                                                         (0x3fU 
                                                           & (vlSelf->top__DOT__i_cache__DOT__addr 
                                                              >> 4U))))] 
                                                      == 
                                                      (vlSelf->top__DOT__i_cache__DOT__addr 
-                                                      >> 9U)));
+                                                      >> 0xaU)));
     vlSelf->top__DOT__i_cache__DOT__allvalid = ((((IData)(vlSelf->top__DOT__i_cache__DOT__validMem_valid_0_MPORT_data) 
                                                   & (IData)(vlSelf->top__DOT__i_cache__DOT__validMem_valid_1_MPORT_data)) 
                                                  & (IData)(vlSelf->top__DOT__i_cache__DOT__validMem_valid_2_MPORT_data)) 
@@ -1506,7 +1506,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
         = (1U & __Vtemp126[2U]);
     vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2 
         = (0x1ffU & ((0xc0U & (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_15)) 
-                     + (0x1fU & (IData)((vlSelf->top__DOT__LSU__DOT__maddr 
+                     + (0x3fU & (IData)((vlSelf->top__DOT__LSU__DOT__maddr 
                                          >> 4U)))));
     top__DOT__d_cache__DOT___quene_T_5 = (((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_15) 
                                            << 2U) | 
@@ -1764,7 +1764,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                             & (IData)(vlSelf->top__DOT__d_cache__DOT__allvalid))))));
     vlSelf->top__DOT__d_cache__DOT__unvalidIndex = 
         (0x1ffU & (((IData)(vlSelf->top__DOT__d_cache__DOT__foundUnvalidIndex) 
-                    << 6U) + (0x1fU & (IData)((vlSelf->top__DOT__LSU__DOT__maddr 
+                    << 6U) + (0x3fU & (IData)((vlSelf->top__DOT__LSU__DOT__maddr 
                                                >> 4U)))));
     top__DOT__d_cache__DOT___quene_T_2 = (((IData)(vlSelf->top__DOT__d_cache__DOT___GEN_15) 
                                            << 2U) | (IData)(vlSelf->top__DOT__d_cache__DOT__foundUnvalidIndex));
@@ -1783,7 +1783,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                          : 0U)))) 
                                                     << 6U) 
                                                    + 
-                                                   (0x1fU 
+                                                   (0x3fU 
                                                     & (IData)(
                                                               (vlSelf->top__DOT__LSU__DOT__maddr 
                                                                >> 4U)))));
@@ -1979,11 +1979,11 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                       & (IData)(vlSelf->top__DOT__i_cache__DOT__allvalid))));
     vlSelf->top__DOT__i_cache__DOT__unvalidIndex = 
         (0x1ffU & (((IData)(vlSelf->top__DOT__i_cache__DOT__foundUnvalidIndex) 
-                    << 6U) + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
+                    << 6U) + (0x3fU & (vlSelf->top__DOT__i_cache__DOT__addr 
                                        >> 4U))));
     vlSelf->top__DOT__i_cache__DOT___replaceIndex_T_2 
         = (0x1ffU & ((0xc0U & (IData)(vlSelf->top__DOT__i_cache__DOT___GEN_15)) 
-                     + (0x1fU & (vlSelf->top__DOT__i_cache__DOT__addr 
+                     + (0x3fU & (vlSelf->top__DOT__i_cache__DOT__addr 
                                  >> 4U))));
     top__DOT__i_cache__DOT___quene_T_5 = (((IData)(vlSelf->top__DOT__i_cache__DOT___GEN_15) 
                                            << 2U) | 
@@ -3154,9 +3154,9 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                           [
                                                                           (0xffU 
                                                                            & (IData)(vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2))])) 
-                                                          << 9U) 
+                                                          << 0xaU) 
                                                          | (QData)((IData)(
-                                                                           (0x1f0U 
+                                                                           (0x3f0U 
                                                                             & ((IData)(
                                                                                 (vlSelf->top__DOT__LSU__DOT__maddr 
                                                                                 >> 4U)) 
@@ -4490,7 +4490,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__d_cache__DOT___GEN_395 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__d_cache__DOT___GEN_594 = VL_RAND_RESET_Q(64);
     VL_RAND_RESET_W(128, vlSelf->top__DOT__d_cache__DOT___GEN_612);
-    vlSelf->top__DOT__d_cache__DOT___GEN_518 = VL_RAND_RESET_Q(41);
+    vlSelf->top__DOT__d_cache__DOT___GEN_518 = VL_RAND_RESET_Q(42);
     vlSelf->top__DOT__axi__DOT__Mem_modle_Rdata = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__axi__DOT__axi_wready = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__axi__DOT__axi_bvalid = VL_RAND_RESET_I(1);

@@ -338,7 +338,7 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__d_cache__DOT___GEN_250;
         QData/*63:0*/ top__DOT__d_cache__DOT___GEN_251;
         QData/*63:0*/ top__DOT__d_cache__DOT___GEN_594;
-        QData/*40:0*/ top__DOT__d_cache__DOT___GEN_518;
+        QData/*41:0*/ top__DOT__d_cache__DOT___GEN_518;
         QData/*63:0*/ top__DOT__axi__DOT__Mem_modle_Rdata;
         QData/*63:0*/ top__DOT__axi__DOT__araddr;
         QData/*63:0*/ top__DOT__axi__DOT__awaddr;
