@@ -798,6 +798,7 @@ int main(int argc, char** argv) {
   contextp = new VerilatedContext;
   contextp->commandArgs(argc, argv);
   top = new Vtop{contextp};
+  Verilated::optimizeGoal(Verilated::OPT_FASTEST);
   #ifdef VerilatedVCD
   tfp = new VerilatedVcdC; //初始化VCD对象指针
   contextp->traceEverOn(true); //打开追踪功能
