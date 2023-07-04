@@ -406,7 +406,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                  ((3U 
                                                    == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
                                                    ? 
-                                                  (0xfffffffffffffff0ULL 
+                                                  (0xffffffffffffffe0ULL 
                                                    & (QData)((IData)(vlSelf->top__DOT__LSU__DOT__maddr)))
                                                    : (QData)((IData)(
                                                                      (((4U 

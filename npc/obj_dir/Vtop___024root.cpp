@@ -2660,7 +2660,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                  ((3U 
                                                    == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
                                                    ? 
-                                                  (0xfffffffffffffff0ULL 
+                                                  (0xffffffffffffffe0ULL 
                                                    & (QData)((IData)(vlSelf->top__DOT__LSU__DOT__maddr)))
                                                    : (QData)((IData)(
                                                                      (((4U 
