@@ -1227,14 +1227,14 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+974,"top d_cache valid_3", false,-1);
         tracep->declBit(c+985,"top d_cache allvalid", false,-1);
         tracep->declBus(c+986,"top d_cache foundUnvalidIndex", false,-1, 1,0);
-        tracep->declBus(c+987,"top d_cache unvalidIndex", false,-1, 16,0);
+        tracep->declBus(c+987,"top d_cache unvalidIndex", false,-1, 8,0);
         tracep->declBit(c+988,"top d_cache tagMatch_0", false,-1);
         tracep->declBit(c+989,"top d_cache tagMatch_1", false,-1);
         tracep->declBit(c+990,"top d_cache tagMatch_2", false,-1);
         tracep->declBit(c+991,"top d_cache tagMatch_3", false,-1);
         tracep->declBit(c+992,"top d_cache anyMatch", false,-1);
         tracep->declBus(c+993,"top d_cache foundtagIndex", false,-1, 1,0);
-        tracep->declBus(c+994,"top d_cache tagIndex", false,-1, 16,0);
+        tracep->declBus(c+994,"top d_cache tagIndex", false,-1, 8,0);
         tracep->declArray(c+995,"top d_cache write_back_data", false,-1, 127,0);
         tracep->declBus(c+999,"top d_cache write_back_addr", false,-1, 31,0);
         tracep->declQuad(c+1000,"top d_cache receive_data_0", false,-1, 63,0);
@@ -2679,27 +2679,27 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullCData(oldp+942,(vlSelf->top__DOT__i_cache__DOT__state),3);
         tracep->fullBit(oldp+943,(((0U != (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
                                    & (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_321))));
-        tracep->fullCData(oldp+944,((0x3fU & vlSelf->top__DOT__d_cache__DOT__tagIndex)),6);
+        tracep->fullCData(oldp+944,((0x3fU & (IData)(vlSelf->top__DOT__d_cache__DOT__tagIndex))),6);
         __Vtemp2673[0U] = vlSelf->top__DOT__d_cache__DOT__cacheLine
-            [(0x3fU & vlSelf->top__DOT__d_cache__DOT__tagIndex)][0U];
+            [(0x3fU & (IData)(vlSelf->top__DOT__d_cache__DOT__tagIndex))][0U];
         __Vtemp2673[1U] = vlSelf->top__DOT__d_cache__DOT__cacheLine
-            [(0x3fU & vlSelf->top__DOT__d_cache__DOT__tagIndex)][1U];
+            [(0x3fU & (IData)(vlSelf->top__DOT__d_cache__DOT__tagIndex))][1U];
         __Vtemp2673[2U] = vlSelf->top__DOT__d_cache__DOT__cacheLine
-            [(0x3fU & vlSelf->top__DOT__d_cache__DOT__tagIndex)][2U];
+            [(0x3fU & (IData)(vlSelf->top__DOT__d_cache__DOT__tagIndex))][2U];
         __Vtemp2673[3U] = vlSelf->top__DOT__d_cache__DOT__cacheLine
-            [(0x3fU & vlSelf->top__DOT__d_cache__DOT__tagIndex)][3U];
+            [(0x3fU & (IData)(vlSelf->top__DOT__d_cache__DOT__tagIndex))][3U];
         tracep->fullWData(oldp+945,(__Vtemp2673),128);
         tracep->fullBit(oldp+949,(((0U != (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
                                    & (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_363))));
-        tracep->fullCData(oldp+950,((0x3fU & vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2)),6);
+        tracep->fullCData(oldp+950,((0x3fU & (IData)(vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2))),6);
         __Vtemp2674[0U] = vlSelf->top__DOT__d_cache__DOT__cacheLine
-            [(0x3fU & vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2)][0U];
+            [(0x3fU & (IData)(vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2))][0U];
         __Vtemp2674[1U] = vlSelf->top__DOT__d_cache__DOT__cacheLine
-            [(0x3fU & vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2)][1U];
+            [(0x3fU & (IData)(vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2))][1U];
         __Vtemp2674[2U] = vlSelf->top__DOT__d_cache__DOT__cacheLine
-            [(0x3fU & vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2)][2U];
+            [(0x3fU & (IData)(vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2))][2U];
         __Vtemp2674[3U] = vlSelf->top__DOT__d_cache__DOT__cacheLine
-            [(0x3fU & vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2)][3U];
+            [(0x3fU & (IData)(vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2))][3U];
         tracep->fullWData(oldp+951,(__Vtemp2674),128);
         tracep->fullBit(oldp+955,((1U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))));
         VL_EXTEND_WQ(191,64, __Vtemp2676, (vlSelf->top__DOT__LSU__DOT__store_data 
@@ -2713,22 +2713,22 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                 << 3U)));
         __Vtemp2688[0U] = (__Vtemp2677[0U] | (vlSelf->top__DOT__d_cache__DOT__cacheLine
                                               [(0x3fU 
-                                                & vlSelf->top__DOT__d_cache__DOT__tagIndex)][0U] 
+                                                & (IData)(vlSelf->top__DOT__d_cache__DOT__tagIndex))][0U] 
                                               & (~ 
                                                  __Vtemp2683[0U])));
         __Vtemp2688[1U] = (__Vtemp2677[1U] | (vlSelf->top__DOT__d_cache__DOT__cacheLine
                                               [(0x3fU 
-                                                & vlSelf->top__DOT__d_cache__DOT__tagIndex)][1U] 
+                                                & (IData)(vlSelf->top__DOT__d_cache__DOT__tagIndex))][1U] 
                                               & (~ 
                                                  __Vtemp2683[1U])));
         __Vtemp2688[2U] = (__Vtemp2677[2U] | (vlSelf->top__DOT__d_cache__DOT__cacheLine
                                               [(0x3fU 
-                                                & vlSelf->top__DOT__d_cache__DOT__tagIndex)][2U] 
+                                                & (IData)(vlSelf->top__DOT__d_cache__DOT__tagIndex))][2U] 
                                               & (~ 
                                                  __Vtemp2683[2U])));
         __Vtemp2688[3U] = (__Vtemp2677[3U] | (vlSelf->top__DOT__d_cache__DOT__cacheLine
                                               [(0x3fU 
-                                                & vlSelf->top__DOT__d_cache__DOT__tagIndex)][3U] 
+                                                & (IData)(vlSelf->top__DOT__d_cache__DOT__tagIndex))][3U] 
                                               & (~ 
                                                  __Vtemp2683[3U])));
         tracep->fullWData(oldp+956,(__Vtemp2688),128);
@@ -2739,7 +2739,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         __Vtemp2689[3U] = (IData)((vlSelf->top__DOT__d_cache__DOT__receive_data_1 
                                    >> 0x20U));
         tracep->fullWData(oldp+960,(__Vtemp2689),128);
-        tracep->fullCData(oldp+964,((0x3fU & vlSelf->top__DOT__d_cache__DOT__unvalidIndex)),6);
+        tracep->fullCData(oldp+964,((0x3fU & (IData)(vlSelf->top__DOT__d_cache__DOT__unvalidIndex))),6);
         tracep->fullBit(oldp+965,(((0U != (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
                                    & (IData)(vlSelf->top__DOT__d_cache__DOT___GEN_330))));
         tracep->fullBit(oldp+966,(((0U != (IData)(vlSelf->top__DOT__d_cache__DOT__state)) 
@@ -2789,7 +2789,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                             (vlSelf->top__DOT__LSU__DOT__maddr 
                                                              >> 4U)))))]),32);
         tracep->fullIData(oldp+979,(vlSelf->top__DOT__d_cache__DOT__tagMem
-                                    [(0x3fU & vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2)]),32);
+                                    [(0x3fU & (IData)(vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2))]),32);
         tracep->fullIData(oldp+980,((0xffffffU & (IData)(
                                                          (vlSelf->top__DOT__LSU__DOT__maddr 
                                                           >> 8U)))),32);
@@ -2803,14 +2803,14 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                           >> 8U)))),24);
         tracep->fullBit(oldp+985,(vlSelf->top__DOT__d_cache__DOT__allvalid));
         tracep->fullCData(oldp+986,(vlSelf->top__DOT__d_cache__DOT__foundUnvalidIndex),2);
-        tracep->fullIData(oldp+987,(vlSelf->top__DOT__d_cache__DOT__unvalidIndex),17);
+        tracep->fullSData(oldp+987,(vlSelf->top__DOT__d_cache__DOT__unvalidIndex),9);
         tracep->fullBit(oldp+988,(vlSelf->top__DOT__d_cache__DOT__tagMatch_0));
         tracep->fullBit(oldp+989,(vlSelf->top__DOT__d_cache__DOT__tagMatch_1));
         tracep->fullBit(oldp+990,(vlSelf->top__DOT__d_cache__DOT__tagMatch_2));
         tracep->fullBit(oldp+991,(vlSelf->top__DOT__d_cache__DOT__tagMatch_3));
         tracep->fullBit(oldp+992,(vlSelf->top__DOT__d_cache__DOT__anyMatch));
         tracep->fullCData(oldp+993,(vlSelf->top__DOT__d_cache__DOT__foundtagIndex),2);
-        tracep->fullIData(oldp+994,(vlSelf->top__DOT__d_cache__DOT__tagIndex),17);
+        tracep->fullSData(oldp+994,(vlSelf->top__DOT__d_cache__DOT__tagIndex),9);
         tracep->fullWData(oldp+995,(vlSelf->top__DOT__d_cache__DOT__write_back_data),128);
         tracep->fullIData(oldp+999,(vlSelf->top__DOT__d_cache__DOT__write_back_addr),32);
         tracep->fullQData(oldp+1000,(vlSelf->top__DOT__d_cache__DOT__receive_data_0),64);

@@ -86,7 +86,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__5(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_25[2U] = 0U;
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_25[3U] = 0U;
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_25[4U] = 0U;
-        vlSelf->top__DOT__d_cache__DOT___GEN_472 = 0ULL;
+        vlSelf->top__DOT__d_cache__DOT___GEN_486 = 0ULL;
     } else {
         vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT___GEN_25[0U] 
             = ((0U == (IData)(vlSelf->top__DOT__EXU__DOT__ALU__DOT__Mul__DOT__state))
@@ -144,7 +144,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__5(Vtop___024root* vlSelf) {
                                              >> 0x1eU)
                                           : __Vtemp2611[4U])
                                       : __Vtemp2614[4U]));
-        vlSelf->top__DOT__d_cache__DOT___GEN_472 = 
+        vlSelf->top__DOT__d_cache__DOT___GEN_486 = 
             ((0U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
               ? (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))
               : ((1U == (IData)(vlSelf->top__DOT__d_cache__DOT__state))
@@ -162,7 +162,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__5(Vtop___024root* vlSelf) {
                                                               vlSelf->top__DOT__d_cache__DOT__tagMem
                                                               [
                                                               (0x3fU 
-                                                               & vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2)])) 
+                                                               & (IData)(vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2))])) 
                                               << 8U) 
                                              | (QData)((IData)(
                                                                (0xf0U 
