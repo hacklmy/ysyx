@@ -39,9 +39,9 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-//#define CONFIG_DIFFTEST
+#define CONFIG_DIFFTEST
 //#define VerilatedVCD
-#define HAS_VGA
+//#define HAS_VGA
 #define HAS_AXI
 
 void difftest_skip_ref();
@@ -225,7 +225,7 @@ void vga_update_screen() {
   struct timespec now;
   clock_gettime(CLOCK_MONOTONIC_COARSE, &now);
   uint64_t us = now.tv_sec * 1000000 + now.tv_nsec / 1000;
-  if (us - last < 5000000 / TIMER_HZ) {
+  if (us - last < 1000000 / TIMER_HZ) {
     return;
   }
   last = us;
