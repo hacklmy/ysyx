@@ -39,7 +39,7 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-//#define CONFIG_DIFFTEST
+#define CONFIG_DIFFTEST
 //#define VerilatedVCD
 //#define HAS_VGA
 #define HAS_AXI
@@ -798,7 +798,6 @@ int main(int argc, char** argv) {
   contextp = new VerilatedContext;
   contextp->commandArgs(argc, argv);
   top = new Vtop{contextp};
-  Verilated::optimizeGoal(Verilated::OPT_FASTEST);
   #ifdef VerilatedVCD
   tfp = new VerilatedVcdC; //初始化VCD对象指针
   contextp->traceEverOn(true); //打开追踪功能
