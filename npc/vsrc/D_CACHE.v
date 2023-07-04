@@ -797,7 +797,8 @@ module D_CACHE(
       if (`PRINTF_COND) begin
     `endif
         if (~reset) begin
-          $fwrite(32'h80000002,"d_cache state:%d\n",state); // @[d_cache.scala 96:11]
+          $fwrite(32'h80000002,"d_cache state:%d validindex:%d tagindex:%d replaceindex:%d\n",state,unvalidIndex,
+            tagIndex,replaceIndex); // @[d_cache.scala 96:11]
         end
     `ifdef PRINTF_COND
       end
