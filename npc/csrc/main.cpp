@@ -225,7 +225,7 @@ void vga_update_screen() {
   struct timespec now;
   clock_gettime(CLOCK_MONOTONIC_COARSE, &now);
   uint64_t us = now.tv_sec * 1000000 + now.tv_nsec / 1000;
-  if (us - last < 1000000 / TIMER_HZ) {
+  if (us - last < 5000000 / TIMER_HZ) {
     return;
   }
   last = us;
