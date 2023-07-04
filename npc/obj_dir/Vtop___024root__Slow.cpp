@@ -3198,13 +3198,13 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                           [
                                                                           (0x3fU 
                                                                            & (IData)(vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2))])) 
-                                                          << 8U) 
+                                                          << 9U) 
                                                          | (QData)((IData)(
-                                                                           (0xf0U 
+                                                                           (0x1e0U 
                                                                             & ((IData)(
                                                                                 (vlSelf->top__DOT__LSU__DOT__maddr 
                                                                                 >> 5U)) 
-                                                                               << 4U)))))
+                                                                               << 5U)))))
                                                          : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr)))
                                                         : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr)))
                                                        : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr)))))))));
@@ -4680,7 +4680,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__d_cache__DOT___GEN_373 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__d_cache__DOT___GEN_574 = VL_RAND_RESET_Q(64);
     VL_RAND_RESET_W(256, vlSelf->top__DOT__d_cache__DOT___GEN_592);
-    vlSelf->top__DOT__d_cache__DOT___GEN_498 = VL_RAND_RESET_Q(40);
+    vlSelf->top__DOT__d_cache__DOT___GEN_498 = VL_RAND_RESET_Q(41);
     vlSelf->top__DOT__axi__DOT__Mem_modle_Rdata = VL_RAND_RESET_Q(64);
     vlSelf->top__DOT__axi__DOT__axi_wready = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__axi__DOT__axi_bvalid = VL_RAND_RESET_I(1);

@@ -6540,13 +6540,13 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__3(Vtop___024root* vlSelf) {
                                                               [
                                                               (0x3fU 
                                                                & (IData)(vlSelf->top__DOT__d_cache__DOT___replaceIndex_T_2))])) 
-                                              << 8U) 
+                                              << 9U) 
                                              | (QData)((IData)(
-                                                               (0xf0U 
+                                                               (0x1e0U 
                                                                 & ((IData)(
                                                                            (vlSelf->top__DOT__LSU__DOT__maddr 
                                                                             >> 5U)) 
-                                                                   << 4U)))))
+                                                                   << 5U)))))
                                           : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr)))
                                       : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr)))
                                   : (QData)((IData)(vlSelf->top__DOT__d_cache__DOT__write_back_addr))))))));
