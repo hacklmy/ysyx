@@ -89,7 +89,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__IDU__DOT__br_taken;
         CData/*0:0*/ top__DOT__IDU__DOT___GEN_1;
         CData/*0:0*/ top__DOT__IDU__DOT___T_7;
-        CData/*6:0*/ top__DOT__IDU__DOT___ALUop_T_176;
+        CData/*5:0*/ top__DOT__IDU__DOT___ALUop_T_167;
         CData/*1:0*/ top__DOT__IDU__DOT__csr_index;
         CData/*0:0*/ top__DOT__EXU__DOT__ALU_io_alu_busy;
         CData/*0:0*/ top__DOT__EXU__DOT__es_valid;
