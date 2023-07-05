@@ -75,29 +75,30 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__IFU__DOT___GEN_2;
         CData/*0:0*/ top__DOT__IDU__DOT__ds_valid;
         CData/*0:0*/ top__DOT__IDU__DOT__br_taken_cancel;
-        CData/*0:0*/ top__DOT__IDU__DOT__src1_is_pc;
-        CData/*6:0*/ top__DOT__IDU__DOT___inst_type_T_188;
+        CData/*0:0*/ top__DOT__IDU__DOT__ctrl_bus_4;
+        CData/*6:0*/ top__DOT__IDU__DOT__ctrl_bus_1;
+        CData/*6:0*/ top__DOT__IDU__DOT__ctrl_bus_0;
         CData/*1:0*/ top__DOT__IDU__DOT__csr_write;
         CData/*0:0*/ top__DOT__IDU__DOT__conflict_es_rs1;
         CData/*0:0*/ top__DOT__IDU__DOT__conflict_ms_rs1;
         CData/*0:0*/ top__DOT__IDU__DOT__conflict_ws_rs1;
-        CData/*0:0*/ top__DOT__IDU__DOT__src2_is_imm;
+        CData/*0:0*/ top__DOT__IDU__DOT__ctrl_bus_3;
         CData/*4:0*/ top__DOT__IDU__DOT__rs2;
         CData/*0:0*/ top__DOT__IDU__DOT__conflict_es_rs2;
         CData/*0:0*/ top__DOT__IDU__DOT__conflict_ms_rs2;
         CData/*0:0*/ top__DOT__IDU__DOT__conflict_ws_rs2;
         CData/*0:0*/ top__DOT__IDU__DOT__ds_allowin;
-        CData/*0:0*/ top__DOT__IDU__DOT__br_taken;
+        CData/*0:0*/ top__DOT__IDU__DOT__ctrl_bus_6;
         CData/*0:0*/ top__DOT__IDU__DOT___GEN_1;
         CData/*0:0*/ top__DOT__IDU__DOT___T_7;
-        CData/*6:0*/ top__DOT__IDU__DOT___ALUop_T_176;
+        CData/*0:0*/ top__DOT__IDU__DOT___ctrl_bus_T_498;
         CData/*1:0*/ top__DOT__IDU__DOT__csr_index;
         CData/*0:0*/ top__DOT__EXU__DOT__ALU_io_alu_busy;
         CData/*0:0*/ top__DOT__EXU__DOT__es_valid;
         CData/*4:0*/ top__DOT__EXU__DOT__es_rd;
-        CData/*0:0*/ top__DOT__EXU__DOT__es_rf_we;
     };
     struct {
+        CData/*0:0*/ top__DOT__EXU__DOT__es_rf_we;
         CData/*7:0*/ top__DOT__EXU__DOT__st_wstrb;
         CData/*0:0*/ top__DOT__EXU__DOT__st_we;
         CData/*0:0*/ top__DOT__EXU__DOT__ld_we;
@@ -161,9 +162,9 @@ VL_MODULE(Vtop___024root) {
         CData/*1:0*/ top__DOT__d_cache__DOT__foundUnvalidIndex;
         CData/*0:0*/ top__DOT__d_cache__DOT__tagMatch_0;
         CData/*0:0*/ top__DOT__d_cache__DOT__tagMatch_1;
-        CData/*0:0*/ top__DOT__d_cache__DOT__tagMatch_2;
     };
     struct {
+        CData/*0:0*/ top__DOT__d_cache__DOT__tagMatch_2;
         CData/*0:0*/ top__DOT__d_cache__DOT__tagMatch_3;
         CData/*0:0*/ top__DOT__d_cache__DOT__anyMatch;
         CData/*2:0*/ top__DOT__d_cache__DOT__receive_num;
@@ -227,17 +228,19 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__IDU_io_br_target;
         QData/*63:0*/ top__DOT__LSU_io_ms_fwd_res;
         QData/*63:0*/ top__DOT__arbiter_io_ifu_axi_out_rdata;
-        QData/*63:0*/ top__DOT__arbiter_io_lsu_axi_out_rdata;
     };
     struct {
+        QData/*63:0*/ top__DOT__arbiter_io_lsu_axi_out_rdata;
         QData/*63:0*/ top__DOT__d_cache_io_to_axi_wdata;
         QData/*63:0*/ top__DOT__IFU__DOT__br_target;
         QData/*63:0*/ top__DOT__IFU__DOT__fs_pc_next;
         QData/*63:0*/ top__DOT__IFU__DOT__fs_pc;
         QData/*63:0*/ top__DOT__IDU__DOT__ds_pc;
-        QData/*63:0*/ top__DOT__IDU__DOT___br_taken_T;
+        QData/*63:0*/ top__DOT__IDU__DOT__rdata1;
+        QData/*63:0*/ top__DOT__IDU__DOT___bne_res_T;
         QData/*63:0*/ top__DOT__IDU__DOT___rdata2_T_1;
-        QData/*63:0*/ top__DOT__IDU__DOT___br_taken_T_1;
+        QData/*63:0*/ top__DOT__IDU__DOT__rdata2;
+        QData/*63:0*/ top__DOT__IDU__DOT___bne_res_T_1;
         QData/*63:0*/ top__DOT__IDU__DOT__imm;
         QData/*63:0*/ top__DOT__IDU__DOT__src1;
         QData/*63:0*/ top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg_io_rdata_MPORT_data;
@@ -291,11 +294,11 @@ VL_MODULE(Vtop___024root) {
         VlUnpacked<IData/*31:0*/, 256> top__DOT__i_cache__DOT__tagMem;
         VlUnpacked<CData/*7:0*/, 64> top__DOT__i_cache__DOT__quene;
         VlUnpacked<VlWide<4>/*127:0*/, 256> top__DOT__d_cache__DOT__cacheLine;
+    };
+    struct {
         VlUnpacked<CData/*0:0*/, 256> top__DOT__d_cache__DOT__validMem;
         VlUnpacked<IData/*31:0*/, 256> top__DOT__d_cache__DOT__tagMem;
         VlUnpacked<CData/*0:0*/, 256> top__DOT__d_cache__DOT__dirtyMem;
-    };
-    struct {
         VlUnpacked<CData/*7:0*/, 64> top__DOT__d_cache__DOT__quene;
     };
 

@@ -434,6 +434,18 @@ module IDU(
   wire  _GEN_0 = _T & br_taken_cancel ? 1'h0 : br_taken_cancel; // @[IDU.scala 136:67 137:25 123:34]
   wire  _GEN_1 = ds_allowin & io_fs_to_ds_valid & ctrl_bus_6 & ~br_taken_cancel | _GEN_0; // @[IDU.scala 134:74 135:25]
   wire  _T_7 = ctrl_bus_6 & _T_2; // @[IDU.scala 141:19]
+  wire  _ctrl_bus_T_285 = _ctrl_bus_T_65 ? 1'h0 : _ctrl_bus_T_67 | (_ctrl_bus_T_69 | (_ctrl_bus_T_71 | (_ctrl_bus_T_73
+     | (_ctrl_bus_T_75 | (_ctrl_bus_T_77 | (_ctrl_bus_T_79 | (_ctrl_bus_T_81 | (_ctrl_bus_T_83 | (_ctrl_bus_T_85 | (
+    _ctrl_bus_T_87 | (_ctrl_bus_T_89 | (_ctrl_bus_T_91 | (_ctrl_bus_T_93 | (_ctrl_bus_T_95 | (_ctrl_bus_T_97 | (
+    _ctrl_bus_T_99 | (_ctrl_bus_T_101 | (_ctrl_bus_T_103 | (_ctrl_bus_T_105 | (_ctrl_bus_T_107 | (_ctrl_bus_T_109 | (
+    _ctrl_bus_T_111 | (_ctrl_bus_T_113 | _ctrl_bus_T_115))))))))))))))))))))))); // @[Lookup.scala 34:39]
+  wire  _ctrl_bus_T_286 = _ctrl_bus_T_63 ? 1'h0 : _ctrl_bus_T_285; // @[Lookup.scala 34:39]
+  wire  _ctrl_bus_T_287 = _ctrl_bus_T_61 ? 1'h0 : _ctrl_bus_T_286; // @[Lookup.scala 34:39]
+  wire  _ctrl_bus_T_288 = _ctrl_bus_T_59 ? 1'h0 : _ctrl_bus_T_287; // @[Lookup.scala 34:39]
+  wire  _ctrl_bus_T_302 = _ctrl_bus_T_31 ? 1'h0 : _ctrl_bus_T_33 | (_ctrl_bus_T_35 | (_ctrl_bus_T_37 | (_ctrl_bus_T_39
+     | (_ctrl_bus_T_41 | (_ctrl_bus_T_43 | (_ctrl_bus_T_45 | (_ctrl_bus_T_47 | (_ctrl_bus_T_49 | (_ctrl_bus_T_51 | (
+    _ctrl_bus_T_53 | (_ctrl_bus_T_55 | (_ctrl_bus_T_57 | _ctrl_bus_T_288)))))))))))); // @[Lookup.scala 34:39]
+  wire  _ctrl_bus_T_303 = _ctrl_bus_T_29 ? 1'h0 : _ctrl_bus_T_302; // @[Lookup.scala 34:39]
   wire  _ctrl_bus_T_488 = _ctrl_bus_T_37 ? 1'h0 : _ctrl_bus_T_39 | (_ctrl_bus_T_41 | (_ctrl_bus_T_43 | (_ctrl_bus_T_45
      | (_ctrl_bus_T_47 | (_ctrl_bus_T_49 | _ctrl_bus_T_51))))); // @[Lookup.scala 34:39]
   wire  _ctrl_bus_T_489 = _ctrl_bus_T_35 ? 1'h0 : _ctrl_bus_T_488; // @[Lookup.scala 34:39]
@@ -524,7 +536,9 @@ module IDU(
   assign io_src2 = ctrl_bus_3 ? imm : rdata2; // @[IDU.scala 571:16]
   assign io_rf_dst = inst[11:7]; // @[IDU.scala 320:15]
   assign io_store_data = _ctrl_bus_T_59 ? rdata2 : {{32'd0}, _io_store_data_T_13}; // @[Lookup.scala 34:39]
-  assign io_ctrl_sign_reg_write = ctrl_bus_1[0]; // @[IDU.scala 473:15 72:25]
+  assign io_ctrl_sign_reg_write = _ctrl_bus_T_1 | (_ctrl_bus_T_3 | (_ctrl_bus_T_5 | (_ctrl_bus_T_7 | (_ctrl_bus_T_9 | (
+    _ctrl_bus_T_11 | (_ctrl_bus_T_13 | (_ctrl_bus_T_15 | (_ctrl_bus_T_17 | (_ctrl_bus_T_19 | (_ctrl_bus_T_21 | (
+    _ctrl_bus_T_23 | (_ctrl_bus_T_25 | (_ctrl_bus_T_27 | _ctrl_bus_T_303))))))))))))); // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Writemem_en = inst_type == 32'h44; // @[IDU.scala 517:29]
   assign io_ctrl_sign_Readmem_en = _ctrl_bus_T_1 ? 1'h0 : _ctrl_bus_T_505; // @[Lookup.scala 34:39]
   assign io_ctrl_sign_Wmask = 3'h2 == funct3 ? 8'hf : _Wmask_T_5; // @[Mux.scala 81:58]
