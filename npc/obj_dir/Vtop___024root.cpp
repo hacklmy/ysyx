@@ -288,11 +288,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     __Vdlyvset__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v0 = 0U;
     __Vdlyvset__top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg__v1 = 0U;
     __Vdlyvset__top__DOT__Register__DOT__Reg__v0 = 0U;
-    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
-        VL_FWRITEF(0x80000002U,"replace_way:%1# quene:%1#\n",
-                   2,(3U & ((IData)(vlSelf->top__DOT__i_cache__DOT___GEN_15) 
-                            >> 6U)),2,(3U & (IData)(vlSelf->top__DOT__i_cache__DOT___GEN_15)));
-    }
     __Vdlyvset__top__DOT__i_cache__DOT__cacheLine__v0 = 0U;
     __Vdlyvset__top__DOT__i_cache__DOT__cacheLine__v1 = 0U;
     __Vdlyvset__top__DOT__d_cache__DOT__cacheLine__v0 = 0U;
@@ -1996,6 +1991,15 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                    == (IData)(vlSelf->top__DOT__i_cache__DOT__state))
                                                    ? (IData)(vlSelf->top__DOT__i_cache__DOT___GEN_29)
                                                    : (IData)(vlSelf->top__DOT__i_cache__DOT___GEN_161)));
+    }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"i_cache state:%1#\n",
+                   3,vlSelf->top__DOT__i_cache__DOT__state);
+    }
+    if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->reset))))) {
+        VL_FWRITEF(0x80000002U,"replace_way:%1# quene:%1#\n",
+                   2,(3U & ((IData)(vlSelf->top__DOT__i_cache__DOT___GEN_15) 
+                            >> 6U)),2,(3U & (IData)(vlSelf->top__DOT__i_cache__DOT___GEN_15)));
     }
     if (vlSelf->reset) {
         vlSelf->top__DOT__d_cache__DOT__write_back_data[0U] = 0U;
