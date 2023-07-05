@@ -3000,11 +3000,11 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                          == (IData)(vlSelf->top__DOT__IDU__DOT___inst_type_T_188)) 
                                                         | (0x40U 
                                                            == (IData)(vlSelf->top__DOT__IDU__DOT___inst_type_T_188))))));
-    vlSelf->top__DOT__LSU__DOT__rdata = ((5U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
+    vlSelf->top__DOT__LSU__DOT__rdata = ((7U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                           ? (QData)((IData)(
                                                             (0xffffU 
                                                              & vlSelf->top__DOT__d_cache__DOT___GEN_421[0U])))
-                                          : ((0U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
+                                          : ((6U == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                               ? (((
                                                    (0x80U 
                                                     & vlSelf->top__DOT__d_cache__DOT___GEN_421[0U])
@@ -3014,7 +3014,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                  | (QData)((IData)(
                                                                    (0xffU 
                                                                     & vlSelf->top__DOT__d_cache__DOT___GEN_421[0U]))))
-                                              : ((1U 
+                                              : ((5U 
                                                   == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                   ? 
                                                  ((((0x8000U 
@@ -3026,18 +3026,18 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                     (0xffffU 
                                                                      & vlSelf->top__DOT__d_cache__DOT___GEN_421[0U]))))
                                                   : 
-                                                 ((6U 
+                                                 ((4U 
                                                    == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                    ? (QData)((IData)(
                                                                      vlSelf->top__DOT__d_cache__DOT___GEN_421[0U]))
                                                    : 
-                                                  ((4U 
+                                                  ((3U 
                                                     == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                     ? (QData)((IData)(
                                                                       (0xffU 
                                                                        & vlSelf->top__DOT__d_cache__DOT___GEN_421[0U])))
                                                     : 
-                                                   ((3U 
+                                                   ((2U 
                                                      == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                      ? 
                                                     (((QData)((IData)(
@@ -3046,7 +3046,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                      | (QData)((IData)(
                                                                        vlSelf->top__DOT__d_cache__DOT___GEN_421[0U])))
                                                      : 
-                                                    ((2U 
+                                                    ((1U 
                                                       == (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                                       ? 
                                                      (((QData)((IData)(
@@ -3127,7 +3127,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                        == (IData)(vlSelf->top__DOT__IDU__DOT___inst_type_T_188))) 
                                                    | (3U 
                                                       == (IData)(vlSelf->top__DOT__IDU__DOT__csr_write))));
-    vlSelf->top__DOT__LSU_io_ms_fwd_res = ((7U != (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
+    vlSelf->top__DOT__LSU_io_ms_fwd_res = ((0U != (IData)(vlSelf->top__DOT__LSU__DOT__load_type))
                                             ? vlSelf->top__DOT__LSU__DOT__rdata
                                             : vlSelf->top__DOT__LSU__DOT__ms_res);
     vlSelf->top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg_io_rdata_MPORT_data 
