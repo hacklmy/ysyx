@@ -34,6 +34,7 @@ class Vtop VL_NOT_FINAL {
     VL_OUT(&io_inst,31,0);
     VL_OUT64(&io_pc,63,0);
     VL_OUT8(&io_step,0,0);
+    VL_OUT8(&io_skip,0,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
