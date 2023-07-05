@@ -192,7 +192,6 @@ module top(
   wire  arbiter_io_lsu_axi_out_bvalid; // @[top.scala 22:25]
   wire [63:0] arbiter_io_axi_in_rdata; // @[top.scala 22:25]
   wire  arbiter_io_axi_in_rlast; // @[top.scala 22:25]
-  wire  arbiter_io_axi_in_rvalid; // @[top.scala 22:25]
   wire  arbiter_io_axi_in_wready; // @[top.scala 22:25]
   wire  arbiter_io_axi_in_bvalid; // @[top.scala 22:25]
   wire [31:0] arbiter_io_axi_out_araddr; // @[top.scala 22:25]
@@ -266,7 +265,6 @@ module top(
   wire  axi_io_axi_in_bready; // @[top.scala 25:21]
   wire [63:0] axi_io_axi_out_rdata; // @[top.scala 25:21]
   wire  axi_io_axi_out_rlast; // @[top.scala 25:21]
-  wire  axi_io_axi_out_rvalid; // @[top.scala 25:21]
   wire  axi_io_axi_out_wready; // @[top.scala 25:21]
   wire  axi_io_axi_out_bvalid; // @[top.scala 25:21]
   wire [31:0] dpi_flag; // @[top.scala 121:21]
@@ -472,7 +470,6 @@ module top(
     .io_lsu_axi_out_bvalid(arbiter_io_lsu_axi_out_bvalid),
     .io_axi_in_rdata(arbiter_io_axi_in_rdata),
     .io_axi_in_rlast(arbiter_io_axi_in_rlast),
-    .io_axi_in_rvalid(arbiter_io_axi_in_rvalid),
     .io_axi_in_wready(arbiter_io_axi_in_wready),
     .io_axi_in_bvalid(arbiter_io_axi_in_bvalid),
     .io_axi_out_araddr(arbiter_io_axi_out_araddr),
@@ -552,7 +549,6 @@ module top(
     .io_axi_in_bready(axi_io_axi_in_bready),
     .io_axi_out_rdata(axi_io_axi_out_rdata),
     .io_axi_out_rlast(axi_io_axi_out_rlast),
-    .io_axi_out_rvalid(axi_io_axi_out_rvalid),
     .io_axi_out_wready(axi_io_axi_out_wready),
     .io_axi_out_bvalid(axi_io_axi_out_bvalid)
   );
@@ -664,7 +660,6 @@ module top(
   assign arbiter_io_lsu_axi_in_bready = d_cache_io_to_axi_bready; // @[top.scala 33:27]
   assign arbiter_io_axi_in_rdata = axi_io_axi_out_rdata; // @[top.scala 38:23]
   assign arbiter_io_axi_in_rlast = axi_io_axi_out_rlast; // @[top.scala 38:23]
-  assign arbiter_io_axi_in_rvalid = axi_io_axi_out_rvalid; // @[top.scala 38:23]
   assign arbiter_io_axi_in_wready = axi_io_axi_out_wready; // @[top.scala 38:23]
   assign arbiter_io_axi_in_bvalid = axi_io_axi_out_bvalid; // @[top.scala 38:23]
   assign i_cache_clock = clock;
