@@ -1351,7 +1351,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgCData(oldp+568,(vlSelf->top__DOT__i_cache__DOT__quene[15]),8);
             tracep->chgCData(oldp+569,((0xfU & (vlSelf->top__DOT__i_cache__DOT__addr 
                                                 >> 4U))),4);
-            tracep->chgCData(oldp+570,(vlSelf->top__DOT__i_cache__DOT__quene_MPORT_data),8);
+            tracep->chgCData(oldp+570,(vlSelf->top__DOT__i_cache__DOT__quene_replace_way_MPORT_data),8);
             tracep->chgCData(oldp+571,(vlSelf->top__DOT__i_cache__DOT__quene
                                        [(0xfU & (vlSelf->top__DOT__i_cache__DOT__addr 
                                                  >> 4U))]),8);
@@ -1369,7 +1369,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                       >> 4U))] 
                                                   << 2U) 
                                                  | (3U 
-                                                    & ((IData)(vlSelf->top__DOT__i_cache__DOT__quene_MPORT_data) 
+                                                    & ((IData)(vlSelf->top__DOT__i_cache__DOT__quene_replace_way_MPORT_data) 
                                                        >> 6U))))),8);
             tracep->chgIData(oldp+574,(vlSelf->top__DOT__i_cache__DOT__addr),32);
             tracep->chgCData(oldp+575,((0xfU & vlSelf->top__DOT__i_cache__DOT__addr)),4);
@@ -1416,7 +1416,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgQData(oldp+588,(vlSelf->top__DOT__i_cache__DOT__receive_data_0),64);
             tracep->chgQData(oldp+590,(vlSelf->top__DOT__i_cache__DOT__receive_data_1),64);
             tracep->chgCData(oldp+592,(vlSelf->top__DOT__i_cache__DOT__receive_num),3);
-            tracep->chgCData(oldp+593,((3U & ((IData)(vlSelf->top__DOT__i_cache__DOT__quene_MPORT_data) 
+            tracep->chgCData(oldp+593,((3U & ((IData)(vlSelf->top__DOT__i_cache__DOT__quene_replace_way_MPORT_data) 
                                               >> 6U))),2);
             tracep->chgCData(oldp+594,(vlSelf->top__DOT__i_cache__DOT__state),3);
             tracep->chgIData(oldp+595,(vlSelf->top__DOT__i_cache__DOT___replaceIndex_T_2),32);
