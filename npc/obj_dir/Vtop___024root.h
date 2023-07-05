@@ -91,13 +91,14 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__IDU__DOT__ctrl_bus_6;
         CData/*0:0*/ top__DOT__IDU__DOT___GEN_1;
         CData/*0:0*/ top__DOT__IDU__DOT___T_7;
+        CData/*0:0*/ top__DOT__IDU__DOT___ctrl_bus_T_303;
         CData/*0:0*/ top__DOT__IDU__DOT___ctrl_bus_T_498;
         CData/*1:0*/ top__DOT__IDU__DOT__csr_index;
         CData/*0:0*/ top__DOT__EXU__DOT__ALU_io_alu_busy;
         CData/*0:0*/ top__DOT__EXU__DOT__es_valid;
-        CData/*4:0*/ top__DOT__EXU__DOT__es_rd;
     };
     struct {
+        CData/*4:0*/ top__DOT__EXU__DOT__es_rd;
         CData/*0:0*/ top__DOT__EXU__DOT__es_rf_we;
         CData/*7:0*/ top__DOT__EXU__DOT__st_wstrb;
         CData/*0:0*/ top__DOT__EXU__DOT__st_we;
@@ -161,9 +162,9 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__d_cache__DOT__allvalid;
         CData/*1:0*/ top__DOT__d_cache__DOT__foundUnvalidIndex;
         CData/*0:0*/ top__DOT__d_cache__DOT__tagMatch_0;
-        CData/*0:0*/ top__DOT__d_cache__DOT__tagMatch_1;
     };
     struct {
+        CData/*0:0*/ top__DOT__d_cache__DOT__tagMatch_1;
         CData/*0:0*/ top__DOT__d_cache__DOT__tagMatch_2;
         CData/*0:0*/ top__DOT__d_cache__DOT__tagMatch_3;
         CData/*0:0*/ top__DOT__d_cache__DOT__anyMatch;
@@ -227,9 +228,9 @@ VL_MODULE(Vtop___024root) {
         VlWide<4>/*127:0*/ top__DOT__d_cache__DOT___GEN_421;
         QData/*63:0*/ top__DOT__IDU_io_br_target;
         QData/*63:0*/ top__DOT__LSU_io_ms_fwd_res;
-        QData/*63:0*/ top__DOT__arbiter_io_ifu_axi_out_rdata;
     };
     struct {
+        QData/*63:0*/ top__DOT__arbiter_io_ifu_axi_out_rdata;
         QData/*63:0*/ top__DOT__arbiter_io_lsu_axi_out_rdata;
         QData/*63:0*/ top__DOT__d_cache_io_to_axi_wdata;
         QData/*63:0*/ top__DOT__IFU__DOT__br_target;
@@ -293,9 +294,9 @@ VL_MODULE(Vtop___024root) {
         VlUnpacked<CData/*0:0*/, 256> top__DOT__i_cache__DOT__validMem;
         VlUnpacked<IData/*31:0*/, 256> top__DOT__i_cache__DOT__tagMem;
         VlUnpacked<CData/*7:0*/, 64> top__DOT__i_cache__DOT__quene;
-        VlUnpacked<VlWide<4>/*127:0*/, 256> top__DOT__d_cache__DOT__cacheLine;
     };
     struct {
+        VlUnpacked<VlWide<4>/*127:0*/, 256> top__DOT__d_cache__DOT__cacheLine;
         VlUnpacked<CData/*0:0*/, 256> top__DOT__d_cache__DOT__validMem;
         VlUnpacked<IData/*31:0*/, 256> top__DOT__d_cache__DOT__tagMem;
         VlUnpacked<CData/*0:0*/, 256> top__DOT__d_cache__DOT__dirtyMem;

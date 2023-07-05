@@ -1639,7 +1639,55 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                             & vlSelf->top__DOT__IDU__DOT__inst))
                                                            ? (IData)(vlSelf->top__DOT__IDU__DOT__rdata2)
                                                            : 0U))))))),64);
-        tracep->fullBit(oldp+42,((1U & (IData)(vlSelf->top__DOT__IDU__DOT__ctrl_bus_1))));
+        tracep->fullBit(oldp+42,(((0x13U == (0x707fU 
+                                             & vlSelf->top__DOT__IDU__DOT__inst)) 
+                                  | ((0x67U == (0x707fU 
+                                                & vlSelf->top__DOT__IDU__DOT__inst)) 
+                                     | ((0x3013U == 
+                                         (0x707fU & vlSelf->top__DOT__IDU__DOT__inst)) 
+                                        | ((0x1bU == 
+                                            (0x707fU 
+                                             & vlSelf->top__DOT__IDU__DOT__inst)) 
+                                           | ((0x40005013U 
+                                               == (0xfc00707fU 
+                                                   & vlSelf->top__DOT__IDU__DOT__inst)) 
+                                              | ((0x4013U 
+                                                  == 
+                                                  (0x707fU 
+                                                   & vlSelf->top__DOT__IDU__DOT__inst)) 
+                                                 | ((0x7013U 
+                                                     == 
+                                                     (0x707fU 
+                                                      & vlSelf->top__DOT__IDU__DOT__inst)) 
+                                                    | ((0x1013U 
+                                                        == 
+                                                        (0xfc00707fU 
+                                                         & vlSelf->top__DOT__IDU__DOT__inst)) 
+                                                       | ((0x5013U 
+                                                           == 
+                                                           (0xfc00707fU 
+                                                            & vlSelf->top__DOT__IDU__DOT__inst)) 
+                                                          | ((0x101bU 
+                                                              == 
+                                                              (0xfe00707fU 
+                                                               & vlSelf->top__DOT__IDU__DOT__inst)) 
+                                                             | ((0x4000501bU 
+                                                                 == 
+                                                                 (0xfe00707fU 
+                                                                  & vlSelf->top__DOT__IDU__DOT__inst)) 
+                                                                | ((0x501bU 
+                                                                    == 
+                                                                    (0xfe00707fU 
+                                                                     & vlSelf->top__DOT__IDU__DOT__inst)) 
+                                                                   | ((0x6013U 
+                                                                       == 
+                                                                       (0x707fU 
+                                                                        & vlSelf->top__DOT__IDU__DOT__inst)) 
+                                                                      | ((0x2013U 
+                                                                          == 
+                                                                          (0x707fU 
+                                                                           & vlSelf->top__DOT__IDU__DOT__inst)) 
+                                                                         | (IData)(vlSelf->top__DOT__IDU__DOT___ctrl_bus_T_303)))))))))))))))));
         tracep->fullBit(oldp+43,((0x44U == (IData)(vlSelf->top__DOT__IDU__DOT__ctrl_bus_1))));
         tracep->fullBit(oldp+44,(((0x13U != (0x707fU 
                                              & vlSelf->top__DOT__IDU__DOT__inst)) 
