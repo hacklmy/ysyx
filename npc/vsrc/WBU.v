@@ -71,18 +71,6 @@ module WBU(
     end else if (io_ms_to_ws_valid) begin // @[WBU.scala 47:40]
       device_access <= io_device_access; // @[WBU.scala 52:23]
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~reset) begin
-          $fwrite(32'h80000002,"ws_pc:%x ws_valid:%d rf_dst:%d rf_we:%d wdata:%x\n",ws_pc,ws_valid,ws_rf_dst,io_we,
-            ws_res); // @[WBU.scala 76:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
