@@ -41,7 +41,7 @@ const char *regs[] = {
 //#define CONFIG_FTRACE
 #define CONFIG_DIFFTEST
 //#define VerilatedVCD
-#define HAS_VGA
+//#define HAS_VGA
 #define HAS_AXI
 
 void difftest_skip_ref();
@@ -285,9 +285,9 @@ static inline uint32_t host_read(void *addr) {
 time_t boot_time = 0;
 extern "C" void pmem_read(long long raddr, long long *rdata) {
   // 总是读取地址为`raddr & ~0x7ull`的8字节返回给`rdata`
-  if(raddr>=DEVICE_BASE && raddr < DEVICE_BASE + 0x1200000 + 32){
-    difftest_skip_ref();
-  }
+  // if(raddr>=DEVICE_BASE && raddr < DEVICE_BASE + 0x1200000 + 32){
+  //   difftest_skip_ref();
+  // }
   if(raddr>=RTC_ADDR && raddr <= RTC_ADDR+8){
     uint64_t time_now = 0;
     struct timespec now;
@@ -354,9 +354,9 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   // 总是往地址为`waddr & ~0x7ull`的8字节按写掩码`wmask`写入`wdata`
   // `wmask`中每比特表示`wdata`中1个字节的掩码,
   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
-  if(waddr>=DEVICE_BASE && waddr < DEVICE_BASE + 0x1200000 + 32){
-    difftest_skip_ref();
-  }
+  // if(waddr>=DEVICE_BASE && waddr < DEVICE_BASE + 0x1200000 + 32){
+  //   difftest_skip_ref();
+  // }
   if(waddr==SERIAL_PORT){
     putchar((char)wdata&0xff);
     return ;
@@ -690,19 +690,18 @@ static void checkregs(CPU_state *ref, uint64_t pc) {
 }
 
 void difftest_step(uint64_t pc) {
-  if (is_skip_ref) {
+  if (top->io_skip) {
     //printf("skip pc:%lx\n",pc);
     // to skip the checking of an instruction, just copy the reg state to reference design
     //printf("%lx %lx\n", cpu_gpr.pc, pc_now);
     //ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
     is_skip_ref_s = true;
-    is_skip_ref = false;
     return;
   }
   if(is_skip_ref_s){
     ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
     ref_difftest_exec(1);
-    is_skip_ref_s = is_skip_ref;
+    is_skip_ref_s = false;
     return;
   }
   // if(is_ecall){
