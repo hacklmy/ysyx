@@ -15,6 +15,8 @@
 #include <dlfcn.h>
 #include <time.h>
 
+#define TIMER_HZ 60
+
 #define DEVICE_BASE 0xa0000000
 #define MMIO_BASE 0xa0000000
 
@@ -219,6 +221,14 @@ static void init_screen() {
 void vga_update_screen() {
   // TODO: call `update_screen()` when the sync register is non-zero,
   // then zero out the sync register
+  static uint64_t last = 0;
+  struct timespec now;
+  clock_gettime(CLOCK_MONOTONIC_COARSE, &now);
+  uint64_t us = now.tv_sec * 1000000 + now.tv_nsec / 1000;
+  if (us - last < 1000000 / TIMER_HZ) {
+    return;
+  }
+  last = us;
   if (vgactl_port_base[1]) {
     update_screen();
     vgactl_port_base[1] = 0;
@@ -275,18 +285,19 @@ static inline uint32_t host_read(void *addr) {
 time_t boot_time = 0;
 extern "C" void pmem_read(long long raddr, long long *rdata) {
   // 总是读取地址为`raddr & ~0x7ull`的8字节返回给`rdata`
-  if(raddr>=DEVICE_BASE && raddr < DEVICE_BASE + 0x1200000 + 32){
-    difftest_skip_ref();
-  }
+  // if(raddr>=DEVICE_BASE && raddr < DEVICE_BASE + 0x1200000 + 32){
+  //   difftest_skip_ref();
+  // }
   if(raddr>=RTC_ADDR && raddr <= RTC_ADDR+8){
     uint64_t time_now = 0;
+    struct timespec now;
+    clock_gettime(CLOCK_MONOTONIC_COARSE, &now);
+    uint64_t us = now.tv_sec * 1000000 + now.tv_nsec / 1000;
     if(boot_time==0){
-      boot_time = time(NULL);
+      boot_time = us;
       time_now = 0;
     }else{
-      time_t tmpcal_ptr;
-      tmpcal_ptr = time(NULL);
-      time_now = (tmpcal_ptr - boot_time)*1000000;
+      time_now = us - boot_time;
     }
     //printf("time : %lld\n",*rdata);
     if(raddr == RTC_ADDR){
@@ -303,21 +314,21 @@ extern "C" void pmem_read(long long raddr, long long *rdata) {
   if(raddr >=VGACTL_ADDR && raddr <VGACTL_ADDR+32){
     //printf("base: %d\n",vgactl_port_base[0] );
     if(raddr==VGACTL_ADDR){
-      printf("read gpu size\n");
+      //printf("read gpu size\n");
       *rdata = vgactl_port_base[0] & 0xffff;
       //*rdata = vgactl_port_base[0];
-      printf("%lld\n", *rdata);
+      //printf("%lld\n", *rdata);
     }else if(raddr == VGACTL_ADDR+2){
-      printf("read gpu size\n");
+      //printf("read gpu size\n");
       *rdata = (vgactl_port_base[0]>>16);
-      printf("%lld\n", *rdata);
+      //printf("%lld\n", *rdata);
     }else if(raddr == VGACTL_ADDR+4){
       //printf("read gpu syn\n");
       *rdata = vgactl_port_base[1];
       //printf("%lld\n", *rdata);
     }
     #ifdef HAS_VGA
-    vga_update_screen();
+    //vga_update_screen();
     #endif
     return;
   }
@@ -343,17 +354,17 @@ extern "C" void pmem_write(long long waddr, long long wdata, char wmask) {
   // 总是往地址为`waddr & ~0x7ull`的8字节按写掩码`wmask`写入`wdata`
   // `wmask`中每比特表示`wdata`中1个字节的掩码,
   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
-  if(waddr>=DEVICE_BASE && waddr < DEVICE_BASE + 0x1200000 + 32){
-    difftest_skip_ref();
-  }
+  // if(waddr>=DEVICE_BASE && waddr < DEVICE_BASE + 0x1200000 + 32){
+  //   difftest_skip_ref();
+  // }
   if(waddr==SERIAL_PORT){
     putchar((char)wdata&0xff);
     return ;
   }
   if(waddr >=VGACTL_ADDR && waddr <=VGACTL_ADDR+32){
     if(waddr==VGACTL_ADDR+4){
-      printf("write syn\n");
-      printf("syn:%lld\n",wdata);
+      //printf("write syn\n");
+      //printf("syn:%lld\n",wdata);
       vgactl_port_base[1] = (uint32_t)wdata;
       return;
     }
@@ -426,8 +437,9 @@ static int cmd_si(char *args){
 
 void print_reg(){
   int i;
+  printf("nemu_pc:%lx\n",ref_r.pc);
   for (i = 0; i < 32; i++) {
-    printf("gpr[%d] %s = 0x%lx\n", i, regs[i], cpu_gpr.gpr[i]);
+    printf("gpr[%d] %s = 0x%lx\t nemu[%d] %s = 0x%lx\n", i, regs[i], cpu_gpr.gpr[i],i, regs[i], ref_r.gpr[i]);
   }
 }
 
@@ -678,19 +690,18 @@ static void checkregs(CPU_state *ref, uint64_t pc) {
 }
 
 void difftest_step(uint64_t pc) {
-  if (is_skip_ref) {
+  if (top->io_skip) {
     //printf("skip pc:%lx\n",pc);
     // to skip the checking of an instruction, just copy the reg state to reference design
     //printf("%lx %lx\n", cpu_gpr.pc, pc_now);
     //ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
     is_skip_ref_s = true;
-    is_skip_ref = false;
     return;
   }
   if(is_skip_ref_s){
     ref_difftest_regcpy(&cpu_gpr, DIFFTEST_TO_REF);
     ref_difftest_exec(1);
-    is_skip_ref_s = is_skip_ref;
+    is_skip_ref_s = false;
     return;
   }
   // if(is_ecall){
@@ -775,7 +786,7 @@ void cpu_exec(int n){
     tfp->dump(sim_time); //dump wave
     #endif
     #ifdef HAS_VGA
-    //vga_update_screen();
+    vga_update_screen();
     #endif
     sim_time++;
   }

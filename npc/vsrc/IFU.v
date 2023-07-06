@@ -3,13 +3,15 @@ module IFU(
   input         clock,
   input         reset,
   input         io_ds_allowin,
+  input         io_ds_ready_go,
+  input         io_ds_valid,
   input         io_br_taken,
   input  [63:0] io_br_target,
   output [63:0] io_to_ds_pc,
   output        io_fs_to_ds_valid,
   output [31:0] io_inst,
+  input         io_axi_in_arready,
   input  [63:0] io_axi_in_rdata,
-  input         io_axi_in_rlast,
   input         io_axi_in_rvalid,
   output [31:0] io_axi_out_araddr,
   output        io_axi_out_arvalid,
@@ -19,68 +21,72 @@ module IFU(
   input         io_cache_init
 );
 `ifdef RANDOMIZE_REG_INIT
-  reg [31:0] _RAND_0;
+  reg [63:0] _RAND_0;
   reg [31:0] _RAND_1;
-  reg [31:0] _RAND_2;
-  reg [63:0] _RAND_3;
-  reg [31:0] _RAND_4;
+  reg [63:0] _RAND_2;
+  reg [31:0] _RAND_3;
+  reg [63:0] _RAND_4;
   reg [31:0] _RAND_5;
 `endif // RANDOMIZE_REG_INIT
-  reg  fs_valid; // @[IFU.scala 29:27]
-  reg  fs_ready_go; // @[IFU.scala 30:30]
-  reg  cache_init; // @[IFU.scala 35:29]
-  wire  fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 71:33]
-  wire  _T = fs_to_ds_valid & io_ds_allowin; // @[IFU.scala 38:31]
-  wire  _GEN_0 = fs_to_ds_valid & io_ds_allowin & cache_init ? 1'h0 : cache_init; // @[IFU.scala 38:60 39:20 35:29]
-  wire  _GEN_1 = io_cache_init | _GEN_0; // @[IFU.scala 36:24 37:20]
-  reg [63:0] fs_pc; // @[IFU.scala 42:24]
-  reg [31:0] fs_inst; // @[IFU.scala 43:26]
-  wire  _GEN_3 = io_axi_in_rvalid | fs_ready_go; // @[IFU.scala 56:27 58:21 30:30]
-  wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 67:24]
-  wire  fs_allowin = ~fs_valid | fs_ready_go & io_ds_allowin; // @[IFU.scala 72:29]
-  wire  _GEN_5 = fs_allowin | fs_valid; // @[IFU.scala 74:36 75:18 29:27]
-  reg  inst_ready; // @[IFU.scala 85:29]
-  wire  _GEN_7 = io_axi_in_rvalid & inst_ready & io_axi_in_rlast ? 1'h0 : 1'h1; // @[IFU.scala 86:60 87:20 89:20]
-  assign io_to_ds_pc = fs_pc; // @[IFU.scala 82:17]
-  assign io_fs_to_ds_valid = fs_valid & fs_ready_go; // @[IFU.scala 71:33]
-  assign io_inst = fs_inst; // @[IFU.scala 108:13]
-  assign io_axi_out_araddr = fs_pc[31:0]; // @[IFU.scala 92:31]
-  assign io_axi_out_arvalid = fs_valid & ~fs_ready_go; // @[IFU.scala 93:36]
-  assign io_axi_out_rready = inst_ready; // @[IFU.scala 97:23]
-  assign io_clear_cache = io_fence & ~cache_init; // @[IFU.scala 54:32]
+  reg [63:0] br_target; // @[IFU.scala 31:28]
+  reg  fs_valid; // @[IFU.scala 36:27]
+  reg [63:0] fs_pc_next; // @[IFU.scala 42:29]
+  reg  cache_init; // @[IFU.scala 43:29]
+  wire  _T_1 = fs_valid & io_ds_allowin; // @[IFU.scala 46:31]
+  wire  _GEN_1 = fs_valid & io_ds_allowin & cache_init ? 1'h0 : cache_init; // @[IFU.scala 46:60 47:20 43:29]
+  wire  _GEN_2 = io_cache_init | _GEN_1; // @[IFU.scala 44:24 45:20]
+  reg [63:0] fs_pc; // @[IFU.scala 50:24]
+  reg [31:0] fs_inst; // @[IFU.scala 51:26]
+  wire [63:0] seq_pc = fs_pc + 64'h4; // @[IFU.scala 74:24]
+  wire [63:0] _pc_next_T = io_ds_valid ? io_br_target : br_target; // @[IFU.scala 75:35]
+  wire [63:0] pc_next = io_br_taken ? _pc_next_T : seq_pc; // @[IFU.scala 75:19]
+  wire  fs_allowin = ~fs_valid | _T_1; // @[IFU.scala 83:29]
+  assign io_to_ds_pc = fs_pc; // @[IFU.scala 95:17]
+  assign io_fs_to_ds_valid = fs_valid; // @[IFU.scala 82:33]
+  assign io_inst = fs_inst; // @[IFU.scala 121:13]
+  assign io_axi_out_araddr = pc_next[31:0]; // @[IFU.scala 105:23]
+  assign io_axi_out_arvalid = io_ds_ready_go; // @[IFU.scala 106:24]
+  assign io_axi_out_rready = ~fs_valid | _T_1; // @[IFU.scala 83:29]
+  assign io_clear_cache = io_fence & ~cache_init; // @[IFU.scala 55:32]
   always @(posedge clock) begin
-    if (reset) begin // @[IFU.scala 29:27]
-      fs_valid <= 1'h0; // @[IFU.scala 29:27]
-    end else begin
-      fs_valid <= _GEN_5;
+    if (reset) begin // @[IFU.scala 31:28]
+      br_target <= 64'h0; // @[IFU.scala 31:28]
+    end else if (io_ds_valid & io_ds_ready_go) begin // @[IFU.scala 32:40]
+      br_target <= io_br_target; // @[IFU.scala 33:19]
     end
-    if (reset) begin // @[IFU.scala 30:30]
-      fs_ready_go <= 1'h0; // @[IFU.scala 30:30]
-    end else if (_T) begin // @[IFU.scala 60:42]
-      fs_ready_go <= 1'h0; // @[IFU.scala 61:21]
-    end else begin
-      fs_ready_go <= _GEN_3;
+    if (reset) begin // @[IFU.scala 36:27]
+      fs_valid <= 1'h0; // @[IFU.scala 36:27]
+    end else if (fs_allowin) begin // @[IFU.scala 84:21]
+      fs_valid <= io_axi_in_rvalid; // @[IFU.scala 85:18]
     end
-    if (reset) begin // @[IFU.scala 35:29]
-      cache_init <= 1'h0; // @[IFU.scala 35:29]
-    end else begin
-      cache_init <= _GEN_1;
-    end
-    if (reset) begin // @[IFU.scala 42:24]
-      fs_pc <= 64'h7ffffffc; // @[IFU.scala 42:24]
-    end else if (fs_allowin) begin // @[IFU.scala 74:36]
-      if (io_br_taken) begin // @[IFU.scala 68:19]
-        fs_pc <= io_br_target;
+    if (reset) begin // @[IFU.scala 42:29]
+      fs_pc_next <= 64'h0; // @[IFU.scala 42:29]
+    end else if (io_axi_in_arready & io_ds_ready_go) begin // @[IFU.scala 76:46]
+      if (io_br_taken) begin // @[IFU.scala 75:19]
+        if (io_ds_valid) begin // @[IFU.scala 75:35]
+          fs_pc_next <= io_br_target;
+        end else begin
+          fs_pc_next <= br_target;
+        end
       end else begin
-        fs_pc <= seq_pc;
+        fs_pc_next <= seq_pc;
       end
     end
-    if (reset) begin // @[IFU.scala 43:26]
-      fs_inst <= 32'h0; // @[IFU.scala 43:26]
-    end else if (io_axi_in_rvalid) begin // @[IFU.scala 56:27]
-      fs_inst <= io_axi_in_rdata[31:0]; // @[IFU.scala 57:17]
+    if (reset) begin // @[IFU.scala 43:29]
+      cache_init <= 1'h0; // @[IFU.scala 43:29]
+    end else begin
+      cache_init <= _GEN_2;
     end
-    inst_ready <= reset | _GEN_7; // @[IFU.scala 85:{29,29}]
+    if (reset) begin // @[IFU.scala 50:24]
+      fs_pc <= 64'h7ffffffc; // @[IFU.scala 50:24]
+    end else if (io_axi_in_rvalid & fs_allowin) begin // @[IFU.scala 87:36]
+      fs_pc <= fs_pc_next; // @[IFU.scala 88:15]
+    end
+    if (reset) begin // @[IFU.scala 51:26]
+      fs_inst <= 32'h0; // @[IFU.scala 51:26]
+    end else if (io_axi_in_rvalid & fs_allowin) begin // @[IFU.scala 87:36]
+      fs_inst <= io_axi_in_rdata[31:0]; // @[IFU.scala 89:17]
+    end
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -118,18 +124,18 @@ initial begin
       `endif
     `endif
 `ifdef RANDOMIZE_REG_INIT
-  _RAND_0 = {1{`RANDOM}};
-  fs_valid = _RAND_0[0:0];
+  _RAND_0 = {2{`RANDOM}};
+  br_target = _RAND_0[63:0];
   _RAND_1 = {1{`RANDOM}};
-  fs_ready_go = _RAND_1[0:0];
-  _RAND_2 = {1{`RANDOM}};
-  cache_init = _RAND_2[0:0];
-  _RAND_3 = {2{`RANDOM}};
-  fs_pc = _RAND_3[63:0];
-  _RAND_4 = {1{`RANDOM}};
-  fs_inst = _RAND_4[31:0];
+  fs_valid = _RAND_1[0:0];
+  _RAND_2 = {2{`RANDOM}};
+  fs_pc_next = _RAND_2[63:0];
+  _RAND_3 = {1{`RANDOM}};
+  cache_init = _RAND_3[0:0];
+  _RAND_4 = {2{`RANDOM}};
+  fs_pc = _RAND_4[63:0];
   _RAND_5 = {1{`RANDOM}};
-  inst_ready = _RAND_5[0:0];
+  fs_inst = _RAND_5[31:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial

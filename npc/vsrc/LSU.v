@@ -18,12 +18,15 @@ module LSU(
   output        io_ms_to_ws_valid,
   output        io_to_ws_rf_we,
   output [4:0]  io_to_ws_rf_dst,
+  output        io_to_ws_device,
   output        io_ms_valid,
   output        io_ms_rf_we,
   output [4:0]  io_ms_rf_dst,
+  output        io_ms_fwd_ready,
+  output [63:0] io_ms_fwd_res,
   input  [63:0] io_axi_in_rdata,
   input         io_axi_in_rvalid,
-  input         io_axi_in_wready,
+  input         io_axi_in_bvalid,
   output [31:0] io_axi_out_araddr,
   output        io_axi_out_arvalid,
   output [31:0] io_axi_out_awaddr,
@@ -37,135 +40,118 @@ module LSU(
   reg [63:0] _RAND_1;
   reg [31:0] _RAND_2;
   reg [31:0] _RAND_3;
-  reg [31:0] _RAND_4;
+  reg [63:0] _RAND_4;
   reg [63:0] _RAND_5;
-  reg [63:0] _RAND_6;
+  reg [31:0] _RAND_6;
   reg [31:0] _RAND_7;
   reg [31:0] _RAND_8;
-  reg [31:0] _RAND_9;
-  reg [63:0] _RAND_10;
-  reg [31:0] _RAND_11;
-  reg [63:0] _RAND_12;
+  reg [63:0] _RAND_9;
+  reg [31:0] _RAND_10;
 `endif // RANDOMIZE_REG_INIT
-  reg  ms_valid; // @[LSU.scala 34:27]
-  reg [63:0] ms_pc; // @[LSU.scala 35:24]
-  reg  ms_ready_go; // @[LSU.scala 37:30]
-  reg  ms_rf_we; // @[LSU.scala 39:27]
-  reg [4:0] ms_rf_dst; // @[LSU.scala 40:28]
-  reg [63:0] ms_res; // @[LSU.scala 41:25]
-  reg [63:0] store_data; // @[LSU.scala 43:29]
-  reg  wen; // @[LSU.scala 44:22]
-  reg [7:0] wstrb; // @[LSU.scala 45:24]
-  reg  ren; // @[LSU.scala 46:22]
-  reg [63:0] maddr; // @[LSU.scala 47:24]
-  reg [2:0] load_type; // @[LSU.scala 48:28]
-  wire  ms_allowin = ~ms_valid | ms_ready_go; // @[LSU.scala 69:29]
-  wire  _GEN_8 = io_es_to_ms_valid & ms_allowin ? io_ren : ren; // @[LSU.scala 54:40 62:13 46:22]
-  wire  _GEN_11 = io_es_to_ms_valid & ms_allowin ? ~(io_wen | io_ren) : ms_ready_go; // @[LSU.scala 54:40 65:21 37:30]
-  reg [63:0] mem_rdata; // @[LSU.scala 73:28]
-  wire  _GEN_14 = ms_valid & ren & io_axi_in_rvalid | _GEN_11; // @[LSU.scala 78:52 81:21]
-  wire  _GEN_16 = ms_valid & wen & io_axi_in_wready | _GEN_14; // @[LSU.scala 75:46 77:21]
-  wire [31:0] _rdata_T_2 = mem_rdata[31] ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
-  wire [63:0] _rdata_T_4 = {_rdata_T_2,mem_rdata[31:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _rdata_T_7 = {56'h0,mem_rdata[7:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _rdata_T_10 = {32'h0,mem_rdata[31:0]}; // @[Cat.scala 31:58]
-  wire [47:0] _rdata_T_13 = mem_rdata[15] ? 48'hffffffffffff : 48'h0; // @[Bitwise.scala 74:12]
-  wire [63:0] _rdata_T_15 = {_rdata_T_13,mem_rdata[15:0]}; // @[Cat.scala 31:58]
-  wire [55:0] _rdata_T_18 = mem_rdata[7] ? 56'hffffffffffffff : 56'h0; // @[Bitwise.scala 74:12]
-  wire [63:0] _rdata_T_20 = {_rdata_T_18,mem_rdata[7:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _rdata_T_23 = {48'h0,mem_rdata[15:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _rdata_T_25 = 3'h1 == load_type ? _rdata_T_4 : mem_rdata; // @[Mux.scala 81:58]
-  wire [63:0] _rdata_T_27 = 3'h2 == load_type ? mem_rdata : _rdata_T_25; // @[Mux.scala 81:58]
+  reg  ms_valid; // @[LSU.scala 37:27]
+  reg [63:0] ms_pc; // @[LSU.scala 38:24]
+  reg  ms_rf_we; // @[LSU.scala 42:27]
+  reg [4:0] ms_rf_dst; // @[LSU.scala 43:28]
+  reg [63:0] ms_res; // @[LSU.scala 44:25]
+  reg [63:0] store_data; // @[LSU.scala 46:29]
+  reg  wen; // @[LSU.scala 47:22]
+  reg [7:0] wstrb; // @[LSU.scala 48:24]
+  reg  ren; // @[LSU.scala 49:22]
+  reg [63:0] maddr; // @[LSU.scala 50:24]
+  reg [2:0] load_type; // @[LSU.scala 51:28]
+  wire  ms_ready_go = wen & io_axi_in_bvalid | ren & io_axi_in_rvalid | ~(wen | ren); // @[LSU.scala 71:75]
+  wire  ms_allowin = ~ms_valid | ms_ready_go; // @[LSU.scala 72:29]
+  wire [31:0] _rdata_T_2 = io_axi_in_rdata[31] ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
+  wire [63:0] _rdata_T_4 = {_rdata_T_2,io_axi_in_rdata[31:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _rdata_T_7 = {56'h0,io_axi_in_rdata[7:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _rdata_T_10 = {32'h0,io_axi_in_rdata[31:0]}; // @[Cat.scala 31:58]
+  wire [47:0] _rdata_T_13 = io_axi_in_rdata[15] ? 48'hffffffffffff : 48'h0; // @[Bitwise.scala 74:12]
+  wire [63:0] _rdata_T_15 = {_rdata_T_13,io_axi_in_rdata[15:0]}; // @[Cat.scala 31:58]
+  wire [55:0] _rdata_T_18 = io_axi_in_rdata[7] ? 56'hffffffffffffff : 56'h0; // @[Bitwise.scala 74:12]
+  wire [63:0] _rdata_T_20 = {_rdata_T_18,io_axi_in_rdata[7:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _rdata_T_23 = {48'h0,io_axi_in_rdata[15:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _rdata_T_25 = 3'h1 == load_type ? _rdata_T_4 : io_axi_in_rdata; // @[Mux.scala 81:58]
+  wire [63:0] _rdata_T_27 = 3'h2 == load_type ? io_axi_in_rdata : _rdata_T_25; // @[Mux.scala 81:58]
   wire [63:0] _rdata_T_29 = 3'h3 == load_type ? _rdata_T_7 : _rdata_T_27; // @[Mux.scala 81:58]
   wire [63:0] _rdata_T_31 = 3'h4 == load_type ? _rdata_T_10 : _rdata_T_29; // @[Mux.scala 81:58]
   wire [63:0] _rdata_T_33 = 3'h5 == load_type ? _rdata_T_15 : _rdata_T_31; // @[Mux.scala 81:58]
   wire [63:0] _rdata_T_35 = 3'h6 == load_type ? _rdata_T_20 : _rdata_T_33; // @[Mux.scala 81:58]
   wire [63:0] rdata = 3'h7 == load_type ? _rdata_T_23 : _rdata_T_35; // @[Mux.scala 81:58]
-  assign io_ms_allowin = ~ms_valid | ms_ready_go; // @[LSU.scala 69:29]
-  assign io_to_ws_pc = ms_pc; // @[LSU.scala 116:17]
-  assign io_ms_final_res = load_type != 3'h0 ? rdata : ms_res; // @[LSU.scala 112:27]
-  assign io_ms_to_ws_valid = ms_valid & ms_ready_go; // @[LSU.scala 70:32]
-  assign io_to_ws_rf_we = ms_rf_we; // @[LSU.scala 115:20]
-  assign io_to_ws_rf_dst = ms_rf_dst; // @[LSU.scala 114:21]
-  assign io_ms_valid = ms_valid; // @[LSU.scala 118:17]
-  assign io_ms_rf_we = ms_rf_we & ms_valid; // @[LSU.scala 120:28]
-  assign io_ms_rf_dst = ms_rf_dst; // @[LSU.scala 119:18]
-  assign io_axi_out_araddr = maddr[31:0]; // @[LSU.scala 85:23]
-  assign io_axi_out_arvalid = ren & ms_valid; // @[LSU.scala 86:31]
-  assign io_axi_out_awaddr = maddr[31:0]; // @[LSU.scala 91:23]
-  assign io_axi_out_awvalid = wen & ms_valid; // @[LSU.scala 92:31]
-  assign io_axi_out_wdata = store_data; // @[LSU.scala 96:22]
-  assign io_axi_out_wstrb = wstrb; // @[LSU.scala 97:22]
-  assign io_axi_out_wvalid = wen; // @[LSU.scala 99:23]
+  wire  _io_ms_final_res_T = load_type != 3'h0; // @[LSU.scala 116:37]
+  assign io_ms_allowin = ~ms_valid | ms_ready_go; // @[LSU.scala 72:29]
+  assign io_to_ws_pc = ms_pc; // @[LSU.scala 120:17]
+  assign io_ms_final_res = load_type != 3'h0 ? rdata : ms_res; // @[LSU.scala 116:27]
+  assign io_ms_to_ws_valid = ms_valid & ms_ready_go; // @[LSU.scala 73:32]
+  assign io_to_ws_rf_we = ms_rf_we; // @[LSU.scala 119:20]
+  assign io_to_ws_rf_dst = ms_rf_dst; // @[LSU.scala 118:21]
+  assign io_to_ws_device = maddr >= 64'ha0000000 & (ren | wen); // @[LSU.scala 121:50]
+  assign io_ms_valid = ms_valid; // @[LSU.scala 123:17]
+  assign io_ms_rf_we = ms_rf_we & ms_valid; // @[LSU.scala 125:28]
+  assign io_ms_rf_dst = ms_rf_dst; // @[LSU.scala 124:18]
+  assign io_ms_fwd_ready = ms_valid & ms_ready_go; // @[LSU.scala 73:32]
+  assign io_ms_fwd_res = _io_ms_final_res_T ? rdata : ms_res; // @[LSU.scala 128:25]
+  assign io_axi_out_araddr = maddr[31:0]; // @[LSU.scala 89:23]
+  assign io_axi_out_arvalid = ren & ms_valid; // @[LSU.scala 90:31]
+  assign io_axi_out_awaddr = maddr[31:0]; // @[LSU.scala 95:23]
+  assign io_axi_out_awvalid = wen & ms_valid; // @[LSU.scala 96:31]
+  assign io_axi_out_wdata = store_data; // @[LSU.scala 100:22]
+  assign io_axi_out_wstrb = wstrb; // @[LSU.scala 101:22]
+  assign io_axi_out_wvalid = wen; // @[LSU.scala 103:23]
   always @(posedge clock) begin
-    if (reset) begin // @[LSU.scala 34:27]
-      ms_valid <= 1'h0; // @[LSU.scala 34:27]
-    end else if (ms_allowin) begin // @[LSU.scala 51:21]
-      ms_valid <= io_es_to_ms_valid; // @[LSU.scala 52:18]
+    if (reset) begin // @[LSU.scala 37:27]
+      ms_valid <= 1'h0; // @[LSU.scala 37:27]
+    end else if (ms_allowin) begin // @[LSU.scala 54:21]
+      ms_valid <= io_es_to_ms_valid; // @[LSU.scala 55:18]
     end
-    if (reset) begin // @[LSU.scala 35:24]
-      ms_pc <= 64'h0; // @[LSU.scala 35:24]
-    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 54:40]
-      ms_pc <= io_pc; // @[LSU.scala 55:15]
+    if (reset) begin // @[LSU.scala 38:24]
+      ms_pc <= 64'h0; // @[LSU.scala 38:24]
+    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 57:40]
+      ms_pc <= io_pc; // @[LSU.scala 58:15]
     end
-    ms_ready_go <= reset | _GEN_16; // @[LSU.scala 37:{30,30}]
-    if (reset) begin // @[LSU.scala 39:27]
-      ms_rf_we <= 1'h0; // @[LSU.scala 39:27]
-    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 54:40]
-      ms_rf_we <= io_rf_we; // @[LSU.scala 56:18]
+    if (reset) begin // @[LSU.scala 42:27]
+      ms_rf_we <= 1'h0; // @[LSU.scala 42:27]
+    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 57:40]
+      ms_rf_we <= io_rf_we; // @[LSU.scala 59:18]
     end
-    if (reset) begin // @[LSU.scala 40:28]
-      ms_rf_dst <= 5'h0; // @[LSU.scala 40:28]
-    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 54:40]
-      ms_rf_dst <= io_rf_dst; // @[LSU.scala 57:19]
+    if (reset) begin // @[LSU.scala 43:28]
+      ms_rf_dst <= 5'h0; // @[LSU.scala 43:28]
+    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 57:40]
+      ms_rf_dst <= io_rf_dst; // @[LSU.scala 60:19]
     end
-    if (reset) begin // @[LSU.scala 41:25]
-      ms_res <= 64'h0; // @[LSU.scala 41:25]
-    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 54:40]
-      ms_res <= io_alu_res; // @[LSU.scala 58:16]
+    if (reset) begin // @[LSU.scala 44:25]
+      ms_res <= 64'h0; // @[LSU.scala 44:25]
+    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 57:40]
+      ms_res <= io_alu_res; // @[LSU.scala 61:16]
     end
-    if (reset) begin // @[LSU.scala 43:29]
-      store_data <= 64'h0; // @[LSU.scala 43:29]
-    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 54:40]
-      store_data <= io_store_data; // @[LSU.scala 59:20]
+    if (reset) begin // @[LSU.scala 46:29]
+      store_data <= 64'h0; // @[LSU.scala 46:29]
+    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 57:40]
+      store_data <= io_store_data; // @[LSU.scala 62:20]
     end
-    if (reset) begin // @[LSU.scala 44:22]
-      wen <= 1'h0; // @[LSU.scala 44:22]
-    end else if (ms_valid & wen & io_axi_in_wready) begin // @[LSU.scala 75:46]
-      wen <= 1'h0; // @[LSU.scala 76:13]
-    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 54:40]
-      wen <= io_wen; // @[LSU.scala 60:13]
+    if (reset) begin // @[LSU.scala 47:22]
+      wen <= 1'h0; // @[LSU.scala 47:22]
+    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 57:40]
+      wen <= io_wen; // @[LSU.scala 63:13]
     end
-    if (reset) begin // @[LSU.scala 45:24]
-      wstrb <= 8'h0; // @[LSU.scala 45:24]
-    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 54:40]
-      wstrb <= io_wstrb; // @[LSU.scala 61:15]
+    if (reset) begin // @[LSU.scala 48:24]
+      wstrb <= 8'h0; // @[LSU.scala 48:24]
+    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 57:40]
+      wstrb <= io_wstrb; // @[LSU.scala 64:15]
     end
-    if (reset) begin // @[LSU.scala 46:22]
-      ren <= 1'h0; // @[LSU.scala 46:22]
-    end else if (ms_valid & wen & io_axi_in_wready) begin // @[LSU.scala 75:46]
-      ren <= _GEN_8;
-    end else if (ms_valid & ren & io_axi_in_rvalid) begin // @[LSU.scala 78:52]
-      ren <= 1'h0; // @[LSU.scala 80:13]
-    end else begin
-      ren <= _GEN_8;
+    if (reset) begin // @[LSU.scala 49:22]
+      ren <= 1'h0; // @[LSU.scala 49:22]
+    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 57:40]
+      ren <= io_ren; // @[LSU.scala 65:13]
     end
-    if (reset) begin // @[LSU.scala 47:24]
-      maddr <= 64'h0; // @[LSU.scala 47:24]
-    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 54:40]
-      maddr <= io_maddr; // @[LSU.scala 63:15]
+    if (reset) begin // @[LSU.scala 50:24]
+      maddr <= 64'h0; // @[LSU.scala 50:24]
+    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 57:40]
+      maddr <= io_maddr; // @[LSU.scala 66:15]
     end
-    if (reset) begin // @[LSU.scala 48:28]
-      load_type <= 3'h0; // @[LSU.scala 48:28]
-    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 54:40]
-      load_type <= io_load_type; // @[LSU.scala 64:19]
-    end
-    if (reset) begin // @[LSU.scala 73:28]
-      mem_rdata <= 64'h0; // @[LSU.scala 73:28]
-    end else if (!(ms_valid & wen & io_axi_in_wready)) begin // @[LSU.scala 75:46]
-      if (ms_valid & ren & io_axi_in_rvalid) begin // @[LSU.scala 78:52]
-        mem_rdata <= io_axi_in_rdata; // @[LSU.scala 79:19]
-      end
+    if (reset) begin // @[LSU.scala 51:28]
+      load_type <= 3'h0; // @[LSU.scala 51:28]
+    end else if (io_es_to_ms_valid & ms_allowin) begin // @[LSU.scala 57:40]
+      load_type <= io_load_type; // @[LSU.scala 67:19]
     end
   end
 // Register and memory initialization
@@ -209,27 +195,23 @@ initial begin
   _RAND_1 = {2{`RANDOM}};
   ms_pc = _RAND_1[63:0];
   _RAND_2 = {1{`RANDOM}};
-  ms_ready_go = _RAND_2[0:0];
+  ms_rf_we = _RAND_2[0:0];
   _RAND_3 = {1{`RANDOM}};
-  ms_rf_we = _RAND_3[0:0];
-  _RAND_4 = {1{`RANDOM}};
-  ms_rf_dst = _RAND_4[4:0];
+  ms_rf_dst = _RAND_3[4:0];
+  _RAND_4 = {2{`RANDOM}};
+  ms_res = _RAND_4[63:0];
   _RAND_5 = {2{`RANDOM}};
-  ms_res = _RAND_5[63:0];
-  _RAND_6 = {2{`RANDOM}};
-  store_data = _RAND_6[63:0];
+  store_data = _RAND_5[63:0];
+  _RAND_6 = {1{`RANDOM}};
+  wen = _RAND_6[0:0];
   _RAND_7 = {1{`RANDOM}};
-  wen = _RAND_7[0:0];
+  wstrb = _RAND_7[7:0];
   _RAND_8 = {1{`RANDOM}};
-  wstrb = _RAND_8[7:0];
-  _RAND_9 = {1{`RANDOM}};
-  ren = _RAND_9[0:0];
-  _RAND_10 = {2{`RANDOM}};
-  maddr = _RAND_10[63:0];
-  _RAND_11 = {1{`RANDOM}};
-  load_type = _RAND_11[2:0];
-  _RAND_12 = {2{`RANDOM}};
-  mem_rdata = _RAND_12[63:0];
+  ren = _RAND_8[0:0];
+  _RAND_9 = {2{`RANDOM}};
+  maddr = _RAND_9[63:0];
+  _RAND_10 = {1{`RANDOM}};
+  load_type = _RAND_10[2:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial

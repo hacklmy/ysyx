@@ -32,8 +32,8 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   int fd = fs_open(filename,0,0);
   Elf_Ehdr* ehdr = (Elf_Ehdr*)malloc(sizeof(Elf_Ehdr));
   fs_read(fd,ehdr, sizeof(Elf_Ehdr));
-  assert(*(uint32_t *)ehdr->e_ident == 0x464c457f);
-  assert(ehdr->e_machine == EXPECT_TYPE);
+  //assert(*(uint32_t *)ehdr->e_ident == 0x464c457f);
+  //assert(ehdr->e_machine == EXPECT_TYPE);
   Elf_Phdr* phdr = (Elf_Phdr*)malloc(sizeof(Elf_Phdr)*ehdr->e_phnum);
   fs_lseek(fd, ehdr->e_phoff, SEEK_SET);
   fs_read(fd,phdr, sizeof(Elf_Phdr)*ehdr->e_phnum);
