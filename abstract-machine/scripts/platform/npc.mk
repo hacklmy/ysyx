@@ -17,9 +17,9 @@ image: $(IMAGE).elf
 	@$(OBJDUMP) -d $(IMAGE).elf > $(IMAGE).txt
 	@echo + OBJCOPY "->" $(IMAGE_REL).bin
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
-	@echo + OBJCOPY "->" /home/lmy/ysyx-workbench/npc/image.bin
-	@cp $(IMAGE).bin /home/lmy/ysyx-workbench/npc/image.bin 
-	@cp $(IMAGE).elf /home/lmy/ysyx-workbench/npc/image.elf
+	@echo + OBJCOPY "->" $(NPC_HOME)/image.bin
+	@cp $(IMAGE).bin $(NPC_HOME)/image.bin 
+	@cp $(IMAGE).elf $(NPC_HOME)/image.elf
 
 run: image
-	$(MAKE) -C /home/lmy/ysyx-workbench/npc sim
+	$(MAKE) -C $(NPC_HOME) sim

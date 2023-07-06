@@ -39,9 +39,9 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-//#define CONFIG_DIFFTEST
+#define CONFIG_DIFFTEST
 //#define VerilatedVCD
-#define HAS_VGA
+//#define HAS_VGA
 #define HAS_AXI
 
 void difftest_skip_ref();
@@ -722,7 +722,7 @@ void difftest_step(uint64_t pc) {
 //==========================load_img================================
 void load_img(){
   
-  char img_file[] = "/home/lmy/ysyx-workbench/npc/image.bin";
+  char img_file[] = "../npc/image.bin";
   FILE *fp = fopen(img_file, "rb");
   
   fseek(fp, 0, SEEK_END);
@@ -737,7 +737,7 @@ void load_img(){
 }
 //============================load_img_end===========================
 #ifdef CONFIG_ITRACE
-FILE* log_file = fopen("/home/lmy/ysyx-workbench/npc/npc-log.txt","w+");
+FILE* log_file = fopen("../npc/npc-log.txt","w+");
 #endif
 
 
@@ -813,7 +813,7 @@ int main(int argc, char** argv) {
   init_disasm("riscv64");
   #endif
   #ifdef CONFIG_FTRACE
-  char elf_file[] = "/home/lmy/ysyx-workbench/npc/image.elf";
+  char elf_file[] = "../npc/image.elf";
   init_elf(elf_file);
   printf("elf succuss\n");
   #endif
@@ -828,7 +828,7 @@ int main(int argc, char** argv) {
   }
   cpu_gpr.pc = 0x80000000;
   #ifdef CONFIG_DIFFTEST
-  char difftest_file[] = "/home/lmy/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
+  char difftest_file[] = "../../ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
   printf("so succuss\n");
   init_difftest(difftest_file,CONFIG_MSIZE);
   #endif
