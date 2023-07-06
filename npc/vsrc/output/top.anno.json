@@ -1,0 +1,25 @@
+[
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxPathAnno",
+    "target":"top.DPI",
+    "path":"./DPI.v"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxPathAnno",
+    "target":"top.MEM",
+    "path":"./MEM.v"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxPathAnno",
+    "target":"top.traceregs",
+    "path":"./traceregs.v"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"output"
+  }
+]
