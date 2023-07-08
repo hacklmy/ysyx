@@ -58,16 +58,10 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
   int fd = open("/dev/fb", 0, 0);
   size_t offset = (y + centre_offset_h)*screen_w + x + centre_offset_w;
   size_t len = ((size_t)w) << 32 | (size_t)h;
-  #if defined(__ISA_NATIVE__) 
-
-  for(int j=0; j<h; j++){
-    lseek(fd,((y+j+center_offset_y)*screen_w+x+center_offset_x)*4,SEEK_SET);
-    write(fd, pixels+w*j, 4*w);              
-  }
-  #else
+  
   lseek(fd, offset, SEEK_SET);
   write(fd,pixels,len);
-  #endif
+  
 }
 
 void NDL_OpenAudio(int freq, int channels, int samples) {
