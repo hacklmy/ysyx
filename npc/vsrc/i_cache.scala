@@ -38,7 +38,7 @@ class I_CACHE extends Module{
     val offset = addr(3,0)
     val index = addr(9,4)
     val tag = addr(31,10)
-    val shift_bit = offset << 3.U
+    val shift_bit = offset(2,0) << 3.U
 
     val valid = Wire(Vec(4, Bool()))
     for (i <- 0 until 4) {
@@ -142,7 +142,13 @@ class I_CACHE extends Module{
            state := idle
         }
     }
-      
+    val rdata = Wire(UInt(64.W))
+    rdata := MuxLookup(offset(3,2),0.U,Array(
+        0.U -> cacheLine(tagIndex)(31,0),
+        1.U -> cacheLine(tagIndex)(63,32),
+        2.U -> cacheLine(tagIndex)(95,64),
+        3.U -> cacheLine(tagIndex)(127,96)
+    ))
     when(state===lookup){
         io.to_axi.arvalid := false.B
         io.to_axi.araddr := addr
@@ -160,7 +166,7 @@ class I_CACHE extends Module{
         io.to_axi.wlast := false.B
         io.to_axi.wvalid := false.B
         io.to_axi.bready := false.B
-        io.to_ifu.rdata :=  cacheLine(tagIndex) >> shift_bit
+        io.to_ifu.rdata :=  rdata
         io.to_ifu.arready := false.B
         io.to_ifu.rvalid := anyMatch
         io.to_ifu.rlast := anyMatch

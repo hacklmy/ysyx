@@ -177,7 +177,6 @@ module top(
   wire [31:0] arbiter_io_lsu_axi_in_araddr; // @[top.scala 22:25]
   wire [7:0] arbiter_io_lsu_axi_in_arlen; // @[top.scala 22:25]
   wire  arbiter_io_lsu_axi_in_arvalid; // @[top.scala 22:25]
-  wire  arbiter_io_lsu_axi_in_rready; // @[top.scala 22:25]
   wire [31:0] arbiter_io_lsu_axi_in_awaddr; // @[top.scala 22:25]
   wire [7:0] arbiter_io_lsu_axi_in_awlen; // @[top.scala 22:25]
   wire  arbiter_io_lsu_axi_in_awvalid; // @[top.scala 22:25]
@@ -237,7 +236,6 @@ module top(
   wire [31:0] d_cache_io_to_axi_araddr; // @[top.scala 24:25]
   wire [7:0] d_cache_io_to_axi_arlen; // @[top.scala 24:25]
   wire  d_cache_io_to_axi_arvalid; // @[top.scala 24:25]
-  wire  d_cache_io_to_axi_rready; // @[top.scala 24:25]
   wire [31:0] d_cache_io_to_axi_awaddr; // @[top.scala 24:25]
   wire [7:0] d_cache_io_to_axi_awlen; // @[top.scala 24:25]
   wire  d_cache_io_to_axi_awvalid; // @[top.scala 24:25]
@@ -455,7 +453,6 @@ module top(
     .io_lsu_axi_in_araddr(arbiter_io_lsu_axi_in_araddr),
     .io_lsu_axi_in_arlen(arbiter_io_lsu_axi_in_arlen),
     .io_lsu_axi_in_arvalid(arbiter_io_lsu_axi_in_arvalid),
-    .io_lsu_axi_in_rready(arbiter_io_lsu_axi_in_rready),
     .io_lsu_axi_in_awaddr(arbiter_io_lsu_axi_in_awaddr),
     .io_lsu_axi_in_awlen(arbiter_io_lsu_axi_in_awlen),
     .io_lsu_axi_in_awvalid(arbiter_io_lsu_axi_in_awvalid),
@@ -519,7 +516,6 @@ module top(
     .io_to_axi_araddr(d_cache_io_to_axi_araddr),
     .io_to_axi_arlen(d_cache_io_to_axi_arlen),
     .io_to_axi_arvalid(d_cache_io_to_axi_arvalid),
-    .io_to_axi_rready(d_cache_io_to_axi_rready),
     .io_to_axi_awaddr(d_cache_io_to_axi_awaddr),
     .io_to_axi_awlen(d_cache_io_to_axi_awlen),
     .io_to_axi_awvalid(d_cache_io_to_axi_awvalid),
@@ -650,7 +646,6 @@ module top(
   assign arbiter_io_lsu_axi_in_araddr = d_cache_io_to_axi_araddr; // @[top.scala 33:27]
   assign arbiter_io_lsu_axi_in_arlen = d_cache_io_to_axi_arlen; // @[top.scala 33:27]
   assign arbiter_io_lsu_axi_in_arvalid = d_cache_io_to_axi_arvalid; // @[top.scala 33:27]
-  assign arbiter_io_lsu_axi_in_rready = d_cache_io_to_axi_rready; // @[top.scala 33:27]
   assign arbiter_io_lsu_axi_in_awaddr = d_cache_io_to_axi_awaddr; // @[top.scala 33:27]
   assign arbiter_io_lsu_axi_in_awlen = d_cache_io_to_axi_awlen; // @[top.scala 33:27]
   assign arbiter_io_lsu_axi_in_awvalid = d_cache_io_to_axi_awvalid; // @[top.scala 33:27]

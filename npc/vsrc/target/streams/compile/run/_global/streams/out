@@ -1,14 +1,17 @@
-[0m[[0m[31merror[0m] [0m[0mscala.MatchError: List(UInt<4>(0), UInt<4>(1), UInt<4>(2), UInt<4>(3), UInt<4>(4), UInt<4>(5), UInt<4>(6), UInt<4>(7), UInt<4>(8)) (of class scala.collection.immutable.$colon$colon)[0m
+[0m[[0m[31merror[0m] [0m[0mjava.lang.NullPointerException[0m
 [0m[[0m[31merror[0m] [0m[0m	at ... ()[0m
-[0m[[0m[31merror[0m] [0m[0m	at mycpu.D_CACHE.$anonfun$x$1$1(d_cache.scala:17)[0m
-[0m[[0m[31merror[0m] [0m[0m	at chisel3.internal.plugin.package$.autoNameRecursivelyProduct(package.scala:48)[0m
-[0m[[0m[31merror[0m] [0m[0m	at mycpu.D_CACHE.<init>(d_cache.scala:17)[0m
-[0m[[0m[31merror[0m] [0m[0m	at mycpu.top.$anonfun$d_cache$2(top.scala:23)[0m
+[0m[[0m[31merror[0m] [0m[0m	at mycpu.D_CACHE.$anonfun$new$8(d_cache.scala:88)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.Data.$anonfun$$colon$eq$1(Data.scala:748)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.internal.prefix$.apply(prefix.scala:31)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.Data.$colon$eq(Data.scala:748)[0m
+[0m[[0m[31merror[0m] [0m[0m	at mycpu.D_CACHE.<init>(d_cache.scala:88)[0m
+[0m[[0m[31merror[0m] [0m[0m	at mycpu.top.$anonfun$d_cache$2(top.scala:24)[0m
 [0m[[0m[31merror[0m] [0m[0m	at chisel3.Module$.do_apply(Module.scala:53)[0m
-[0m[[0m[31merror[0m] [0m[0m	at mycpu.top.$anonfun$d_cache$1(top.scala:23)[0m
+[0m[[0m[31merror[0m] [0m[0m	at mycpu.top.$anonfun$d_cache$1(top.scala:24)[0m
 [0m[[0m[31merror[0m] [0m[0m	at chisel3.internal.plugin.package$.autoNameRecursively(package.scala:33)[0m
-[0m[[0m[31merror[0m] [0m[0m	at mycpu.top.<init>(top.scala:23)[0m
+[0m[[0m[31merror[0m] [0m[0m	at mycpu.top.<init>(top.scala:24)[0m
 [0m[[0m[31merror[0m] [0m[0m	at mycpu.Main$.$anonfun$new$1(main.scala:7)[0m
 [0m[[0m[31merror[0m] [0m[0m	at ... ()[0m
 [0m[[0m[31merror[0m] [0m[0m	at ... (Stack trace trimmed to user code only. Rerun with --full-stacktrace to see the full stack trace)[0m
-[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrun[0m) scala.MatchError: List(UInt<4>(0), UInt<4>(1), UInt<4>(2), UInt<4>(3), UInt<4>(4), UInt<4>(5), UInt<4>(6), UInt<4>(7), UInt<4>(8)) (of class scala.collection.immutable.$colon$colon)[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrun[0m) java.lang.NullPointerException[0m

@@ -1,7 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/lmy/ysyx-workbench/npc/vsrc/AXI.scala:35:41: value && is not a member of chisel3.UInt[0m
-[0m[[0m[31merror[0m] [0m[0m    Mem_modle.io.Write_en := axi_wready && io.axi_in.awvalid[0m
-[0m[[0m[31merror[0m] [0m[0m                                        ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/lmy/ysyx-workbench/npc/vsrc/AXI.scala:36:40: value && is not a member of chisel3.UInt[0m
-[0m[[0m[31merror[0m] [0m[0m    Mem_modle.io.Read_en := axi_rvalid && io.axi_in.arvalid[0m
-[0m[[0m[31merror[0m] [0m[0m                                       ^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/lmy/ysyx-workbench/npc/vsrc/i_cache.scala:146:43: too many arguments (3) for method apply: (default: T, mapping: Seq[(chisel3.Bool, T)])T in object MuxCase[0m
+[0m[[0m[31merror[0m] [0m[0m    rdata := MuxCase(offset(3,2),0.U,Array([0m
+[0m[[0m[31merror[0m] [0m[0m                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
