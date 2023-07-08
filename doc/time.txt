@@ -1,0 +1,2 @@
+nemu : 1min
+npc  : 9min
