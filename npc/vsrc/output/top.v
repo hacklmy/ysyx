@@ -528,7 +528,6 @@ module csr_reg(
   input         io_wen2,
   input  [1:0]  io_waddr1,
   input  [63:0] io_wdata1,
-  input  [63:0] io_wdata2,
   input  [1:0]  io_raddr,
   output [63:0] io_rdata
 );
@@ -547,24 +546,35 @@ module csr_reg(
   wire [1:0] CSR_Reg_MPORT_1_addr; // @[csr_reg.scala 19:22]
   wire  CSR_Reg_MPORT_1_mask; // @[csr_reg.scala 19:22]
   wire  CSR_Reg_MPORT_1_en; // @[csr_reg.scala 19:22]
+  wire [63:0] CSR_Reg_MPORT_2_data; // @[csr_reg.scala 19:22]
+  wire [1:0] CSR_Reg_MPORT_2_addr; // @[csr_reg.scala 19:22]
+  wire  CSR_Reg_MPORT_2_mask; // @[csr_reg.scala 19:22]
+  wire  CSR_Reg_MPORT_2_en; // @[csr_reg.scala 19:22]
   assign CSR_Reg_io_rdata_MPORT_en = 1'h1;
   assign CSR_Reg_io_rdata_MPORT_addr = io_raddr;
   assign CSR_Reg_io_rdata_MPORT_data = CSR_Reg[CSR_Reg_io_rdata_MPORT_addr]; // @[csr_reg.scala 19:22]
-  assign CSR_Reg_MPORT_data = io_wdata1;
-  assign CSR_Reg_MPORT_addr = io_waddr1;
+  assign CSR_Reg_MPORT_data = 64'ha00001800;
+  assign CSR_Reg_MPORT_addr = 2'h2;
   assign CSR_Reg_MPORT_mask = 1'h1;
-  assign CSR_Reg_MPORT_en = io_wen1;
-  assign CSR_Reg_MPORT_1_data = io_wdata2;
-  assign CSR_Reg_MPORT_1_addr = 2'h3;
+  assign CSR_Reg_MPORT_en = 1'h1;
+  assign CSR_Reg_MPORT_1_data = io_wdata1;
+  assign CSR_Reg_MPORT_1_addr = io_waddr1;
   assign CSR_Reg_MPORT_1_mask = 1'h1;
-  assign CSR_Reg_MPORT_1_en = io_wen2;
-  assign io_rdata = CSR_Reg_io_rdata_MPORT_data; // @[csr_reg.scala 26:14]
+  assign CSR_Reg_MPORT_1_en = io_wen1;
+  assign CSR_Reg_MPORT_2_data = 64'hb;
+  assign CSR_Reg_MPORT_2_addr = 2'h3;
+  assign CSR_Reg_MPORT_2_mask = 1'h1;
+  assign CSR_Reg_MPORT_2_en = io_wen2;
+  assign io_rdata = CSR_Reg_io_rdata_MPORT_data; // @[csr_reg.scala 27:14]
   always @(posedge clock) begin
     if (CSR_Reg_MPORT_en & CSR_Reg_MPORT_mask) begin
       CSR_Reg[CSR_Reg_MPORT_addr] <= CSR_Reg_MPORT_data; // @[csr_reg.scala 19:22]
     end
     if (CSR_Reg_MPORT_1_en & CSR_Reg_MPORT_1_mask) begin
       CSR_Reg[CSR_Reg_MPORT_1_addr] <= CSR_Reg_MPORT_1_data; // @[csr_reg.scala 19:22]
+    end
+    if (CSR_Reg_MPORT_2_en & CSR_Reg_MPORT_2_mask) begin
+      CSR_Reg[CSR_Reg_MPORT_2_addr] <= CSR_Reg_MPORT_2_data; // @[csr_reg.scala 19:22]
     end
   end
 // Register and memory initialization
@@ -670,7 +680,6 @@ module IDU(
   wire  csr_reg_io_wen2; // @[IDU.scala 449:21]
   wire [1:0] csr_reg_io_waddr1; // @[IDU.scala 449:21]
   wire [63:0] csr_reg_io_wdata1; // @[IDU.scala 449:21]
-  wire [63:0] csr_reg_io_wdata2; // @[IDU.scala 449:21]
   wire [1:0] csr_reg_io_raddr; // @[IDU.scala 449:21]
   wire [63:0] csr_reg_io_rdata; // @[IDU.scala 449:21]
   reg  ds_valid; // @[IDU.scala 112:27]
@@ -989,9 +998,8 @@ module IDU(
   wire [63:0] src2 = src2_is_imm ? imm : rdata2; // @[IDU.scala 472:16]
   wire [63:0] _br_target_T_1 = src1 + src2; // @[IDU.scala 475:35]
   wire [63:0] _br_target_T_4 = _br_target_T_1 & 64'hfffffffffffffffe; // @[IDU.scala 476:31]
-  wire [63:0] _br_target_T_6 = csr_reg_io_rdata + 64'h4; // @[IDU.scala 478:28]
-  wire [63:0] _br_target_T_13 = _br_taken_T_39 ? _br_target_T_6 : _br_target_T_1; // @[Lookup.scala 34:39]
-  wire [63:0] _br_target_T_14 = _inst_type_T_119 ? csr_reg_io_rdata : _br_target_T_13; // @[Lookup.scala 34:39]
+  wire [63:0] _br_target_T_11 = _br_taken_T_39 ? csr_reg_io_rdata : _br_target_T_1; // @[Lookup.scala 34:39]
+  wire [63:0] _br_target_T_12 = _inst_type_T_119 ? csr_reg_io_rdata : _br_target_T_11; // @[Lookup.scala 34:39]
   wire [31:0] _io_store_data_T_11 = _inst_type_T_75 ? rdata2[31:0] : 32'h0; // @[Lookup.scala 34:39]
   wire [31:0] _io_store_data_T_12 = _inst_type_T_37 ? {{24'd0}, rdata2[7:0]} : _io_store_data_T_11; // @[Lookup.scala 34:39]
   wire [31:0] _io_store_data_T_13 = _inst_type_T_35 ? {{16'd0}, rdata2[15:0]} : _io_store_data_T_12; // @[Lookup.scala 34:39]
@@ -1001,13 +1009,12 @@ module IDU(
     .io_wen2(csr_reg_io_wen2),
     .io_waddr1(csr_reg_io_waddr1),
     .io_wdata1(csr_reg_io_wdata1),
-    .io_wdata2(csr_reg_io_wdata2),
     .io_raddr(csr_reg_io_raddr),
     .io_rdata(csr_reg_io_rdata)
   );
   assign io_ds_to_es_valid = ds_valid & ds_ready_go; // @[IDU.scala 151:32]
   assign io_br_taken = br_taken & ds_ready_go & _T_2; // @[IDU.scala 503:44]
-  assign io_br_target = _inst_type_T_9 ? _br_target_T_4 : _br_target_T_14; // @[Lookup.scala 34:39]
+  assign io_br_target = _inst_type_T_9 ? _br_target_T_4 : _br_target_T_12; // @[Lookup.scala 34:39]
   assign io_ds_allowin = ~ds_valid | ds_ready_go & io_es_allowin; // @[IDU.scala 152:29]
   assign io_ds_ready_go = (conflict_es_rs1 & (io_es_fwd_ready & ~io_es_ld) | ~conflict_es_rs1 & conflict_ms_rs1 &
     io_ms_fwd_ready | ~conflict_es_rs1 & ~conflict_ms_rs1 & conflict_ws_rs1 | ~(conflict_es_rs1 | conflict_ms_rs1 |
@@ -1033,7 +1040,6 @@ module IDU(
   assign csr_reg_io_wen2 = csr_write[1] & ds_valid; // @[IDU.scala 466:38]
   assign csr_reg_io_waddr1 = _conflict_es_rs2_T_5 ? 2'h1 : _T_24; // @[IDU.scala 464:22]
   assign csr_reg_io_wdata1 = _conflict_es_rs2_T_5 ? ds_pc : _T_28; // @[IDU.scala 465:22]
-  assign csr_reg_io_wdata2 = conflict_es_rs2 ? io_es_fwd_res : _rdata2_T_1; // @[IDU.scala 499:18]
   assign csr_reg_io_raddr = csr_write[1] ? 2'h0 : _T_17; // @[IDU.scala 462:21]
   always @(posedge clock) begin
     if (reset) begin // @[IDU.scala 112:27]
@@ -2723,134 +2729,134 @@ module I_CACHE(
   wire [7:0] validMem_MPORT_73_addr; // @[i_cache.scala 19:23]
   wire  validMem_MPORT_73_mask; // @[i_cache.scala 19:23]
   wire  validMem_MPORT_73_en; // @[i_cache.scala 19:23]
-  reg [31:0] tagMem [0:255]; // @[i_cache.scala 22:21]
-  wire  tagMem_tagMatch_0_MPORT_en; // @[i_cache.scala 22:21]
-  wire [7:0] tagMem_tagMatch_0_MPORT_addr; // @[i_cache.scala 22:21]
-  wire [31:0] tagMem_tagMatch_0_MPORT_data; // @[i_cache.scala 22:21]
-  wire  tagMem_tagMatch_1_MPORT_en; // @[i_cache.scala 22:21]
-  wire [7:0] tagMem_tagMatch_1_MPORT_addr; // @[i_cache.scala 22:21]
-  wire [31:0] tagMem_tagMatch_1_MPORT_data; // @[i_cache.scala 22:21]
-  wire  tagMem_tagMatch_2_MPORT_en; // @[i_cache.scala 22:21]
-  wire [7:0] tagMem_tagMatch_2_MPORT_addr; // @[i_cache.scala 22:21]
-  wire [31:0] tagMem_tagMatch_2_MPORT_data; // @[i_cache.scala 22:21]
-  wire  tagMem_tagMatch_3_MPORT_en; // @[i_cache.scala 22:21]
-  wire [7:0] tagMem_tagMatch_3_MPORT_addr; // @[i_cache.scala 22:21]
-  wire [31:0] tagMem_tagMatch_3_MPORT_data; // @[i_cache.scala 22:21]
-  wire [31:0] tagMem_MPORT_1_data; // @[i_cache.scala 22:21]
-  wire [7:0] tagMem_MPORT_1_addr; // @[i_cache.scala 22:21]
-  wire  tagMem_MPORT_1_mask; // @[i_cache.scala 22:21]
-  wire  tagMem_MPORT_1_en; // @[i_cache.scala 22:21]
-  wire [31:0] tagMem_MPORT_6_data; // @[i_cache.scala 22:21]
-  wire [7:0] tagMem_MPORT_6_addr; // @[i_cache.scala 22:21]
-  wire  tagMem_MPORT_6_mask; // @[i_cache.scala 22:21]
-  wire  tagMem_MPORT_6_en; // @[i_cache.scala 22:21]
-  reg [7:0] quene [0:63]; // @[i_cache.scala 80:20]
-  wire  quene_replace_way_MPORT_en; // @[i_cache.scala 80:20]
-  wire [5:0] quene_replace_way_MPORT_addr; // @[i_cache.scala 80:20]
-  wire [7:0] quene_replace_way_MPORT_data; // @[i_cache.scala 80:20]
-  wire  quene_MPORT_4_en; // @[i_cache.scala 80:20]
-  wire [5:0] quene_MPORT_4_addr; // @[i_cache.scala 80:20]
-  wire [7:0] quene_MPORT_4_data; // @[i_cache.scala 80:20]
-  wire  quene_MPORT_9_en; // @[i_cache.scala 80:20]
-  wire [5:0] quene_MPORT_9_addr; // @[i_cache.scala 80:20]
-  wire [7:0] quene_MPORT_9_data; // @[i_cache.scala 80:20]
-  wire [7:0] quene_MPORT_3_data; // @[i_cache.scala 80:20]
-  wire [5:0] quene_MPORT_3_addr; // @[i_cache.scala 80:20]
-  wire  quene_MPORT_3_mask; // @[i_cache.scala 80:20]
-  wire  quene_MPORT_3_en; // @[i_cache.scala 80:20]
-  wire [7:0] quene_MPORT_8_data; // @[i_cache.scala 80:20]
-  wire [5:0] quene_MPORT_8_addr; // @[i_cache.scala 80:20]
-  wire  quene_MPORT_8_mask; // @[i_cache.scala 80:20]
-  wire  quene_MPORT_8_en; // @[i_cache.scala 80:20]
-  reg [31:0] addr; // @[i_cache.scala 37:23]
-  wire [3:0] offset = addr[3:0]; // @[i_cache.scala 38:22]
-  wire [5:0] index = addr[9:4]; // @[i_cache.scala 39:21]
-  wire [21:0] tag = addr[31:10]; // @[i_cache.scala 40:19]
-  wire [7:0] _GEN_463 = {{2'd0}, index}; // @[i_cache.scala 45:48]
-  wire [8:0] _valid_0_T_1 = {{1'd0}, _GEN_463}; // @[i_cache.scala 45:48]
-  wire [8:0] _GEN_473 = {{3'd0}, index}; // @[i_cache.scala 45:48]
-  wire [8:0] _valid_2_T_2 = 9'h80 + _GEN_473; // @[i_cache.scala 45:48]
-  wire [8:0] _valid_3_T_2 = 9'hc0 + _GEN_473; // @[i_cache.scala 45:48]
-  wire  valid_0 = validMem_valid_0_MPORT_data; // @[i_cache.scala 43:21 45:18]
-  wire  valid_1 = validMem_valid_1_MPORT_data; // @[i_cache.scala 43:21 45:18]
-  wire  valid_2 = validMem_valid_2_MPORT_data; // @[i_cache.scala 43:21 45:18]
-  wire  valid_3 = validMem_valid_3_MPORT_data; // @[i_cache.scala 43:21 45:18]
-  wire  allvalid = valid_0 & valid_1 & valid_2 & valid_3; // @[i_cache.scala 47:35]
-  wire  _foundUnvalidIndex_T = ~valid_0; // @[i_cache.scala 49:10]
-  wire  _foundUnvalidIndex_T_1 = ~valid_1; // @[i_cache.scala 50:10]
-  wire  _foundUnvalidIndex_T_2 = ~valid_2; // @[i_cache.scala 51:10]
-  wire  _foundUnvalidIndex_T_3 = ~valid_3; // @[i_cache.scala 52:10]
+  reg [31:0] tagMem [0:255]; // @[i_cache.scala 21:21]
+  wire  tagMem_tagMatch_0_MPORT_en; // @[i_cache.scala 21:21]
+  wire [7:0] tagMem_tagMatch_0_MPORT_addr; // @[i_cache.scala 21:21]
+  wire [31:0] tagMem_tagMatch_0_MPORT_data; // @[i_cache.scala 21:21]
+  wire  tagMem_tagMatch_1_MPORT_en; // @[i_cache.scala 21:21]
+  wire [7:0] tagMem_tagMatch_1_MPORT_addr; // @[i_cache.scala 21:21]
+  wire [31:0] tagMem_tagMatch_1_MPORT_data; // @[i_cache.scala 21:21]
+  wire  tagMem_tagMatch_2_MPORT_en; // @[i_cache.scala 21:21]
+  wire [7:0] tagMem_tagMatch_2_MPORT_addr; // @[i_cache.scala 21:21]
+  wire [31:0] tagMem_tagMatch_2_MPORT_data; // @[i_cache.scala 21:21]
+  wire  tagMem_tagMatch_3_MPORT_en; // @[i_cache.scala 21:21]
+  wire [7:0] tagMem_tagMatch_3_MPORT_addr; // @[i_cache.scala 21:21]
+  wire [31:0] tagMem_tagMatch_3_MPORT_data; // @[i_cache.scala 21:21]
+  wire [31:0] tagMem_MPORT_1_data; // @[i_cache.scala 21:21]
+  wire [7:0] tagMem_MPORT_1_addr; // @[i_cache.scala 21:21]
+  wire  tagMem_MPORT_1_mask; // @[i_cache.scala 21:21]
+  wire  tagMem_MPORT_1_en; // @[i_cache.scala 21:21]
+  wire [31:0] tagMem_MPORT_6_data; // @[i_cache.scala 21:21]
+  wire [7:0] tagMem_MPORT_6_addr; // @[i_cache.scala 21:21]
+  wire  tagMem_MPORT_6_mask; // @[i_cache.scala 21:21]
+  wire  tagMem_MPORT_6_en; // @[i_cache.scala 21:21]
+  reg [7:0] quene [0:63]; // @[i_cache.scala 79:20]
+  wire  quene_replace_way_MPORT_en; // @[i_cache.scala 79:20]
+  wire [5:0] quene_replace_way_MPORT_addr; // @[i_cache.scala 79:20]
+  wire [7:0] quene_replace_way_MPORT_data; // @[i_cache.scala 79:20]
+  wire  quene_MPORT_4_en; // @[i_cache.scala 79:20]
+  wire [5:0] quene_MPORT_4_addr; // @[i_cache.scala 79:20]
+  wire [7:0] quene_MPORT_4_data; // @[i_cache.scala 79:20]
+  wire  quene_MPORT_9_en; // @[i_cache.scala 79:20]
+  wire [5:0] quene_MPORT_9_addr; // @[i_cache.scala 79:20]
+  wire [7:0] quene_MPORT_9_data; // @[i_cache.scala 79:20]
+  wire [7:0] quene_MPORT_3_data; // @[i_cache.scala 79:20]
+  wire [5:0] quene_MPORT_3_addr; // @[i_cache.scala 79:20]
+  wire  quene_MPORT_3_mask; // @[i_cache.scala 79:20]
+  wire  quene_MPORT_3_en; // @[i_cache.scala 79:20]
+  wire [7:0] quene_MPORT_8_data; // @[i_cache.scala 79:20]
+  wire [5:0] quene_MPORT_8_addr; // @[i_cache.scala 79:20]
+  wire  quene_MPORT_8_mask; // @[i_cache.scala 79:20]
+  wire  quene_MPORT_8_en; // @[i_cache.scala 79:20]
+  reg [31:0] addr; // @[i_cache.scala 36:23]
+  wire [3:0] offset = addr[3:0]; // @[i_cache.scala 37:22]
+  wire [5:0] index = addr[9:4]; // @[i_cache.scala 38:21]
+  wire [21:0] tag = addr[31:10]; // @[i_cache.scala 39:19]
+  wire [7:0] _GEN_463 = {{2'd0}, index}; // @[i_cache.scala 44:48]
+  wire [8:0] _valid_0_T_1 = {{1'd0}, _GEN_463}; // @[i_cache.scala 44:48]
+  wire [8:0] _GEN_473 = {{3'd0}, index}; // @[i_cache.scala 44:48]
+  wire [8:0] _valid_2_T_2 = 9'h80 + _GEN_473; // @[i_cache.scala 44:48]
+  wire [8:0] _valid_3_T_2 = 9'hc0 + _GEN_473; // @[i_cache.scala 44:48]
+  wire  valid_0 = validMem_valid_0_MPORT_data; // @[i_cache.scala 42:21 44:18]
+  wire  valid_1 = validMem_valid_1_MPORT_data; // @[i_cache.scala 42:21 44:18]
+  wire  valid_2 = validMem_valid_2_MPORT_data; // @[i_cache.scala 42:21 44:18]
+  wire  valid_3 = validMem_valid_3_MPORT_data; // @[i_cache.scala 42:21 44:18]
+  wire  allvalid = valid_0 & valid_1 & valid_2 & valid_3; // @[i_cache.scala 46:35]
+  wire  _foundUnvalidIndex_T = ~valid_0; // @[i_cache.scala 48:10]
+  wire  _foundUnvalidIndex_T_1 = ~valid_1; // @[i_cache.scala 49:10]
+  wire  _foundUnvalidIndex_T_2 = ~valid_2; // @[i_cache.scala 50:10]
+  wire  _foundUnvalidIndex_T_3 = ~valid_3; // @[i_cache.scala 51:10]
   wire [1:0] _foundUnvalidIndex_T_4 = _foundUnvalidIndex_T_3 ? 2'h3 : 2'h0; // @[Mux.scala 101:16]
   wire [1:0] _foundUnvalidIndex_T_5 = _foundUnvalidIndex_T_2 ? 2'h2 : _foundUnvalidIndex_T_4; // @[Mux.scala 101:16]
   wire [1:0] _foundUnvalidIndex_T_6 = _foundUnvalidIndex_T_1 ? 2'h1 : _foundUnvalidIndex_T_5; // @[Mux.scala 101:16]
   wire [1:0] foundUnvalidIndex = _foundUnvalidIndex_T ? 2'h0 : _foundUnvalidIndex_T_6; // @[Mux.scala 101:16]
-  wire [7:0] _GEN_475 = {foundUnvalidIndex, 6'h0}; // @[i_cache.scala 54:43]
-  wire [8:0] _unvalidIndex_T = {{1'd0}, _GEN_475}; // @[i_cache.scala 54:43]
-  wire [8:0] unvalidIndex = _unvalidIndex_T + _GEN_473; // @[i_cache.scala 54:51]
-  wire [31:0] _GEN_478 = {{10'd0}, tag}; // @[i_cache.scala 59:71]
-  wire  tagMatch_0 = valid_0 & tagMem_tagMatch_0_MPORT_data == _GEN_478; // @[i_cache.scala 59:33]
-  wire  tagMatch_1 = valid_1 & tagMem_tagMatch_1_MPORT_data == _GEN_478; // @[i_cache.scala 59:33]
-  wire  tagMatch_2 = valid_2 & tagMem_tagMatch_2_MPORT_data == _GEN_478; // @[i_cache.scala 59:33]
-  wire  tagMatch_3 = valid_3 & tagMem_tagMatch_3_MPORT_data == _GEN_478; // @[i_cache.scala 59:33]
-  wire  anyMatch = tagMatch_0 | tagMatch_1 | tagMatch_2 | tagMatch_3; // @[i_cache.scala 61:38]
+  wire [7:0] _GEN_475 = {foundUnvalidIndex, 6'h0}; // @[i_cache.scala 53:43]
+  wire [8:0] _unvalidIndex_T = {{1'd0}, _GEN_475}; // @[i_cache.scala 53:43]
+  wire [8:0] unvalidIndex = _unvalidIndex_T + _GEN_473; // @[i_cache.scala 53:51]
+  wire [31:0] _GEN_478 = {{10'd0}, tag}; // @[i_cache.scala 58:71]
+  wire  tagMatch_0 = valid_0 & tagMem_tagMatch_0_MPORT_data == _GEN_478; // @[i_cache.scala 58:33]
+  wire  tagMatch_1 = valid_1 & tagMem_tagMatch_1_MPORT_data == _GEN_478; // @[i_cache.scala 58:33]
+  wire  tagMatch_2 = valid_2 & tagMem_tagMatch_2_MPORT_data == _GEN_478; // @[i_cache.scala 58:33]
+  wire  tagMatch_3 = valid_3 & tagMem_tagMatch_3_MPORT_data == _GEN_478; // @[i_cache.scala 58:33]
+  wire  anyMatch = tagMatch_0 | tagMatch_1 | tagMatch_2 | tagMatch_3; // @[i_cache.scala 60:38]
   wire [1:0] _foundtagIndex_T = tagMatch_3 ? 2'h3 : 2'h0; // @[Mux.scala 101:16]
   wire [1:0] _foundtagIndex_T_1 = tagMatch_2 ? 2'h2 : _foundtagIndex_T; // @[Mux.scala 101:16]
   wire [1:0] _foundtagIndex_T_2 = tagMatch_1 ? 2'h1 : _foundtagIndex_T_1; // @[Mux.scala 101:16]
   wire [1:0] foundtagIndex = tagMatch_0 ? 2'h0 : _foundtagIndex_T_2; // @[Mux.scala 101:16]
-  wire [7:0] _GEN_485 = {foundtagIndex, 6'h0}; // @[i_cache.scala 68:35]
-  wire [8:0] _tagIndex_T = {{1'd0}, _GEN_485}; // @[i_cache.scala 68:35]
-  wire [8:0] tagIndex = _tagIndex_T + _GEN_473; // @[i_cache.scala 68:43]
-  reg [63:0] receive_data_0; // @[i_cache.scala 78:31]
-  reg [63:0] receive_data_1; // @[i_cache.scala 78:31]
-  reg [2:0] receive_num; // @[i_cache.scala 79:30]
-  wire [1:0] replace_way = quene_replace_way_MPORT_data[7:6]; // @[i_cache.scala 82:35]
-  wire [7:0] _GEN_487 = {replace_way, 6'h0}; // @[i_cache.scala 83:34]
-  wire [8:0] _replaceIndex_T = {{1'd0}, _GEN_487}; // @[i_cache.scala 83:34]
-  wire [8:0] _replaceIndex_T_2 = _replaceIndex_T + _GEN_473; // @[i_cache.scala 83:42]
-  reg [2:0] state; // @[i_cache.scala 92:24]
-  wire  _T = 3'h0 == state; // @[i_cache.scala 96:18]
-  wire [2:0] _GEN_4 = io_from_ifu_rready ? 3'h0 : state; // @[i_cache.scala 107:41 108:27 92:24]
-  wire [63:0] _GEN_7 = ~receive_num[0] ? io_from_axi_rdata : receive_data_0; // @[i_cache.scala 117:{43,43} 78:31]
-  wire [63:0] _GEN_8 = receive_num[0] ? io_from_axi_rdata : receive_data_1; // @[i_cache.scala 117:{43,43} 78:31]
-  wire [2:0] _receive_num_T_1 = receive_num + 3'h1; // @[i_cache.scala 118:44]
-  wire [2:0] _GEN_9 = io_from_axi_rlast ? 3'h3 : state; // @[i_cache.scala 119:40 120:27 92:24]
-  wire [63:0] _GEN_10 = io_from_axi_rvalid ? _GEN_7 : receive_data_0; // @[i_cache.scala 116:37 78:31]
-  wire [63:0] _GEN_11 = io_from_axi_rvalid ? _GEN_8 : receive_data_1; // @[i_cache.scala 116:37 78:31]
-  wire [2:0] _GEN_12 = io_from_axi_rvalid ? _receive_num_T_1 : receive_num; // @[i_cache.scala 116:37 118:29 79:30]
-  wire [2:0] _GEN_13 = io_from_axi_rvalid ? _GEN_9 : state; // @[i_cache.scala 116:37 92:24]
-  wire  _T_5 = ~allvalid; // @[i_cache.scala 126:18]
-  wire [9:0] _GEN_489 = {quene_MPORT_4_data, 2'h0}; // @[i_cache.scala 130:47]
-  wire [10:0] _T_10 = {{1'd0}, _GEN_489}; // @[i_cache.scala 130:47]
-  wire [10:0] _GEN_490 = {{9'd0}, foundUnvalidIndex}; // @[i_cache.scala 130:55]
-  wire [10:0] _T_11 = _T_10 | _GEN_490; // @[i_cache.scala 130:55]
-  wire [31:0] replaceIndex = {{23'd0}, _replaceIndex_T_2}; // @[i_cache.scala 70:28 83:18]
-  wire [9:0] _GEN_491 = {quene_MPORT_9_data, 2'h0}; // @[i_cache.scala 135:47]
-  wire [10:0] _T_16 = {{1'd0}, _GEN_491}; // @[i_cache.scala 135:47]
-  wire [10:0] _GEN_492 = {{9'd0}, replace_way}; // @[i_cache.scala 135:55]
-  wire [10:0] _T_17 = _T_16 | _GEN_492; // @[i_cache.scala 135:55]
-  wire  _GEN_26 = ~allvalid ? 1'h0 : 1'h1; // @[i_cache.scala 126:28 18:24 132:26]
-  wire [2:0] _GEN_100 = 3'h4 == state ? 3'h0 : state; // @[i_cache.scala 142:18 96:18 92:24]
-  wire [2:0] _GEN_101 = 3'h3 == state ? 3'h1 : _GEN_100; // @[i_cache.scala 96:18 125:19]
-  wire  _GEN_124 = 3'h3 == state ? 1'h0 : 3'h4 == state; // @[i_cache.scala 96:18 19:23]
-  wire  _GEN_194 = 3'h2 == state ? 1'h0 : 3'h3 == state & _T_5; // @[i_cache.scala 96:18 18:24]
-  wire  _GEN_204 = 3'h2 == state ? 1'h0 : 3'h3 == state & _GEN_26; // @[i_cache.scala 96:18 18:24]
-  wire  _GEN_214 = 3'h2 == state ? 1'h0 : _GEN_124; // @[i_cache.scala 96:18 19:23]
-  wire  _GEN_284 = 3'h1 == state ? 1'h0 : _GEN_194; // @[i_cache.scala 96:18 18:24]
-  wire  _GEN_294 = 3'h1 == state ? 1'h0 : _GEN_204; // @[i_cache.scala 96:18 18:24]
-  wire  _GEN_304 = 3'h1 == state ? 1'h0 : _GEN_214; // @[i_cache.scala 96:18 19:23]
+  wire [7:0] _GEN_485 = {foundtagIndex, 6'h0}; // @[i_cache.scala 67:35]
+  wire [8:0] _tagIndex_T = {{1'd0}, _GEN_485}; // @[i_cache.scala 67:35]
+  wire [8:0] tagIndex = _tagIndex_T + _GEN_473; // @[i_cache.scala 67:43]
+  reg [63:0] receive_data_0; // @[i_cache.scala 77:31]
+  reg [63:0] receive_data_1; // @[i_cache.scala 77:31]
+  reg [2:0] receive_num; // @[i_cache.scala 78:30]
+  wire [1:0] replace_way = quene_replace_way_MPORT_data[7:6]; // @[i_cache.scala 81:35]
+  wire [7:0] _GEN_487 = {replace_way, 6'h0}; // @[i_cache.scala 82:34]
+  wire [8:0] _replaceIndex_T = {{1'd0}, _GEN_487}; // @[i_cache.scala 82:34]
+  wire [8:0] _replaceIndex_T_2 = _replaceIndex_T + _GEN_473; // @[i_cache.scala 82:42]
+  reg [2:0] state; // @[i_cache.scala 91:24]
+  wire  _T = 3'h0 == state; // @[i_cache.scala 95:18]
+  wire [2:0] _GEN_4 = io_from_ifu_rready ? 3'h0 : state; // @[i_cache.scala 106:41 107:27 91:24]
+  wire [63:0] _GEN_7 = ~receive_num[0] ? io_from_axi_rdata : receive_data_0; // @[i_cache.scala 116:{43,43} 77:31]
+  wire [63:0] _GEN_8 = receive_num[0] ? io_from_axi_rdata : receive_data_1; // @[i_cache.scala 116:{43,43} 77:31]
+  wire [2:0] _receive_num_T_1 = receive_num + 3'h1; // @[i_cache.scala 117:44]
+  wire [2:0] _GEN_9 = io_from_axi_rlast ? 3'h3 : state; // @[i_cache.scala 118:40 119:27 91:24]
+  wire [63:0] _GEN_10 = io_from_axi_rvalid ? _GEN_7 : receive_data_0; // @[i_cache.scala 115:37 77:31]
+  wire [63:0] _GEN_11 = io_from_axi_rvalid ? _GEN_8 : receive_data_1; // @[i_cache.scala 115:37 77:31]
+  wire [2:0] _GEN_12 = io_from_axi_rvalid ? _receive_num_T_1 : receive_num; // @[i_cache.scala 115:37 117:29 78:30]
+  wire [2:0] _GEN_13 = io_from_axi_rvalid ? _GEN_9 : state; // @[i_cache.scala 115:37 91:24]
+  wire  _T_5 = ~allvalid; // @[i_cache.scala 125:18]
+  wire [9:0] _GEN_489 = {quene_MPORT_4_data, 2'h0}; // @[i_cache.scala 129:47]
+  wire [10:0] _T_10 = {{1'd0}, _GEN_489}; // @[i_cache.scala 129:47]
+  wire [10:0] _GEN_490 = {{9'd0}, foundUnvalidIndex}; // @[i_cache.scala 129:55]
+  wire [10:0] _T_11 = _T_10 | _GEN_490; // @[i_cache.scala 129:55]
+  wire [31:0] replaceIndex = {{23'd0}, _replaceIndex_T_2}; // @[i_cache.scala 69:28 82:18]
+  wire [9:0] _GEN_491 = {quene_MPORT_9_data, 2'h0}; // @[i_cache.scala 134:47]
+  wire [10:0] _T_16 = {{1'd0}, _GEN_491}; // @[i_cache.scala 134:47]
+  wire [10:0] _GEN_492 = {{9'd0}, replace_way}; // @[i_cache.scala 134:55]
+  wire [10:0] _T_17 = _T_16 | _GEN_492; // @[i_cache.scala 134:55]
+  wire  _GEN_26 = ~allvalid ? 1'h0 : 1'h1; // @[i_cache.scala 125:28 18:24 131:26]
+  wire [2:0] _GEN_100 = 3'h4 == state ? 3'h0 : state; // @[i_cache.scala 141:18 95:18 91:24]
+  wire [2:0] _GEN_101 = 3'h3 == state ? 3'h1 : _GEN_100; // @[i_cache.scala 95:18 124:19]
+  wire  _GEN_124 = 3'h3 == state ? 1'h0 : 3'h4 == state; // @[i_cache.scala 95:18 19:23]
+  wire  _GEN_194 = 3'h2 == state ? 1'h0 : 3'h3 == state & _T_5; // @[i_cache.scala 95:18 18:24]
+  wire  _GEN_204 = 3'h2 == state ? 1'h0 : 3'h3 == state & _GEN_26; // @[i_cache.scala 95:18 18:24]
+  wire  _GEN_214 = 3'h2 == state ? 1'h0 : _GEN_124; // @[i_cache.scala 95:18 19:23]
+  wire  _GEN_284 = 3'h1 == state ? 1'h0 : _GEN_194; // @[i_cache.scala 95:18 18:24]
+  wire  _GEN_294 = 3'h1 == state ? 1'h0 : _GEN_204; // @[i_cache.scala 95:18 18:24]
+  wire  _GEN_304 = 3'h1 == state ? 1'h0 : _GEN_214; // @[i_cache.scala 95:18 19:23]
   wire [31:0] _rdata_T_10 = 2'h1 == offset[3:2] ? cacheLine_rdata_MPORT_1_data[63:32] : cacheLine_rdata_MPORT_data[31:0]
     ; // @[Mux.scala 81:58]
   wire [31:0] _rdata_T_12 = 2'h2 == offset[3:2] ? cacheLine_rdata_MPORT_2_data[95:64] : _rdata_T_10; // @[Mux.scala 81:58]
   wire [31:0] _rdata_T_14 = 2'h3 == offset[3:2] ? cacheLine_rdata_MPORT_3_data[127:96] : _rdata_T_12; // @[Mux.scala 81:58]
-  wire  _T_20 = state == 3'h2; // @[i_cache.scala 176:21]
-  wire [63:0] _GEN_493 = {{32'd0}, addr}; // @[i_cache.scala 185:35]
-  wire [63:0] _io_to_axi_araddr_T = _GEN_493 & 64'hfffffffffffffff0; // @[i_cache.scala 185:35]
-  wire  _GEN_460 = state == 3'h2 ? 1'h0 : state == 3'h0; // @[i_cache.scala 176:29 178:27 202:27]
-  wire [63:0] _GEN_462 = state == 3'h2 ? _io_to_axi_araddr_T : {{32'd0}, addr}; // @[i_cache.scala 176:29 185:26 209:26]
-  wire  _GEN_464 = state == 3'h2 | io_from_ifu_rready; // @[i_cache.scala 176:29 189:26 210:26]
-  wire  _GEN_465 = state == 3'h1 ? 1'h0 : _T_20; // @[i_cache.scala 152:25 153:27]
-  wire [63:0] _GEN_466 = state == 3'h1 ? {{32'd0}, addr} : _GEN_462; // @[i_cache.scala 152:25 154:26]
-  wire [63:0] rdata = {{32'd0}, _rdata_T_14}; // @[i_cache.scala 145:21 146:11]
+  wire  _T_20 = state == 3'h2; // @[i_cache.scala 175:21]
+  wire [63:0] _GEN_493 = {{32'd0}, addr}; // @[i_cache.scala 184:35]
+  wire [63:0] _io_to_axi_araddr_T = _GEN_493 & 64'hfffffffffffffff0; // @[i_cache.scala 184:35]
+  wire  _GEN_460 = state == 3'h2 ? 1'h0 : state == 3'h0; // @[i_cache.scala 175:29 177:27 201:27]
+  wire [63:0] _GEN_462 = state == 3'h2 ? _io_to_axi_araddr_T : {{32'd0}, addr}; // @[i_cache.scala 175:29 184:26 208:26]
+  wire  _GEN_464 = state == 3'h2 | io_from_ifu_rready; // @[i_cache.scala 175:29 188:26 209:26]
+  wire  _GEN_465 = state == 3'h1 ? 1'h0 : _T_20; // @[i_cache.scala 151:25 152:27]
+  wire [63:0] _GEN_466 = state == 3'h1 ? {{32'd0}, addr} : _GEN_462; // @[i_cache.scala 151:25 153:26]
+  wire [63:0] rdata = {{32'd0}, _rdata_T_14}; // @[i_cache.scala 144:21 145:11]
   assign cacheLine_rdata_MPORT_en = 1'h1;
   assign cacheLine_rdata_MPORT_addr = tagIndex[7:0];
   assign cacheLine_rdata_MPORT_data = cacheLine[cacheLine_rdata_MPORT_addr]; // @[i_cache.scala 18:24]
@@ -3149,16 +3155,16 @@ module I_CACHE(
   assign validMem_MPORT_73_en = _T ? 1'h0 : _GEN_304;
   assign tagMem_tagMatch_0_MPORT_en = 1'h1;
   assign tagMem_tagMatch_0_MPORT_addr = _valid_0_T_1[7:0];
-  assign tagMem_tagMatch_0_MPORT_data = tagMem[tagMem_tagMatch_0_MPORT_addr]; // @[i_cache.scala 22:21]
+  assign tagMem_tagMatch_0_MPORT_data = tagMem[tagMem_tagMatch_0_MPORT_addr]; // @[i_cache.scala 21:21]
   assign tagMem_tagMatch_1_MPORT_en = 1'h1;
   assign tagMem_tagMatch_1_MPORT_addr = 8'h40 + _GEN_463;
-  assign tagMem_tagMatch_1_MPORT_data = tagMem[tagMem_tagMatch_1_MPORT_addr]; // @[i_cache.scala 22:21]
+  assign tagMem_tagMatch_1_MPORT_data = tagMem[tagMem_tagMatch_1_MPORT_addr]; // @[i_cache.scala 21:21]
   assign tagMem_tagMatch_2_MPORT_en = 1'h1;
   assign tagMem_tagMatch_2_MPORT_addr = _valid_2_T_2[7:0];
-  assign tagMem_tagMatch_2_MPORT_data = tagMem[tagMem_tagMatch_2_MPORT_addr]; // @[i_cache.scala 22:21]
+  assign tagMem_tagMatch_2_MPORT_data = tagMem[tagMem_tagMatch_2_MPORT_addr]; // @[i_cache.scala 21:21]
   assign tagMem_tagMatch_3_MPORT_en = 1'h1;
   assign tagMem_tagMatch_3_MPORT_addr = _valid_3_T_2[7:0];
-  assign tagMem_tagMatch_3_MPORT_data = tagMem[tagMem_tagMatch_3_MPORT_addr]; // @[i_cache.scala 22:21]
+  assign tagMem_tagMatch_3_MPORT_data = tagMem[tagMem_tagMatch_3_MPORT_addr]; // @[i_cache.scala 21:21]
   assign tagMem_MPORT_1_data = {{10'd0}, tag};
   assign tagMem_MPORT_1_addr = unvalidIndex[7:0];
   assign tagMem_MPORT_1_mask = 1'h1;
@@ -3169,13 +3175,13 @@ module I_CACHE(
   assign tagMem_MPORT_6_en = _T ? 1'h0 : _GEN_294;
   assign quene_replace_way_MPORT_en = 1'h1;
   assign quene_replace_way_MPORT_addr = addr[9:4];
-  assign quene_replace_way_MPORT_data = quene[quene_replace_way_MPORT_addr]; // @[i_cache.scala 80:20]
+  assign quene_replace_way_MPORT_data = quene[quene_replace_way_MPORT_addr]; // @[i_cache.scala 79:20]
   assign quene_MPORT_4_en = _T ? 1'h0 : _GEN_284;
   assign quene_MPORT_4_addr = addr[9:4];
-  assign quene_MPORT_4_data = quene[quene_MPORT_4_addr]; // @[i_cache.scala 80:20]
+  assign quene_MPORT_4_data = quene[quene_MPORT_4_addr]; // @[i_cache.scala 79:20]
   assign quene_MPORT_9_en = _T ? 1'h0 : _GEN_294;
   assign quene_MPORT_9_addr = addr[9:4];
-  assign quene_MPORT_9_data = quene[quene_MPORT_9_addr]; // @[i_cache.scala 80:20]
+  assign quene_MPORT_9_data = quene[quene_MPORT_9_addr]; // @[i_cache.scala 79:20]
   assign quene_MPORT_3_data = _T_11[7:0];
   assign quene_MPORT_3_addr = addr[9:4];
   assign quene_MPORT_3_mask = 1'h1;
@@ -3184,14 +3190,14 @@ module I_CACHE(
   assign quene_MPORT_8_addr = addr[9:4];
   assign quene_MPORT_8_mask = 1'h1;
   assign quene_MPORT_8_en = _T ? 1'h0 : _GEN_294;
-  assign io_to_ifu_arready = state == 3'h1 ? 1'h0 : _GEN_460; // @[i_cache.scala 152:25 170:27]
-  assign io_to_ifu_rdata = state == 3'h1 ? rdata : 64'h0; // @[i_cache.scala 152:25 169:25]
-  assign io_to_ifu_rvalid = state == 3'h1 & anyMatch; // @[i_cache.scala 152:25 171:26]
+  assign io_to_ifu_arready = state == 3'h1 ? 1'h0 : _GEN_460; // @[i_cache.scala 151:25 169:27]
+  assign io_to_ifu_rdata = state == 3'h1 ? rdata : 64'h0; // @[i_cache.scala 151:25 168:25]
+  assign io_to_ifu_rvalid = state == 3'h1 & anyMatch; // @[i_cache.scala 151:25 170:26]
   assign io_to_axi_araddr = _GEN_466[31:0];
   assign io_to_axi_arlen = {{7'd0}, _GEN_465};
-  assign io_to_axi_arvalid = state == 3'h1 ? 1'h0 : _T_20; // @[i_cache.scala 152:25 153:27]
-  assign io_to_axi_rready = state == 3'h1 ? 1'h0 : _GEN_464; // @[i_cache.scala 152:25 158:26]
-  assign io_cache_init = state == 3'h4; // @[i_cache.scala 225:27]
+  assign io_to_axi_arvalid = state == 3'h1 ? 1'h0 : _T_20; // @[i_cache.scala 151:25 152:27]
+  assign io_to_axi_rready = state == 3'h1 ? 1'h0 : _GEN_464; // @[i_cache.scala 151:25 157:26]
+  assign io_cache_init = state == 3'h4; // @[i_cache.scala 224:27]
   always @(posedge clock) begin
     if (cacheLine_MPORT_en & cacheLine_MPORT_mask) begin
       cacheLine[cacheLine_MPORT_addr] <= cacheLine_MPORT_data; // @[i_cache.scala 18:24]
@@ -3398,70 +3404,70 @@ module I_CACHE(
       validMem[validMem_MPORT_73_addr] <= validMem_MPORT_73_data; // @[i_cache.scala 19:23]
     end
     if (tagMem_MPORT_1_en & tagMem_MPORT_1_mask) begin
-      tagMem[tagMem_MPORT_1_addr] <= tagMem_MPORT_1_data; // @[i_cache.scala 22:21]
+      tagMem[tagMem_MPORT_1_addr] <= tagMem_MPORT_1_data; // @[i_cache.scala 21:21]
     end
     if (tagMem_MPORT_6_en & tagMem_MPORT_6_mask) begin
-      tagMem[tagMem_MPORT_6_addr] <= tagMem_MPORT_6_data; // @[i_cache.scala 22:21]
+      tagMem[tagMem_MPORT_6_addr] <= tagMem_MPORT_6_data; // @[i_cache.scala 21:21]
     end
     if (quene_MPORT_3_en & quene_MPORT_3_mask) begin
-      quene[quene_MPORT_3_addr] <= quene_MPORT_3_data; // @[i_cache.scala 80:20]
+      quene[quene_MPORT_3_addr] <= quene_MPORT_3_data; // @[i_cache.scala 79:20]
     end
     if (quene_MPORT_8_en & quene_MPORT_8_mask) begin
-      quene[quene_MPORT_8_addr] <= quene_MPORT_8_data; // @[i_cache.scala 80:20]
+      quene[quene_MPORT_8_addr] <= quene_MPORT_8_data; // @[i_cache.scala 79:20]
     end
-    if (reset) begin // @[i_cache.scala 37:23]
-      addr <= 32'h0; // @[i_cache.scala 37:23]
-    end else if (3'h0 == state) begin // @[i_cache.scala 96:18]
-      if (!(io_clear_cache)) begin // @[i_cache.scala 98:33]
-        if (io_from_ifu_arvalid) begin // @[i_cache.scala 100:44]
-          addr <= io_from_ifu_araddr; // @[i_cache.scala 101:22]
+    if (reset) begin // @[i_cache.scala 36:23]
+      addr <= 32'h0; // @[i_cache.scala 36:23]
+    end else if (3'h0 == state) begin // @[i_cache.scala 95:18]
+      if (!(io_clear_cache)) begin // @[i_cache.scala 97:33]
+        if (io_from_ifu_arvalid) begin // @[i_cache.scala 99:44]
+          addr <= io_from_ifu_araddr; // @[i_cache.scala 100:22]
         end
       end
     end
-    if (reset) begin // @[i_cache.scala 78:31]
-      receive_data_0 <= 64'h0; // @[i_cache.scala 78:31]
-    end else if (!(3'h0 == state)) begin // @[i_cache.scala 96:18]
-      if (!(3'h1 == state)) begin // @[i_cache.scala 96:18]
-        if (3'h2 == state) begin // @[i_cache.scala 96:18]
+    if (reset) begin // @[i_cache.scala 77:31]
+      receive_data_0 <= 64'h0; // @[i_cache.scala 77:31]
+    end else if (!(3'h0 == state)) begin // @[i_cache.scala 95:18]
+      if (!(3'h1 == state)) begin // @[i_cache.scala 95:18]
+        if (3'h2 == state) begin // @[i_cache.scala 95:18]
           receive_data_0 <= _GEN_10;
         end
       end
     end
-    if (reset) begin // @[i_cache.scala 78:31]
-      receive_data_1 <= 64'h0; // @[i_cache.scala 78:31]
-    end else if (!(3'h0 == state)) begin // @[i_cache.scala 96:18]
-      if (!(3'h1 == state)) begin // @[i_cache.scala 96:18]
-        if (3'h2 == state) begin // @[i_cache.scala 96:18]
+    if (reset) begin // @[i_cache.scala 77:31]
+      receive_data_1 <= 64'h0; // @[i_cache.scala 77:31]
+    end else if (!(3'h0 == state)) begin // @[i_cache.scala 95:18]
+      if (!(3'h1 == state)) begin // @[i_cache.scala 95:18]
+        if (3'h2 == state) begin // @[i_cache.scala 95:18]
           receive_data_1 <= _GEN_11;
         end
       end
     end
-    if (reset) begin // @[i_cache.scala 79:30]
-      receive_num <= 3'h0; // @[i_cache.scala 79:30]
-    end else if (!(3'h0 == state)) begin // @[i_cache.scala 96:18]
-      if (3'h1 == state) begin // @[i_cache.scala 96:18]
-        if (!(anyMatch)) begin // @[i_cache.scala 106:27]
-          receive_num <= 3'h0; // @[i_cache.scala 112:29]
+    if (reset) begin // @[i_cache.scala 78:30]
+      receive_num <= 3'h0; // @[i_cache.scala 78:30]
+    end else if (!(3'h0 == state)) begin // @[i_cache.scala 95:18]
+      if (3'h1 == state) begin // @[i_cache.scala 95:18]
+        if (!(anyMatch)) begin // @[i_cache.scala 105:27]
+          receive_num <= 3'h0; // @[i_cache.scala 111:29]
         end
-      end else if (3'h2 == state) begin // @[i_cache.scala 96:18]
+      end else if (3'h2 == state) begin // @[i_cache.scala 95:18]
         receive_num <= _GEN_12;
       end
     end
-    if (reset) begin // @[i_cache.scala 92:24]
-      state <= 3'h0; // @[i_cache.scala 92:24]
-    end else if (3'h0 == state) begin // @[i_cache.scala 96:18]
-      if (io_clear_cache) begin // @[i_cache.scala 98:33]
-        state <= 3'h4; // @[i_cache.scala 99:23]
-      end else if (io_from_ifu_arvalid) begin // @[i_cache.scala 100:44]
-        state <= 3'h1; // @[i_cache.scala 102:23]
+    if (reset) begin // @[i_cache.scala 91:24]
+      state <= 3'h0; // @[i_cache.scala 91:24]
+    end else if (3'h0 == state) begin // @[i_cache.scala 95:18]
+      if (io_clear_cache) begin // @[i_cache.scala 97:33]
+        state <= 3'h4; // @[i_cache.scala 98:23]
+      end else if (io_from_ifu_arvalid) begin // @[i_cache.scala 99:44]
+        state <= 3'h1; // @[i_cache.scala 101:23]
       end
-    end else if (3'h1 == state) begin // @[i_cache.scala 96:18]
-      if (anyMatch) begin // @[i_cache.scala 106:27]
+    end else if (3'h1 == state) begin // @[i_cache.scala 95:18]
+      if (anyMatch) begin // @[i_cache.scala 105:27]
         state <= _GEN_4;
       end else begin
-        state <= 3'h2; // @[i_cache.scala 111:23]
+        state <= 3'h2; // @[i_cache.scala 110:23]
       end
-    end else if (3'h2 == state) begin // @[i_cache.scala 96:18]
+    end else if (3'h2 == state) begin // @[i_cache.scala 95:18]
       state <= _GEN_13;
     end else begin
       state <= _GEN_101;
@@ -3579,117 +3585,118 @@ module D_CACHE(
   reg [31:0] _RAND_9;
   reg [31:0] _RAND_10;
 `endif // RANDOMIZE_REG_INIT
-  reg [127:0] cacheLine [0:255]; // @[d_cache.scala 24:24]
+  reg [127:0] cacheLine [0:63]; // @[d_cache.scala 24:24]
   wire  cacheLine_rdata_MPORT_en; // @[d_cache.scala 24:24]
-  wire [7:0] cacheLine_rdata_MPORT_addr; // @[d_cache.scala 24:24]
+  wire [5:0] cacheLine_rdata_MPORT_addr; // @[d_cache.scala 24:24]
   wire [127:0] cacheLine_rdata_MPORT_data; // @[d_cache.scala 24:24]
   wire  cacheLine_rdata_MPORT_1_en; // @[d_cache.scala 24:24]
-  wire [7:0] cacheLine_rdata_MPORT_1_addr; // @[d_cache.scala 24:24]
+  wire [5:0] cacheLine_rdata_MPORT_1_addr; // @[d_cache.scala 24:24]
   wire [127:0] cacheLine_rdata_MPORT_1_data; // @[d_cache.scala 24:24]
   wire  cacheLine_ldata_MPORT_en; // @[d_cache.scala 24:24]
-  wire [7:0] cacheLine_ldata_MPORT_addr; // @[d_cache.scala 24:24]
+  wire [5:0] cacheLine_ldata_MPORT_addr; // @[d_cache.scala 24:24]
   wire [127:0] cacheLine_ldata_MPORT_data; // @[d_cache.scala 24:24]
   wire  cacheLine_ldata_MPORT_1_en; // @[d_cache.scala 24:24]
-  wire [7:0] cacheLine_ldata_MPORT_1_addr; // @[d_cache.scala 24:24]
+  wire [5:0] cacheLine_ldata_MPORT_1_addr; // @[d_cache.scala 24:24]
   wire [127:0] cacheLine_ldata_MPORT_1_data; // @[d_cache.scala 24:24]
   wire  cacheLine_write_back_data_MPORT_en; // @[d_cache.scala 24:24]
-  wire [7:0] cacheLine_write_back_data_MPORT_addr; // @[d_cache.scala 24:24]
+  wire [5:0] cacheLine_write_back_data_MPORT_addr; // @[d_cache.scala 24:24]
   wire [127:0] cacheLine_write_back_data_MPORT_data; // @[d_cache.scala 24:24]
   wire [127:0] cacheLine_MPORT_data; // @[d_cache.scala 24:24]
-  wire [7:0] cacheLine_MPORT_addr; // @[d_cache.scala 24:24]
+  wire [5:0] cacheLine_MPORT_addr; // @[d_cache.scala 24:24]
   wire  cacheLine_MPORT_mask; // @[d_cache.scala 24:24]
   wire  cacheLine_MPORT_en; // @[d_cache.scala 24:24]
   wire [127:0] cacheLine_MPORT_2_data; // @[d_cache.scala 24:24]
-  wire [7:0] cacheLine_MPORT_2_addr; // @[d_cache.scala 24:24]
+  wire [5:0] cacheLine_MPORT_2_addr; // @[d_cache.scala 24:24]
   wire  cacheLine_MPORT_2_mask; // @[d_cache.scala 24:24]
   wire  cacheLine_MPORT_2_en; // @[d_cache.scala 24:24]
   wire [127:0] cacheLine_MPORT_7_data; // @[d_cache.scala 24:24]
-  wire [7:0] cacheLine_MPORT_7_addr; // @[d_cache.scala 24:24]
+  wire [5:0] cacheLine_MPORT_7_addr; // @[d_cache.scala 24:24]
   wire  cacheLine_MPORT_7_mask; // @[d_cache.scala 24:24]
   wire  cacheLine_MPORT_7_en; // @[d_cache.scala 24:24]
-  reg  validMem [0:255]; // @[d_cache.scala 25:23]
+  reg  validMem [0:63]; // @[d_cache.scala 25:23]
   wire  validMem_valid_0_MPORT_en; // @[d_cache.scala 25:23]
-  wire [7:0] validMem_valid_0_MPORT_addr; // @[d_cache.scala 25:23]
+  wire [5:0] validMem_valid_0_MPORT_addr; // @[d_cache.scala 25:23]
   wire  validMem_valid_0_MPORT_data; // @[d_cache.scala 25:23]
   wire  validMem_valid_1_MPORT_en; // @[d_cache.scala 25:23]
-  wire [7:0] validMem_valid_1_MPORT_addr; // @[d_cache.scala 25:23]
+  wire [5:0] validMem_valid_1_MPORT_addr; // @[d_cache.scala 25:23]
   wire  validMem_valid_1_MPORT_data; // @[d_cache.scala 25:23]
   wire  validMem_valid_2_MPORT_en; // @[d_cache.scala 25:23]
-  wire [7:0] validMem_valid_2_MPORT_addr; // @[d_cache.scala 25:23]
+  wire [5:0] validMem_valid_2_MPORT_addr; // @[d_cache.scala 25:23]
   wire  validMem_valid_2_MPORT_data; // @[d_cache.scala 25:23]
   wire  validMem_valid_3_MPORT_en; // @[d_cache.scala 25:23]
-  wire [7:0] validMem_valid_3_MPORT_addr; // @[d_cache.scala 25:23]
+  wire [5:0] validMem_valid_3_MPORT_addr; // @[d_cache.scala 25:23]
   wire  validMem_valid_3_MPORT_data; // @[d_cache.scala 25:23]
   wire  validMem_MPORT_4_data; // @[d_cache.scala 25:23]
-  wire [7:0] validMem_MPORT_4_addr; // @[d_cache.scala 25:23]
+  wire [5:0] validMem_MPORT_4_addr; // @[d_cache.scala 25:23]
   wire  validMem_MPORT_4_mask; // @[d_cache.scala 25:23]
   wire  validMem_MPORT_4_en; // @[d_cache.scala 25:23]
   wire  validMem_MPORT_9_data; // @[d_cache.scala 25:23]
-  wire [7:0] validMem_MPORT_9_addr; // @[d_cache.scala 25:23]
+  wire [5:0] validMem_MPORT_9_addr; // @[d_cache.scala 25:23]
   wire  validMem_MPORT_9_mask; // @[d_cache.scala 25:23]
   wire  validMem_MPORT_9_en; // @[d_cache.scala 25:23]
-  reg [31:0] tagMem [0:255]; // @[d_cache.scala 28:21]
+  reg [31:0] tagMem [0:63]; // @[d_cache.scala 28:21]
   wire  tagMem_tagMatch_0_MPORT_en; // @[d_cache.scala 28:21]
-  wire [7:0] tagMem_tagMatch_0_MPORT_addr; // @[d_cache.scala 28:21]
+  wire [5:0] tagMem_tagMatch_0_MPORT_addr; // @[d_cache.scala 28:21]
   wire [31:0] tagMem_tagMatch_0_MPORT_data; // @[d_cache.scala 28:21]
   wire  tagMem_tagMatch_1_MPORT_en; // @[d_cache.scala 28:21]
-  wire [7:0] tagMem_tagMatch_1_MPORT_addr; // @[d_cache.scala 28:21]
+  wire [5:0] tagMem_tagMatch_1_MPORT_addr; // @[d_cache.scala 28:21]
   wire [31:0] tagMem_tagMatch_1_MPORT_data; // @[d_cache.scala 28:21]
   wire  tagMem_tagMatch_2_MPORT_en; // @[d_cache.scala 28:21]
-  wire [7:0] tagMem_tagMatch_2_MPORT_addr; // @[d_cache.scala 28:21]
+  wire [5:0] tagMem_tagMatch_2_MPORT_addr; // @[d_cache.scala 28:21]
   wire [31:0] tagMem_tagMatch_2_MPORT_data; // @[d_cache.scala 28:21]
   wire  tagMem_tagMatch_3_MPORT_en; // @[d_cache.scala 28:21]
-  wire [7:0] tagMem_tagMatch_3_MPORT_addr; // @[d_cache.scala 28:21]
+  wire [5:0] tagMem_tagMatch_3_MPORT_addr; // @[d_cache.scala 28:21]
   wire [31:0] tagMem_tagMatch_3_MPORT_data; // @[d_cache.scala 28:21]
   wire  tagMem_write_back_addr_MPORT_en; // @[d_cache.scala 28:21]
-  wire [7:0] tagMem_write_back_addr_MPORT_addr; // @[d_cache.scala 28:21]
+  wire [5:0] tagMem_write_back_addr_MPORT_addr; // @[d_cache.scala 28:21]
   wire [31:0] tagMem_write_back_addr_MPORT_data; // @[d_cache.scala 28:21]
   wire [31:0] tagMem_MPORT_3_data; // @[d_cache.scala 28:21]
-  wire [7:0] tagMem_MPORT_3_addr; // @[d_cache.scala 28:21]
+  wire [5:0] tagMem_MPORT_3_addr; // @[d_cache.scala 28:21]
   wire  tagMem_MPORT_3_mask; // @[d_cache.scala 28:21]
   wire  tagMem_MPORT_3_en; // @[d_cache.scala 28:21]
   wire [31:0] tagMem_MPORT_8_data; // @[d_cache.scala 28:21]
-  wire [7:0] tagMem_MPORT_8_addr; // @[d_cache.scala 28:21]
+  wire [5:0] tagMem_MPORT_8_addr; // @[d_cache.scala 28:21]
   wire  tagMem_MPORT_8_mask; // @[d_cache.scala 28:21]
   wire  tagMem_MPORT_8_en; // @[d_cache.scala 28:21]
-  reg  dirtyMem [0:255]; // @[d_cache.scala 29:23]
+  reg  dirtyMem [0:63]; // @[d_cache.scala 29:23]
   wire  dirtyMem_MPORT_12_en; // @[d_cache.scala 29:23]
-  wire [7:0] dirtyMem_MPORT_12_addr; // @[d_cache.scala 29:23]
+  wire [5:0] dirtyMem_MPORT_12_addr; // @[d_cache.scala 29:23]
   wire  dirtyMem_MPORT_12_data; // @[d_cache.scala 29:23]
   wire  dirtyMem_MPORT_1_data; // @[d_cache.scala 29:23]
-  wire [7:0] dirtyMem_MPORT_1_addr; // @[d_cache.scala 29:23]
+  wire [5:0] dirtyMem_MPORT_1_addr; // @[d_cache.scala 29:23]
   wire  dirtyMem_MPORT_1_mask; // @[d_cache.scala 29:23]
   wire  dirtyMem_MPORT_1_en; // @[d_cache.scala 29:23]
   wire  dirtyMem_MPORT_13_data; // @[d_cache.scala 29:23]
-  wire [7:0] dirtyMem_MPORT_13_addr; // @[d_cache.scala 29:23]
+  wire [5:0] dirtyMem_MPORT_13_addr; // @[d_cache.scala 29:23]
   wire  dirtyMem_MPORT_13_mask; // @[d_cache.scala 29:23]
   wire  dirtyMem_MPORT_13_en; // @[d_cache.scala 29:23]
-  reg [7:0] quene [0:63]; // @[d_cache.scala 77:20]
+  reg [7:0] quene [0:15]; // @[d_cache.scala 77:20]
   wire  quene_replace_way_MPORT_en; // @[d_cache.scala 77:20]
-  wire [5:0] quene_replace_way_MPORT_addr; // @[d_cache.scala 77:20]
+  wire [3:0] quene_replace_way_MPORT_addr; // @[d_cache.scala 77:20]
   wire [7:0] quene_replace_way_MPORT_data; // @[d_cache.scala 77:20]
   wire  quene_MPORT_6_en; // @[d_cache.scala 77:20]
-  wire [5:0] quene_MPORT_6_addr; // @[d_cache.scala 77:20]
+  wire [3:0] quene_MPORT_6_addr; // @[d_cache.scala 77:20]
   wire [7:0] quene_MPORT_6_data; // @[d_cache.scala 77:20]
   wire  quene_MPORT_11_en; // @[d_cache.scala 77:20]
-  wire [5:0] quene_MPORT_11_addr; // @[d_cache.scala 77:20]
+  wire [3:0] quene_MPORT_11_addr; // @[d_cache.scala 77:20]
   wire [7:0] quene_MPORT_11_data; // @[d_cache.scala 77:20]
   wire [7:0] quene_MPORT_5_data; // @[d_cache.scala 77:20]
-  wire [5:0] quene_MPORT_5_addr; // @[d_cache.scala 77:20]
+  wire [3:0] quene_MPORT_5_addr; // @[d_cache.scala 77:20]
   wire  quene_MPORT_5_mask; // @[d_cache.scala 77:20]
   wire  quene_MPORT_5_en; // @[d_cache.scala 77:20]
   wire [7:0] quene_MPORT_10_data; // @[d_cache.scala 77:20]
-  wire [5:0] quene_MPORT_10_addr; // @[d_cache.scala 77:20]
+  wire [3:0] quene_MPORT_10_addr; // @[d_cache.scala 77:20]
   wire  quene_MPORT_10_mask; // @[d_cache.scala 77:20]
   wire  quene_MPORT_10_en; // @[d_cache.scala 77:20]
   wire [3:0] offset = io_from_lsu_araddr[3:0]; // @[d_cache.scala 20:36]
-  wire [5:0] index = io_from_lsu_araddr[9:4]; // @[d_cache.scala 21:35]
-  wire [21:0] tag = io_from_lsu_araddr[31:10]; // @[d_cache.scala 22:33]
-  wire [7:0] _GEN_2 = {{2'd0}, index}; // @[d_cache.scala 41:48]
+  wire [3:0] index = io_from_lsu_araddr[7:4]; // @[d_cache.scala 21:35]
+  wire [23:0] tag = io_from_lsu_araddr[31:8]; // @[d_cache.scala 22:33]
+  wire [7:0] _GEN_2 = {{4'd0}, index}; // @[d_cache.scala 41:48]
   wire [8:0] _valid_0_T_1 = {{1'd0}, _GEN_2}; // @[d_cache.scala 41:48]
-  wire [8:0] _GEN_6 = {{3'd0}, index}; // @[d_cache.scala 41:48]
-  wire [8:0] _valid_2_T_2 = 9'h80 + _GEN_6; // @[d_cache.scala 41:48]
-  wire [8:0] _valid_3_T_2 = 9'hc0 + _GEN_6; // @[d_cache.scala 41:48]
+  wire [7:0] _valid_1_T_2 = 8'h10 + _GEN_2; // @[d_cache.scala 41:48]
+  wire [8:0] _GEN_6 = {{5'd0}, index}; // @[d_cache.scala 41:48]
+  wire [8:0] _valid_2_T_2 = 9'h20 + _GEN_6; // @[d_cache.scala 41:48]
+  wire [8:0] _valid_3_T_2 = 9'h30 + _GEN_6; // @[d_cache.scala 41:48]
   wire  valid_0 = validMem_valid_0_MPORT_data; // @[d_cache.scala 39:21 41:18]
   wire  valid_1 = validMem_valid_1_MPORT_data; // @[d_cache.scala 39:21 41:18]
   wire  valid_2 = validMem_valid_2_MPORT_data; // @[d_cache.scala 39:21 41:18]
@@ -3703,10 +3710,10 @@ module D_CACHE(
   wire [1:0] _foundUnvalidIndex_T_5 = _foundUnvalidIndex_T_2 ? 2'h2 : _foundUnvalidIndex_T_4; // @[Mux.scala 101:16]
   wire [1:0] _foundUnvalidIndex_T_6 = _foundUnvalidIndex_T_1 ? 2'h1 : _foundUnvalidIndex_T_5; // @[Mux.scala 101:16]
   wire [1:0] foundUnvalidIndex = _foundUnvalidIndex_T ? 2'h0 : _foundUnvalidIndex_T_6; // @[Mux.scala 101:16]
-  wire [7:0] _GEN_11 = {foundUnvalidIndex, 6'h0}; // @[d_cache.scala 50:43]
-  wire [8:0] _unvalidIndex_T = {{1'd0}, _GEN_11}; // @[d_cache.scala 50:43]
+  wire [5:0] _GEN_11 = {foundUnvalidIndex, 4'h0}; // @[d_cache.scala 50:43]
+  wire [8:0] _unvalidIndex_T = {{3'd0}, _GEN_11}; // @[d_cache.scala 50:43]
   wire [8:0] unvalidIndex = _unvalidIndex_T + _GEN_6; // @[d_cache.scala 50:51]
-  wire [31:0] _GEN_18 = {{10'd0}, tag}; // @[d_cache.scala 55:71]
+  wire [31:0] _GEN_18 = {{8'd0}, tag}; // @[d_cache.scala 55:71]
   wire  tagMatch_0 = valid_0 & tagMem_tagMatch_0_MPORT_data == _GEN_18; // @[d_cache.scala 55:33]
   wire  tagMatch_1 = valid_1 & tagMem_tagMatch_1_MPORT_data == _GEN_18; // @[d_cache.scala 55:33]
   wire  tagMatch_2 = valid_2 & tagMem_tagMatch_2_MPORT_data == _GEN_18; // @[d_cache.scala 55:33]
@@ -3716,8 +3723,8 @@ module D_CACHE(
   wire [1:0] _foundtagIndex_T_1 = tagMatch_2 ? 2'h2 : _foundtagIndex_T; // @[Mux.scala 101:16]
   wire [1:0] _foundtagIndex_T_2 = tagMatch_1 ? 2'h1 : _foundtagIndex_T_1; // @[Mux.scala 101:16]
   wire [1:0] foundtagIndex = tagMatch_0 ? 2'h0 : _foundtagIndex_T_2; // @[Mux.scala 101:16]
-  wire [7:0] _GEN_138 = {foundtagIndex, 6'h0}; // @[d_cache.scala 64:35]
-  wire [8:0] _tagIndex_T = {{1'd0}, _GEN_138}; // @[d_cache.scala 64:35]
+  wire [5:0] _GEN_138 = {foundtagIndex, 4'h0}; // @[d_cache.scala 64:35]
+  wire [8:0] _tagIndex_T = {{3'd0}, _GEN_138}; // @[d_cache.scala 64:35]
   wire [8:0] tagIndex = _tagIndex_T + _GEN_6; // @[d_cache.scala 64:43]
   reg [127:0] write_back_data; // @[d_cache.scala 70:34]
   reg [31:0] write_back_addr; // @[d_cache.scala 71:34]
@@ -3725,8 +3732,8 @@ module D_CACHE(
   reg [63:0] receive_data_1; // @[d_cache.scala 75:31]
   reg [2:0] receive_num; // @[d_cache.scala 76:30]
   wire [1:0] replace_way = quene_replace_way_MPORT_data[7:6]; // @[d_cache.scala 79:35]
-  wire [7:0] _GEN_177 = {replace_way, 6'h0}; // @[d_cache.scala 80:34]
-  wire [8:0] _replaceIndex_T = {{1'd0}, _GEN_177}; // @[d_cache.scala 80:34]
+  wire [5:0] _GEN_177 = {replace_way, 4'h0}; // @[d_cache.scala 80:34]
+  wire [8:0] _replaceIndex_T = {{3'd0}, _GEN_177}; // @[d_cache.scala 80:34]
   wire [8:0] _replaceIndex_T_2 = _replaceIndex_T + _GEN_6; // @[d_cache.scala 80:42]
   wire [5:0] shift_bit_t = {offset[2:0], 3'h0}; // @[d_cache.scala 82:35]
   wire [63:0] _wmask_T_4 = io_from_lsu_wstrb == 8'hff ? 64'hffffffffffffffff : 64'h0; // @[d_cache.scala 92:20]
@@ -3791,15 +3798,15 @@ module D_CACHE(
   wire [10:0] _GEN_227 = {{9'd0}, replace_way}; // @[d_cache.scala 221:55]
   wire [10:0] _T_30 = _T_29 | _GEN_227; // @[d_cache.scala 221:55]
   wire  _T_32 = dirtyMem_MPORT_12_data; // @[d_cache.scala 222:44]
-  wire [41:0] _write_back_addr_T_2 = {tagMem_write_back_addr_MPORT_data,index,4'h0}; // @[Cat.scala 31:58]
+  wire [39:0] _write_back_addr_T_2 = {tagMem_write_back_addr_MPORT_data,index,4'h0}; // @[Cat.scala 31:58]
   wire [127:0] _GEN_48 = dirtyMem_MPORT_12_data ? cacheLine_write_back_data_MPORT_data : write_back_data; // @[d_cache.scala 222:51 224:37 70:34]
-  wire [41:0] _GEN_50 = dirtyMem_MPORT_12_data ? _write_back_addr_T_2 : {{10'd0}, write_back_addr}; // @[d_cache.scala 222:51 225:37 71:34]
+  wire [39:0] _GEN_50 = dirtyMem_MPORT_12_data ? _write_back_addr_T_2 : {{8'd0}, write_back_addr}; // @[d_cache.scala 222:51 225:37 71:34]
   wire [2:0] _GEN_54 = dirtyMem_MPORT_12_data ? 3'h6 : 3'h1; // @[d_cache.scala 222:51 227:27 229:27]
   wire [2:0] _GEN_55 = ~allvalid ? 3'h1 : _GEN_54; // @[d_cache.scala 208:28 209:23]
   wire  _GEN_68 = ~allvalid ? 1'h0 : 1'h1; // @[d_cache.scala 208:28 24:24 218:26]
   wire  _GEN_79 = ~allvalid ? 1'h0 : _T_32; // @[d_cache.scala 208:28 24:24]
   wire [127:0] _GEN_80 = ~allvalid ? write_back_data : _GEN_48; // @[d_cache.scala 208:28 70:34]
-  wire [41:0] _GEN_82 = ~allvalid ? {{10'd0}, write_back_addr} : _GEN_50; // @[d_cache.scala 208:28 71:34]
+  wire [39:0] _GEN_82 = ~allvalid ? {{8'd0}, write_back_addr} : _GEN_50; // @[d_cache.scala 208:28 71:34]
   wire [127:0] _write_back_data_T_1 = {{64'd0}, write_back_data[127:64]}; // @[d_cache.scala 245:52]
   wire [127:0] _GEN_86 = io_from_axi_wready ? _write_back_data_T_1 : write_back_data; // @[d_cache.scala 244:37 245:33 70:34]
   wire [2:0] _GEN_87 = io_from_axi_bvalid ? 3'h1 : state; // @[d_cache.scala 247:37 248:23 103:24]
@@ -3810,7 +3817,7 @@ module D_CACHE(
   wire [2:0] _GEN_94 = 3'h6 == state ? _GEN_87 : state; // @[d_cache.scala 132:18 103:24]
   wire [2:0] _GEN_95 = 3'h5 == state ? _GEN_55 : _GEN_94; // @[d_cache.scala 132:18]
   wire [127:0] _GEN_120 = 3'h5 == state ? _GEN_80 : _GEN_93; // @[d_cache.scala 132:18]
-  wire [41:0] _GEN_122 = 3'h5 == state ? _GEN_82 : {{10'd0}, write_back_addr}; // @[d_cache.scala 132:18 71:34]
+  wire [39:0] _GEN_122 = 3'h5 == state ? _GEN_82 : {{8'd0}, write_back_addr}; // @[d_cache.scala 132:18 71:34]
   wire [31:0] _GEN_126 = 3'h5 == state ? 32'h0 : _GEN_88; // @[d_cache.scala 132:18 122:22]
   wire  _GEN_127 = 3'h5 == state ? 1'h0 : 3'h6 == state; // @[d_cache.scala 132:18 123:23]
   wire [63:0] _GEN_129 = 3'h5 == state ? 64'h0 : _GEN_91; // @[d_cache.scala 132:18 127:21]
@@ -3828,7 +3835,7 @@ module D_CACHE(
   wire  _GEN_157 = 3'h4 == state ? 1'h0 : 3'h5 == state & _GEN_68; // @[d_cache.scala 132:18 24:24]
   wire  _GEN_168 = 3'h4 == state ? 1'h0 : 3'h5 == state & _GEN_79; // @[d_cache.scala 132:18 24:24]
   wire [127:0] _GEN_169 = 3'h4 == state ? write_back_data : _GEN_120; // @[d_cache.scala 132:18 70:34]
-  wire [41:0] _GEN_171 = 3'h4 == state ? {{10'd0}, write_back_addr} : _GEN_122; // @[d_cache.scala 132:18 71:34]
+  wire [39:0] _GEN_171 = 3'h4 == state ? {{8'd0}, write_back_addr} : _GEN_122; // @[d_cache.scala 132:18 71:34]
   wire [63:0] _GEN_176 = 3'h3 == state ? _io_to_axi_araddr_T : {{32'd0}, io_from_lsu_araddr}; // @[d_cache.scala 132:18 117:22 176:30]
   wire [63:0] _GEN_179 = 3'h3 == state ? _GEN_40 : receive_data_0; // @[d_cache.scala 132:18 75:31]
   wire [63:0] _GEN_180 = 3'h3 == state ? _GEN_41 : receive_data_1; // @[d_cache.scala 132:18 75:31]
@@ -3846,7 +3853,7 @@ module D_CACHE(
   wire  _GEN_208 = 3'h3 == state ? 1'h0 : _GEN_157; // @[d_cache.scala 132:18 24:24]
   wire  _GEN_219 = 3'h3 == state ? 1'h0 : _GEN_168; // @[d_cache.scala 132:18 24:24]
   wire [127:0] _GEN_220 = 3'h3 == state ? write_back_data : _GEN_169; // @[d_cache.scala 132:18 70:34]
-  wire [41:0] _GEN_222 = 3'h3 == state ? {{10'd0}, write_back_addr} : _GEN_171; // @[d_cache.scala 132:18 71:34]
+  wire [39:0] _GEN_222 = 3'h3 == state ? {{8'd0}, write_back_addr} : _GEN_171; // @[d_cache.scala 132:18 71:34]
   wire  _GEN_228 = 3'h2 == state ? anyMatch : _GEN_184; // @[d_cache.scala 132:18 160:30]
   wire  _GEN_236 = 3'h2 == state ? 1'h0 : 3'h3 == state; // @[d_cache.scala 132:18 116:23]
   wire [63:0] _GEN_237 = 3'h2 == state ? {{32'd0}, io_from_lsu_araddr} : _GEN_176; // @[d_cache.scala 132:18 117:22]
@@ -3860,7 +3867,7 @@ module D_CACHE(
   wire  _GEN_255 = 3'h2 == state ? 1'h0 : _GEN_198; // @[d_cache.scala 132:18 24:24]
   wire  _GEN_265 = 3'h2 == state ? 1'h0 : _GEN_208; // @[d_cache.scala 132:18 24:24]
   wire  _GEN_276 = 3'h2 == state ? 1'h0 : _GEN_219; // @[d_cache.scala 132:18 24:24]
-  wire [41:0] _GEN_279 = 3'h2 == state ? {{10'd0}, write_back_addr} : _GEN_222; // @[d_cache.scala 132:18 71:34]
+  wire [39:0] _GEN_279 = 3'h2 == state ? {{8'd0}, write_back_addr} : _GEN_222; // @[d_cache.scala 132:18 71:34]
   wire [63:0] _GEN_283 = 3'h1 == state ? _io_to_lsu_rdata_T : 64'h0; // @[d_cache.scala 132:18 109:21 145:29]
   wire  _GEN_284 = 3'h1 == state & anyMatch; // @[d_cache.scala 132:18 111:22 146:30]
   wire  _GEN_290 = 3'h1 == state ? 1'h0 : _GEN_228; // @[d_cache.scala 132:18 114:22]
@@ -3877,106 +3884,106 @@ module D_CACHE(
   wire  _GEN_315 = 3'h1 == state ? 1'h0 : _GEN_255; // @[d_cache.scala 132:18 24:24]
   wire  _GEN_325 = 3'h1 == state ? 1'h0 : _GEN_265; // @[d_cache.scala 132:18 24:24]
   wire  _GEN_336 = 3'h1 == state ? 1'h0 : _GEN_276; // @[d_cache.scala 132:18 24:24]
-  wire [41:0] _GEN_339 = 3'h1 == state ? {{10'd0}, write_back_addr} : _GEN_279; // @[d_cache.scala 132:18 71:34]
+  wire [39:0] _GEN_339 = 3'h1 == state ? {{8'd0}, write_back_addr} : _GEN_279; // @[d_cache.scala 132:18 71:34]
   wire [63:0] _GEN_350 = 3'h0 == state ? {{32'd0}, io_from_lsu_araddr} : _GEN_298; // @[d_cache.scala 132:18]
-  wire [41:0] _GEN_402 = 3'h0 == state ? {{10'd0}, write_back_addr} : _GEN_339; // @[d_cache.scala 132:18 71:34]
-  wire [41:0] _GEN_246 = reset ? 42'h0 : _GEN_402; // @[d_cache.scala 71:{34,34}]
+  wire [39:0] _GEN_402 = 3'h0 == state ? {{8'd0}, write_back_addr} : _GEN_339; // @[d_cache.scala 132:18 71:34]
+  wire [39:0] _GEN_246 = reset ? 40'h0 : _GEN_402; // @[d_cache.scala 71:{34,34}]
   assign cacheLine_rdata_MPORT_en = 1'h1;
-  assign cacheLine_rdata_MPORT_addr = tagIndex[7:0];
+  assign cacheLine_rdata_MPORT_addr = tagIndex[5:0];
   assign cacheLine_rdata_MPORT_data = cacheLine[cacheLine_rdata_MPORT_addr]; // @[d_cache.scala 24:24]
   assign cacheLine_rdata_MPORT_1_en = 1'h1;
-  assign cacheLine_rdata_MPORT_1_addr = tagIndex[7:0];
+  assign cacheLine_rdata_MPORT_1_addr = tagIndex[5:0];
   assign cacheLine_rdata_MPORT_1_data = cacheLine[cacheLine_rdata_MPORT_1_addr]; // @[d_cache.scala 24:24]
   assign cacheLine_ldata_MPORT_en = 1'h1;
-  assign cacheLine_ldata_MPORT_addr = tagIndex[7:0];
+  assign cacheLine_ldata_MPORT_addr = tagIndex[5:0];
   assign cacheLine_ldata_MPORT_data = cacheLine[cacheLine_ldata_MPORT_addr]; // @[d_cache.scala 24:24]
   assign cacheLine_ldata_MPORT_1_en = 1'h1;
-  assign cacheLine_ldata_MPORT_1_addr = tagIndex[7:0];
+  assign cacheLine_ldata_MPORT_1_addr = tagIndex[5:0];
   assign cacheLine_ldata_MPORT_1_data = cacheLine[cacheLine_ldata_MPORT_1_addr]; // @[d_cache.scala 24:24]
   assign cacheLine_write_back_data_MPORT_en = _T ? 1'h0 : _GEN_336;
-  assign cacheLine_write_back_data_MPORT_addr = replaceIndex[7:0];
+  assign cacheLine_write_back_data_MPORT_addr = replaceIndex[5:0];
   assign cacheLine_write_back_data_MPORT_data = cacheLine[cacheLine_write_back_data_MPORT_addr]; // @[d_cache.scala 24:24]
   assign cacheLine_MPORT_data = offset[3] ? _T_9 : _T_10;
-  assign cacheLine_MPORT_addr = tagIndex[7:0];
+  assign cacheLine_MPORT_addr = tagIndex[5:0];
   assign cacheLine_MPORT_mask = 1'h1;
   assign cacheLine_MPORT_en = _T ? 1'h0 : _GEN_293;
   assign cacheLine_MPORT_2_data = {receive_data_1,receive_data_0};
-  assign cacheLine_MPORT_2_addr = unvalidIndex[7:0];
+  assign cacheLine_MPORT_2_addr = unvalidIndex[5:0];
   assign cacheLine_MPORT_2_mask = 1'h1;
   assign cacheLine_MPORT_2_en = _T ? 1'h0 : _GEN_315;
   assign cacheLine_MPORT_7_data = {receive_data_1,receive_data_0};
-  assign cacheLine_MPORT_7_addr = replaceIndex[7:0];
+  assign cacheLine_MPORT_7_addr = replaceIndex[5:0];
   assign cacheLine_MPORT_7_mask = 1'h1;
   assign cacheLine_MPORT_7_en = _T ? 1'h0 : _GEN_325;
   assign validMem_valid_0_MPORT_en = 1'h1;
-  assign validMem_valid_0_MPORT_addr = _valid_0_T_1[7:0];
+  assign validMem_valid_0_MPORT_addr = _valid_0_T_1[5:0];
   assign validMem_valid_0_MPORT_data = validMem[validMem_valid_0_MPORT_addr]; // @[d_cache.scala 25:23]
   assign validMem_valid_1_MPORT_en = 1'h1;
-  assign validMem_valid_1_MPORT_addr = 8'h40 + _GEN_2;
+  assign validMem_valid_1_MPORT_addr = _valid_1_T_2[5:0];
   assign validMem_valid_1_MPORT_data = validMem[validMem_valid_1_MPORT_addr]; // @[d_cache.scala 25:23]
   assign validMem_valid_2_MPORT_en = 1'h1;
-  assign validMem_valid_2_MPORT_addr = _valid_2_T_2[7:0];
+  assign validMem_valid_2_MPORT_addr = _valid_2_T_2[5:0];
   assign validMem_valid_2_MPORT_data = validMem[validMem_valid_2_MPORT_addr]; // @[d_cache.scala 25:23]
   assign validMem_valid_3_MPORT_en = 1'h1;
-  assign validMem_valid_3_MPORT_addr = _valid_3_T_2[7:0];
+  assign validMem_valid_3_MPORT_addr = _valid_3_T_2[5:0];
   assign validMem_valid_3_MPORT_data = validMem[validMem_valid_3_MPORT_addr]; // @[d_cache.scala 25:23]
   assign validMem_MPORT_4_data = 1'h1;
-  assign validMem_MPORT_4_addr = unvalidIndex[7:0];
+  assign validMem_MPORT_4_addr = unvalidIndex[5:0];
   assign validMem_MPORT_4_mask = 1'h1;
   assign validMem_MPORT_4_en = _T ? 1'h0 : _GEN_315;
   assign validMem_MPORT_9_data = 1'h1;
-  assign validMem_MPORT_9_addr = replaceIndex[7:0];
+  assign validMem_MPORT_9_addr = replaceIndex[5:0];
   assign validMem_MPORT_9_mask = 1'h1;
   assign validMem_MPORT_9_en = _T ? 1'h0 : _GEN_325;
   assign tagMem_tagMatch_0_MPORT_en = 1'h1;
-  assign tagMem_tagMatch_0_MPORT_addr = _valid_0_T_1[7:0];
+  assign tagMem_tagMatch_0_MPORT_addr = _valid_0_T_1[5:0];
   assign tagMem_tagMatch_0_MPORT_data = tagMem[tagMem_tagMatch_0_MPORT_addr]; // @[d_cache.scala 28:21]
   assign tagMem_tagMatch_1_MPORT_en = 1'h1;
-  assign tagMem_tagMatch_1_MPORT_addr = 8'h40 + _GEN_2;
+  assign tagMem_tagMatch_1_MPORT_addr = _valid_1_T_2[5:0];
   assign tagMem_tagMatch_1_MPORT_data = tagMem[tagMem_tagMatch_1_MPORT_addr]; // @[d_cache.scala 28:21]
   assign tagMem_tagMatch_2_MPORT_en = 1'h1;
-  assign tagMem_tagMatch_2_MPORT_addr = _valid_2_T_2[7:0];
+  assign tagMem_tagMatch_2_MPORT_addr = _valid_2_T_2[5:0];
   assign tagMem_tagMatch_2_MPORT_data = tagMem[tagMem_tagMatch_2_MPORT_addr]; // @[d_cache.scala 28:21]
   assign tagMem_tagMatch_3_MPORT_en = 1'h1;
-  assign tagMem_tagMatch_3_MPORT_addr = _valid_3_T_2[7:0];
+  assign tagMem_tagMatch_3_MPORT_addr = _valid_3_T_2[5:0];
   assign tagMem_tagMatch_3_MPORT_data = tagMem[tagMem_tagMatch_3_MPORT_addr]; // @[d_cache.scala 28:21]
   assign tagMem_write_back_addr_MPORT_en = _T ? 1'h0 : _GEN_336;
-  assign tagMem_write_back_addr_MPORT_addr = replaceIndex[7:0];
+  assign tagMem_write_back_addr_MPORT_addr = replaceIndex[5:0];
   assign tagMem_write_back_addr_MPORT_data = tagMem[tagMem_write_back_addr_MPORT_addr]; // @[d_cache.scala 28:21]
-  assign tagMem_MPORT_3_data = {{10'd0}, tag};
-  assign tagMem_MPORT_3_addr = unvalidIndex[7:0];
+  assign tagMem_MPORT_3_data = {{8'd0}, tag};
+  assign tagMem_MPORT_3_addr = unvalidIndex[5:0];
   assign tagMem_MPORT_3_mask = 1'h1;
   assign tagMem_MPORT_3_en = _T ? 1'h0 : _GEN_315;
-  assign tagMem_MPORT_8_data = {{10'd0}, tag};
-  assign tagMem_MPORT_8_addr = replaceIndex[7:0];
+  assign tagMem_MPORT_8_data = {{8'd0}, tag};
+  assign tagMem_MPORT_8_addr = replaceIndex[5:0];
   assign tagMem_MPORT_8_mask = 1'h1;
   assign tagMem_MPORT_8_en = _T ? 1'h0 : _GEN_325;
   assign dirtyMem_MPORT_12_en = _T ? 1'h0 : _GEN_325;
-  assign dirtyMem_MPORT_12_addr = replaceIndex[7:0];
+  assign dirtyMem_MPORT_12_addr = replaceIndex[5:0];
   assign dirtyMem_MPORT_12_data = dirtyMem[dirtyMem_MPORT_12_addr]; // @[d_cache.scala 29:23]
   assign dirtyMem_MPORT_1_data = 1'h1;
-  assign dirtyMem_MPORT_1_addr = tagIndex[7:0];
+  assign dirtyMem_MPORT_1_addr = tagIndex[5:0];
   assign dirtyMem_MPORT_1_mask = 1'h1;
   assign dirtyMem_MPORT_1_en = _T ? 1'h0 : _GEN_293;
   assign dirtyMem_MPORT_13_data = 1'h0;
-  assign dirtyMem_MPORT_13_addr = replaceIndex[7:0];
+  assign dirtyMem_MPORT_13_addr = replaceIndex[5:0];
   assign dirtyMem_MPORT_13_mask = 1'h1;
   assign dirtyMem_MPORT_13_en = _T ? 1'h0 : _GEN_336;
   assign quene_replace_way_MPORT_en = 1'h1;
-  assign quene_replace_way_MPORT_addr = io_from_lsu_araddr[9:4];
+  assign quene_replace_way_MPORT_addr = io_from_lsu_araddr[7:4];
   assign quene_replace_way_MPORT_data = quene[quene_replace_way_MPORT_addr]; // @[d_cache.scala 77:20]
   assign quene_MPORT_6_en = _T ? 1'h0 : _GEN_315;
-  assign quene_MPORT_6_addr = io_from_lsu_araddr[9:4];
+  assign quene_MPORT_6_addr = io_from_lsu_araddr[7:4];
   assign quene_MPORT_6_data = quene[quene_MPORT_6_addr]; // @[d_cache.scala 77:20]
   assign quene_MPORT_11_en = _T ? 1'h0 : _GEN_325;
-  assign quene_MPORT_11_addr = io_from_lsu_araddr[9:4];
+  assign quene_MPORT_11_addr = io_from_lsu_araddr[7:4];
   assign quene_MPORT_11_data = quene[quene_MPORT_11_addr]; // @[d_cache.scala 77:20]
   assign quene_MPORT_5_data = _T_24[7:0];
-  assign quene_MPORT_5_addr = io_from_lsu_araddr[9:4];
+  assign quene_MPORT_5_addr = io_from_lsu_araddr[7:4];
   assign quene_MPORT_5_mask = 1'h1;
   assign quene_MPORT_5_en = _T ? 1'h0 : _GEN_315;
   assign quene_MPORT_10_data = _T_30[7:0];
-  assign quene_MPORT_10_addr = io_from_lsu_araddr[9:4];
+  assign quene_MPORT_10_addr = io_from_lsu_araddr[7:4];
   assign quene_MPORT_10_mask = 1'h1;
   assign quene_MPORT_10_en = _T ? 1'h0 : _GEN_325;
   assign io_to_lsu_rdata = 3'h0 == state ? _GEN_3 : _GEN_283; // @[d_cache.scala 132:18]
@@ -4124,19 +4131,19 @@ initial begin
     `endif
 `ifdef RANDOMIZE_MEM_INIT
   _RAND_0 = {4{`RANDOM}};
-  for (initvar = 0; initvar < 256; initvar = initvar+1)
+  for (initvar = 0; initvar < 64; initvar = initvar+1)
     cacheLine[initvar] = _RAND_0[127:0];
   _RAND_1 = {1{`RANDOM}};
-  for (initvar = 0; initvar < 256; initvar = initvar+1)
+  for (initvar = 0; initvar < 64; initvar = initvar+1)
     validMem[initvar] = _RAND_1[0:0];
   _RAND_2 = {1{`RANDOM}};
-  for (initvar = 0; initvar < 256; initvar = initvar+1)
+  for (initvar = 0; initvar < 64; initvar = initvar+1)
     tagMem[initvar] = _RAND_2[31:0];
   _RAND_3 = {1{`RANDOM}};
-  for (initvar = 0; initvar < 256; initvar = initvar+1)
+  for (initvar = 0; initvar < 64; initvar = initvar+1)
     dirtyMem[initvar] = _RAND_3[0:0];
   _RAND_4 = {1{`RANDOM}};
-  for (initvar = 0; initvar < 64; initvar = initvar+1)
+  for (initvar = 0; initvar < 16; initvar = initvar+1)
     quene[initvar] = _RAND_4[7:0];
 `endif // RANDOMIZE_MEM_INIT
 `ifdef RANDOMIZE_REG_INIT

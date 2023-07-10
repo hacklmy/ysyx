@@ -17,6 +17,7 @@ class csr_reg extends Module{
     })
 
     val CSR_Reg = Mem(4, UInt(64.W))
+    CSR_Reg(2) := "ha00001800".U
     when(io.wen1){
         CSR_Reg(io.waddr1) := io.wdata1
     }

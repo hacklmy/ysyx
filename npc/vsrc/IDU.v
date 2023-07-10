@@ -55,7 +55,6 @@ module IDU(
   wire  csr_reg_io_wen2; // @[IDU.scala 449:21]
   wire [1:0] csr_reg_io_waddr1; // @[IDU.scala 449:21]
   wire [63:0] csr_reg_io_wdata1; // @[IDU.scala 449:21]
-  wire [63:0] csr_reg_io_wdata2; // @[IDU.scala 449:21]
   wire [1:0] csr_reg_io_raddr; // @[IDU.scala 449:21]
   wire [63:0] csr_reg_io_rdata; // @[IDU.scala 449:21]
   reg  ds_valid; // @[IDU.scala 112:27]
@@ -374,9 +373,8 @@ module IDU(
   wire [63:0] src2 = src2_is_imm ? imm : rdata2; // @[IDU.scala 472:16]
   wire [63:0] _br_target_T_1 = src1 + src2; // @[IDU.scala 475:35]
   wire [63:0] _br_target_T_4 = _br_target_T_1 & 64'hfffffffffffffffe; // @[IDU.scala 476:31]
-  wire [63:0] _br_target_T_6 = csr_reg_io_rdata + 64'h4; // @[IDU.scala 478:28]
-  wire [63:0] _br_target_T_13 = _br_taken_T_39 ? _br_target_T_6 : _br_target_T_1; // @[Lookup.scala 34:39]
-  wire [63:0] _br_target_T_14 = _inst_type_T_119 ? csr_reg_io_rdata : _br_target_T_13; // @[Lookup.scala 34:39]
+  wire [63:0] _br_target_T_11 = _br_taken_T_39 ? csr_reg_io_rdata : _br_target_T_1; // @[Lookup.scala 34:39]
+  wire [63:0] _br_target_T_12 = _inst_type_T_119 ? csr_reg_io_rdata : _br_target_T_11; // @[Lookup.scala 34:39]
   wire [31:0] _io_store_data_T_11 = _inst_type_T_75 ? rdata2[31:0] : 32'h0; // @[Lookup.scala 34:39]
   wire [31:0] _io_store_data_T_12 = _inst_type_T_37 ? {{24'd0}, rdata2[7:0]} : _io_store_data_T_11; // @[Lookup.scala 34:39]
   wire [31:0] _io_store_data_T_13 = _inst_type_T_35 ? {{16'd0}, rdata2[15:0]} : _io_store_data_T_12; // @[Lookup.scala 34:39]
@@ -386,13 +384,12 @@ module IDU(
     .io_wen2(csr_reg_io_wen2),
     .io_waddr1(csr_reg_io_waddr1),
     .io_wdata1(csr_reg_io_wdata1),
-    .io_wdata2(csr_reg_io_wdata2),
     .io_raddr(csr_reg_io_raddr),
     .io_rdata(csr_reg_io_rdata)
   );
   assign io_ds_to_es_valid = ds_valid & ds_ready_go; // @[IDU.scala 151:32]
   assign io_br_taken = br_taken & ds_ready_go & _T_2; // @[IDU.scala 503:44]
-  assign io_br_target = _inst_type_T_9 ? _br_target_T_4 : _br_target_T_14; // @[Lookup.scala 34:39]
+  assign io_br_target = _inst_type_T_9 ? _br_target_T_4 : _br_target_T_12; // @[Lookup.scala 34:39]
   assign io_ds_allowin = ~ds_valid | ds_ready_go & io_es_allowin; // @[IDU.scala 152:29]
   assign io_ds_ready_go = (conflict_es_rs1 & (io_es_fwd_ready & ~io_es_ld) | ~conflict_es_rs1 & conflict_ms_rs1 &
     io_ms_fwd_ready | ~conflict_es_rs1 & ~conflict_ms_rs1 & conflict_ws_rs1 | ~(conflict_es_rs1 | conflict_ms_rs1 |
@@ -418,7 +415,6 @@ module IDU(
   assign csr_reg_io_wen2 = csr_write[1] & ds_valid; // @[IDU.scala 466:38]
   assign csr_reg_io_waddr1 = _conflict_es_rs2_T_5 ? 2'h1 : _T_24; // @[IDU.scala 464:22]
   assign csr_reg_io_wdata1 = _conflict_es_rs2_T_5 ? ds_pc : _T_28; // @[IDU.scala 465:22]
-  assign csr_reg_io_wdata2 = conflict_es_rs2 ? io_es_fwd_res : _rdata2_T_1; // @[IDU.scala 499:18]
   assign csr_reg_io_raddr = csr_write[1] ? 2'h0 : _T_17; // @[IDU.scala 462:21]
   always @(posedge clock) begin
     if (reset) begin // @[IDU.scala 112:27]

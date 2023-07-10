@@ -240,7 +240,6 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__IFU__DOT__fs_pc;
         QData/*63:0*/ top__DOT__IDU__DOT__ds_pc;
         QData/*63:0*/ top__DOT__IDU__DOT___br_taken_T;
-        QData/*63:0*/ top__DOT__IDU__DOT___rdata2_T_1;
         QData/*63:0*/ top__DOT__IDU__DOT___br_taken_T_1;
         QData/*63:0*/ top__DOT__IDU__DOT__imm;
         QData/*63:0*/ top__DOT__IDU__DOT__src1;
@@ -283,7 +282,7 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__d_cache__DOT___GEN_179;
         QData/*63:0*/ top__DOT__d_cache__DOT___GEN_180;
         QData/*63:0*/ top__DOT__d_cache__DOT___GEN_350;
-        QData/*41:0*/ top__DOT__d_cache__DOT___GEN_246;
+        QData/*39:0*/ top__DOT__d_cache__DOT___GEN_246;
         QData/*63:0*/ top__DOT__axi__DOT__Mem_modle_Rdata;
         QData/*63:0*/ top__DOT__axi__DOT__araddr;
         QData/*63:0*/ top__DOT__axi__DOT__awaddr;
@@ -294,16 +293,16 @@ VL_MODULE(Vtop___024root) {
         VlUnpacked<QData/*63:0*/, 32> top__DOT__Register__DOT__reg_trace__DOT__traceregs;
         VlUnpacked<QData/*63:0*/, 4> top__DOT__IDU__DOT__csr_reg__DOT__CSR_Reg;
         VlUnpacked<VlWide<4>/*127:0*/, 256> top__DOT__i_cache__DOT__cacheLine;
+        VlUnpacked<CData/*0:0*/, 256> top__DOT__i_cache__DOT__validMem;
     };
     struct {
-        VlUnpacked<CData/*0:0*/, 256> top__DOT__i_cache__DOT__validMem;
         VlUnpacked<IData/*31:0*/, 256> top__DOT__i_cache__DOT__tagMem;
         VlUnpacked<CData/*7:0*/, 64> top__DOT__i_cache__DOT__quene;
-        VlUnpacked<VlWide<4>/*127:0*/, 256> top__DOT__d_cache__DOT__cacheLine;
-        VlUnpacked<CData/*0:0*/, 256> top__DOT__d_cache__DOT__validMem;
-        VlUnpacked<IData/*31:0*/, 256> top__DOT__d_cache__DOT__tagMem;
-        VlUnpacked<CData/*0:0*/, 256> top__DOT__d_cache__DOT__dirtyMem;
-        VlUnpacked<CData/*7:0*/, 64> top__DOT__d_cache__DOT__quene;
+        VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__d_cache__DOT__cacheLine;
+        VlUnpacked<CData/*0:0*/, 64> top__DOT__d_cache__DOT__validMem;
+        VlUnpacked<IData/*31:0*/, 64> top__DOT__d_cache__DOT__tagMem;
+        VlUnpacked<CData/*0:0*/, 64> top__DOT__d_cache__DOT__dirtyMem;
+        VlUnpacked<CData/*7:0*/, 16> top__DOT__d_cache__DOT__quene;
     };
 
     // LOCAL VARIABLES

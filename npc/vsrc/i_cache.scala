@@ -15,11 +15,10 @@ class I_CACHE extends Module{
     })
     //printf("enter cache\n")
     val idle :: lookup ::  miss :: reload :: clear :: Nil = Enum(5)
-    val cacheLine = Mem(256, UInt(128.W)) // 64行，每行16字节
+    val cacheLine = Mem(256, UInt(128.W))
     val validMem = Mem(256, Bool())
-
     // 定义标记存储器和组索引
-    val tagMem = Mem(256, UInt(32.W)) // 使用 UInt(4.W) 表示 16 字节的块偏移
+    val tagMem = Mem(256, UInt(32.W)) 
     //val w_idle :: write :: Nil = Enum(2)
     // val ram_0 = RegInit(VecInit(Seq.fill(16)(0.U(128.W))))
     // val ram_1 = RegInit(VecInit(Seq.fill(16)(0.U(128.W))))

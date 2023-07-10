@@ -465,7 +465,7 @@ class IDU extends Module{
     csr.wdata1 := Mux(csr_write===3.U,ds_pc,Mux(csr_write===1.U,csr_wdata,0.U))
     csr.wen2 := (csr_write(1)===1.U) && ds_valid
     csr.waddr2 := 3.U
-    csr.wdata2 := rdata2
+    csr.wdata2 := 11.U
     
 
     src1 := Mux(src1_is_pc, ds_pc, rdata1)
@@ -475,7 +475,7 @@ class IDU extends Module{
     br_target := Lookup(inst, src1+src2, Array(
         jalr -> ((src1 + src2)&"hfffffffffffffffe".U),
         ecall -> csr.rdata,
-        mret -> (csr.rdata + 4.U)
+        mret -> csr.rdata
     ))
     br_taken := Lookup(inst, false.B, Array(
         jal -> true.B ,
