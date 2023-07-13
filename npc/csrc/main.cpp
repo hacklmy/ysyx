@@ -828,7 +828,7 @@ int main(int argc, char** argv) {
   }
   cpu_gpr.pc = 0x80000000;
   #ifdef CONFIG_DIFFTEST
-  char difftest_file[] = "../../ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
+  char difftest_file[] = "../nemu/build/riscv64-nemu-interpreter-so";
   printf("so succuss\n");
   init_difftest(difftest_file,CONFIG_MSIZE);
   #endif
