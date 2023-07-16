@@ -59,9 +59,9 @@ void do_syscall(Context *c) {
     case SYS_wait:break;
     case SYS_times:break;
     case SYS_gettimeofday:
-      long int time = io_read(AM_TIMER_UPTIME).us;
+      //long int time = io_read(AM_TIMER_UPTIME).us;
       //printf("time: %ld\n", time);
-      c->GPRx = time;
+      c->GPRx = io_read(AM_TIMER_UPTIME).us;
       break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }

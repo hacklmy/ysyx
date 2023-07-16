@@ -66,5 +66,7 @@ copy_top_pipeline:
 	sed -n '/module I_CACHE/,/endmodule/p' vsrc/output/top.v > vsrc/I_CACHE.v
 	sed -n '/module D_CACHE/,/endmodule/p' vsrc/output/top.v > vsrc/D_CACHE.v
 
+clean:
+	rm -r obj_dir/	
 
 include ../Makefile
