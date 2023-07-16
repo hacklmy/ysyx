@@ -39,10 +39,11 @@ const char *regs[] = {
 
 //#define CONFIG_ITRACE
 //#define CONFIG_FTRACE
-//#define CONFIG_DIFFTEST
-//#define VerilatedVCD
-#define HAS_VGA
-#define HAS_AXI
+//#define CONFIG_DIFFTEST  //difftest
+//#define VerilatedVCD   //是否生成波形
+#define batch_mode  //一键运行模式
+#define HAS_VGA   //是否显示屏幕
+#define HAS_AXI   //必须打开
 
 void difftest_skip_ref();
 
@@ -485,6 +486,7 @@ static struct {
 #define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
 #define NR_CMD ARRLEN(cmd_table)
 int sdb_mainloop() {
+  #ifndef batch_mode 
     char str[100] ;
     printf("(npc) ");
     if (fgets(str, sizeof(str), stdin) == NULL) { // 从标准输入中读取命令
@@ -513,7 +515,9 @@ int sdb_mainloop() {
       }
     }
     if (i == NR_CMD) { printf("Unknown command '%s'\n", cmd); }
-  
+  #else
+  cmd_c(NULL);
+  #endif
   return 1;
 }
 
